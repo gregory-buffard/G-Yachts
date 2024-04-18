@@ -1,0 +1,11 @@
+{
+  "name": "g-yachts",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "prettier": "3.2.5"
+  }
+}
