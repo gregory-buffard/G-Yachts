@@ -31,3 +31,21 @@
         src: url('../public/typography/Beausite Slick/Beausite Slick Trial Regular.ttf') format('truetype');
     }
 }
+
+@layer components {
+    .center {
+        @apply flex justify-center items-center;
+    }
+
+    .burger-bar {
+        @apply h-[0.25vh] w-full bg-white rounded-full;
+    }
+
+    .navigation-link {
+        @apply text-4xl font-normal py-[0.25rem] group-hover:-translate-y-[3rem] transition-transform duration-300 ease-in-out;
+    }
+
+    .navigation-contact {
+        @apply bg-rock-200 hover:bg-white active:bg-white transition-[background-color] duration-200 ease-in-out px-[0.5vw] h-[4vh] flex justify-center items-center;
+    }
+}

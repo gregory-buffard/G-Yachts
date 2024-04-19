@@ -1,0 +1,15 @@
+{
+  "navigation": {
+    "links": {
+      "sales": "Sales",
+      "charters": "Charters",
+      "management": "Management",
+      "company": "Company",
+      "partners": "Partners",
+      "news": "News",
+      "recruitment": "Recruitment",
+      "contact": "Contact"
+    },
+    "hq": "Headquarter"
+  }
+}

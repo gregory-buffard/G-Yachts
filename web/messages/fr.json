@@ -1,0 +1,15 @@
+{
+  "navigation": {
+    "links": {
+      "sales": "Ventes",
+      "charters": "Charters",
+      "management": "Management",
+      "company": "Compagnie",
+      "partners": "Partenaires",
+      "news": "Actualités",
+      "recruitment": "Recrutement",
+      "contact": "Contact"
+    },
+    "hq": "Siège social"
+  }
+}
