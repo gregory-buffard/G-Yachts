@@ -11,5 +11,21 @@
       "contact": "Contact"
     },
     "hq": "Siège social"
+  },
+  "index": {
+    "metadata": {
+      "title": "G–Yachts",
+      "description": "G–Yachts est une société de courtage, vente, location, gestion et construction de yachts basée à Monaco.",
+      "keywords": "yachts, vente, location, gestion, construction, Monaco",
+      "author": "G–Yachts"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Contact",
+      "description": "Contactez G–Yachts pour toute question ou demande de renseignements.",
+      "keywords": "contact, G–Yachts, question, demande, renseignements",
+      "author": "G–Yachts"
+    }
   }
 }

@@ -11,5 +11,21 @@
       "contact": "Contact"
     },
     "hq": "Headquarter"
+  },
+  "index": {
+    "metadata": {
+      "title": "G–Yachts",
+      "description": "G–Yachts is a yacht brokerage company based in Monaco. We offer a wide range of services including yacht sales, yacht charters, yacht management and yacht construction.",
+      "keywords": "yacht, brokerage, sales, charters, management, construction, monaco",
+      "author": "G–Yachts"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Contact",
+      "description": "Contact G–Yachts for any inquiries regarding yacht sales, yacht charters, yacht management or yacht construction.",
+      "keywords": "contact, inquiry, sales, charters, management, construction",
+      "author": "G–Yachts"
+    }
   }
 }
