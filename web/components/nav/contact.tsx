@@ -134,7 +134,7 @@ const Contact = ({
       exit={{ y: "100%" }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
       className={
-        "fixed bottom-0 bg-rock-100 h-[86vh] sm:h-screen sm:overflow-y-auto w-full flex flex-col justify-start items-center px-[2vw] sm:px-[4vw] py-[4vh] gap-[2vh] sm:gap-[4vh]"
+        "fixed bottom-0 left-0 z-50 bg-rock-100 h-[86vh] sm:h-screen sm:overflow-y-auto w-full flex flex-col justify-start items-center px-[2vw] sm:px-[4vw] py-[4vh] gap-[2vh] sm:gap-[4vh]"
       }
     >
       <div

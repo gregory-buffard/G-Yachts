@@ -202,7 +202,7 @@ const Navigation = ({
       animate={{ x: "0" }}
       exit={{ x: "-100%" }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className={`fixed left-0 bottom-0 h-screen w-[32vw] sm:w-screen px-[2vw] sm:px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col gap-[2vh]`}
+      className={`fixed left-0 bottom-0 z-50 h-screen w-[32vw] sm:w-screen px-[2vw] sm:px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col gap-[2vh]`}
     >
       <div className={"navigation-section"}>
         <div className={"w-full flex justify-between items-center"}>

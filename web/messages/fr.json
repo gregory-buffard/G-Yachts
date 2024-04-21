@@ -1,4 +1,7 @@
 {
+  "bar": {
+    "CTA": "Contactez-nous"
+  },
   "navigation": {
     "links": {
       "sales": "Ventes",

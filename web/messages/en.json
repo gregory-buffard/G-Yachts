@@ -1,4 +1,7 @@
 {
+  "bar": {
+    "CTA": "Get in touch"
+  },
   "navigation": {
     "links": {
       "sales": "Sales",

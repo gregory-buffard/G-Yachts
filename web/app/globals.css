@@ -37,8 +37,12 @@
         @apply flex justify-center items-center;
     }
 
+    .containerize {
+        @apply w-full px-[5vw];
+    }
+
     .burger-bar {
-        @apply h-[0.25vh] w-full bg-white rounded-full;
+        @apply h-[0.4vh] w-full bg-white rounded-full;
     }
 
     .navigation-section {
@@ -67,6 +71,11 @@
 
     .form-checkbox {
         @apply accent-black outline-none;
+    }
+
+    .glass-button {
+        @apply font-classic font-normal uppercase text-sm text-white border-[0.25vh] border-white/25 bg-white/10 backdrop-blur-2xl px-[1vw] sm:px-[4vw] py-[1vh] tracking-wider hover:bg-teal hover:border-teal;
+        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     }
 
     .slide-in {

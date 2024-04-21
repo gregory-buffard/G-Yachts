@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import dynamic from "next/dynamic";
 import { ContactProvider } from "@/contexts/contact";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,11 +9,13 @@ const Contact: React.ComponentType<{
   open: (value: "navigation" | "contact" | undefined) => void;
 }> = dynamic(() => import("@/components/nav/contact"));
 
-const Burger = () => {
-  const [opened, setOpened] = useState<"navigation" | "contact" | undefined>(
-    undefined,
-  );
-
+const Burger = ({
+  opened,
+  setOpened,
+}: {
+  opened: "navigation" | "contact" | undefined;
+  setOpened: (value: "navigation" | "contact" | undefined) => void;
+}) => {
   return (
     <>
       <AnimatePresence mode={"popLayout"}>
@@ -36,7 +35,7 @@ const Burger = () => {
               backdropFilter: "blur(0)",
             }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className={"absolute w-screen h-screen inset-0 cursor-pointer"}
+            className={"absolute w-screen h-screen inset-0 cursor-pointer z-40"}
             onClick={() => setOpened(undefined)}
           />
         )}
@@ -52,7 +51,7 @@ const Burger = () => {
       <button
         onClick={() => setOpened("navigation")}
         className={
-          "center flex-col w-[2vw] gap-[0.5vh] hover:gap-[1vh] transition-[gap] duration-200 ease-in-out h-[2.75vh]"
+          "h-[2.7vh] center flex-col w-[2vw] sm:w-[8vw] gap-[0.5vh] hover:gap-[0.75vh] transition-[gap] duration-200 ease-in-out"
         }
       >
         <div className={"burger-bar"} />
