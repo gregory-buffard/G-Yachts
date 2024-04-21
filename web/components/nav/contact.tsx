@@ -14,6 +14,7 @@ const Input = ({
     type: string;
     label: string;
     value: keyof IContact;
+    required: boolean;
   };
   children?: React.ReactNode;
 }) => {
@@ -42,6 +43,7 @@ const Input = ({
         <input
           id={props.value}
           type={props.type}
+          required={props.required}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setContactCard({ ...contactCard, [props.value]: e.target.value })
           }
@@ -65,7 +67,9 @@ const Inquiry = ({
   const { contactCard, setContactCard } = useContactCard();
 
   return (
-    <div className={"flex justify-start items-baseline gap-[0.5vw]"}>
+    <div
+      className={"flex justify-start items-baseline gap-[0.5vw] sm:gap-[2vw]"}
+    >
       <input
         id={props.value}
         type={"checkbox"}
@@ -130,42 +134,51 @@ const Contact = ({
       exit={{ y: "100%" }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
       className={
-        "fixed left-0 bottom-0 bg-rock-100 h-[86vh] w-full flex flex-col justify-start items-center px-[2vw] py-[4vh]"
+        "fixed bottom-0 bg-rock-100 h-[86vh] sm:h-screen sm:overflow-y-auto w-full flex flex-col justify-start items-center px-[2vw] sm:px-[4vw] py-[4vh] gap-[2vh] sm:gap-[4vh]"
       }
     >
-      <div className={"w-full flex justify-end items-center mb-[2vh]"}>
+      <div
+        className={"w-full sm:sticky sm:top-0 flex justify-end items-center"}
+      >
         <Close action={open} value={undefined} />
       </div>
       <div
-        className={"h-full w-full flex justify-between items-center px-[2vw]"}
+        className={
+          "h-full sm:h-max w-full px-[2vw] sm:px-0 flex sm:flex-col sm:gap-[8vh] justify-between items-center"
+        }
       >
         <div
           className={
-            "h-full w-[48vw] flex flex-col justify-between items-start text-black"
+            "h-full w-[48vw] sm:w-full flex flex-col justify-between items-start text-black sm:gap-[8vh]"
           }
         >
           <div
             className={
-              "h-full flex flex-col justify-start items-start gap-[2vh]"
+              "h-full flex flex-col justify-start items-start gap-[2vh] sm:gap-[2vh]"
             }
           >
-            <h1 className={"font-slick text-5xl font-light"}>
+            <h1 className={"font-slick text-5xl sm:text-4xl font-light"}>
               {t.rich("CTA", {
                 classic: (chunks) => (
                   <span className={"font-classic uppercase"}>{chunks}</span>
                 ),
               })}
             </h1>
-            <p className={"font-classic font-normal mb-[2vh]"}>
-              {t("subheading")}
-            </p>
+            <p className={"font-classic font-normal"}>{t("subheading")}</p>
             <ContactLinks />
           </div>
-          <SocialLinks address={true} />
+          <div
+            className={
+              "w-full flex flex-col justify-start items-start sm:gap-[2vh]"
+            }
+          >
+            <div className={"hidden sm:block w-full h-[0.25vh] bg-rock-200"} />
+            <SocialLinks address={true} />
+          </div>
         </div>
         <form
           className={
-            "h-full bg-white flex flex-col justify-start items-center px-[2vw] py-[4vh] gap-[3vh]"
+            "h-full bg-white flex flex-col justify-start items-center px-[4vw] py-[4vh] sm:py-[4vw] gap-[3vh]"
           }
         >
           <Input
@@ -173,6 +186,7 @@ const Contact = ({
               type: "text",
               label: t("form.name"),
               value: "name",
+              required: true,
             }}
           />
           <Input
@@ -180,9 +194,17 @@ const Contact = ({
               type: "email",
               label: t("form.email"),
               value: "email",
+              required: true,
             }}
           />
-          <Input props={{ type: "tel", label: t("form.tel"), value: "tel" }}>
+          <Input
+            props={{
+              type: "tel",
+              label: t("form.tel"),
+              value: "tel",
+              required: false,
+            }}
+          >
             <>
               <button
                 type={"button"}
@@ -199,7 +221,7 @@ const Contact = ({
                   x="0px"
                   y="0px"
                   viewBox="0 0 72 72"
-                  className={`fill-black size-[1vw] ${changeCode ? "-rotate-180" : ""} transition-transform duration-200 ease-in-out`}
+                  className={`fill-black size-[1vw] sm:size-[2vh] ${changeCode ? "-rotate-180" : ""} transition-transform duration-200 ease-in-out`}
                 >
                   <path d="M35.98,50.002c-1.046,0-2.093-0.395-2.863-1.185L13.595,28.809c-1.542-1.581-1.512-4.114,0.069-5.656	c1.582-1.542,4.113-1.512,5.657,0.069L35.98,40.296l16.698-17.113c1.544-1.582,4.076-1.612,5.657-0.069s1.611,4.075,0.069,5.656	L38.844,48.817C38.073,49.607,37.026,50.002,35.98,50.002z"></path>
                 </svg>
@@ -207,7 +229,7 @@ const Contact = ({
               {changeCode && (
                 <div
                   className={
-                    "absolute translate-y-[1.75rem] flex flex-col justify-start items-start bg-white w-max h-[18vh] overflow-y-auto drop-shadow-2xl gap-[1vh] px-[0.5vw] py-[0.5vw] rounded-[1vh]"
+                    "absolute translate-y-[1.75rem] flex flex-col justify-start items-start bg-white w-max sm:w-[80vw] h-[18vh] overflow-y-auto drop-shadow-2xl gap-[1vh] px-[0.5vw] py-[0.5vw] rounded-[1vh]"
                   }
                   ref={menuRef}
                 >
@@ -220,10 +242,12 @@ const Contact = ({
                         setChangeCode(false);
                       }}
                       className={
-                        "w-full flex justify-start items-center gap-[0.5vw] hover:bg-rock-100 transition-[background-color] duration-100 ease-in-out rounded-[0.5vh] px-[1vw] py-[0.5vh]"
+                        "w-full flex justify-start items-baseline gap-[0.5vw] sm:gap-[1vh] hover:bg-rock-100 transition-[background-color] duration-100 ease-in-out rounded-[0.5vh] px-[1vw] sm:px-[2vw] py-[0.5vh] sm:py-[2vw]"
                       }
                     >
-                      <span>{sel.name}</span>
+                      <span className={"sm:text-wrap sm:text-left"}>
+                        {sel.name}
+                      </span>
                       <span className={"text-rock-300"}>{sel.dial_code}</span>
                     </button>
                   ))}
@@ -246,6 +270,7 @@ const Contact = ({
             </label>
             <textarea
               id={"message"}
+              required={true}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                 setContactCard({
                   ...contactCard,
@@ -253,7 +278,7 @@ const Contact = ({
                 })
               }
               className={
-                "peer text-base w-[32vw] py-[0.5vh] text-black font-classic font-normal flex justify-start items-baseline gap-[0.5vw] outline-none resize-none h-[5rem]"
+                "peer text-base w-[32vw] sm:w-full py-[0.5vh] text-black font-classic font-normal flex justify-start items-baseline gap-[0.5vw] outline-none resize-none h-[5rem]"
               }
             />
             <div
@@ -273,7 +298,9 @@ const Contact = ({
             </label>
             <div
               id={"inquiry"}
-              className={"flex justify-start items-baseline gap-[2vw]"}
+              className={
+                "flex justify-start items-baseline sm:flex-wrap gap-[2vw] sm:gap-[4vw]"
+              }
             >
               <Inquiry
                 props={{ label: t("form.inquiry.buying"), value: "buying" }}

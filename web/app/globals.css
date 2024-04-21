@@ -41,19 +41,23 @@
         @apply h-[0.25vh] w-full bg-white rounded-full;
     }
 
+    .navigation-section {
+        @apply w-full flex flex-col justify-start items-start gap-[2vh];
+    }
+
     .navigation-link {
         @apply text-4xl font-normal py-[0.25rem] group-hover:-translate-y-[3rem] sm:group-hover:translate-y-0 transition-transform duration-300 ease-in-out;
     }
 
     .navigation-contact {
-        @apply bg-rock-200 hover:bg-white active:bg-white transition-[background-color] duration-200 ease-in-out px-[0.5vw] h-[4vh] flex justify-center items-center;
+        @apply bg-rock-200 hover:bg-white active:bg-white transition-[background-color] duration-200 ease-in-out px-[0.5vw] sm:px-[2.5vw] h-[4vh] flex justify-center items-center;
     }
 
     .form-agreement {
-        @apply w-full flex justify-start items-baseline gap-[0.5vw];
+        @apply w-full flex justify-start items-baseline gap-[0.5vw] sm:gap-[2vw];
     }
 
-    .form-agreement label,input {
+    .form-agreement label {
         @apply cursor-pointer;
     }
 
