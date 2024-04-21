@@ -4,6 +4,7 @@ const Home = () => {
   return (
     <main className="">
       <Bar />
+      <section className={"w-screen h-screen bg-hero-banner"}></section>
     </main>
   );
 };

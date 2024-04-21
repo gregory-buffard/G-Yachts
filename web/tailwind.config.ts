@@ -11,6 +11,9 @@ const config: Config = {
       classic: ['"Beausite Classic"', "sans-serif"],
       slick: ['"Beausite Slick"', "serif"],
     },
+    backgroundImage: {
+      "hero-banner": "url('../public/imagery/6.png')",
+    },
     extend: {
       colors: {
         navy: "#011936",
