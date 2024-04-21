@@ -14,6 +14,9 @@ const config: Config = {
     backgroundImage: {
       "hero-banner": "url('../public/imagery/6.png')",
     },
+    screens: {
+      sm: { max: "640px" },
+    },
     extend: {
       colors: {
         navy: "#011936",

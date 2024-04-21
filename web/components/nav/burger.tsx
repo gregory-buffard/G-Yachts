@@ -22,33 +22,31 @@ const Burger = () => {
       <AnimatePresence mode={"popLayout"}>
         {opened && (
           <motion.div
-            key={"burger"}
+            key={"blur"}
             initial={{
               backgroundColor: "rgba(255, 255, 255, 0)",
               backdropFilter: "blur(0)",
             }}
             animate={{
               backgroundColor: "rgba(255, 255, 255, 0.1)",
-              backdropFilter: "blur(24px)",
+              backdropFilter: "blur(10px)",
             }}
             exit={{
               backgroundColor: "rgba(255, 255, 255, 0)",
               backdropFilter: "blur(0)",
             }}
-            transition={{ duration: 0.5 }}
-            className={`absolute inset-0 w-screen h-screen`}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className={"absolute w-screen h-screen inset-0 cursor-pointer"}
             onClick={() => setOpened(undefined)}
-          >
-            {(opened === "navigation" && (
-              <Navigation key={"navigation"} open={setOpened} />
-            )) ||
-              (opened === "contact" && (
-                <ContactProvider>
-                  <Contact key={"contact"} open={setOpened} />
-                </ContactProvider>
-              )) ||
-              null}
-          </motion.div>
+          />
+        )}
+        {opened === "navigation" && (
+          <Navigation key={"navigation"} open={setOpened} />
+        )}
+        {opened === "contact" && (
+          <ContactProvider>
+            <Contact key={"contact"} open={setOpened} />
+          </ContactProvider>
         )}
       </AnimatePresence>
       <button

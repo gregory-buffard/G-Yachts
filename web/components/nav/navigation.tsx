@@ -20,7 +20,7 @@ export const Close = ({
         y="0px"
         viewBox="0 0 64 64"
         className={
-          "size-[1.5vw] hover:rotate-90 transition-transform duration-200 ease-in-out"
+          "size-[1.5vw] sm:size-[2.5vh] hover:rotate-90 transition-transform duration-200 ease-in-out"
         }
       >
         <path d="M 16 14 C 15.488 14 14.976938 14.194937 14.585938 14.585938 C 13.804937 15.366937 13.804937 16.633063 14.585938 17.414062 L 29.171875 32 L 14.585938 46.585938 C 13.804938 47.366938 13.804937 48.633063 14.585938 49.414062 C 14.976937 49.805062 15.488 50 16 50 C 16.512 50 17.023062 49.805062 17.414062 49.414062 L 32 34.828125 L 46.585938 49.414062 C 47.366938 50.195063 48.633063 50.195062 49.414062 49.414062 C 50.195063 48.633062 50.195062 47.366937 49.414062 46.585938 L 34.828125 32 L 49.414062 17.414062 C 50.195063 16.633063 50.195062 15.366938 49.414062 14.585938 C 48.633062 13.804938 47.366937 13.804938 46.585938 14.585938 L 32 29.171875 L 17.414062 14.585938 C 17.023062 14.194938 16.512 14 16 14 z"></path>
@@ -203,8 +203,8 @@ const Navigation = ({
       initial={{ x: "-100%" }}
       animate={{ x: "0" }}
       exit={{ x: "-100%" }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      className={`absolute left-0 h-screen w-[32vw] px-[2vw] bg-rock-100 text-navy flex justify-start items-start flex-col`}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
+      className={`fixed left-0 bottom-0 h-screen w-[32vw] sm:w-screen px-[2vw] sm:px-[4vw] bg-rock-100 text-navy flex justify-start items-start flex-col`}
     >
       <div className={"w-full flex justify-between items-center my-[2vh]"}>
         <Close action={open} value={undefined} />
@@ -228,7 +228,13 @@ const Navigation = ({
             "flex flex-col overflow-hidden justify-start items-start h-[3rem] group"
           }
         >
-          <h1 className={"navigation-link font-slick"}>{t("contact")}</h1>
+          <button
+            type={"button"}
+            onClick={() => setTimeout(() => open("contact"), 200)}
+            className={"navigation-link font-slick"}
+          >
+            {t("contact")}
+          </button>
           <button
             type={"button"}
             onClick={() => setTimeout(() => open("contact"), 200)}

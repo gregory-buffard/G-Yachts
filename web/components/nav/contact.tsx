@@ -99,9 +99,7 @@ const Contact = ({
 }) => {
   const t = useTranslations("contact"),
     [changeCode, setChangeCode] = useState(false),
-    [code, setCode] = useState<string>(
-      codes.find((code) => code.name === "Monaco").dial_code,
-    ),
+    [code, setCode] = useState<string>("+377"),
     menuRef = useRef<HTMLDivElement>(null),
     { contactCard, setContactCard } = useContactCard();
 
@@ -127,12 +125,12 @@ const Contact = ({
 
   return (
     <motion.section
-      initial={{ y: "100vh" }}
-      animate={{ y: "0" }}
-      exit={{ y: "100vh" }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      initial={{ y: "100%" }}
+      animate={{ y: "0%" }}
+      exit={{ y: "100%" }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
       className={
-        "absolute bottom-0 bg-rock-100 h-[86vh] w-screen flex flex-col justify-start items-center px-[2vw] py-[4vh]"
+        "fixed left-0 bottom-0 bg-rock-100 h-[86vh] w-full flex flex-col justify-start items-center px-[2vw] py-[4vh]"
       }
     >
       <div className={"w-full flex justify-end items-center mb-[2vh]"}>
@@ -189,7 +187,7 @@ const Contact = ({
               <button
                 type={"button"}
                 onBlur={() => setTimeout(() => setChangeCode(false), 200)}
-                onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                   e.preventDefault();
                   setTimeout(() => setChangeCode(!changeCode), 200);
                 }}
@@ -248,7 +246,7 @@ const Contact = ({
             </label>
             <textarea
               id={"message"}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                 setContactCard({
                   ...contactCard,
                   message: e.target.value,
