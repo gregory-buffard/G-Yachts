@@ -26,6 +26,24 @@
       "description": "Contact G–Yachts for any inquiries regarding yacht sales, yacht charters, yacht management or yacht construction.",
       "keywords": "contact, inquiry, sales, charters, management, construction",
       "author": "G–Yachts"
+    },
+    "CTA": "Get in <classic>touch</classic>",
+    "subheading": "Send us an enquiry or speak to one of our team through WhatsApp, email or phone.",
+    "form" : {
+      "name": "name*",
+      "email": "Email*",
+      "tel": "Phone",
+      "message": "Message*",
+      "inquiry": {
+        "title": "I'm interested in",
+        "buying": "Buying",
+        "selling": "Selling",
+        "chartering": "Chartering",
+        "other": "Other"
+      },
+      "newsletter": "Send me alert and company updates",
+      "law": "I agree to the <confidentiality>privacy policy</confidentiality> & <guidelines>terms and conditions</guidelines>",
+      "submit": "Send"
     }
   }
 }

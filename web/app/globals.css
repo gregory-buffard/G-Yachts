@@ -48,4 +48,56 @@
     .navigation-contact {
         @apply bg-rock-200 hover:bg-white active:bg-white transition-[background-color] duration-200 ease-in-out px-[0.5vw] h-[4vh] flex justify-center items-center;
     }
+
+    .form-agreement {
+        @apply w-full flex justify-start items-baseline gap-[0.5vw];
+    }
+
+    .form-agreement label,input {
+        @apply cursor-pointer;
+    }
+
+    .form-agreement a {
+        @apply underline
+    }
+
+    .form-checkbox {
+        @apply accent-black outline-none;
+    }
+
+    .slide-in {
+        animation: slide 0.5s ease-in-out forwards;
+    }
+
+    .slide-out {
+        animation: slide 0.5s ease-in-out reverse forwards;
+    }
+
+    .blur {
+        animation: blur 0.5s ease-in-out forwards;
+    }
+
+    .de-blur {
+        animation: blur 0.5s ease-in-out reverse forwards;
+    }
+
+    @keyframes slide {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes blur {
+        0% {
+            background-color: rgb(249 245 242 / 0);
+            backdrop-filter: blur(0);
+        }
+        100% {
+            background-color: rgb(249 245 242 / 0.5);
+            backdrop-filter: blur(24px);
+        }
+    }
 }

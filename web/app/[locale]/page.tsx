@@ -1,9 +1,9 @@
-import Menu from "@/components/navigation";
+import Bar from "@/components/bar";
 
 const Home = () => {
   return (
-    <main className="bg-black">
-      <Menu />
+    <main className="">
+      <Bar />
     </main>
   );
 };

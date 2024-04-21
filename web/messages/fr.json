@@ -26,6 +26,24 @@
       "description": "Contactez G–Yachts pour toute question ou demande de renseignements.",
       "keywords": "contact, G–Yachts, question, demande, renseignements",
       "author": "G–Yachts"
+    },
+    "CTA": "Contactez-<classic>nous</classic>",
+    "subheading": "Envoyez-nous une demande de renseignements ou parlez à l'un des membres de notre équipe par WhatsApp, par email ou par téléphone.",
+    "form" : {
+      "name": "Nom*",
+      "email": "Email*",
+      "tel": "Téléphone",
+      "message": "Message*",
+      "inquiry": {
+        "title": "Je suis intéressé par",
+        "buying": "Achat",
+        "selling": "Vente",
+        "chartering": "Location",
+        "other": "Autre"
+      },
+      "newsletter": "M'abonner aux alertes et actualités de la société",
+      "law": "J'accèpte la <confidentiality>politique de confidentialité</confidentiality> & les <guidelines>conditions d'utilisation</guidelines>",
+      "submit": "Envoyer"
     }
   }
 }
