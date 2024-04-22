@@ -14,7 +14,7 @@ const Bar = () => {
   return (
     <section
       className={
-        "fixed flex justify-between items-center lg:py-[4vh] py-[2vh] containerize"
+        "fixed flex justify-between items-center lg:py-[4vh] py-[2vh] containerize z-10"
       }
     >
       <Burger opened={opened} setOpened={setOpened} />

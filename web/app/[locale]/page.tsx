@@ -1,21 +1,21 @@
 import Bar from "@/components/bar";
-import { Hero } from '@/components';
-import {useTranslations} from 'next-intl';
+import { Hero } from "@/components";
+import { useTranslations } from "next-intl";
 
 const Home = () => {
-    const t = useTranslations("LearnSection");
+  const t = useTranslations("LearnSection");
   return (
-      <main className="overflow-x-hidden">
-          <Bar/>
-          <Hero/>
-              <section className="bg-white w-full py-44">
-                  <div className="flex flex-col items-center justify-center">
-                      <h2>{t("title")}</h2>
-                      <button type={"button"} className="glass-button text-black border-black/25">{t("CTA")}</button>
-                  </div>
-              </section>
-          <section className="bg-yellow-300 w-full py-96"></section>
-      </main>
+    <main className="w-screen flex flex-col justify-start items-center">
+      <Bar />
+      <Hero />
+      <section className="bg-white containerize py-44 flex flex-col justify-center items-start containerize">
+        <h1 className={"text-4xl"}>{t("title")}</h1>
+        <button type={"button"} className="glass-button">
+          {t("CTA")}
+        </button>
+      </section>
+      <section className="bg-yellow-300 w-full py-96"></section>
+    </main>
   );
 };
 

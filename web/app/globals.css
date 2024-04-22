@@ -78,7 +78,7 @@
     }
 
     .glass-button {
-        @apply font-classic font-normal uppercase text-sm text-white border-[0.25vh] border-white/25 bg-white/10 backdrop-blur-2xl lg:px-[1vw] px-[4vw] py-[1vh] tracking-wider hover:bg-teal hover:border-teal;
+        @apply font-classic font-normal uppercase text-sm text-white border-[0.25vh] border-white/25 bg-white/10 lg:px-[1vw] px-[4vw] py-[1vh] tracking-wider hover:bg-teal hover:border-teal backdrop-blur-2xl;
         transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     }
 
