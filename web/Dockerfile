@@ -3,11 +3,11 @@ LABEL authors="g-yachts"
 
 WORKDIR /usr/src/web
 
-COPY web/package*.json ./
+COPY package*.json ./
 
 RUN npm install
 
-COPY web/ .
+COPY . .
 
 RUN npm run build
 
