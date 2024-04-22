@@ -23,7 +23,7 @@ jobs:
           host: ${{secrets.SERVER_IP}}
           user: ${{secrets.SERVER_USER}}
           pass: ${{secrets.SERVER_PASSSWORD}}
-          script: |
+          first_ssh: |
             cd /var/www
             git pull
             docker-compose up --build d
