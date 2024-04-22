@@ -30,6 +30,7 @@ export const ContactProvider: React.FC<{
       chartering: false,
       other: false,
     },
+    newsletter: false,
   });
 
   return (
