@@ -26,4 +26,7 @@ jobs:
           first_ssh: |
             cd /var/www
             git pull
+            cd G-Yachts/web
+            npm install
+            npm run build
             docker-compose up --build d
