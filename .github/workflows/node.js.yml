@@ -25,8 +25,8 @@ jobs:
           pass: ${{secrets.SERVER_PASSSWORD}}
           first_ssh: |
             cd /var/www
-            git pull
+            sudo git pull
             cd G-Yachts/web
-            npm install
-            npm run build
-            docker-compose up --build d
+            sudo npm install
+            sudo npm run build
+            sudo docker-compose up --build d
