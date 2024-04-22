@@ -12,7 +12,7 @@ const config: Config = {
       slick: ['"Beausite Slick"', "serif"],
     },
     backgroundImage: {
-      "hero-banner": "url('../public/imagery/6.png')",
+      "hero-bg-image": "url('../public/imagery/6.png')",
     },
     screens: {
       sm: { max: "640px" },
