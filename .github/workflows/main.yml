@@ -42,7 +42,7 @@ jobs:
         username: ${{secrets.SERVER_USER}}
         password: ${{secrets.SERVER_PASSWORD}}
         script: |
-          docker pull ghcr.io/${{github.repository_owner}}/my-app:${{github.sha}}
-          docker stop my-app || true
-          docker rm my-app || true
-          docker run -d --name my-app -p 3000:3000 ghcr.io/${{github.repository_owner}}/my-app:${{github.sha}}
+          sudo docker pull ghcr.io/${{github.repository_owner}}/my-app:${{github.sha}}
+          sudo docker stop my-app || true
+          sudo docker rm my-app || true
+          sudo docker run -d --name my-app -p 3000:3000 ghcr.io/${{github.repository_owner}}/my-app:${{github.sha}}
