@@ -8,9 +8,9 @@ const Home = () => {
     <main className="w-screen flex flex-col justify-start items-center">
       <Bar />
       <Hero />
-      <section className="bg-white containerize py-44 flex flex-col justify-center items-start containerize">
+      <section className="bg-white py-44 flex flex-col justify-center items-start containerize">
         <h1 className={"text-4xl"}>{t("title")}</h1>
-        <button type={"button"} className="glass-button">
+        <button type={"button"} className="glass-button text-black border-black/25">
           {t("CTA")}
         </button>
       </section>
