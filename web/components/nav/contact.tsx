@@ -68,7 +68,7 @@ const Inquiry = ({
 
   return (
     <div
-      className={"flex justify-start items-baseline gap-[0.5vw] sm:gap-[2vw]"}
+      className={"flex justify-start items-baseline lg:gap-[0.5vw] gap-[2vw]"}
     >
       <input
         id={props.value}
@@ -134,30 +134,32 @@ const Contact = ({
       exit={{ y: "100%" }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
       className={
-        "fixed bottom-0 left-0 z-50 bg-rock-100 h-[86vh] sm:h-screen sm:overflow-y-auto w-full flex flex-col justify-start items-center px-[2vw] sm:px-[4vw] py-[4vh] gap-[2vh] sm:gap-[4vh]"
+        "fixed bottom-0 left-0 z-20 bg-rock-100 lg:h-[86vh] h-screen lg:overflow-y-hidden overflow-y-auto w-full flex flex-col justify-start items-center lg:px-[2vw] px-[4vw] py-[4vh] lg:gap-[2vh] gap-[4vh]"
       }
     >
       <div
-        className={"w-full sm:sticky sm:top-0 flex justify-end items-center"}
+        className={
+          "w-full lg:static lg:top-auto sticky top-0 flex justify-end items-center"
+        }
       >
         <Close action={open} value={undefined} />
       </div>
       <div
         className={
-          "h-full sm:h-max w-full px-[2vw] sm:px-0 flex sm:flex-col sm:gap-[8vh] justify-between items-center"
+          "lg:h-full h-max w-full lg:px-[2vw] px-0 flex lg:flex-row flex-col lg:gap-0 gap-[8vh] justify-between items-center"
         }
       >
         <div
           className={
-            "h-full w-[48vw] sm:w-full flex flex-col justify-between items-start text-black sm:gap-[8vh]"
+            "h-full lg:w-[48vw] w-full flex flex-col justify-between items-start text-black lg:gap-0 gap-[8vh]"
           }
         >
           <div
             className={
-              "h-full flex flex-col justify-start items-start gap-[2vh] sm:gap-[2vh]"
+              "h-full flex flex-col justify-start items-start gap-[2vh]"
             }
           >
-            <h1 className={"font-slick text-5xl sm:text-4xl font-light"}>
+            <h1 className={"font-slick lg:text-5xl text-4xl font-light"}>
               {t.rich("CTA", {
                 classic: (chunks) => (
                   <span className={"font-classic uppercase"}>{chunks}</span>
@@ -169,16 +171,16 @@ const Contact = ({
           </div>
           <div
             className={
-              "w-full flex flex-col justify-start items-start sm:gap-[2vh]"
+              "w-full flex flex-col justify-start items-start lg:gap-0 gap-[2vh]"
             }
           >
-            <div className={"hidden sm:block w-full h-[0.25vh] bg-rock-200"} />
+            <div className={"lg:hidden block w-full h-[0.25vh] bg-rock-200"} />
             <SocialLinks address={true} />
           </div>
         </div>
         <form
           className={
-            "h-full bg-white flex flex-col justify-start items-center px-[4vw] py-[4vh] sm:py-[4vw] gap-[3vh]"
+            "h-full lg:w-max w-full bg-white flex flex-col justify-start items-center lg:px-[4vh] px-[4vw] lg:py-[4vh] py-[4vw] gap-[3vh]"
           }
         >
           <Input
@@ -221,7 +223,7 @@ const Contact = ({
                   x="0px"
                   y="0px"
                   viewBox="0 0 72 72"
-                  className={`fill-black size-[1vw] sm:size-[2vh] ${changeCode ? "-rotate-180" : ""} transition-transform duration-200 ease-in-out`}
+                  className={`fill-black lg:size-[1vw] size-[2vh] ${changeCode ? "-rotate-180" : ""} transition-transform duration-200 ease-in-out`}
                 >
                   <path d="M35.98,50.002c-1.046,0-2.093-0.395-2.863-1.185L13.595,28.809c-1.542-1.581-1.512-4.114,0.069-5.656	c1.582-1.542,4.113-1.512,5.657,0.069L35.98,40.296l16.698-17.113c1.544-1.582,4.076-1.612,5.657-0.069s1.611,4.075,0.069,5.656	L38.844,48.817C38.073,49.607,37.026,50.002,35.98,50.002z"></path>
                 </svg>
@@ -229,7 +231,7 @@ const Contact = ({
               {changeCode && (
                 <div
                   className={
-                    "absolute translate-y-[1.75rem] flex flex-col justify-start items-start bg-white w-max sm:w-[80vw] h-[18vh] overflow-y-auto drop-shadow-2xl gap-[1vh] px-[0.5vw] py-[0.5vw] rounded-[1vh]"
+                    "absolute translate-y-[1.75rem] flex flex-col justify-start items-start bg-white lg:w-max w-[80vw] h-[18vh] overflow-y-auto drop-shadow-2xl gap-[1vh] px-[0.5vw] py-[0.5vw] rounded-[1vh]"
                   }
                   ref={menuRef}
                 >
@@ -242,12 +244,10 @@ const Contact = ({
                         setChangeCode(false);
                       }}
                       className={
-                        "w-full flex justify-start items-baseline gap-[0.5vw] sm:gap-[1vh] hover:bg-rock-100 transition-[background-color] duration-100 ease-in-out rounded-[0.5vh] px-[1vw] sm:px-[2vw] py-[0.5vh] sm:py-[2vw]"
+                        "w-full flex justify-start items-baseline lg:gap-[0.5vw] gap-[1vh] hover:bg-rock-100 transition-[background-color] duration-100 ease-in-out rounded-[0.5vh] lg:px-[1vw] px-[2vw] lg:py-[0.5vh] py-[2vw]"
                       }
                     >
-                      <span className={"sm:text-wrap sm:text-left"}>
-                        {sel.name}
-                      </span>
+                      <span className={"text-wrap text-left"}>{sel.name}</span>
                       <span className={"text-rock-300"}>{sel.dial_code}</span>
                     </button>
                   ))}
@@ -278,7 +278,7 @@ const Contact = ({
                 })
               }
               className={
-                "peer text-base w-[32vw] sm:w-full py-[0.5vh] text-black font-classic font-normal flex justify-start items-baseline gap-[0.5vw] outline-none resize-none h-[5rem]"
+                "peer text-base lg:w-[32vw] w-full py-[0.5vh] text-black font-classic font-normal flex justify-start items-baseline gap-[0.5vw] outline-none resize-none h-[5rem]"
               }
             />
             <div
@@ -299,7 +299,7 @@ const Contact = ({
             <div
               id={"inquiry"}
               className={
-                "flex justify-start items-baseline sm:flex-wrap gap-[2vw] sm:gap-[4vw]"
+                "flex justify-start items-baseline flex-wrap lg:gap-[2vw] gap-[4vw]"
               }
             >
               <Inquiry

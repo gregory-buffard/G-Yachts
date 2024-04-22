@@ -14,14 +14,14 @@ const Bar = () => {
   return (
     <section
       className={
-        "fixed w-full flex justify-between items-center py-[4vh] sm:py-[2vh] containerize"
+        "fixed flex justify-between items-center lg:py-[4vh] py-[2vh] containerize"
       }
     >
       <Burger opened={opened} setOpened={setOpened} />
       <Image
         src={logo}
         alt={"G–Yachts logo"}
-        className={"w-[8vw] sm:w-[24vw] z-50 sm:z-30"}
+        className={"lg:w-[8vw] w-[24vw] lg:z-20 z-0"}
       />
       <div className={"flex justify-center items-center"}>
         <button
@@ -29,8 +29,8 @@ const Bar = () => {
           onClick={() => setOpened("contact")}
           className={"glass-button"}
         >
-          <span className={"hidden sm:block uppercase"}>Contact</span>
-          <span className={"sm:hidden"}>{t("CTA")}</span>
+          <span className={"lg:hidden block uppercase"}>Contact</span>
+          <span className={"hidden lg:block"}>{t("CTA")}</span>
         </button>
       </div>
     </section>

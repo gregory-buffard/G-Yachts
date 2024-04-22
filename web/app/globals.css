@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+    h1 {
+        @apply lg:text-5xl text-4xl
+    }
+
     @font-face {
     font-family: 'Beausite Classic';
     font-weight: 500;
@@ -38,7 +42,7 @@
     }
 
     .containerize {
-        @apply w-full px-[5vw];
+        @apply w-full px-[4vw];
     }
 
     .burger-bar {
@@ -50,15 +54,15 @@
     }
 
     .navigation-link {
-        @apply text-4xl font-normal py-[0.25rem] group-hover:-translate-y-[3rem] sm:group-hover:translate-y-0 transition-transform duration-300 ease-in-out;
+        @apply text-4xl font-normal py-[0.25rem] lg:group-hover:-translate-y-[3rem] group-hover:translate-y-0 lg:transition-transform lg:duration-300 lg:ease-in-out;
     }
 
     .navigation-contact {
-        @apply bg-rock-200 hover:bg-white active:bg-white transition-[background-color] duration-200 ease-in-out px-[0.5vw] sm:px-[2.5vw] h-[4vh] flex justify-center items-center;
+        @apply bg-rock-200 hover:bg-white active:bg-white transition-[background-color] duration-200 ease-in-out lg:px-[0.5vw] px-[2.5vw] h-[4vh] flex justify-center items-center;
     }
 
     .form-agreement {
-        @apply w-full flex justify-start items-baseline gap-[0.5vw] sm:gap-[2vw];
+        @apply w-full flex justify-start items-baseline lg:gap-[0.5vw] gap-[2vw];
     }
 
     .form-agreement label {
@@ -74,7 +78,7 @@
     }
 
     .glass-button {
-        @apply font-classic font-normal uppercase text-sm text-white border-[0.25vh] border-white/25 bg-white/10 backdrop-blur-2xl px-[1vw] sm:px-[4vw] py-[1vh] tracking-wider hover:bg-teal hover:border-teal;
+        @apply font-classic font-normal uppercase text-sm text-white border-[0.25vh] border-white/25 bg-white/10 backdrop-blur-2xl lg:px-[1vw] px-[4vw] py-[1vh] tracking-wider hover:bg-teal hover:border-teal;
         transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     }
 

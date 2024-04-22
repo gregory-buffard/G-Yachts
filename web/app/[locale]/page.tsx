@@ -2,9 +2,13 @@ import Bar from "@/components/bar";
 
 const Home = () => {
   return (
-    <main className="">
+    <main className={"m-auto w-screen"}>
       <Bar />
-      <section className={"w-screen h-screen bg-hero-banner"}></section>
+      <section
+        className={
+          "w-full h-screen bg-hero-banner bg-center bg-cover containerize"
+        }
+      ></section>
     </main>
   );
 };
