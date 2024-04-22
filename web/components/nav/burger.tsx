@@ -35,7 +35,9 @@ const Burger = ({
               backdropFilter: "blur(0)",
             }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className={"absolute w-screen h-screen inset-0 cursor-pointer z-40"}
+            className={
+              "absolute lg:block hidden w-screen h-screen inset-0 cursor-pointer z-20"
+            }
             onClick={() => setOpened(undefined)}
           />
         )}
@@ -51,7 +53,7 @@ const Burger = ({
       <button
         onClick={() => setOpened("navigation")}
         className={
-          "h-[2.7vh] center flex-col w-[2vw] sm:w-[8vw] gap-[0.5vh] hover:gap-[0.75vh] transition-[gap] duration-200 ease-in-out"
+          "h-[2.7vh] center flex-col lg:w-[2vw] w-[8vw] gap-[0.5vh] lg:hover:gap-[0.75vh] lg:transition-[gap] lg:duration-200 lg:ease-in-out"
         }
       >
         <div className={"burger-bar"} />
