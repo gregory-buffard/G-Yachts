@@ -1,0 +1,29 @@
+name: Deploy OVH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 20.x
+
+      - name: SSH and Deploy
+        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        with:
+          host: ${{secrets.SERVER_IP}}
+          user: ${{secrets.SERVER_USER}}
+          pass: ${{secrets.SERVER_PASSSWORD}}
+          script: |
+            cd /var/www
+            git pull
+            docker-compose up --build d
