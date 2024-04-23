@@ -2,6 +2,12 @@
   "bar": {
     "CTA": "Get in touch"
   },
+  "hero": {
+    "subtitle": "Two Decades of Unmatched Yachting Expertise",
+    "undertitle": "We work with you to find the perfect yacht for your lifestyle, crafting unique experiences in every harbor.",
+    "CTA": "Charter a yacht",
+    "CTA2": "Buy a yacht"
+  },
   "LearnSection": {
     "title": "We are worldwide experts on sale, charter,",
     "title1": "management of all yachts from 25 meters",

@@ -2,6 +2,12 @@
   "bar": {
     "CTA": "Contactez-nous"
   },
+  "hero": {
+    "subtitle": "Deux décennies d’expertise inégalée dans le yachting",
+    "undertitle": "Nous travaillons avec vous pour trouver le yacht parfait pour votre style de vie, créant des expériences uniques dans chaque port.",
+    "CTA": "Louer un yacht",
+    "CTA2": "Acheter un yacht"
+  },
   "LearnSection": {
     "title": "Nous sommes des experts mondiaux de la vente, de la location",
     "title1": "et de la gestion de tous les yachts de 25 mètres",
