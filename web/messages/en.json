@@ -2,10 +2,6 @@
   "bar": {
     "CTA": "Get in touch"
   },
-  "LearnSection": {
-    "title": "We are worldwide experts on sale, charter, management of all yachts from 25 meters and above.",
-    "CTA": "Learn more"
-  },
   "navigation": {
     "links": {
       "sales": "Sales",
@@ -25,6 +21,13 @@
       "description": "G–Yachts is a yacht brokerage company based in Monaco. We offer a wide range of services including yacht sales, yacht charters, yacht management and yacht construction.",
       "keywords": "yacht, brokerage, sales, charters, management, construction, monaco",
       "author": "G–Yachts"
+    },
+    "learn": {
+      "title": "We are worldwide experts on sale, charter, management of all yachts from 25 meters and above.",
+      "CTA": "Learn more"
+    },
+    "featured": {
+      "exclusive": "Exclusive"
     }
   },
   "contact": {

@@ -2,10 +2,6 @@
   "bar": {
     "CTA": "Contactez-nous"
   },
-  "LearnSection": {
-    "title": "Nous sommes des experts mondiaux de la vente, de la location et de la gestion de tous les yachts de 25 mètres et plus.",
-    "CTA": "Savoir plus"
-  },
   "navigation": {
     "links": {
       "sales": "Ventes",
@@ -25,6 +21,13 @@
       "description": "G–Yachts est une société de courtage, vente, location, gestion et construction de yachts basée à Monaco.",
       "keywords": "yachts, vente, location, gestion, construction, Monaco",
       "author": "G–Yachts"
+    },
+    "learn": {
+      "title": "Nous sommes des experts mondiaux de la vente, de la location et de la gestion de tous les yachts de 25 mètres et plus.",
+      "CTA": "Savoir plus"
+    },
+    "featured": {
+      "exclusive": "Exclusif"
     }
   },
   "contact": {

@@ -1,15 +1,32 @@
-import express, { Request, Response } from 'express';
-import dotenv from 'dotenv';
+import express, { Request, Response } from "express";
+import mongoose, { ConnectOptions } from "mongoose";
+import yachtsRoutes from "./routes/yachtsRoutes";
+import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const uri = process.env.MONGODB_URI_WEB || "";
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World with Express and TypeScript!');
-});
+mongoose
+  .connect(uri)
+  .then(() => console.log("MongoDB connected"))
+  .catch((e) => console.log(e));
+
+app.use(express.json());
+app.use(
+  cors({
+    origin: process.env.WEB_URL,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Authorization",
+    credentials: true,
+  }),
+);
+
+app.use("/yachts", yachtsRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
+  console.log(`Server is running at http://localhost:${PORT}`);
 });

@@ -13,7 +13,7 @@ const config: Config = {
     },
     extend: {
       backgroundImage: {
-        "hero-bg-image": "url('../public/imagery/6.png')",
+        hero: "url('../public/imagery/6.png')",
       },
       colors: {
         navy: "#011936",
