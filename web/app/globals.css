@@ -46,7 +46,7 @@
     }
 
     .burger-bar {
-        @apply h-[0.4vh] w-full bg-white rounded-full;
+        @apply w-full [transition:_fill_200ms_ease-in-out];
     }
 
     .navigation-section {
@@ -78,8 +78,16 @@
     }
 
     .glass-button {
-        @apply font-classic font-normal uppercase text-sm text-white border-[0.25vh] border-white/25 bg-white/10 lg:px-[1vw] px-[4vw] py-[1vh] tracking-wider hover:bg-teal hover:border-teal backdrop-blur-2xl;
-        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        @apply font-classic font-normal uppercase text-sm border-[0.1vh] lg:px-[1vw] px-[4vw] py-[1vh] tracking-wider hover:bg-teal hover:border-teal backdrop-blur-2xl bg-white/10;
+        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    }
+
+    .glass-button-light {
+        @apply text-white border-white/25;
+    }
+
+    .glass-button-dark {
+        @apply text-black border-black/25;
     }
 
     .slide-in {

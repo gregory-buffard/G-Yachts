@@ -11,10 +11,10 @@ const config: Config = {
       classic: ['"Beausite Classic"', "sans-serif"],
       slick: ['"Beausite Slick"', "serif"],
     },
-    backgroundImage: {
-      "hero-bg-image": "url('../public/imagery/6.png')",
-    },
     extend: {
+      backgroundImage: {
+        "hero-bg-image": "url('../public/imagery/6.png')",
+      },
       colors: {
         navy: "#011936",
         teal: "#50BACC",
