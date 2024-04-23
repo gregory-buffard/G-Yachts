@@ -3,7 +3,9 @@
     "CTA": "Contactez-nous"
   },
   "LearnSection": {
-    "title": "Nous sommes des experts mondiaux de la vente, de la location et de la gestion de tous les yachts de 25 mètres et plus.",
+    "title": "Nous sommes des experts mondiaux de la vente, de la location",
+    "title1": "et de la gestion de tous les yachts de 25 mètres",
+    "title2": "et plus.",
     "CTA": "Savoir plus"
   },
   "navigation": {
