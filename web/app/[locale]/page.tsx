@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 const Home = () => {
   const t = useTranslations("LearnSection");
   return (
-    <main className="w-full flex flex-col justify-start items-center  overflow-hidden">
+    <main className="overflow-hidden">
       <Bar />
       <Hero />
       <section className="bg-white py-32 flex flex-col leading-relaxed justify-center items-start containerize">
