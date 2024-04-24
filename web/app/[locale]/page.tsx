@@ -21,7 +21,6 @@ const Home = () => {
           {t("CTA")}
         </button>
       </section>
-      <section className="bg-yellow-300 w-full py-96"></section>
     </main>
   );
 };
