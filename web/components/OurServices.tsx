@@ -1,6 +1,5 @@
 import React from "react";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 
 const OurServices = () => {
   const t = useTranslations("ourServices");
@@ -11,7 +10,7 @@ const OurServices = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="flex flex-col ">
             <img
-              src={"/imagery/penne.JPG"}
+              src={"/imagery/penne.jpg"}
               alt="Sales"
               className="mb-4 shadow-lg"
             />
