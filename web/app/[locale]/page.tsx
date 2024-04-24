@@ -1,5 +1,6 @@
 import Bar from "@/components/bar";
 import { Hero } from "@/components";
+import { OurServices } from "@/components";
 import { useTranslations } from "next-intl";
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
           {t("CTA")}
         </button>
       </section>
+      <OurServices />
     </main>
   );
 };

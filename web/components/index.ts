@@ -1,5 +1,4 @@
-import Hero from './Hero';
+import Hero from "./Hero";
+import OurServices from "./OurServices";
 
-export {
-    Hero
-};
+export { Hero, OurServices };

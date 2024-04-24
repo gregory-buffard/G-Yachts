@@ -14,6 +14,16 @@
     "title2": " and above.",
     "CTA": "Learn more"
   },
+  "ourServices": {
+    "sales": "SALES",
+    "charter": "CHARTER",
+    "management": "MANAGEMENT",
+    "construction": "NEW CONSTRUCTION",
+    "sales-p":"Discover our listing of the finest yachts in the market.",
+    "charter-p": "Experience unparalleled freedom and bespoke luxury with our hand-selected yacht charters.",
+    "management-p": "Sail with peace of mind as we navigate the complexities of yacht ownership.",
+    "construction-p": "Turn your dream yacht into reality with tailored craftsmanship."
+  },
   "navigation": {
     "links": {
       "sales": "Sales",

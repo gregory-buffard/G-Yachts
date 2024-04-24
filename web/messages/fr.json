@@ -14,6 +14,16 @@
     "title2": "et plus.",
     "CTA": "Savoir plus"
   },
+  "ourServices": {
+    "sales": "VENTES",
+    "charter": "CHARTER",
+    "management": "GESTION",
+    "construction": "NOUVELLE CONSTRUCTION",
+    "sales-p":"Découvrez notre liste des meilleurs yachts du marché.",
+    "charter-p": "Faites l'expérience d'une liberté inégalée et d'un luxe sur mesure grâce à nos locations de yachts sélectionnées avec soin.",
+    "management-p": "Naviguez en toute tranquillité d'esprit grâce à nos conseils sur les complexités de la propriété d'un yacht.",
+    "construction-p": "Transformez votre yacht de rêve en réalité avec un savoir-faire sur mesure."
+  },
   "navigation": {
     "links": {
       "sales": "Ventes",
