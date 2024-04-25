@@ -33,6 +33,7 @@ jobs:
 
   web:
     runs-on: ubuntu-latest
+    needs: api
     permissions:
       contents: read
       packages: write
@@ -58,7 +59,7 @@ jobs:
         
   deploy:
     runs-on: ubuntu-latest
-    needs: build-and-push
+    needs: web
     steps:
     - name: Deploy
       uses: appleboy/ssh-action@master
