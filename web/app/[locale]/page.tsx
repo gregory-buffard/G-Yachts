@@ -3,7 +3,9 @@ import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 
 const Hero = dynamic(() => import("@/components/index/hero"));
-const Featured = dynamic(() => import("@/components/index/featured"));
+const Featured = dynamic(() => import("@/components/index/featured/section"), {
+  ssr: true,
+});
 
 const Home = () => {
   const t = useTranslations("index");

@@ -27,7 +27,10 @@
       "CTA": "Savoir plus"
     },
     "featured": {
-      "exclusive": "Exclusif"
+      "exclusive": "Exclusif",
+      "title": "<classic>Ventes</classic> en vedette",
+      "all": "Toutes les ventes",
+      "sleeps": "invités"
     }
   },
   "contact": {

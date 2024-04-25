@@ -10,9 +10,9 @@ const ContactContext = createContext<IContext | undefined>(undefined);
 
 export const useContactCard = () => {
   const context = useContext(ContactContext);
-  if (context === undefined) {
+  if (context === undefined)
     throw new Error("useContactCard must be used within a ContactProvider.");
-  }
+
   return context;
 };
 

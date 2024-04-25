@@ -27,7 +27,10 @@
       "CTA": "Learn more"
     },
     "featured": {
-      "exclusive": "Exclusive"
+      "exclusive": "Exclusive",
+      "title": "Featured <classic>sales</classic>",
+      "all": "View all",
+      "sleeps": "guests"
     }
   },
   "contact": {
