@@ -1,8 +1,9 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 
-const OurServices = () => {
-  const t = useTranslations("ourServices");
+const Services = () => {
+  const t = useTranslations("index.services");
+
   return (
     <div className="bg-rock-100 bg-cover h-full">
       <div className="container mx-auto px-4 py-8">
@@ -55,4 +56,4 @@ const OurServices = () => {
   );
 };
 
-export default OurServices;
+export default Services;

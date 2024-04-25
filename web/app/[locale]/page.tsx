@@ -1,10 +1,9 @@
 import Bar from "@/components/nav/bar";
-import { OurServices } from "@/components";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 
-const Hero = dynamic(() => import("@/components/Hero"));
-const OurSerivices = dynamic(() => import("@/components/OurServices"));
+const Hero = dynamic(() => import("@/components/index/hero"));
+const Services = dynamic(() => import("@/components/index/services"));
 const Featured = dynamic(() => import("@/components/index/featured/section"));
 
 const Home = () => {
@@ -19,15 +18,12 @@ const Home = () => {
           <h1 className={"text-4xl leading-normal"}>{t("learn.title1")}</h1>
           <h1 className={"text-4xl leading-normal"}>{t("learn.title2")}</h1>
         </div>
-        <button
-          type={"button"}
-          className="glass-button glass-button-dark"
-        >
+        <button type={"button"} className="glass-button glass-button-dark">
           {t("learn.CTA")}
         </button>
       </section>
-      <OurServices />
-        <Featured />
+      <Services />
+      <Featured />
     </main>
   );
 };

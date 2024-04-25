@@ -1,4 +1,4 @@
-import Hero from "./Hero";
-import OurServices from "./OurServices";
+import Hero from "./index/hero";
+import Services from "./index/services";
 
-export { Hero, OurServices };
+export { Hero, Services };

@@ -1,5 +1,5 @@
-import express, { Request, Response } from "express";
-import mongoose, { ConnectOptions } from "mongoose";
+import express from "express";
+import mongoose from "mongoose";
 import yachtsRoutes from "./routes/yachtsRoutes";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -29,4 +29,5 @@ app.use("/yachts", yachtsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
+  console.log("MongoDB connected using: ", process.env.MONGODB_URI_WEB);
 });
