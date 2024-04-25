@@ -2,29 +2,6 @@
   "bar": {
     "CTA": "Get in touch"
   },
-  "hero": {
-    "subtitle": "Two Decades of Unmatched Yachting Expertise",
-    "undertitle": "We work with you to find the perfect yacht for your lifestyle, crafting unique experiences in every harbor.",
-    "CTA": "Charter a yacht",
-    "CTA2": "Buy a yacht"
-  },
-  "LearnSection": {
-    "title": "We are worldwide experts on sale, charter,",
-    "title1": "management of all yachts from 25 meters",
-    "title2": " and above.",
-    "CTA": "Learn more"
-  },
-  "ourServices": {
-    "title": "Our SERVICES",
-    "sales": "SALES",
-    "charter": "CHARTER",
-    "management": "MANAGEMENT",
-    "construction": "NEW CONSTRUCTION",
-    "sales-p":"Discover our listing of the finest yachts in the market.",
-    "charter-p": "Experience unparalleled freedom and bespoke luxury with our hand-selected yacht charters.",
-    "management-p": "Sail with peace of mind as we navigate the complexities of yacht ownership.",
-    "construction-p": "Turn your dream yacht into reality with tailored craftsmanship."
-  },
   "navigation": {
     "links": {
       "sales": "Sales",
@@ -44,6 +21,35 @@
       "description": "G–Yachts is a yacht brokerage company based in Monaco. We offer a wide range of services including yacht sales, yacht charters, yacht management and yacht construction.",
       "keywords": "yacht, brokerage, sales, charters, management, construction, monaco",
       "author": "G–Yachts"
+    },
+    "hero": {
+      "subtitle": "Two Decades of Unmatched Yachting Expertise",
+      "undertitle": "We work with you to find the perfect yacht for your lifestyle, crafting unique experiences in every harbor.",
+      "CTA": "Charter a yacht",
+      "CTA2": "Buy a yacht"
+    },
+    "learn": {
+      "title": "We are worldwide experts on sale, charter,",
+      "title1": "management of all yachts from 25 meters",
+      "title2": " and above.",
+      "CTA": "Learn more"
+    },
+    "services": {
+      "title": "Our SERVICES",
+      "sales": "SALES",
+      "charter": "CHARTER",
+      "management": "MANAGEMENT",
+      "construction": "NEW CONSTRUCTION",
+      "sales-p":"Discover our listing of the finest yachts in the market.",
+      "charter-p": "Experience unparalleled freedom and bespoke luxury with our hand-selected yacht charters.",
+      "management-p": "Sail with peace of mind as we navigate the complexities of yacht ownership.",
+      "construction-p": "Turn your dream yacht into reality with tailored craftsmanship."
+    },
+    "featured": {
+      "exclusive": "Exclusive",
+      "title": "Featured <classic>sales</classic>",
+      "all": "View all",
+      "sleeps": "guests"
     }
   },
   "contact": {

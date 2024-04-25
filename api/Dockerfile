@@ -1,7 +1,7 @@
 FROM node:20
 LABEL authors="g-yachts"
 
-WORKDIR /usr/src/web
+WORKDIR /usr/src/api
 
 COPY package*.json ./
 
@@ -9,10 +9,11 @@ RUN npm install
 
 COPY . .
 
-ENV NEXT_PUBLIC_API_URL=http://51.75.16.185
-
 RUN npm run build
 
-EXPOSE 3000
+ENV PORT=5001
+ENV WEB_URL="http://51.75.16.185"
+
+EXPOSE 5001
 
 CMD ["npm", "start"]

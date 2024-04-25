@@ -12,9 +12,11 @@ const Contact: React.ComponentType<{
 const Burger = ({
   opened,
   setOpened,
+  dark,
 }: {
   opened: "navigation" | "contact" | undefined;
   setOpened: (value: "navigation" | "contact" | undefined) => void;
+  dark: boolean;
 }) => {
   return (
     <>
@@ -52,13 +54,29 @@ const Burger = ({
       </AnimatePresence>
       <button
         onClick={() => setOpened("navigation")}
-        className={
-          "h-[2.7vh] center flex-col lg:w-[2vw] w-[8vw] gap-[0.5vh] lg:hover:gap-[0.75vh] lg:transition-[gap] lg:duration-200 lg:ease-in-out"
-        }
+        className={`center flex-col lg:w-[2vw] w-[4vw] gap-[0.5vh] lg:hover:gap-[0.75vh] lg:transition-[gap] duration-200 ease-in-out ${dark ? "fill-black" : "fill-white"}`}
       >
-        <div className={"burger-bar"} />
-        <div className={"burger-bar"} />
-        <div className={"burger-bar"} />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 128 8"
+          className={"burger-bar"}
+        >
+          <rect width="128" height="8" rx="4" />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 128 8"
+          className={"burger-bar"}
+        >
+          <rect width="128" height="8" rx="4" />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 128 8"
+          className={"burger-bar"}
+        >
+          <rect width="128" height="8" rx="4" />
+        </svg>
       </button>
     </>
   );

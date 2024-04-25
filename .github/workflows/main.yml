@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  api:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -23,7 +23,32 @@ jobs:
         username: ${{github.actor}}
         password: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Build and push Docker image
+    - name: Build and push API
+      uses: docker/build-push-action@v5.3.0
+      with:
+        context: ./api
+        file: ./api/Dockerfile
+        push: true
+        tags: ghcr.io/${{github.repository_owner}}/g-yachts-api:${{github.sha}}
+
+  web:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Docker Login
+      uses: docker/login-action@v3.1.0
+      with:
+        registry: ghcr.io
+        username: ${{github.actor}}
+        password: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Build and push web
       uses: docker/build-push-action@v5.3.0
       with:
         context: ./web
@@ -42,7 +67,9 @@ jobs:
         username: ${{secrets.SERVER_USER}}
         password: ${{secrets.SERVER_PASSWORD}}
         script: |
+          sudo docker pull ghcr.io/${{github.repository_owner}}/g-yachts-api:${{github.sha}}
           sudo docker pull ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}
           sudo docker stop g-yachts-web || true
           sudo docker rm g-yachts-web || true
+          sudo docker run -d --name g-yachts-api -p 5001:5001 -e MONGODB_URI_WEB=${{ secrets.MONGODB_URI_WEB }} ghcr.io/${{github.repository_owner}}/g-yachts-api:${{github.sha}}
           sudo docker run -d --name g-yachts-web -p 3000:3000 ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}

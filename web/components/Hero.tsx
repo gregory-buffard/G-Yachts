@@ -2,7 +2,8 @@ import React from "react";
 import { useTranslations } from "next-intl";
 
 const Hero = () => {
-  const t = useTranslations("hero");
+  const t = useTranslations("index.hero");
+
   return (
     <div className="relative bg-left-top bg-cover bg-hero-bg-image h-screen w-full overflow-hidden">
       <div className="absolute bottom-10 right-10 h-32 w-128">

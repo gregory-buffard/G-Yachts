@@ -8,3 +8,12 @@ services:
         - "3000:3000"
     volumes:
       - ./web:/usr/src/web
+
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./api:/usr/src/api
