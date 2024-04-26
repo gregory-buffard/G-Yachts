@@ -8,10 +8,17 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const uri = process.env.MONGODB_URI_WEB || "";
+const uri = `mongodb://${process.env.URI}/` || "";
+const db = process.env.DB || "";
+const user = process.env.USER || "";
+const pass = process.env.PASS || "";
 
 mongoose
-  .connect(uri)
+  .connect(uri, {
+    dbName: db,
+    user: user,
+    pass: pass,
+  })
   .then(() => console.log("MongoDB connected"))
   .catch((e) => console.log(e));
 
@@ -28,5 +35,5 @@ app.use(
 app.use("/yachts", yachtsRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}, with MONGO uri being ${process.env.MONGODB_URI_WEB}`);
+  console.log(`Server is at port ${PORT}.`);
 });

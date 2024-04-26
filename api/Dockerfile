@@ -10,7 +10,7 @@ RUN npm install
 COPY . .
 
 ENV PORT=5001
-ENV WEB_URL="http://0.0.0.0:3000"
+ENV WEB_URL="http://51.75.16.185:3000"
 
 RUN npm run build
 
