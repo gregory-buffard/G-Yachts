@@ -15,6 +15,7 @@ const pass = process.env.PASS || "";
 
 mongoose
   .connect(uri, {
+    serverSelectionTimeoutMS: 30000,
     dbName: db,
     user: user,
     pass: pass,
