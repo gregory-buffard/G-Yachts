@@ -73,4 +73,4 @@ jobs:
           sudo docker stop g-yachts-web g-yachts-api || true
           sudo docker rm g-yachts-web g-yachts-api || true
           sudo docker run -d --name g-yachts-api --network="host" -p 5001:5001 -e MONGO_HOST=${{secrets.MONGO_HOST}} -e MONGO_DB=${{ vars.MONGO_DB }} -e MONGO_USER=${{ vars.MONGO_USER }} -e MONGO_PASS=${{secrets.MONGO_PASS}} -e WEB_URL=${{vars.WEB_URL}} ghcr.io/${{github.repository_owner}}/g-yachts-api:${{github.sha}}
-          sudo docker run -d --name g-yachts-web -p 3000:3000 -e NEXT_PUBLIC_API_URL=${{ vars.API_URL }} -e NEXT_PUBLIC_CURRENCY_API_KEY=${{secrets.CURRENCY_API}} ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}
+          sudo docker run -d --name g-yachts-web --network="host" -p 3000:3000 -e NEXT_PUBLIC_API_URL=${{ vars.API_URL }} -e NEXT_PUBLIC_CURRENCY_API_KEY=${{secrets.CURRENCY_API}} ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}
