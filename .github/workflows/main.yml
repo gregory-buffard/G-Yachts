@@ -70,7 +70,7 @@ jobs:
         script: |
           sudo docker pull ghcr.io/${{github.repository_owner}}/g-yachts-api:${{github.sha}}
           sudo docker pull ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}
-          sudo docker stop g-yachts-web || true
-          sudo docker rm g-yachts-web || true
+          sudo docker stop g-yachts-web g-yachts-api || true
+          sudo docker rm g-yachts-web g-yachts-api || true
           sudo docker run -d --name g-yachts-api -p 5001:5001 -e MONGODB_URI_WEB=${{ secrets.MONGODB_URI_WEB }} ghcr.io/${{github.repository_owner}}/g-yachts-api:${{github.sha}}
           sudo docker run -d --name g-yachts-web -p 3000:3000 ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}
