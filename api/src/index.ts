@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const uri = `mongodb://host.docker.internal:27017`;
+const uri = `mongodb://${process.env.HOST}:27017`;
 const db = process.env.DB || "";
 const user = process.env.USER || "";
 const pass = process.env.PASS || "";
