@@ -7,7 +7,7 @@ const OurServices = () => {
     <div className="bg-rock-100 bg-cover h-full">
       <div className="container flex flex-col items-start mx-auto px-0 py-16">
         <h2 className="text-4xl font-slick text-left mb-8">{t("title")}</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-4">
           <div className="flex flex-col">
             <img
               src={"/imagery/penne.jpg"}

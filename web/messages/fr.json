@@ -25,6 +25,12 @@
     "management-p": "Naviguez en toute tranquillité d'esprit grâce à nos conseils sur les complexités de la propriété d'un yacht.",
     "construction-p": "Transformez votre yacht de rêve en réalité avec un savoir-faire sur mesure."
   },
+  "memories": {
+      "create": "Créer des souvenirs",
+      "memories": "Inoubliables",
+      "subtitle": "CHARTER AVEC NOUS",
+    "paragraph": "Chez G-Yachts, nous sommes convaincus que les vacances à bord d'un superyacht n'ont pas d'équivalent sur terre, et nous nous efforçons de créer des expériences de yachting inégalées qui restent gravées dans les mémoires. Notre sélection de yachts d'élite, soutenue par une équipe internationale passionnée, promet de dépasser toutes les attentes. Laissez-nous vous concocter un voyage qui incarne l'essence même de l'extraordinaire."
+  },
   "navigation": {
     "links": {
       "sales": "Ventes",

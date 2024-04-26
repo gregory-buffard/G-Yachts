@@ -38,6 +38,9 @@ const config: Config = {
       "hero-bg-image": "url('../public/imagery/6.png')",
     },
     extend: {
+      screens: {
+        sm: "360px",
+      },
       colors: {
         navy: "#011936",
         teal: "#50BACC",
