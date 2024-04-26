@@ -8,15 +8,13 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const uri = `mongodb://${process.env.URI}/?directConnection=true` || "";
+const uri = `mongodb://${process.env.URI}/` || "";
 const db = process.env.DB || "";
 const user = process.env.USER || "";
 const pass = process.env.PASS || "";
 
 mongoose
   .connect(uri, {
-    appName: "mongosh+2.2.4",
-    serverSelectionTimeoutMS: 2000,
     dbName: db,
     user: user,
     pass: pass,
