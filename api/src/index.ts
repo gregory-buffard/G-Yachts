@@ -28,6 +28,5 @@ app.use(
 app.use("/yachts", yachtsRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-  console.log("MongoDB connected using: ", process.env.MONGODB_URI_WEB);
+  console.log(`Server is running at http://localhost:${PORT}, with MONGO uri being ${process.env.MONGODB_URI_WEB}`);
 });
