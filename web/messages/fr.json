@@ -45,6 +45,12 @@
       "management-p": "Naviguez en toute tranquillité d'esprit grâce à nos conseils sur les complexités de la propriété d'un yacht.",
       "construction-p": "Transformez votre yacht de rêve en réalité avec un savoir-faire sur mesure."
     },
+    "working": {
+      "title": "Travailler <classic>ensemble</classic>",
+      "subtitle": "Achetez avec nous",
+      "description":"Grâce à une connaissance approfondie du marché<br></br>et une compréhension ouverte de vos exigences,<br></br>nous offrons un accès à une flotte de yachts à vendre,<br></br>la sélection de yachts de luxe à vendre la plus variée<br></br>et sophistiquée sur le marché aujourd'hui.",
+      "CTA": "Achetez un yacht"
+    },
     "featured": {
       "exclusive": "Exclusif",
       "title": "<classic>Ventes</classic> en vedette",

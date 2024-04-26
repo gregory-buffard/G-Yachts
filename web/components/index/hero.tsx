@@ -5,7 +5,7 @@ const Hero = () => {
   const t = useTranslations("index.hero");
 
   return (
-    <div className="relative bg-left-top bg-cover bg-hero-bg-image h-screen w-full overflow-hidden">
+    <div className="relative bg-left-top bg-cover bg-hero h-screen w-full overflow-hidden">
       <div className="absolute bottom-10 right-10 h-32 w-128">
         <h3 className="text-white text-lg font-classic mb-4 break-words">
           {t("undertitle")}

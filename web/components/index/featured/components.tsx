@@ -4,11 +4,17 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { ICard } from "@/types/featured";
 import { UserProvider, useUserContext } from "@/contexts/user";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { convertCurrency } from "@/app/actions";
 
 const Card = ({ card }: { card: ICard }) => {
   const t = useTranslations("index.featured"),
-    { user } = useUserContext();
+    { user } = useUserContext(),
+    [price, setPrice] = useState<string | null>(null);
+
+  useEffect(() => {
+    convertCurrency(card.price, user.currency).then((price) => setPrice(price));
+  }, []);
 
   return (
     <Link
@@ -25,15 +31,16 @@ const Card = ({ card }: { card: ICard }) => {
         </p>
       </div>
       <div
-        className={
-          "w-full flex justify-between items-baseline text-black uppercase"
-        }
+        className={`w-full flex justify-between ${price ? "items-baseline" : "items-center"} text-black uppercase`}
       >
         <p>{card.name}</p>
-        <p>
-          {user.currency.symbol}
-          {/*convertCurrency(props.card.price, user.currency.code)*/}
-        </p>
+        {price ? (
+          <p>{price}</p>
+        ) : (
+          <div
+            className={"bg-rock-200 lg:w-[10vw] h-[1rem] rounded-full"}
+          ></div>
+        )}
       </div>
       <p className={"uppercase text-rock-400"}>
         {card.builder} | {card.length} | {card.yearBuilt} | {card.sleeps}{" "}
@@ -157,7 +164,10 @@ const Section = ({ carouselData }: { carouselData: ICard[] }) => {
               }}
             />
           </div>
-          <Link href={"/sales"} className={"glass-button glass-button-dark"}>
+          <Link
+            href={"/sales"}
+            className={"glass-button glass-button-dark whitespace-nowrap"}
+          >
             {t("all")}
           </Link>
         </div>

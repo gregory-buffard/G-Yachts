@@ -204,7 +204,7 @@ const Navigation = ({
       animate={{ x: "0" }}
       exit={{ x: "-100%" }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className={`fixed left-0 bottom-0 z-20 h-screen lg:w-[32vw] w-screen lg:px-[2vw] px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col gap-[2vh]`}
+      className={`fixed left-0 top-0 z-20 h-screen lg:w-[32vw] w-screen lg:px-[2vw] px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col gap-[2vh] lg:overflow-hidden overflow-y-visible`}
     >
       <div className={"navigation-section"}>
         <div className={"w-full flex justify-between items-center"}>

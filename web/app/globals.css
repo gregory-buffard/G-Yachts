@@ -9,7 +9,19 @@
 
 @layer base {
     h1 {
-        @apply lg:text-5xl text-4xl;
+        @apply lg:text-6xl text-5xl;
+    }
+
+    h2 {
+        @apply lg:text-4xl text-3xl;
+    }
+
+    h4 {
+        @apply font-classic font-normal text-sm uppercase tracking-wide;
+    }
+
+    p {
+        @apply font-classic font-normal text-base tracking-wide;
     }
 
     @font-face {

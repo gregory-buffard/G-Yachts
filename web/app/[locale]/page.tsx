@@ -1,9 +1,10 @@
 import Bar from "@/components/nav/bar";
+import Hero from "@/components/index/hero";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 
-const Hero = dynamic(() => import("@/components/index/hero"));
 const Services = dynamic(() => import("@/components/index/services"));
+const WorkingTogether = dynamic(() => import("@/components/index/working"));
 const Featured = dynamic(() => import("@/components/index/featured/section"));
 
 const Home = () => {
@@ -23,6 +24,7 @@ const Home = () => {
         </button>
       </section>
       <Services />
+      <WorkingTogether />
       <Featured />
     </main>
   );

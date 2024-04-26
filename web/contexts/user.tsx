@@ -1,10 +1,12 @@
 import { createContext, useContext, useState } from "react";
 import { IUser } from "@/types/user";
 import { currency } from "@/utils/yachts";
+import Cookies from "js-cookie";
 
 interface IContext {
   user: IUser;
   setUser: (user: IUser) => void;
+  setCurrency: (code: string) => void;
 }
 
 const UserContext = createContext<IContext | undefined>(undefined);
@@ -20,29 +22,20 @@ export const useUserContext = () => {
 export const UserProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const currencySymbol = () => {
-      switch (currency()) {
-        case "EUR":
-          return "€";
-        case "USD":
-          return "$";
-        case "GBP":
-          return "£";
-        case "JPY":
-          return "¥";
-        default:
-          return "";
-      }
-    },
-    [user, setUser] = useState<IUser>({
-      currency: {
-        code: currency(),
-        symbol: currencySymbol(),
-      },
+  const [user, setUser] = useState<IUser>({
+    currency: currency(),
+  });
+
+  const setCurrency = (code: string) => {
+    Cookies.set("currency", code);
+    setUser({
+      ...user,
+      currency: code,
     });
+  };
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, setCurrency }}>
       {children}
     </UserContext.Provider>
   );

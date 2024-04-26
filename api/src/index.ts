@@ -8,10 +8,10 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const uri = `mongodb://${process.env.HOST}:27017`;
-const db = process.env.DB || "";
-const user = process.env.USER || "";
-const pass = process.env.PASS || "";
+const uri = `mongodb://${process.env.MONGO_HOST}:27017`;
+const db = process.env.MONGO_DB || "";
+const user = process.env.MONGO_USER || "";
+const pass = process.env.MONGO_PASS || "";
 
 mongoose
   .connect(uri, {
