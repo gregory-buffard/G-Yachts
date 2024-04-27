@@ -15,11 +15,11 @@ const Hero = () => {
             Superyachts{" "}
             <span className="font-classic inline-flex flex-col h-[calc(theme(fontSize.5xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.6xl)*theme(lineHeight.tight))] overflow-hidden">
               <ul className="block animate-text-slide-4 text-left leading-tight [&_li]:block">
-                <li>SALES</li>
+                <li>{t("sales")}</li>
                 <li>CHARTER</li>
                 <li>MANAGEMENT</li>
                 <li>CONSTRUCTIONS</li>
-                <li aria-hidden="true">SALES</li>
+                <li aria-hidden="true">{t("sales")}</li>
               </ul>
             </span>
           </div>
