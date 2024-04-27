@@ -13,7 +13,7 @@ const Memories = () => {
       }
     >
       <Image
-        className={"lg:w-1/2 object-cover object-bottom w-full"}
+        className={"lg:w-1/2 lg:h-[90vh] object-cover object-bottom w-full"}
         src={memories}
         alt={"Room in the yacht"}
       />
