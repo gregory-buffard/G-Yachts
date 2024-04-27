@@ -2,7 +2,7 @@ import { useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, Link, pathnames } from "@/navigation";
 import Image from "next/image";
-import logo from "@/public/logo/black.png";
+import Logo from "@/public/logo/logo";
 import { motion } from "framer-motion";
 
 export const Close = ({
@@ -204,7 +204,7 @@ const Navigation = ({
       animate={{ x: "0" }}
       exit={{ x: "-100%" }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className={`fixed left-0 bottom-0 z-20 h-screen lg:w-[32vw] w-screen lg:px-[2vw] px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col gap-[2vh]`}
+      className={`fixed left-0 top-0 z-20 h-screen lg:w-[32vw] w-screen lg:px-[2vw] px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col gap-[2vh] lg:overflow-hidden overflow-y-visible`}
     >
       <div className={"navigation-section"}>
         <div className={"w-full flex justify-between items-center"}>
@@ -249,12 +249,12 @@ const Navigation = ({
         </div>
       </div>
       <div className={"navigation-section"}>
-        <span className={"lg:hidden block"}>
-          <Image
-            src={logo}
-            alt={"G–Yachts logo"}
-            className={"lg:w-[8vw] w-[24vw] my-[2vh]"}
-          />
+        <span
+          className={
+            "lg:hidden flex flex-col justify-center items-start gap-[2vh]"
+          }
+        >
+          <Logo className={"w-[24vw]"} />
           <ContactLinks />
         </span>
         <span className={"lg:block hidden"}>
@@ -265,12 +265,12 @@ const Navigation = ({
           <span className={"lg:hidden block"}>
             <SocialLinks address={true} />
           </span>
-          <span className={"lg:block hidden"}>
-            <Image
-              src={logo}
-              alt={"G–Yachts logo"}
-              className={"lg:w-[8vw] w-[24vw] my-[2vh]"}
-            />
+          <span
+            className={
+              "lg:flex flex-col justify-center items-start gap-[2vh] hidden"
+            }
+          >
+            <Logo className={"w-[8vw]"} />
             <ContactLinks />
           </span>
         </div>

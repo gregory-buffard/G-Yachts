@@ -2,35 +2,6 @@
   "bar": {
     "CTA": "Get in touch"
   },
-  "hero": {
-    "subtitle": "Two Decades of Unmatched Yachting Expertise",
-    "undertitle": "We work with you to find the perfect yacht for your lifestyle, crafting unique experiences in every harbor.",
-    "CTA": "Charter a yacht",
-    "CTA2": "Buy a yacht"
-  },
-  "LearnSection": {
-    "title": "We are worldwide experts on sale, charter,",
-    "title1": "management of all yachts from 25 meters",
-    "title2": " and above.",
-    "CTA": "Learn more"
-  },
-  "ourServices": {
-    "title": "Our SERVICES",
-    "sales": "SALES",
-    "charter": "CHARTER",
-    "management": "MANAGEMENT",
-    "construction": "NEW CONSTRUCTION",
-    "sales-p":"Discover our listing of the finest yachts in the market.",
-    "charter-p": "Experience unparalleled freedom and bespoke luxury with our hand-selected yacht charters.",
-    "management-p": "Sail with peace of mind as we navigate the complexities of yacht ownership.",
-    "construction-p": "Turn your dream yacht into reality with tailored craftsmanship."
-  },
-  "memories": {
-      "create": "Create unforgettable",
-      "memories": "Memories",
-      "subtitle": "CHARTER WITH US",
-    "paragraph": "At G-Yachts, we hold the conviction that a holiday aboard a superyacht is unmatched by any on land, dedicating ourselves to curating unparalleled yachting experiences that linger in memory. Our selection of elite charter yachts, bolstered by a passionate global team, promises to surpass every expectation. Allow us to tailor a voyage that embodies the essence of extraordinary"
-  },
   "navigation": {
     "links": {
       "sales": "Sales",
@@ -50,6 +21,47 @@
       "description": "G–Yachts is a yacht brokerage company based in Monaco. We offer a wide range of services including yacht sales, yacht charters, yacht management and yacht construction.",
       "keywords": "yacht, brokerage, sales, charters, management, construction, monaco",
       "author": "G–Yachts"
+    },
+    "hero": {
+      "subtitle": "Two Decades of Unmatched Yachting Expertise",
+      "undertitle": "We work with you to find the perfect yacht for your lifestyle, crafting unique experiences in every harbor.",
+      "CTA": "Charter a yacht",
+      "CTA2": "Buy a yacht"
+    },
+    "learn": {
+      "title": "We are worldwide experts on sale, charter,",
+      "title1": "management of all yachts from 25 meters",
+      "title2": " and above.",
+      "CTA": "Learn more"
+    },
+    "services": {
+      "title": "Our SERVICES",
+      "sales": "SALES",
+      "charter": "CHARTER",
+      "management": "MANAGEMENT",
+      "construction": "NEW CONSTRUCTION",
+      "sales-p":"Discover our listing of the finest yachts in the market.",
+      "charter-p": "Experience unparalleled freedom and bespoke luxury with our hand-selected yacht charters.",
+      "management-p": "Sail with peace of mind as we navigate the complexities of yacht ownership.",
+      "construction-p": "Turn your dream yacht into reality with tailored craftsmanship."
+    },
+    "working": {
+      "title": "Working <classic>together</classic>",
+      "subtitle": "Buy with us",
+      "description": "Through an extensive knowledge of the market<br></br>and an open understanding of your requirements,<br></br>we provide access to a fleet of yachts for sale,<br></br>the most varied and sophisticated selection<br></br>of luxury yachts for sale on the market today.",
+      "CTA": "Buy a yacht"
+    },
+    "featured": {
+      "exclusive": "Exclusive",
+      "title": "Featured <classic>sales</classic>",
+      "all": "View all",
+      "sleeps": "guests"
+    },
+    "memories": {
+      "create": "Create unforgettable",
+      "memories": "Memories",
+      "subtitle": "CHARTER WITH US",
+    "paragraph": "At G-Yachts, we hold the conviction that a holiday aboard a superyacht is unmatched by any on land, dedicating ourselves to curating unparalleled yachting experiences that linger in memory. Our selection of elite charter yachts, bolstered by a passionate global team, promises to surpass every expectation. Allow us to tailor a voyage that embodies the essence of extraordinary"
     }
   },
   "contact": {

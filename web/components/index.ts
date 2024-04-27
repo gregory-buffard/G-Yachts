@@ -1,5 +1,5 @@
-import Hero from "./Hero";
-import OurServices from "./OurServices";
+import Hero from "./index/hero";
+import Services from "./index/services";
 import Memories from "./Memories";
 
-export { Hero, OurServices, Memories };
+export { Hero, Services, Memories };

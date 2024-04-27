@@ -1,36 +1,39 @@
-import Bar from "@/components/bar";
-import { Hero } from "@/components";
-import { OurServices } from "@/components";
+import Bar from "@/components/nav/bar";
 import { Memories } from "@/components";
+import Hero from "@/components/index/hero";
 import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
+
+const Services = dynamic(() => import("@/components/index/services"));
+const WorkingTogether = dynamic(() => import("@/components/index/working"));
+const Featured = dynamic(() => import("@/components/index/featured/section"));
 
 const Home = () => {
-  const t = useTranslations("LearnSection");
+  const t = useTranslations("index");
   return (
-    <main className="overflow-hidden">
-      <Bar />
+    <main className="w-screen flex flex-col justify-start items-center">
+      <Bar dynamicColor={100} />
       <Hero />
       <section className="bg-white py-32 flex flex-col leading-relaxed justify-center items-start containerize">
         <div className="flex flex-col font-slick">
           <h1 className={"md:text-4xl sm:text-2xl leading-normal"}>
-            {t("title")}
+            {t("learn.title")}
           </h1>
           <h1 className={"md:text-4xl sm:text-2xl leading-normal"}>
-            {t("title1")}
+            {t("learn.title1")}
           </h1>
           <h1 className={"md:text-4xl sm:text-2xl leading-normal"}>
-            {t("title2")}
+            {t("learn.title2")}
           </h1>
         </div>
-        <button
-          type={"button"}
-          className="glass-button text-black border-black/25"
-        >
-          {t("CTA")}
+        <button type={"button"} className="glass-button glass-button-dark">
+          {t("learn.CTA")}
         </button>
       </section>
-      <OurServices />
+      <Services />
       <Memories />
+      <WorkingTogether />
+      <Featured />
     </main>
   );
 };

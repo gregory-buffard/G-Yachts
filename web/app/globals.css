@@ -2,9 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --translate: 0vw;
+    --animate: 0ms;
+}
+
 @layer base {
     h1 {
-        @apply lg:text-5xl text-4xl
+        @apply lg:text-6xl text-5xl;
+    }
+
+    h2 {
+        @apply lg:text-4xl text-3xl;
+    }
+
+    h4 {
+        @apply font-classic font-normal text-sm uppercase tracking-wide;
+    }
+
+    p {
+        @apply font-classic font-normal text-base tracking-wide;
     }
 
     @font-face {
@@ -46,7 +63,7 @@
     }
 
     .burger-bar {
-        @apply h-[0.4vh] w-full bg-white rounded-full;
+        @apply w-full [transition:_fill_200ms_ease-in-out];
     }
 
     .navigation-section {
@@ -78,43 +95,15 @@
     }
 
     .glass-button {
-        @apply font-classic font-normal uppercase text-sm text-white border-[0.25vh] border-white/25 bg-white/10 lg:px-[1vw] px-[4vw] py-[1vh] tracking-wider hover:bg-teal hover:border-teal backdrop-blur-2xl;
-        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        @apply font-classic font-normal uppercase text-sm border-[0.1vh] lg:px-[1vw] px-[4vw] py-[1.5vh] tracking-wider hover:bg-teal hover:border-teal backdrop-blur-2xl bg-white/10;
+        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
     }
 
-    .slide-in {
-        animation: slide 0.5s ease-in-out forwards;
+    .glass-button-light {
+        @apply text-white border-white/25;
     }
 
-    .slide-out {
-        animation: slide 0.5s ease-in-out reverse forwards;
-    }
-
-    .blur {
-        animation: blur 0.5s ease-in-out forwards;
-    }
-
-    .de-blur {
-        animation: blur 0.5s ease-in-out reverse forwards;
-    }
-
-    @keyframes slide {
-        0% {
-            transform: translateX(-100%);
-        }
-        100% {
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes blur {
-        0% {
-            background-color: rgb(249 245 242 / 0);
-            backdrop-filter: blur(0);
-        }
-        100% {
-            background-color: rgb(249 245 242 / 0.5);
-            backdrop-filter: blur(24px);
-        }
+    .glass-button-dark {
+        @apply text-black border-black/25;
     }
 }
