@@ -2,43 +2,51 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import memories from "@/public/imagery/optimized/index/memories.webp";
+import { Link } from "@/navigation";
 
 const Memories = () => {
   const t = useTranslations("index.memories");
   return (
-    <div className="bg-rock-100 bg-cover w-full h-full ">
-      <div className="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1">
-        <Image
-          className="flex flex-col col-span-1 w-screen h-full"
-          src={memories}
-          alt="Room in the yacht"
-        />
-
-        <div className="grid grid-rows-12 flex items-center justify-center flex-col col-span-1">
-          <div className="row-span-4 justify-center items-center mx-auto p-10">
-            <h4 className="">{t("subtitle")}</h4>
-            <h1 className="text-black font-slick font-light">{t("create")}</h1>
-            <h1 className="text-black font-classic font-medium">
-              {t("memories")}
-            </h1>
-          </div>
-
-          <div className="row-span-8 flex flex-col items-center justify-center ml-36 h-full">
-            <div className="flex flex-col justify-items-center">
-              <p className="text-black md:text-xl font-classic md:w-7/12  mr-24 text-base">
-                {t("paragraph")}
-              </p>
-              <button
-                type={"button"}
-                className="glass-button text-black border-black/25 w-56 my-5"
-              >
-                Charter a yacht
-              </button>
-            </div>
+    <section
+      className={
+        "w-full flex lg:flex-row flex-col justify-center items-center lg:items-start lg:gap-[0vw] gap-[4vh]"
+      }
+    >
+      <Image
+        className={"lg:w-1/2 lg:h-[80vh] object-cover object-bottom w-full"}
+        src={memories}
+        alt={"Room in the yacht"}
+      />
+      <div
+        className={
+          "w-full lg:w-1/2 lg:py-[4vw] containerize flex flex-col justify-start items-start gap-[2vh]"
+        }
+      >
+        <h4>{t("subtitle")}</h4>
+        <h1 className={"font-slick font-light"}>
+          {t.rich("title", {
+            classic: (chunks) => (
+              <span className={"font-classic font-normal uppercase"}>
+                <br className={"hidden lg:block"} />
+                {chunks}
+              </span>
+            ),
+          })}
+        </h1>
+        <div
+          className={
+            "w-full flex justify-end items-center my-[8vh] lg:my-[10vh]"
+          }
+        >
+          <div className={"flex flex-col justify-center items-start gap-[2vh]"}>
+            <p>{t.rich("description", { br: () => <br /> })}</p>
+            <Link href={"/sales"} className={"glass-button glass-button-dark"}>
+              {t("CTA")}
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

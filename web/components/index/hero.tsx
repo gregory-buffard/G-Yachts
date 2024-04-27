@@ -8,7 +8,7 @@ const Hero = () => {
     <div className="md:bg-left-top bg-center bg-cover bg-hero h-screen w-full overflow-hidden">
       <div className="grid grid-rows-6 h-full">
         <div className="row-span-4 flex flex-col items-start justify-end md:ml-28 ml-16 mb-28">
-          <h2 className="font-classic text-white md:text-xl text-lg">
+          <h2 className="font-classic text-white md:text-xl text-base">
             {t("subtitle")}
           </h2>
           <div className="font-slick text-5xl md:text-7xl text-white [text-wrap:balance] bg-clip-text">
@@ -25,7 +25,7 @@ const Hero = () => {
           </div>
         </div>
         <div className="row-span-2 flex flex-col items-end justify-center h-full">
-          <div className={"flex flex-col mt-24 md:-mr-20 md:ml-10 ml-20"}>
+          <div className={"flex flex-col mt-24 -mr-20 md:ml-10 ml-20"}>
             <p className="text-white font-classic md:w-8/12 w-5/6">
               {t("undertitle")}
             </p>

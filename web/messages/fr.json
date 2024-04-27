@@ -29,7 +29,7 @@
       "CTA2": "Acheter un yacht"
     },
     "learn": {
-      "title": "Nous sommes des experts mondiaux de la vente, de la location et de la gestion de tous les yachts de 25 mètres et plus.",
+      "title": "Nous sommes des experts mondiaux de la vente, de la location",
       "title1": "et de la gestion de tous les yachts de 25 mètres",
       "title2": "et plus.",
       "CTA": "Savoir plus"
@@ -58,10 +58,10 @@
       "sleeps": "invités"
     },
     "memories": {
-      "create": "Créer des souvenirs",
-      "memories": "Inoubliables",
+      "title": "Créer des moments <classic>inoubliables</classic>",
       "subtitle": "CHARTER AVEC NOUS",
-    "paragraph": "Chez G-Yachts, nous sommes convaincus que les vacances à bord d'un superyacht n'ont pas d'équivalent sur terre, et nous nous efforçons de créer des expériences de yachting inégalées qui restent gravées dans les mémoires. Notre sélection de yachts d'élite, soutenue par une équipe internationale passionnée, promet de dépasser toutes les attentes. Laissez-nous vous concocter un voyage qui incarne l'essence même de l'extraordinaire."
+      "description": "Chez G-Yachts, nous sommes convaincus que<br></br>les vacances à bord d'un superyacht n'ont pas<br></br>d'équivalent sur terre, et nous nous efforçons<br></br>de créer des expériences de yachting inégalées<br></br>qui restent gravées dans les mémoires. Notre<br></br>sélection de yachts d'élite, soutenue par une<br></br>équipe internationale passionnée, promet de<br></br>dépasser toutes les attentes. Laissez-nous<br></br>vous concocter un voyage qui incarne<br></br>l'essence même de l'extraordinaire.",
+      "CTA": "Charter a yacht"
     }
   },
   "contact": {

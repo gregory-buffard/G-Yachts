@@ -58,10 +58,10 @@
       "sleeps": "guests"
     },
     "memories": {
-      "create": "Create unforgettable",
-      "memories": "Memories",
+      "title": "Create unforgettable <classic>Memories</classic>",
       "subtitle": "CHARTER WITH US",
-    "paragraph": "At G-Yachts, we hold the conviction that a holiday aboard a superyacht is unmatched by any on land, dedicating ourselves to curating unparalleled yachting experiences that linger in memory. Our selection of elite charter yachts, bolstered by a passionate global team, promises to surpass every expectation. Allow us to tailor a voyage that embodies the essence of extraordinary"
+      "description": "At G-Yachts, we hold the conviction that a holiday<br></br>aboard a superyacht is unmatched by any on land,<br></br>dedicating ourselves to curating unparalleled<br></br>yachting experiences that linger in memory.<br></br>Our selection of elite charter yachts, bolstered<br></br>by a passionate global team, promises to surpass<br></br>every expectation.Allow us to tailor a voyage that<br></br>embodies the essence of extraordinary",
+      "CTA": "Charter a yacht"
     }
   },
   "contact": {
