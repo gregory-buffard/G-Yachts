@@ -9,11 +9,11 @@ const Memories = () => {
   return (
     <section
       className={
-        "w-full flex lg:flex-row flex-col justify-center items-center lg:items-start lg:gap-[0vw] gap-[4vh]"
+        "w-full flex lg:flex-row bg-rock-100 flex-col justify-center items-center lg:items-start lg:gap-[0vw] gap-[4vh]"
       }
     >
       <Image
-        className={"lg:w-1/2 lg:h-[80vh] object-cover object-bottom w-full"}
+        className={"lg:w-1/2 object-cover object-bottom w-full"}
         src={memories}
         alt={"Room in the yacht"}
       />
