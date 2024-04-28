@@ -13,7 +13,7 @@
     }
 
     h2 {
-        @apply lg:text-4xl text-3xl;
+        @apply lg:text-5xl text-4xl;
     }
 
     h4 {
@@ -22,6 +22,10 @@
 
     p {
         @apply font-classic font-normal text-base tracking-wide;
+    }
+
+    label {
+        @apply text-xs uppercase font-classic font-normal text-black;
     }
 
     @font-face {
@@ -91,7 +95,7 @@
     }
 
     .form-checkbox {
-        @apply accent-black outline-none;
+        @apply accent-black outline-none cursor-pointer;
     }
 
     .glass-button {

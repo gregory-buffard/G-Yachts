@@ -1,26 +1,36 @@
-import express from "express";
 import mongoose from "mongoose";
+import express from "express";
 import yachtsRoutes from "./routes/yachtsRoutes";
+//import customerRoutes from "./routes/customerRoutes";
 import dotenv from "dotenv";
 import cors from "cors";
+import { web } from "./mongoose.web";
+import { panel } from "./mongoose.panel";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const uri = `mongodb://${process.env.MONGO_HOST}:27017`;
-const db = process.env.MONGO_DB || "";
-const user = process.env.MONGO_USER || "";
-const pass = process.env.MONGO_PASS || "";
+const uri = `mongodb://${process.env.MONGO_HOST}:27017`,
+  user = process.env.MONGO_USER || "",
+  pass = process.env.MONGO_PASS || "";
 
-mongoose
+web.then(() => {
+  app.use("/yachts", yachtsRoutes);
+});
+
+panel.on("connected", () => {
+  console.log("MongoDB panel connected");
+});
+
+/*mongoose
   .connect(uri, {
     dbName: db,
     user: user,
     pass: pass,
   })
   .then(() => console.log("MongoDB connected"))
-  .catch((e) => console.log(e));
+  .catch((e) => console.log(e));*/
 
 app.use(express.json());
 app.use(
@@ -32,7 +42,12 @@ app.use(
   }),
 );
 
-app.use("/yachts", yachtsRoutes);
+/*const openRoutes = async () => {
+  web.then(() => {
+    app.use("/yachts", yachtsRoutes);
+  });
+};*/
+//app.use("/customer", customerRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is at port ${PORT}.`);

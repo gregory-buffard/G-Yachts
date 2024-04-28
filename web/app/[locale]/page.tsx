@@ -2,13 +2,13 @@ import Bar from "@/components/nav/bar";
 import Hero from "@/components/index/hero";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import React from "react";
 import { Link } from "@/navigation";
 
 const Services = dynamic(() => import("@/components/index/services"));
 const WorkingTogether = dynamic(() => import("@/components/index/working"));
 const Featured = dynamic(() => import("@/components/index/featured/section"));
 const Memories = dynamic(() => import("@/components/index/memories"));
+const Newsletter = dynamic(() => import("@/components/index/newsletter"));
 
 const Home = () => {
   const t = useTranslations("index");
@@ -34,6 +34,7 @@ const Home = () => {
       <WorkingTogether />
       <Featured />
       <Memories />
+        <Newsletter />
     </main>
   );
 };
