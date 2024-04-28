@@ -1,6 +1,6 @@
 import Hero from "./index/hero";
 import Services from "./index/services";
 import Memories from "./index/memories";
-import ScrollDownButton from "./ScrollDownButton";
+import Scrolldown from "./index/scrolldown";
 
-export { Hero, Services, Memories, ScrollDownButton };
+export { Hero, Services, Memories, Scrolldown };

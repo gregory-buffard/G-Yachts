@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 
-const ScrollDownButton: React.FC = () => {
+const Scrolldown: React.FC = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -29,7 +29,7 @@ const ScrollDownButton: React.FC = () => {
   return (
     <button
       ref={buttonRef}
-      className="fixed bottom-20 left-28 text-white font-light py-2 px-4 text-3xl hide-on-mobile"
+      className="absolute bottom-20 left-28 text-white font-light py-2 px-4 text-3xl hide-on-mobile"
       aria-label="Scroll down"
     >
       🡣
@@ -37,4 +37,4 @@ const ScrollDownButton: React.FC = () => {
   );
 };
 
-export default ScrollDownButton;
+export default Scrolldown;

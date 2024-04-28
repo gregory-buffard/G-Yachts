@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollDownButton from "@/components/ScrollDownButton";
+import Scrolldown from "@/components/index/scrolldown";
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 
@@ -8,7 +8,7 @@ const Hero = () => {
 
   return (
     <div className="md:bg-left-top bg-center bg-cover bg-hero h-screen w-full overflow-hidden">
-      <ScrollDownButton />
+      <Scrolldown />
       <div className="grid grid-rows-6 h-full">
         <div className="row-span-4 flex flex-col items-start justify-end md:ml-28 ml-4 mb-28">
           <h2 className="font-classic text-white md:text-xl text-sm py-2">
