@@ -23,7 +23,7 @@ const RootLayout: React.FC<{
   const messages = useMessages();
   return (
     <html lang={locale}>
-      <body className={"font-classic"}>
+      <body>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

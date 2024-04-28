@@ -12,8 +12,12 @@
     "axios": "^1.6.8",
     "framer-motion": "^11.1.7",
     "js-cookie": "^3.0.5",
+    "lottie-colorify": "^0.8.0",
+    "lottie-react": "^2.4.0",
+    "mongoose": "^8.3.2",
     "next": "^14.2.3",
     "next-intl": "^3.11.3",
+    "next-videos": "^1.4.1",
     "react": "^18",
     "react-dom": "^18"
   },

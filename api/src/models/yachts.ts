@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { IFeatured } from "../types/yachts";
 
-const FeaturedSchema: Schema = new Schema(
+const FeaturedSchema: Schema<IFeatured> = new Schema(
   {
     name: { type: String, required: true },
     price: { type: Number, required: true },
@@ -15,4 +15,7 @@ const FeaturedSchema: Schema = new Schema(
   },
 );
 
-export const Featured = mongoose.model<IFeatured>("Featured", FeaturedSchema);
+const Featured =
+  mongoose.models.Featured || mongoose.model("Featured", FeaturedSchema);
+
+export { Featured, type IFeatured };

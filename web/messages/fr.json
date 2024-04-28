@@ -81,7 +81,20 @@
       },
       "newsletter": "M'abonner aux alertes et actualités de la société",
       "law": "J'accèpte la <confidentiality>politique de confidentialité</confidentiality> & les <guidelines>conditions d'utilisation</guidelines>",
-      "submit": "Envoyer"
+      "submit": "Envoyer",
+      "sent": "Demande <classic>Envoyée</classic>!",
+      "feedback": "Nous vous répondrons dès que possible."
     }
+  },
+  "newsletter": {
+    "title": "Inscrivez-Vous à notre <classic>Newsletter</classic>",
+    "subtitle": "Des destinations de charter de yachts les plus chaudes aux offres imbattables et aux<br></br>dernières nouvelles du monde du yachting, restez en contact et vous ne manquerez rien.",
+    "name": "Prénom*",
+    "surname": "Nom*",
+    "email": "Adresse e-mail*",
+    "send": "Envoyer",
+    "law": "J'accèpte la <confidentiality>politique de confidentialité</confidentiality> & les <guidelines>conditions d'utilisation</guidelines>",
+    "registered": "Inscrit!",
+    "feedback": "Vous êtes sur notre liste de nos newsletters."
   }
 }

@@ -6,11 +6,12 @@ import dynamic from "next/dynamic";
 const Services = dynamic(() => import("@/components/index/services"));
 const WorkingTogether = dynamic(() => import("@/components/index/working"));
 const Featured = dynamic(() => import("@/components/index/featured/section"));
+const Newsletter = dynamic(() => import("@/components/index/newsletter"));
 
 const Home = () => {
   const t = useTranslations("index");
   return (
-    <main className="w-screen flex flex-col justify-start items-center">
+    <main className="w-full flex flex-col justify-start items-center">
       <Bar dynamicColor={100} />
       <Hero />
       <section className="bg-white py-32 flex flex-col leading-relaxed justify-center items-start containerize">
@@ -26,6 +27,7 @@ const Home = () => {
       <Services />
       <WorkingTogether />
       <Featured />
+      <Newsletter />
     </main>
   );
 };
