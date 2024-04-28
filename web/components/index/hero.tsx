@@ -1,11 +1,14 @@
 import React from "react";
+import ScrollDownButton from "@/components/ScrollDownButton";
 import { useTranslations } from "next-intl";
+import { Link } from "@/navigation";
 
 const Hero = () => {
   const t = useTranslations("index.hero");
 
   return (
     <div className="md:bg-left-top bg-center bg-cover bg-hero h-screen w-full overflow-hidden">
+      <ScrollDownButton />
       <div className="grid grid-rows-6 h-full">
         <div className="row-span-4 flex flex-col items-start justify-end md:ml-28 ml-4 mb-28">
           <h2 className="font-classic text-white md:text-xl text-sm py-2">
@@ -30,18 +33,20 @@ const Hero = () => {
               {t.rich("undertitle", { br: () => <br /> })}
             </p>
             <div className={"flex flex-row py-5 gap-4"}>
-              <button
+              <Link
+                href={"/charters"}
                 type={"button"}
                 className="glass-button glass-button-light"
               >
                 {t("CTA")}
-              </button>
-              <button
+              </Link>
+              <Link
+                href={"/sales"}
                 type={"button"}
                 className="glass-button glass-button-light"
               >
                 {t("CTA2")}
-              </button>
+              </Link>
             </div>
           </div>
         </div>

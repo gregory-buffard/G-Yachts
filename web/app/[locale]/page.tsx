@@ -3,6 +3,7 @@ import Hero from "@/components/index/hero";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import React from "react";
+import { Link } from "@/navigation";
 
 const Services = dynamic(() => import("@/components/index/services"));
 const WorkingTogether = dynamic(() => import("@/components/index/working"));
@@ -21,9 +22,13 @@ const Home = () => {
             {t.rich("learn.title", { br: () => <br /> })}
           </h1>
         </div>
-        <button type={"button"} className="glass-button glass-button-dark mt-8">
+        <Link
+          href={"/"}
+          type={"button"}
+          className="glass-button glass-button-dark mt-8"
+        >
           {t("learn.CTA")}
-        </button>
+        </Link>
       </section>
       <Services />
       <WorkingTogether />

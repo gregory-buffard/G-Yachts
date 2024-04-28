@@ -40,7 +40,10 @@ const Memories = () => {
         >
           <div className={"flex flex-col justify-center items-start gap-[2vh]"}>
             <p>{t.rich("description", { br: () => <br /> })}</p>
-            <Link href={"/sales"} className={"glass-button glass-button-dark"}>
+            <Link
+              href={"/charters"}
+              className={"glass-button glass-button-dark"}
+            >
               {t("CTA")}
             </Link>
           </div>

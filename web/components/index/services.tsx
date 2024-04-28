@@ -12,7 +12,7 @@ const Services = () => {
   return (
     <div className="bg-rock-100 w-full h-full">
       <div className="flex flex-col items-start mx-auto md:px-10 px-3 py-16">
-        <h2 className="text-4xl font-slick text-left mb-8">{t("title")}</h2>
+        <h2 className="text-5xl font-slick text-left mb-8">{t("title")}</h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 md:gap-6 gap-2">
           <div className="flex flex-col ">
             <Image
