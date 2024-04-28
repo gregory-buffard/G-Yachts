@@ -13,14 +13,22 @@ const Scrolldown: React.FC = () => {
       setIsVisible(false);
     };
 
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsVisible(false);
+      }
+    };
+
     if (button) {
       button.addEventListener("click", scrollDown);
+      window.addEventListener("scroll", handleScroll);
     }
 
     return () => {
       if (button) {
         button.removeEventListener("click", scrollDown);
       }
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
