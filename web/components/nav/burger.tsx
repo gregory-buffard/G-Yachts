@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import { ContactProvider } from "@/contexts/contact";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation: React.ComponentType<{
@@ -46,11 +45,7 @@ const Burger = ({
         {opened === "navigation" && (
           <Navigation key={"navigation"} open={setOpened} />
         )}
-        {opened === "contact" && (
-          <ContactProvider>
-            <Contact key={"contact"} open={setOpened} />
-          </ContactProvider>
-        )}
+        {opened === "contact" && <Contact key={"contact"} open={setOpened} />}
       </AnimatePresence>
       <button
         onClick={() => setOpened("navigation")}
