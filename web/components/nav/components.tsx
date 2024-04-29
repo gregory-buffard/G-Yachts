@@ -4,12 +4,11 @@ import Burger from "@/components/nav/burger";
 import Logo from "@/public/logo/logo";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { useInteraction } from "@/contexts/interact";
 
-const Bar = ({ dynamicColor }: { dynamicColor: number }) => {
+const Components = ({ dynamicColor }: { dynamicColor: number }) => {
   const t = useTranslations("bar"),
-    [opened, setOpened] = useState<"navigation" | "contact" | undefined>(
-      undefined,
-    ),
+    { UI, openUI } = useInteraction(),
     [isScrolled, setScrolled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,14 +32,14 @@ const Bar = ({ dynamicColor }: { dynamicColor: number }) => {
       <section
         className={`fixed top-0 flex justify-between items-center lg:py-[4vh] py-[2vh] containerize z-10`}
       >
-        <Burger opened={opened} setOpened={setOpened} dark={isScrolled} />
+        <Burger opened={UI} setOpened={openUI} dark={isScrolled} />
         <Logo
           className={`lg:h-[2.5vw] h-[4vh] lg:z-20 z-0 transition-[fill] duration-200 ease-in-out ${isScrolled ? "fill-black" : "fill-white"}`}
         />
         <div className={"flex justify-center items-center"}>
           <button
             type={"button"}
-            onClick={() => setOpened("contact")}
+            onClick={() => openUI("contact")}
             className={`glass-button ${isScrolled ? "glass-button-dark" : "glass-button-light"}`}
           >
             <span className={"lg:hidden block uppercase"}>Contact</span>
@@ -52,4 +51,4 @@ const Bar = ({ dynamicColor }: { dynamicColor: number }) => {
   );
 };
 
-export default Bar;
+export default Components;

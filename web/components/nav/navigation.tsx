@@ -1,19 +1,18 @@
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, Link, pathnames } from "@/navigation";
-import Image from "next/image";
 import Logo from "@/public/logo/logo";
 import { motion } from "framer-motion";
+import SocialLinks from "@/components/nav/social";
+import { useInteraction } from "@/contexts/interact";
+import Whisper from "@/components/whisper";
+import { handleMouseMove } from "@/utils/mouseCoords";
 
-export const Close = ({
-  action,
-  value,
-}: {
-  action: (value: "navigation" | "contact" | undefined) => void;
-  value: "navigation" | "contact" | undefined;
-}) => {
+export const Close = () => {
+  const { openUI } = useInteraction();
+
   return (
-    <button type={"button"} onClick={() => action(value)}>
+    <button type={"button"} onClick={() => openUI(null)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
@@ -71,6 +70,9 @@ const Page = ({ href }: { href: keyof typeof pathnames }) => {
 };
 
 export const ContactLinks = () => {
+  const t = useTranslations("whisper"),
+    [copied, copy] = useState(false);
+
   const isMobile = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent,
@@ -87,9 +89,10 @@ export const ContactLinks = () => {
         target={"_blank"}
         rel={"noopener noreferrer"}
         className={
-          "flex justify-start items-center gap-[0.25vw] navigation-contact"
+          "flex justify-start items-center gap-[0.25vw] navigation-contact group"
         }
       >
+        <Whisper type={"link"} label={t("whatsapp")} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
@@ -101,102 +104,36 @@ export const ContactLinks = () => {
         </svg>
         WhatsApp
       </a>
-      <a href={"mailto:info@g-yachts.com"} className={"navigation-contact"}>
+      <a
+        href={"mailto:info@g-yachts.com"}
+        className={"navigation-contact group"}
+      >
+        <Whisper type={"link"} label={t("email")} />
         info@g-yachts.com
       </a>
       <button
         type={"button"}
         onClick={() => {
-          isMobile()
-            ? (window.location.href = "tel:+37797770543")
-            : navigator.clipboard.writeText("+37797770543");
+          if (isMobile()) {
+            window.location.href = "tel:+37797770543";
+          } else {
+            navigator.clipboard.writeText("+37797770543");
+            copy(true);
+            setTimeout(() => copy(false), 3000);
+          }
         }}
-        className={"navigation-contact"}
+        className={"navigation-contact group"}
       >
+        <Whisper type={"copy"} label={copied ? t("copied") : t("copy")} />
         +377 977 705 43
       </button>
     </div>
   );
 };
 
-export const SocialLinks = ({ address }: { address: boolean }) => {
-  const t = useTranslations("navigation");
-  return (
-    <div className={"w-full flex flex-col justify-start items-start gap-[1vh]"}>
-      {address && (
-        <a
-          href={"https://maps.app.goo.gl/v3VUea8RKH7BB8ZZ6"}
-          target={"_blank"}
-          className={
-            "flex flex-col justify-start items-start text-sm font-classic"
-          }
-        >
-          <p className={"uppercase font-medium"}>{t("hq")}</p>
-          <p className={"font-normal"}>
-            Le Beau Rivage,
-            <br />9 avenue d&apos;Ostende,
-            <br />
-            98000 Monaco
-          </p>
-        </a>
-      )}
-      <div
-        className={
-          "flex justify-start items-baseline fill-navy lg:gap-0 gap-[1vh]"
-        }
-      >
-        <a
-          href={
-            "https://www.instagram.com/gyachtsmonaco?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-          }
-          target={"_blank"}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            viewBox="0 0 64 64"
-            className={"lg:size-[2vw] size-[4vh]"}
-          >
-            <path d="M 31.820312 12 C 13.439312 12 12 13.439312 12 31.820312 L 12 32.179688 C 12 50.560688 13.439312 52 31.820312 52 L 32.179688 52 C 50.560688 52 52 50.560688 52 32.179688 L 52 32 C 52 13.452 50.548 12 32 12 L 31.820312 12 z M 28 16 L 36 16 C 47.129 16 48 16.871 48 28 L 48 36 C 48 47.129 47.129 48 36 48 L 28 48 C 16.871 48 16 47.129 16 36 L 16 28 C 16 16.871 16.871 16 28 16 z M 41.994141 20 C 40.889141 20.003 39.997 20.900859 40 22.005859 C 40.003 23.110859 40.900859 24.003 42.005859 24 C 43.110859 23.997 44.003 23.099141 44 21.994141 C 43.997 20.889141 43.099141 19.997 41.994141 20 z M 31.976562 22 C 26.454563 22.013 21.987 26.501437 22 32.023438 C 22.013 37.545437 26.501437 42.013 32.023438 42 C 37.545437 41.987 42.013 37.498562 42 31.976562 C 41.987 26.454563 37.498562 21.987 31.976562 22 z M 31.986328 26 C 35.299328 25.992 37.992 28.673328 38 31.986328 C 38.007 35.299328 35.326672 37.992 32.013672 38 C 28.700672 38.008 26.008 35.327672 26 32.013672 C 25.992 28.700672 28.673328 26.008 31.986328 26 z"></path>
-          </svg>
-        </a>
-        <a href={"https://www.facebook.com/GYachts"} target={"_blank"}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            viewBox="0 0 64 64"
-            className={"lg:size-[2vw] size-[4vh]"}
-          >
-            <path d="M 32 10 C 19.85 10 10 19.85 10 32 C 10 44.15 19.85 54 32 54 C 44.15 54 54 44.15 54 32 C 54 19.85 44.15 10 32 10 z M 32 14 C 41.941 14 50 22.059 50 32 C 50 41.019571 43.357999 48.468043 34.703125 49.775391 L 34.703125 38.316406 L 39.544922 38.316406 L 40.269531 32.544922 L 34.703125 32.544922 L 34.703125 28.503906 C 34.703125 26.902906 35.786547 26.080078 36.935547 26.080078 C 38.084547 26.080078 40.464844 26.046875 40.464844 26.046875 L 40.464844 20.882812 C 40.464844 20.882812 38.346594 20.638672 36.183594 20.638672 C 34.366594 20.638672 32.365672 21.150828 30.763672 22.798828 C 29.133672 24.474828 28.898438 26.949703 28.898438 29.970703 L 28.898438 32.544922 L 24.046875 32.544922 L 24.046875 38.316406 L 28.898438 38.316406 L 28.898438 49.714844 C 20.438669 48.242252 14 40.881048 14 32 C 14 22.059 22.059 14 32 14 z"></path>
-          </svg>
-        </a>
-        <a
-          href={"https://www.linkedin.com/company/g-yachts-monaco/"}
-          target={"_blank"}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            viewBox="0 0 64 64"
-            className={"lg:size-[2vw] size-[4vh]"}
-          >
-            <path d="M 23.773438 12 C 12.855437 12 12 12.854437 12 23.773438 L 12 40.226562 C 12 51.144563 12.855438 52 23.773438 52 L 40.226562 52 C 51.144563 52 52 51.145563 52 40.226562 L 52 23.773438 C 52 12.854437 51.145563 12 40.226562 12 L 23.773438 12 z M 21.167969 16 L 42.832031 16 C 47.625031 16 48 16.374969 48 21.167969 L 48 42.832031 C 48 47.625031 47.624031 48 42.832031 48 L 21.167969 48 C 16.374969 48 16 47.624031 16 42.832031 L 16 21.167969 C 16 16.374969 16.374969 16 21.167969 16 z M 22.501953 18.503906 C 20.872953 18.503906 19.552734 19.824172 19.552734 21.451172 C 19.552734 23.078172 20.871953 24.400391 22.501953 24.400391 C 24.126953 24.400391 25.447266 23.079172 25.447266 21.451172 C 25.447266 19.826172 24.126953 18.503906 22.501953 18.503906 z M 37.933594 26.322266 C 35.473594 26.322266 33.823437 27.672172 33.148438 28.951172 L 33.078125 28.951172 L 33.078125 26.728516 L 28.228516 26.728516 L 28.228516 43 L 33.28125 43 L 33.28125 34.949219 C 33.28125 32.826219 33.687359 30.771484 36.318359 30.771484 C 38.912359 30.771484 38.945312 33.200891 38.945312 35.087891 L 38.945312 43 L 44 43 L 44 34.074219 C 44 29.692219 43.054594 26.322266 37.933594 26.322266 z M 19.972656 26.728516 L 19.972656 43 L 25.029297 43 L 25.029297 26.728516 L 19.972656 26.728516 z"></path>
-          </svg>
-        </a>
-      </div>
-    </div>
-  );
-};
-
-const Navigation = ({
-  open,
-}: {
-  open: (value: "navigation" | "contact" | undefined) => void;
-}) => {
-  const t = useTranslations("navigation.links");
+const Navigation = () => {
+  const t = useTranslations("navigation.links"),
+    { openUI } = useInteraction();
 
   return (
     <motion.nav
@@ -204,11 +141,12 @@ const Navigation = ({
       animate={{ x: "0" }}
       exit={{ x: "-100%" }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className={`fixed left-0 top-0 z-20 h-[100dvh] lg:w-[32vw] w-screen lg:px-[2vw] px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col gap-[2vh] lg:overflow-hidden overflow-y-visible`}
+      className={`fixed left-0 top-0 z-20 h-[100dvh] lg:w-[32vw] w-full lg:px-[2vw] px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col lg:overflow-hidden overflow-y-auto`}
+      onMouseMove={handleMouseMove}
     >
       <div className={"navigation-section"}>
         <div className={"w-full flex justify-between items-center"}>
-          <Close action={open} value={undefined} />
+          <Close />
           <div
             className={"flex justify-end items-baseline gap-[2vw] text-base"}
           >
@@ -233,14 +171,14 @@ const Navigation = ({
           >
             <button
               type={"button"}
-              onClick={() => setTimeout(() => open("contact"), 200)}
+              onClick={() => setTimeout(() => openUI("contact"), 200)}
               className={"navigation-link font-slick"}
             >
               {t("contact")}
             </button>
             <button
               type={"button"}
-              onClick={() => setTimeout(() => open("contact"), 200)}
+              onClick={() => setTimeout(() => openUI("contact"), 200)}
               className={"navigation-link font-classic"}
             >
               {t("contact").toUpperCase()}

@@ -1,22 +1,25 @@
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
+import { useInteraction } from "@/contexts/interact";
 
-const Navigation: React.ComponentType<{
-  open: (value: "navigation" | "contact" | undefined) => void;
-}> = dynamic(() => import("@/components/nav/navigation"));
-const Contact: React.ComponentType<{
-  open: (value: "navigation" | "contact" | undefined) => void;
-}> = dynamic(() => import("@/components/nav/contact"));
+const Navigation: React.ComponentType = dynamic(
+  () => import("@/components/nav/navigation"),
+);
+const Contact: React.ComponentType = dynamic(
+  () => import("@/components/nav/contact"),
+);
 
 const Burger = ({
   opened,
   setOpened,
   dark,
 }: {
-  opened: "navigation" | "contact" | undefined;
-  setOpened: (value: "navigation" | "contact" | undefined) => void;
+  opened: "navigation" | "contact" | null;
+  setOpened: (opened: "navigation" | "contact" | null) => void;
   dark: boolean;
 }) => {
+  const { openUI } = useInteraction();
+
   return (
     <>
       <AnimatePresence mode={"popLayout"}>
@@ -39,13 +42,11 @@ const Burger = ({
             className={
               "absolute lg:block hidden w-screen h-screen inset-0 cursor-pointer z-20"
             }
-            onClick={() => setOpened(undefined)}
+            onClick={() => openUI(null)}
           />
         )}
-        {opened === "navigation" && (
-          <Navigation key={"navigation"} open={setOpened} />
-        )}
-        {opened === "contact" && <Contact key={"contact"} open={setOpened} />}
+        {opened === "navigation" && <Navigation key={"navigation"} />}
+        {opened === "contact" && <Contact key={"contact"} />}
       </AnimatePresence>
       <button
         onClick={() => setOpened("navigation")}

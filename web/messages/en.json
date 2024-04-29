@@ -1,4 +1,14 @@
 {
+  "whisper": {
+    "whatsapp": "Open WhatsApp",
+    "googleMaps": "Open Google Maps",
+    "instagram": "Our Instagram",
+    "facebook": "Our Facebook",
+    "linkedin": "Our LinkedIn",
+    "email": "New email draft",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
   "bar": {
     "CTA": "Get in touch"
   },
@@ -101,5 +111,10 @@
     "law": "I agree to the <confidentiality>privacy policy</confidentiality> & <guidelines>terms and conditions</guidelines>",
     "registered": "Registered!",
     "feedback": "You're on our newsletter list."
+  },
+  "footer": {
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "credits": "Credits"
   }
 }

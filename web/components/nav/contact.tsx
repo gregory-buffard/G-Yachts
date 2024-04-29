@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
-import { Close, ContactLinks, SocialLinks } from "@/components/nav/navigation";
+import { Close, ContactLinks } from "@/components/nav/navigation";
+import SocialLinks from "@/components/nav/social";
 import codes from "@/data/CountryCodes.json";
 import { useEffect, useRef, useState } from "react";
 import { ICustomer } from "@/types/customer";
@@ -7,10 +8,11 @@ import { INewsletter } from "@/types/newsletter";
 import { contact } from "@/app/actions";
 import { motion } from "framer-motion";
 import { useFormStatus } from "react-dom";
-import Lottie, { LottieRef, LottieRefCurrentProps } from "lottie-react";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { colorify } from "lottie-colorify";
-import loading from "@/public/imagery/optimized/loading.json";
-import submitted from "@/public/imagery/optimized/submitted.json";
+import loading from "@/public/imagery/optimized/contact/loading.json";
+import submitted from "@/public/imagery/optimized/contact/submitted.json";
+import { handleMouseMove } from "@/utils/mouseCoords";
 
 export const Input = ({
   props,
@@ -105,11 +107,7 @@ const Submit = () => {
   );
 };
 
-const Contact = ({
-  open,
-}: {
-  open: (opened: "navigation" | "contact" | undefined) => void;
-}) => {
+const Contact = () => {
   const t = useTranslations("contact"),
     [changeCode, setChangeCode] = useState(false),
     [code, setCode] = useState<string>("+377"),
@@ -147,13 +145,14 @@ const Contact = ({
       className={
         "fixed lg:bottom-0 lg:top-auto top-0 left-0 z-20 bg-rock-100 lg:h-[86vh] h-[100dvh] lg:overflow-y-hidden overflow-y-auto w-full flex flex-col justify-start items-center lg:px-[2vw] px-[4vw] py-[4vh] lg:gap-[2vh] gap-[4vh]"
       }
+      onMouseMove={handleMouseMove}
     >
       <div
         className={
           "w-full lg:static lg:top-auto sticky top-0 flex justify-end items-center"
         }
       >
-        <Close action={open} value={undefined} />
+        <Close />
       </div>
       <div
         className={

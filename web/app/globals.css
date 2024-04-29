@@ -5,6 +5,8 @@
 :root {
     --translate: 0vw;
     --animate: 0ms;
+    --mouse-x: 0px;
+    --mouse-y: 0px;
 }
 
 @layer base {

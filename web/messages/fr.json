@@ -1,4 +1,14 @@
 {
+  "whisper": {
+    "whatsapp": "Ouvrir WhatsApp",
+    "googleMaps": "Ouvrir Google Maps",
+    "instagram": "Notre Instagram",
+    "facebook": "Notre Facebook",
+    "linkedin": "Notre LinkedIn",
+    "email": "Nouveau brouillon de email",
+    "copy": "Copier",
+    "copied": "Copié!"
+  },
   "bar": {
     "CTA": "Contactez-nous"
   },
@@ -101,5 +111,10 @@
     "law": "J'accèpte la <confidentiality>politique de confidentialité</confidentiality> & les <guidelines>conditions d'utilisation</guidelines>",
     "registered": "Inscrit!",
     "feedback": "Vous êtes sur notre liste de nos newsletters."
+  },
+  "footer": {
+    "terms": "Conditions",
+    "privacy": "Confidentialité",
+    "credits": "Accréditations"
   }
 }

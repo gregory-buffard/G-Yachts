@@ -1,4 +1,4 @@
-import Bar from "@/components/nav/bar";
+import Bar from "@/components/nav/section";
 import Hero from "@/components/index/hero";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
@@ -8,10 +8,12 @@ const Services = dynamic(() => import("@/components/index/services"));
 const WorkingTogether = dynamic(() => import("@/components/index/working"));
 const Featured = dynamic(() => import("@/components/index/featured/section"));
 const Memories = dynamic(() => import("@/components/index/memories"));
-const Newsletter = dynamic(() => import("@/components/index/newsletter"));
+const Newsletter = dynamic(() => import("@/components/newsletter"));
+const Footer = dynamic(() => import("@/components/footer/section"));
 
 const Home = () => {
   const t = useTranslations("index");
+
   return (
     <main className="w-full flex flex-col justify-start items-center">
       <Bar dynamicColor={100} />
@@ -34,7 +36,8 @@ const Home = () => {
       <WorkingTogether />
       <Featured />
       <Memories />
-        <Newsletter />
+      <Newsletter />
+      <Footer />
     </main>
   );
 };
