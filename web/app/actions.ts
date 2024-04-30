@@ -74,7 +74,7 @@ export const contact = async (formData: FormData) => {
 
 export const fetchFeatured = async () => {
   return await Yacht.find({ featured: true })
-    .select("name price builder length yearBuilt sleeps")
+    .select("_id name price builder length yearBuilt sleeps")
     .catch((e) => {
       throw e;
     });
