@@ -5,6 +5,7 @@ import { formatCurrency } from "@/utils/yachts";
 import { Featured } from "@/models/yachts";
 import { Customer } from "@/models/customer";
 import { Newsletter } from "@/models/newsletter";
+import { Destination } from "@/models/destination";
 
 export const contact = async (formData: FormData) => {
   if (formData.get("surname")) {
@@ -75,6 +76,14 @@ export const contact = async (formData: FormData) => {
 export const fetchFeatured = async () => {
   return await Featured.find({ featured: true })
     .select("name price builder length yearBuilt sleeps")
+    .catch((e) => {
+      throw e;
+    });
+};
+
+export const fetchDestinations = async () => {
+  return await Destination.find()
+    .select("country region")
     .catch((e) => {
       throw e;
     });
