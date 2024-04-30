@@ -21,7 +21,7 @@ const Hero = () => {
                 <li>{t("sales")}</li>
                 <li>CHARTER</li>
                 <li>MANAGEMENT</li>
-                <li>CONSTRUCTIONS</li>
+                <li>NEW CONSTRUCTIONS</li>
                 <li aria-hidden="true">{t("sales")}</li>
               </ul>
             </span>
