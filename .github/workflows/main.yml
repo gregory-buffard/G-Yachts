@@ -82,6 +82,13 @@ jobs:
         username: ${{secrets.SERVER_USER}}
         password: ${{secrets.SERVER_PASSWORD}}
         script: |
+          export GITHUB_OWNER="${{ env.GITHUB_OWNER }}"
+          export GITHUB_SHA="${{ env.GITHUB_SHA }}"
+          export CURRENCY_API_KEY="${{ env.CURRENCY_API_KEY }}"
+          export MONGO_URI="${{ env.MONGO_URI }}"
+          export MONGO_USER="${{ env.MONGO_USER }}"
+          export MONGO_PASS="${{ env.MONGO_PASS }}"
+          export SUBNET_IP="${{ env.SUBNET_IP }}"
           cd /var/www/docker
           sudo docker-compose pull
           sudo docker-compose down
