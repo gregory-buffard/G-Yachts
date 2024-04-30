@@ -45,7 +45,7 @@ const Whisper = ({ type, label }: { type: "link" | "copy"; label: string }) => {
   return (
     <label
       className={
-        "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out z-50 w-max h-max translate-x-[var(--mouse-x)] translate-y-[--mouse-y] text-rock-100 fill-rock-100 bg-navy text-xs lg:flex hidden justify-center items-center pl-[0.27rem] pr-[0.4rem] pb-[0.15rem] pt-[0.2rem] rounded-lg bg-opacity-75 backdrop-blur-sm border-white/10 border-[0.15rem] normal-case group-active:scale-75"
+        "fixed opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out z-50 w-max h-max left-[var(--mouse-x)] top-[--mouse-y] text-rock-100 fill-rock-100 bg-navy text-xs lg:flex hidden justify-center items-center pl-[0.27rem] pr-[0.4rem] pb-[0.15rem] pt-[0.2rem] rounded-lg bg-opacity-75 backdrop-blur-sm border-white/10 border-[0.15rem] normal-case"
       }
     >
       {icon(type, "w-[1rem]")}

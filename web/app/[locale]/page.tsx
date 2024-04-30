@@ -1,15 +1,16 @@
-import Bar from "@/components/nav/section";
+import Bar from "@/components/nav/bar";
 import Hero from "@/components/index/hero";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { Link } from "@/navigation";
 
+const View = dynamic(() => import("@/components/nav/view"));
 const Services = dynamic(() => import("@/components/index/services"));
 const WorkingTogether = dynamic(() => import("@/components/index/working"));
 const Featured = dynamic(() => import("@/components/index/featured/section"));
 const Memories = dynamic(() => import("@/components/index/memories"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
-const Footer = dynamic(() => import("@/components/footer/section"));
+const Footer = dynamic(() => import("@/components/footer"));
 
 const Home = () => {
   const t = useTranslations("index");
@@ -17,6 +18,7 @@ const Home = () => {
   return (
     <main className="w-full flex flex-col justify-start items-center">
       <Bar dynamicColor={100} />
+      <View />
       <Hero />
       <section className="bg-white py-28 flex flex-col leading-relaxed justify-center items-start containerize">
         <div className="flex flex-col font-slick">

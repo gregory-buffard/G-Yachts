@@ -3,17 +3,17 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { ICard } from "@/types/featured";
-import { UserProvider, useUserContext } from "@/contexts/user";
 import { useEffect, useState } from "react";
 import { convertCurrency } from "@/app/actions";
+import { useView } from "@/app/store";
 
 const Card = ({ card }: { card: ICard }) => {
   const t = useTranslations("index.featured"),
-    { user } = useUserContext(),
+    { currency } = useView(),
     [price, setPrice] = useState<string | null>(null);
 
   useEffect(() => {
-    convertCurrency(card.price, user.currency).then((price) => setPrice(price));
+    convertCurrency(card.price, currency).then((price) => setPrice(price));
   }, []);
 
   return (
@@ -172,26 +172,24 @@ const Section = ({ carouselData }: { carouselData: ICard[] }) => {
           </Link>
         </div>
       </div>
-      <UserProvider>
-        <div
-          className={
-            "lg:hidden h-max w-full flex justify-start items-baseline lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[4vw]"
-          }
-        >
-          {carouselData.map((card, i) => (
-            <Card key={i} card={card} />
-          ))}
-        </div>
-        <div
-          className={
-            "hidden h-max w-full lg:flex justify-start items-baseline lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[4vw]"
-          }
-        >
-          {carouselExtended.map((card, i) => (
-            <Card key={i} card={card} />
-          ))}
-        </div>
-      </UserProvider>
+      <div
+        className={
+          "lg:hidden h-max w-full flex justify-start items-baseline lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[4vw]"
+        }
+      >
+        {carouselData.map((card, i) => (
+          <Card key={i} card={card} />
+        ))}
+      </div>
+      <div
+        className={
+          "hidden h-max w-full lg:flex justify-start items-baseline lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[4vw]"
+        }
+      >
+        {carouselExtended.map((card, i) => (
+          <Card key={i} card={card} />
+        ))}
+      </div>
     </section>
   );
 };

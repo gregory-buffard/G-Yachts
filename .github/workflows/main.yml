@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Docker Login
       uses: docker/login-action@v3.1.0
@@ -30,19 +30,73 @@ jobs:
         file: ./web/Dockerfile
         push: true
         tags: ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}
+
+    - name: Build and push API
+      uses: docker/build-push-action@v5.3.0
+      with:
+        context: ./api
+        file: ./api/Dockerfile
+        push: true
+        tags: ghcr.io/${{github.repository_owner}}/g-yachts-api:${{github.sha}}
         
   Deploy:
     runs-on: ubuntu-latest
     needs: Build
+
+    env:
+      GITHUB_OWNER: ${{github.repository_owner}}
+      GITHUB_SHA: ${{github.sha}}
+      CURRENCY_API_KEY: ${{secrets.CURRENCY_API}}
+      MONGO_URI: mongodb://${{secrets.SERVER_IP}}:27017
+      MONGO_USER: ${{secrets.MONGO_USER}}
+      MONGO_PASS: ${{secrets.MONGO_PASS}}
+      SUBNET_IP: ${{secrets.SUBNET_WEB_IP}}
+
     steps:
-    - name: Deploy
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: SSH
       uses: appleboy/ssh-action@master
       with:
         host: ${{secrets.SERVER_IP}}
         username: ${{secrets.SERVER_USER}}
         password: ${{secrets.SERVER_PASSWORD}}
         script: |
-          sudo docker pull ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}
-          sudo docker stop g-yachts-web || true
-          sudo docker rm g-yachts-web || true
-          sudo docker run -d --name g-yachts-web --network="host" -p 3000:3000 -e CURRENCY_API_KEY=${{secrets.CURRENCY_API}} -e MONGO_URI=mongodb://${{secrets.SERVER_IP}}:27017 -e MONGO_USER=${{secrets.MONGO_USER}} -e MONGO_PASS=${{secrets.MONGO_PASS}} ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}
+          sudo mkdir -p /var/www/docker
+          cd /var/www/docker
+          echo "GITHUB_SHA=${{ github.sha }}" > .env
+          echo "GITHUB_OWNER=${{github.repository_owner}}" >> .env
+          echo "CURRENCY_API_KEY=${{secrets.CURRENCY_API}}" >> .env
+          echo "MONGO_URI=mongodb://${{secrets.SERVER_IP}}:27017" >> .env
+          echo "MONGO_USER=${{secrets.MONGO_USER}}" >> .env
+          echo "MONGO_PASS=${{secrets.MONGO_PASS}}" >> .env
+          echo "SUBNET_IP=${{secrets.SUBNET_WEB_IP}}" >> .env
+
+    - name: Transfer Compose
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{secrets.SERVER_IP}}
+        username: ${{secrets.SERVER_USER}}
+        password: ${{secrets.SERVER_PASSWORD}}
+        source: ./docker-compose.yml
+        target: /var/www/docker
+
+    - name: Start Services
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{secrets.SERVER_IP}}
+        username: ${{secrets.SERVER_USER}}
+        password: ${{secrets.SERVER_PASSWORD}}
+        script: |
+          export GITHUB_OWNER="${{ env.GITHUB_OWNER }}"
+          export GITHUB_SHA="${{ env.GITHUB_SHA }}"
+          export CURRENCY_API_KEY="${{ env.CURRENCY_API_KEY }}"
+          export MONGO_URI="${{ env.MONGO_URI }}"
+          export MONGO_USER="${{ env.MONGO_USER }}"
+          export MONGO_PASS="${{ env.MONGO_PASS }}"
+          export SUBNET_IP="${{ env.SUBNET_IP }}"
+          cd /var/www/docker
+          sudo docker-compose pull
+          sudo docker-compose down
+          sudo docker-compose up -d
