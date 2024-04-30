@@ -5,7 +5,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /etc/nginx/nginx.conf:./nginx/nginx.conf
     networks:
       - public
 
@@ -34,7 +34,7 @@ services:
       public:
         ipv4_address: ${SUBNET_IP}
     volumes:
-      - /app/api/images/yachts:/var/www/images/yachts
+      - /var/www/images/yachts:/app/api/images/yachts
 
   api-admin:
     image: ghcr.io/${GITHUB_OWNER}/g-yachts-api:${GITHUB_SHA}
@@ -44,7 +44,7 @@ services:
       - HOST=localhost
     network_mode: host
     volumes:
-      - /app/api/images/yachts:/var/www/images/yachts
+      - /var/www/images/yachts:/app/api/images/yachts
 
 networks:
   public:
