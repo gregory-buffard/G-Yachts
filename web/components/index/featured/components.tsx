@@ -2,12 +2,21 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
-import { ICard } from "@/types/featured";
+import { IYacht } from "@/types/yacht";
 import { useEffect, useState } from "react";
 import { convertCurrency } from "@/app/actions";
 import { useView } from "@/app/store";
+import { ObjectId } from "mongoose";
 
-const Card = ({ card }: { card: ICard }) => {
+interface IFeatured
+  extends Pick<
+    IYacht,
+    "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps"
+  > {
+  _id: ObjectId;
+}
+
+const Card = ({ card }: { card: IFeatured }) => {
   const t = useTranslations("index.featured"),
     { currency } = useView(),
     [price, setPrice] = useState<string | null>(null);
@@ -23,8 +32,11 @@ const Card = ({ card }: { card: ICard }) => {
     >
       <div
         className={
-          "bg-rock-400 group-hover:bg-rock-500 transition-[background-color] duration-200 ease-in-out w-[72vw] lg:w-[28vw] h-[28vh] flex justify-start items-start mb-[1vh]"
+          "transition-[background-color] duration-200 ease-in-out w-[72vw] lg:w-[28vw] h-[28vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
         }
+        style={{
+          backgroundImage: `url(http://51.75.16.185/images/yachts/${card._id}/featured.webp)`,
+        }}
       >
         <p className={"bg-white px-[1.5vw] py-[0.5vh] rounded-sm m-[1vh]"}>
           {t("exclusive")}
@@ -90,7 +102,7 @@ const CarouselButton = ({
   );
 };
 
-const Section = ({ carouselData }: { carouselData: ICard[] }) => {
+const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
   const t = useTranslations("index.featured"),
     carouselExtended = [...carouselData, ...carouselData, ...carouselData],
     defaultTranslate = carouselData.length * -32,

@@ -9,7 +9,7 @@ export const uploadImages = async (formData: FormData, id: string) => {
       method: "POST",
       body: d,
     });
-    return await res.json();
+    return await res.json().then((d) => console.log(d));
   } catch (e) {
     console.error(e);
   }
