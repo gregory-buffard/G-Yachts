@@ -5,8 +5,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - etc/nginx/sites-available/web:/nginx/sites-enabled/web
-      - /etc/nginx/nginx.conf:/nginx/nginx.conf
+      - etc/nginx/sites-available/web:/etc/nginx/sites-enabled/web
+      - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - public
 
