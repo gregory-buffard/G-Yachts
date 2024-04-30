@@ -4,15 +4,15 @@ import { usePathname, useRouter, Link, pathnames } from "@/navigation";
 import Logo from "@/public/logo/logo";
 import { motion } from "framer-motion";
 import SocialLinks from "@/components/nav/social";
-import { useInteraction } from "@/contexts/interact";
 import Whisper from "@/components/whisper";
 import { handleMouseMove } from "@/utils/mouseCoords";
+import { useView } from "@/app/store";
 
 export const Close = () => {
-  const { openUI } = useInteraction();
+  const { openView } = useView();
 
   return (
-    <button type={"button"} onClick={() => openUI(null)}>
+    <button type={"button"} onClick={() => openView(null)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
@@ -117,9 +117,10 @@ export const ContactLinks = () => {
           if (isMobile()) {
             window.location.href = "tel:+37797770543";
           } else {
-            navigator.clipboard.writeText("+37797770543");
-            copy(true);
-            setTimeout(() => copy(false), 3000);
+            navigator.clipboard.writeText("+37797770543").then(() => {
+              copy(true);
+              setTimeout(() => copy(false), 3000);
+            });
           }
         }}
         className={"navigation-contact group"}
@@ -133,7 +134,7 @@ export const ContactLinks = () => {
 
 const Navigation = () => {
   const t = useTranslations("navigation.links"),
-    { openUI } = useInteraction();
+    { openView } = useView();
 
   return (
     <motion.nav
@@ -171,14 +172,14 @@ const Navigation = () => {
           >
             <button
               type={"button"}
-              onClick={() => setTimeout(() => openUI("contact"), 200)}
+              onClick={() => setTimeout(() => openView("contact"), 200)}
               className={"navigation-link font-slick"}
             >
               {t("contact")}
             </button>
             <button
               type={"button"}
-              onClick={() => setTimeout(() => openUI("contact"), 200)}
+              onClick={() => setTimeout(() => openView("contact"), 200)}
               className={"navigation-link font-classic"}
             >
               {t("contact").toUpperCase()}

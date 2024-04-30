@@ -1,7 +1,7 @@
 FROM node:20
 LABEL authors="g-yachts"
 
-WORKDIR /usr/src/web
+WORKDIR /app/web
 
 COPY package*.json ./
 

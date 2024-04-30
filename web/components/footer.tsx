@@ -1,12 +1,14 @@
+"use client";
+
 import Logo from "@/public/logo/logo";
 import SocialLinks from "@/components/nav/social";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
-import { useInteraction } from "@/contexts/interact";
+import { useView } from "@/app/store";
 
-const Components = () => {
+const Footer = () => {
   const t = useTranslations(),
-    { openUI } = useInteraction();
+    { openView } = useView();
 
   return (
     <footer
@@ -33,7 +35,7 @@ const Components = () => {
           <Link href={"/company"}>{t("navigation.links.company")}</Link>
           <button
             type={"button"}
-            onClick={() => openUI("contact")}
+            onClick={() => openView("contact")}
             className={"uppercase"}
           >
             {t("navigation.links.contact")}
@@ -49,4 +51,4 @@ const Components = () => {
   );
 };
 
-export default Components;
+export default Footer;

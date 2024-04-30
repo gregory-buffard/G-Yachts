@@ -43,7 +43,7 @@ const Newsletter = () => {
         </h2>
         <h4 className={"normal-case"}>
           {t.rich("subtitle", {
-            br: (chunks) => <br />,
+            br: () => <br />,
           })}
         </h4>
       </div>
@@ -57,7 +57,7 @@ const Newsletter = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className={
-              "h-full w-max flex flex-col justify-center items-center lg:px-[4vh] px-[4vw] lg:py-[4vh] py-[4vw] text-white gap-[2vh]"
+              "h-full w-max flex flex-col justify-center items-center lg:px-[4vh] lg:py-[4vh] py-[4vw] text-white gap-[2vh]"
             }
           >
             <h1 className={"text-center font-slick"}>{t("registered")}</h1>
@@ -92,7 +92,7 @@ const Newsletter = () => {
               await contact(formData).then(() => setRegistred(true));
             }}
             className={
-              "h-full w-max bg-white flex flex-col justify-start items-center lg:px-[4vh] px-[4vw] lg:py-[4vh] py-[4vw] gap-[3vh]"
+              "h-full lg:w-max w-[92vw] bg-white flex flex-col justify-start items-center lg:px-[4vh] px-[4vw] lg:py-[4vh] py-[4vw] gap-[3vh]"
             }
           >
             <Input

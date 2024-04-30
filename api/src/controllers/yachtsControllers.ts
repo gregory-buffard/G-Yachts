@@ -1,14 +1,30 @@
-import { Featured } from "../models/yachts";
 import { Request, Response } from "express";
+import path from "path";
+import fs from "fs";
+import multer from "multer";
 
-export const getFeatured = async (req: Request, res: Response) => {
+export const getImages = async (req: Request, res: Response) => {
   try {
-    console.log("getFeatured called");
-    const d = await Featured.find({ featured: true }).select(
-      "name price builder length yearBuilt sleeps",
-    );
-    res.json(d);
+    const { id } = req.params;
+    const dir = path.join("/app/api/images/yachts", id);
+    fs.readdir(dir, (e, f) => {
+      const d = f.map((f) => `http://51.75.16.185/images/${id}/${f}`);
+      res.json(d);
+    });
   } catch (e) {
     res.status(500).send(e);
   }
 };
+
+const storage = multer.diskStorage({
+  destination: (req, f, cb) => {
+    const { id } = req.params;
+    const dir = path.join("/app/api/images/yachts", id);
+    fs.mkdirSync(dir, { recursive: true });
+    cb(null, dir);
+  },
+  filename: (req, f, cb) => {
+    cb(null, f.originalname);
+  },
+});
+export const uploadImages = multer({ storage });

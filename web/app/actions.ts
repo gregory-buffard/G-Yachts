@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { formatCurrency } from "@/utils/yachts";
-import { Featured } from "@/models/yachts";
+import { Yacht } from "@/models/yacht";
 import { Customer } from "@/models/customer";
 import { Newsletter } from "@/models/newsletter";
 
@@ -73,7 +73,7 @@ export const contact = async (formData: FormData) => {
 };
 
 export const fetchFeatured = async () => {
-  return await Featured.find({ featured: true })
+  return await Yacht.find({ featured: true })
     .select("name price builder length yearBuilt sleeps")
     .catch((e) => {
       throw e;

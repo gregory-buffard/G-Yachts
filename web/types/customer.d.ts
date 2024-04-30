@@ -1,6 +1,4 @@
-import { IContact } from "@/types/contact";
-
-export interface ICustomer extends IContact {
+export interface ICustomer {
   name: string;
   email: string;
   tel?: string;
