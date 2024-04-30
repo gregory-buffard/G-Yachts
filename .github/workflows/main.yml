@@ -65,6 +65,13 @@ jobs:
         script: |
           sudo mkdir -p /var/www/docker
           cd /var/www/docker
+          echo "GITHUB_SHA=${{ github.sha }}" > .env
+          echo "GITHUB_OWNER=${{github.repository_owner}}" >> .env
+          echo "CURRENCY_API_KEY=${{secrets.CURRENCY_API}}" >> .env
+          echo "MONGO_URI=mongodb://${{secrets.SERVER_IP}}:27017" >> .env
+          echo "MONGO_USER=${{secrets.MONGO_USER}}" >> .env
+          echo "MONGO_PASS=${{secrets.MONGO_PASS}}" >> .env
+          echo "SUBNET_IP=${{secrets.SUBNET_WEB_IP}}" >> .env
 
     - name: Transfer Compose
       uses: appleboy/scp-action@master
