@@ -83,7 +83,7 @@ export const fetchFeatured = async () => {
 
 export const fetchDestinations = async () => {
   return await Destination.find()
-    .select("country region")
+    .select("_id country region")
     .catch((e) => {
       throw e;
     });

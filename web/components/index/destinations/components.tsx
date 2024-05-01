@@ -4,9 +4,13 @@ import { IDestination } from "@/types/destination";
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { useEffect, useState } from "react";
+import { ObjectId } from "mongoose";
 
-const Card = ({ card }: { card: IDestination }) => {
-  const { country, region } = card;
+interface IFeatured extends Pick<IDestination, "country" | "region"> {
+  _id: ObjectId;
+}
+
+const Card = ({ card }: { card: IFeatured }) => {
   return (
     <Link
       href={"/charters"}
@@ -16,12 +20,15 @@ const Card = ({ card }: { card: IDestination }) => {
     >
       <div
         className={
-          "bg-rock-400 group-hover:bg-rock-500 transition-[background-color] duration-200 ease-in-out md:w-[20vw] md:h-[55vh] w-[35vw] h-[25vh] flex justify-start items-start mb-[1vh]"
+          "transition-[background-color] bg-cover bg-center duration-200 ease-in-out md:w-[20vw] md:h-[55vh] w-[35vw] h-[25vh] flex justify-start items-start mb-[1vh]"
         }
+        style={{
+          backgroundImage: `url(http://51.75.16.185/images/destinations/${card._id}/featured.webp)`,
+        }}
       >
         <div className={"flex flex-col md:px-6 md:py-4 px-1 text-white"}>
-          <h3 className={"md:text-2xl text-lg font-slick"}>{country}</h3>
-          <h3 className={"md:text-base text-sm font-classic"}>{region}</h3>
+          <h3 className={"md:text-2xl text-lg font-slick"}>{card.country}</h3>
+          <h3 className={"md:text-base text-sm font-classic"}>{card.region}</h3>
         </div>
       </div>
     </Link>
@@ -68,10 +75,10 @@ const CarouselButton = ({
   );
 };
 
-const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
+const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
   const t = useTranslations("index.destinations"),
     carouselExtended = [...carouselData, ...carouselData, ...carouselData],
-    defaultTranslate = carouselData.length * -20,
+    defaultTranslate = carouselData.length * -21.5,
     setTranslate = (amount: number) => {
       document.documentElement.style.setProperty(
         "--translate-destination",
@@ -104,9 +111,9 @@ const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
   }, [paused]);
 
   const translate = (direction: string) => {
-    const delta = direction === "next" ? -20 : 20; // width of one item
+    const delta = direction === "next" ? -21.5 : 21.5; // width of one item
     const itemsCount = carouselData.length; // get the number of items from the database
-    const defaultTranslate = itemsCount * -20; // width of one set of items
+    const defaultTranslate = itemsCount * -21.5; // width of one set of items
 
     setAnimate(500);
     setTranslate(getTranslation() + delta);
@@ -124,6 +131,8 @@ const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
     }
   };
 
+  // @ts-ignore
+  // @ts-ignore
   return (
     <section className="w-full flex flex-col justify-center py-[4vh]">
       <div className="containerize flex justify-between items-center">
@@ -170,7 +179,7 @@ const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
             {t("CTA")}
           </Link>
         </div>
-        <div className={"md:w-4/6 w-full"}>
+        <div className={"md:w-4/6"}>
           <div
             className={
               "lg:hidden h-max w-full flex justify-start  lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[1.5vw]"
