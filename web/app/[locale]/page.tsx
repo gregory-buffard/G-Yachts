@@ -9,6 +9,9 @@ const Services = dynamic(() => import("@/components/index/services"));
 const WorkingTogether = dynamic(() => import("@/components/index/working"));
 const Featured = dynamic(() => import("@/components/index/featured/section"));
 const Memories = dynamic(() => import("@/components/index/memories"));
+const Destinations = dynamic(
+  () => import("@/components/index/destinations/section"),
+);
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 
@@ -38,6 +41,7 @@ const Home = () => {
       <WorkingTogether />
       <Featured />
       <Memories />
+      <Destinations />
       <Newsletter />
       <Footer />
     </main>
