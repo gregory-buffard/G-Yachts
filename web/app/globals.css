@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 :root {
-    --translate: 0vw;
-    --animate: 0ms;
+    --translate-featured: 0vw;
+    --animate-featured: 0ms;
+    --translate-destination: 0vw;
+    --animate-destination: 0ms;
     --mouse-x: 0px;
     --mouse-y: 0px;
 }

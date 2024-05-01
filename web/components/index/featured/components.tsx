@@ -28,7 +28,7 @@ const Card = ({ card }: { card: IFeatured }) => {
   return (
     <Link
       href={"/sales"} //This link should be dynamic
-      className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate)] ease-in-out lg:translate-x-[var(--translate)]`}
+      className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)]`}
     >
       <div
         className={
@@ -107,12 +107,20 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
     carouselExtended = [...carouselData, ...carouselData, ...carouselData],
     defaultTranslate = carouselData.length * -32,
     setTranslate = (amount: number) => {
-      document.documentElement.style.setProperty("--translate", `${amount}vw`);
+      document.documentElement.style.setProperty(
+        "--translate-featured",
+        `${amount}vw`,
+      );
     },
     getTranslation = () =>
-      parseInt(document.documentElement.style.getPropertyValue("--translate")),
+      parseInt(
+        document.documentElement.style.getPropertyValue("--translate-featured"),
+      ),
     setAnimate = (duration: number) =>
-      document.documentElement.style.setProperty("--animate", `${duration}ms`),
+      document.documentElement.style.setProperty(
+        "--animate-featured",
+        `${duration}ms`,
+      ),
     [paused, pause] = useState<boolean>(false);
 
   useEffect(() => {
