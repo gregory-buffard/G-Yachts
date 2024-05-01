@@ -7,16 +7,24 @@ const Hero = () => {
   const t = useTranslations("index.hero");
 
   return (
-    <div className="md:bg-left-top bg-center bg-cover bg-hero h-screen w-full overflow-hidden">
-      <Scrolldown />
-      <div className="grid grid-rows-6 h-full">
-        <div className="row-span-4 flex flex-col items-start justify-end md:ml-28 ml-4 mb-28">
-          <h2 className="font-classic text-white md:text-xl text-sm py-2">
-            {t("subtitle")}
-          </h2>
-          <div className="font-slick text-4xl md:text-7xl text-white [text-wrap:balance] bg-clip-text">
-            Superyachts{" "}
-            <span className="font-classic inline-flex flex-col h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.6xl)*theme(lineHeight.tight))] overflow-hidden">
+      <div className="h-screen w-full overflow-hidden">
+        <video
+            src="/imagery/optimized/index/HeroVideo.mp4" // replace with your video file path
+            autoPlay
+            loop
+            muted
+            className="absolute w-full h-full object-cover object-center"
+        />
+        <Scrolldown/>
+        <div className="grid grid-rows-6 h-full relative">
+          <div className="row-span-4 flex flex-col items-start justify-end md:ml-56 ml-4 mb-28">
+            <h2 className="font-classic text-white md:text-xl text-sm py-2">
+              {t("subtitle")}
+            </h2>
+            <div className="font-slick font-light text-3xl md:text-6xl text-white [text-wrap:balance] bg-clip-text">
+              Superyachts{" "}
+              <span
+                  className="font-classic font-medium inline-flex flex-col h-[calc(theme(fontSize.3xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.6xl)*theme(lineHeight.tight))] overflow-hidden">
               <ul className="block animate-text-slide-4 text-left leading-tight [&_li]:block">
                 <li>{t("sales")}</li>
                 <li>CHARTER</li>
@@ -25,33 +33,33 @@ const Hero = () => {
                 <li aria-hidden="true">{t("sales")}</li>
               </ul>
             </span>
+            </div>
           </div>
-        </div>
-        <div className="row-span-2 flex flex-col place-items-end justify-center">
-          <div className={"flex flex-col md:mr-20 mx-4 mt-20"}>
-            <p className="text-white font-classic text-base">
-              {t.rich("undertitle", { br: () => <br /> })}
-            </p>
-            <div className={"flex flex-row py-5 gap-4"}>
-              <Link
-                href={"/charters"}
-                type={"button"}
-                className="glass-button glass-button-light"
-              >
-                {t("CTA")}
-              </Link>
-              <Link
-                href={"/sales"}
-                type={"button"}
-                className="glass-button glass-button-light"
-              >
-                {t("CTA2")}
-              </Link>
+          <div className="row-span-2 flex flex-col place-items-end justify-center">
+            <div className={"flex flex-col md:mr-20 mx-4 mt-20"}>
+              <p className="text-white font-slick font-light text-base">
+                {t.rich("undertitle", {br: () => <br/>})}
+              </p>
+              <div className={"flex flex-row py-5 gap-4"}>
+                <Link
+                    href={"/charters"}
+                    type={"button"}
+                    className="glass-button glass-button-light"
+                >
+                  {t("CTA")}
+                </Link>
+                <Link
+                    href={"/sales"}
+                    type={"button"}
+                    className="glass-button glass-button-light"
+                >
+                  {t("CTA2")}
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

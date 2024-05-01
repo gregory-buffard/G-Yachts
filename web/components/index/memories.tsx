@@ -39,7 +39,7 @@ const Memories = () => {
           }
         >
           <div className={"flex flex-col justify-center items-start gap-[2vh]"}>
-            <p>{t.rich("description", { br: () => <br /> })}</p>
+            <p className={"text-justify md:max-w-[48vh] max-w-[50vh]"}>{t("description")}</p>
             <Link
               href={"/charters"}
               className={"glass-button glass-button-dark"}

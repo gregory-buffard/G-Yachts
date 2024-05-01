@@ -24,7 +24,7 @@ const Home = () => {
       <View />
       <Hero />
       <section className="bg-white py-28 flex flex-col leading-relaxed justify-center items-start containerize">
-        <div className="flex flex-col font-slick">
+        <div className="flex flex-col md:ml-36 font-slick font-light">
           <h1 className={"md:text-4xl text-2xl leading-normal"}>
             {t.rich("learn.title", { br: () => <br /> })}
           </h1>
@@ -32,7 +32,7 @@ const Home = () => {
         <Link
           href={"/"}
           type={"button"}
-          className="glass-button glass-button-dark mt-8"
+          className="glass-button glass-button-dark mt-8 md:ml-36"
         >
           {t("learn.CTA")}
         </Link>

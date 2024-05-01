@@ -11,31 +11,38 @@ const Services = () => {
 
   return (
     <div className="bg-rock-100 w-full h-full">
-      <div className="flex flex-col items-start mx-auto md:px-10 px-3 py-16">
-        <h2 className="text-5xl font-slick text-left mb-8">{t("title")}</h2>
+      <div className="flex flex-col items-start mx-auto md:px-52 px-3 md:py-32 py-16">
+        <h2 className="text-6xl font-slick font-light text-left mb-8">{t.rich("title", {
+          classic: (chunks) => (
+              <span className={"font-classic font-normal uppercase"}>
+                <br className={"hidden"} />
+                {chunks}
+              </span>
+          ),
+        })}</h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 md:gap-6 gap-2">
           <div className="flex flex-col ">
             <Image
               src={sales}
               alt="Sales"
-              className="mb-4 shadow-lg lg:h-[65vh] h-[35vh]"
+              className="mb-4 shadow-lg lg:h-[50vh] h-[35vh]"
             />
-            <h3 className="md:text-xl text-lg font-classic text-left">
+            <h3 className="md:text-lg text-base font-classic text-left">
               {t("sales")}
             </h3>
-            <p className={"font-slick md:text-2xl text-base"}>{t("sales-p")}</p>
+            <p className={"font-slick font-light md:text-xl text-lg"}>{t("sales-p")}</p>
           </div>
 
           <div className="flex flex-col">
             <Image
               src={charter}
               alt="Charter"
-              className="mb-4 shadow-lg lg:h-[65vh] h-[35vh]"
+              className="mb-4 shadow-lg lg:h-[50vh] h-[35vh]"
             />
-            <h3 className="md:text-xl text-lg font-classic text-left">
+            <h3 className="md:text-lg text-base font-classic text-left">
               {t("charter")}
             </h3>
-            <p className={"font-slick md:text-2xl text-base"}>
+            <p className={"font-slick font-light md:text-xl text-lg"}>
               {t("charter-p")}
             </p>
           </div>
@@ -44,12 +51,12 @@ const Services = () => {
             <Image
               src={management}
               alt="Management"
-              className="mb-4 shadow-lg lg:h-[65vh] h-[35vh]"
+              className="mb-4 shadow-lg lg:h-[50vh] h-[35vh]"
             />
-            <h3 className="md:text-xl text-lg font-classic text-left">
+            <h3 className="md:text-lg text-base font-classic text-left">
               {t("management")}
             </h3>
-            <p className={"font-slick md:text-2xl text-base"}>
+            <p className={"font-slick font-light md:text-xl text-lg"}>
               {t("management-p")}
             </p>
           </div>
@@ -58,12 +65,12 @@ const Services = () => {
             <Image
               src={construction}
               alt="New Construction"
-              className="mb-4 shadow-lg lg:h-[65vh] h-[35vh] object-cover"
+              className="mb-4 shadow-lg lg:h-[50vh] h-[35vh] object-cover"
             />
-            <h3 className="md:text-xl text-lg font-classic">
+            <h3 className="md:text-lg text-base font-classic text-left">
               {t("construction")}
             </h3>
-            <p className={"font-slick md:text-2xl text-base"}>
+            <p className={"font-slick font-light md:text-xl text-lg"}>
               {t("construction-p")}
             </p>
           </div>

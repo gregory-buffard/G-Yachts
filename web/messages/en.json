@@ -44,7 +44,7 @@
       "CTA": "Learn more"
     },
     "services": {
-      "title": "Our SERVICES",
+      "title": "Our <classic>SERVICES</classic>",
       "sales": "SALES",
       "charter": "CHARTER",
       "management": "MANAGEMENT",
@@ -57,7 +57,7 @@
     "working": {
       "title": "Working <classic>together</classic>",
       "subtitle": "Buy with us",
-      "description": "Through an extensive knowledge of the market<br></br>and an open understanding of your requirements,<br></br>we provide access to a fleet of yachts for sale,<br></br>the most varied and sophisticated selection<br></br>of luxury yachts for sale on the market today.",
+      "description": "Through an extensive knowledge of the market and an open understanding of your requirements, we provide access to a fleet of yachts for sale, the most varied and sophisticated selection of luxury yachts for sale on the market today.",
       "CTA": "Buy a yacht"
     },
     "featured": {
@@ -69,7 +69,7 @@
     "memories": {
       "title": "Create unforgettable <classic>Memories</classic>",
       "subtitle": "CHARTER WITH US",
-      "description": "At G-Yachts, we hold the conviction that a holiday<br></br>aboard a superyacht is unmatched by any on land,<br></br>dedicating ourselves to curating unparalleled<br></br>yachting experiences that linger in memory.<br></br>Our selection of elite charter yachts, bolstered<br></br>by a passionate global team, promises to surpass<br></br>every expectation.Allow us to tailor a voyage that<br></br>embodies the essence of extraordinary",
+      "description": "At G-Yachts, we hold the conviction that a holiday aboard a superyacht is unmatched by any on land, dedicating ourselves to curating unparalleled yachting experiences that linger in memory.Our selection of elite charter yachts, bolstered by a passionate global team, promises to surpass every expectation.Allow us to tailor a voyage that embodies the essence of extraordinary",
       "CTA": "Charter a yacht"
     },
     "destinations": {
