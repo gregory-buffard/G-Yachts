@@ -7,7 +7,7 @@ import { Customer } from "@/models/customer";
 import { Newsletter } from "@/models/newsletter";
 import { Destination } from "@/models/destination";
 
-export const contact = async (formData: FormData) => {
+export const contact = async (formData: FormData, prefix?: string) => {
   if (formData.get("surname")) {
     const rawFormData = {
       name: formData.get("name"),
@@ -44,7 +44,7 @@ export const contact = async (formData: FormData) => {
   const rawFormData = {
     name: formData.get("name"),
     email: formData.get("email"),
-    tel: formData.get("tel"),
+    tel: prefix! + formData.get("tel"),
     message: formData.get("message"),
     inquiry: {
       buying: formData.get("buying") === "on",
