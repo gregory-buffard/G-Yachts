@@ -16,12 +16,12 @@ const Card = ({ card }: { card: IDestination }) => {
     >
       <div
         className={
-          "bg-rock-400 group-hover:bg-rock-500 transition-[background-color] duration-200 ease-in-out w-[20vw] h-[55vh] flex justify-start items-start mb-[1vh]"
+          "bg-rock-400 group-hover:bg-rock-500 transition-[background-color] duration-200 ease-in-out md:w-[20vw] md:h-[55vh] w-[35vw] h-[25vh] flex justify-start items-start mb-[1vh]"
         }
       >
-        <div className={"flex flex-col px-6 py-4 text-white"}>
-          <h3 className={"text-2xl font-slick"}>{country}</h3>
-          <h3 className={"text-base font-classic"}>{region}</h3>
+        <div className={"flex flex-col md:px-6 md:py-4 px-1 text-white"}>
+          <h3 className={"md:text-2xl text-lg font-slick"}>{country}</h3>
+          <h3 className={"md:text-base text-sm font-classic"}>{region}</h3>
         </div>
       </div>
     </Link>
@@ -71,7 +71,7 @@ const CarouselButton = ({
 const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
   const t = useTranslations("index.destinations"),
     carouselExtended = [...carouselData, ...carouselData, ...carouselData],
-    defaultTranslate = carouselData.length * -32,
+    defaultTranslate = carouselData.length * -20,
     setTranslate = (amount: number) => {
       document.documentElement.style.setProperty("--translate", `${amount}vw`);
     },
@@ -94,13 +94,22 @@ const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
   }, [paused]);
 
   const translate = (direction: string) => {
-    const delta = direction === "next" ? -32 : 32;
+    const delta = direction === "next" ? -20 : 20; // width of one item
+    const itemsCount = carouselData.length; // get the number of items from the database
+    const defaultTranslate = itemsCount * -20; // width of one set of items
+
     setAnimate(500);
     setTranslate(getTranslation() + delta);
-    if (getTranslation() === defaultTranslate * 2 || getTranslation() === 0) {
+    if (getTranslation() <= defaultTranslate) {
+      // width of one set of items
       setTimeout(() => {
         setAnimate(0);
-        setTranslate(defaultTranslate);
+        setTranslate(0);
+      }, 500);
+    } else if (getTranslation() >= 0) {
+      setTimeout(() => {
+        setAnimate(0);
+        setTranslate(defaultTranslate); // reset to the start of the second set of items
       }, 500);
     }
   };
@@ -138,9 +147,9 @@ const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row w-full">
-        <div className="w-2/6 flex flex-col items-start">
-          <p className={"text-2xl flex flex-col ml-40 mt-52"}>
+      <div className="flex md:flex-row flex-col w-full justify-center">
+        <div className="md:w-2/6 w-full flex flex-col items-start justify-center">
+          <p className={"md:text-2xl text-lg flex flex-col ml-40"}>
             {t.rich("description", { br: () => <br /> })}
           </p>
           <Link
@@ -151,10 +160,10 @@ const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
             {t("CTA")}
           </Link>
         </div>
-        <div className={"w-4/6"}>
+        <div className={"md:w-4/6 w-full"}>
           <div
             className={
-              "lg:hidden h-max w-full flex justify-start items-baseline lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[1.5vw]"
+              "lg:hidden h-max w-full flex justify-start  lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[1.5vw]"
             }
           >
             {carouselData.map((card, i) => (
@@ -163,7 +172,7 @@ const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
           </div>
           <div
             className={
-              "hidden h-max w-full lg:flex justify-start items-baseline lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[1.5vw]"
+              "hidden h-max w-full lg:flex justify-start  lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[1.5vw]"
             }
           >
             {carouselExtended.map((card, i) => (
