@@ -1,7 +1,7 @@
 "use client";
 
 import Logo from "@/public/logo/logo";
-import SocialLinks from "@/components/nav/social";
+import SocialLinks from "@/components/nav/socialLinks";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useView } from "@/app/store";

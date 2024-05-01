@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
-import { Close, ContactLinks } from "@/components/nav/navigation";
-import SocialLinks from "@/components/nav/social";
+import { Close } from "@/components/nav/navigation";
+import SocialLinks from "@/components/nav/socialLinks";
+import ContactLinks from "@/components/nav/contactLinks";
 import codes from "@/data/CountryCodes.json";
 import { useEffect, useRef, useState } from "react";
 import { ICustomer } from "@/types/customer";
@@ -28,6 +29,21 @@ export const Input = ({
 }) => {
   const { pending } = useFormStatus();
 
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    switch (props.value) {
+      case "name":
+      case "surname":
+        e.target.value = e.target.value.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s]/g, "");
+        break;
+      case "email":
+        e.target.value = e.target.value.replace(/[^a-z0-9@._-]/g, "");
+        break;
+      case "tel":
+        e.target.value = e.target.value.replace(/[^0-9]/g, "");
+        break;
+    }
+  };
+
   return (
     <div
       className={
@@ -50,6 +66,7 @@ export const Input = ({
           type={props.type}
           required={props.required}
           className={"w-full outline-none"}
+          onInput={handleInput}
         />
       </div>
       <div
@@ -226,7 +243,7 @@ const Contact = () => {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             key={"form"}
             action={async (formData) => {
-              await contact(formData).then(() => setSent(true));
+              await contact(formData, code).then(() => setSent(true));
             }}
             className={
               "h-full lg:w-max w-full bg-white flex flex-col justify-start items-center lg:px-[4vh] px-[4vw] lg:py-[4vh] py-[4vw] gap-[3vh]"
