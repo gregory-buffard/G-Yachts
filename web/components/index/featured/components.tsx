@@ -32,7 +32,7 @@ const Card = ({ card }: { card: IFeatured }) => {
     >
       <div
         className={
-          "transition-[background-color] duration-200 ease-in-out w-[72vw] lg:w-[28vw] h-[28vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
+          "w-[72vw] lg:w-[28vw] h-[28vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
         }
         style={{
           backgroundImage: `url(http://51.75.16.185/images/yachts/${card._id}/featured.webp)`,
