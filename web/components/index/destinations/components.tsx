@@ -11,7 +11,7 @@ const Card = ({ card }: { card: IDestination }) => {
     <Link
       href={"/charters"}
       className={
-        "w-max flex flex-col justify-center items-start font-classic font-normal tracking-wider group transition-transform lg:duration-[var(--animate)] ease-in-out lg:translate-x-[var(--translate)]"
+        "w-max flex flex-col justify-center items-start font-classic font-normal tracking-wider group transition-transform lg:duration-[var(--animate-destination)] ease-in-out lg:translate-x-[var(--translate-destination)]"
       }
     >
       <div
@@ -73,12 +73,22 @@ const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
     carouselExtended = [...carouselData, ...carouselData, ...carouselData],
     defaultTranslate = carouselData.length * -20,
     setTranslate = (amount: number) => {
-      document.documentElement.style.setProperty("--translate", `${amount}vw`);
+      document.documentElement.style.setProperty(
+        "--translate-destination",
+        `${amount}vw`,
+      );
     },
     getTranslation = () =>
-      parseInt(document.documentElement.style.getPropertyValue("--translate")),
+      parseInt(
+        document.documentElement.style.getPropertyValue(
+          "--translate-destination",
+        ),
+      ),
     setAnimate = (duration: number) =>
-      document.documentElement.style.setProperty("--animate", `${duration}ms`),
+      document.documentElement.style.setProperty(
+        "--animate-destination",
+        `${duration}ms`,
+      ),
     [paused, pause] = useState<boolean>(false);
 
   useEffect(() => {
