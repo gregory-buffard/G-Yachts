@@ -27,7 +27,7 @@ const Bar = ({ dynamicColor }: { dynamicColor: number }) => {
   return (
     <>
       <div
-        className={`fixed w-full h-[16vh] top-0 z-10 bg-gradient-to-b from-white from-10% transition-opacity duration-200 ease-in-out ${isScrolled ? "opacity-100" : "opacity-0"}`}
+        className={`fixed w-full h-[16vh] top-0 z-10 bg-gradient-to-b from-stone-100 from-10% transition-opacity duration-200 ease-in-out ${isScrolled ? "opacity-100" : "opacity-0"}`}
       />
       <Link
         href={"/"}
@@ -57,7 +57,7 @@ const Bar = ({ dynamicColor }: { dynamicColor: number }) => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 128 8"
             className={
-              "burger-bar my-[0.30rem] group-hover:my-[0.48rem] lg:transition-[margin] duration-200 ease-in-out"
+              "burger-bar my-[0.30rem] lg:group-hover:my-[0.48rem] lg:transition-[margin] duration-200 ease-in-out"
             }
           >
             <rect width="128" height="8" rx="4" />

@@ -143,7 +143,7 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
   return (
     <section
       className={
-        "w-full flex flex-col justify-center items-center gap-[2vh] lg:py-[12vh] py-[8vh] px-[12vw]"
+        "w-full flex flex-col justify-center items-center gap-[2vh] lg:py-[12vh] py-[8vh] lg:px-[12vw] px-[4vw]"
       }
     >
       <div className={"w-full flex justify-between items-center"}>
