@@ -5,7 +5,7 @@
 :root {
     --translate-featured: 0vw;
     --animate-featured: 0ms;
-    --translate-destination: 0vw;
+    --translate-destination: 0%;
     --animate-destination: 0ms;
     --mouse-x: 0px;
     --mouse-y: 0px;
