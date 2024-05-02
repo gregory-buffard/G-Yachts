@@ -1,10 +1,39 @@
 import Cookies from "js-cookie";
+import { IView } from "@/types/view";
 
-export const currency = (): string => {
+export const currency = (): IView["currency"] => {
   const currency = Cookies.get("currency");
   if (currency) return currency;
   Cookies.set("currency", "EUR");
   return "EUR";
+};
+
+export const units = (): IView["units"] => {
+  const units = {
+    length: Cookies.get("length"),
+    weight: Cookies.get("weight"),
+  };
+  if (units.weight && units.length) return units as IView["units"];
+
+  Cookies.set("length", "m");
+  Cookies.set("weight", "t");
+  return { length: "m", weight: "t" };
+};
+
+const formatUnit = (amount: number, unit: string) => {
+  switch (unit) {
+    case "m":
+      return amount + "m";
+    case "ft":
+      return (amount * 3.28084).toFixed(0) + "ft";
+    default:
+      return amount + "m";
+  }
+};
+
+export const convertUnit = (amount: number, unit: string) => {
+  if (unit === "m") return amount;
+  if (unit === "ft") return formatUnit(amount * 3.28084, unit);
 };
 
 export const formatCurrency = (amount: number, currency: string) => {

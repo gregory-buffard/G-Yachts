@@ -44,9 +44,12 @@ const Language = ({ locale }: { locale: string }): JSX.Element => {
       type={"button"}
       disabled={isPending}
       onClick={() => changeLanguage(locale)}
-      className={`${document.cookie.includes("NEXT_LOCALE=" + locale) ? "font-medium" : "font-normal"} text-base`}
     >
-      <p>{locale.toUpperCase()}</p>
+      <p
+        className={`${document.cookie.includes("NEXT_LOCALE=" + locale) ? "font-medium" : "font-normal"} uppercase`}
+      >
+        {locale}
+      </p>
     </button>
   );
 };
@@ -59,11 +62,14 @@ const Page = ({ href }: { href: keyof typeof pathnames }) => {
         "flex flex-col overflow-hidden justify-start items-start h-[3rem] group"
       }
     >
-      <Link href={href} className={"navigation-link font-slick"}>
+      <Link href={href} className={"navigation-link font-slick font-light"}>
         {t(`${href.slice(1)}`)}
       </Link>
-      <Link href={href} className={"navigation-link font-classic"}>
-        {t(`${href.slice(1)}`).toUpperCase()}
+      <Link
+        href={href}
+        className={"navigation-link font-classic font-medium uppercase"}
+      >
+        {t(`${href.slice(1)}`)}
       </Link>
     </div>
   );
@@ -79,7 +85,7 @@ const Navigation = () => {
       animate={{ x: "0" }}
       exit={{ x: "-100%" }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className={`fixed left-0 top-0 z-20 h-[100dvh] lg:w-[32vw] w-full lg:px-[2vw] px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col lg:overflow-hidden overflow-y-auto`}
+      className={`fixed left-0 top-0 z-20 h-[100dvh] lg:w-[44vw] w-full lg:px-[2vw] px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col overflow-y-auto`}
       onMouseMove={handleMouseMove}
     >
       <div className={"navigation-section"}>
@@ -110,16 +116,16 @@ const Navigation = () => {
             <button
               type={"button"}
               onClick={() => setTimeout(() => openView("contact"), 200)}
-              className={"navigation-link font-slick"}
+              className={"navigation-link font-slick font-light"}
             >
               {t("contact")}
             </button>
             <button
               type={"button"}
               onClick={() => setTimeout(() => openView("contact"), 200)}
-              className={"navigation-link font-classic"}
+              className={"navigation-link font-classic font-medium uppercase"}
             >
-              {t("contact").toUpperCase()}
+              {t("contact")}
             </button>
           </div>
         </div>

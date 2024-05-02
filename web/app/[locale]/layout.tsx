@@ -1,6 +1,7 @@
 import "../globals.css";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import { Viewport } from "next";
 
 export const generateMetadata = async ({
   params: { locale },
@@ -14,6 +15,10 @@ export const generateMetadata = async ({
     keywords: t("keywords"),
     author: t("author"),
   };
+};
+
+export const viewport: Viewport = {
+  themeColor: "#F9F5F2",
 };
 
 const RootLayout: React.FC<{

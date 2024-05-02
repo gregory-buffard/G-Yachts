@@ -1,3 +1,5 @@
+import { ObjectId } from "mongoose";
+
 export interface IYacht {
   LOA: number;
   beam: number;
@@ -25,4 +27,12 @@ export interface IYacht {
   yearBuilt: number;
   yearModel: number;
   featured: boolean;
+}
+
+export interface IFeatured
+  extends Pick<
+    IYacht,
+    "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps"
+  > {
+  _id: ObjectId;
 }

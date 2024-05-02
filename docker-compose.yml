@@ -9,6 +9,7 @@ services:
       - /etc/nginx/sites-available/web:/etc/nginx/sites-enabled/web
       - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
       - /var/www/images:/var/www/images
+      - /var/www/videos:/var/www/videos
     networks:
       - public
 

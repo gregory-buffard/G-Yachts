@@ -1,9 +1,13 @@
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
+import { localePrefix, pathnames } from "@/navigation";
+import { locales } from "@/i18n";
 
 const nextIntlMiddleware = createMiddleware({
-  locales: ["en", "fr"],
   defaultLocale: "en",
+  localePrefix,
+  locales,
+  pathnames,
 });
 
 export default function (req: NextRequest): NextResponse {

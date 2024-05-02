@@ -63,7 +63,7 @@
     "featured": {
       "exclusive": "Exclusif",
       "title": "<classic>Ventes</classic> en vedette",
-      "all": "Toutes les ventes",
+      "all": "Explorer",
       "sleeps": "invités"
     },
     "memories": {
@@ -76,6 +76,19 @@
       "title": "Yacht de luxe à <classic>LOUER</classic>",
       "description": "Évadez-vous dans les destinations<br></br>les plus exclusives du monde en<br></br>louant un superyacht avec G-Yachts,<br></br>où l'océan sans limites devient<br></br>votre terrain de jeu.",
       "CTA": "Voir tout"
+    }
+  },
+  "sales": {
+    "metadata": {
+      "title": "Ventes",
+      "description": "Découvrez notre liste des meilleurs yachts du marché.",
+      "keywords": "yachts, vente, marché, liste, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Trouvez le Yacht parfait pour <classic>Vous</classic>",
+      "subtitle": "Yachts à vendre",
+      "guests": "invités"
     }
   },
   "contact": {

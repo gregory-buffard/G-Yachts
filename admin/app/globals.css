@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --translate-featured: 0%;
+    --animate-featured: 0ms;
+    --scale-featured: 1;
+}
+
+@layer base {
+    .containerize {
+        @apply w-full px-[4vw] py-[4vw] lg:px-[2vw] lg:py-[2vw];
+    }
+
+    p {
+        @apply text-base font-normal;
+    }
+
+    label {
+        @apply text-sm font-semibold;
+    }
+}

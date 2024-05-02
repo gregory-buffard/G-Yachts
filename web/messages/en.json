@@ -78,6 +78,19 @@
       "CTA": "View all"
     }
   },
+  "sales": {
+    "metadata": {
+      "title": "Sales",
+      "description": "Discover our listing of the finest yachts in the market. G–Yachts offers a wide range of luxury yachts for sale.",
+      "keywords": "sales, yachts, luxury, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Find the perfect Yacht for <classic>You</classic>",
+      "subtitle": "Yachts for sale",
+      "guests": "guests"
+    }
+  },
   "contact": {
     "metadata": {
       "title": "Contact",

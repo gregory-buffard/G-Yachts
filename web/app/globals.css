@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-    --translate-featured: 0vw;
+    --translate-featured: 0%;
     --animate-featured: 0ms;
     --translate-destination: 0%;
     --animate-destination: 0ms;
@@ -13,7 +13,11 @@
 
 @layer base {
     h1 {
-        @apply lg:text-6xl text-5xl;
+        @apply lg:text-6xl text-5xl font-slick font-light;
+    }
+
+    h1 .classic {
+        @apply font-classic font-medium uppercase;
     }
 
     h2 {
@@ -21,7 +25,7 @@
     }
 
     h4 {
-        @apply font-classic font-normal text-sm uppercase tracking-wide;
+        @apply font-classic font-normal text-sm uppercase tracking-wider;
     }
 
     p {
@@ -61,15 +65,26 @@
     }
 }
 
-@layer components {
-    .center {
-        @apply flex justify-center items-center;
-    }
-
+@layer utilities {
     .containerize {
         @apply w-full px-[4vw];
     }
 
+    .glass-button {
+        @apply font-classic font-normal uppercase text-sm border-[0.1vh] lg:px-[1vw] px-[4vw] py-[1.5vh] tracking-wider hover:bg-teal hover:border-teal backdrop-blur-2xl bg-white/10;
+        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    }
+
+    .glass-button-light {
+        @apply text-white border-white/25;
+    }
+
+    .glass-button-dark {
+        @apply text-black border-black/25;
+    }
+}
+
+@layer components {
     .burger-bar {
         @apply w-full [transition:_fill_200ms_ease-in-out];
     }
@@ -79,7 +94,7 @@
     }
 
     .navigation-link {
-        @apply text-4xl font-normal py-[0.25rem] lg:group-hover:-translate-y-[3rem] group-hover:translate-y-0 lg:transition-transform lg:duration-300 lg:ease-in-out;
+        @apply text-4xl py-[0.25rem] lg:group-hover:-translate-y-[3rem] group-hover:translate-y-0 lg:transition-transform lg:duration-300 lg:ease-in-out;
     }
 
     .navigation-contact {
@@ -100,18 +115,5 @@
 
     .form-checkbox {
         @apply accent-black outline-none cursor-pointer;
-    }
-
-    .glass-button {
-        @apply font-classic font-normal uppercase text-sm border-[0.1vh] lg:px-[1vw] px-[4vw] py-[1.5vh] tracking-wider hover:bg-teal hover:border-teal backdrop-blur-2xl bg-white/10;
-        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    }
-
-    .glass-button-light {
-        @apply text-white border-white/25;
-    }
-
-    .glass-button-dark {
-        @apply text-black border-black/25;
     }
 }
