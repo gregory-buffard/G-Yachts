@@ -2,19 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
-import { IYacht } from "@/types/yacht";
+import { IFeatured } from "@/types/yacht";
 import { useEffect, useState } from "react";
 import { convertCurrency } from "@/app/actions";
 import { useView } from "@/app/store";
-import { ObjectId } from "mongoose";
-
-interface IFeatured
-  extends Pick<
-    IYacht,
-    "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps"
-  > {
-  _id: ObjectId;
-}
 
 const Card = ({ card }: { card: IFeatured }) => {
   const t = useTranslations("index.featured"),
@@ -194,7 +185,7 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
       </div>
       <div
         className={
-          "lg:hidden h-max w-full flex justify-start items-baseline lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[4vw]"
+          "lg:hidden h-max w-full flex justify-start items-baseline overflow-x-hidden px-[4vw] py-[2vh] gap-[4vw]"
         }
       >
         {carouselData.map((card, i) => (
