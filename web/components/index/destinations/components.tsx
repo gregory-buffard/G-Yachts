@@ -130,7 +130,7 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
   return (
     <section className="w-full flex flex-col justify-center py-[4vh]">
       <div className="containerize flex justify-between items-center">
-        <h1 className="font-slick font-light py-16 px-32">
+        <h1 className="font-slick font-light lg:py-16 lg:md:px-32">
           {t.rich("title", {
             classic: (chunks) => (
               <span className="font-classic uppercase font-medium">
