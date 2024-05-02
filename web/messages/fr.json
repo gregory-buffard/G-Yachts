@@ -35,7 +35,7 @@
     "hero": {
       "sales": "VENTES",
       "subtitle": "Deux décennies d’expertise inégalée dans le yachting",
-      "undertitle": "Nous travaillons avec vous pour trouver le yacht parfait pour votre style de vie,<br></br>créant des expériences uniques dans chaque port.",
+      "undertitle": "Nous travaillons avec vous pour trouver le yacht parfait pour votre style de vie, créant des expériences uniques dans chaque port.",
       "CTA": "Louer un yacht",
       "CTA2": "Acheter un yacht"
     },
@@ -44,7 +44,7 @@
       "CTA": "Savoir plus"
     },
     "services": {
-      "title": "Nos SERVICES",
+      "title": "Nos <classic>Services</classic>",
       "sales": "VENTES",
       "charter": "CHARTER",
       "management": "GESTION",
@@ -57,7 +57,7 @@
     "working": {
       "title": "Travailler <classic>ensemble</classic>",
       "subtitle": "Achetez avec nous",
-      "description":"Grâce à une connaissance approfondie du marché<br></br>et une compréhension ouverte de vos exigences,<br></br>nous offrons un accès à une flotte de yachts à vendre,<br></br>la sélection de yachts de luxe à vendre la plus variée<br></br>et sophistiquée sur le marché aujourd'hui.",
+      "description":"Grâce à une connaissance approfondie du marché et une compréhension ouverte de vos exigences, nous offrons un accès à une flotte de yachts à vendre, la sélection de yachts de luxe à vendre la plus variée et sophistiquée sur le marché aujourd'hui.",
       "CTA": "Achetez un yacht"
     },
     "featured": {
@@ -69,13 +69,26 @@
     "memories": {
       "title": "Créer des moments <classic>inoubliables</classic>",
       "subtitle": "CHARTER AVEC NOUS",
-      "description": "Chez G-Yachts, nous sommes convaincus que<br></br>les vacances à bord d'un superyacht n'ont pas<br></br>d'équivalent sur terre, et nous nous efforçons<br></br>de créer des expériences de yachting inégalées<br></br>qui restent gravées dans les mémoires. Notre<br></br>sélection de yachts d'élite, soutenue par une<br></br>équipe internationale passionnée, promet de<br></br>dépasser toutes les attentes. Laissez-nous<br></br>vous concocter un voyage qui incarne<br></br>l'essence même de l'extraordinaire.",
+      "description": "Chez G-Yachts, nous sommes convaincus que les vacances à bord d'un superyacht n'ont pas d'équivalent sur terre, et nous nous efforçons de créer des expériences de yachting inégalées qui restent gravées dans les mémoires. Notre sélection de yachts d'élite, soutenue par une équipe internationale passionnée, promet de dépasser toutes les attentes. Laissez-nous vous concocter un voyage qui incarne l'essence même de l'extraordinaire.",
       "CTA": "Charter a yacht"
     },
     "destinations": {
       "title": "Yacht de luxe à <classic>LOUER</classic>",
-      "description": "Évadez-vous dans les destinations les plus exclusives du monde en louant un superyacht avec G-Yachts, où l'océan sans limites devient votre terrain de jeu.",
+      "description": "Évadez-vous dans les destinations<br></br>les plus exclusives du monde en<br></br>louant un superyacht avec G-Yachts,<br></br>où l'océan sans limites devient<br></br>votre terrain de jeu.",
       "CTA": "Voir tout"
+    }
+  },
+  "sales": {
+    "metadata": {
+      "title": "Ventes",
+      "description": "Découvrez notre liste des meilleurs yachts du marché.",
+      "keywords": "yachts, vente, marché, liste, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Trouvez le Yacht parfait pour <classic>Vous</classic>",
+      "subtitle": "Yachts à vendre",
+      "guests": "invités"
     }
   },
   "contact": {

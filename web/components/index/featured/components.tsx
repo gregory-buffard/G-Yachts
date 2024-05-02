@@ -2,23 +2,15 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
-import { IYacht } from "@/types/yacht";
+import { IFeatured } from "@/types/yacht";
 import { useEffect, useState } from "react";
 import { convertCurrency } from "@/app/actions";
 import { useView } from "@/app/store";
-import { ObjectId } from "mongoose";
-
-interface IFeatured
-  extends Pick<
-    IYacht,
-    "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps"
-  > {
-  _id: ObjectId;
-}
+import { convertUnit } from "@/utils/yachts";
 
 const Card = ({ card }: { card: IFeatured }) => {
   const t = useTranslations("index.featured"),
-    { currency } = useView(),
+    { currency, units } = useView(),
     [price, setPrice] = useState<string | null>(null);
 
   useEffect(() => {
@@ -28,11 +20,11 @@ const Card = ({ card }: { card: IFeatured }) => {
   return (
     <Link
       href={"/sales"} //This link should be dynamic
-      className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)]`}
+      className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw]`}
     >
       <div
         className={
-          "w-[72vw] lg:w-[28vw] h-[28vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
+          "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
         }
         style={{
           backgroundImage: `url(http://51.75.16.185/images/yachts/${card._id}/featured.webp)`,
@@ -55,8 +47,8 @@ const Card = ({ card }: { card: IFeatured }) => {
         )}
       </div>
       <p className={"uppercase text-rock-400"}>
-        {card.builder} | {card.length} | {card.yearBuilt} | {card.sleeps}{" "}
-        {t("sleeps")}
+        {card.builder} | {convertUnit(card.length, units.length) + units.length}{" "}
+        | {card.yearBuilt} | {card.sleeps} {t("sleeps")}
       </p>
     </Link>
   );
@@ -105,11 +97,11 @@ const CarouselButton = ({
 const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
   const t = useTranslations("index.featured"),
     carouselExtended = [...carouselData, ...carouselData, ...carouselData],
-    defaultTranslate = carouselData.length * -32,
+    defaultTranslate = carouselData.length * -100,
     setTranslate = (amount: number) => {
       document.documentElement.style.setProperty(
         "--translate-featured",
-        `${amount}vw`,
+        `${amount}%`,
       );
     },
     getTranslation = () =>
@@ -136,7 +128,7 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
   }, [paused]);
 
   const translate = (direction: string) => {
-    const delta = direction === "next" ? -32 : 32;
+    const delta = direction === "next" ? -100 : 100;
     setAnimate(500);
     setTranslate(getTranslation() + delta);
     if (getTranslation() === defaultTranslate * 2 || getTranslation() === 0) {
@@ -145,22 +137,19 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
         setTranslate(defaultTranslate);
       }, 500);
     }
+    console.log(getTranslation());
   };
 
   return (
     <section
       className={
-        "w-full flex flex-col justify-center items-center gap-[2vh] py-[4vh]"
+        "w-full flex flex-col justify-center items-center gap-[2vh] lg:py-[12vh] py-[8vh] px-[12vw]"
       }
     >
-      <div className={"containerize flex justify-between items-center"}>
-        <h1 className={"font-slick font-light"}>
+      <div className={"w-full flex justify-between items-center"}>
+        <h1>
           {t.rich("title", {
-            classic: (chunks) => (
-              <span className={"font-classic uppercase font-medium"}>
-                {chunks}
-              </span>
-            ),
+            classic: (chunks) => <span className={"classic"}>{chunks}</span>,
           })}
         </h1>
         <div className={"flex justify-center items-center gap-[2vw]"}>
@@ -194,7 +183,7 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
       </div>
       <div
         className={
-          "lg:hidden h-max w-full flex justify-start items-baseline lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[4vw]"
+          "lg:hidden h-max w-full flex justify-start items-baseline overflow-x-scroll py-[2vh] gap-[4vw]"
         }
       >
         {carouselData.map((card, i) => (
@@ -203,7 +192,7 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
       </div>
       <div
         className={
-          "hidden h-max w-full lg:flex justify-start items-baseline lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[4vw]"
+          "hidden h-max lg:flex justify-start items-baseline w-full overflow-x-clip"
         }
       >
         {carouselExtended.map((card, i) => (

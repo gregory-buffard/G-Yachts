@@ -23,10 +23,10 @@ const WorkingTogether = () => {
         }
       >
         <h4>{t("subtitle")}</h4>
-        <h1 className={"font-slick font-light"}>
+        <h1>
           {t.rich("title", {
             classic: (chunks) => (
-              <span className={"font-classic font-normal uppercase"}>
+              <span className={"classic"}>
                 <br className={"hidden lg:block"} />
                 {chunks}
               </span>
@@ -39,7 +39,9 @@ const WorkingTogether = () => {
           }
         >
           <div className={"flex flex-col justify-center items-start gap-[2vh]"}>
-            <p>{t.rich("description", { br: () => <br /> })}</p>
+            <p className={"text-justify lg:w-[24vw] w-[36vh]"}>
+              {t("description")}
+            </p>
             <Link href={"/sales"} className={"glass-button glass-button-dark"}>
               {t("CTA")}
             </Link>
