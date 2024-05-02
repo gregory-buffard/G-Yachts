@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { colorify } from "lottie-colorify";
-import submitted from "@/public/imagery/optimized/newsletter/registered.json";
+import submitted from "@/public/imagery/optimized/newsletter.json";
 
 const Newsletter = () => {
   const t = useTranslations("newsletter"),
@@ -21,7 +21,7 @@ const Newsletter = () => {
       }
     >
       <video
-        src={"/imagery/optimized/newsletter/newsletter.mp4"}
+        src={"http://51.75.16.185/videos/newsletter.mp4"}
         className={"absolute w-full h-full object-cover -z-10 brightness-75"}
         autoPlay
         muted
