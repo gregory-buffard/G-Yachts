@@ -94,7 +94,7 @@
     }
 
     .navigation-link {
-        @apply text-4xl font-normal py-[0.25rem] lg:group-hover:-translate-y-[3rem] group-hover:translate-y-0 lg:transition-transform lg:duration-300 lg:ease-in-out;
+        @apply text-4xl py-[0.25rem] lg:group-hover:-translate-y-[3rem] group-hover:translate-y-0 lg:transition-transform lg:duration-300 lg:ease-in-out;
     }
 
     .navigation-contact {
