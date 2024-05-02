@@ -115,9 +115,3 @@
         @apply text-black border-black/25;
     }
 }
-
-@media (max-width: 640px) {
-    .hide-on-mobile {
-        display: none;
-    }
-}

@@ -38,8 +38,8 @@ const Hero = () => {
         </div>
         <div className="row-span-2 flex flex-col place-items-end justify-center">
           <div className={"flex flex-col md:mr-20 mx-4 mt-20"}>
-            <p className="text-white font-slick font-light text-base">
-              {t.rich("undertitle", { br: () => <br /> })}
+            <p className="text-white font-slick font-light text-base max-w-[55vh]">
+              {t("undertitle")}
             </p>
             <div className={"flex flex-row py-5 gap-4"}>
               <Link

@@ -37,7 +37,7 @@ const Scrolldown: React.FC = () => {
   return (
     <button
       ref={buttonRef}
-      className="absolute z-10 animate-bounce bottom-16 left-28 text-white font-light py-2 px-4 text-3xl hide-on-mobile"
+      className="hidden md:block absolute z-10 animate-bounce bottom-16 left-28 text-white font-light py-2 px-4 text-3xl"
       aria-label="Scroll down"
     >
       <svg
