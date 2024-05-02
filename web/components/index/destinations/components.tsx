@@ -15,12 +15,12 @@ const Card = ({ card }: { card: IFeatured }) => {
     <Link
       href={"/charters"}
       className={
-        "w-max flex flex-col justify-center items-start font-classic font-normal tracking-wider group transition-transform lg:duration-[var(--animate-destination)] ease-in-out lg:translate-x-[var(--translate-destination)]"
+        " flex flex-col w-max justify-center items-start font-classic font-normal tracking-wider group transition-transform lg:duration-[var(--animate-destination)] ease-in-out lg:translate-x-[var(--translate-destination)] pr-[1.5vw]"
       }
     >
       <div
         className={
-          "transition-[background-color] bg-cover bg-center duration-200 ease-in-out md:w-[20vw] md:h-[55vh] w-[35vw] h-[25vh] flex justify-start items-start mb-[1vh]"
+          "transition-[background-color]  bg-cover bg-center duration-200 ease-in-out md:w-[18.5vw] md:h-[55vh] w-[35vw] h-[25vh] flex justify-start items-start mb-[1vh]"
         }
         style={{
           backgroundImage: `url(http://51.75.16.185/images/destinations/${card._id}/featured.webp)`,
@@ -77,12 +77,17 @@ const CarouselButton = ({
 
 const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
   const t = useTranslations("index.destinations"),
-    carouselExtended = [...carouselData, ...carouselData, ...carouselData],
-    defaultTranslate = carouselData.length * -21.5,
+    carouselExtended = [
+      ...carouselData,
+      ...carouselData,
+      ...carouselData,
+      ...carouselData,
+    ],
+    defaultTranslate = carouselData.length * -100,
     setTranslate = (amount: number) => {
       document.documentElement.style.setProperty(
         "--translate-destination",
-        `${amount}vw`,
+        `${amount}%`,
       );
     },
     getTranslation = () =>
@@ -111,32 +116,21 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
   }, [paused]);
 
   const translate = (direction: string) => {
-    const delta = direction === "next" ? -21.5 : 21.5; // width of one item
-    const itemsCount = carouselData.length; // get the number of items from the database
-    const defaultTranslate = itemsCount * -21.5; // width of one set of items
-
+    const delta = direction === "next" ? -100 : 100;
     setAnimate(500);
     setTranslate(getTranslation() + delta);
-    if (getTranslation() <= defaultTranslate) {
-      // width of one set of items
+    if (getTranslation() === defaultTranslate * 2 || getTranslation() === 0) {
       setTimeout(() => {
         setAnimate(0);
-        setTranslate(0);
-      }, 500);
-    } else if (getTranslation() >= 0) {
-      setTimeout(() => {
-        setAnimate(0);
-        setTranslate(defaultTranslate); // reset to the start of the second set of items
+        setTranslate(defaultTranslate);
       }, 500);
     }
   };
 
-  // @ts-ignore
-  // @ts-ignore
   return (
     <section className="w-full flex flex-col justify-center py-[4vh]">
       <div className="containerize flex justify-between items-center">
-        <h1 className="font-slick font-light pb-5">
+        <h1 className="font-slick font-light py-16 px-32">
           {t.rich("title", {
             classic: (chunks) => (
               <span className="font-classic uppercase font-medium">
@@ -146,7 +140,7 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
           })}
         </h1>
         <div className="flex justify-center items-center gap-[2vw]">
-          <div className="hidden lg:flex justify-center items-center gap-[0.5vw]">
+          <div className="hidden lg:flex justify-center items-center mt-36 mr-10 gap-[0.5vw]">
             <CarouselButton
               direction="previous"
               onClick={() => {
@@ -166,32 +160,32 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
           </div>
         </div>
       </div>
-      <div className="flex md:flex-row flex-col w-full justify-center">
-        <div className="md:w-2/6 w-full flex flex-col items-start justify-center">
-          <p className={"md:text-2xl text-lg flex flex-col ml-40"}>
+      <div className="flex md:flex-row flex-col w-full justify-center ">
+        <div className="md:w-[33vw] w-full flex flex-col items-start justify-center">
+          <p className={"md:text-xl text-lg flex flex-col pl-44"}>
             {t.rich("description", { br: () => <br /> })}
           </p>
           <Link
             href={"/charters"}
             type={"button"}
-            className="glass-button glass-button-dark ml-40 mt-10 whitespace-nowrap"
+            className="glass-button glass-button-dark ml-44 mt-10 whitespace-nowrap"
           >
             {t("CTA")}
           </Link>
         </div>
-        <div className={"md:w-4/6"}>
+        <div className={"md:w-[62vw] pb-12"}>
           <div
             className={
-              "lg:hidden h-max w-full flex justify-start  lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[1.5vw]"
+              "lg:hidden h-full w-full flex justify-start lg:overflow-x-hidden overflow-x-scroll  py-[2vh]"
             }
           >
-            {carouselData.map((card, i) => (
+            {carouselExtended.map((card, i) => (
               <Card key={i} card={card} />
             ))}
           </div>
           <div
             className={
-              "hidden h-max w-full lg:flex justify-start  lg:overflow-x-hidden overflow-x-scroll px-[4vw] py-[2vh] gap-[1.5vw]"
+              "hidden h-max w-full lg:flex justify-start  lg:overflow-x-hidden overflow-x-scroll  py-[2vh]"
             }
           >
             {carouselExtended.map((card, i) => (
