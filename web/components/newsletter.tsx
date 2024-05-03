@@ -17,7 +17,7 @@ const Newsletter = () => {
   return (
     <section
       className={
-        "relative w-full lg:h-[72vh] h-max flex flex-col justify-center items-center containerize py-[8vw] lg:py-[8vh] gap-[4vh]"
+        "relative w-full h-max flex flex-col justify-center items-center containerize py-[10vh] lg:py-[16vh] gap-[4vh]"
       }
     >
       <video
@@ -31,21 +31,21 @@ const Newsletter = () => {
       ></video>
       <div
         className={
-          "text-white flex flex-col justify-center items-center gap-[1vh]"
+          "text-white flex flex-col justify-center items-center gap-[2vh]"
         }
       >
-        <h2 className={"text-center font-slick font-light"}>
+        <h1 className={"text-center"}>
           {t.rich("title", {
             classic: (chunks) => (
-              <span className={"font-classic"}>{chunks}</span>
+              <span className={"font-classic font-medium"}>{chunks}</span>
             ),
           })}
-        </h2>
-        <h4 className={"normal-case"}>
+        </h1>
+        <p className={"normal-case"}>
           {t.rich("subtitle", {
             br: () => <br />,
           })}
-        </h4>
+        </p>
       </div>
       <div
         className={"w-full px-[10vw] flex flex-col justify-center items-center"}
@@ -92,7 +92,7 @@ const Newsletter = () => {
               await contact(formData).then(() => setRegistred(true));
             }}
             className={
-              "h-full lg:w-max w-[92vw] bg-white flex flex-col justify-start items-center lg:px-[4vh] px-[4vw] lg:py-[4vh] py-[4vw] gap-[3vh]"
+              "h-max lg:w-[33vw] w-[92vw] bg-white flex flex-col justify-start items-center lg:px-[4vw] px-[4vw] lg:py-[4vh] py-[4vw] gap-[3vh]"
             }
           >
             <Input
