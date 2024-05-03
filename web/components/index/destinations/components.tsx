@@ -162,7 +162,11 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
       </div>
       <div className="flex md:flex-row flex-col w-full justify-center ">
         <div className="md:w-[33vw] w-full flex flex-col items-start justify-center">
-          <p className={"md:text-xl text-base flex flex-col lg:pl-44 px-4 mt-10 lg:max-w-[27vw] w-full"}>
+          <p
+            className={
+              "flex flex-col text-justify lg:pl-44 px-4 mt-10 lg:max-w-[27vw] w-full"
+            }
+          >
             {t("description")}
           </p>
           <Link
