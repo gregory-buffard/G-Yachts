@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { fetchGallery } from "@/actions/yachts";
+import { Badge } from "@nextui-org/react";
 
 const Gallery = ({
   data,
@@ -8,23 +9,41 @@ const Gallery = ({
   data: { photos: string[]; featured: boolean };
 }) => {
   const { id } = useParams(),
-    [featured, setFeatured] = useState<boolean | null>(null);
+    [featured, setFeatured] = useState<string | null>(null);
 
   useEffect(() => {
     if (data.featured) {
-      console.log("CONSOLE ID HERE", id[0]);
-      fetchGallery({ type: "sales", id: `${id[0]}`, query: "featured" }).catch(
-        (e) => {
+      fetchGallery({ type: "sales", id: `${id}`, query: "featured" })
+        .then((d) => setFeatured(d[0]))
+        .catch((e) => {
           console.error(e);
-        },
-      );
+        });
     }
   }, []);
 
+  useEffect(() => {
+    console.log(featured);
+  }, [featured]);
+
   return (
-    <section className={"absolute inset-0 w-full h-screen bg-neutral-100 z-50"}>
+    <section
+      className={
+        "absolute inset-0 h-max bg-neutral-100 z-50 overflow-y-auto containerize grid grid-cols-2 gap-[2vw]"
+      }
+    >
       {data.photos.map((image, _) => (
-        <button key={`${image}`}></button>
+        <Badge
+          key={`${image}`}
+          isInvisible={image !== featured}
+          shape={"rectangle"}
+        >
+          <button
+            className={"size-[45vw] bg-cover bg-center rounded-3xl"}
+            style={{
+              backgroundImage: `url(${image})`,
+            }}
+          ></button>
+        </Badge>
       ))}
     </section>
   );

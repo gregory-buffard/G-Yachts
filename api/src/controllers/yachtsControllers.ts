@@ -10,10 +10,7 @@ export const getImages = async (req: Request, res: Response) => {
     const query = req.query.dir!.toString() || "gallery";
     const dir = path.join("/app/api/images/yachts/", type, id, query);
     fs.readdir(dir, (e, f) => {
-      const d = f.map(
-        (f) => `http://51.75.16.185/images/yachts/${type}/${id}/${query}/${f}`,
-      );
-      res.json(d);
+      res.json(f);
     });
   } catch (e) {
     res.status(500).send(e);
