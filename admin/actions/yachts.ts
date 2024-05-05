@@ -17,10 +17,17 @@ export const fetchYacht = async ({ id }: { id: string }) => {
   });
 };
 
-export const fetchGallery = async ({ route }: { route: string }) => {
-  console.log("ROUTE", `${process.env.API_URL}/yachts/images/${route}`);
+export const fetchGallery = async ({
+  type,
+  id,
+  query,
+}: {
+  type: string;
+  id: string;
+  query: string;
+}) => {
   const res = await axios
-    .get(`${process.env.API_URL}/yachts/images/${route}`)
+    .get(`${process.env.API_URL}/yachts/images/${id}?type=${type}&dir=${query}`)
     .catch((e) => {
       throw e;
     });

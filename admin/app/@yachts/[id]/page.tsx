@@ -17,7 +17,11 @@ const Yacht = async ({
       }
     >
       <Photos
-        gallery={await fetchGallery({ route: `sales/${params.id}/gallery` })}
+        gallery={await fetchGallery({
+          type: "sales",
+          id: `${params.id}`,
+          query: "gallery",
+        })}
         featured={yacht.featured}
       />
     </section>

@@ -13,9 +13,11 @@ const Gallery = ({
   useEffect(() => {
     if (data.featured) {
       console.log("CONSOLE ID HERE", id[0]);
-      fetchGallery({ route: `sales/${id[0]}/featured` }).catch((e) => {
-        console.error(e);
-      });
+      fetchGallery({ type: "sales", id: `${id[0]}`, query: "featured" }).catch(
+        (e) => {
+          console.error(e);
+        },
+      );
     }
   }, []);
 
