@@ -22,16 +22,37 @@ export const fetchGallery = async ({
   id,
   query,
 }: {
-  type: string;
+  type: "sales" | "charter";
   id: string;
   query: string;
 }) => {
   const res = await axios
-    .get(`${process.env.API_URL}/yachts/images/${id}?type=${type}&dir=${query}`)
+    .get(`${process.env.API_URL}/yachts/images/${id}`, {
+      data: { type: type, target: query },
+    })
     .catch((e) => {
       throw e;
     });
   return res.data;
+};
+
+export const changeFeatured = async ({
+  type,
+  id,
+  photo,
+}: {
+  type: "sales" | "charter";
+  id: string;
+  photo: string;
+}) => {
+  const res = await axios
+    .put(`${process.env.API_URL}/yachts/images/${id}`, {
+      data: { type: type, photo: photo },
+    })
+    .catch((e) => {
+      throw e;
+    });
+  return res.status;
 };
 
 export const fetchFeatured = async () => {

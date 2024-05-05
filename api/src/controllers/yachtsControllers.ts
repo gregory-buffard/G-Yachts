@@ -5,12 +5,46 @@ import multer from "multer";
 
 export const getImages = async (req: Request, res: Response) => {
   try {
-    const type = req.query.type!.toString() || "sales";
     const { id } = req.params;
-    const query = req.query.dir!.toString() || "gallery";
-    const dir = path.join("/app/api/images/yachts/", type, id, query);
+    const { type, target } = req.body;
+    const dir = path.join("/app/api/images/yachts/", type, id, target);
     fs.readdir(dir, (e, f) => {
       res.json(f);
+    });
+  } catch (e) {
+    res.status(500).send(e);
+  }
+};
+
+export const changeFeatured = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { photo, type } = req.body;
+
+    const sourceDir = path.join("/app/api/images/yachts/", type, id, "gallery");
+    const targetDir = path.join(
+      "/app/api/images/yachts/",
+      type,
+      id,
+      "featured",
+    );
+
+    fs.readdir(targetDir, (e, files) => {
+      if (e) return res.status(500).send(e);
+
+      for (let file of files) {
+        fs.unlink(path.join(targetDir, file), (e) => {
+          if (e) return res.status(500).send(e);
+        });
+      }
+
+      const sourceFile = path.join(sourceDir, photo);
+      const targetFile = path.join(targetDir, photo);
+
+      fs.copyFile(sourceFile, targetFile, (e) => {
+        if (e) return res.status(500).send(e);
+        res.status(200);
+      });
     });
   } catch (e) {
     res.status(500).send(e);
