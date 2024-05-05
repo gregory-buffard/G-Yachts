@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import UIProvider from "@/components/NextUIProvider";
 import { Inter } from "next/font/google";
+import { ViewProvider } from "@/context/view";
+import { ReactNode } from "react";
+import Nav from "@/components/nav";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,14 +17,20 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  dashboard,
+  yachts,
 }: Readonly<{
-  children: React.ReactNode;
+  dashboard: ReactNode;
+  yachts: ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={"bg-neutral-100"}>
-        <UIProvider>{children}</UIProvider>
+      <body className={`${inter.className} w-full h-max bg-neutral-100`}>
+        <UIProvider>
+          <ViewProvider dashboard={dashboard} yachts={yachts}>
+            <Nav />
+          </ViewProvider>
+        </UIProvider>
       </body>
     </html>
   );

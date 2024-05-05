@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 import SocialLinks from "@/components/nav/socialLinks";
 import ContactLinks from "@/components/nav/contactLinks";
 import { handleMouseMove } from "@/utils/mouseCoords";
-import { useView } from "@/app/store";
+import { useViewContext } from "@/context/view";
 
 export const Close = () => {
-  const { openView } = useView();
+  const { openView } = useViewContext();
 
   return (
     <button type={"button"} onClick={() => openView(null)}>
@@ -77,7 +77,7 @@ const Page = ({ href }: { href: keyof typeof pathnames }) => {
 
 const Navigation = () => {
   const t = useTranslations("navigation.links"),
-    { openView } = useView();
+    { openView } = useViewContext();
 
   return (
     <motion.nav

@@ -1,19 +1,20 @@
 import Cookies from "js-cookie";
-import { IView } from "@/types/view";
+import { IContext } from "@/context/view";
 
-export const currency = (): IView["currency"] => {
+export const currency = (): string => {
   const currency = Cookies.get("currency");
   if (currency) return currency;
   Cookies.set("currency", "EUR");
   return "EUR";
 };
 
-export const units = (): IView["units"] => {
+export const units = (): IContext["units"] => {
   const units = {
     length: Cookies.get("length"),
     weight: Cookies.get("weight"),
   };
-  if (units.weight && units.length) return units as IView["units"];
+  if (units.weight && units.length)
+    return units as unknown as IContext["units"];
 
   Cookies.set("length", "m");
   Cookies.set("weight", "t");

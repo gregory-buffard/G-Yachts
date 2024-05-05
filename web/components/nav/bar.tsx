@@ -3,12 +3,12 @@
 import Logo from "@/public/logo/logo";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { useView } from "@/app/store";
+import { useViewContext } from "@/context/view";
 import { Link } from "@/navigation";
 
 const Bar = ({ dynamicColor }: { dynamicColor: number }) => {
   const t = useTranslations("bar"),
-    { openView } = useView(),
+    { openView } = useViewContext(),
     [isScrolled, setScrolled] = useState<boolean>(false);
 
   useEffect(() => {

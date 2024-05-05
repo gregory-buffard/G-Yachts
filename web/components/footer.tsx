@@ -4,11 +4,11 @@ import Logo from "@/public/logo/logo";
 import SocialLinks from "@/components/nav/socialLinks";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
-import { useView } from "@/app/store";
+import { useViewContext } from "@/context/view";
 
 const Footer = () => {
   const t = useTranslations(),
-    { openView } = useView();
+    { openView, view } = useViewContext();
 
   return (
     <footer

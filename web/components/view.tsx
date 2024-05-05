@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import { useView } from "@/app/store";
+import { useViewContext } from "@/context/view";
 
 const Navigation: React.ComponentType = dynamic(
   () => import("@/components/nav/navigation"),
@@ -12,7 +12,7 @@ const Contact: React.ComponentType = dynamic(
 );
 
 const View = () => {
-  const { view, openView } = useView();
+  const { view, openView } = useViewContext();
 
   return (
     <AnimatePresence mode={"popLayout"}>

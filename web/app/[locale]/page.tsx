@@ -2,7 +2,7 @@ import Bar from "@/components/nav/bar";
 import Hero from "@/components/index/hero";
 import dynamic from "next/dynamic";
 
-const View = dynamic(() => import("@/components/nav/view"));
+const View = dynamic(() => import("@/components/view"));
 const Services = dynamic(() => import("@/components/index/services"));
 const WorkingTogether = dynamic(() => import("@/components/index/working"));
 const Featured = dynamic(() => import("@/components/index/featured/section"));

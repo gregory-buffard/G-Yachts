@@ -5,10 +5,14 @@ import multer from "multer";
 
 export const getImages = async (req: Request, res: Response) => {
   try {
+    const type = req.query.type!.toString() || "sales";
     const { id } = req.params;
-    const dir = path.join("/app/api/images/yachts", id);
+    const query = req.query.dir!.toString() || "gallery";
+    const dir = path.join("/app/api/images/yachts/", type, id, query);
     fs.readdir(dir, (e, f) => {
-      const d = f.map((f) => `http://51.75.16.185/images/yachts/${id}/${f}`);
+      const d = f.map(
+        (f) => `http://51.75.16.185/images/yachts/${type}/${id}/${query}/${f}`,
+      );
       res.json(d);
     });
   } catch (e) {
