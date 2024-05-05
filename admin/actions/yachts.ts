@@ -2,6 +2,7 @@
 
 import { Yacht } from "@/models/yacht";
 import axios from "axios";
+import { revalidatePath } from "next/cache";
 
 export const fetchYachts = async () => {
   return await Yacht.find()
@@ -47,11 +48,13 @@ export const changeFeatured = async ({
 }) => {
   const res = await axios
     .put(`${process.env.API_URL}/yachts/images/${id}`, {
-      data: { type: type, photo: photo },
+      type,
+      photo,
     })
     .catch((e) => {
       throw e;
     });
+  revalidatePath(`/${id}`);
   return res.status;
 };
 

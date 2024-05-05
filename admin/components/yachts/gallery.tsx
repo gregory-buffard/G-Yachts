@@ -25,10 +25,10 @@ const Card = ({ data }: { data: { photo: string; featured: boolean } }) => {
           console.error(e);
         });
     }
-  }, []);
+  }, [changeFeatured]);
 
   return (
-    <form>
+    <>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -48,6 +48,14 @@ const Card = ({ data }: { data: { photo: string; featured: boolean } }) => {
               <ModalFooter>
                 {data.photo !== featured ? (
                   <Button
+                    onPress={() => {
+                      changeFeatured({
+                        id: `${id}`,
+                        photo: data.photo,
+                        type: "sales",
+                      });
+                      setFeatured(null);
+                    }}
                     color={"warning"}
                     variant={"flat"}
                     startContent={
@@ -118,7 +126,7 @@ const Card = ({ data }: { data: { photo: string; featured: boolean } }) => {
           }}
         ></button>
       </Badge>
-    </form>
+    </>
   );
 };
 

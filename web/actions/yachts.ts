@@ -12,6 +12,25 @@ export const fetchFeatured = async () => {
     });
 };
 
+export const fetchGallery = async ({
+  type,
+  id,
+  query,
+}: {
+  type: "sales" | "charter";
+  id: string;
+  query: string;
+}) => {
+  const res = await axios
+    .get(`${process.env.API_URL}/yachts/images/${id}`, {
+      data: { type: type, target: query },
+    })
+    .catch((e) => {
+      throw e;
+    });
+  return res.data;
+};
+
 export const fetchListing = async () => {
   return await Yacht.find({})
     .select("_id name price builder length yearBuilt sleeps")

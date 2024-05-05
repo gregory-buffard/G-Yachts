@@ -2,15 +2,20 @@
 
 import { useViewContext, views } from "@/context/view";
 import { Button } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 const Selector = ({ open }: { open: (typeof views)[number] }) => {
-  const { openView } = useViewContext();
+  const { openView } = useViewContext(),
+    router = useRouter();
 
   return (
     <Button
       isIconOnly={true}
       variant={"shadow"}
-      onClick={() => openView(open)}
+      onPress={() => {
+        openView(open);
+        router.push("/");
+      }}
       className={`size-[4vh] fill-neutral-100 text-neutral-800 p-[0.5vh] rounded-2xl bg-gradient-to-tr ${open === "dashboard" ? "from-neutral-500 to-neutral-400" : open === "yachts" ? "from-blue-500 to-blue-400" : ""}`}
     >
       {open === "dashboard" ? (
