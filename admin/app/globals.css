@@ -13,11 +13,15 @@
         @apply w-full px-[4vw] py-[4vw] lg:px-[2vw] lg:py-[2vw];
     }
 
+    h1 {
+        @apply text-4xl font-bold text-neutral-800;
+    }
+
     p {
-        @apply text-base font-normal;
+        @apply text-base font-normal text-neutral-800;
     }
 
     label {
-        @apply text-sm font-semibold;
+        @apply text-sm font-semibold text-neutral-800;
     }
 }

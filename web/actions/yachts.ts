@@ -12,6 +12,14 @@ export const fetchFeatured = async () => {
     });
 };
 
+export const fetchListing = async () => {
+  return await Yacht.find({})
+    .select("_id name price builder length yearBuilt sleeps")
+    .catch((e) => {
+      throw e;
+    });
+};
+
 export const convertCurrency = async (amount: number, currency: string) => {
   if (currency === "EUR") return formatCurrency(amount, currency);
   try {

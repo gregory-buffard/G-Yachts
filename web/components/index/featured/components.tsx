@@ -5,12 +5,12 @@ import { Link } from "@/navigation";
 import { IFeatured } from "@/types/yacht";
 import { useEffect, useState } from "react";
 import { convertCurrency } from "@/app/actions";
-import { useView } from "@/app/store";
+import { useViewContext } from "@/context/view";
 import { convertUnit } from "@/utils/yachts";
 
 const Card = ({ card }: { card: IFeatured }) => {
   const t = useTranslations("index.featured"),
-    { currency, units } = useView(),
+    { currency, units } = useViewContext(),
     [price, setPrice] = useState<string | null>(null);
 
   useEffect(() => {

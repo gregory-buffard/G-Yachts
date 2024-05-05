@@ -11,7 +11,8 @@
   "dependencies": {
     "@nextui-org/react": "^2.3.6",
     "axios": "^1.6.8",
-    "framer-motion": "^11.1.7",
+    "lottie-colorify": "^0.8.0",
+    "lottie-react": "^2.4.0",
     "mongoose": "^8.3.3",
     "next": "^14.2.3",
     "react": "^18",

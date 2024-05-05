@@ -3,6 +3,6 @@ import { getImages } from "../controllers/yachtsControllers";
 
 const router = express.Router();
 
-router.get("/yachts/images/:id", getImages);
+router.get("/yachts/images/sales/:id", getImages);
 
 export default router;

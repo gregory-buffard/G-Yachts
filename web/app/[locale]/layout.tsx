@@ -2,6 +2,7 @@ import "../globals.css";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Viewport } from "next";
+import { ViewProvider } from "@/context/view";
 
 export const generateMetadata = async ({
   params: { locale },
@@ -30,7 +31,7 @@ const RootLayout: React.FC<{
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <ViewProvider>{children}</ViewProvider>
         </NextIntlClientProvider>
       </body>
     </html>

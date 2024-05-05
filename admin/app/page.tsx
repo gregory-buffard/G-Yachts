@@ -1,12 +1,8 @@
-import View from "@/components/view";
 import Nav from "@/components/nav";
-import Dashboard from "@/components/views/dashboard";
-import Yachts from "@/components/views/yachts";
 
 const App = () => {
   return (
-    <main className="w-full h-screen flex justify-center items-center">
-      <View dashboard={<Dashboard />} yachts={<Yachts />} />
+    <main className="w-full h-screen flex justify-center items-center bg-gradient-to-tr from-red-300 to-blue-600">
       <Nav />
       {/*<form
         action={async (formData) => {

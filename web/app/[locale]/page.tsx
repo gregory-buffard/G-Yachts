@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { Link } from "@/navigation";
 
-const View = dynamic(() => import("@/components/nav/view"));
+const View = dynamic(() => import("@/components/view"));
 const Services = dynamic(() => import("@/components/index/services"));
 const WorkingTogether = dynamic(() => import("@/components/index/working"));
 const Featured = dynamic(() => import("@/components/index/featured/section"));

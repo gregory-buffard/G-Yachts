@@ -4,7 +4,7 @@ import { IYacht } from "@/types/yacht";
 import { ObjectId } from "mongoose";
 import { Medium } from "@/components/widgetsProviders";
 import { useEffect } from "react";
-import { useView } from "@/app/view";
+import { useViewContext } from "@/context/view";
 
 interface IFeatured
   extends Pick<
@@ -16,7 +16,7 @@ interface IFeatured
 
 const FeaturedContent = ({ data }: { data: IFeatured[] }) => {
   const carouselData = [...data, ...data],
-    { openView } = useView(),
+    { openView } = useViewContext(),
     setTranslate = (amount: number) => {
       document.documentElement.style.setProperty(
         "--translate-featured",

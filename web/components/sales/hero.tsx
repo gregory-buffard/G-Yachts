@@ -4,13 +4,13 @@ import { IFeatured } from "@/types/yacht";
 import { useState, useEffect } from "react";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
-import { useView } from "@/app/store";
+import { useViewContext } from "@/context/view";
 import { convertCurrency } from "@/actions/yachts";
 import { convertUnit } from "@/utils/yachts";
 
 const Card = ({ card }: { card: IFeatured }) => {
   const t = useTranslations("sales.hero"),
-    { currency, units } = useView(),
+    { currency, units } = useViewContext(),
     [price, setPrice] = useState<string | null>(null);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const Card = ({ card }: { card: IFeatured }) => {
   );
 };
 
-const Section = ({ data }: { data: IFeatured[] }) => {
+const Hero = ({ data }: { data: IFeatured[] }) => {
   const t = useTranslations("sales.hero"),
     carouselData = [...data, ...data],
     [selected, select] = useState<number>(0),
@@ -103,7 +103,7 @@ const Section = ({ data }: { data: IFeatured[] }) => {
         ))}
         <div
           className={
-            "absolute w-full flex lg:justify-between justify-end px-[4vw]"
+            "absolute containerize flex lg:justify-between justify-end"
           }
         >
           <div
@@ -151,4 +151,4 @@ const Section = ({ data }: { data: IFeatured[] }) => {
   );
 };
 
-export default Section;
+export default Hero;
