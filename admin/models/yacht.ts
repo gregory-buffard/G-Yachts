@@ -30,6 +30,10 @@ const YachtSchema = new Schema<IYacht>(
     yearBuilt: { type: Number, required: true },
     yearModel: { type: Number, required: true },
     featured: { type: Boolean, required: true },
+    photos: {
+      featured: { type: String, required: false },
+      gallery: { type: [String], required: true },
+    },
   },
   {
     collection: "yachts",

@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-import { fetchGallery, changeFeatured } from "@/actions/yachts";
+import { changeFeatured } from "@/actions/yachts";
 import {
   Badge,
   Modal,
@@ -11,21 +9,11 @@ import {
   useDisclosure,
   Image,
 } from "@nextui-org/react";
+import { useYacht } from "@/context/yacht";
 
-const Card = ({ data }: { data: { photo: string; featured: boolean } }) => {
-  const { id } = useParams(),
-    [featured, setFeatured] = useState<string | null>(null),
-    { isOpen, onOpen, onOpenChange } = useDisclosure();
-
-  useEffect(() => {
-    if (data.featured) {
-      fetchGallery({ type: "sales", id: `${id}`, query: "featured" })
-        .then((d) => setFeatured(d[0]))
-        .catch((e) => {
-          console.error(e);
-        });
-    }
-  }, [changeFeatured]);
+const Card = ({ photo }: { photo: string }) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure(),
+    { photos, _id } = useYacht();
 
   return (
     <>
@@ -42,19 +30,18 @@ const Card = ({ data }: { data: { photo: string; featured: boolean } }) => {
                 <Image
                   isBlurred={true}
                   className={"w-full h-auto"}
-                  src={`http://51.75.16.185/images/yachts/sales/${id}/gallery/${data.photo}`}
+                  src={`http://51.75.16.185/images/yachts/sales/${_id}/${photo}`}
                 />
               </ModalBody>
               <ModalFooter>
-                {data.photo !== featured ? (
+                {photo !== photos.featured ? (
                   <Button
                     onPress={() => {
-                      changeFeatured({
+                      /*changeFeatured({
                         id: `${id}`,
                         photo: data.photo,
                         type: "sales",
-                      });
-                      setFeatured(null);
+                      });*/
                     }}
                     color={"warning"}
                     variant={"flat"}
@@ -97,7 +84,7 @@ const Card = ({ data }: { data: { photo: string; featured: boolean } }) => {
         </ModalContent>
       </Modal>
       <Badge
-        isInvisible={data.photo !== featured}
+        isInvisible={photo !== photos.featured}
         shape={"rectangle"}
         color={"warning"}
         variant={"shadow"}
@@ -122,7 +109,7 @@ const Card = ({ data }: { data: { photo: string; featured: boolean } }) => {
             "size-[45vw] bg-cover bg-center rounded-3xl lg:hover:scale-105 transition-transform duration-500 ease-in-out"
           }
           style={{
-            backgroundImage: `url(http://51.75.16.185/images/yachts/sales/${id}/gallery/${data.photo})`,
+            backgroundImage: `url(http://51.75.16.185/images/yachts/sales/${_id}/${photo})`,
           }}
         ></button>
       </Badge>
@@ -130,19 +117,16 @@ const Card = ({ data }: { data: { photo: string; featured: boolean } }) => {
   );
 };
 
-const Gallery = ({
-  data,
-}: {
-  data: { photos: string[]; featured: boolean };
-}) => {
+const Gallery = () => {
+  const { photos } = useYacht();
   return (
     <section
       className={
         "absolute inset-0 h-max bg-neutral-100 z-50 overflow-y-auto containerize grid grid-cols-2 gap-[2vw]"
       }
     >
-      {data.photos.map((photo) => (
-        <Card key={photo} data={{ photo: photo, featured: data.featured }} />
+      {photos.gallery.map((photo) => (
+        <Card key={photo} photo={photo} />
       ))}
     </section>
   );

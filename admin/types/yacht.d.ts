@@ -25,4 +25,8 @@ export interface IYacht {
   yearBuilt: number;
   yearModel: number;
   featured: boolean;
+  photos: {
+    featured: string;
+    gallery: string[];
+  };
 }

@@ -25,7 +25,7 @@ const Card = ({ card }: { card: IFeatured }) => {
         "w-screen h-full bg-cover bg-right-bottom translate-x-[var(--translate-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out flex flex-col justify-end items-end py-[4vh] lg:py-[12vh] px-[4vw]"
       }
       style={{
-        backgroundImage: `url(http://51.75.16.185/images/yachts/${card._id}/featured.webp)`,
+        backgroundImage: `url(http://51.75.16.185/images/yachts/sales/${card._id}/${card.photos.featured})`,
       }}
     >
       <h4>{card.name}</h4>
@@ -36,7 +36,7 @@ const Card = ({ card }: { card: IFeatured }) => {
           className={
             "h-[0.875rem] my-[0.1875rem] w-[16vw] bg-white rounded-full animate-pulse"
           }
-        ></div>
+        />
       )}
       <h4>
         {card.builder} | {convertUnit(card.length, units.length) + units.length}{" "}

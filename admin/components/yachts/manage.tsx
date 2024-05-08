@@ -49,7 +49,6 @@ const Manage = ({ data }: { data: IManage }) => {
       <Button
         isIconOnly={true}
         variant={"light"}
-        className={""}
         onMouseEnter={() => {
           const ref = contextRef.current!;
           ref.setSpeed(2);

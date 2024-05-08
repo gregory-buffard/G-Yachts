@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const fetchFeatured = async () => {
   return await Yacht.find({ featured: true })
-    .select("_id name price builder length yearBuilt sleeps")
+    .select("_id name price builder length yearBuilt sleeps photos")
     .catch((e) => {
       throw e;
     });
@@ -33,7 +33,7 @@ export const fetchGallery = async ({
 
 export const fetchListing = async () => {
   return await Yacht.find({})
-    .select("_id name price builder length yearBuilt sleeps")
+    .select("_id name price builder length yearBuilt sleeps photos")
     .catch((e) => {
       throw e;
     });

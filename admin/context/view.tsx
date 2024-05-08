@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 interface IActions {
   openView: (view: IContext["view"]) => void;
@@ -35,10 +29,6 @@ export const ViewProvider = ({
     view,
     openView,
   };
-
-  useEffect(() => {
-    console.log(view);
-  }, [view]);
 
   return (
     <ViewContext.Provider value={value}>

@@ -1,4 +1,4 @@
-import { fetchFeatured } from "@/app/actions";
+import { fetchFeatured } from "@/actions/yachts";
 import Section from "@/components/index/featured/components";
 
 const Featured = async () => <Section carouselData={await fetchFeatured()} />;

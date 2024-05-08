@@ -43,6 +43,10 @@ export const changeFeatured = async (req: Request, res: Response) => {
 
       fs.copyFile(sourceFile, targetFile, (e) => {
         if (e) return res.status(500).send(e);
+        const newTargetFile = path.join(targetDir, "photo.webp");
+        fs.rename(targetFile, newTargetFile, (e) => {
+          if (e) return res.status(500).send(e);
+        });
         res.status(200);
       });
     });

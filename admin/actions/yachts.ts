@@ -51,6 +51,10 @@ export const changeFeatured = async ({
       type,
       photo,
     })
+    .then(
+      async () =>
+        await Yacht.findByIdAndUpdate(id, { "photos.featured": photo }),
+    )
     .catch((e) => {
       throw e;
     });
