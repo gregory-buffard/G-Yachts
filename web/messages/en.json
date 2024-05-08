@@ -89,6 +89,18 @@
       "title": "Find the perfect Yacht for <classic>You</classic>",
       "subtitle": "Yachts for sale",
       "guests": "guests"
+    },
+    "listing": {
+      "views": {
+        "global": "Search results",
+        "bookmarks": "My shortlist",
+        "empty": "Your shortlist is empty..."
+      },
+      "guide": "Click on the icon to add yachts to your shortlist",
+      "info": "Collect your favorite yachts – add more to your short list",
+      "listed": "You've viewed {count} of {total}",
+      "expand": "Load more",
+      "end": "You've reached the end of our catalogue"
     }
   },
   "contact": {

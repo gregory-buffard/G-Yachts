@@ -89,6 +89,18 @@
       "title": "Trouvez le Yacht parfait pour <classic>Vous</classic>",
       "subtitle": "Yachts à vendre",
       "guests": "invités"
+    },
+    "listing": {
+      "views": {
+        "global": "Resultats de recherche",
+        "bookmarks": "Ma liste de favoris",
+        "empty": "Votre liste est vide..."
+      },
+      "guide": "Cliquez sur l'icône pour ajouter des yachts à votre liste de favoris",
+      "info": "Rassemblez vos yachts préférés – ajoutez-en plus à votre liste de favoris",
+      "listed": "Vous avez vu {count} sur {total}",
+      "expand": "Charger plus",
+      "end": "Vous avez atteint la fin de notre catalogue"
     }
   },
   "contact": {

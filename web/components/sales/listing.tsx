@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { useViewContext } from "@/context/view";
 import { convertCurrency } from "@/app/actions";
+import Bookmark from "@/public/imagery/optimized/sales/bookmark";
 
 interface IListing
   extends Pick<
@@ -32,7 +33,8 @@ const Photo = ({ url, style }: { url: string; style: React.CSSProperties }) => {
 
 const Card = ({ data }: { data: IListing }) => {
   const t = useTranslations("index.featured"),
-    { currency, units } = useViewContext(),
+    { currency, units, bookmarks, addBookmark, removeBookmark } =
+      useViewContext(),
     [price, setPrice] = useState<string | null>(null),
     [translate, setTranslate] = useState<number>(0);
 
@@ -42,7 +44,7 @@ const Card = ({ data }: { data: IListing }) => {
 
   return (
     <Link
-      href={"/sales"}
+      href={{ pathname: "/sales/[id]", params: { id: data._id } }}
       className={
         "w-full md:w-[44vw] lg:w-[30vw] h-max flex flex-col justify-start items-start overflow-x-clip"
       }
@@ -50,7 +52,7 @@ const Card = ({ data }: { data: IListing }) => {
       <div className={"w-full h-max lg:overflow-x-hidden overflow-x-scroll"}>
         <div
           className={
-            "w-max h-[28vh] lg:h-[36vh] flex justify-start items-end mb-[1vh]"
+            "w-max lg:h-[18vw] md:h-[24vw] h-[28vh] flex justify-start items-center mb-[1vh]"
           }
         >
           <Photo
@@ -71,6 +73,28 @@ const Card = ({ data }: { data: IListing }) => {
               transform: `translateX(${translate}%)`,
             }}
           />
+          <div
+            className={
+              "w-[92vw] md:w-[44vw] lg:w-[30vw] absolute h-max flex justify-between items-center lg:px-[1vw] px-[2vw] -translate-y-[11vh] md:-translate-y-[9vw] lg:-translate-y-[7vw]"
+            }
+          >
+            <p>
+              {/* TODO: Add yacht's "status" (i.e. sold, exclusive, new, ...) */}
+            </p>
+            <button
+              type={"button"}
+              onClick={(e) => {
+                e.preventDefault();
+                bookmarks.includes(data._id)
+                  ? removeBookmark(data._id)
+                  : addBookmark(data._id);
+              }}
+            >
+              <Bookmark
+                className={`${bookmarks.includes(data._id) ? "fill-teal" : "fill-white"} transition-colors duration-500 ease-in-out lg:size-[2vw] size-[4vh]`}
+              />
+            </button>
+          </div>
           <div
             className={
               "w-[92vw] lg:w-[30vw] absolute hidden h-max gap-[0.20vw] mb-[2vh] lg:flex justify-center items-center"
@@ -126,18 +150,153 @@ const Card = ({ data }: { data: IListing }) => {
   );
 };
 
+const ViewButton = ({
+  view,
+  count,
+  currentView,
+  onClick,
+}: {
+  view: "global" | "bookmarks";
+  count: number;
+  currentView: "global" | "bookmarks";
+  onClick: () => void;
+}) => {
+  const t = useTranslations("sales.listing.views");
+  return (
+    <button
+      type={"button"}
+      onClick={onClick}
+      className={`px-[4vw] py-[1vh] ${view === currentView ? "text-black border-black border-b-[0.25vh]" : "text-rock-400 border-0"} uppercase transition-colors duration-500 ease-in-out cursor-pointer`}
+    >
+      <p>{t(view) + " " + `(${count})`}</p>
+    </button>
+  );
+};
+
+const ListView = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div
+      className={
+        "w-full h-max md:grid-cols-2 lg:grid-cols-3 md:grid flex flex-col justify-start items-start gap-[4vh] md:gap-[4vw] lg:gap-[1vw]"
+      }
+    >
+      {children}
+    </div>
+  );
+};
+
 const Listing = ({ data }: { data: IListing[] }) => {
-  const [maxListings, setMaxListings] = useState<number>(12); // TODO: limit yacht listings with option to load more...
+  const t = useTranslations("sales.listing"),
+    { bookmarks } = useViewContext(),
+    [maxListing, setMaxListing] = useState<number>(12);
+  const [view, setView] = useState<"global" | "bookmarks">("global");
 
   return (
     <section
       className={
-        "containerize h-max md:grid md:grid-cols-2 lg:grid-cols-3 flex flex-col justify-start items-start gap-[4vh] my-[8vh]"
+        "containerize flex flex-col justify-start items-center bg-stone-100 py-[4vh] gap-[4vh]"
       }
     >
-      {data.map((yacht, i) => (
-        <Card key={i} data={yacht} />
-      ))}
+      <div className={"w-full h-max flex flex-col justify-start items-start"}>
+        <div
+          className={
+            "w-full flex justify-start items-baseline border-b-[0.25vh] border-rock-200"
+          }
+        >
+          <ViewButton
+            view={"global"}
+            count={data.length}
+            currentView={view}
+            onClick={() => setView("global")}
+          />
+          <ViewButton
+            view={"bookmarks"}
+            count={bookmarks.length}
+            currentView={view}
+            onClick={() => setView("bookmarks")}
+          />
+        </div>
+      </div>
+      <div
+        className={`w-full h-max flex flex-col justify-start items-center gap-[4vh]`}
+      >
+        {view === "global" ? (
+          <>
+            <ListView>
+              {data.slice(0, maxListing).map((yacht, i) => (
+                <Card key={i} data={yacht} />
+              ))}
+            </ListView>
+            <div
+              className={
+                "w-full h-max flex flex-col justify-center items-center uppercase gap-[2vh]"
+              }
+            >
+              <p>
+                {maxListing >= data.length
+                  ? t("end")
+                  : t("listed", { count: maxListing, total: data.length })}
+              </p>
+              {maxListing >= data.length ? null : (
+                <>
+                  <div
+                    className={
+                      "w-[48vw] h-[0.25vh] bg-rock-300 [transition:_width_500ms_ease-in-out]"
+                    }
+                  >
+                    <div
+                      className={"h-full bg-black"}
+                      style={{
+                        width: `${(maxListing / data.length) * 100}%`,
+                      }}
+                    />
+                  </div>
+                  <button
+                    type={"button"}
+                    onClick={() => setMaxListing(maxListing + 12)}
+                    className={"glass-button glass-button-dark"}
+                  >
+                    {t("expand")}
+                  </button>
+                </>
+              )}
+            </div>
+          </>
+        ) : bookmarks.length > 0 ? (
+          <>
+            <ListView>
+              {bookmarks.map((bookmark) => {
+                const yacht = data.find((yacht) => yacht._id === bookmark);
+                return <Card key={yacht!._id} data={yacht!} />;
+              })}
+            </ListView>
+            <div
+              className={
+                "w-full h-max bg-white flex justify-start items-center lg:px-[2vw] lg:py-[2vh] px-[4vw] py-[1vh] lg:gap-[1vw] gap-[2vw]"
+              }
+            >
+              <Bookmark className={"w-[4vh] fill-teal"} />
+              <label className={"normal-case"}>{t("info")}</label>
+            </div>
+          </>
+        ) : (
+          <div
+            className={
+              "w-full h-max flex flex-col justify-start items-start gap-[4vh]"
+            }
+          >
+            <h3>{t("views.empty")}</h3>
+            <div
+              className={
+                "w-full h-max bg-white flex justify-start items-center lg:px-[2vw] lg:py-[2vh] px-[4vw] py-[1vh] lg:gap-[1vw] gap-[2vw]"
+              }
+            >
+              <Bookmark className={"w-[4vh] fill-rock-200"} />
+              <label className={"normal-case"}>{t("guide")}</label>
+            </div>
+          </div>
+        )}
+      </div>
     </section>
   );
 };

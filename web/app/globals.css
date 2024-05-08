@@ -24,6 +24,10 @@
         @apply lg:text-5xl text-4xl;
     }
 
+    h3 {
+        @apply lg:text-4xl text-3xl font-medium font-classic;
+    }
+
     h4 {
         @apply font-classic font-normal text-sm uppercase tracking-wider;
     }
@@ -33,7 +37,7 @@
     }
 
     label {
-        @apply text-xs uppercase font-classic font-normal text-black;
+        @apply text-xs uppercase font-classic font-normal text-black tracking-wider;
     }
 
     @font-face {

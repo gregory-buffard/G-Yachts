@@ -21,6 +21,13 @@ export const units = (): IContext["units"] => {
   return { length: "m", weight: "t" };
 };
 
+export const bookmarks = (): IContext["bookmarks"] => {
+  const bookmarks = Cookies.get("bookmarks");
+  if (bookmarks) return JSON.parse(bookmarks);
+  Cookies.set("bookmarks", "[]");
+  return [];
+};
+
 const formatUnit = (amount: number, unit: string) => {
   switch (unit) {
     case "m":

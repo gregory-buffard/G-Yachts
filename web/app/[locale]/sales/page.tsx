@@ -5,6 +5,8 @@ import { fetchFeatured, fetchListing } from "@/actions/yachts";
 
 const View = dynamic(() => import("@/components/view"));
 const Listing = dynamic(() => import("@/components/sales/listing"));
+const Newsletter = dynamic(() => import("@/components/newsletter"));
+const Footer = dynamic(() => import("@/components/footer"));
 
 const Sales = async () => {
   return (
@@ -13,6 +15,8 @@ const Sales = async () => {
       <View />
       <Hero data={await fetchFeatured()} />
       <Listing data={await fetchListing()} />
+      <Newsletter />
+      <Footer />
     </main>
   );
 };
