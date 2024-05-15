@@ -91,6 +91,35 @@
       "guests": "guests"
     },
     "listing": {
+      "filters": {
+        "any": "Any",
+        "type": {
+          "label": "Yacht type",
+          "all": "All",
+          "motor": "Motor",
+          "sail": "Sail"
+        },
+        "year": "Year",
+        "length": "Yacht length ({unit})",
+        "builder": "Builder",
+        "price": "Price",
+        "sleeps": "Guests",
+        "name": {
+          "label": "Yacht name",
+          "all": "All yachts"
+        },
+        "clear": "Clear filters",
+        "currency": "Currency",
+        "sort": {
+          "label": "Sort",
+          "price-asc": "Price (Low to High)",
+          "price-desc": "Price (High to Low)",
+          "length-asc": "Length (Low to High)",
+          "length-desc": "Length (High to Low)",
+          "year-asc": "Year (Low to High)",
+          "year-desc": "Year (High to Low)"
+        }
+      },
       "views": {
         "global": "Search results",
         "bookmarks": "My shortlist",

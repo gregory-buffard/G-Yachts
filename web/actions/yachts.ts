@@ -33,7 +33,7 @@ export const fetchGallery = async ({
 
 export const fetchListing = async () => {
   return await Yacht.find({})
-    .select("_id name price builder length yearBuilt sleeps photos")
+    .select("_id name category price builder length yearBuilt sleeps photos")
     .catch((e) => {
       throw e;
     });

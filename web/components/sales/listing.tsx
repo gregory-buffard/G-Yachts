@@ -1,6 +1,6 @@
 "use client";
 
-import { IYacht } from "@/types/yacht";
+import { IYacht as Yacht } from "@/types/yacht";
 import { useEffect, useState } from "react";
 import { convertUnit } from "@/utils/yachts";
 import { useTranslations } from "next-intl";
@@ -9,12 +9,29 @@ import { useViewContext } from "@/context/view";
 import { convertCurrency } from "@/app/actions";
 import Bookmark from "@/public/imagery/optimized/sales/bookmark";
 
-interface IListing
+interface IYacht
   extends Pick<
-    IYacht,
-    "name" | "price" | "builder" | "length" | "yearBuilt" | "sleeps" | "photos"
+    Yacht,
+    | "name"
+    | "category"
+    | "price"
+    | "builder"
+    | "length"
+    | "yearBuilt"
+    | "sleeps"
+    | "photos"
   > {
   _id: string;
+}
+
+interface IFilters {
+  category: "sail" | "motor" | undefined;
+  year: number | undefined;
+  length: { min: number; max: number };
+  builder: string | undefined;
+  price: { min: number; max: number };
+  sleeps: number | undefined;
+  name: string | undefined;
 }
 
 const Photo = ({ url, style }: { url: string; style: React.CSSProperties }) => {
@@ -31,7 +48,7 @@ const Photo = ({ url, style }: { url: string; style: React.CSSProperties }) => {
   );
 };
 
-const Card = ({ data }: { data: IListing }) => {
+const Card = ({ data }: { data: IYacht }) => {
   const t = useTranslations("index.featured"),
     { currency, units, bookmarks, addBookmark, removeBookmark } =
       useViewContext(),
@@ -185,11 +202,64 @@ const ListView = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const Listing = ({ data }: { data: IListing[] }) => {
+const Radio = ({
+  name,
+  options,
+  currentOption,
+  onChange,
+}: {
+  name: string;
+  options: string[];
+  currentOption: string;
+  onChange: (value: string) => void;
+}) => {
+  return (
+    <table className={"w-full border-[0.25vh] border-black border-collapse"}>
+      {options.map((option) => (
+        <td
+          key={option}
+          className={"w-1/3 h-[3vh] border-[0.25vh] border-black"}
+        >
+          <button className={"w-full h-full"}>{option}</button>
+        </td>
+      ))}
+    </table>
+  );
+};
+
+const Listing = ({ data }: { data: IYacht[] }) => {
   const t = useTranslations("sales.listing"),
     { bookmarks } = useViewContext(),
     [maxListing, setMaxListing] = useState<number>(12);
   const [view, setView] = useState<"global" | "bookmarks">("global");
+
+  const [filter, setFilter] = useState<IFilters>({
+    category: undefined,
+    year: undefined,
+    length: {
+      min: Math.min(...data.map((yacht) => yacht.length)),
+      max: Math.max(...data.map((yacht) => yacht.length)),
+    },
+    builder: undefined,
+    price: {
+      min: Math.min(...data.map((yacht) => yacht.price)),
+      max: Math.max(...data.map((yacht) => yacht.price)),
+    },
+    sleeps: undefined,
+    name: undefined,
+  });
+  const filteredData = data.filter((yacht) => {
+    if (filter.category !== undefined) yacht.category === filter.category;
+    if (filter.year !== undefined) yacht.yearBuilt === filter.year;
+    if (filter.length.min !== undefined && filter.length.max !== undefined)
+      filter.length.min <= yacht.length && yacht.length <= filter.length.max;
+    if (filter.builder !== undefined) yacht.builder === filter.builder;
+    if (filter.price.min !== undefined && filter.price.max !== undefined)
+      filter.price.min <= yacht.price && yacht.price <= filter.price.max;
+    if (filter.sleeps !== undefined) yacht.sleeps === filter.sleeps;
+    if (filter.name !== undefined) yacht.name === filter.name;
+    return yacht;
+  });
 
   return (
     <section
@@ -197,25 +267,42 @@ const Listing = ({ data }: { data: IListing[] }) => {
         "containerize flex flex-col justify-start items-center bg-stone-100 py-[4vh] gap-[4vh]"
       }
     >
-      <div className={"w-full h-max flex flex-col justify-start items-start"}>
-        <div
-          className={
-            "w-full flex justify-start items-baseline border-b-[0.25vh] border-rock-200"
-          }
-        >
-          <ViewButton
-            view={"global"}
-            count={data.length}
-            currentView={view}
-            onClick={() => setView("global")}
-          />
-          <ViewButton
-            view={"bookmarks"}
-            count={bookmarks.length}
-            currentView={view}
-            onClick={() => setView("bookmarks")}
+      <div className={"w-full h-max flex justify-between items-center"}>
+        <div className={"filter-column"}>
+          <label>{t("filters.type.label")}</label>
+          <Radio
+            options={[
+              t("filters.type.all"),
+              t("filters.type.motor"),
+              t("filters.type.sail"),
+            ]}
+            currentOption={""}
+            name={"category"}
+            onChange={(value) => {}}
           />
         </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div
+        className={
+          "w-full h-max flex justify-start items-baseline border-b-[0.25vh] border-rock-200"
+        }
+      >
+        <ViewButton
+          view={"global"}
+          count={data.length}
+          currentView={view}
+          onClick={() => setView("global")}
+        />
+        <ViewButton
+          view={"bookmarks"}
+          count={bookmarks.length}
+          currentView={view}
+          onClick={() => setView("bookmarks")}
+        />
       </div>
       <div
         className={`w-full h-max flex flex-col justify-start items-center gap-[4vh]`}
@@ -223,7 +310,7 @@ const Listing = ({ data }: { data: IListing[] }) => {
         {view === "global" ? (
           <>
             <ListView>
-              {data.slice(0, maxListing).map((yacht, i) => (
+              {filteredData.slice(0, maxListing).map((yacht, i) => (
                 <Card key={i} data={yacht} />
               ))}
             </ListView>
@@ -266,7 +353,9 @@ const Listing = ({ data }: { data: IListing[] }) => {
           <>
             <ListView>
               {bookmarks.map((bookmark) => {
-                const yacht = data.find((yacht) => yacht._id === bookmark);
+                const yacht = filteredData.find(
+                  (yacht) => yacht._id === bookmark,
+                );
                 return <Card key={yacht!._id} data={yacht!} />;
               })}
             </ListView>

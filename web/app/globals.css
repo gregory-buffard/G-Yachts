@@ -120,4 +120,8 @@
     .form-checkbox {
         @apply accent-black outline-none cursor-pointer;
     }
+
+    .filter-column {
+        @apply flex flex-col justify-start items-start w-[45vw];
+    }
 }

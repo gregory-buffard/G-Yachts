@@ -91,6 +91,35 @@
       "guests": "invités"
     },
     "listing": {
+      "filters": {
+        "any": "N'importe quel",
+        "type": {
+          "label": "Type de yacht",
+          "all": "Tous",
+          "motor": "Moteur",
+          "sail": "Voile"
+        },
+        "year": "Année",
+        "length": "Longueur du yacht ({unit})",
+        "builder": "Constructeur",
+        "price": "Prix",
+        "sleeps": "Invités",
+        "name": {
+          "label": "Nom du yacht",
+          "all": "Tous les yachts"
+        },
+        "clear": "Effacer les filtres",
+        "currency": "Devise",
+        "sort": {
+          "label": "Trier",
+          "price-asc": "Prix (du plus bas au plus élevé)",
+          "price-desc": "Prix (du plus élevé au plus bas)",
+          "length-asc": "Longueur (du plus bas au plus élevé)",
+          "length-desc": "Longueur (du plus élevé au plus bas)",
+          "year-asc": "Année (du plus récent au plus ancien)",
+          "year-desc": "Année (du plus ancien au plus récent)"
+        }
+      },
       "views": {
         "global": "Resultats de recherche",
         "bookmarks": "Ma liste de favoris",
