@@ -1,6 +1,7 @@
 import { useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, Link, pathnames } from "@/navigation";
+import { useParams } from "next/navigation";
 import Logo from "@/public/logo/logo";
 import { motion } from "framer-motion";
 import SocialLinks from "@/components/nav/socialLinks";
@@ -31,11 +32,15 @@ export const Close = () => {
 const Language = ({ locale }: { locale: string }): JSX.Element => {
   const [isPending, startTransition] = useTransition(),
     pathname = usePathname(),
+    params = useParams(),
     router = useRouter();
 
   const changeLanguage = (locale: string) => {
     startTransition(() =>
-      router.replace(`${pathname}`, { locale: locale, scroll: false }),
+      router.replace(
+        { pathname, params: params as any },
+        { locale: locale, scroll: false },
+      ),
     );
   };
 
@@ -54,7 +59,7 @@ const Language = ({ locale }: { locale: string }): JSX.Element => {
   );
 };
 
-const Page = ({ href }: { href: keyof typeof pathnames }) => {
+const Page = ({ href }: { href: any }) => {
   const t = useTranslations("navigation.links");
   return (
     <div
