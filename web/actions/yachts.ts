@@ -1,7 +1,6 @@
 "use server";
 
 import { Yacht } from "@/models/yacht";
-import { formatCurrency } from "@/utils/yachts";
 import axios from "axios";
 
 export const fetchFeatured = async () => {
@@ -39,15 +38,15 @@ export const fetchListing = async () => {
     });
 };
 
-export const convertCurrency = async (amount: number, currency: string) => {
-  if (currency === "EUR") return formatCurrency(amount, currency);
+export const getRate = async (currency: string) => {
+  if (currency === "EUR") return 1;
   try {
     const res = await axios.get(
       `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.CURRENCY_API_KEY}&currencies=${currency}&base_currency=EUR`,
     );
-    return formatCurrency(amount * res.data.data[currency], currency);
+    return 1 * res.data.data[currency];
   } catch (e) {
     console.error("Error fetching currency: ", e);
-    return formatCurrency(amount, currency);
+    return 1;
   }
 };

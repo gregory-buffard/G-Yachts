@@ -1,8 +1,8 @@
 import Cookies from "js-cookie";
-import { IContext } from "@/context/view";
+import { IContext, useViewContext } from "@/context/view";
 
-export const currency = (): string => {
-  const currency = Cookies.get("currency");
+export const currency = (): IContext["currency"] => {
+  const currency = Cookies.get("currency") as IContext["currency"];
   if (currency) return currency;
   Cookies.set("currency", "EUR");
   return "EUR";
@@ -28,7 +28,7 @@ export const bookmarks = (): IContext["bookmarks"] => {
   return [];
 };
 
-const formatUnit = (amount: number, unit: string) => {
+export const convertUnit = (amount: number, unit: string) => {
   switch (unit) {
     case "m":
       return amount + "m";
@@ -37,11 +37,6 @@ const formatUnit = (amount: number, unit: string) => {
     default:
       return amount + "m";
   }
-};
-
-export const convertUnit = (amount: number, unit: string) => {
-  if (unit === "m") return amount;
-  if (unit === "ft") return formatUnit(amount * 3.28084, unit);
 };
 
 export const formatCurrency = (amount: number, currency: string) => {

@@ -100,7 +100,7 @@
           "sail": "Sail"
         },
         "year": "Year",
-        "length": "Yacht length ({unit})",
+        "length": "Yacht length ({unit, select, m {meters} ft {feet} other {}})",
         "builder": "Builder",
         "price": "Price",
         "sleeps": "Guests",

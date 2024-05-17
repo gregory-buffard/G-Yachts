@@ -1,12 +1,13 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   currency as useCurrency,
   units as useUnits,
   bookmarks as useBookmarks,
 } from "@/utils/yachts";
 import Cookies from "js-cookie";
+import { getRate } from "@/actions/yachts";
 
 interface IActions {
   changeCurrency: (currency: IContext["currency"]) => void;
@@ -17,7 +18,13 @@ interface IActions {
 }
 
 export interface IContext extends IActions {
-  currency: string;
+  currency: "EUR" | "USD" | "GBP" | "JPY";
+  rates: {
+    EUR: number;
+    USD: number;
+    GBP: number;
+    JPY: number;
+  };
   units: {
     length: string;
     weight: string;
@@ -30,6 +37,12 @@ const ViewContext = createContext<IContext | undefined>(undefined);
 
 export const ViewProvider = ({ children }: { children: React.ReactNode }) => {
   const [currency, setCurrency] = useState<IContext["currency"]>(useCurrency()),
+    [rates, setRates] = useState<IContext["rates"]>({
+      EUR: 1,
+      USD: 0,
+      GBP: 0,
+      JPY: 0,
+    }),
     [units, setUnits] = useState<IContext["units"]>(useUnits()),
     [view, openView] = useState<IContext["view"]>(null),
     [bookmarks, setBookmarks] = useState<IContext["bookmarks"]>(useBookmarks()),
@@ -56,8 +69,21 @@ export const ViewProvider = ({ children }: { children: React.ReactNode }) => {
       setBookmarks(bookmarks.filter((bookmark) => bookmark !== id));
     };
 
+  useEffect(() => {
+    const assignRates = async () => {
+      setRates({
+        ...rates,
+        USD: await getRate("USD"),
+        GBP: await getRate("GBP"),
+        JPY: await getRate("JPY"),
+      });
+    };
+    assignRates();
+  }, []);
+
   const value = {
     currency,
+    rates,
     units,
     view,
     bookmarks,

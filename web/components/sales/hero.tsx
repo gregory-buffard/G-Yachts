@@ -5,17 +5,12 @@ import { useState, useEffect } from "react";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useViewContext } from "@/context/view";
-import { convertCurrency } from "@/actions/yachts";
-import { convertUnit } from "@/utils/yachts";
+import { convertUnit, formatCurrency } from "@/utils/yachts";
 
 const Card = ({ card }: { card: IFeatured }) => {
   const t = useTranslations("sales.hero"),
-    { currency, units } = useViewContext(),
-    [price, setPrice] = useState<string | null>(null);
-
-  useEffect(() => {
-    convertCurrency(card.price, currency).then((price) => setPrice(price));
-  }, []);
+    { currency, units, rates } = useViewContext(),
+    price = formatCurrency(card.price * rates[currency], currency);
 
   return (
     <Link

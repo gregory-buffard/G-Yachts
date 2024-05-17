@@ -4,18 +4,13 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { IFeatured } from "@/types/yacht";
 import { useEffect, useState } from "react";
-import { convertCurrency } from "@/app/actions";
 import { useViewContext } from "@/context/view";
-import { convertUnit } from "@/utils/yachts";
+import { convertUnit, formatCurrency } from "@/utils/yachts";
 
 const Card = ({ card }: { card: IFeatured }) => {
   const t = useTranslations("index.featured"),
-    { currency, units } = useViewContext(),
-    [price, setPrice] = useState<string | null>(null);
-
-  useEffect(() => {
-    convertCurrency(card.price, currency).then((price) => setPrice(price));
-  }, []);
+    { currency, units, rates } = useViewContext(),
+    price = formatCurrency(card.price * rates[currency], currency);
 
   return (
     <Link

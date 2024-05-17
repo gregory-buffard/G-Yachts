@@ -2,12 +2,12 @@
 
 import { IYacht as Yacht } from "@/types/yacht";
 import { useEffect, useState } from "react";
-import { convertUnit } from "@/utils/yachts";
+import { convertUnit, formatCurrency } from "@/utils/yachts";
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { useViewContext } from "@/context/view";
-import { convertCurrency } from "@/app/actions";
 import Bookmark from "@/public/imagery/optimized/sales/bookmark";
+import { ListingModifier, Range, Select, Radio } from "@/components/filters";
 
 interface IYacht
   extends Pick<
@@ -50,14 +50,14 @@ const Photo = ({ url, style }: { url: string; style: React.CSSProperties }) => {
 
 const Card = ({ data }: { data: IYacht }) => {
   const t = useTranslations("index.featured"),
-    { currency, units, bookmarks, addBookmark, removeBookmark } =
+    { currency, units, bookmarks, addBookmark, removeBookmark, rates } =
       useViewContext(),
-    [price, setPrice] = useState<string | null>(null),
+    [price, setPrice] = useState<string | undefined>(undefined),
     [translate, setTranslate] = useState<number>(0);
 
   useEffect(() => {
-    convertCurrency(data.price, currency).then((price) => setPrice(price));
-  }, []);
+    setPrice(formatCurrency(data.price * rates[currency], currency));
+  }, [data, currency, rates]);
 
   return (
     <Link
@@ -202,34 +202,10 @@ const ListView = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const Radio = ({
-  name,
-  options,
-  currentOption,
-  onChange,
-}: {
-  name: string;
-  options: string[];
-  currentOption: string;
-  onChange: (value: string) => void;
-}) => {
-  return (
-    <table className={"w-full border-[0.25vh] border-black border-collapse"}>
-      {options.map((option) => (
-        <td
-          key={option}
-          className={"w-1/3 h-[3vh] border-[0.25vh] border-black"}
-        >
-          <button className={"w-full h-full"}>{option}</button>
-        </td>
-      ))}
-    </table>
-  );
-};
-
 const Listing = ({ data }: { data: IYacht[] }) => {
   const t = useTranslations("sales.listing"),
     { bookmarks } = useViewContext(),
+    { currency, units, changeCurrency } = useViewContext(),
     [maxListing, setMaxListing] = useState<number>(12);
   const [view, setView] = useState<"global" | "bookmarks">("global");
 
@@ -248,52 +224,239 @@ const Listing = ({ data }: { data: IYacht[] }) => {
     sleeps: undefined,
     name: undefined,
   });
-  const filteredData = data.filter((yacht) => {
-    if (filter.category !== undefined) yacht.category === filter.category;
-    if (filter.year !== undefined) yacht.yearBuilt === filter.year;
-    if (filter.length.min !== undefined && filter.length.max !== undefined)
-      filter.length.min <= yacht.length && yacht.length <= filter.length.max;
-    if (filter.builder !== undefined) yacht.builder === filter.builder;
-    if (filter.price.min !== undefined && filter.price.max !== undefined)
-      filter.price.min <= yacht.price && yacht.price <= filter.price.max;
-    if (filter.sleeps !== undefined) yacht.sleeps === filter.sleeps;
-    if (filter.name !== undefined) yacht.name === filter.name;
-    return yacht;
-  });
+  const [filteredData, setFilteredData] = useState<IYacht[]>(data);
+
+  useEffect(() => {
+    const filtered = data.filter((yacht) => {
+      if (filter.category && yacht.category !== filter.category) return false;
+      if (filter.year && yacht.yearBuilt !== filter.year) return false;
+      if (filter.length.min !== undefined && filter.length.max !== undefined) {
+        if (
+          yacht.length < filter.length.min ||
+          yacht.length > filter.length.max
+        )
+          return false;
+      }
+      if (filter.builder && yacht.builder !== filter.builder) return false;
+      if (filter.price.min !== undefined && filter.price.max !== undefined) {
+        if (yacht.price < filter.price.min || yacht.price > filter.price.max)
+          return false;
+      }
+      if (filter.sleeps !== undefined && yacht.sleeps !== filter.sleeps)
+        return false;
+      if (filter.name && yacht.name !== filter.name) return false;
+
+      return true;
+    });
+
+    setFilteredData(filtered);
+  }, [filter, data]);
+
+  useEffect(() => {
+    console.log(units.length);
+  }, [units]);
 
   return (
     <section
       className={
-        "containerize flex flex-col justify-start items-center bg-stone-100 py-[4vh] gap-[4vh]"
+        "w-full px-[2vw] flex flex-col justify-start items-center bg-stone-100 py-[4vh] gap-[4vh]"
       }
     >
-      <div className={"w-full h-max flex justify-between items-center"}>
+      <div
+        className={
+          "w-full md:px-0 px-[2vw] h-max flex md:flex-row flex-col justify-between md:justify-evenly items-center md:items-start z-10 gap-[2vh]"
+        }
+      >
         <div className={"filter-column"}>
-          <label>{t("filters.type.label")}</label>
-          <Radio
+          <div className={"filter"}>
+            <label>{t("filters.type.label")}</label>
+            <Radio
+              options={[
+                { value: undefined, label: t("filters.type.all") },
+                { value: "sail", label: t("filters.type.sail") },
+                { value: "motor", label: t("filters.type.motor") },
+              ]}
+              currentOption={filter.category}
+              onClick={(value) => {
+                setFilter({ ...filter, category: value });
+                setMaxListing(12);
+              }}
+            />
+          </div>
+          <Select
+            label={t("filters.year")}
             options={[
-              t("filters.type.all"),
-              t("filters.type.motor"),
-              t("filters.type.sail"),
+              { value: undefined, label: t("filters.any") },
+              ...Array.from(new Set(data.map((yacht) => yacht.yearBuilt))).map(
+                (year) => ({ value: year, label: year.toString() }),
+              ),
             ]}
-            currentOption={""}
-            name={"category"}
-            onChange={(value) => {}}
+            currentOption={filter.year}
+            onChange={(value) => {
+              setFilter({ ...filter, year: value });
+              setMaxListing(12);
+            }}
           />
         </div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div className={"filter-column"}>
+          <div className={"filter"}>
+            <label>{t("filters.length", { unit: units.length })}</label>
+            <Range
+              min={Math.min(...data.map((yacht) => yacht.length))}
+              max={Math.max(...data.map((yacht) => yacht.length))}
+              step={0.5}
+              onChange={(value) => setFilter({ ...filter, length: value })}
+              dataType={"length"}
+            />
+          </div>
+          <Select
+            label={t("filters.builder")}
+            options={[
+              { value: undefined, label: t("filters.any") },
+              ...Array.from(new Set(data.map((yacht) => yacht.builder))).map(
+                (builder) => ({ value: builder, label: builder }),
+              ),
+            ]}
+            currentOption={filter.builder}
+            onChange={(value) => {
+              setFilter({ ...filter, builder: value });
+              setMaxListing(12);
+            }}
+          />
+        </div>
+        <div className={"filter-column"}>
+          <div className={"filter"}>
+            <label>{t("filters.price")}</label>
+            <Range
+              min={Math.min(...data.map((yacht) => yacht.price))}
+              max={Math.max(...data.map((yacht) => yacht.price))}
+              step={10000}
+              onChange={(value) => setFilter({ ...filter, price: value })}
+              dataType={"price"}
+            />
+          </div>
+          <Select
+            label={t("filters.sleeps")}
+            options={[
+              { value: undefined, label: t("filters.any") },
+              ...Array.from(new Set(data.map((yacht) => yacht.sleeps))).map(
+                (sleeps) => ({ value: sleeps, label: sleeps.toString() }),
+              ),
+            ]}
+            currentOption={filter.sleeps}
+            onChange={(value) => {
+              setFilter({ ...filter, sleeps: value });
+            }}
+          />
+        </div>
+        <div className={"filter-column"}>
+          <Select
+            label={t("filters.name.label")}
+            options={[
+              { value: undefined, label: t("filters.name.all") },
+              ...Array.from(new Set(data.map((yacht) => yacht.name))).map(
+                (name) => ({ value: name, label: name }),
+              ),
+            ]}
+            currentOption={filter.name}
+            onChange={(value) => {
+              setFilter({ ...filter, name: value });
+            }}
+          />
+          <button
+            className={
+              "w-full h-[3vh] glass-button glass-button-dark flex justify-center items-center z-0 group"
+            }
+            onClick={() =>
+              setFilter({
+                category: undefined,
+                year: undefined,
+                length: {
+                  min: Math.min(...data.map((yacht) => yacht.length)),
+                  max: Math.max(...data.map((yacht) => yacht.length)),
+                },
+                builder: undefined,
+                price: {
+                  min: Math.min(...data.map((yacht) => yacht.price)),
+                  max: Math.max(...data.map((yacht) => yacht.price)),
+                },
+                sleeps: undefined,
+                name: undefined,
+              })
+            }
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              viewBox="0 0 64 64"
+              className={
+                "lg:size-[1.5vw] size-[1.5rem] lg:group-hover:rotate-90 transition-transform duration-200 ease-in-out"
+              }
+            >
+              <path d="M 16 14 C 15.488 14 14.976938 14.194937 14.585938 14.585938 C 13.804937 15.366937 13.804937 16.633063 14.585938 17.414062 L 29.171875 32 L 14.585938 46.585938 C 13.804938 47.366938 13.804937 48.633063 14.585938 49.414062 C 14.976937 49.805062 15.488 50 16 50 C 16.512 50 17.023062 49.805062 17.414062 49.414062 L 32 34.828125 L 46.585938 49.414062 C 47.366938 50.195063 48.633063 50.195062 49.414062 49.414062 C 50.195063 48.633062 50.195062 47.366937 49.414062 46.585938 L 34.828125 32 L 49.414062 17.414062 C 50.195063 16.633063 50.195062 15.366938 49.414062 14.585938 C 48.633062 13.804938 47.366937 13.804938 46.585938 14.585938 L 32 29.171875 L 17.414062 14.585938 C 17.023062 14.194938 16.512 14 16 14 z"></path>
+            </svg>
+            <label className={"cursor-pointer"}>{t("filters.clear")}</label>
+          </button>
+        </div>
+        <div className={"w-full md:w-[20vw] flex justify-between items-center"}>
+          <ListingModifier
+            label={t("filters.currency")}
+            options={[
+              { value: "EUR", label: "€" },
+              { value: "USD", label: "$" },
+              { value: "GBP", label: "£" },
+              { value: "JPY", label: "¥" },
+            ]}
+            onChange={(value) => changeCurrency(value)}
+          />
+          <ListingModifier
+            label={t("filters.sort.label")}
+            options={[
+              { value: "priceAsc", label: t("filters.sort.price-asc") },
+              { value: "priceDesc", label: t("filters.sort.price-desc") },
+              { value: "lengthAsc", label: t("filters.sort.length-asc") },
+              { value: "lengthDesc", label: t("filters.sort.length-desc") },
+              { value: "yearAsc", label: t("filters.sort.year-asc") },
+              { value: "yearDesc", label: t("filters.sort.year-desc") },
+            ]}
+            onChange={(value) => {
+              switch (value) {
+                case "priceAsc":
+                  setFilteredData(data.sort((a, b) => a.price - b.price));
+                  break;
+                case "priceDesc":
+                  setFilteredData(data.sort((a, b) => b.price - a.price));
+                  break;
+                case "lengthAsc":
+                  setFilteredData(data.sort((a, b) => a.length - b.length));
+                  break;
+                case "lengthDesc":
+                  setFilteredData(data.sort((a, b) => b.length - a.length));
+                  break;
+                case "yearAsc":
+                  setFilteredData(
+                    filteredData.sort((a, b) => a.yearBuilt - b.yearBuilt),
+                  );
+                  break;
+                case "yearDesc":
+                  setFilteredData(
+                    filteredData.sort((a, b) => b.yearBuilt - a.yearBuilt),
+                  );
+                  break;
+              }
+            }}
+          />
+        </div>
       </div>
       <div
         className={
-          "w-full h-max flex justify-start items-baseline border-b-[0.25vh] border-rock-200"
+          "w-full px-[2vw] h-max flex justify-start items-baseline border-b-[0.25vh] border-rock-200"
         }
       >
         <ViewButton
           view={"global"}
-          count={data.length}
+          count={filteredData.length}
           currentView={view}
           onClick={() => setView("global")}
         />
@@ -305,7 +468,7 @@ const Listing = ({ data }: { data: IYacht[] }) => {
         />
       </div>
       <div
-        className={`w-full h-max flex flex-col justify-start items-center gap-[4vh]`}
+        className={`w-full px-[2vw] h-max flex flex-col justify-start items-center gap-[4vh] z-0`}
       >
         {view === "global" ? (
           <>
@@ -320,11 +483,14 @@ const Listing = ({ data }: { data: IYacht[] }) => {
               }
             >
               <p>
-                {maxListing >= data.length
+                {maxListing >= filteredData.length
                   ? t("end")
-                  : t("listed", { count: maxListing, total: data.length })}
+                  : t("listed", {
+                      count: maxListing,
+                      total: filteredData.length,
+                    })}
               </p>
-              {maxListing >= data.length ? null : (
+              {maxListing >= filteredData.length ? null : (
                 <>
                   <div
                     className={
@@ -334,7 +500,7 @@ const Listing = ({ data }: { data: IYacht[] }) => {
                     <div
                       className={"h-full bg-black"}
                       style={{
-                        width: `${(maxListing / data.length) * 100}%`,
+                        width: `${(maxListing / filteredData.length) * 100}%`,
                       }}
                     />
                   </div>
@@ -353,9 +519,7 @@ const Listing = ({ data }: { data: IYacht[] }) => {
           <>
             <ListView>
               {bookmarks.map((bookmark) => {
-                const yacht = filteredData.find(
-                  (yacht) => yacht._id === bookmark,
-                );
+                const yacht = data.find((yacht) => yacht._id === bookmark);
                 return <Card key={yacht!._id} data={yacht!} />;
               })}
             </ListView>

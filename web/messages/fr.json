@@ -100,7 +100,7 @@
           "sail": "Voile"
         },
         "year": "Année",
-        "length": "Longueur du yacht ({unit})",
+        "length": "Longueur du yacht ({unit, select, m {metres} ft {pieds} other {}})",
         "builder": "Constructeur",
         "price": "Prix",
         "sleeps": "Invités",
