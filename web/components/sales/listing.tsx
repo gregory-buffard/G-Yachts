@@ -61,7 +61,7 @@ const Card = ({ data }: { data: IYacht }) => {
 
   return (
     <Link
-      href={{ pathname: "/sales/[id]", params: { id: data._id } }}
+      href={{ pathname: "/yacht/[id]", params: { id: data._id } }}
       className={
         "w-full md:w-[44vw] lg:w-[30vw] h-max flex flex-col justify-start items-start overflow-x-clip"
       }
@@ -73,19 +73,19 @@ const Card = ({ data }: { data: IYacht }) => {
           }
         >
           <Photo
-            url={`url(http://51.75.16.185/images/yachts/sales/${data._id}/${data.photos.gallery[0]})`}
+            url={`url(http://51.75.16.185/images/yachts/${data._id}/${data.photos.gallery[0]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(http://51.75.16.185/images/yachts/sales/${data._id}/${data.photos.gallery[1]})`}
+            url={`url(http://51.75.16.185/images/yachts/${data._id}/${data.photos.gallery[1]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(http://51.75.16.185/images/yachts/sales/${data._id}/${data.photos.gallery[2]})`}
+            url={`url(http://51.75.16.185/images/yachts/${data._id}/${data.photos.gallery[2]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
@@ -403,10 +403,10 @@ const Listing = ({ data }: { data: IYacht[] }) => {
           <ListingModifier
             label={t("filters.currency")}
             options={[
-              { value: "EUR", label: "€" },
-              { value: "USD", label: "$" },
-              { value: "GBP", label: "£" },
-              { value: "JPY", label: "¥" },
+              { value: "EUR", label: "€ eur" },
+              { value: "USD", label: "$ usd" },
+              { value: "GBP", label: "£ gbp" },
+              { value: "JPY", label: "¥ jpy" },
             ]}
             onChange={(value) => changeCurrency(value)}
           />

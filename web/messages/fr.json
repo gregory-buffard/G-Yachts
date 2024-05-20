@@ -132,6 +132,33 @@
       "end": "Vous avez atteint la fin de notre catalogue"
     }
   },
+  "yacht": {
+    "sleeps": "invités",
+    "details": {
+      "gallery": "Explorer plus d'images",
+      "info": "Informations clés",
+      "features": "Caractéristiques clés",
+      "brochure": "Brochure",
+      "characteristics": {
+        "type": {
+          "label": "Type",
+          "motor": "Moteur",
+          "sail": "Voile"
+        },
+        "length": "Longueur",
+        "beam": "Largeur",
+        "sleeps": "Lits",
+        "rooms": "Cabines",
+        "draft": "Tirant d'eau",
+        "tonnage": "Poids",
+        "yearBuilt": "Année de construction",
+        "yearModel": "Année du modèle",
+        "hull": "Type de coque",
+        "location": "Emplacement"
+      },
+      "CTA": "Contactez un courtier"
+    }
+  },
   "contact": {
     "metadata": {
       "title": "Contact",

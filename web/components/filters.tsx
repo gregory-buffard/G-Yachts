@@ -268,9 +268,7 @@ export const ListingModifier = ({
                 "w-full flex justify-start items-baseline lg:gap-[0.5vw] gap-[1vh] hover:bg-rock-100 transition-[background-color] duration-100 ease-in-out rounded-[0.5vh] lg:px-[1vw] px-[2vw] lg:py-[0.5vh] py-[2vw]"
               }
             >
-              <label
-                className={"text-wrap text-left cursor-pointer normal-case"}
-              >
+              <label className={"text-wrap text-left cursor-pointer"}>
                 {option.label}
               </label>
             </button>

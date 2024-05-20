@@ -38,6 +38,12 @@ export const fetchListing = async () => {
     });
 };
 
+export const fetchYacht = async (id: string) => {
+  return await Yacht.findById(id).catch((e) => {
+    throw e;
+  });
+};
+
 export const getRate = async (currency: string) => {
   if (currency === "EUR") return 1;
   try {
