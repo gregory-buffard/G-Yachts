@@ -64,6 +64,7 @@ jobs:
           echo "MONGO_URI=mongodb://${{secrets.SERVER_IP}}:27017" >> .env
           echo "MONGO_USER=${{secrets.MONGO_USER}}" >> .env
           echo "MONGO_PASS=${{secrets.MONGO_PASS}}" >> .env
+          echo "NEXT_PUBLIC_API=${{secrets.NEXT_PUBLIC_API}}" >> .env
           echo "SUBNET_IP=${{secrets.SUBNET_WEB_IP}}" >> .env
 
     - name: Transfer Compose

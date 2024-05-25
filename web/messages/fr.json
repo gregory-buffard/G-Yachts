@@ -133,6 +133,7 @@
     }
   },
   "yacht": {
+    "noPrice": "Prix sur demande",
     "sleeps": "invités",
     "details": {
       "gallery": "Explorer plus d'images",

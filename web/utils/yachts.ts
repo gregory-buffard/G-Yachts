@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { IContext, useViewContext } from "@/context/view";
+import { IContext } from "@/context/view";
 
 export const currency = (): IContext["currency"] => {
   const currency = Cookies.get("currency") as IContext["currency"];
@@ -40,6 +40,8 @@ export const convertUnit = (amount: number, unit: string) => {
 };
 
 export const formatCurrency = (amount: number, currency: string) => {
+  if (amount === 0) return "";
+
   switch (currency) {
     case "EUR":
       return Number(amount.toFixed(0)).toLocaleString("fr-FR", {
