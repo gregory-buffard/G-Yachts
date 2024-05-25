@@ -62,7 +62,7 @@ export const addYacht = async (yacht: any) => {
         const missingFieldsString = `Missing fields: (${missingFields.join(', ')})`;
         throw new Error(missingFieldsString);
     });
-    return res
+    return {status:"OK"};
 
 }
 

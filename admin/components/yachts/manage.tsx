@@ -26,6 +26,7 @@ import {BooleanLine, ClassicLine, NumberLine} from "@/components/yachts/manageLi
 import {Input} from "@nextui-org/input";
 import Crown from "@/components/Crown";
 import ImgSettings from "@/components/imgsettings";
+import yachts from "@/components/yachts";
 
 interface IManage
     extends Pick<
@@ -60,7 +61,7 @@ const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     )
 }
 
-const Manage = ({data}: { data: IManage }) => {
+const Manage = ({data, setYachts}: { data: IManage, setYachts:any}) => {
     const contextRef = useRef<LottieRefCurrentProps>(null);
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [yacht, setYacht] = useState<IYacht | null>(null);
@@ -136,6 +137,8 @@ const Manage = ({data}: { data: IManage }) => {
                             <RemoveBtn onClick={() => {
                                 onClose()
                                 removeYacht(data._id)
+                                setYachts((prev: any) => prev.filter((y: any) => y._id !=yacht?._id))
+
                             }}/>
                         </ModalFooter>
                     </>}

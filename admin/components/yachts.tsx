@@ -43,7 +43,7 @@ const Yachts = () => {
             {yachts.length > 0 && yachts.map((yacht: IYacht, i: number) => {
                 if (featured && !yacht.featured) return null;
                 return (
-                    <Manage key={i} data={yacht}/>
+                    <Manage key={i} setYachts={setYachts} data={yacht}/>
                 );
 
             })}
