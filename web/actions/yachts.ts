@@ -16,7 +16,7 @@ export const fetchGallery = async ({
   id,
   query,
 }: {
-  type: "sales" | "charter";
+  type: "sales" | "charters";
   id: string;
   query: string;
 }) => {

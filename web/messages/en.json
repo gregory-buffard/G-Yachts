@@ -132,6 +132,60 @@
       "end": "You've reached the end of our catalogue"
     }
   },
+  "charters": {
+    "metadata": {
+      "title": "Charters",
+      "description": "Discover our listing of the finest yachts in the market. G–Yachts offers a wide range of luxury yachts for sale.",
+      "keywords": "charters, yachts, luxury, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Create unforgettable <classic>Memories</classic>",
+      "subtitle": "Yachts for charters",
+      "guests": "guests"
+    },
+    "listing": {
+      "filters": {
+        "any": "Any",
+        "type": {
+          "label": "Yacht type",
+          "all": "All",
+          "motor": "Motor",
+          "sail": "Sail"
+        },
+        "year": "Year",
+        "length": "Yacht length ({unit, select, m {meters} ft {feet} other {}})",
+        "builder": "Builder",
+        "price": "Price",
+        "sleeps": "Guests",
+        "name": {
+          "label": "Yacht name",
+          "all": "All yachts"
+        },
+        "clear": "Clear filters",
+        "currency": "Currency",
+        "sort": {
+          "label": "Sort",
+          "price-asc": "Price (Low to High)",
+          "price-desc": "Price (High to Low)",
+          "length-asc": "Length (Low to High)",
+          "length-desc": "Length (High to Low)",
+          "year-asc": "Year (Low to High)",
+          "year-desc": "Year (High to Low)"
+        }
+      },
+      "views": {
+        "global": "Search results",
+        "bookmarks": "My shortlist",
+        "empty": "Your shortlist is empty..."
+      },
+      "guide": "Click on the icon to add yachts to your shortlist",
+      "info": "Collect your favorite yachts – add more to your short list",
+      "listed": "You've viewed {count} of {total}",
+      "expand": "Load more",
+      "end": "You've reached the end of our catalogue"
+    }
+  },
   "yacht": {
     "sleeps": "guests",
     "details": {
