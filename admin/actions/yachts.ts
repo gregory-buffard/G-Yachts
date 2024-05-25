@@ -5,17 +5,19 @@ import axios from "axios";
 import { revalidatePath } from "next/cache";
 
 export const fetchYachts = async () => {
-  return await Yacht.find()
+  const res = await Yacht.find()
     .select("_id name price builder yearBuilt featured")
     .catch((e) => {
       throw e;
     });
+  return JSON.parse(JSON.stringify(res))
 };
 
-export const fetchYacht = async ({ id }: { id: string }) => {
-  return await Yacht.findById(id).catch((e) => {
+export const fetchYacht = async (id: string ) => {
+  const res = await Yacht.findById(id).catch((e) => {
     throw e;
   });
+  return JSON.parse(JSON.stringify(res));
 };
 
 export const fetchGallery = async ({
@@ -36,6 +38,33 @@ export const fetchGallery = async ({
     });
   return res.data;
 };
+
+export const saveYacht = async (yacht: any) => {
+    await Yacht.findByIdAndUpdate(yacht._id, yacht).catch((e) => {
+        throw e;
+    });
+}
+export const removeYacht = async (id: string) => {
+    await Yacht.findByIdAndDelete(id).catch((e) => {
+        throw e;
+    });
+}
+export const addYacht = async (yacht: any) => {
+    yacht._id =undefined;
+    const res = await new Yacht(yacht).save().catch((e:any) => {
+        const regex = /Path `(\w+)` is required/g;
+        let missingFields = [];
+        let match;
+
+        while ((match = regex.exec(e)) !== null) {
+            missingFields.push(match[1]);
+        }
+        const missingFieldsString = `Missing fields: (${missingFields.join(', ')})`;
+        throw new Error(missingFieldsString);
+    });
+    return res
+
+}
 
 export const changeFeatured = async ({
   type,
@@ -63,9 +92,10 @@ export const changeFeatured = async ({
 };
 
 export const fetchFeatured = async () => {
-  return await Yacht.find({ featured: true })
-    .select("_id name price builder length yearBuilt sleeps")
+  const res = await Yacht.find({ featured: true })
+    .select("_id name price builder photos length yearBuilt sleeps")
     .catch((e) => {
       throw e;
     });
+    return JSON.parse(JSON.stringify(res));
 };

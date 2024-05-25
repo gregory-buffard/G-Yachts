@@ -3,20 +3,25 @@
 import { IYacht } from "@/types/yacht";
 import { ObjectId } from "mongoose";
 import { Medium } from "@/components/widgetsProviders";
-import { useEffect } from "react";
-import { useViewContext } from "@/context/view";
+import {useEffect, useState} from "react";
+import {fetchFeatured} from "@/actions/yachts";
 
 interface IFeatured
   extends Pick<
     IYacht,
-    "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps"
+    "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps" | "photos"
   > {
   _id: ObjectId;
 }
 
-const FeaturedContent = ({ data }: { data: IFeatured[] }) => {
+const FeaturedContent = ({setActive}:{setActive:any}) => {
+  const [data, setData] = useState<IFeatured[]>([]);
+
+  useEffect(() => {
+    fetchFeatured().then((data) => setData(data))
+  }, []);
+
   const carouselData = [...data, ...data],
-    { openView } = useViewContext(),
     setTranslate = (amount: number) => {
       document.documentElement.style.setProperty(
         "--translate-featured",
@@ -68,8 +73,8 @@ const FeaturedContent = ({ data }: { data: IFeatured[] }) => {
 
   return (
     <Medium
-      onClick={() => openView("yachts")}
-      name={"En vedette"}
+      onClick={() => {setActive("yachts")} }
+      name={"Active Yachts"}
       className={"overflow-hidden shadow-inner bg-neutral-200 group"}
     >
       {carouselData.map((yacht, i) => (
@@ -79,7 +84,7 @@ const FeaturedContent = ({ data }: { data: IFeatured[] }) => {
             "w-full h-[44vw] lg:h-[16vw] bg-cover bg-center translate-y-[var(--translate-featured)] rounded-3xl scale-[var(--scale-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out flex justify-start items-start py-[2vw] lg:py-[1vw] px-[2vw] lg:px-[1vw]"
           }
           style={{
-            backgroundImage: `url(http://51.75.16.185/images/yachts/${yacht._id}/featured.webp)`,
+            backgroundImage: `url(http://51.75.16.185/images/yachts/${yacht._id}/${yacht.photos.featured})`,
           }}
         >
           <div className={"flex justify-center items-center"}>
