@@ -22,7 +22,7 @@ const Card = ({ card }: { card: IFeatured }) => {
           "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
         }
         style={{
-          backgroundImage: `url(http://51.75.16.185/images/yachts/sales/${card._id}/${card.photos.featured})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_API}/images/yachts/${card._id}/${card.photos.featured})`,
         }}
       >
         <p className={"bg-white px-[1.5vw] py-[0.5vh] rounded-sm m-[1vh]"}>
