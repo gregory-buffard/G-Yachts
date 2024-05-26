@@ -73,19 +73,19 @@ const Card = ({ data }: { data: ICharter }) => {
           }
         >
           <Photo
-            url={`url(http://51.75.16.185/images/charters/${data._id}/${data.photos.gallery[0]})`}
+            url={`url(${process.env.NEXT_PUBLIC_API}/images/charters/${data._id}/${data.photos.gallery[0]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(http://51.75.16.185/images/charters/${data._id}/${data.photos.gallery[1]})`}
+            url={`url(${process.env.NEXT_PUBLIC_API}/images/charters/${data._id}/${data.photos.gallery[1]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(http://51.75.16.185/images/charters/${data._id}/${data.photos.gallery[2]})`}
+            url={`url(${process.env.NEXT_PUBLIC_API}/images/charters/${data._id}/${data.photos.gallery[2]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}

@@ -214,6 +214,34 @@
       "CTA": "Contact broker"
     }
   },
+  "charter": {
+    "noPrice": "Price on application",
+    "sleeps": "guests",
+    "details": {
+      "gallery": "View more images",
+      "info": "Key information",
+      "features": "Key features",
+      "brochure": "Brochure",
+      "characteristics": {
+        "type": {
+          "label": "Type",
+          "motor": "Motor",
+          "sail": "Sail"
+        },
+        "length": "Length",
+        "beam": "Beam",
+        "sleeps": "Beds",
+        "rooms": "Rooms",
+        "draft": "Draft",
+        "tonnage": "Weight",
+        "yearBuilt": "Year built",
+        "yearModel": "Year model",
+        "hull": "Hull type",
+        "location": "Location"
+      },
+      "CTA": "Contact broker"
+    }
+  },
   "contact": {
     "metadata": {
       "title": "Contact",

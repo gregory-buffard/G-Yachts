@@ -160,6 +160,88 @@
       "CTA": "Contactez un courtier"
     }
   },
+  "charters": {
+    "metadata": {
+      "title": "Charters",
+      "description": "Découvrez notre liste des meilleurs yachts du marché.",
+      "keywords": "yachts, location, marché, liste, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Créer des moments <classic>inoubliables</classic>",
+      "subtitle": "Yachts à location",
+      "guests": "invités"
+    },
+    "listing": {
+      "filters": {
+        "any": "N'importe quel",
+        "type": {
+          "label": "Type de yacht",
+          "all": "Tous",
+          "motor": "Moteur",
+          "sail": "Voile"
+        },
+        "year": "Année",
+        "length": "Longueur du yacht ({unit, select, m {metres} ft {pieds} other {}})",
+        "builder": "Constructeur",
+        "price": "Prix",
+        "sleeps": "Invités",
+        "name": {
+          "label": "Nom du yacht",
+          "all": "Tous les yachts"
+        },
+        "clear": "Effacer les filtres",
+        "currency": "Devise",
+        "sort": {
+          "label": "Trier",
+          "price-asc": "Prix (du plus bas au plus élevé)",
+          "price-desc": "Prix (du plus élevé au plus bas)",
+          "length-asc": "Longueur (du plus bas au plus élevé)",
+          "length-desc": "Longueur (du plus élevé au plus bas)",
+          "year-asc": "Année (du plus récent au plus ancien)",
+          "year-desc": "Année (du plus ancien au plus récent)"
+        }
+      },
+      "views": {
+        "global": "Resultats de recherche",
+        "bookmarks": "Ma liste de favoris",
+        "empty": "Votre liste est vide..."
+      },
+      "guide": "Cliquez sur l'icône pour ajouter des yachts à votre liste de favoris",
+      "info": "Rassemblez vos yachts préférés – ajoutez-en plus à votre liste de favoris",
+      "listed": "Vous avez vu {count} sur {total}",
+      "expand": "Charger plus",
+      "end": "Vous avez atteint la fin de notre catalogue"
+    }
+  },
+  "charter": {
+    "noPrice": "Prix sur demande",
+    "sleeps": "invités",
+    "details": {
+      "gallery": "Explorer plus d'images",
+      "info": "Informations clés",
+      "features": "Caractéristiques clés",
+      "brochure": "Brochure",
+      "characteristics": {
+        "type": {
+          "label": "Type",
+          "motor": "Moteur",
+          "sail": "Voile"
+        },
+        "length": "Longueur",
+        "beam": "Largeur",
+        "sleeps": "Lits",
+        "rooms": "Cabines",
+        "draft": "Tirant d'eau",
+        "tonnage": "Poids",
+        "yearBuilt": "Année de construction",
+        "yearModel": "Année du modèle",
+        "hull": "Type de coque",
+        "location": "Emplacement"
+      },
+      "CTA": "Contactez un courtier"
+    }
+  },
   "contact": {
     "metadata": {
       "title": "Contact",

@@ -5,7 +5,8 @@ import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { convertUnit } from "@/utils/yachts";
 import { useViewContext } from "@/context/view";
-import { useRouter } from "next/navigation";
+import Gallery from "@/components/charter/gallery";
+import { useState } from "react";
 
 const SwitchView = ({
   props,
@@ -29,10 +30,12 @@ const SwitchView = ({
 };
 
 const Details = () => {
-  const { charter, changeView } = useCharter(),
+  const { charter, changeView, view } = useCharter(),
     { units } = useViewContext(),
     params = useParams(),
-    router = useRouter(),
+    [photo, setPhoto] = useState<
+      (typeof charter.photos.gallery)[number] | null
+    >(null),
     t = useTranslations("charter.details");
 
   const characteristics = [
@@ -84,7 +87,10 @@ const Details = () => {
         {charter.photos.gallery.slice(0, 5).map((photo, i) => (
           <button
             type={"button"}
-            onClick={() => changeView("gallery")}
+            onClick={() => {
+              setPhoto(photo);
+              changeView("gallery");
+            }}
             key={i}
             className={`${i === 0 ? "w-full md:h-[28vw]" : "w-[45.5vw] md:w-[20.35vw] md:h-[14vw]"} bg-cover bg-center h-[28vh] active:scale-95 transition-transform duration-300 ease-in-out flex justify-end items-end py-[1vh] md:py-[2vh] px-[2vw]`}
             style={{
@@ -118,22 +124,26 @@ const Details = () => {
           <SwitchView props={{ view: "features", label: t("features") }} />
         </div>
         <div className={"w-full flex-col justify-center items-center"}>
-          {characteristics.map((property, i) => (
-            <>
-              <div
-                key={i}
-                className={
-                  "w-full flex flex-row justify-between items-center py-[0.5vh]"
-                }
-              >
-                <div className={"w-1/2 text-rock-300"}>{property.label}</div>
-                <div className={"w-1/2 text-black"}>{property.value}</div>
-              </div>
-              {i !== characteristics.length - 1 ? (
-                <div className={"w-full h-[0.25vh] bg-rock-200"} />
-              ) : null}
-            </>
-          ))}
+          {view === "info" || view === "features" ? (
+            characteristics.map((property, i) => (
+              <>
+                <div
+                  key={i}
+                  className={
+                    "w-full flex flex-row justify-between items-center py-[0.5vh]"
+                  }
+                >
+                  <div className={"w-1/2 text-rock-300"}>{property.label}</div>
+                  <div className={"w-1/2 text-black"}>{property.value}</div>
+                </div>
+                {i !== characteristics.length - 1 ? (
+                  <div className={"w-full h-[0.25vh] bg-rock-200"} />
+                ) : null}
+              </>
+            ))
+          ) : (
+            <Gallery current={photo} />
+          )}
         </div>
         <a
           href={`mailto:${charter.brokerEmail}`}
