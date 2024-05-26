@@ -252,10 +252,6 @@ const Listing = ({ data }: { data: IYacht[] }) => {
     setFilteredData(filtered);
   }, [filter, data]);
 
-  useEffect(() => {
-    console.log(units.length);
-  }, [units]);
-
   return (
     <section
       className={

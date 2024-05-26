@@ -9,17 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@kinde-oss/kinde-auth-nextjs": "^2.2.10",
     "@nextui-org/react": "^2.3.6",
     "axios": "^1.6.8",
     "lottie-colorify": "^0.8.0",
     "lottie-react": "^2.4.0",
     "mongoose": "^8.3.3",
+    "multer": "^1.4.5-lts.1",
     "next": "^14.2.3",
+    "next-connect": "^1.0.0",
     "react": "^18",
     "react-dom": "^18",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@types/multer": "^1.4.11",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

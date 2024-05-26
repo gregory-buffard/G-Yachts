@@ -1,4 +1,5 @@
 export interface IYacht {
+  _id: string;
   LOA: number;
   beam: number;
   brokerEmail: string;

@@ -187,6 +187,7 @@
     }
   },
   "yacht": {
+    "noPrice": "Price on application",
     "sleeps": "guests",
     "details": {
       "gallery": "View more images",

@@ -1,19 +1,34 @@
+"use client";
 import Nav from "@/components/nav";
+import Yachts from "@/components/yachts";
+import {useEffect, useState} from "react";
+import Dashboard from "@/components/dashboard";
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
+import Auth from "@/components/auth";
+import {redirect} from "next/navigation";
+import New from "@/components/new";
 
 const App = () => {
-  return (
-    <main className="w-full h-screen flex justify-center items-center bg-gradient-to-tr from-red-300 to-blue-600">
-      <Nav />
-      {/*<form
-        action={async (formData) => {
-          await uploadImages(formData, "662810408f1b183f77e99b57");
-        }}
-      >
-        <input type={"file"} name={"images"} multiple />
-        <button type={"submit"}>Upload</button>
-      </form>*/}
-    </main>
-  );
+    const [active, setActive] = useState<"dashboard"|"yachts"| "new">("dashboard");
+    const { isAuthenticated, isLoading } = useKindeBrowserClient();
+    const comps = {
+        dashboard: <Dashboard setActive={setActive}/>,
+        yachts: <Yachts/>,
+        new: <New setActive={setActive}/>
+    };
+
+
+
+    if (isLoading) return <div>Loading...</div>;
+    if (!isAuthenticated) redirect('/api/auth/login?post_login_redirect_url=/')
+
+    return (
+        <main className="w-full h-screen flex justify-center items-center bg-gray-/10">
+            <Nav active={active} setActive={setActive}/>
+            {comps[active]}
+        </main>
+    );
 };
 
 export default App;
