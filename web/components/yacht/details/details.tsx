@@ -5,8 +5,11 @@ import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { convertUnit } from "@/utils/yachts";
 import { useViewContext } from "@/context/view";
-import Gallery from "@/components/yacht/gallery";
 import { useState } from "react";
+import dynamic from "next/dynamic";
+import { AnimatePresence } from "framer-motion";
+
+const Gallery = dynamic(() => import("@/components/yacht/gallery/gallery"));
 
 const SwitchView = ({
   props,
@@ -33,9 +36,8 @@ const Details = () => {
   const { yacht, changeView, view } = useYacht(),
     { units } = useViewContext(),
     params = useParams(),
-    [photo, setPhoto] = useState<(typeof yacht.photos.gallery)[number] | null>(
-      null,
-    ),
+    [photo, setPhoto] = useState<number | null>(null),
+    [disabled, disable] = useState<boolean>(false),
     t = useTranslations("yacht.details");
 
   const characteristics = [
@@ -88,25 +90,27 @@ const Details = () => {
           <button
             type={"button"}
             onClick={() => {
-              setPhoto(photo);
               changeView("gallery");
+              if (!disabled) setPhoto(i);
             }}
             key={i}
-            className={`${i === 0 ? "w-full md:h-[28vw]" : "w-[45.5vw] md:w-[20.35vw] md:h-[14vw]"} bg-cover bg-center h-[28vh] active:scale-95 transition-transform duration-300 ease-in-out flex justify-end items-end py-[1vh] md:py-[2vh] px-[2vw]`}
+            className={`${i === 0 ? "w-full md:h-[28vw]" : "w-[45.5vw] md:w-[20.35vw] md:h-[14vw]"} bg-cover bg-center h-[28vh] ${!disabled && "active:scale-95"} transition-transform duration-300 ease-in-out flex justify-end items-end py-[1vh] md:py-[2vh] px-[2vw]`}
             style={{
               backgroundImage: `url(${process.env.NEXT_PUBLIC_API}/images/yachts/${params.id}/${photo})`,
             }}
           >
-            {i === yacht.photos.gallery.slice(0, 5).length - 1 ? (
+            {i === yacht.photos.gallery.slice(0, 5).length - 1 && (
               <button
+                onMouseEnter={() => disable(true)}
+                onMouseLeave={() => disable(false)}
                 type={"button"}
                 className={
-                  "bg-white hover:bg-rock-200 active:bg-rock-200 transition-colors duration-200 ease-in-out px-[2vw] md:px-[1vw] py-[0.5vh] rounded-md drop-shadow-md"
+                  "bg-white hover:bg-rock-200 active:bg-rock-200 active:scale-95 transition-[colors,_transform] duration-200 ease-in-out px-[2vw] md:px-[1vw] py-[0.5vh] rounded-md drop-shadow-md"
                 }
               >
                 <label className={"cursor-pointer"}>{t("gallery")}</label>
               </button>
-            ) : null}
+            )}
           </button>
         ))}
       </div>
@@ -124,26 +128,27 @@ const Details = () => {
           <SwitchView props={{ view: "features", label: t("features") }} />
         </div>
         <div className={"w-full flex-col justify-center items-center"}>
-          {view === "info" || view === "features" ? (
-            characteristics.map((property, i) => (
-              <>
-                <div
-                  key={i}
-                  className={
-                    "w-full flex flex-row justify-between items-center py-[0.5vh]"
-                  }
-                >
-                  <div className={"w-1/2 text-rock-300"}>{property.label}</div>
-                  <div className={"w-1/2 text-black"}>{property.value}</div>
-                </div>
-                {i !== characteristics.length - 1 ? (
-                  <div className={"w-full h-[0.25vh] bg-rock-200"} />
-                ) : null}
-              </>
-            ))
-          ) : (
-            <Gallery current={photo} />
-          )}
+          {view === "features" ||
+            (view === "info" &&
+              characteristics.map((property, i) => (
+                <>
+                  <div
+                    key={i}
+                    className={
+                      "w-full flex flex-row justify-between items-center py-[0.5vh]"
+                    }
+                  >
+                    <div className={"w-1/2 text-rock-300"}>
+                      {property.label}
+                    </div>
+                    <div className={"w-1/2 text-black"}>{property.value}</div>
+                  </div>
+                  {i !== characteristics.length - 1 ? (
+                    <div className={"w-full h-[0.25vh] bg-rock-200"} />
+                  ) : null}
+                </>
+              )))}
+          <Gallery current={photo} setCurrent={setPhoto} />
         </div>
         <a
           href={`mailto:${yacht.brokerEmail}`}
