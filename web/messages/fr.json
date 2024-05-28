@@ -49,7 +49,7 @@
       "charter": "CHARTER",
       "management": "GESTION",
       "construction": "NOUVELLE CONSTRUCTION",
-      "sales-p":"Découvrez notre liste des meilleurs yachts du marché.",
+      "sales-p": "Découvrez notre liste des meilleurs yachts du marché.",
       "charter-p": "Faites l'expérience d'une liberté inégalée et d'un luxe sur mesure grâce à nos locations de yachts sélectionnées avec soin.",
       "management-p": "Naviguez en toute tranquillité d'esprit grâce à nos conseils sur les complexités de la propriété d'un yacht.",
       "construction-p": "Transformez votre yacht de rêve en réalité avec un savoir-faire sur mesure."
@@ -57,7 +57,7 @@
     "working": {
       "title": "Travailler <classic>ensemble</classic>",
       "subtitle": "Achetez avec nous",
-      "description":"Grâce à une connaissance approfondie du marché et une compréhension ouverte de vos exigences, nous offrons un accès à une flotte de yachts à vendre, la sélection de yachts de luxe à vendre la plus variée et sophistiquée sur le marché aujourd'hui.",
+      "description": "Grâce à une connaissance approfondie du marché et une compréhension ouverte de vos exigences, nous offrons un accès à une flotte de yachts à vendre, la sélection de yachts de luxe à vendre la plus variée et sophistiquée sur le marché aujourd'hui.",
       "CTA": "Achetez un yacht"
     },
     "featured": {
@@ -251,7 +251,7 @@
     },
     "CTA": "Contactez-<classic>nous</classic>",
     "subheading": "Envoyez-nous une demande de renseignements ou parlez à l'un des membres de notre équipe par WhatsApp, par email ou par téléphone.",
-    "form" : {
+    "form": {
       "name": "Nom*",
       "email": "Email*",
       "tel": "Téléphone",
@@ -285,5 +285,26 @@
     "terms": "Conditions",
     "privacy": "Confidentialité",
     "credits": "Accréditations"
+  },
+  "destinations": {
+    "heroSubtitle": "YACHTS FOR CHARTER",
+    "heroTitle": "<classic>AMAZING</classic> DESTINATIONS"
+  },
+  "destination": {
+    "heroSubtitle": "Charter a yacht",
+    "details": {
+      "explore": "Explore",
+      "bestTimeTiVisit": "Best time to visit",
+      "currency": "Currency",
+      "languages": "Languages",
+      "gettingThere": "Getting there",
+      "button": "Charter a yacht"
+    },
+    "charters": {
+      "exclusive": "Exclusive",
+      "title": "Charters in <classic>{destination}</classic>",
+      "all": "View all",
+      "sleeps": "guests"
+    }
   }
 }

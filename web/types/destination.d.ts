@@ -1,7 +1,19 @@
 export interface IDestination {
+  _id: string;
+  destination: string;
   country: string;
   region: string;
-    photos: {
-        featured: string;
-    };
+  continent: string;
+  photos: {
+    featured: string;
+    destinationPhoto: string;
+  };
+  description: string;
+  info: {
+    bestTimeToVisit: string;
+    languages: string;
+    gettingThere: string;
+    currency: string;
+  };
+  coordinates?: [number, number];
 }

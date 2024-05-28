@@ -1,4 +1,4 @@
-import { fetchDestinations } from "@/app/actions";
+import { fetchDestinations } from "@/actions/destinations";
 import Section from "@/components/index/destinations/components";
 
 const Destinations = async () => (

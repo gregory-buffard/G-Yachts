@@ -49,7 +49,7 @@
       "charter": "CHARTER",
       "management": "MANAGEMENT",
       "construction": "NEW CONSTRUCTION",
-      "sales-p":"Discover our listing of the finest yachts in the market.",
+      "sales-p": "Discover our listing of the finest yachts in the market.",
       "charter-p": "Experience unparalleled freedom and bespoke luxury with our hand-selected yacht charters.",
       "management-p": "Sail with peace of mind as we navigate the complexities of yacht ownership.",
       "construction-p": "Turn your dream yacht into reality with tailored craftsmanship."
@@ -251,7 +251,7 @@
     },
     "CTA": "Get in <classic>touch</classic>",
     "subheading": "Send us an enquiry or speak to one of our team through WhatsApp, email or phone.",
-    "form" : {
+    "form": {
       "name": "name*",
       "email": "Email*",
       "tel": "Phone",
@@ -285,5 +285,26 @@
     "terms": "Terms",
     "privacy": "Privacy",
     "credits": "Credits"
+  },
+  "destinations": {
+    "heroSubtitle": "YACHTS FOR CHARTER",
+    "heroTitle": "<classic>AMAZING</classic> DESTINATIONS"
+  },
+  "destination": {
+    "heroSubtitle": "Charter a yacht",
+    "details": {
+      "explore": "Explore",
+      "bestTimeTiVisit": "Best time to visit",
+      "currency": "Currency",
+      "languages": "Languages",
+      "gettingThere": "Getting there",
+      "button": "Charter a yacht"
+    },
+    "charters": {
+      "exclusive": "Exclusive",
+      "title": "Charters in <classic>{destination}</classic>",
+      "all": "View all",
+      "sleeps": "guests"
+    }
   }
 }
