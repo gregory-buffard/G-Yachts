@@ -50,7 +50,7 @@ services:
       - PORT=5000
       - HOST=${ADMIN_IP}
     ports:
-      - "5000:5000"
+      - "8080:5000"
     networks:
       admin:
         ipv4_address: ${ADMIN_API_IP}
