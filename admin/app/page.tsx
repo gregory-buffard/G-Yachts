@@ -8,6 +8,7 @@ import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
 import Auth from "@/components/auth";
 import {redirect} from "next/navigation";
 import New from "@/components/new";
+import Charter from "@/components/charter";
 
 const App = () => {
     const [active, setActive] = useState<"dashboard"|"yachts"| "new">("dashboard");
@@ -15,7 +16,8 @@ const App = () => {
     const comps = {
         dashboard: <Dashboard setActive={setActive}/>,
         yachts: <Yachts/>,
-        new: <New setActive={setActive}/>
+        new: <New setActive={setActive}/>,
+        charter:<Charter setActive={setActive}/>
     };
 
 
