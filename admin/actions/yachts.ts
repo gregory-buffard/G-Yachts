@@ -10,13 +10,6 @@ export const fetchYachts = async () => {
     .catch((e) => {
       throw e;
     });
-  return JSON.parse(JSON.stringify(res))
-};
-
-export const fetchYacht = async (id: string ) => {
-  const res = await Yacht.findById(id).catch((e) => {
-    throw e;
-  });
   return JSON.parse(JSON.stringify(res));
 };
 
@@ -40,31 +33,30 @@ export const fetchGallery = async ({
 };
 
 export const saveYacht = async (yacht: any) => {
-    await Yacht.findByIdAndUpdate(yacht._id, yacht).catch((e) => {
-        throw e;
-    });
-}
+  await Yacht.findByIdAndUpdate(yacht._id, yacht).catch((e) => {
+    throw e;
+  });
+};
 export const removeYacht = async (id: string) => {
-    await Yacht.findByIdAndDelete(id).catch((e) => {
-        throw e;
-    });
-}
+  await Yacht.findByIdAndDelete(id).catch((e) => {
+    throw e;
+  });
+};
 export const addYacht = async (yacht: any) => {
-    yacht._id =undefined;
-    const res = await new Yacht(yacht).save().catch((e:any) => {
-        const regex = /Path `(\w+)` is required/g;
-        let missingFields = [];
-        let match;
+  yacht._id = undefined;
+  const res = await new Yacht(yacht).save().catch((e: any) => {
+    const regex = /Path `(\w+)` is required/g;
+    let missingFields = [];
+    let match;
 
-        while ((match = regex.exec(e)) !== null) {
-            missingFields.push(match[1]);
-        }
-        const missingFieldsString = `Missing fields: (${missingFields.join(', ')})`;
-        throw new Error(missingFieldsString);
-    });
-    return {status:"OK"};
-
-}
+    while ((match = regex.exec(e)) !== null) {
+      missingFields.push(match[1]);
+    }
+    const missingFieldsString = `Missing fields: (${missingFields.join(", ")})`;
+    throw new Error(missingFieldsString);
+  });
+  return { status: "OK" };
+};
 
 export const changeFeatured = async ({
   type,
@@ -97,5 +89,5 @@ export const fetchFeatured = async () => {
     .catch((e) => {
       throw e;
     });
-    return JSON.parse(JSON.stringify(res));
+  return JSON.parse(JSON.stringify(res));
 };
