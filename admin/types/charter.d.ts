@@ -1,4 +1,5 @@
 export interface ICharter {
+    _id: string;
   LOA: number;
   beam: number;
   brokerEmail: string;

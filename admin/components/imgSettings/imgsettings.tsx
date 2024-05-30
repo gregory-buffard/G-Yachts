@@ -1,8 +1,7 @@
 import {Button, Modal, ModalBody, ModalContent, useDisclosure} from "@nextui-org/react";
 import {ModalHeader} from "@nextui-org/modal";
 import {useEffect, useState} from "react";
-import axios from "axios";
-import {fetchFeatured, fetchYacht} from "@/actions/yachts";
+import ImgSettingsModal from "./imgSettingsModal";
 
 const ImgSettings = ({yacht}: { yacht: any }) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -19,7 +18,6 @@ const ImgSettings = ({yacht}: { yacht: any }) => {
                 variant={"light"}
                 onClick={() => {
                     onOpen()
-                    //fetch
                 }
                 }
             >
@@ -31,19 +29,7 @@ const ImgSettings = ({yacht}: { yacht: any }) => {
                 </div>
 
             </Button>
-            <Modal
-                className={"h-[80%]"}
-                size={"4xl"}
-                isOpen={isOpen}
-                onClose={onClose}
-            >
-                <ModalContent>
-                    <ModalHeader>Image Settings</ModalHeader>
-                    <ModalBody>
-
-                    </ModalBody>
-                </ModalContent>
-            </Modal>
+            {isOpen && <ImgSettingsModal yacht={yacht} onClose={onClose} isOpen={isOpen}/>}
         </div>
     )
 }

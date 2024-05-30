@@ -1,53 +1,34 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useState } from "react";
+import React, {createContext, ReactNode, useContext, useState, useEffect, useMemo} from "react";
 
-interface IActions {
-  openView: (view: IContext["view"]) => void;
+
+interface IContext {
+  active: "dashboard" | "yachts" | "new" | "charters" | "destinations";
+  setActive: (active: "dashboard" | "yachts" | "new" | "charters" | "destinations") => void;
 }
 
-export interface IContext extends IActions {
-  view: (typeof views)[number];
-}
 
-export const views = ["dashboard", "yachts"];
+const ViewContext = createContext<IContext>(undefined!);
 
-const ViewContext = createContext<IContext | undefined>(undefined);
+export const ViewProvider = ({ children }: { children: ReactNode }) => {
+  const [active, setActive] = useState<"dashboard" | "yachts" | "new" | "charters" | "destinations">("dashboard");
 
-export const ViewProvider = ({
-  children,
-  dashboard,
-  yachts,
-}: {
-  children: ReactNode;
-  dashboard: ReactNode;
-  yachts: ReactNode;
-}) => {
-  const [view, openView] = useState<IContext["view"]>("dashboard");
 
-  const value = {
-    view,
-    openView,
-  };
+
+  const value = { active, setActive };
 
   return (
-    <ViewContext.Provider value={value}>
-      {view === "dashboard" ? (
-        dashboard
-      ) : view === "yachts" ? (
-        yachts
-      ) : (
-        <h1>Oops! Something went wrong.</h1>
-      )}
-      {children}
-    </ViewContext.Provider>
+      <ViewContext.Provider value={value}>
+        {children}
+      </ViewContext.Provider>
   );
 };
 
-export const useViewContext = (): IContext => {
+export const useViewContext = () => {
   const context = useContext(ViewContext);
   if (context === undefined) {
-    throw new Error("useViewContext must be used within an ViewProvider");
+    throw new Error("useViewContext must be used within a ViewProvider");
   }
   return context;
 };

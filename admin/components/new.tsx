@@ -1,3 +1,4 @@
+"use client"
 import {BooleanLine, ClassicLine, NumberLine} from "@/components/yachts/manageLines";
 import {Button, Modal, ModalBody, ModalContent, ModalFooter, ScrollShadow, useDisclosure} from "@nextui-org/react";
 import {IYacht} from "@/types/yacht";
@@ -6,8 +7,10 @@ import {any} from "prop-types";
 import {Input} from "@nextui-org/input";
 import {addYacht} from "@/actions/yachts";
 import {ModalHeader} from "@nextui-org/modal";
+import {useViewContext} from "@/context/view";
 
-const New = ({setActive}: { setActive: any }) => {
+const New = () => {
+    const {setActive} = useViewContext();
     const [find, setFind] = useState<string>("");
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [e, setE] = useState<string>("");

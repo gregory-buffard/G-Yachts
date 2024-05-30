@@ -6,6 +6,7 @@ import {ReactNode} from "react";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import Auth from "@/components/auth";
 import {KindeProvider} from "@kinde-oss/kinde-auth-nextjs";
+import {ViewProvider} from "@/context/view";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -28,7 +29,9 @@ export default async function RootLayout({
         <html lang="en">
         <body className={`${inter.className} w-full h-max bg-neutral-100`}>
         <UIProvider>
-            {children}
+            <ViewProvider>
+                {children}
+            </ViewProvider>
         </UIProvider>
         </body>
         </html>
