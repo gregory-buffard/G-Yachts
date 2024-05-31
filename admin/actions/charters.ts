@@ -1,7 +1,36 @@
+"use server"
 import {Charter} from "@/models/charter";
 import axios from "axios";
 import {revalidatePath} from "next/cache";
+import {Yacht} from "@/models/yacht";
 
+export const uploadCharterImages = async (event: any, id: string) => {
+    try {
+        event.preventDefault();
+        const formData = new FormData();
+        const fileField = document.querySelector('input[type="file"]');
+
+        const res = await fetch(`${process.env.API_URL}/charters/images/${id}`, {
+            method: "POST",
+            body: formData,
+        });
+        return await res.json().then((d) => console.log(d));
+    } catch (e) {
+        console.error(e);
+    }
+};
+
+export const getChartersImages = async (id: string) => {
+    try {
+        const images = await Charter.findById(id).select("photos.gallery").exec()
+        console.log(images.photos.gallery)
+        return Array.from(images.photos.gallery).map((image: any) => {
+            return `${process.env.NEXT_PUBLIC_API}/charters/images/${id}/${image}`
+        });
+    } catch (e) {
+        console.error(e);
+    }
+}
 
 export const getCharters = async () => {
     const res = await Charter.find().catch((e) => {
@@ -15,25 +44,6 @@ export const fetchCharter = async (id: string ) => {
         throw e;
     });
     return JSON.parse(JSON.stringify(res));
-};
-
-export const fetchGallery = async ({
-                                       type,
-                                       id,
-                                       query,
-                                   }: {
-    type: "sales" | "charter";
-    id: string;
-    query: string;
-}) => {
-    const res = await axios
-        .get(`${process.env.API_URL}/charter/images/${id}`, {
-            data: { type: type, target: query },
-        })
-        .catch((e) => {
-            throw e;
-        });
-    return res.data;
 };
 
 export const saveCharter = async (charter: any) => {
@@ -56,38 +66,16 @@ export const addCharter = async (charter: any) => {
         while ((match = regex.exec(e)) !== null) {
             missingFields.push(match[1]);
         }
+        if (missingFields.length === 0) {
+            throw e;
+
+        }
         const missingFieldsString = `Missing fields: (${missingFields.join(', ')})`;
         throw new Error(missingFieldsString);
     });
     return {status:"OK"};
 
 }
-
-export const changeFeatured = async ({
-                                         type,
-                                         id,
-                                         photo,
-                                     }: {
-    type: "sales" | "charter";
-    id: string;
-    photo: string;
-}) => {
-    const res = await axios
-        .put(`${process.env.API_URL}/charter/images/${id}`, {
-            type,
-            photo,
-        })
-        .then(
-            async () =>
-                await Charter.findByIdAndUpdate(id, { "photos.featured": photo }),
-        )
-        .catch((e) => {
-            throw e;
-        });
-    revalidatePath(`/${id}`);
-    return res.status;
-};
-
 export const fetchFeatured = async () => {
     const res = await Charter.find({ featured: true })
         .select("_id name price builder photos length yearBuilt sleeps")
@@ -96,3 +84,18 @@ export const fetchFeatured = async () => {
         });
     return JSON.parse(JSON.stringify(res));
 };
+
+export const removeChartersImage = async (id: string, photo: string) => {
+    await fetch(`${process.env.API_URL}/charters/images/${id}/${photo}`, {
+        method: "DELETE",
+    }).then(async (d) => {
+        console.log(d)
+        const yacht = await Charter.findById(id).select("photos.gallery").exec()
+        yacht.photos.gallery = yacht.photos.gallery.filter((image: any) => image !== photo);
+        await yacht.save().catch((e: any) => {
+            throw e;
+        });
+    }).catch((e) => {
+        throw e;
+    });
+}

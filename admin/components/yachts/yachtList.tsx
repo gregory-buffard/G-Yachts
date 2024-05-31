@@ -1,13 +1,17 @@
 "use client"
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {IYacht} from "@/types/yacht";
 import {Button, ScrollShadow} from "@nextui-org/react";
 import Manage from "@/components/yachts/manage";
-import {removeYacht, saveYacht} from "@/actions/yachts";
+import {fetchYachts, removeYacht, saveYacht} from "@/actions/yachts";
 
-const YachtList = ({data}: { data: IYacht[] }) => {
-    const [yachts, setYachts] = useState<IYacht[]>(data);
+const YachtList = () => {
+    const [yachts, setYachts] = useState<IYacht[]>([]);
     const [featured, setFeatured] = useState<boolean>(false);
+    useEffect(() => {
+        fetchYachts().then((res) => setYachts(res? res : []));
+    }, []);
+
     return (
         <>
             <div className={"w-fit flex flex-col"}>

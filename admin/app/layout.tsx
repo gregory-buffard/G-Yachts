@@ -7,6 +7,7 @@ import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import Auth from "@/components/auth";
 import {KindeProvider} from "@kinde-oss/kinde-auth-nextjs";
 import {ViewProvider} from "@/context/view";
+import {redirect} from "next/navigation";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -25,6 +26,10 @@ export default async function RootLayout({
 }>) {
     const {isAuthenticated} = getKindeServerSession();
 
+    if (!await isAuthenticated()) {
+        redirect('/api/auth/login');
+        return <html></html>;
+    }
     return (
         <html lang="en">
         <body className={`${inter.className} w-full h-max bg-neutral-100`}>
