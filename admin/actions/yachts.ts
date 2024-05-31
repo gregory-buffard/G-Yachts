@@ -104,3 +104,19 @@ export const getYachtImages = async (id: string) => {
         console.error(e);
     }
 }
+
+export const uploadYachtImages = async (event: any, id: string) => {
+    try {
+        event.preventDefault();
+        const formData = new FormData();
+        const fileField = document.querySelector('input[type="file"]');
+
+        const res = await fetch(`${process.env.API_URL}/yachts/images/${id}`, {
+            method: "POST",
+            body: formData,
+        });
+        return await res.json().then((d) => console.log(d));
+    } catch (e) {
+        console.error(e);
+    }
+};

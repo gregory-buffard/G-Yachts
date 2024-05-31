@@ -1,8 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import {IYacht} from "@/types/yacht";
-import {ObjectId} from "mongoose";
 import {
     Button,
     Chip, Image,
@@ -20,13 +17,11 @@ import {useRef, useState} from "react";
 import {ModalHeader} from "@nextui-org/modal";
 import Gallery from "@/components/yachts/gallery";
 import {
-    changeFeatured,
+    changeYachtFeatured,
     fetchYacht,
     fetchYachtFeatured,
-    getFeatured,
-    getYachtFeatured,
-    removeYacht,
-    saveYacht
+    removeYachtImage,
+    uploadYachtImages
 } from "@/actions/yachts";
 import {object} from "prop-types";
 import {useYacht} from "@/context/yacht";
@@ -60,7 +55,12 @@ const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     )
 }
 
-const Manage = ({data, setYachts , saveYachts, removeYachts}: { data: any, setYachts:any, saveYachts:any, removeYachts:any}) => {
+const Manage = ({data, setYachts, saveYachts, removeYachts}: {
+    data: any,
+    setYachts: any,
+    saveYachts: any,
+    removeYachts: any
+}) => {
     const contextRef = useRef<LottieRefCurrentProps>(null);
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [yacht, setYacht] = useState<any | null>(data);
@@ -136,7 +136,7 @@ const Manage = ({data, setYachts , saveYachts, removeYachts}: { data: any, setYa
                             <RemoveBtn onClick={() => {
                                 onClose()
                                 removeYachts(data._id)
-                                setYachts((prev: any) => prev.filter((y: any) => y._id !=yacht?._id))
+                                setYachts((prev: any) => prev.filter((y: any) => y._id != yacht?._id))
 
                             }}/>
                         </ModalFooter>
@@ -167,7 +167,9 @@ const Manage = ({data, setYachts , saveYachts, removeYachts}: { data: any, setYa
                         className={"size-[1.5rem]"}
                     />
                 </Button>
-                <ImgSettings  changeFeatured={changeFeatured} data={yacht} getFeatured={fetchYachtFeatured} getImages={fetchY} query={"yachts"} remove={} upload={}/>
+                <ImgSettings changeFeatured={changeYachtFeatured} data={yacht} getFeatured={fetchYachtFeatured}
+                             getImages={fetchYacht} query={"yachts"} remove={removeYachtImage}
+                             upload={uploadYachtImages}/>
             </div>
         </div>
     );

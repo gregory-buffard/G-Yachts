@@ -3,8 +3,8 @@ import { IYacht } from "@/types/yacht";
 import { ObjectId } from "mongoose";
 import { Medium } from "@/components/widgetsProviders";
 import {useEffect, useState} from "react";
-import {fetchFeatured} from "@/actions/yachts";
 import {useViewContext} from "@/context/view";
+import {fetchYachtFeatured} from "@/actions/yachts";
 
 interface IFeatured
   extends Pick<
@@ -17,7 +17,7 @@ const FeaturedContent = () => {
   const [data, setData] = useState<IFeatured[]>([]);
 
   useEffect(() => {
-    fetchFeatured().then((res) => setData(res));
+    fetchYachtFeatured().then((res) => setData(res));
   }, []);
 
   const carouselData = [...data, ...data],
