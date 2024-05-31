@@ -1,32 +1,34 @@
-"use server"
+"use server";
 
 import ViewComp from "@/components/view/ViewComp";
-import dashboard from "@/components/dashboard/dashboard";
 import Dashboard from "@/components/dashboard/dashboard";
 import Yachts from "@/components/yachts";
 import New from "@/components/new";
 import Charter from "@/components/charter";
 import Nav from "@/components/nav";
+import Brokerino from "@/components/brokerino";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { fetchBrokerino } from "@/actions/brokerino";
 
+const App = async () => {
+  const { getUser, isAuthenticated } = getKindeServerSession(),
+    user = await getUser();
 
-const App = () => {
-
-    return (
-        <main className="w-full h-screen flex justify-center items-center bg-gray-/10">
-            <ViewComp comps={
-                {
-                    dashboard: <Dashboard/>,
-                    yachts: <Yachts/>,
-                    new: <New/>,
-                    charters: <Charter/>,
-                    destinations: <div>KYS</div>
-                }
-            }/>
-            <Nav/>
-
-
-        </main>
-    );
+  return (
+    <main className="w-full h-screen flex justify-center items-center bg-stone-100">
+      {user && <Brokerino data={await fetchBrokerino(user.id)} />}
+      <ViewComp
+        comps={{
+          dashboard: <Dashboard />,
+          yachts: <Yachts />,
+          new: <New />,
+          charters: <Charter />,
+          destinations: <div>KYS</div>,
+        }}
+      />
+      <Nav />
+    </main>
+  );
 };
 
 export default App;
