@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import adminRoutes from "./routes/adminRoutes";
 import publicRoutes from "./routes/publicRoutes";
+import {GrantType, setupKinde} from "@kinde-oss/kinde-node-express";
 
 dotenv.config();
 
@@ -39,3 +40,15 @@ switch (env) {
       .use("/", publicRoutes)
       .listen(port, () => console.log(`Admin server is at port ${port}.`));
 }
+const config = {
+    clientId: process.env.KINDE_CLIENT_ID!,
+    issuerBaseUrl: process.env.KINDE_ISSUER_URL!,
+    siteUrl: "http://localhost:3000",
+    secret: process.env.KINDE_CLIENT_SECRET!,
+    redirectUrl: "http://localhost:3000",
+    scope: "openid profile email",
+    grantType: GrantType.AUTHORIZATION_CODE, //or CLIENT_CREDENTIALS or PKCE
+    unAuthorisedUrl: "http://localhost:3000/unauthorised",
+    postLogoutRedirectUrl: "http://localhost:3000"
+};
+setupKinde(config, app);
