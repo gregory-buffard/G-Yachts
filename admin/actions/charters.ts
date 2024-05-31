@@ -1,3 +1,4 @@
+"use server"
 import {Charter} from "@/models/charter";
 import axios from "axios";
 import {revalidatePath} from "next/cache";

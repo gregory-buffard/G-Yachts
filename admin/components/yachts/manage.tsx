@@ -32,7 +32,7 @@ const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     return (
         <>
-            <Button type={"submit"} variant={"light"} color={"danger"} onClick={() => onOpen()}>Remove</Button>
+            <Button variant={"light"} color={"danger"} onClick={() => onOpen()}>Remove</Button>
             <Modal
                 isOpen={isOpen}
                 onClose={onClose}
@@ -119,25 +119,18 @@ const Manage = ({data, setYachts , saveYachts, removeYachts}: { data: any, setYa
                                     View
                                 </Button>
                             </a>
-                            <form action={async ()=>{
-                                await saveYachts(yacht)
-
-                            }}>
-                            <Button type={"submit"} variant={"light"} color={"success"} onClick={
+                            <Button variant={"light"} color={"success"} onClick={
                                 () => {
+                                    saveYachts(yacht)
                                     onClose()
                                 }
                             }>Save</Button>
-                        </form>
-                            <form action={async ()=>{
-                                await removeYachts(data._id)
-                            }}>
                             <RemoveBtn onClick={() => {
                                 onClose()
+                                removeYachts(data._id)
                                 setYachts((prev: any) => prev.filter((y: any) => y._id !=yacht?._id))
 
-                            }}/></form>
-
+                            }}/>
                         </ModalFooter>
                     </>}
                 </ModalContent>

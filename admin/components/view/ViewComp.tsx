@@ -2,7 +2,7 @@
 import {useViewContext} from "@/context/view";
 import Dashboard from "@/components/dashboard/dashboard";
 import Yachts from "@/components/yachts";
-import New from "@/components/new";
+import New from "@/components/yachts/new";
 import Charter from "@/components/charter";
 import React, {ReactNode} from "react";
 

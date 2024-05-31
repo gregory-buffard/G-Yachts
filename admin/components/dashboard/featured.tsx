@@ -12,8 +12,13 @@ interface IFeatured
     "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps" | "photos"| "_id"
   > {}
 
-const FeaturedContent = ({data}:{data:IFeatured[]}) => {
+const FeaturedContent = () => {
   const {setActive} = useViewContext()
+  const [data, setData] = useState<IFeatured[]>([]);
+
+  useEffect(() => {
+    fetchFeatured().then((res) => setData(res));
+  }, []);
 
   const carouselData = [...data, ...data],
     setTranslate = (amount: number) => {

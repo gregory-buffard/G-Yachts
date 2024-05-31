@@ -4,7 +4,7 @@ import ViewComp from "@/components/view/ViewComp";
 import dashboard from "@/components/dashboard/dashboard";
 import Dashboard from "@/components/dashboard/dashboard";
 import Yachts from "@/components/yachts";
-import New from "@/components/new";
+import New from "@/components/yachts/new";
 import Charter from "@/components/charter";
 import Nav from "@/components/nav";
 
