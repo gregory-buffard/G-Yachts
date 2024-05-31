@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 const View = dynamic(() => import("@/components/view"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
+const Story = dynamic(() => import("@/components/company/story"));
 
 const Company = () => {
     return (
@@ -12,6 +13,7 @@ const Company = () => {
             <Bar dynamicColor={100} />
             <View />
             <Hero />
+            <Story />
             <Newsletter />
             <Footer />
         </main>
