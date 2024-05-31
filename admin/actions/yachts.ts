@@ -6,6 +6,23 @@ import { revalidatePath } from "next/cache";
 import {Yacht} from "@/models/yacht";
 
 
+export const getYachtFeatured = async (id: string) => {
+    try {
+        const featured = await Yacht.findById(id).select("photos.featured").exec()
+        return String(featured.photos.featured);
+    } catch (e) {
+        return "";
+    }
+}
+
+export const changeYachtFeatured = async (id: string, photo: string) => {
+    const yacht = await Yacht.findById(id).select("photos.gallery").exec()
+    yacht.photos.featured = photo;
+    await yacht.save().catch((e: any) => {
+        throw e;
+    });
+}
+
 export const fetchYachts = async () => {
   const res = await Yacht.find()
     .catch((e) => {
@@ -19,25 +36,6 @@ export const fetchYacht = async (id: string ) => {
     throw e;
   });
   return JSON.parse(JSON.stringify(res));
-};
-
-export const fetchGallery = async ({
-  type,
-  id,
-  query,
-}: {
-  type: "sales" | "charter";
-  id: string;
-  query: string;
-}) => {
-  const res = await axios
-    .get(`${process.env.API_URL}/yachts/images/${id}`, {
-      data: { type: type, target: query },
-    })
-    .catch((e) => {
-      throw e;
-    });
-  return res.data;
 };
 
 export const saveYacht = async (yacht: any) => {
@@ -61,6 +59,10 @@ export const addYacht = async (yacht: any) => {
         while ((match = regex.exec(e)) !== null) {
             missingFields.push(match[1]);
         }
+        if (missingFields.length === 0) {
+            throw e;
+
+        }
         const missingFieldsString = `Missing fields: (${missingFields.join(', ')})`;
         throw new Error(missingFieldsString);
     });
@@ -68,32 +70,7 @@ export const addYacht = async (yacht: any) => {
 
 }
 
-export const changeFeatured = async ({
-  type,
-  id,
-  photo,
-}: {
-  type: "sales" | "charter";
-  id: string;
-  photo: string;
-}) => {
-  const res = await axios
-    .put(`${process.env.API_URL}/yachts/images/${id}`, {
-      type,
-      photo,
-    })
-    .then(
-      async () =>
-        await Yacht.findByIdAndUpdate(id, { "photos.featured": photo }),
-    )
-    .catch((e) => {
-      throw e;
-    });
-  revalidatePath(`/${id}`);
-  return res.status;
-};
-
-export const fetchFeatured = async () => {
+export const fetchYachtFeatured = async () => {
   const res = await Yacht.find({ featured: true })
     .select("_id name price builder photos length yearBuilt sleeps")
     .catch((e) => {
@@ -101,3 +78,29 @@ export const fetchFeatured = async () => {
     });
     return JSON.parse(JSON.stringify(res));
 };
+
+export const removeYachtImage = async (id: string, photo: string) => {
+    await fetch(`${process.env.API_URL}/yachts/images/${id}/${photo}`, {
+        method: "DELETE",
+    }).then(async (d) => {
+        console.log(d)
+        const yacht = await Yacht.findById(id).select("photos.gallery").exec()
+        yacht.photos.gallery = yacht.photos.gallery.filter((image: any) => image !== photo);
+        await yacht.save().catch((e: any) => {
+            throw e;
+        });
+    }).catch((e) => {
+        throw e;
+    });
+}
+export const getYachtImages = async (id: string) => {
+    try {
+        const images = await Yacht.findById(id).select("photos.gallery").exec()
+        console.log(images.photos.gallery)
+        return Array.from(images.photos.gallery).map((image: any) => {
+            return `${process.env.NEXT_PUBLIC_API}/images/yachts/${id}/${image}`
+        });
+    } catch (e) {
+        console.error(e);
+    }
+}

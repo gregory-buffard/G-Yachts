@@ -19,7 +19,15 @@ import context from "@/public/assets/UI/context.json";
 import {useRef, useState} from "react";
 import {ModalHeader} from "@nextui-org/modal";
 import Gallery from "@/components/yachts/gallery";
-import {fetchYacht, removeYacht, saveYacht} from "@/actions/yachts";
+import {
+    changeFeatured,
+    fetchYacht,
+    fetchYachtFeatured,
+    getFeatured,
+    getYachtFeatured,
+    removeYacht,
+    saveYacht
+} from "@/actions/yachts";
 import {object} from "prop-types";
 import {useYacht} from "@/context/yacht";
 import {BooleanLine, ClassicLine, NumberLine} from "@/components/yachts/manageLines";
@@ -159,7 +167,7 @@ const Manage = ({data, setYachts , saveYachts, removeYachts}: { data: any, setYa
                         className={"size-[1.5rem]"}
                     />
                 </Button>
-                <ImgSettings yacht={data}/>
+                <ImgSettings  changeFeatured={changeFeatured} data={yacht} getFeatured={fetchYachtFeatured} getImages={fetchY} query={"yachts"} remove={} upload={}/>
             </div>
         </div>
     );
