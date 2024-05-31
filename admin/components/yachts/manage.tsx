@@ -1,8 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import {IYacht} from "@/types/yacht";
-import {ObjectId} from "mongoose";
 import {
     Button,
     Chip, Image,
@@ -19,7 +16,13 @@ import context from "@/public/assets/UI/context.json";
 import {useRef, useState} from "react";
 import {ModalHeader} from "@nextui-org/modal";
 import Gallery from "@/components/yachts/gallery";
-import {fetchYacht, removeYacht, saveYacht} from "@/actions/yachts";
+import {
+    changeYachtFeatured,
+    fetchYacht,
+    fetchYachtFeatured,
+    removeYachtImage,
+    uploadYachtImages
+} from "@/actions/yachts";
 import {object} from "prop-types";
 import {useYacht} from "@/context/yacht";
 import {BooleanLine, ClassicLine, NumberLine} from "@/components/yachts/manageLines";
@@ -32,7 +35,7 @@ const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     return (
         <>
-            <Button type={"submit"} variant={"light"} color={"danger"} onClick={() => onOpen()}>Remove</Button>
+            <Button variant={"light"} color={"danger"} onClick={() => onOpen()}>Remove</Button>
             <Modal
                 isOpen={isOpen}
                 onClose={onClose}
@@ -52,7 +55,12 @@ const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     )
 }
 
-const Manage = ({data, setYachts , saveYachts, removeYachts}: { data: any, setYachts:any, saveYachts:any, removeYachts:any}) => {
+const Manage = ({data, setYachts, saveYachts, removeYachts}: {
+    data: any,
+    setYachts: any,
+    saveYachts: any,
+    removeYachts: any
+}) => {
     const contextRef = useRef<LottieRefCurrentProps>(null);
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [yacht, setYacht] = useState<any | null>(data);
@@ -119,25 +127,18 @@ const Manage = ({data, setYachts , saveYachts, removeYachts}: { data: any, setYa
                                     View
                                 </Button>
                             </a>
-                            <form action={async ()=>{
-                                await saveYachts(yacht)
-
-                            }}>
-                            <Button type={"submit"} variant={"light"} color={"success"} onClick={
+                            <Button variant={"light"} color={"success"} onClick={
                                 () => {
+                                    saveYachts(yacht)
                                     onClose()
                                 }
                             }>Save</Button>
-                        </form>
-                            <form action={async ()=>{
-                                await removeYachts(data._id)
-                            }}>
                             <RemoveBtn onClick={() => {
                                 onClose()
-                                setYachts((prev: any) => prev.filter((y: any) => y._id !=yacht?._id))
+                                removeYachts(data._id)
+                                setYachts((prev: any) => prev.filter((y: any) => y._id != yacht?._id))
 
-                            }}/></form>
-
+                            }}/>
                         </ModalFooter>
                     </>}
                 </ModalContent>
@@ -166,7 +167,9 @@ const Manage = ({data, setYachts , saveYachts, removeYachts}: { data: any, setYa
                         className={"size-[1.5rem]"}
                     />
                 </Button>
-                <ImgSettings yacht={data}/>
+                <ImgSettings changeFeatured={changeYachtFeatured} data={yacht} getFeatured={fetchYachtFeatured}
+                             getImages={fetchYacht} query={"yachts"} remove={removeYachtImage}
+                             upload={uploadYachtImages}/>
             </div>
         </div>
     );

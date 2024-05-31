@@ -3,11 +3,14 @@ import {ICharter} from "@/types/charter";
 import {useEffect, useState} from "react";
 import {Button, ScrollShadow} from "@nextui-org/react";
 import Manage from "@/components/yachts/manage";
-import {removeCharter, saveCharter} from "@/actions/charters";
+import {getCharters, removeCharter, saveCharter} from "@/actions/charters";
 
-const CharterList = ({data}:{data:ICharter[]}) => {
-    const [charter, setCharter] = useState<ICharter[]>(data);
+const CharterList = () => {
+    const [charter, setCharter] = useState<ICharter[]>([]);
     const [featured, setFeatured] = useState<boolean>(false);
+    useEffect(() => {
+        getCharters().then((res) => setCharter(res? res : []));
+    }, []);
 
     return (
         <>

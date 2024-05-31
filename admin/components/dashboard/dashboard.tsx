@@ -5,7 +5,6 @@ import AddNew from "@/components/dashboard/addNew";
 import {fetchFeatured} from "@/actions/yachts";
 
 const Dashboard = async () => {
-    const data = await fetchFeatured();
   return (
       <section
           className={
@@ -13,7 +12,7 @@ const Dashboard = async () => {
           }
       >
           <div className={"flex justify-center items-center gap-[4vw]"}>
-              <FeaturedContent data={data}/>
+              <FeaturedContent/>
           </div>
           <div className={"flex justify-center items-center gap-[4vw]"}>
               <AddNew/>
