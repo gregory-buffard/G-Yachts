@@ -242,6 +242,66 @@
       "CTA": "Contactez un courtier"
     }
   },
+  "company": {
+    "metadata": {
+      "title": "Company",
+      "description": "Learn more about G–Yachts, a yacht brokerage company based in Monaco. We offer a wide range of services including yacht sales, yacht charters, yacht management and yacht construction.",
+      "keywords": "yachts, sales, charters, management, construction, Monaco, G–Yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "subtitle": "A FAMILY LEGACY",
+      "title": "Trusted for <classic>25 YEARS</classic>",
+      "description": "G-Yachts embodies determination, business ethic and experience. Over time, the Milazzo family has managed to lead successful sales, charters and the management of many renowned yachts thanks to a remarkable network and quality counterparts all around the world.\nText de marin a aujourdhui"
+    },
+    "story": {
+      "header": {
+        "title": "Our <classic>Story</classic>"
+      },
+      "content": {
+        "first": {
+          "title": "BEGINNING OF A NEW COMPANY CANNES NAUTIC",
+          "text": "Former sailors, the Milazzo family creates “Cannes Nautic”. The company was specialized in sales, maintenance and repairs in the bay of Cannes."
+        },
+        "second": {
+          "title": "ACQUISITION OF S.A GLEMOT",
+          "text": "After the success of Cannes Nautic, the Milazzo’s have decided to expand by acquiring S. A Glemot. The latter had a consequent fleet of yachts for sale, charter and management, in Mandelieu la Napoule Harbor."
+        },
+        "third": {
+          "title": "GASPARD YACHTS",
+          "text": "Following his father’s path, Gaspard Milazzo jumped ahead and decided to found his own company in Cannes: Gaspard Yachts. Empowered with reliability and strong knowledge of the yachting industry, he quickly gained a worldwide renowned reputation.\nThe high standard service provided to his international clientele were since then cheered by numerous yacht owners, captains and the whole industry : Gaspard Yachts was a reference."
+        },
+        "fourth": {
+          "title": "JETCRAFT SUPPORT & G-YACHTS CREATION IN MONACO",
+          "text": "Further the partnership with the worldwide leader in private and commercial aviation, Jetcraft, Gaspard Milazzo created G-Yachts and settled it in Monaco on a long-term basis in order to provide the highest customized service."
+        },
+        "citation": "“G-YACHTS has built strong relationships with its clients for over 25 years, based on trust, dedication, and impeccable service. We are proud of our work and our position in the industry. By collaborating with renowned shipyards and architects, we have consistently enhanced our services and strengthened our client relationships. As passionate yachting experts, we are committed to being your premier yachting partner and providing you with an exceptional yachting experience.”",
+        "signature": "FOUNDER AND CEO"
+      }
+    },
+    "philosophy": {
+      "header": {
+        "title": "Yachting is a matter of <classic>Passion</classic>",
+        "subtitle": "OUR PHILOSOPHY",
+        "undertitle": "Two decades of <classic>Experience</classic>",
+        "description": "Thanks to our long experience with numerous units we had in management, we became a reference in terms of commitment, comprehension and operation of any kind of yacht.\nWe understand the needs, the regulations and the requisites of this industry. Our strength is to always be one step forward."
+      },
+      "dropdown": {
+        "services": {
+          "title": "Customized Services",
+          "description": "Our company principles have always been to provide our clients a customized service.\nAs per today, G-Yachts has been at the helm of plenty and successful sales, new constructions and charters for extremely renowned yachts. Our specialized and experienced team enabled this privately-owned company evolved through the years.\nLeader in this industry G-Yachts has always been financially independent and faithful to its principles."
+        },
+        "presence": {
+          "title": "A presence around the world",
+          "description": "G-Yachts located in heart of Monaco, beneficiates of the support of counterparts of choice in more than 20 countries thanks to our partnership with Jetcraft."
+        },
+        "partnership": {
+          "title": "Partnership and recommendations",
+          "description": "G-Yachts is a « Gold » member of the international Company MYBA (Mediterranean Yacht Broker Association), also ECPY, Riviera Yachting Network and finally PYA (Professional Yachtsmen's Association). The founder Gaspard Milazzo takes excellence as his own professional leitmotiv.\nThe company is insured by Lloyd's in London. All the team, trained by Gaspard Milazzo, is comfortable with Lloyd's and Bureau Veritas conditions and regulations in order to respond effectively to ISM (International Safety Management) et ISPS (International Ship and Port Facility Security)"
+        }
+      }
+    }
+  },
   "contact": {
     "metadata": {
       "title": "Contact",
