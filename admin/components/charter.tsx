@@ -1,12 +1,8 @@
 "use server"
 
-import {getCharters} from "@/actions/charters";
 import CharterList from "@/components/charters/charterList";
 
 const Charter = async () => {
-
-
-
     return (
         <section
             className={

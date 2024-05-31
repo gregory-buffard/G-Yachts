@@ -1,27 +1,26 @@
 "use client";
 
-import React, {createContext, ReactNode, useContext, useState, useEffect, useMemo} from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
+export type NavActive = "dashboard" | "yachts" | "new" | "charters" | "destinations" | "newsletter";
 
 interface IContext {
-  active: "dashboard" | "yachts" | "new" | "charters" | "destinations";
-  setActive: (active: "dashboard" | "yachts" | "new" | "charters" | "destinations") => void;
+  active: NavActive;
+  setActive: (active: NavActive) => void;
 }
 
-
+// biome-ignore lint/style/noNonNullAssertion: This is a valid use case for non-null assertion
 const ViewContext = createContext<IContext>(undefined!);
 
 export const ViewProvider = ({ children }: { children: ReactNode }) => {
-  const [active, setActive] = useState<"dashboard" | "yachts" | "new" | "charters" | "destinations">("dashboard");
-
-
+  const [active, setActive] = useState<NavActive>("dashboard");
 
   const value = { active, setActive };
 
   return (
-      <ViewContext.Provider value={value}>
-        {children}
-      </ViewContext.Provider>
+    <ViewContext.Provider value={value}>
+      {children}
+    </ViewContext.Provider>
   );
 };
 
