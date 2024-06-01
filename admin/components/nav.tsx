@@ -45,7 +45,7 @@ const Selector = ({
             }}
             className={twMerge([
                 "size-[4vh] fill-neutral-100 text-neutral-800 p-[0.5vh] rounded-2xl",
-                active === id ? "bg-primary-500" : "bg-neutral-300/50"
+                active === id ? "bg-primary-500" : "bg-neutral-400/35"
             ])}
         >
             {<Icon
@@ -74,6 +74,7 @@ const Nav = () => {
             >
                 {navItems.map(item => (
                     <Selector
+                        key={item.id}
                         active={active}
                         onSetActive={setActive}
                         id={item.id}

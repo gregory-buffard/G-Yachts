@@ -1,22 +1,22 @@
 "use server";
 
 import IBrokerino from "@/types/brokerino";
-import {Brokerino} from "@/models/brokerino";
+import { Brokerino } from "@/models/brokerino";
 
 export const fetchBrokerino = async (kindeID: IBrokerino["kindeID"]) => {
-    const found = await Brokerino.exists({kindeID: kindeID}).catch((e) => {
+    const found = await Brokerino.exists({ kindeID: kindeID }).catch((e) => {
         console.log(e);
         return false;
     });
+
     if (found) {
-        return await JSON.parse(JSON.stringify(Brokerino.findOne({kindeID: kindeID}).catch((e) => {
+        return await JSON.parse(JSON.stringify(Brokerino.findOne({ kindeID: kindeID }).catch((e) => {
             console.log(e);
             return false;
-        })
-    ))
-    } else {
-        return false;
+        })));
     }
+
+    return false;
 };
 
 export const createBrokerino = async (
