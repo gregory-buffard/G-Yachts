@@ -15,6 +15,7 @@ const CustomerSchema = new Schema<ICustomer>(
       other: { type: Boolean, required: false },
     },
     newsletter: { type: Boolean, required: false },
+    status: { type: String, required: true },
   },
   {
     collection: "customers",
