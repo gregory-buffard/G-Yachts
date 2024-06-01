@@ -1,8 +1,8 @@
 "use server"
-import {Charter} from "@/models/charter";
+import { Charter } from "@/models/charter";
 import axios from "axios";
-import {revalidatePath} from "next/cache";
-import {Yacht} from "@/models/yacht";
+import { revalidatePath } from "next/cache";
+import { Yacht } from "@/models/yacht";
 
 export const uploadCharterImages = async (event: any, id: string) => {
     try {
@@ -39,7 +39,7 @@ export const getCharters = async () => {
     return JSON.parse(JSON.stringify(res))
 }
 
-export const fetchCharter = async (id: string ) => {
+export const fetchCharter = async (id: string) => {
     const res = await Charter.findById(id).catch((e) => {
         throw e;
     });
@@ -57,8 +57,8 @@ export const removeCharter = async (id: string) => {
     });
 }
 export const addCharter = async (charter: any) => {
-    charter._id =undefined;
-    const res = await new Charter(charter).save().catch((e:any) => {
+    charter._id = undefined;
+    const res = await new Charter(charter).save().catch((e: any) => {
         const regex = /Path `(\w+)` is required/g;
         let missingFields = [];
         let match;
@@ -73,7 +73,7 @@ export const addCharter = async (charter: any) => {
         const missingFieldsString = `Missing fields: (${missingFields.join(', ')})`;
         throw new Error(missingFieldsString);
     });
-    return {status:"OK"};
+    return { status: "OK" };
 
 }
 export const fetchFeatured = async () => {

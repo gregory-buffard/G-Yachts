@@ -8,18 +8,15 @@ import {
     ModalContent,
     ModalFooter,
     ModalHeader,
-    Textarea
+    Textarea,
 } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Newsletter } from "./newsletterItem";
-import dynamic from "next/dynamic";
-
-const MonacoEditor = dynamic(() => import('./htmlEditor'), { ssr: false });
 
 export const CreateNewsletterDialog = ({
     createModalOpen,
     setCreateModalOpen,
-    onCreateNewsletter
+    onCreateNewsletter,
 }: {
     createModalOpen: boolean;
     setCreateModalOpen: (open: boolean) => void;
@@ -55,7 +52,14 @@ export const CreateNewsletterDialog = ({
                                     {...register("title", { required: true })}
                                     errorMessage={errors.title ? "This field is required" : ""}
                                 />
-                                <MonacoEditor onChange={(e) => alert(JSON.stringify(e))} value={""} language="html" />
+
+                                <div className="flex flex-col gap-2">
+                                    <label className="mt-4" htmlFor="htmlContent">HTML Content</label>
+                                    <Textarea
+                                        {...register("htmlContent", { required: true })}
+                                        style={{ width: "700px", height: "350px" }}
+                                    />
+                                </div>
                             </ModalBody>
 
                             <ModalFooter>

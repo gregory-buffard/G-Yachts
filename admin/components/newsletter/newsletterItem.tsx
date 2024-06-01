@@ -19,7 +19,7 @@ export const NewsletterItem = ({
             className="flex flex-col gap-5"
             onClick={onClick}
         >
-            <h2>{item.title}</h2>
+            <h2 className="font-normal text-base">{item.title}</h2>
         </Button>
     )
 }

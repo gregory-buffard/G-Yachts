@@ -1,16 +1,19 @@
-import { Button } from "@nextui-org/react";
-import dynamic from "next/dynamic";
-
-const MonacoEditor = dynamic(() => import('./htmlEditor'), { ssr: false });
+import { Button, Textarea } from "@nextui-org/react";
+import { Newsletter } from "./newsletterItem";
 
 export const NewsletterContent = ({
-    content,
+    item,
 }: {
-    content: string;
+    item: Newsletter;
 }) => {
     return (
         <div className="flex flex-col gap-4">
-            <MonacoEditor value={content} language="html" />
+            <h1 className="text-2xl font-semibold">{item.title}</h1>
+
+            <Textarea
+                style={{ width: "700px", height: "350px" }}
+                value={item.htmlContent}
+            />
 
             <div className="flex flex-row gap-2">
                 <Button>Edit</Button>

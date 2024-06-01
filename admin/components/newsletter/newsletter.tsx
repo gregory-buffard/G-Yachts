@@ -47,7 +47,7 @@ const NewsletterPage = (): JSX.Element => {
                     </div>
                 </div>
 
-                <NewsletterContent content={selectedItem?.htmlContent || ""} />
+                <NewsletterContent item={selectedItem ?? newsletterItems[0]} />
             </div>
 
             <CreateNewsletterDialog
