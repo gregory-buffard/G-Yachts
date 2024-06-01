@@ -6,7 +6,7 @@ import New from "@/components/yachts/new";
 import Charter from "@/components/charters/charter";
 import { ReactNode } from "react";
 
-const ViewComp = ({comps}:{comps:{newsletter: ReactNode,dashboard:ReactNode,yachts:ReactNode, new:ReactNode , charters:ReactNode, destinations:ReactNode}}) => {
+const ViewComp = ({comps}:{comps:{newsletter: ReactNode,dashboard:ReactNode,yachts:ReactNode,article:ReactNode, new:ReactNode , charters:ReactNode, destinations:ReactNode}}) => {
     const { active } = useViewContext();
 
     return (

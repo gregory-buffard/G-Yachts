@@ -2,7 +2,7 @@
 
 import { createContext, ReactNode, useContext, useState } from "react";
 
-export type NavActive = "dashboard" | "yachts" | "new" | "charters" | "destinations" | "newsletter";
+export type NavActive = "dashboard" | "yachts" | "new" | "charters" | "destinations" | "newsletter"| "article";
 
 interface IContext {
   active: NavActive;

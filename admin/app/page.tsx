@@ -11,6 +11,7 @@ import Brokerino from "@/components/brokerino";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { fetchBrokerino } from "@/actions/brokerino";
 import Destination from "@/components/destinations/destinations";
+import ArticlePage from "@/components/article/articlePage";
 
 const App = async () => {
     const { getUser } = getKindeServerSession(),
@@ -26,7 +27,8 @@ const App = async () => {
                     new: <New/>,
                     charters: <Charter/>,
                     destinations: <Destination/>,
-                    newsletter: <NewsletterPage />
+                    newsletter: <NewsletterPage />,
+                    article: <ArticlePage />
                 }
             } />
             <Nav />
