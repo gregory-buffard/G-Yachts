@@ -11,12 +11,12 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { fetchBrokerino } from "@/actions/brokerino";
 
 const App = async () => {
-  const { getUser, isAuthenticated } = getKindeServerSession(),
+  const { getUser } = getKindeServerSession(),
     user = await getUser();
 
   return (
     <main className="w-full h-screen flex justify-center items-center bg-stone-100">
-      {user && <Brokerino data={await fetchBrokerino(user.id)} />}
+      {user && <Brokerino data={await fetchBrokerino(user.id)} id={user.id} />}
       <ViewComp
         comps={{
           dashboard: <Dashboard />,
