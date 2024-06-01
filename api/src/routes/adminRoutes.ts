@@ -9,7 +9,12 @@ router.use(protectRoute)
 router.post("/yachts/images/:id", uploadImages.array("images"), (req, res) =>
   res.status(200),
 );
+router.post("/charters/images/:id", uploadImages.array("images"), (req, res) =>
+    res.status(200),
+);
+router.post("/destinations/images/:id", uploadImages.array("images"), (req, res) =>
+    res.status(200),
+);
 
-router.put("/yachts/images/:id", changeFeatured, (req, res) => res.status(200));
 
 export default router;

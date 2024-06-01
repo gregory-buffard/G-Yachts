@@ -10,7 +10,7 @@ export const uploadCharterImages = async (event: any, id: string) => {
         const formData = new FormData();
         const fileField = document.querySelector('input[type="file"]');
 
-        const res = await fetch(`${process.env.API_URL}/charters/images/${id}`, {
+        const res = await fetch(`${process.env.API_URL}/images/charters/${id}`, {
             method: "POST",
             body: formData,
         });
@@ -25,7 +25,7 @@ export const getChartersImages = async (id: string) => {
         const images = await Charter.findById(id).select("photos.gallery").exec()
         console.log(images.photos.gallery)
         return Array.from(images.photos.gallery).map((image: any) => {
-            return `${process.env.NEXT_PUBLIC_API}/charters/images/${id}/${image}`
+            return `${process.env.NEXT_PUBLIC_API}/images/charters/${id}/${image}`
         });
     } catch (e) {
         console.error(e);
@@ -86,7 +86,7 @@ export const fetchFeatured = async () => {
 };
 
 export const removeChartersImage = async (id: string, photo: string) => {
-    await fetch(`${process.env.API_URL}/charters/images/${id}/${photo}`, {
+    await fetch(`${process.env.API_URL}/images/charters/${id}/${photo}`, {
         method: "DELETE",
     }).then(async (d) => {
         console.log(d)

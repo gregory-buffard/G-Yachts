@@ -3,7 +3,7 @@ import {ModalHeader} from "@nextui-org/modal";
 import {useEffect, useState} from "react";
 import ImgSettingsModal from "./imgSettingsModal";
 
-const ImgSettings = ({data, query, remove, getFeatured, changeFeatured, getImages}: { data: any,upload:any,query:string, remove:any, getFeatured:any, changeFeatured:any, getImages:any}) => {
+const ImgSettings = ({data, query, remove, changeFeatured, getImages}: { data: any,upload:any,query:string, remove:any, changeFeatured:any, getImages:any}) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [images, setImages] = useState<any>([]);
 
@@ -28,7 +28,7 @@ const ImgSettings = ({data, query, remove, getFeatured, changeFeatured, getImage
                 </div>
 
             </Button>
-            {isOpen && <ImgSettingsModal data={data} getFeatured={getFeatured} changeFeatured={changeFeatured} getImages={getImages} onClose={onClose} isOpen={isOpen} query={query}  remove={remove} />}
+            {isOpen && <ImgSettingsModal data={data} changeFeatured={changeFeatured} getImages={getImages} onClose={onClose} isOpen={isOpen} query={query}  remove={remove} />}
         </div>
     )
 }

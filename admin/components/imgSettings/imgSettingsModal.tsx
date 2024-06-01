@@ -6,16 +6,13 @@ import Uploady from "@rpldy/uploady";
 import UploadButton from "@rpldy/upload-button";
 
 
-const ImgSettingsModal = ({query,data,isOpen,onClose, remove, getImages, getFeatured, changeFeatured}: {isOpen:any, query:string,changeFeatured:any, getImages:any,getFeatured:any, onClose:any, data: any, remove:any}) => {
+const ImgSettingsModal = ({query,data,isOpen,onClose, remove, getImages,  changeFeatured}: {isOpen:any, query:string,changeFeatured:any, getImages:any, onClose:any, data: any, remove:any}) => {
     const [images, setImages] = useState<string[]>([]);
-    const [featured, setFeatured] = useState<string>("");
+    const [featured, setFeatured] = useState<string>(data.photos.featured);
     useEffect(() => {
 
         getImages(data._id).then((d:any) => {
             setImages(d ? d : [])
-        })
-        getFeatured(data._id).then((d:any) => {
-            setFeatured(d)
         })
     }, []);
 
@@ -27,8 +24,10 @@ const ImgSettingsModal = ({query,data,isOpen,onClose, remove, getImages, getFeat
             onClose={onClose}
         >
             <ModalContent>
-                <ModalHeader>Image Settings <Uploady destination={{ url: `${process.env.NEXT_PUBLIC_API}/${query}/images/${data._id}` }}>
+                <ModalHeader><h2 className={"self-center"}>Image Settings</h2> <Uploady destination={{ url: `${process.env.NEXT_PUBLIC_API}/images/${query}/${data._id}` }}>
+                    <div className={"border-black/50 border-1 rounded-xl py-1 px-2 mx-4"}>
                     <UploadButton/>
+                    </div>
                 </Uploady></ModalHeader>
                 <ModalBody className={"flex flex-col "}>
                     <ScrollShadow className={"w-full gap-5 h-[70%] flex flex-wrap flex-row"}>

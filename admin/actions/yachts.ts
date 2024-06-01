@@ -80,7 +80,7 @@ export const fetchYachtFeatured = async () => {
 };
 
 export const removeYachtImage = async (id: string, photo: string) => {
-    await fetch(`${process.env.API_URL}/yachts/images/${id}/${photo}`, {
+    await fetch(`${process.env.API_URL}/images/yachts/${id}/${photo}`, {
         method: "DELETE",
     }).then(async (d) => {
         console.log(d)
@@ -111,7 +111,7 @@ export const uploadYachtImages = async (event: any, id: string) => {
         const formData = new FormData();
         const fileField = document.querySelector('input[type="file"]');
 
-        const res = await fetch(`${process.env.API_URL}/yachts/images/${id}`, {
+        const res = await fetch(`${process.env.API_URL}/images/yachts//${id}`, {
             method: "POST",
             body: formData,
         });
