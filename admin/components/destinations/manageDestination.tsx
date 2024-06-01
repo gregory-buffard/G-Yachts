@@ -15,16 +15,6 @@ import {flatten} from "lottie-colorify";
 import context from "@/public/assets/UI/context.json";
 import {useRef, useState} from "react";
 import {ModalHeader} from "@nextui-org/modal";
-import Gallery from "@/components/yachts/gallery";
-import {
-    changeYachtFeatured,
-    fetchYacht,
-    fetchYachtFeatured, getYachtImages,
-    removeYachtImage,
-    uploadYachtImages
-} from "@/actions/yachts";
-import {object} from "prop-types";
-import {useYacht} from "@/context/yacht";
 import {BooleanLine, ClassicLine, NumberLine} from "@/components/yachts/manageLines";
 import {Input} from "@nextui-org/input";
 import Crown from "@/components/Crown";
@@ -55,15 +45,15 @@ const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     )
 }
 
-const Manage = ({data, setYachts, saveYachts, removeYachts}: {
+const ManageDestination = ({data, setDestinations, saveDestination, removeDestination}: {
     data: any,
-    setYachts: any,
-    saveYachts: any,
-    removeYachts: any
+    setDestinations: any,
+    saveDestination: any,
+    removeDestination: any
 }) => {
     const contextRef = useRef<LottieRefCurrentProps>(null);
     const {isOpen, onOpen, onClose} = useDisclosure();
-    const [yacht, setYacht] = useState<any | null>(data);
+    const [destination, setDestination] = useState<any | null>(data);
     const [find, setFind] = useState<string>("");
 
     return (
@@ -73,8 +63,7 @@ const Manage = ({data, setYachts, saveYachts, removeYachts}: {
             }
         >
             <div className={"flex flex-row justify-start items-center gap-4"}>
-                <p>{`${yacht.name}`}</p>
-                {yacht.featured && <Crown/>}
+                <p>{`${destination.destination}`}</p>
             </div>
             <Modal
                 className={"h-[80%]"}
@@ -83,14 +72,14 @@ const Manage = ({data, setYachts, saveYachts, removeYachts}: {
                 onClose={onClose}
             >
                 <ModalContent>
-                    {yacht && <>
-                        <ModalHeader className={"gap-6"}><h1>{yacht.name}</h1>{yacht.featured && <Crown/>}
+                    {destination && <>
+                        <ModalHeader className={"gap-6"}><h1>{destination.destination}</h1>
                             <Input value={find} className={"w-[30%] absolute right-[13%]"} placeholder={"Find"}
                                    onValueChange={setFind}/>
                         </ModalHeader>
                         <ModalBody className={"h-[50%]"}>
                             <ScrollShadow className={"w-full h-full"}>
-                                {Object.entries(yacht).map(([key, value], i) => {
+                                {Object.entries(destination).map(([key, value], i) => {
                                         if (!key.toLowerCase().includes(find.toLowerCase()) && find !== "") return null;
 
 
@@ -101,17 +90,17 @@ const Manage = ({data, setYachts, saveYachts, removeYachts}: {
                                         } else if (typeof value === "boolean") {
                                             return (
                                                 <BooleanLine key={i} name={key} value={value}
-                                                             setYacht={(e: boolean) => setYacht({...yacht, [key]: e})}/>
+                                                             setYacht={(e: boolean) => setDestination({...destination, [key]: e})}/>
                                             );
                                         } else if (typeof value === "string") {
                                             return (
                                                 <ClassicLine key={i} name={key} value={value}
-                                                             setYacht={(e: string) => setYacht({...yacht, [key]: e})}/>
+                                                             setYacht={(e: string) => setDestination({...destination, [key]: e})}/>
                                             );
                                         } else if (typeof value === "number") {
                                             return (
                                                 <NumberLine key={i} name={key} value={value}
-                                                            setYacht={(e: any) => setYacht({...yacht, [key]: e})}/>
+                                                            setYacht={(e: any) => setDestination({...destination, [key]: e})}/>
                                             );
                                         }
                                     }
@@ -129,14 +118,14 @@ const Manage = ({data, setYachts, saveYachts, removeYachts}: {
                             </a>
                             <Button variant={"light"} color={"success"} onClick={
                                 () => {
-                                    saveYachts(yacht)
+                                    saveDestination(destination)
                                     onClose()
                                 }
                             }>Save</Button>
                             <RemoveBtn onClick={() => {
                                 onClose()
-                                removeYachts(data._id)
-                                setYachts((prev: any) => prev.filter((y: any) => y._id != yacht?._id))
+                                removeDestination(data._id)
+                                setDestinations((prev: any) => prev.filter((y: any) => y._id != destination?._id))
 
                             }}/>
                         </ModalFooter>
@@ -167,12 +156,10 @@ const Manage = ({data, setYachts, saveYachts, removeYachts}: {
                         className={"size-[1.5rem]"}
                     />
                 </Button>
-                <ImgSettings changeFeatured={changeYachtFeatured} data={yacht}
-                             getImages={getYachtImages} query={"yachts"} remove={removeYachtImage}
-                             upload={uploadYachtImages}/>
+
             </div>
         </div>
     );
 };
 
-export default Manage;
+export default ManageDestination;

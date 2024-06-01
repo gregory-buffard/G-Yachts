@@ -3,10 +3,11 @@
 import ViewComp from "@/components/view/ViewComp";
 import dashboard from "@/components/dashboard/dashboard";
 import Dashboard from "@/components/dashboard/dashboard";
-import Yachts from "@/components/yachts";
+import Yachts from "@/components/yachts/yachts";
 import New from "@/components/yachts/new";
-import Charter from "@/components/charter";
+import Charter from "@/components/charters/charter";
 import Nav from "@/components/nav";
+import Destination from "@/components/destinations/destinations";
 
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
                     yachts: <Yachts/>,
                     new: <New/>,
                     charters: <Charter/>,
-                    destinations: <div>KYS</div>
+                    destinations: <Destination/>
                 }
             }/>
             <Nav/>
