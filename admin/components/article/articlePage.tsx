@@ -7,8 +7,8 @@ import EditArticle from "@/components/article/editArticle";
 const ArticlePage = () => {
     const [activeTab, setActiveTab] = useState<string| undefined>();
     return (
-        <div>
-            {!activeTab && <div className={"flex gap-4 w-full h-[90vh] gap-2 flex-col items-center justify-center"}>
+        <div className={"w-full h-full flex items-center"}>
+            {!activeTab && <div className={"flex gap-4 w-full h-[90vh] flex-col items-center justify-center"}>
                 <h1 className={""}>Article Page</h1>
 
                 <Button className={"w-[200px] h-[70px]"} variant={"bordered"}

@@ -23,6 +23,6 @@ const ArticleSchema = new Schema<IArticle>(
 );
 
 const Article =
-    useWeb.models.Brokerino || useWeb.model("Article", ArticleSchema);
+    useWeb.models.Article || useWeb.model("Article", ArticleSchema);
 
 export { Article, type IArticle };

@@ -8,3 +8,9 @@ export const createArticle = async (article: IArticle) => {
         throw e;
     });
 }
+export const getArticle = async () => {
+    const res = await Article.find().catch((e: any) => {
+        throw e;
+    });
+    return JSON.parse(JSON.stringify(res));
+}

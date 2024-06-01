@@ -1,6 +1,6 @@
 "use client"
 import {Input} from "@nextui-org/input";
-import {Button, ButtonGroup, Tab, Tabs} from "@nextui-org/react";
+import {Button, ButtonGroup, Tab, Tabs, Textarea} from "@nextui-org/react";
 import {useState} from "react";
 import {Card, CardBody} from "@nextui-org/card";
 import {createBrokerino} from "@/actions/brokerino";
@@ -51,7 +51,7 @@ const createNew = () => {
                                         }) : setFrArticle({...frArticle, category: e.target.value})
                                     }}
                                 />
-                                <Input
+                                <Textarea
                                     label={"Article"}
                                     placeholder={"Article"}
                                     value={item.label === "EN" ? enArticle.article : frArticle.article}
