@@ -5,9 +5,23 @@ import {Charter} from "@/models/charter";
 import {Yacht} from "@/models/yacht";
 
 export const getDestinations = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destinations`);
-    const data = await res.json();
-    return data;
+    const res = await Destination.find()
+        .catch((e) => {
+            throw e;
+        });
+    return JSON.parse(JSON.stringify(res))
+}
+
+export const saveDestination = async (yacht: any) => {
+    await Destination.findByIdAndUpdate(yacht._id, yacht).catch((e) => {
+        throw e;
+    });
+}
+export const removeDestination = async (id: string) => {
+    await Destination.findByIdAndDelete(id).catch((e) => {
+        throw e;
+    });
+    console.log(id, " removed")
 }
 
 export const uploadDestinationImages = async (event: any, id: string) => {
@@ -16,7 +30,7 @@ export const uploadDestinationImages = async (event: any, id: string) => {
         const formData = new FormData();
         const fileField = document.querySelector('input[type="file"]');
 
-        const res = await fetch(`${process.env.API_URL}/destination/images/${id}`, {
+        const res = await fetch(`${process.env.API_URL}/images/destinations/${id}`, {
             method: "POST",
             body: formData,
         });
@@ -31,7 +45,7 @@ export const getDestinationImages = async (id: string) => {
         const images = await Yacht.findById(id).select("photos.gallery").exec()
         console.log(images.photos.gallery)
         return Array.from(images.photos.gallery).map((image: any) => {
-            return `${process.env.NEXT_PUBLIC_API}/destination/images/${id}/${image}`
+            return `${process.env.NEXT_PUBLIC_API}/images/destinations/${id}/${image}`
         });
     } catch (e) {
         console.error(e);
@@ -59,7 +73,7 @@ export const addDestination = async (destination: any) => {
 
 }
 export const removeDestinationImage = async (id: string, photo: string) => {
-    await fetch(`${process.env.API_URL}/destinations/images/${id}/${photo}`, {
+    await fetch(`${process.env.API_URL}/images/destinations/${id}/${photo}`, {
         method: "DELETE",
     }).then(async (d) => {
         console.log(d)
