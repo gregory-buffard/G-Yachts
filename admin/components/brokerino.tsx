@@ -1,7 +1,7 @@
 "use client";
 
 import IBrokerino from "@/types/brokerino";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Progress,
   Input,
@@ -10,6 +10,7 @@ import {
   Checkbox,
 } from "@nextui-org/react";
 import { createBrokerino } from "@/actions/brokerino";
+import { useFormStatus } from "react-dom";
 
 interface IPogress {
   info: number;
@@ -23,15 +24,8 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
       langs: 0,
       avatar: 0,
     }),
-    [tempForm, setForm] = useState<Omit<IBrokerino, "_id">>({
-      kindeID: id,
-      name: "",
-      position: "",
-      email: "",
-      tel: [],
-      langs: [],
-    }),
-    [check, setCheck] = useState<boolean>(false);
+    [check, setCheck] = useState<boolean>(false),
+    { pending } = useFormStatus();
 
   const validate = () => {
     const inputs = {
@@ -148,9 +142,9 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
             transform: `translateX(${pogress.langs === 100 ? "-150%" : "0"})`,
             transition: "transform 0.5s ease-in-out",
           }}
-          action={(formData) =>
+          /*action={(formData) =>
             setForm((prev) => ({ ...prev, langs: formData.get("langs") }))
-          }
+          }*/
         >
           <h2 className={"w-full"}>Select your languages</h2>
           <CheckboxGroup name={"langs"} className={"w-full"}>
@@ -250,11 +244,21 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
       </div>
       <form
         className={"w-full h-full max-h-full overflow-x-hidden relative"}
-        action={(formData) => createBrokerino(formData, id)}
+        action={async (formData) => {
+          const data = formData;
+          const reader = new FileReader();
+          reader.readAsDataURL(formData.get("avatar") as Blob);
+          reader.onload = async () => {
+            await createBrokerino(data, id, reader.result as string).then(
+              () => setPogress((prev) => ({ ...prev, avatar: 100 })),
+              setTimeout(() => window.location.reload(), 3000),
+            );
+          };
+        }}
       >
         <div
           className={
-            "w-11/12 mx-auto h-[90%] absolute z-20 inset-0 md:px-[20vw] lg:px-[32vw] bg-stone-50 rounded-3xl flex flex-col justify-center items-center gap-[4vh]"
+            "w-11/12 mx-auto h-[90%] absolute z-30 inset-0 md:px-[20vw] lg:px-[32vw] bg-stone-50 rounded-3xl flex flex-col justify-center items-center gap-[4vh]"
           }
           style={{
             transform: `translateX(${pogress.info === 100 ? "-150%" : "0"})`,
@@ -269,6 +273,7 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
           >
             <Input
               name={"name"}
+              isDisabled={pending}
               type={"text"}
               label={"Full Name"}
               isRequired={true}
@@ -278,6 +283,7 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
             />
             <Input
               name={"position"}
+              isDisabled={pending}
               type={"text"}
               label={"Position"}
               isRequired={true}
@@ -287,6 +293,7 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
             />
             <Input
               name={"email"}
+              isDisabled={pending}
               type={"email"}
               label={"Email"}
               isRequired={true}
@@ -296,6 +303,7 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
             />
             <Input
               name={"tel"}
+              isDisabled={pending}
               type={"text"}
               label={"Phone numbers"}
               isRequired={true}
@@ -307,6 +315,7 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
           <div className={"w-full flex justify-end"}>
             <Button
               type={"button"}
+              isDisabled={pending}
               variant={"flat"}
               color={"primary"}
               onPress={() => {
@@ -320,7 +329,7 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
         </div>
         <div
           className={
-            "w-11/12 mx-auto h-[90%] absolute z-10 inset-0 md:px-[20vw] lg:px-[32vw] bg-stone-50 rounded-3xl flex flex-col justify-center items-center gap-[4vh]"
+            "w-11/12 mx-auto h-[90%] absolute z-20 inset-0 md:px-[20vw] lg:px-[32vw] bg-stone-50 rounded-3xl flex flex-col justify-center items-center gap-[4vh]"
           }
           style={{
             transform: `translateX(${pogress.langs === 100 ? "-150%" : "0"})`,
@@ -328,7 +337,12 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
           }}
         >
           <h2 className={"w-full"}>Select your languages</h2>
-          <CheckboxGroup name={"langs"} className={"w-full"}>
+          <CheckboxGroup
+            name={"langs"}
+            className={"w-full"}
+            isDisabled={pending}
+            isRequired={true}
+          >
             <Checkbox value={"FR"}>&#127467;&#127479; Français</Checkbox>
             <Checkbox value={"EN"}>&#127468;&#127463; English</Checkbox>
             <Checkbox value={"ES"}>&#127466;&#127480; Español</Checkbox>
@@ -341,22 +355,61 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
               type={"button"}
               variant={"flat"}
               color={"default"}
+              isDisabled={pending}
               onPress={() => setPogress((prev) => ({ ...prev, info: 0 }))}
             >
               Back
             </Button>
             <Button
-              type={"submit"}
+              type={"button"}
               variant={"flat"}
-              color={"success"}
-              /*onPress={() => {
-                  if (check) setPogress((prev) => ({ ...prev, info: 100 }));
-                  else alert("Please fill all the fields.");
-                }}*/
+              color={"primary"}
+              isDisabled={pending}
+              onPress={() => setPogress((prev) => ({ ...prev, langs: 100 }))}
             >
+              Next
+            </Button>
+          </div>
+        </div>
+        <div
+          className={
+            "w-11/12 mx-auto h-[90%] absolute z-10 inset-0 md:px-[20vw] lg:px-[32vw] bg-stone-50 rounded-3xl flex flex-col justify-center items-center gap-[4vh]"
+          }
+          style={{
+            transform: `translateX(${pogress.avatar === 100 ? "-150%" : "0"})`,
+            transition: "transform 0.5s ease-in-out",
+          }}
+        >
+          <h2 className={"w-full"}>Choose your avatar</h2>
+          <input
+            type={"file"}
+            className={"w-full"}
+            name={"avatar"}
+            accept={"image/png, image/jpeg, image/jpg, image/webp"}
+          />
+          <div className={"w-full flex justify-between"}>
+            <Button
+              type={"button"}
+              variant={"flat"}
+              onPress={() => setPogress((prev) => ({ ...prev, langs: 0 }))}
+            >
+              Back
+            </Button>
+            <Button type={"submit"} variant={"flat"} color={"success"}>
               Done!
             </Button>
           </div>
+        </div>
+        <div
+          className={
+            "w-11/12 mx-auto h-[90%] absolute z-0 inset-0 px-[4vw] rounded-3xl flex flex-col justify-center items-center gap-[4vh]"
+          }
+          style={{
+            transform: `translateX(0)`,
+            transition: "transform 0.5s ease-in-out",
+          }}
+        >
+          <h1>Welcome abord, captain!</h1>
         </div>
       </form>
     </section>
