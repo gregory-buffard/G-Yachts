@@ -10,4 +10,5 @@ export interface ICustomer {
     other: boolean;
   };
   newsletter?: boolean;
+  status: string;
 }
