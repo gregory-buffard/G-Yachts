@@ -60,18 +60,31 @@ export const CreateNewsletterDialog = ({
 
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <ModalBody>
-                                <Input
-                                    label="Title"
-                                    {...register("title", { required: true })}
-                                    errorMessage={errors.title ? "This field is required" : ""}
-                                />
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="title">Title</label>
+                                    <Input
+                                        label="Title"
+                                        {...register("title", { required: true })}
+                                        errorMessage={errors.title ? "This field is required" : ""}
+                                    />
+                                </div>
+
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="subject">Subject</label>
+                                    <Input
+                                        label="Subject"
+                                        {...register("subject", { required: true })}
+                                        errorMessage={errors.subject ? "This field is required" : ""}
+                                    />
+                                </div>
 
                                 <div className="flex flex-col gap-2">
                                     <label className="mt-4" htmlFor="htmlContent">HTML Content</label>
                                     <Textarea
                                         {...register("htmlContent", { required: true })}
-                                        label="HTML content..."
+                                        placeholder="Enter your html code..."
                                         style={{ width: "700px", height: "350px" }}
+                                        errorMessage={errors.htmlContent ? "This field is required" : ""}
                                     />
                                 </div>
                             </ModalBody>
@@ -88,6 +101,6 @@ export const CreateNewsletterDialog = ({
                     </>
                 )}
             </ModalContent>
-        </Modal>
+        </Modal >
     )
 }

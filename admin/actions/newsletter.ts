@@ -26,6 +26,7 @@ export const getNewsletters = async () => {
     return newsletters.map(item => ({
         _id: (item._id as mongoose.Schema.Types.ObjectId).toString(),
         title: item.title,
+        subject: item.subject,
         htmlContent: item.htmlContent,
         __v: item.__v,
     }));
