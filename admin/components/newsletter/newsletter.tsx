@@ -1,12 +1,10 @@
 "use client";
 
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, toggle } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { useState } from "react";
-
-export type Newsletter = {
-    title: string;
-    htmlContent: string;
-}
+import { CreateNewsletterDialog } from "./createNewsletterDialog";
+import { Newsletter, NewsletterItem } from "./newsletterItem";
+import { NewsletterContent } from "./newsletterContent";
 
 const newsletterItems: Newsletter[] = [
     {
@@ -18,25 +16,6 @@ const newsletterItems: Newsletter[] = [
         htmlContent: "This is the second newsletter"
     },
 ]
-
-const NewsletterItem = ({
-    item,
-    onClick
-}: {
-    item: Newsletter,
-    onClick: VoidFunction
-}) => {
-    return (
-        <Button
-            type="button"
-            variant="faded"
-            className="flex flex-col gap-5"
-            onClick={onClick}
-        >
-            <h2>{item.title}</h2>
-        </Button>
-    )
-}
 
 const NewsletterPage = (): JSX.Element => {
     const [selectedItem, setSelectedItem] = useState<Newsletter | null>(null);
@@ -68,50 +47,16 @@ const NewsletterPage = (): JSX.Element => {
                     </div>
                 </div>
 
-                <div>
-                    {selectedItem?.htmlContent}
-                </div>
+                <NewsletterContent content={selectedItem?.htmlContent || ""} />
             </div>
 
-            <Modal
-                isOpen={createModalOpen}
-                onClose={() => setCreateModalOpen(false)}
-            >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
-                            <ModalBody>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Nullam pulvinar risus non risus hendrerit venenatis.
-                                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                                </p>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Nullam pulvinar risus non risus hendrerit venenatis.
-                                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                                </p>
-                                <p>
-                                    Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                                    dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis.
-                                    Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod.
-                                    Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur
-                                    proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                                </p>
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="danger" variant="light" onPress={onClose}>
-                                    Close
-                                </Button>
-                                <Button color="primary" onPress={onClose}>
-                                    Action
-                                </Button>
-                            </ModalFooter>
-                        </>
-                    )}
-                </ModalContent>
-            </Modal>
+            <CreateNewsletterDialog
+                createModalOpen={createModalOpen}
+                setCreateModalOpen={setCreateModalOpen}
+                onCreateNewsletter={(newsletter) => {
+                    alert(JSON.stringify(newsletter));
+                }}
+            />
         </section>
     )
 }

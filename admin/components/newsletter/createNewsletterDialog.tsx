@@ -1,14 +1,29 @@
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/react";
-import { Newsletter } from "./newsletter";
+"use client";
+
+import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea } from "@nextui-org/react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Newsletter } from "./newsletterItem";
 
 export const CreateNewsletterDialog = ({
     createModalOpen,
-    setCreateModalOpen
+    setCreateModalOpen,
+    onCreateNewsletter
 }: {
     createModalOpen: boolean;
     setCreateModalOpen: (open: boolean) => void;
     onCreateNewsletter: (newsletter: Newsletter) => void;
 }) => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<Newsletter>();
+
+    const onSubmit: SubmitHandler<Newsletter> = (data) => {
+        onCreateNewsletter(data);
+        setCreateModalOpen(false);
+    }
+
     return (
         <Modal
             isOpen={createModalOpen}
@@ -17,35 +32,33 @@ export const CreateNewsletterDialog = ({
             <ModalContent>
                 {(onClose) => (
                     <>
-                        <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
-                        <ModalBody>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Nullam pulvinar risus non risus hendrerit venenatis.
-                                Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Nullam pulvinar risus non risus hendrerit venenatis.
-                                Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                            </p>
-                            <p>
-                                Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                                dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis.
-                                Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod.
-                                Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur
-                                proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                            </p>
-                        </ModalBody>
+                        <ModalHeader className="flex flex-col gap-1">
+                            Create new newsletter template
+                        </ModalHeader>
 
-                        <ModalFooter>
-                            <Button color="danger" variant="light" onPress={onClose}>
-                                Close
-                            </Button>
-                            <Button color="primary" onPress={onClose}>
-                                Action
-                            </Button>
-                        </ModalFooter>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <ModalBody>
+                                <Input
+                                    label="Title"
+                                    {...register("title", { required: true })}
+                                    errorMessage={errors.title ? "This field is required" : ""}
+                                />
+                                <Textarea
+                                    label="HTML Content"
+                                    {...register("htmlContent", { required: true })}
+                                    errorMessage={errors.htmlContent ? "This field is required" : ""}
+                                />
+                            </ModalBody>
+
+                            <ModalFooter>
+                                <Button color="danger" variant="light" onPress={onClose}>
+                                    Close
+                                </Button>
+                                <Button type="submit" color="primary">
+                                    Create
+                                </Button>
+                            </ModalFooter>
+                        </form>
                     </>
                 )}
             </ModalContent>
