@@ -1,10 +1,6 @@
 "use server";
 
-
-import axios from "axios";
-import { revalidatePath } from "next/cache";
 import { Yacht } from "@/models/yacht";
-
 
 export const getYachtFeatured = async (id: string) => {
     try {

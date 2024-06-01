@@ -20,10 +20,10 @@ interface IPogress {
 
 const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
   const [pogress, setPogress] = useState<IPogress>({
-      info: 0,
-      langs: 0,
-      avatar: 0,
-    }),
+    info: 0,
+    langs: 0,
+    avatar: 0,
+  }),
     [check, setCheck] = useState<boolean>(false),
     { pending } = useFormStatus();
 
@@ -142,9 +142,9 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
             transform: `translateX(${pogress.langs === 100 ? "-150%" : "0"})`,
             transition: "transform 0.5s ease-in-out",
           }}
-          /*action={(formData) =>
-            setForm((prev) => ({ ...prev, langs: formData.get("langs") }))
-          }*/
+        /*action={(formData) =>
+          setForm((prev) => ({ ...prev, langs: formData.get("langs") }))
+        }*/
         >
           <h2 className={"w-full"}>Select your languages</h2>
           <CheckboxGroup name={"langs"} className={"w-full"}>
@@ -168,10 +168,10 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
               type={"submit"}
               variant={"flat"}
               color={"success"}
-              /*onPress={() => {
-                if (check) setPogress((prev) => ({ ...prev, info: 100 }));
-                else alert("Please fill all the fields.");
-              }}*/
+            /*onPress={() => {
+              if (check) setPogress((prev) => ({ ...prev, info: 100 }));
+              else alert("Please fill all the fields.");
+            }}*/
             >
               Done!
             </Button>

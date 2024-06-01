@@ -1,12 +1,20 @@
 "use client";
-import {useViewContext} from "@/context/view";
-import Dashboard from "@/components/dashboard/dashboard";
-import Yachts from "@/components/yachts/yachts";
-import New from "@/components/yachts/new";
-import Charter from "@/components/charters/charter";
+
+import { useViewContext } from "@/context/view";
 import { ReactNode } from "react";
 
-const ViewComp = ({comps}:{comps:{newsletter: ReactNode,dashboard:ReactNode,yachts:ReactNode,article:ReactNode, new:ReactNode , charters:ReactNode, destinations:ReactNode}}) => {
+const ViewComp = ({ comps }: {
+    comps: {
+        newsletter: ReactNode,
+        dashboard: ReactNode,
+        yachts: ReactNode,
+        article: ReactNode,
+        new: ReactNode,
+        charters: ReactNode,
+        destinations: ReactNode,
+        messages: ReactNode
+    }
+}) => {
     const { active } = useViewContext();
 
     return (

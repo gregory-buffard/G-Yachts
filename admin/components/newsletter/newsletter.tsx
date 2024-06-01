@@ -1,27 +1,30 @@
 "use client";
 
 import { Button } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CreateNewsletterDialog } from "./createNewsletterDialog";
-import { Newsletter, NewsletterItem } from "./newsletterItem";
 import { NewsletterContent } from "./newsletterContent";
-
-const newsletterItems: Newsletter[] = [
-    {
-        title: "Newsletter 1",
-        htmlContent: "This is the first newsletter"
-    },
-    {
-        title: "Newsletter 2",
-        htmlContent: "This is the second newsletter"
-    },
-]
+import { NewsletterList } from "./newsletterList";
+import { NewsletterI } from "@/types/newsletter";
+import { getNewsletters } from "@/actions/newsletter";
 
 const NewsletterPage = (): JSX.Element => {
-    const [selectedItem, setSelectedItem] = useState<Newsletter | null>(null);
+    const [selectedItem, setSelectedItem] = useState<NewsletterI | null>(null);
 
     const [createModalOpen, setCreateModalOpen] = useState<boolean>(false);
     const toggleCreateModal = () => setCreateModalOpen(!createModalOpen);
+
+    const [newsletterItems, setNewsletterItems] = useState<NewsletterI[]>([]);
+
+    const fetchNewsletters = async () => {
+        const newsletters = await getNewsletters();
+        setNewsletterItems(newsletters);
+    }
+
+    // biome-ignore lint/correctness/useExhaustiveDependencies: Will cause an infinite loop if dependencies are added
+    useEffect(() => {
+        fetchNewsletters();
+    }, []);
 
     return (
         <section
@@ -37,25 +40,23 @@ const NewsletterPage = (): JSX.Element => {
                         Create new template
                     </Button>
 
-                    <div className="flex flex-col gap-4">
-                        {newsletterItems.map(item => (
-                            <NewsletterItem
-                                item={item}
-                                onClick={() => setSelectedItem(item)}
-                            />
-                        ))}
-                    </div>
+                    <NewsletterList
+                        newsletterItems={newsletterItems}
+                        selectedItem={selectedItem}
+                        setSelectedItem={setSelectedItem}
+                    />
                 </div>
 
-                <NewsletterContent item={selectedItem ?? newsletterItems[0]} />
+                <NewsletterContent
+                    item={selectedItem}
+                    onUpdate={() => fetchNewsletters()}
+                />
             </div>
 
             <CreateNewsletterDialog
                 createModalOpen={createModalOpen}
                 setCreateModalOpen={setCreateModalOpen}
-                onCreateNewsletter={(newsletter) => {
-                    alert(JSON.stringify(newsletter));
-                }}
+                onCreateNewsletter={() => fetchNewsletters()}
             />
         </section>
     )

@@ -12,6 +12,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { fetchBrokerino } from "@/actions/brokerino";
 import Destination from "@/components/destinations/destinations";
 import ArticlePage from "@/components/article/articlePage";
+import MessagesPage from "@/components/messages/messages";
 
 const App = async () => {
     const { getUser } = getKindeServerSession(),
@@ -22,13 +23,14 @@ const App = async () => {
             {user && <Brokerino data={await fetchBrokerino(user.id)} id={user.id} />}
             <ViewComp comps={
                 {
-                    dashboard: <Dashboard/>,
-                    yachts: <Yachts/>,
-                    new: <New/>,
-                    charters: <Charter/>,
-                    destinations: <Destination/>,
+                    dashboard: <Dashboard />,
+                    yachts: <Yachts />,
+                    new: <New />,
+                    charters: <Charter />,
+                    destinations: <Destination />,
                     newsletter: <NewsletterPage />,
-                    article: <ArticlePage />
+                    article: <ArticlePage />,
+                    messages: <MessagesPage />
                 }
             } />
             <Nav />
