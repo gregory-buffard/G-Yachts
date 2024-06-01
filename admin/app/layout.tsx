@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
+import 'monaco-editor/min/vs/editor/editor.main.css';
 
 import UIProvider from "@/components/NextUIProvider";
 import { Inter } from "next/font/google";

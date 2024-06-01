@@ -1,4 +1,7 @@
 import { Button } from "@nextui-org/react";
+import dynamic from "next/dynamic";
+
+const MonacoEditor = dynamic(() => import('./htmlEditor'), { ssr: false });
 
 export const NewsletterContent = ({
     content,
@@ -7,7 +10,7 @@ export const NewsletterContent = ({
 }) => {
     return (
         <div className="flex flex-col gap-4">
-            <p>{content}</p>
+            <MonacoEditor value={content} language="html" />
 
             <div className="flex flex-row gap-2">
                 <Button>Edit</Button>
