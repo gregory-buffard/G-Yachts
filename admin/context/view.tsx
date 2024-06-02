@@ -2,13 +2,7 @@
 
 import { createContext, ReactNode, useContext, useState } from "react";
 
-export type NavActive =
-  | "dashboard"
-  | "yachts"
-  | "new"
-  | "charters"
-  | "destinations"
-  | "newsletter";
+export type NavActive = "dashboard" | "yachts" | "new" | "charters" | "destinations" | "newsletter" | "article" | "messages";
 
 interface IContext {
   active: NavActive;
@@ -23,7 +17,11 @@ export const ViewProvider = ({ children }: { children: ReactNode }) => {
 
   const value = { active, setActive };
 
-  return <ViewContext.Provider value={value}>{children}</ViewContext.Provider>;
+  return (
+    <ViewContext.Provider value={value}>
+      {children}
+    </ViewContext.Provider>
+  );
 };
 
 export const useViewContext = () => {

@@ -1,69 +1,55 @@
-import { Request, Response } from "express";
+import {Request, Response} from "express";
 import path from "path";
 import fs from "fs";
 import multer from "multer";
 
 export const getImages = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const { type, target } = req.body;
-    const dir = path.join("/app/api/images/yachts/", type, id, target);
-    fs.readdir(dir, (e, f) => {
-      res.json(f);
-    });
-  } catch (e) {
-    res.status(500).send(e);
-  }
+    try {
+        const {id} = req.params;
+        const {type, target} = req.body;
+        const dir = path.join("/app/api/images/yachts/", type, id, target);
+        fs.readdir(dir, (e, f) => {
+            res.json(f);
+        });
+    } catch (e) {
+        res.status(500).send(e);
+    }
 };
 
-export const changeFeatured = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const { photo, type } = req.body;
+export const remove = async (req: Request, res: Response) => {
+    try {
+        const {id, photoName} = req.params;
+        const {photo} = req.body;
 
-    const sourceDir = path.join("/app/api/images/yachts/", type, id, "gallery");
-    const targetDir = path.join(
-      "/app/api/images/yachts/",
-      type,
-      id,
-      "featured",
-    );
+        const targetDir = path.join(
+            "/app/api/images/yachts/",
+            id, photoName
+        );
+        fs.unlink(targetDir, (e) => {
+                if (e) {
+                    res
+                        .status(500)
+                        .send(`Error deleting file ${photoName} from ${targetDir}`);
+                }
+                res.status(200).send(`File ${photoName} deleted from ${targetDir}`);
+            }
+        );
+    } catch (e) {
+        res
+            .status(500)
+            .send(`Error deleting file`);
+    }
+}
 
-    fs.readdir(targetDir, (e, files) => {
-      if (e) return res.status(500).send(e);
-
-      for (let file of files) {
-        fs.unlink(path.join(targetDir, file), (e) => {
-          if (e) return res.status(500).send(e);
-        });
-      }
-
-      const sourceFile = path.join(sourceDir, photo);
-      const targetFile = path.join(targetDir, photo);
-
-      fs.copyFile(sourceFile, targetFile, (e) => {
-        if (e) return res.status(500).send(e);
-        const newTargetFile = path.join(targetDir, "photo.webp");
-        fs.rename(targetFile, newTargetFile, (e) => {
-          if (e) return res.status(500).send(e);
-        });
-        res.status(200);
-      });
+    const storage = multer.diskStorage({
+        destination: (req, f, cb) => {
+            const {id} = req.params;
+            const dir = path.join("/app/api/images/yachts", id);
+            fs.mkdirSync(dir, {recursive: true});
+            cb(null, dir);
+        },
+        filename: (req, f, cb) => {
+            cb(null, f.originalname);
+        },
     });
-  } catch (e) {
-    res.status(500).send(e);
-  }
-};
-
-const storage = multer.diskStorage({
-  destination: (req, f, cb) => {
-    const { id } = req.params;
-    const dir = path.join("/app/api/images/yachts", id);
-    fs.mkdirSync(dir, { recursive: true });
-    cb(null, dir);
-  },
-  filename: (req, f, cb) => {
-    cb(null, f.originalname);
-  },
-});
-export const uploadImages = multer({ storage });
+    export const uploadImages = multer({storage});

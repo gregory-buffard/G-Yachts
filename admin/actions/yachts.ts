@@ -1,10 +1,6 @@
 "use server";
 
-
-import axios from "axios";
-import { revalidatePath } from "next/cache";
-import {Yacht} from "@/models/yacht";
-
+import { Yacht } from "@/models/yacht";
 
 export const getYachtFeatured = async (id: string) => {
     try {
@@ -24,18 +20,18 @@ export const changeYachtFeatured = async (id: string, photo: string) => {
 }
 
 export const fetchYachts = async () => {
-  const res = await Yacht.find()
-    .catch((e) => {
-      throw e;
-    });
-  return JSON.parse(JSON.stringify(res))
+    const res = await Yacht.find()
+        .catch((e) => {
+            throw e;
+        });
+    return JSON.parse(JSON.stringify(res))
 };
 
-export const fetchYacht = async (id: string ) => {
-  const res = await Yacht.findById(id).catch((e) => {
-    throw e;
-  });
-  return JSON.parse(JSON.stringify(res));
+export const fetchYacht = async (id: string) => {
+    const res = await Yacht.findById(id).catch((e) => {
+        throw e;
+    });
+    return JSON.parse(JSON.stringify(res));
 };
 
 export const saveYacht = async (yacht: any) => {
@@ -50,8 +46,8 @@ export const removeYacht = async (id: string) => {
     console.log(id, " removed")
 }
 export const addYacht = async (yacht: any) => {
-    yacht._id =undefined;
-    const res = await new Yacht(yacht).save().catch((e:any) => {
+    yacht._id = undefined;
+    const res = await new Yacht(yacht).save().catch((e: any) => {
         const regex = /Path `(\w+)` is required/g;
         let missingFields = [];
         let match;
@@ -66,57 +62,42 @@ export const addYacht = async (yacht: any) => {
         const missingFieldsString = `Missing fields: (${missingFields.join(', ')})`;
         throw new Error(missingFieldsString);
     });
-    return {status:"OK"};
+    return { status: "OK" };
 
 }
 
 export const fetchYachtFeatured = async () => {
-  const res = await Yacht.find({ featured: true })
-    .select("_id name price builder photos length yearBuilt sleeps")
-    .catch((e) => {
-      throw e;
-    });
+    const res = await Yacht.find({ featured: true })
+        .select("_id name price builder photos length yearBuilt sleeps")
+        .catch((e) => {
+            throw e;
+        });
     return JSON.parse(JSON.stringify(res));
 };
 
-export const removeYachtImage = async (id: string, photo: string) => {
-    await fetch(`${process.env.API_URL}/images/yachts/${id}/${photo}`, {
-        method: "DELETE",
-    }).then(async (d) => {
-        console.log(d)
-        const yacht = await Yacht.findById(id).select("photos.gallery").exec()
-        yacht.photos.gallery = yacht.photos.gallery.filter((image: any) => image !== photo);
-        await yacht.save().catch((e: any) => {
-            throw e;
-        });
-    }).catch((e) => {
+export const removeYachtImage = async (id: string, index:number) => {
+    const yacht = await Yacht.findById(id).select("photos.gallery").exec()
+    yacht.photos.gallery = yacht.photos.gallery.filter((image: string, i:number) => i !== index);
+    await yacht.save().catch((e: any) => {
         throw e;
     });
+    return { status: "OK" };
 }
+
+export const uploadYachtImage = async (id: string, photo:string) => {
+    const yacht = await Yacht.findById(id).select("photos.gallery").exec()
+    yacht.photos.gallery.push(photo);
+    await yacht.save().catch((e: any) => {
+        throw e;
+    });
+};
+
 export const getYachtImages = async (id: string) => {
     try {
         const images = await Yacht.findById(id).select("photos.gallery").exec()
         console.log(images.photos.gallery)
-        return Array.from(images.photos.gallery).map((image: any) => {
-            return `${process.env.NEXT_PUBLIC_API}/images/yachts/${id}/${image}`
-        });
+        return images.photos.gallery;
     } catch (e) {
         console.error(e);
     }
 }
-
-export const uploadYachtImages = async (event: any, id: string) => {
-    try {
-        event.preventDefault();
-        const formData = new FormData();
-        const fileField = document.querySelector('input[type="file"]');
-
-        const res = await fetch(`${process.env.API_URL}/images/yachts//${id}`, {
-            method: "POST",
-            body: formData,
-        });
-        return await res.json().then((d) => console.log(d));
-    } catch (e) {
-        console.error(e);
-    }
-};

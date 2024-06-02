@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import adminRoutes from "./routes/adminRoutes";
 import publicRoutes from "./routes/publicRoutes";
-import {GrantType, setupKinde} from "@kinde-oss/kinde-node-express";
+const kinde =require("@kinde-oss/kinde-auth-express");
 
 dotenv.config();
 
@@ -47,8 +47,8 @@ const config = {
     secret: process.env.KINDE_CLIENT_SECRET!,
     redirectUrl: "http://localhost:3000",
     scope: "openid profile email",
-    grantType: GrantType.AUTHORIZATION_CODE, //or CLIENT_CREDENTIALS or PKCE
+    grantType: kinde.GrantType.AUTHORIZATION_CODE, //or CLIENT_CREDENTIALS or PKCE
     unAuthorisedUrl: "http://localhost:3000/unauthorised",
     postLogoutRedirectUrl: "http://localhost:3000"
 };
-setupKinde(config, app);
+kinde.setupKinde(config, app);

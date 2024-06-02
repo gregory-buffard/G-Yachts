@@ -20,6 +20,8 @@ import {Input} from "@nextui-org/input";
 import Crown from "@/components/Crown";
 import yachts from "@/components/yachts/yachts";
 import ImgSettings from "@/components/imgSettings/imgsettings";
+import ImgDestinationSettings from "@/components/destinations/imgDestinationSettings";
+import {replaceDestinationImage} from "@/actions/destination";
 
 const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -109,7 +111,7 @@ const ManageDestination = ({data, setDestinations, saveDestination, removeDestin
                         </ModalBody>
                         <ModalFooter>
                             <a className={"absolute left-5"} target="_blank" rel="noopener noreferrer"
-                               href={`http://51.75.16.185/en/yacht/${data._id}`}>
+                               href={`http://51.75.16.185/en/destination/${data._id}`}>
                                 <Button
                                     variant={"light"}
                                 >
@@ -156,6 +158,7 @@ const ManageDestination = ({data, setDestinations, saveDestination, removeDestin
                         className={"size-[1.5rem]"}
                     />
                 </Button>
+                <ImgDestinationSettings data={data} repalce={replaceDestinationImage}/>
 
             </div>
         </div>

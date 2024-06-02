@@ -1,36 +1,10 @@
 "use server"
-import {Charter} from "@/models/charter";
+import { Charter } from "@/models/charter";
 import axios from "axios";
-import {revalidatePath} from "next/cache";
-import {Yacht} from "@/models/yacht";
+import { revalidatePath } from "next/cache";
+import { Yacht } from "@/models/yacht";
 
-export const uploadCharterImages = async (event: any, id: string) => {
-    try {
-        event.preventDefault();
-        const formData = new FormData();
-        const fileField = document.querySelector('input[type="file"]');
 
-        const res = await fetch(`${process.env.API_URL}/images/charters/${id}`, {
-            method: "POST",
-            body: formData,
-        });
-        return await res.json().then((d) => console.log(d));
-    } catch (e) {
-        console.error(e);
-    }
-};
-
-export const getChartersImages = async (id: string) => {
-    try {
-        const images = await Charter.findById(id).select("photos.gallery").exec()
-        console.log(images.photos.gallery)
-        return Array.from(images.photos.gallery).map((image: any) => {
-            return `${process.env.NEXT_PUBLIC_API}/images/charters/${id}/${image}`
-        });
-    } catch (e) {
-        console.error(e);
-    }
-}
 
 export const getCharters = async () => {
     const res = await Charter.find().catch((e) => {
@@ -39,7 +13,15 @@ export const getCharters = async () => {
     return JSON.parse(JSON.stringify(res))
 }
 
-export const fetchCharter = async (id: string ) => {
+export const changeCharterFeatured = async (id: string, photo: string) => {
+    const charter = await Charter.findById(id).select("photos.gallery").exec()
+    charter.photos.featured = photo;
+    await charter.save().catch((e: any) => {
+        throw e;
+    });
+}
+
+export const fetchCharter = async (id: string) => {
     const res = await Charter.findById(id).catch((e) => {
         throw e;
     });
@@ -57,8 +39,8 @@ export const removeCharter = async (id: string) => {
     });
 }
 export const addCharter = async (charter: any) => {
-    charter._id =undefined;
-    const res = await new Charter(charter).save().catch((e:any) => {
+    charter._id = undefined;
+    const res = await new Charter(charter).save().catch((e: any) => {
         const regex = /Path `(\w+)` is required/g;
         let missingFields = [];
         let match;
@@ -73,7 +55,7 @@ export const addCharter = async (charter: any) => {
         const missingFieldsString = `Missing fields: (${missingFields.join(', ')})`;
         throw new Error(missingFieldsString);
     });
-    return {status:"OK"};
+    return { status: "OK" };
 
 }
 export const fetchFeatured = async () => {
@@ -85,17 +67,30 @@ export const fetchFeatured = async () => {
     return JSON.parse(JSON.stringify(res));
 };
 
-export const removeChartersImage = async (id: string, photo: string) => {
-    await fetch(`${process.env.API_URL}/images/charters/${id}/${photo}`, {
-        method: "DELETE",
-    }).then(async (d) => {
-        console.log(d)
-        const yacht = await Charter.findById(id).select("photos.gallery").exec()
-        yacht.photos.gallery = yacht.photos.gallery.filter((image: any) => image !== photo);
-        await yacht.save().catch((e: any) => {
-            throw e;
-        });
-    }).catch((e) => {
+
+export const removeCharterImage = async (id: string, index:number) => {
+    const charter = await Charter.findById(id).select("photos.gallery").exec()
+    charter.photos.gallery = charter.photos.gallery.filter((image: string, i:number) => i !== index);
+    await charter.save().catch((e: any) => {
         throw e;
     });
+    return { status: "OK" };
+}
+
+export const uploadCharterImage = async (id: string, photo:string) => {
+    const charter = await Charter.findById(id).select("photos.gallery").exec()
+    charter.photos.gallery.push(photo);
+    await charter.save().catch((e: any) => {
+        throw e;
+    });
+};
+
+export const getCharterImages = async (id: string) => {
+    try {
+        const charter = await Charter.findById(id).select("photos.gallery").exec()
+        console.log(charter.photos.gallery)
+        return charter.photos.gallery;
+    } catch (e) {
+        console.error(e);
+    }
 }

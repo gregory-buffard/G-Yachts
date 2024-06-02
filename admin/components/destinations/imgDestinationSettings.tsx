@@ -1,9 +1,10 @@
-import {Button, Modal, ModalBody, ModalContent, useDisclosure} from "@nextui-org/react";
-import {ModalHeader} from "@nextui-org/modal";
-import {useEffect, useState} from "react";
-import ImgSettingsModal from "./imgSettingsModal";
+import {IDestination} from "@/types/destination";
+import {Button, useDisclosure} from "@nextui-org/react";
+import {useState} from "react";
+import ImgSettingsModal from "@/components/imgSettings/imgSettingsModal";
+import ImgDestinationSettingsModal from "@/components/destinations/imgDestinationSettingsModal";
 
-const ImgSettings = ({data, remove,upload, changeFeatured}: { data: any,upload:any, remove:any, changeFeatured:any}) => {
+const ImgDestinationSettings = ({data, repalce}: {data:IDestination, repalce:any}) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [images, setImages] = useState<any>([]);
 
@@ -28,9 +29,12 @@ const ImgSettings = ({data, remove,upload, changeFeatured}: { data: any,upload:a
                 </div>
 
             </Button>
-            {isOpen && <ImgSettingsModal data={data} upload={upload} changeFeatured={changeFeatured} onClose={onClose} isOpen={isOpen}  remove={remove} />}
+            {isOpen && <ImgDestinationSettingsModal data={data} replace={repalce} onClose={onClose} isOpen={isOpen}/>}
         </div>
+
     )
+
 }
 
-export default ImgSettings;
+
+export default ImgDestinationSettings;

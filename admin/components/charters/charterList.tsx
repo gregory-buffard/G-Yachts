@@ -3,13 +3,23 @@ import {ICharter} from "@/types/charter";
 import {useEffect, useState} from "react";
 import {Button, ScrollShadow} from "@nextui-org/react";
 import Manage from "@/components/yachts/manage";
-import {getCharters, removeCharter, saveCharter} from "@/actions/charters";
+import {
+    changeCharterFeatured,
+    getCharters,
+    removeCharter,
+    removeCharterImage,
+    saveCharter,
+    uploadCharterImage
+} from "@/actions/charters";
 
 const CharterList = () => {
     const [charter, setCharter] = useState<ICharter[]>([]);
     const [featured, setFeatured] = useState<boolean>(false);
     useEffect(() => {
-        getCharters().then((res) => setCharter(res? res : []));
+        getCharters().then((res) => {
+            setCharter(res? res : [])
+            console.log(res)
+        });
     }, []);
 
     return (
@@ -39,7 +49,7 @@ const CharterList = () => {
                 {charter.length > 0 && charter.map((charter) => {
                     if (featured && !charter.featured) return null;
                     return (
-                        <Manage key={charter._id} setYachts={setCharter} data={charter} saveYachts={saveCharter} removeYachts={removeCharter} />
+                        <Manage target={"charter"}  changeFeatured={changeCharterFeatured} removeImg={removeCharterImage} uploadImg={uploadCharterImage} key={charter._id} setYachts={setCharter} data={charter} saveYachts={saveCharter} removeYachts={removeCharter} />
                     );
 
                 })}

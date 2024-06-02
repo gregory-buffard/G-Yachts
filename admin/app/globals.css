@@ -13,6 +13,10 @@
         @apply w-full px-[4vw] py-[4vw] lg:px-[2vw] lg:py-[2vw];
     }
 
+    body { 
+        background-color: rgb(245 245 245);
+    }
+
     h1 {
         @apply text-4xl font-bold text-neutral-800;
     }

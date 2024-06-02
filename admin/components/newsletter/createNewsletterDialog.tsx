@@ -8,32 +8,42 @@ import {
     ModalContent,
     ModalFooter,
     ModalHeader,
-    Textarea
+    Textarea,
 } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Newsletter } from "./newsletterItem";
-import dynamic from "next/dynamic";
-
-const MonacoEditor = dynamic(() => import('./htmlEditor'), { ssr: false });
+import { createNewsletter } from "@/actions/newsletter";
+import { useState } from "react";
+import { NewsletterI } from "@/types/newsletter";
 
 export const CreateNewsletterDialog = ({
     createModalOpen,
     setCreateModalOpen,
-    onCreateNewsletter
+    onCreateNewsletter,
 }: {
     createModalOpen: boolean;
     setCreateModalOpen: (open: boolean) => void;
-    onCreateNewsletter: (newsletter: Newsletter) => void;
+    onCreateNewsletter: VoidFunction;
 }) => {
+    const [creating, setCreating] = useState<boolean>(false);
+    const toggleCreating = () => setCreating(!creating);
+
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm<Newsletter>();
+    } = useForm<NewsletterI>();
 
-    const onSubmit: SubmitHandler<Newsletter> = (data) => {
-        onCreateNewsletter(data);
-        setCreateModalOpen(false);
+    const onSubmit: SubmitHandler<NewsletterI> = async (data) => {
+        try {
+            toggleCreating();
+            await createNewsletter(data);
+        } catch (error) {
+            console.error("Failed to create newsletter:", error);
+        } finally {
+            toggleCreating();
+            setCreateModalOpen(false);
+            onCreateNewsletter();
+        }
     }
 
     return (
@@ -50,19 +60,42 @@ export const CreateNewsletterDialog = ({
 
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <ModalBody>
-                                <Input
-                                    label="Title"
-                                    {...register("title", { required: true })}
-                                    errorMessage={errors.title ? "This field is required" : ""}
-                                />
-                                <MonacoEditor onChange={(e) => alert(JSON.stringify(e))} value={""} language="html" />
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="title">Title</label>
+                                    <Input
+                                        label="Title"
+                                        {...register("title", { required: true })}
+                                        errorMessage={errors.title ? "This field is required" : ""}
+                                    />
+                                </div>
+
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="subject">Subject</label>
+                                    <Input
+                                        variant="bordered"
+                                        label="Subject"
+                                        {...register("subject", { required: true })}
+                                        errorMessage={errors.subject ? "This field is required" : ""}
+                                    />
+                                </div>
+
+                                <div className="flex flex-col gap-2">
+                                    <label className="mt-4" htmlFor="htmlContent">HTML Content</label>
+                                    <Textarea
+                                        {...register("htmlContent", { required: true })}
+                                        variant="bordered"
+                                        placeholder="Enter your html code..."
+                                        style={{ width: "700px", height: "350px" }}
+                                        errorMessage={errors.htmlContent ? "This field is required" : ""}
+                                    />
+                                </div>
                             </ModalBody>
 
                             <ModalFooter>
                                 <Button color="danger" variant="light" onPress={onClose}>
                                     Close
                                 </Button>
-                                <Button type="submit" color="primary">
+                                <Button isLoading={creating} type="submit" color="primary">
                                     Create
                                 </Button>
                             </ModalFooter>
@@ -70,6 +103,6 @@ export const CreateNewsletterDialog = ({
                     </>
                 )}
             </ModalContent>
-        </Modal>
+        </Modal >
     )
 }
