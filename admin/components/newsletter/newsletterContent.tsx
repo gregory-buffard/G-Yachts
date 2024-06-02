@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Textarea } from "@nextui-org/react";
+import { Button, Input, Textarea } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { updateNewsletterContent } from "@/actions/newsletter";
 import { NewsletterI } from "@/types/newsletter";
@@ -13,13 +13,20 @@ export const NewsletterContent = ({
     onUpdate: VoidFunction;
 }) => {
     const [editing, setEditing] = useState<boolean>(false);
-    const [editValue, setEditValue] = useState<string>("");
+    const [sending, setSending] = useState<boolean>(false);
+
+    const [editValueContent, setEditValueContent] = useState<string>("");
+    const [editValueSubject, setEditValueSubject] = useState<string>("");
 
     const onEditSubmit = async () => {
         if (item?._id) {
             setEditing(true);
             try {
-                await updateNewsletterContent(item._id, editValue);
+                await updateNewsletterContent(
+                    item._id,
+                    editValueContent,
+                    editValueSubject
+                );
             } catch (error) {
                 console.error("Failed to update newsletter:", error);
             } finally {
@@ -31,12 +38,17 @@ export const NewsletterContent = ({
 
     useEffect(() => {
         if (item) {
-            setEditValue(item.htmlContent);
+            setEditValueContent(item.htmlContent);
+            setEditValueSubject(item.subject);
         }
     }, [item]);
 
     const sendNewsletter = async () => {
-        // Implement your send newsletter logic here
+        setSending(true);
+
+        // Implement the sending logic once it's done
+
+        setSending(false);
     };
 
     if (!item) {
@@ -48,11 +60,18 @@ export const NewsletterContent = ({
             <h1 className="text-2xl font-semibold">{item.title}</h1>
 
             <div className="flex flex-col gap-3">
+                <Input
+                    variant="bordered"
+                    label="Subject"
+                    value={item.subject}
+                    onValueChange={setEditValueSubject}
+                />
                 <Textarea
+                    variant="bordered"
                     label="HTML content..."
                     style={{ width: "700px", height: "350px" }}
-                    value={editValue}
-                    onValueChange={setEditValue}
+                    value={editValueContent}
+                    onValueChange={setEditValueContent}
                 />
 
                 <div className="flex flex-row gap-2">

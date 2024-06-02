@@ -7,6 +7,10 @@ const NewsletterSchema = new Schema<NewsletterI>({
         type: String,
         required: true,
     },
+    subject: {
+        type: String,
+        required: true,
+    },
     htmlContent: {
         type: String,
         required: true

@@ -3,20 +3,46 @@ import { Button, Chip } from "@nextui-org/react";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
+import { useState } from "react";
+import { WarningMessageDeleteDialog } from "./warningMessageDeleteDialog";
+import { claimCustomer, finishCustomer, removeCustomer } from "@/actions/customers";
 
 export const Message = ({
     customer,
     toBeClaimed,
-    onClaim,
-    onFinish,
-    onRemove
+    onRefetch,
 }: {
     customer: ICustomer;
     toBeClaimed: boolean;
-    onClaim?: VoidFunction;
-    onFinish?: VoidFunction;
-    onRemove?: VoidFunction;
+    onRefetch: VoidFunction;
 }) => {
+    const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
+    const toggleDeleteOpen = () => setDeleteOpen(!deleteOpen);
+
+    const [claiming, setClaiming] = useState<boolean>(false);
+    const onClaim = async () => {
+        setClaiming(true);
+        await claimCustomer(customer._id);
+        setClaiming(false);
+        onRefetch();
+    }
+
+    const [removing, setRemoving] = useState<boolean>(false);
+    const onRemove = async () => {
+        setRemoving(true);
+        await removeCustomer(customer._id);
+        setRemoving(false);
+        onRefetch();
+    }
+
+    const [finishing, setFinishing] = useState<boolean>(false);
+    const onFinish = async () => {
+        setFinishing(true);
+        await finishCustomer(customer._id);
+        setFinishing(false);
+        onRefetch();
+    }
+
     return (
         <section className="border-2 border-gray-300 rounded-lg p-4">
             <div className="flex flex-row gap-3">
@@ -60,11 +86,21 @@ export const Message = ({
 
             <div className="flex flex-row gap-1.5 mt-4">
                 {toBeClaimed ? (
-                    <Button onClick={onClaim} variant="flat" color="success">
+                    <Button
+                        isLoading={claiming}
+                        onClick={onClaim}
+                        variant="flat"
+                        color="success"
+                    >
                         Claim
                     </Button>
                 ) : (
-                    <Button onClick={onFinish} variant="flat" color="success">
+                    <Button
+                        isLoading={finishing}
+                        onClick={onFinish}
+                        variant="flat"
+                        color="success"
+                    >
                         Finish
                     </Button>
                 )}
@@ -72,10 +108,17 @@ export const Message = ({
                 <Button
                     variant="faded"
                     onClick={onRemove}
+                    isLoading={removing}
                 >
                     Remove
                 </Button>
             </div>
+
+            <WarningMessageDeleteDialog
+                isOpen={deleteOpen}
+                onClose={() => setDeleteOpen(false)}
+                onDelete={() => { }}
+            />
         </section >
     )
 }

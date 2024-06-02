@@ -12,8 +12,11 @@ export const createNewsletter = async (newsletter: NewsletterI) => {
     return { ...newsletterInstance._doc, _id: newsletterInstance._id.toString() };
 }
 
-export const updateNewsletterContent = async (id: string, content: string) => {
-    const updatedNewsletter = await Newsletter.findByIdAndUpdate(id, { htmlContent: content }, { new: true });
+export const updateNewsletterContent = async (id: string, htmlContent: string, subject: string) => {
+    const updatedNewsletter = await Newsletter.findByIdAndUpdate(id, {
+        htmlContent,
+        subject,
+    }, { new: true });
     if (!updatedNewsletter) {
         throw new Error('Newsletter not found');
     }
@@ -26,6 +29,7 @@ export const getNewsletters = async () => {
     return newsletters.map(item => ({
         _id: (item._id as mongoose.Schema.Types.ObjectId).toString(),
         title: item.title,
+        subject: item.subject,
         htmlContent: item.htmlContent,
         __v: item.__v,
     }));

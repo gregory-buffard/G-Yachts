@@ -16,8 +16,10 @@ export const NewsletterItem = ({
             type="button"
             variant="faded"
             className={twMerge([
-                "flex flex-col gap-5",
-                isSelected ? "bg-gray-200" : ""
+                "flex flex-col gap-5 p-3 min-w-max text-left",
+                isSelected ? "bg-gray-200" : "",
+                "whitespace-normal",
+                "overflow-visible",
             ])}
             onClick={onClick}
         >

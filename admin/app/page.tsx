@@ -15,8 +15,8 @@ import ArticlePage from "@/components/article/articlePage";
 import MessagesPage from "@/components/messages/messages";
 
 const App = async () => {
-    const { getUser } = getKindeServerSession(),
-        user = await getUser();
+    const { getUser } = getKindeServerSession();
+    const user = await getUser();
 
     return (
         <main className="w-full h-screen flex justify-center items-center bg-stone-100">
