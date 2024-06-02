@@ -24,33 +24,6 @@ export const removeDestination = async (id: string) => {
     console.log(id, " removed")
 }
 
-export const uploadDestinationImages = async (event: any, id: string) => {
-    try {
-        event.preventDefault();
-        const formData = new FormData();
-        const fileField = document.querySelector('input[type="file"]');
-
-        const res = await fetch(`${process.env.API_URL}/images/destinations/${id}`, {
-            method: "POST",
-            body: formData,
-        });
-        return await res.json().then((d) => console.log(d));
-    } catch (e) {
-        console.error(e);
-    }
-};
-
-export const getDestinationImages = async (id: string) => {
-    try {
-        const images = await Yacht.findById(id).select("photos.gallery").exec()
-        console.log(images.photos.gallery)
-        return Array.from(images.photos.gallery).map((image: any) => {
-            return `${process.env.NEXT_PUBLIC_API}/images/destinations/${id}/${image}`
-        });
-    } catch (e) {
-        console.error(e);
-    }
-}
 
 export const addDestination = async (destination: any) => {
     destination._id =undefined;
@@ -72,17 +45,29 @@ export const addDestination = async (destination: any) => {
     return {status:"OK"};
 
 }
-export const removeDestinationImage = async (id: string, photo: string) => {
-    await fetch(`${process.env.API_URL}/images/destinations/${id}/${photo}`, {
-        method: "DELETE",
-    }).then(async (d) => {
-        console.log(d)
-        const yacht = await Destination.findById(id).select("photos.gallery").exec()
-        yacht.photos.gallery = yacht.photos.gallery.filter((image: any) => image !== photo);
-        await yacht.save().catch((e: any) => {
-            throw e;
-        });
-    }).catch((e) => {
+
+export const replaceDestinationImage = async (id: string, target:string, photo:string) => {
+    const destination = await Destination.findById(id).select("photos").exec()
+    destination.photos[target] = photo;
+    await destination.save().catch((e: any) => {
         throw e;
     });
+
+}
+
+export const uploadDestinationImage = async (id: string, photo:string) => {
+    const destination = await Destination.findById(id).select("photos.gallery").exec()
+    destination.photos.gallery.push(photo);
+    await destination.save().catch((e: any) => {
+        throw e;
+    });
+};
+
+export const getDestinationImages = async (id: string) => {
+    try {
+        const destination = await Destination.findById(id).select("photos").exec()
+        return destination.photos;
+    } catch (e) {
+        console.error(e);
+    }
 }

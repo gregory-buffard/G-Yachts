@@ -1,15 +1,14 @@
-"use client"
-import {Input} from "@nextui-org/input";
-import {Button, ButtonGroup, Tab, Tabs, Textarea} from "@nextui-org/react";
-import {useState} from "react";
+import {Button, Tab, Tabs, Textarea} from "@nextui-org/react";
 import {Card, CardBody} from "@nextui-org/card";
-import {createBrokerino} from "@/actions/brokerino";
-import {createArticle} from "@/actions/article";
-import {reader} from "next/dist/experimental/testmode/fetch";
+import {Input} from "@nextui-org/input";
+import {createArticle, updateArticle} from "@/actions/article";
+import {useState} from "react";
+import IArticle from "@/types/article";
 
-const CreateNew = () => {
-    const [enArticle, setEnArticle] = useState<any>({})
-    const [frArticle, setFrArticle] = useState<any>({})
+const EditArticleModal = (props: {article:IArticle, setSelectedArticle:any}) => {
+
+    const [enArticle, setEnArticle] = useState<any>(props.article.en)
+    const [frArticle, setFrArticle] = useState<any>(props.article.fr)
     let tabs = [
         {
             id: "EN",
@@ -23,7 +22,7 @@ const CreateNew = () => {
 
     return (
         <div className={" mx-auto"}>
-            <h2>Create New Article</h2>
+            <h2>Edit Article</h2>
             <Tabs aria-label="Dynamic tabs" items={tabs}>
                 {(item) => (
                     <Tab key={item.id} title={item.label}>
@@ -73,19 +72,20 @@ const CreateNew = () => {
                     const reader = new FileReader();
                     reader.readAsDataURL(formData.get("img") as Blob);
                     reader.onload = async () => {
-                        await createArticle({
-                            date: Date.now().toString(),
+                        await updateArticle({
+                            _id: props.article._id,
                             en: {...enArticle},
                             fr: {...frArticle},
                             heroImage: reader.result as string
                         });
+                        props.setSelectedArticle(null);
                     };
                 }}
             >
                 <div className={"w-full h-fit flex justify-around items-center flex-row"}>
                     <Button type={"submit"} onClick={() => {
                         console.log(enArticle, frArticle)
-                    }}>Create</Button>
+                    }}>Update</Button>
                     <input
                         type={"file"}
                         className={"w-fit mx-10"}
@@ -99,5 +99,4 @@ const CreateNew = () => {
     )
 }
 
-
-export default CreateNew;
+export default EditArticleModal;
