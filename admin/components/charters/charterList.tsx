@@ -49,7 +49,7 @@ const CharterList = () => {
                 {charter.length > 0 && charter.map((charter) => {
                     if (featured && !charter.featured) return null;
                     return (
-                        <Manage changeFeatured={changeCharterFeatured} removeImg={removeCharterImage} uploadImg={uploadCharterImage} key={charter._id} setYachts={setCharter} data={charter} saveYachts={saveCharter} removeYachts={removeCharter} />
+                        <Manage target={"charter"}  changeFeatured={changeCharterFeatured} removeImg={removeCharterImage} uploadImg={uploadCharterImage} key={charter._id} setYachts={setCharter} data={charter} saveYachts={saveCharter} removeYachts={removeCharter} />
                     );
 
                 })}

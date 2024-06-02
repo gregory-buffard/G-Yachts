@@ -53,14 +53,12 @@ const ImgSettingsModal = ({data, isOpen, onClose, remove, changeFeatured, upload
                 <ModalBody className={"flex flex-col "}>
                     <ScrollShadow className={"w-full gap-5 h-[70%] flex flex-wrap flex-row"}>
                         {images.length > 0 && images.map((image: any, i: number) => {
-                            const regex = /[^/]+$/;
-                            const imageName = image.match(regex)[0];
                             return (
                                 <div key={i} className={"relative w-[150px] group h-[150px]"}>
                                     <Image src={image} alt={"image"}
                                            className={"w-[150px] h-[150px] object-center object-cover"}/>
                                     <div
-                                        className={`top-2 left-2 fill-amber-500 absolute w-[30px] h-[30px] z-10 ${featured == imageName ? "" : "hidden"}`}>
+                                        className={`top-2 left-2 fill-amber-500 absolute w-[30px] h-[30px] z-10 ${featured == image ? "" : "hidden"}`}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             x="0px"
@@ -77,8 +75,8 @@ const ImgSettingsModal = ({data, isOpen, onClose, remove, changeFeatured, upload
                                         <div className={"w-full h-30% self-center flex flex-row justify-around"}>
                                             <Button variant={"light"}
                                                     onClick={() => {
-                                                        setFeatured(imageName)
-                                                        changeFeatured(data._id, imageName)
+                                                        setFeatured(image)
+                                                        changeFeatured(data._id, image)
                                                     }}
                                                     className={"fill-amber-300"} isIconOnly>
                                                 <svg

@@ -111,7 +111,7 @@ const ManageDestination = ({data, setDestinations, saveDestination, removeDestin
                         </ModalBody>
                         <ModalFooter>
                             <a className={"absolute left-5"} target="_blank" rel="noopener noreferrer"
-                               href={`http://51.75.16.185/en/yacht/${data._id}`}>
+                               href={`http://51.75.16.185/en/destination/${data._id}`}>
                                 <Button
                                     variant={"light"}
                                 >

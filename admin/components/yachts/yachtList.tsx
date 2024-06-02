@@ -46,7 +46,7 @@ const YachtList = () => {
                 {yachts.length > 0 && yachts.map((yacht: IYacht, i: number) => {
                     if (featured && !yacht.featured) return null;
                     return (
-                        <Manage uploadImg={uploadYachtImage} removeImg={removeYachtImage} changeFeatured={changeYachtFeatured} key={i} setYachts={setYachts} data={yacht} removeYachts={removeYacht} saveYachts={saveYacht}/>
+                        <Manage target={"yacht"} uploadImg={uploadYachtImage} removeImg={removeYachtImage} changeFeatured={changeYachtFeatured} key={i} setYachts={setYachts} data={yacht} removeYachts={removeYacht} saveYachts={saveYacht}/>
                     );
 
                 })}

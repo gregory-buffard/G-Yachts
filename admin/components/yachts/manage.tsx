@@ -49,8 +49,9 @@ const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     )
 }
 
-const Manage = ({data, setYachts, changeFeatured, saveYachts,uploadImg, removeImg, removeYachts}: {
+const Manage = ({data,target, setYachts, changeFeatured, saveYachts,uploadImg, removeImg, removeYachts}: {
     data: any,
+    target: string,
     setYachts: any,
     changeFeatured:any,
     removeImg: any,
@@ -117,7 +118,7 @@ const Manage = ({data, setYachts, changeFeatured, saveYachts,uploadImg, removeIm
                         </ModalBody>
                         <ModalFooter>
                             <a className={"absolute left-5"} target="_blank" rel="noopener noreferrer"
-                               href={`http://51.75.16.185/en/yacht/${data._id}`}>
+                               href={`http://51.75.16.185/en/${target}/${data._id}`}>
                                 <Button
                                     variant={"light"}
                                 >

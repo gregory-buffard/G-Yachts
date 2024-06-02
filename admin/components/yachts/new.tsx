@@ -16,9 +16,10 @@ const New = () => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [e, setE] = useState<string>("");
     const [imageBase64, setImageBase64] = useState<string>("");
+    const [secondImageBase64, setSecondImageBase64] = useState<string>("");
     const [newYacht, setNewYacht] = useState<any>()
 
-    const handleFileChange = (event: any) => {
+    const handleFileChange = (event: any, setBase:any) => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -27,9 +28,8 @@ const New = () => {
                 if (e.target === null) return;
                 const base64String = e.target.result;
                 console.log(base64String as string)
-                setImageBase64(base64String as string);
+                setBase(base64String as string);
             };
-
             reader.readAsDataURL(file);
         }
     };
@@ -165,12 +165,18 @@ const New = () => {
 
 
                 <Button className={"max-sm:mx-auto"} variant={"bordered"} onClick={() => {
+                    const photos = secondImageBase64 ? {
+                        featured: imageBase64,
+                        destinationPhoto: secondImageBase64
+                    } : {
+                        featured: imageBase64,
+                        gallery: [imageBase64]
 
+                    }
                     newYacht.createNew({
                         ...newYacht,
                         photos: {
-                            featured: imageBase64,
-                            gallery: [imageBase64]
+                            ...photos
                         }
                     }).then(() => {
                         setActive("dashboard")
@@ -225,17 +231,32 @@ const New = () => {
                             );
                         } else if (typeof value === "object") {
                             return (
-                                <div key={i}
-                                     className={"flex rounded-2xl mx-2 my-5 px-2 py-3 bg-black/10 justify-around items-start"}>
-                                    <p className={"w-1/3 self-center"}>Main Photo</p>
-                                    <input
-                                        onChange={handleFileChange}
-                                        type={"file"}
-                                        className={" w-1/3"}
-                                        name={"img"}
-                                        accept={"image/png, image/jpeg, image/jpg, image/webp"}
-                                    />
-                                </div>
+                                <>
+                                    <div key={i}
+                                         className={"flex rounded-2xl mx-2 my-5 px-2 py-3 bg-black/10 justify-around items-start"}>
+                                        <p className={"w-1/3 self-center"}>Main Photo</p>
+                                        <input
+                                            onChange={(e)=>handleFileChange(e, setImageBase64)}
+                                            type={"file"}
+                                            className={" w-1/3"}
+                                            name={"img"}
+                                            accept={"image/png, image/jpeg, image/jpg, image/webp"}
+                                        />
+                                    </div>
+                                    {
+                                        type == "destination" && <div key={i}
+                                                                className={"flex rounded-2xl mx-2 my-5 px-2 py-3 bg-black/10 justify-around items-start"}>
+                                            <p className={"w-1/3 self-center"}>Secondary Photo</p>
+                                            <input
+                                                onChange={(e)=>handleFileChange(e, setSecondImageBase64)}
+                                                type={"file"}
+                                                className={" w-1/3"}
+                                                name={"img"}
+                                                accept={"image/png, image/jpeg, image/jpg, image/webp"}
+                                            />
+                                        </div>
+                                    }
+                                </>
                             );
                         } else if (typeof value === "boolean") {
                             return (
