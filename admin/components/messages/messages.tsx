@@ -2,7 +2,7 @@
 
 import { ICustomer } from "@/types/customer";
 import { Message } from "./message";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getCustomers } from "@/actions/customers";
 import { Card, CardBody, ScrollShadow, Tab, Tabs } from "@nextui-org/react";
 
@@ -12,7 +12,7 @@ const UnclaimedPanel = ({ customers, onRefetch }: {
 }) => {
     return (
         <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-0.5">
+            <div className="flex flex-col gap-0.5 text-center lg:text-left">
                 <h2>Unclaimed</h2>
                 <p>Here are all your unclaimed messages.</p>
             </div>
@@ -36,7 +36,7 @@ const ClaimedPanel = ({ customers, onRefetch }: {
 }) => {
     return (
         <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-0.5">
+            <div className="flex flex-col gap-0.5 mx-auto w-fit lg:w-full">
                 <h2>Claimed</h2>
                 <p>Here are all your claimed unfinished messages.</p>
             </div>
@@ -73,7 +73,7 @@ const MessagesPage = () => {
                 "w-screen h-screen overflow-auto flex flex-col gap-10 lg:justify-start p-10 lg:items-start justify-center items-center"
             }
         >
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1.5 text-center lg:text-left">
                 <h1 className={"max-md:self-center mt-56 lg:mt-4"}>Messages</h1>
                 <p className="text-center lg:text-left">Dashboard to manage messages/orders from potentional customers</p>
             </div>
