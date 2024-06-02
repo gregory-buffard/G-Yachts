@@ -1,7 +1,7 @@
 "use client";
 
 import IBrokerino from "@/types/brokerino";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Progress,
   Input,
@@ -18,11 +18,11 @@ import {
   Select,
   SelectItem,
 } from "@nextui-org/react";
-import { createBrokerino, fetchBrokerino } from "@/actions/brokerino";
+import { createBrokerino, updateBrokerino } from "@/actions/brokerino";
 import { useFormStatus } from "react-dom";
 import Image from "next/image";
-import { useViewContext } from "@/context/view";
 import codes from "@/data/CountryCodes.json";
+import { revalidatePath } from "next/cache";
 
 interface IPogress {
   info: number;
@@ -32,15 +32,35 @@ interface IPogress {
 
 export const Edit = ({ data }: { data: IBrokerino }) => {
   const { isOpen, onOpen, onClose } = useDisclosure(),
+    { pending } = useFormStatus(),
     [phone, setPhone] = useState<{ prefix: string; number: string }[]>(
       data.phone,
-    );
+    ),
+    [avatar, setAvatar] = useState<Blob | null>(null),
+    [langs, setLangs] = useState<IBrokerino["langs"]>(data.langs);
 
   return (
     <form
+      action={async (formData) => {
+        const form = formData;
+        if (avatar !== null) {
+          const reader = new FileReader();
+          reader.readAsDataURL(avatar as Blob);
+          reader.onload = async () => {
+            await updateBrokerino(
+              form,
+              phone,
+              langs,
+              reader.result as string,
+              data._id,
+            );
+          };
+        } else {
+          await updateBrokerino(form, phone, langs, null, data._id);
+        }
+      }}
       className={"w-full flex flex-col justify-center items-center gap-[4vh]"}
     >
-      <h1>Edit your profile</h1>
       <div
         className={"w-full flex flex-col justify-center items-center gap-[2vh]"}
       >
@@ -50,7 +70,14 @@ export const Edit = ({ data }: { data: IBrokerino }) => {
           alt={data.name}
           className={"size-[18vh] peer"}
         />
-        <input type={"file"} className={"w-[18vh]"} />
+        <input
+          type={"file"}
+          onChange={(e) => {
+            setAvatar(e.target.files![0]);
+          }}
+          className={"w-[18vh]"}
+          accept={"image/png, image/jpeg, image/jpg"}
+        />
       </div>
 
       <div
@@ -61,6 +88,7 @@ export const Edit = ({ data }: { data: IBrokerino }) => {
           isRequired={true}
           defaultValue={data.name}
           type={"text"}
+          isDisabled={pending}
           name={"name"}
           label={"Name"}
           classNames={{
@@ -73,8 +101,9 @@ export const Edit = ({ data }: { data: IBrokerino }) => {
           variant={"flat"}
           isRequired={true}
           defaultValue={data.position}
+          isDisabled={pending}
           type={"text"}
-          name={"name"}
+          name={"position"}
           label={"Position"}
           classNames={{
             inputWrapper:
@@ -86,8 +115,9 @@ export const Edit = ({ data }: { data: IBrokerino }) => {
           variant={"flat"}
           isRequired={true}
           defaultValue={data.email}
+          isDisabled={pending}
           type={"email"}
-          name={"name"}
+          name={"email"}
           label={"Email"}
           classNames={{
             inputWrapper:
@@ -95,8 +125,28 @@ export const Edit = ({ data }: { data: IBrokerino }) => {
             input: "text-base",
           }}
         />
+
+        <CheckboxGroup
+          className={"w-full"}
+          isDisabled={pending}
+          isRequired={true}
+          defaultValue={langs}
+          onChange={(e) => {
+            setLangs(e);
+          }}
+        >
+          <div className={"w-full grid grid-cols-3"}>
+            <Checkbox value={"FR"}>&#127467;&#127479; Français</Checkbox>
+            <Checkbox value={"EN"}>&#127468;&#127463; English</Checkbox>
+            <Checkbox value={"ES"}>&#127466;&#127480; Español</Checkbox>
+            <Checkbox value={"IT"}>&#127470;&#127481; Italiano</Checkbox>
+            <Checkbox value={"RU"}>&#127479;&#127482; Русский</Checkbox>
+            <Checkbox value={"JP"}>&#127471;&#127477; 日本語</Checkbox>
+          </div>
+        </CheckboxGroup>
         <Button
           variant={"flat"}
+          isDisabled={pending}
           className={
             "w-full text-base bg-stone-200 hover:bg-stone-200/50 focus:bg-stone-200/50"
           }
@@ -114,27 +164,37 @@ export const Edit = ({ data }: { data: IBrokerino }) => {
                 {phone.map((num, i) => (
                   <div
                     key={i}
-                    className={"w-full flex justify-between items-center"}
+                    className={
+                      "w-full flex justify-between items-center gap-[2vh]"
+                    }
                   >
-                    <Select
-                      className={"w-1/4 text-base"}
-                      name={`code${i}`}
+                    <Input
                       isRequired={true}
-                      value={num.prefix}
-                    >
-                      {codes.map((country, i) => (
-                        <SelectItem key={country.name} className={"text-base"}>
-                          {country.dial_code}
-                        </SelectItem>
-                      ))}
-                    </Select>
+                      name={`prefix${i}`}
+                      defaultValue={num.prefix}
+                      className={"w-1/3 text-base"}
+                      label={"Prefix"}
+                      onChange={(e) => {
+                        setPhone((prev) => {
+                          const newPhone = [...prev];
+                          newPhone[i].prefix = e.target.value;
+                          return newPhone;
+                        });
+                      }}
+                    />
                     <Input
                       isRequired={true}
                       name={`phone${i}`}
                       defaultValue={num.number}
-                      className={
-                        "w-2/3 flex justify-start items-center text-base"
-                      }
+                      className={"w-2/3 text-base"}
+                      label={"Number"}
+                      onChange={(e) => {
+                        setPhone((prev) => {
+                          const newPhone = [...prev];
+                          newPhone[i].number = e.target.value;
+                          return newPhone;
+                        });
+                      }}
                     />
                     <Button
                       variant={"flat"}
@@ -189,11 +249,13 @@ export const Edit = ({ data }: { data: IBrokerino }) => {
           </ModalContent>
         </Modal>
       </div>
-      <div className={"w-full flex justify-between items-center"}>
-        <Button variant={"flat"} color={"danger"} type={"reset"}>
-          Reset
-        </Button>
-        <Button variant={"flat"} color={"primary"} type={"submit"}>
+      <div className={"w-full flex justify-end items-center pb-[1vh]"}>
+        <Button
+          isDisabled={pending}
+          variant={"flat"}
+          color={"primary"}
+          type={"submit"}
+        >
           Confirm changes
         </Button>
       </div>
@@ -274,7 +336,7 @@ const Create = ({ id }: { id: IBrokerino["kindeID"] }) => {
             await createBrokerino(data, id, reader.result as string).then(
               () => {
                 setPogress((prev) => ({ ...prev, avatar: 100 }));
-                setTimeout(() => window.location.reload(), 3000);
+                setTimeout(() => revalidatePath("/", "page"), 3000);
               },
             );
           };
@@ -491,14 +553,13 @@ const Brokerino = ({
       >
         <Image src={data.avatar} width={256} height={256} alt={data.name} />
       </Button>
-      <Modal isOpen={true} onClose={onClose} backdrop={"blur"}>
+      <Modal isOpen={isOpen} onClose={onClose} backdrop={"blur"}>
         <ModalContent>
           <>
-            <ModalHeader></ModalHeader>
+            <ModalHeader>Edit your profile</ModalHeader>
             <ModalBody>
               <Edit data={data} />
             </ModalBody>
-            <ModalFooter></ModalFooter>
           </>
         </ModalContent>
       </Modal>

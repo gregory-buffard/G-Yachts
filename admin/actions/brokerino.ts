@@ -3,6 +3,7 @@
 import IBrokerino from "@/types/brokerino";
 import { Brokerino } from "@/models/brokerino";
 import codes from "@/data/CountryCodes.json";
+import { revalidatePath } from "next/cache";
 
 export const fetchBrokerino = async (kindeID: IBrokerino["kindeID"]) => {
   const res = await Brokerino.findOne({ kindeID: kindeID }).catch((e) => {
@@ -37,14 +38,32 @@ export const createBrokerino = async (
 
 export const updateBrokerino = async (
   formData: FormData,
-  phone: { prefix: string; number: string }[],
+  phone: IBrokerino["phone"] | null,
+  langs: IBrokerino["langs"] | null,
+  avatar: IBrokerino["avatar"] | null,
+  id: IBrokerino["_id"],
 ) => {
-  const rawFormData = {
-    name: formData.get("name").length > 0,
-    position: formData.get("position"),
-    email: formData.get("email"),
-    phone: phone,
-    langs: [formData.get("langs")],
-    avatar: formData.get("avatar"),
-  };
+  const rawFormData = {};
+
+  if (avatar) {
+    rawFormData["avatar"] = avatar;
+  }
+  if (formData.get("name")) {
+    rawFormData["name"] = formData.get("name");
+  }
+  if (formData.get("position")) {
+    rawFormData["position"] = formData.get("position");
+  }
+  if (formData.get("email")) {
+    rawFormData["email"] = formData.get("email");
+  }
+  if (phone) {
+    rawFormData["phone"] = phone;
+  }
+  if (langs) {
+    rawFormData["langs"] = langs;
+  }
+
+  await Brokerino.findByIdAndUpdate(id, rawFormData);
+  revalidatePath("/");
 };
