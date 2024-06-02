@@ -3,7 +3,14 @@ import {useEffect, useState} from "react";
 import {IYacht} from "@/types/yacht";
 import {Button, ScrollShadow} from "@nextui-org/react";
 import Manage from "@/components/yachts/manage";
-import {fetchYachts, removeYacht, saveYacht} from "@/actions/yachts";
+import {
+    changeYachtFeatured,
+    fetchYachts,
+    removeYacht,
+    removeYachtImage,
+    saveYacht,
+    uploadYachtImage
+} from "@/actions/yachts";
 
 const YachtList = () => {
     const [yachts, setYachts] = useState<IYacht[]>([]);
@@ -39,7 +46,7 @@ const YachtList = () => {
                 {yachts.length > 0 && yachts.map((yacht: IYacht, i: number) => {
                     if (featured && !yacht.featured) return null;
                     return (
-                        <Manage key={i} setYachts={setYachts} data={yacht} removeYachts={removeYacht} saveYachts={saveYacht}/>
+                        <Manage uploadImg={uploadYachtImage} removeImg={removeYachtImage} changeFeatured={changeYachtFeatured} key={i} setYachts={setYachts} data={yacht} removeYachts={removeYacht} saveYachts={saveYacht}/>
                     );
 
                 })}

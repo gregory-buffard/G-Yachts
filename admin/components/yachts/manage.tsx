@@ -16,13 +16,7 @@ import context from "@/public/assets/UI/context.json";
 import {useRef, useState} from "react";
 import {ModalHeader} from "@nextui-org/modal";
 import Gallery from "@/components/yachts/gallery";
-import {
-    changeYachtFeatured,
-    fetchYacht,
-    fetchYachtFeatured, getYachtImages,
-    removeYachtImage,
-    uploadYachtImages
-} from "@/actions/yachts";
+
 import {object} from "prop-types";
 import {useYacht} from "@/context/yacht";
 import {BooleanLine, ClassicLine, NumberLine} from "@/components/yachts/manageLines";
@@ -55,9 +49,12 @@ const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     )
 }
 
-const Manage = ({data, setYachts, saveYachts, removeYachts}: {
+const Manage = ({data, setYachts, changeFeatured, saveYachts,uploadImg, removeImg, removeYachts}: {
     data: any,
     setYachts: any,
+    changeFeatured:any,
+    removeImg: any,
+    uploadImg: any,
     saveYachts: any,
     removeYachts: any
 }) => {
@@ -167,9 +164,9 @@ const Manage = ({data, setYachts, saveYachts, removeYachts}: {
                         className={"size-[1.5rem]"}
                     />
                 </Button>
-                <ImgSettings changeFeatured={changeYachtFeatured} data={yacht}
-                             getImages={getYachtImages} query={"yachts"} remove={removeYachtImage}
-                             upload={uploadYachtImages}/>
+                <ImgSettings changeFeatured={changeFeatured} data={yacht}
+                             remove={removeImg}
+                             upload={uploadImg}/>
             </div>
         </div>
     );

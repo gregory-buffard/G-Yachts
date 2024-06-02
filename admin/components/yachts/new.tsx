@@ -3,19 +3,38 @@ import {BooleanLine, ClassicLine, NumberLine} from "@/components/yachts/manageLi
 import {Button, Modal, ModalBody, ModalContent, ModalFooter, ScrollShadow, useDisclosure} from "@nextui-org/react";
 import {useEffect, useState} from "react";
 import {Input} from "@nextui-org/input";
-import {addYacht, saveYacht} from "@/actions/yachts";
+import {addYacht, uploadYachtImage} from "@/actions/yachts";
 import {ModalHeader} from "@nextui-org/modal";
 import {useViewContext} from "@/context/view";
-import {addCharter} from "@/actions/charters";
-import {addDestination} from "@/actions/destination";
+import {addCharter, uploadCharterImage} from "@/actions/charters";
+import {addDestination, uploadDestinationImage} from "@/actions/destination";
 
 const New = () => {
     const {setActive} = useViewContext();
-    const [type, setType] = useState<"yacht" |  "charter" | "destination">();
+    const [type, setType] = useState<"yacht" | "charter" | "destination">();
     const [find, setFind] = useState<string>("");
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [e, setE] = useState<string>("");
+    const [imageBase64, setImageBase64] = useState<string>("");
     const [newYacht, setNewYacht] = useState<any>()
+
+    const handleFileChange = (event: any) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            console.log("start")
+            reader.onload = (e) => {
+                if (e.target === null) return;
+                const base64String = e.target.result;
+                console.log(base64String as string)
+                setImageBase64(base64String as string);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    };
+
+
     useEffect(() => {
         const models = {
             yacht: {
@@ -46,8 +65,12 @@ const New = () => {
                 featured: false,
                 length: 0,
                 sleeps: 0,
-                photos: {featured: "", gallery: []},
-                createNew: addYacht
+                photos: {
+                    featured: "",
+                    gallery: []
+                },
+                createNew: addYacht,
+                addImage: uploadYachtImage
             },
             charter: {
                 _id: "",
@@ -81,7 +104,8 @@ const New = () => {
                     featured: "",
                     gallery: [],
                 },
-                createNew: addCharter
+                createNew: addCharter,
+                addImage: uploadCharterImage
             },
             destination: {
                 destination: "",
@@ -100,7 +124,8 @@ const New = () => {
                     currency: "",
                 },
                 coordinates: 0,
-                createNew: addDestination
+                createNew: addDestination,
+                addImage: uploadDestinationImage
             },
         }
         if (!type) return;
@@ -140,7 +165,14 @@ const New = () => {
 
 
                 <Button className={"max-sm:mx-auto"} variant={"bordered"} onClick={() => {
-                    newYacht.createNew(newYacht).then(() => {
+
+                    newYacht.createNew({
+                        ...newYacht,
+                        photos: {
+                            featured: imageBase64,
+                            gallery: [imageBase64]
+                        }
+                    }).then(() => {
                         setActive("dashboard")
                     }).catch((e: any) => {
                         console.log(e)
@@ -173,14 +205,14 @@ const New = () => {
                    placeholder={"Find"}
                    onValueChange={setFind}/>
             <ScrollShadow className={"w-[80%] max-sm:w-[90%] my-8 h-[70%]"}>
-                {newYacht&&  Object.entries(newYacht).map(([key, value], i) => {
+                {newYacht && Object.entries(newYacht).map(([key, value], i) => {
                         if (key === "_id") return null;
                         if (!key.toLowerCase().includes(find.toLowerCase()) && find !== "") return null;
 
                         if (key === "info") {
                             return (
                                 <div key={"info"}>
-                                    {Object.entries(value).map(([key, value], i) => {
+                                    {Object.entries(value as { value: any }).map(([key, value], i) => {
                                         return (
                                             <ClassicLine key={i} name={key} value={value}
                                                          setYacht={(e: string) => setNewYacht({
@@ -191,10 +223,19 @@ const New = () => {
                                     })}
                                 </div>
                             );
-                        }
-                        else if (typeof value === "object") {
+                        } else if (typeof value === "object") {
                             return (
-                                <div key={i}></div>
+                                <div key={i}
+                                     className={"flex rounded-2xl mx-2 my-5 px-2 py-3 bg-black/10 justify-around items-start"}>
+                                    <p className={"w-1/3 self-center"}>Main Photo</p>
+                                    <input
+                                        onChange={handleFileChange}
+                                        type={"file"}
+                                        className={" w-1/3"}
+                                        name={"img"}
+                                        accept={"image/png, image/jpeg, image/jpg, image/webp"}
+                                    />
+                                </div>
                             );
                         } else if (typeof value === "boolean") {
                             return (

@@ -77,6 +77,7 @@ const Nav = () => {
                         active={active}
                         onSetActive={setActive}
                         id={item.id}
+                        key={item.id}
                         Icon={item.icon}
                     />
                 ))}

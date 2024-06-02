@@ -7,7 +7,7 @@ import {createBrokerino} from "@/actions/brokerino";
 import {createArticle} from "@/actions/article";
 import {reader} from "next/dist/experimental/testmode/fetch";
 
-const createNew = () => {
+const CreateNew = () => {
     const [enArticle, setEnArticle] = useState<any>({})
     const [frArticle, setFrArticle] = useState<any>({})
     let tabs = [
@@ -22,13 +22,13 @@ const createNew = () => {
     ];
 
     return (
-        <div>
+        <div className={" mx-auto"}>
             <h2>Create New Article</h2>
             <Tabs aria-label="Dynamic tabs" items={tabs}>
                 {(item) => (
                     <Tab key={item.id} title={item.label}>
                         <Card>
-                            <CardBody>
+                            <CardBody className={"gap-3"}>
                                 <Input
                                     label={"Headline"}
                                     placeholder={"Headline"}
@@ -100,4 +100,4 @@ const createNew = () => {
 }
 
 
-export default createNew;
+export default CreateNew;

@@ -17,7 +17,7 @@ const EditArticle = () => {
         <div className={"w-[60%] mx-auto flex flex-col items-center"}>
             <h2>Edit Article</h2>
             {articles.length > 0 && articles.map((article, index) => {
-                return <div onClick={""} key={index} className={"w-[40%] h-fit flex mx-2 my-1 bg-black/10 rounded-xl"}>
+                return <div  key={index} className={"w-[40%] h-fit flex mx-2 my-1 bg-black/10 rounded-xl"}>
                     <h2 className={"mx-auto"}>{article.en.headline}</h2>
 
                 </div>
