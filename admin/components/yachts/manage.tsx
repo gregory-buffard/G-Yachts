@@ -1,8 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import {IYacht} from "@/types/yacht";
-import {ObjectId} from "mongoose";
 import {
     Button,
     Chip, Image,
@@ -19,23 +16,14 @@ import context from "@/public/assets/UI/context.json";
 import {useRef, useState} from "react";
 import {ModalHeader} from "@nextui-org/modal";
 import Gallery from "@/components/yachts/gallery";
-import {fetchYacht, removeYacht, saveYacht} from "@/actions/yachts";
+
 import {object} from "prop-types";
 import {useYacht} from "@/context/yacht";
 import {BooleanLine, ClassicLine, NumberLine} from "@/components/yachts/manageLines";
 import {Input} from "@nextui-org/input";
 import Crown from "@/components/Crown";
-import ImgSettings from "@/components/imgsettings";
-import yachts from "@/components/yachts";
-
-interface IManage
-    extends Pick<
-        IYacht,
-        "name" | "price" | "builder" | "yearBuilt" | "featured"
-    > {
-    _id: string;
-}
-
+import yachts from "@/components/yachts/yachts";
+import ImgSettings from "@/components/imgSettings/imgsettings";
 
 const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -61,10 +49,19 @@ const RemoveBtn = ({onClick}: { onClick: () => void }) => {
     )
 }
 
-const Manage = ({data, setYachts}: { data: IManage, setYachts:any}) => {
+const Manage = ({data,target, setYachts, changeFeatured, saveYachts,uploadImg, removeImg, removeYachts}: {
+    data: any,
+    target: string,
+    setYachts: any,
+    changeFeatured:any,
+    removeImg: any,
+    uploadImg: any,
+    saveYachts: any,
+    removeYachts: any
+}) => {
     const contextRef = useRef<LottieRefCurrentProps>(null);
     const {isOpen, onOpen, onClose} = useDisclosure();
-    const [yacht, setYacht] = useState<IYacht | null>(null);
+    const [yacht, setYacht] = useState<any | null>(data);
     const [find, setFind] = useState<string>("");
 
     return (
@@ -74,8 +71,8 @@ const Manage = ({data, setYachts}: { data: IManage, setYachts:any}) => {
             }
         >
             <div className={"flex flex-row justify-start items-center gap-4"}>
-                <p>{`${data.name}`}</p>
-                {data.featured && <Crown/>}
+                <p>{`${yacht.name}`}</p>
+                {yacht.featured && <Crown/>}
             </div>
             <Modal
                 className={"h-[80%]"}
@@ -121,7 +118,7 @@ const Manage = ({data, setYachts}: { data: IManage, setYachts:any}) => {
                         </ModalBody>
                         <ModalFooter>
                             <a className={"absolute left-5"} target="_blank" rel="noopener noreferrer"
-                               href={`http://51.75.16.185/en/yacht/${data._id}`}>
+                               href={`http://51.75.16.185/en/${target}/${data._id}`}>
                                 <Button
                                     variant={"light"}
                                 >
@@ -130,14 +127,14 @@ const Manage = ({data, setYachts}: { data: IManage, setYachts:any}) => {
                             </a>
                             <Button variant={"light"} color={"success"} onClick={
                                 () => {
-                                    saveYacht(yacht)
+                                    saveYachts(yacht)
                                     onClose()
                                 }
                             }>Save</Button>
                             <RemoveBtn onClick={() => {
                                 onClose()
-                                removeYacht(data._id)
-                                setYachts((prev: any) => prev.filter((y: any) => y._id !=yacht?._id))
+                                removeYachts(data._id)
+                                setYachts((prev: any) => prev.filter((y: any) => y._id != yacht?._id))
 
                             }}/>
                         </ModalFooter>
@@ -157,7 +154,6 @@ const Manage = ({data, setYachts}: { data: IManage, setYachts:any}) => {
                     }}
                     onClick={() => {
                         onOpen()
-                        fetchYacht(data._id).then((yacht) => setYacht(yacht));
                     }
                     }
                 >
@@ -169,7 +165,9 @@ const Manage = ({data, setYachts}: { data: IManage, setYachts:any}) => {
                         className={"size-[1.5rem]"}
                     />
                 </Button>
-                <ImgSettings yacht={data}/>
+                <ImgSettings changeFeatured={changeFeatured} data={yacht}
+                             remove={removeImg}
+                             upload={uploadImg}/>
             </div>
         </div>
     );

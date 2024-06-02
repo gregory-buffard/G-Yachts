@@ -1,7 +1,5 @@
 "use server";
 
-import axios from "axios";
-import { formatCurrency } from "@/utils/yachts";
 import { Yacht } from "@/models/yacht";
 import { Customer } from "@/models/customer";
 import { Newsletter } from "@/models/newsletter";
@@ -52,6 +50,7 @@ export const contact = async (formData: FormData, prefix?: string) => {
       other: formData.get("other") === "on",
     },
     newsletter: formData.get("newsletter") === "on",
+    status: "unclaimed",
   };
 
   const customer = await Customer.findOne({ email: rawFormData.email }).exec();
@@ -62,6 +61,7 @@ export const contact = async (formData: FormData, prefix?: string) => {
     customer.message = rawFormData.message;
     customer.inquiry = rawFormData.inquiry;
     customer.newsletter = rawFormData.newsletter;
+    customer.status = rawFormData.status;
     customer.save();
     return;
   }

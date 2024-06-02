@@ -1,24 +1,23 @@
 "use client";
-
 import { IYacht } from "@/types/yacht";
 import { ObjectId } from "mongoose";
 import { Medium } from "@/components/widgetsProviders";
 import {useEffect, useState} from "react";
-import {fetchFeatured} from "@/actions/yachts";
+import {useViewContext} from "@/context/view";
+import {fetchYachtFeatured} from "@/actions/yachts";
 
 interface IFeatured
   extends Pick<
     IYacht,
-    "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps" | "photos"
-  > {
-  _id: ObjectId;
-}
+    "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps" | "photos"| "_id"
+  > {}
 
-const FeaturedContent = ({setActive}:{setActive:any}) => {
+const FeaturedContent = () => {
+  const {setActive} = useViewContext()
   const [data, setData] = useState<IFeatured[]>([]);
 
   useEffect(() => {
-    fetchFeatured().then((data) => setData(data))
+    fetchYachtFeatured().then((res) => setData(res));
   }, []);
 
   const carouselData = [...data, ...data],

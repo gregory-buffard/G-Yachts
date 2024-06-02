@@ -1,11 +1,13 @@
-import type {Metadata} from "next";
+import type { Metadata } from "next";
+
 import "./globals.css";
+
 import UIProvider from "@/components/NextUIProvider";
-import {Inter} from "next/font/google";
-import {ReactNode} from "react";
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
-import Auth from "@/components/auth";
-import {KindeProvider} from "@kinde-oss/kinde-auth-nextjs";
+import { Inter } from "next/font/google";
+import { ReactNode } from "react";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { ViewProvider } from "@/context/view";
+import { redirect } from "next/navigation";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -18,19 +20,25 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-                                             children,
-                                         }: Readonly<{
+    children,
+}: Readonly<{
     children: ReactNode;
 }>) {
-    const {isAuthenticated} = getKindeServerSession();
+    const { isAuthenticated } = getKindeServerSession();
+
+    if (!await isAuthenticated()) {
+        return redirect('/api/auth/login');
+    }
 
     return (
         <html lang="en">
-        <body className={`${inter.className} w-full h-max bg-neutral-100`}>
-        <UIProvider>
-            {children}
-        </UIProvider>
-        </body>
+            <body className={`${inter.className} w-full h-max bg-neutral-100`}>
+                <UIProvider>
+                    <ViewProvider>
+                        {children}
+                    </ViewProvider>
+                </UIProvider>
+            </body>
         </html>
     );
 }

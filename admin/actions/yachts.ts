@@ -1,42 +1,37 @@
 "use server";
 
 import { Yacht } from "@/models/yacht";
-import axios from "axios";
-import { revalidatePath } from "next/cache";
+
+export const getYachtFeatured = async (id: string) => {
+    try {
+        const featured = await Yacht.findById(id).select("photos.featured").exec()
+        return String(featured.photos.featured);
+    } catch (e) {
+        return "";
+    }
+}
+
+export const changeYachtFeatured = async (id: string, photo: string) => {
+    const yacht = await Yacht.findById(id).select("photos.gallery").exec()
+    yacht.photos.featured = photo;
+    await yacht.save().catch((e: any) => {
+        throw e;
+    });
+}
 
 export const fetchYachts = async () => {
-  const res = await Yacht.find()
-    .select("_id name price builder yearBuilt featured")
-    .catch((e) => {
-      throw e;
-    });
-  return JSON.parse(JSON.stringify(res))
+    const res = await Yacht.find()
+        .catch((e) => {
+            throw e;
+        });
+    return JSON.parse(JSON.stringify(res))
 };
 
-export const fetchYacht = async (id: string ) => {
-  const res = await Yacht.findById(id).catch((e) => {
-    throw e;
-  });
-  return JSON.parse(JSON.stringify(res));
-};
-
-export const fetchGallery = async ({
-  type,
-  id,
-  query,
-}: {
-  type: "sales" | "charter";
-  id: string;
-  query: string;
-}) => {
-  const res = await axios
-    .get(`${process.env.API_URL}/yachts/images/${id}`, {
-      data: { type: type, target: query },
-    })
-    .catch((e) => {
-      throw e;
+export const fetchYacht = async (id: string) => {
+    const res = await Yacht.findById(id).catch((e) => {
+        throw e;
     });
-  return res.data;
+    return JSON.parse(JSON.stringify(res));
 };
 
 export const saveYacht = async (yacht: any) => {
@@ -48,10 +43,11 @@ export const removeYacht = async (id: string) => {
     await Yacht.findByIdAndDelete(id).catch((e) => {
         throw e;
     });
+    console.log(id, " removed")
 }
 export const addYacht = async (yacht: any) => {
-    yacht._id =undefined;
-    const res = await new Yacht(yacht).save().catch((e:any) => {
+    yacht._id = undefined;
+    const res = await new Yacht(yacht).save().catch((e: any) => {
         const regex = /Path `(\w+)` is required/g;
         let missingFields = [];
         let match;
@@ -59,43 +55,49 @@ export const addYacht = async (yacht: any) => {
         while ((match = regex.exec(e)) !== null) {
             missingFields.push(match[1]);
         }
+        if (missingFields.length === 0) {
+            throw e;
+
+        }
         const missingFieldsString = `Missing fields: (${missingFields.join(', ')})`;
         throw new Error(missingFieldsString);
     });
-    return {status:"OK"};
+    return { status: "OK" };
 
 }
 
-export const changeFeatured = async ({
-  type,
-  id,
-  photo,
-}: {
-  type: "sales" | "charter";
-  id: string;
-  photo: string;
-}) => {
-  const res = await axios
-    .put(`${process.env.API_URL}/yachts/images/${id}`, {
-      type,
-      photo,
-    })
-    .then(
-      async () =>
-        await Yacht.findByIdAndUpdate(id, { "photos.featured": photo }),
-    )
-    .catch((e) => {
-      throw e;
-    });
-  revalidatePath(`/${id}`);
-  return res.status;
-};
-
-export const fetchFeatured = async () => {
-  const res = await Yacht.find({ featured: true })
-    .select("_id name price builder photos length yearBuilt sleeps")
-    .catch((e) => {
-      throw e;
-    });
+export const fetchYachtFeatured = async () => {
+    const res = await Yacht.find({ featured: true })
+        .select("_id name price builder photos length yearBuilt sleeps")
+        .catch((e) => {
+            throw e;
+        });
     return JSON.parse(JSON.stringify(res));
 };
+
+export const removeYachtImage = async (id: string, index:number) => {
+    const yacht = await Yacht.findById(id).select("photos.gallery").exec()
+    yacht.photos.gallery = yacht.photos.gallery.filter((image: string, i:number) => i !== index);
+    await yacht.save().catch((e: any) => {
+        throw e;
+    });
+    return { status: "OK" };
+}
+
+export const uploadYachtImage = async (id: string, photo:string) => {
+    const yacht = await Yacht.findById(id).select("photos.gallery").exec()
+    yacht.photos.gallery.push(photo);
+    await yacht.save().catch((e: any) => {
+        throw e;
+    });
+};
+
+export const getYachtImages = async (id: string) => {
+    try {
+        const images = await Yacht.findById(id).select("photos.gallery").exec()
+        console.log(images.photos.gallery)
+        return images.photos.gallery;
+    } catch (e) {
+        console.error(e);
+    }
+}

@@ -1,34 +1,39 @@
-"use client";
+"use server"
+
+import ViewComp from "@/components/view/ViewComp";
+import Dashboard from "@/components/dashboard/dashboard";
+import Yachts from "@/components/yachts/yachts";
+import New from "@/components/yachts/new";
+import Charter from "@/components/charters/charter";
 import Nav from "@/components/nav";
-import Yachts from "@/components/yachts";
-import {useEffect, useState} from "react";
-import Dashboard from "@/components/dashboard";
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
-import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
-import Auth from "@/components/auth";
-import {redirect} from "next/navigation";
-import New from "@/components/new";
-import Charter from "@/components/charter";
+import NewsletterPage from "@/components/newsletter/newsletter";
+import Brokerino from "@/components/brokerino";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { fetchBrokerino } from "@/actions/brokerino";
+import Destination from "@/components/destinations/destinations";
+import ArticlePage from "@/components/article/articlePage";
+import MessagesPage from "@/components/messages/messages";
 
-const App = () => {
-    const [active, setActive] = useState<"dashboard"|"yachts"| "new">("dashboard");
-    const { isAuthenticated, isLoading } = useKindeBrowserClient();
-    const comps = {
-        dashboard: <Dashboard setActive={setActive}/>,
-        yachts: <Yachts/>,
-        new: <New setActive={setActive}/>,
-        charter:<Charter setActive={setActive}/>
-    };
-
-
-
-    if (isLoading) return <div>Loading...</div>;
-    if (!isAuthenticated) redirect('/api/auth/login?post_login_redirect_url=/')
+const App = async () => {
+  const { getUser } = getKindeServerSession(),
+    user = await getUser();
 
     return (
-        <main className="w-full h-screen flex justify-center items-center bg-gray-/10">
-            <Nav active={active} setActive={setActive}/>
-            {comps[active]}
+        <main className="w-full h-screen flex justify-center items-center bg-stone-100">
+            {user && <Brokerino data={await fetchBrokerino(user.id)} id={user.id} />}
+            <ViewComp comps={
+                {
+                    dashboard: <Dashboard/>,
+                    yachts: <Yachts/>,
+                    new: <New/>,
+                    charters: <Charter/>,
+                    destinations: <Destination/>,
+                    newsletter: <NewsletterPage />,
+                    article: <ArticlePage />,
+                    messages: <MessagesPage />
+                }
+            } />
+            <Nav />
         </main>
     );
 };

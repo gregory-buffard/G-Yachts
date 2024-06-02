@@ -1,14 +1,11 @@
 import {Button, Modal, ModalBody, ModalContent, useDisclosure} from "@nextui-org/react";
 import {ModalHeader} from "@nextui-org/modal";
 import {useEffect, useState} from "react";
-import axios from "axios";
-import {fetchFeatured, fetchYacht} from "@/actions/yachts";
-import ImgSettingsModal from "@/components/imgSettings/imgSettingsModal";
+import ImgSettingsModal from "./imgSettingsModal";
 
-const ImgSettings = ({yacht}: { yacht: any }) => {
+const ImgSettings = ({data, remove,upload, changeFeatured}: { data: any,upload:any, remove:any, changeFeatured:any}) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [images, setImages] = useState<any>([]);
-    const [data, setData] = useState<any>([]);
 
 
 
@@ -31,7 +28,7 @@ const ImgSettings = ({yacht}: { yacht: any }) => {
                 </div>
 
             </Button>
-            {isOpen && <ImgSettingsModal yacht={yacht} onClose={onClose} isOpen={isOpen}/>}
+            {isOpen && <ImgSettingsModal data={data} upload={upload} changeFeatured={changeFeatured} onClose={onClose} isOpen={isOpen}  remove={remove} />}
         </div>
     )
 }
