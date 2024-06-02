@@ -245,61 +245,65 @@
   "company": {
     "metadata": {
       "title": "Company",
-      "description": "Learn more about G–Yachts, a yacht brokerage company based in Monaco. We offer a wide range of services including yacht sales, yacht charters, yacht management and yacht construction.",
-      "keywords": "yachts, sales, charters, management, construction, Monaco, G–Yachts",
+      "description": "En savoir plus sur G-Yachts, une société de courtage de yachts basée à Monaco. Nous offrons une large gamme de services incluant la vente de yachts, la location de yachts, la gestion de yachts et la construction de yachts.",
+      "keywords": "yachts, sales, charters, ventes, location, management, construction, Monaco, G–Yachts",
       "author": "G–Yachts"
     },
     "hero": {
-      "subtitle": "A FAMILY LEGACY",
-      "title": "Trusted for <classic>25 YEARS</classic>",
-      "description": "G-Yachts embodies determination, business ethic and experience. Over time, the Milazzo family has managed to lead successful sales, charters and the management of many renowned yachts thanks to a remarkable network and quality counterparts all around the world.\nText de marin a aujourdhui"
+      "subtitle": "UN HÉRITAGE FAMILIAL",
+      "title": "Une confiance de <classic>25 ANS</classic>",
+      "description": "G-Yachts incarne la détermination, l'éthique des affaires et l'expérience. Au fil du temps, la famille Milazzo a réussi à mener à bien la vente, l'affrètement et la gestion de nombreux yachts de renom grâce à un réseau remarquable et à des interlocuteurs de qualité dans le monde entier"
     },
     "story": {
       "header": {
-        "title": "Our <classic>Story</classic>"
+        "title": "Notre <classic>Histoire</classic>"
       },
       "content": {
         "first": {
-          "title": "BEGINNING OF A NEW COMPANY CANNES NAUTIC",
-          "text": "Former sailors, the Milazzo family creates “Cannes Nautic”. The company was specialized in sales, maintenance and repairs in the bay of Cannes."
+          "title": "DÉBUT D'UNE NOUVELLE SOCIÉTÉ CANNES NAUTIC",
+          "text": "Ancienne navigatrice, la famille Milazzo crée « Cannes Nautic ». La société s'est spécialisée dans la vente, l'entretien et la réparation en baie de Cannes."
         },
         "second": {
-          "title": "ACQUISITION OF S.A GLEMOT",
-          "text": "After the success of Cannes Nautic, the Milazzo’s have decided to expand by acquiring S. A Glemot. The latter had a consequent fleet of yachts for sale, charter and management, in Mandelieu la Napoule Harbor."
+          "title": "ACQUISITION DE S.A GLEMOT",
+          "text": "Après le succès de Cannes Nautic, les Milazzo ont décidé de s'agrandir en rachetant la S. A Glemot. Cette dernière disposait d'une flotte conséquente de yachts à vendre, à louer et à gérer, dans le port de Mandelieu la Napoule."
         },
         "third": {
           "title": "GASPARD YACHTS",
-          "text": "Following his father’s path, Gaspard Milazzo jumped ahead and decided to found his own company in Cannes: Gaspard Yachts. Empowered with reliability and strong knowledge of the yachting industry, he quickly gained a worldwide renowned reputation.\nThe high standard service provided to his international clientele were since then cheered by numerous yacht owners, captains and the whole industry : Gaspard Yachts was a reference."
+          "text": "Suivant la voie tracée par son père, Gaspard Milazzo a pris de l'avance et a décidé de fonder sa propre entreprise à Cannes : Gaspard Yachts. Fort de sa fiabilité et de ses connaissances approfondies de l'industrie du yachting, il a rapidement acquis une réputation mondiale.\nLes services de haut niveau fournis à sa clientèle internationale sont depuis lors salués par de nombreux propriétaires de yachts, capitaines et l'ensemble de l'industrie : Gaspard Yachts est une référence."
         },
         "fourth": {
-          "title": "JETCRAFT SUPPORT & G-YACHTS CREATION IN MONACO",
-          "text": "Further the partnership with the worldwide leader in private and commercial aviation, Jetcraft, Gaspard Milazzo created G-Yachts and settled it in Monaco on a long-term basis in order to provide the highest customized service."
+          "title": "JETCRAFT SUPPORT & G-YACHTS CREATION À MONACO",
+          "text": "Suite au partenariat avec le leader mondial de l'aviation privée et commerciale, Jetcraft, Gaspard Milazzo a créé G-Yachts et l'a installé à Monaco sur le long terme afin de fournir un service personnalisé de la plus haute qualité."
         },
-        "citation": "“G-YACHTS has built strong relationships with its clients for over 25 years, based on trust, dedication, and impeccable service. We are proud of our work and our position in the industry. By collaborating with renowned shipyards and architects, we have consistently enhanced our services and strengthened our client relationships. As passionate yachting experts, we are committed to being your premier yachting partner and providing you with an exceptional yachting experience.”",
-        "signature": "FOUNDER AND CEO"
+        "citation": "« Depuis plus de 25 ans, G-YACHTS a établi des relations solides avec ses clients, basées sur la confiance, le dévouement et un service impeccable. Nous sommes fiers de notre travail et de notre position dans l'industrie. En collaborant avec des chantiers navals et des architectes de renom, nous avons constamment amélioré nos services et renforcé nos relations avec nos clients. En tant qu'experts passionnés de yachting, nous nous engageons à être votre premier partenaire de yachting et à vous offrir une expérience de yachting exceptionnelle ».",
+        "signature": "FONDATEUR ET CEO"
       }
     },
     "philosophy": {
       "header": {
-        "title": "Yachting is a matter of <classic>Passion</classic>",
-        "subtitle": "OUR PHILOSOPHY",
-        "undertitle": "Two decades of <classic>Experience</classic>",
-        "description": "Thanks to our long experience with numerous units we had in management, we became a reference in terms of commitment, comprehension and operation of any kind of yacht.\nWe understand the needs, the regulations and the requisites of this industry. Our strength is to always be one step forward."
+        "title": "La navigation de plaisance est une affaire de <classic>Passion</classic>.",
+        "subtitle": "NOTRE PHILOSOPHIE",
+        "undertitle": "Deux décennies <classic>d'expérience</classic>",
+        "description": "Grâce à notre longue expérience avec les nombreuses unités que nous avons gérées, nous sommes devenus une référence en termes d'engagement, de compréhension et d'exploitation de tout type de yacht.\nNous comprenons les besoins, les réglementations et les exigences de cette industrie. Notre force est d'être toujours un pas en avant."
       },
       "dropdown": {
         "services": {
-          "title": "Customized Services",
-          "description": "Our company principles have always been to provide our clients a customized service.\nAs per today, G-Yachts has been at the helm of plenty and successful sales, new constructions and charters for extremely renowned yachts. Our specialized and experienced team enabled this privately-owned company evolved through the years.\nLeader in this industry G-Yachts has always been financially independent and faithful to its principles."
+          "title": "Services personnalisés",
+          "description": "Les principes de notre entreprise ont toujours été de fournir à nos clients un service personnalisé.\nAujourd'hui, G-Yachts est à l'origine d'un grand nombre de ventes, de nouvelles constructions et de charters pour des yachts extrêmement renommés. Notre équipe spécialisée et expérimentée a permis à cette société privée d'évoluer au fil des années.\nLeader dans cette industrie, G-Yachts a toujours été financièrement indépendante et fidèle à ses principes."
         },
         "presence": {
-          "title": "A presence around the world",
-          "description": "G-Yachts located in heart of Monaco, beneficiates of the support of counterparts of choice in more than 20 countries thanks to our partnership with Jetcraft."
+          "title": "Une présence dans le monde entier",
+          "description": "G-Yachts situé au cœur de Monaco, bénéficie du soutien de contreparties de choix dans plus de 20 pays grâce à notre partenariat avec Jetcraft."
         },
         "partnership": {
-          "title": "Partnership and recommendations",
-          "description": "G-Yachts is a « Gold » member of the international Company MYBA (Mediterranean Yacht Broker Association), also ECPY, Riviera Yachting Network and finally PYA (Professional Yachtsmen's Association). The founder Gaspard Milazzo takes excellence as his own professional leitmotiv.\nThe company is insured by Lloyd's in London. All the team, trained by Gaspard Milazzo, is comfortable with Lloyd's and Bureau Veritas conditions and regulations in order to respond effectively to ISM (International Safety Management) et ISPS (International Ship and Port Facility Security)"
+          "title": "Partenariat et recommandations",
+          "description": "G-Yachts est membre « Gold » de la société internationale MYBA (Mediterranean Yacht Broker Association), également ECPY, Riviera Yachting Network et enfin PYA (Professional Yachtsmen's Association). Le fondateur Gaspard Milazzo fait de l'excellence son propre leitmotiv professionnel.\nLa société est assurée par la Lloyd's à Londres. Toute l'équipe, formée par Gaspard Milazzo, est à l'aise avec les conditions et réglementations du Lloyd's et du Bureau Veritas afin de répondre efficacement aux normes ISM (International Safety Management) et ISPS (International Ship and Port Facility Security)."
         }
       }
+    },
+    "bottom": {
+      "title": "Construisez votre <classic>Mode de vie</classic>",
+      "description": "Découvrez notre sélection exclusive de yachts à vendre, présentée par nos courtiers en yachts de luxe. \nNotre collection variée comprend les plus grands yachts à voile et à moteur du monde, depuis les bateaux d'entrée de gamme jusqu'aux opulents méga yachts. Notre flotte mondiale comprend à la fois des yachts neufs et des yachts appartenant à des particuliers. En s'appuyant sur notre expertise et nos relations avec les meilleurs chantiers navals et courtiers, nos spécialistes des yachts sont là pour vous guider dans la recherche et l'acquisition du yacht de vos rêves."
     }
   },
   "contact": {
