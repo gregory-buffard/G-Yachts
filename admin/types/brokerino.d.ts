@@ -5,7 +5,7 @@ interface IBrokerino {
   name: string;
   position: string;
   email: string;
-  phone: string[];
+  phone: { prefix: string; number: string }[];
   langs: string[];
 }
 

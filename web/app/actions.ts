@@ -50,7 +50,7 @@ export const contact = async (formData: FormData, prefix?: string) => {
       other: formData.get("other") === "on",
     },
     newsletter: formData.get("newsletter") === "on",
-    status: "pending",
+    status: "unclaimed",
   };
 
   const customer = await Customer.findOne({ email: rawFormData.email }).exec();

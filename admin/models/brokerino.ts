@@ -9,7 +9,12 @@ const BrokerinoSchema = new Schema<IBrokerino>(
     name: { type: String, required: true },
     position: { type: String, required: true },
     email: { type: String, required: true },
-    phone: { type: [String], required: true },
+    phone: [
+      {
+        prefix: { type: String, required: true },
+        number: { type: String, required: true },
+      },
+    ],
     langs: { type: [String], required: true },
   },
   {

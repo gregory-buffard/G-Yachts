@@ -2,24 +2,12 @@
 
 import IBrokerino from "@/types/brokerino";
 import { Brokerino } from "@/models/brokerino";
-import {
-  decodeFromBase64,
-  encodeToBase64,
-} from "next/dist/build/webpack/loaders/utils";
+import codes from "@/data/CountryCodes.json";
 
 export const fetchBrokerino = async (kindeID: IBrokerino["kindeID"]) => {
-  const found = await Brokerino.exists({ kindeID: kindeID }).catch((e) => {
-    console.log(e);
-    return false;
+  return await Brokerino.findOne({ kindeID }).catch((e) => {
+    return null;
   });
-  if (found) {
-    return await Brokerino.findOne({ kindeID: kindeID }).catch((e) => {
-      console.log(e);
-      return false;
-    });
-  } else {
-    return false;
-  }
 };
 
 export const createBrokerino = async (
@@ -32,10 +20,28 @@ export const createBrokerino = async (
     name: formData.get("name"),
     position: formData.get("position"),
     email: formData.get("email"),
-    phone: [formData.get("tel")],
+    phone: [
+      {
+        prefix: codes[parseInt(formData.get("prefix") as string)].dial_code,
+        number: formData.get("tel"),
+      },
+    ],
     langs: [formData.get("langs")],
     avatar: avatar,
   };
 
   await Brokerino.create(rawFormData);
+};
+
+export const updateBrokerino = async (
+  formData: FormData,
+  phone: { prefix: string; number: string }[],
+) => {
+  const rawFormData = {
+    name: formData.get("name"),
+    position: formData.get("position"),
+    email: formData.get("email"),
+    phone: phone,
+    langs: [formData.get("langs")],
+  };
 };
