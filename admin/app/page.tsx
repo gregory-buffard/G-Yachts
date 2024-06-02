@@ -18,7 +18,7 @@ const App = async () => {
 
   return (
     <main className="w-full h-screen flex justify-center items-center bg-stone-100">
-      {user && <Brokerino id={user.id} />}
+      {user && <Brokerino data={await fetchBrokerino(user.id)} id={user.id} />}
       <ViewComp
         comps={{
           dashboard: <Dashboard />,

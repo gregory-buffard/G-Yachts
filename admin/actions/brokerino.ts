@@ -5,9 +5,11 @@ import { Brokerino } from "@/models/brokerino";
 import codes from "@/data/CountryCodes.json";
 
 export const fetchBrokerino = async (kindeID: IBrokerino["kindeID"]) => {
-  return await Brokerino.findOne({ kindeID }).catch((e) => {
+  const res = await Brokerino.findOne({ kindeID: kindeID }).catch((e) => {
+    console.log("ERROR FETCHING");
     return null;
   });
+  return JSON.parse(JSON.stringify(res));
 };
 
 export const createBrokerino = async (
@@ -38,10 +40,11 @@ export const updateBrokerino = async (
   phone: { prefix: string; number: string }[],
 ) => {
   const rawFormData = {
-    name: formData.get("name"),
+    name: formData.get("name").length > 0,
     position: formData.get("position"),
     email: formData.get("email"),
     phone: phone,
     langs: [formData.get("langs")],
+    avatar: formData.get("avatar"),
   };
 };
