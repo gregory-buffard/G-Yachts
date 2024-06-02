@@ -306,5 +306,8 @@
       "all": "View all",
       "sleeps": "guests"
     }
+  },
+  "news":{
+    "readArticle": "Read article"
   }
 }
