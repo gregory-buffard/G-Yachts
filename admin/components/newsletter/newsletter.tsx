@@ -34,7 +34,7 @@ const NewsletterPage = (): JSX.Element => {
         >
             <h1 className={"max-md:self-center mt-4"}>Newsletter</h1>
 
-            <div className="flex flex-row gap-10">
+            <div className="flex flex-col lg:flex-row gap-10 lg:w-full w-[400px]">
                 <div className="flex flex-col gap-5">
                     <Button onClick={toggleCreateModal}>
                         Create new template
@@ -53,11 +53,13 @@ const NewsletterPage = (): JSX.Element => {
                 />
             </div>
 
-            <CreateNewsletterDialog
-                createModalOpen={createModalOpen}
-                setCreateModalOpen={setCreateModalOpen}
-                onCreateNewsletter={() => fetchNewsletters()}
-            />
+            <div className="lg:w-full w-[400px]">
+                <CreateNewsletterDialog
+                    createModalOpen={createModalOpen}
+                    setCreateModalOpen={setCreateModalOpen}
+                    onCreateNewsletter={() => fetchNewsletters()}
+                />
+            </div>
         </section>
     )
 }
