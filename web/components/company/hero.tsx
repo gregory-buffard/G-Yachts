@@ -6,7 +6,7 @@ import Image from "next/image";
 const Hero = () => {
   const t = useTranslations("company.hero");
   return (
-    <div className="h-screen w-full overflow-hidden">
+    <div className="h-full md:h-screen w-full overflow-hidden">
       <div className="grid md:grid-cols-2">
         <div className={"bg-rock-100"}>
           <div className={"py-[18vw] px-[10vw]"}>
@@ -14,23 +14,23 @@ const Hero = () => {
             <h1>
               {t.rich("title", {
                 classic: (chunks) => (
-                  <span className={"font-classic font-normal uppercase"}>
-                    <br className={"hidden lg:block"} />
-                    {chunks}
+                    <span className={"font-classic font-normal uppercase"}>
+                    <br className={"hidden lg:block"}/>
+                      {chunks}
                   </span>
                 ),
               })}
             </h1>
             <p
-              className={
-                "md:w-[30vw] w-[80vw] md:py-[2vw] font-classic font-light text-justify"
-              }
+                className={
+                  "md:w-[30vw] w-[80vw] md:py-[2vw] font-classic font-light text-justify"
+                }
             >
               {t("description")}
             </p>
           </div>
         </div>
-        <Image src={herox} alt={"Yacht"} className={"object-cover h-full"} />
+        <Image src={herox} alt={"Yacht"} className={"object-cover md:h-screen"}/>
       </div>
     </div>
   );
