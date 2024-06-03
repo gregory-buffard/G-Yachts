@@ -12,6 +12,8 @@ const Bar = ({ dynamicColor }: { dynamicColor: number }) => {
     [isScrolled, setScrolled] = useState<boolean>(false);
 
   useEffect(() => {
+    if(dynamicColor === -1) setScrolled(true);
+
     const handleScroll = () => {
       const position = window.scrollY;
       const threshold = dynamicColor;
