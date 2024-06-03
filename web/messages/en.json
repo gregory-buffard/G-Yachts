@@ -370,5 +370,15 @@
       "all": "View all",
       "sleeps": "guests"
     }
+  },
+  "news":{
+    "readArticle": "Read article",
+    "loadMore": "Load more",
+    "noArticles": "No articles found"
+  },
+  "article": {
+    "postedOn": "Posted on",
+    "category": "Category",
+    "moreArticles": "More <classic>articles</classic>"
   }
 }
