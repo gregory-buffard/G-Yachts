@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 
 const Articles = ({ articles, locale }: { articles: IArticle[]; locale: string }) => {
     const selectedCategory = useSearchParams().get("category");
+    const t = useTranslations("news");
     // Get all years from articles
     const years = articles.map((article) => new Date(article.date).getFullYear());
     // Get unique years
@@ -21,6 +22,10 @@ const Articles = ({ articles, locale }: { articles: IArticle[]; locale: string }
     const [openedYear, setOpenedYear] = useState(uniqueYears[0]);
     // State to store the selected month
     const [selectedMonth, setSelectedMonth] = useState<number | undefined>();
+
+    // Limit the number of articles to show
+    const articleLimitConst = 4;
+    const [articlesLimit, setArticlesLimit] = useState(articleLimitConst);
 
     // Reset the selected month when the year changes
     useEffect(() => {
@@ -55,13 +60,22 @@ const Articles = ({ articles, locale }: { articles: IArticle[]; locale: string }
 
     return (
         <div className="my-28 flex flex-col-reverse lg:flex-row">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full lg:w-3/4">
-                {filteredArticles.length === 0 && <h2>No articles found</h2>}
-                {filteredArticles
-                    .slice(filteredArticles.length == 1 ? 0 : 1)
-                    .map((article, index) => (
-                        <ArticleCard key={index} article={article} locale={locale} />
-                    ))}
+            <div className="flex flex-col w-full lg:w-3/4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {filteredArticles.length === 0 && <h2>No articles found</h2>}
+                    {filteredArticles
+                        .slice(filteredArticles.length == 1 ? 0 : 1, articlesLimit + 1)
+                        .map((article, index) => (
+                            <ArticleCard key={index} article={article} locale={locale} />
+                        ))}
+                </div>
+                {filteredArticles.length > articlesLimit + 1 && (
+                    <span
+                        onClick={() => setArticlesLimit(articlesLimit + articleLimitConst)}
+                        className="glass-button mx-auto mt-16 cursor-pointer h-min my-auto">
+                        {t("loadMore")}
+                    </span>
+                )}
             </div>
             <div className="w-full lg:w-1/4 lg:ml-10 lg:pl-10 lg:border-l-2 border-gray-700 flex flex-row flex-wrap lg:flex-col">
                 {uniqueYears.map((year, index) => (

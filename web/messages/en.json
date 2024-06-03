@@ -308,6 +308,7 @@
     }
   },
   "news":{
-    "readArticle": "Read article"
+    "readArticle": "Read article",
+    "loadMore": "Load more"
   }
 }
