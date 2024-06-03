@@ -4,11 +4,13 @@ import {Input} from "@nextui-org/input";
 import {createArticle, updateArticle} from "@/actions/article";
 import {useState} from "react";
 import IArticle from "@/types/article";
+import {useViewContext} from "@/context/view";
 
 const EditArticleModal = (props: {article:IArticle, setSelectedArticle:any}) => {
 
     const [enArticle, setEnArticle] = useState<any>(props.article.en)
     const [frArticle, setFrArticle] = useState<any>(props.article.fr)
+    const {setActive} = useViewContext()
     let tabs = [
         {
             id: "EN",
@@ -78,7 +80,7 @@ const EditArticleModal = (props: {article:IArticle, setSelectedArticle:any}) => 
                             fr: {...frArticle},
                             heroImage: reader.result as string
                         });
-                        props.setSelectedArticle(null);
+                        setActive("dashboard")
                     };
                 }}
             >
