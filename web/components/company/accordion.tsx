@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import herox from "@/public/imagery/optimized/index/herox.webp";
+import monaco from "@/public/imagery/optimized/company/monaco.webp";
 
 const Accordion = () => {
   const t = useTranslations("company.philosophy");
@@ -154,7 +154,7 @@ const Accordion = () => {
           </h1>
           <p className={"py-[2vw]"}>{t("header.description")}</p>
         </div>
-        <Image src={herox} alt={"Yacht in the sea"} className={""} />
+        <Image src={monaco} alt={"Yacht show in Monaco"} className={""} />
       </div>
     </section>
   );
