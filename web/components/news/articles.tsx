@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { clsx } from "clsx";
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
 
 const Articles = ({ articles, locale }: { articles: IArticle[]; locale: string }) => {
     const selectedCategory = useSearchParams().get("category");
@@ -62,7 +61,9 @@ const Articles = ({ articles, locale }: { articles: IArticle[]; locale: string }
         <div className="my-28 flex flex-col-reverse lg:flex-row">
             <div className="flex flex-col w-full lg:w-3/4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {filteredArticles.length === 0 && <h2>No articles found</h2>}
+                    {filteredArticles.length === 0 && (
+                        <h2 className="mt-16 lg:mt-0">{t("noArticles")}</h2>
+                    )}
                     {filteredArticles
                         .slice(filteredArticles.length == 1 ? 0 : 1, articlesLimit + 1)
                         .map((article, index) => (

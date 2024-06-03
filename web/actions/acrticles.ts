@@ -8,7 +8,17 @@ export const fetchArticle = async (id: string) => {
     });
 };
 
-export const fetchArticles = async () => {
+export const fetchArticles = async (options?: { limit?: number }) => {
+    if (options?.limit) {
+        return await Article.find()
+            .sort({
+                date: -1,
+            })
+            .limit(options.limit)
+            .catch((e) => {
+                throw e;
+            });
+    }
     return await Article.find()
         .sort({
             date: -1,

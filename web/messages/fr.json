@@ -306,5 +306,15 @@
       "all": "View all",
       "sleeps": "guests"
     }
+  },
+  "news":{
+    "readArticle": "Lire l'article",
+    "loadMore": "Charger plus",
+    "noArticles": "Pas d'articles trouvés"
+  },
+  "article": {
+    "postedOn": "Publié le",
+    "category": "Catégorie",
+    "moreArticles": "Plus <classic>d'articles</classic>"
   }
 }
