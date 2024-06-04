@@ -12,7 +12,7 @@ const Lifyestyle = dynamic(() => import("@/components/company/lifestyle"));
 const Company = () => {
   return (
     <main className="w-full flex flex-col justify-start items-center">
-      <Bar dynamicColor={100} />
+      <Bar dynamicColor={-1} />
       <View />
       <Hero />
       <Story />
