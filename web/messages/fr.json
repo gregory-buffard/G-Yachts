@@ -316,5 +316,20 @@
     "postedOn": "Publié le",
     "category": "Catégorie",
     "moreArticles": "Plus <classic>d'articles</classic>"
+  },
+  "search": {
+    "search": "Recherche",
+    "placeholder": "Rechercher un yacht, une destination, un article...",
+    "noResults": "Aucun résultat trouvé",
+    "yacht": "Yacht",
+    "yachts": "Yachts",
+    "charter": "Charte",
+    "charters": "Chartes",
+    "destination": "Destination",
+    "destinations": "Destinations",
+    "article": "Article",
+    "articles": "Articles",
+    "page": "Page",
+    "pages": "Pages"
   }
 }
