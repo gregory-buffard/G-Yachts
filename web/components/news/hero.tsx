@@ -6,7 +6,7 @@ const Hero = async ({ article, categories }: { article: IArticle; categories: st
     const locale = await getLocale();
     const articleData = locale === "en" ? article.en : article.fr;
     return (
-        <div className="w-full h-[36dvh] md:h-screen mt-[16vh] md:mt-0">
+        <div className="w-full h-[36dvh] md:h-screen mt-[24vh] md:mt-0">
             <div className="h-1/3 flex flex-col justify-end items-center">
                 <Link
                     href={{
