@@ -64,7 +64,8 @@
       "exclusive": "Exclusive",
       "title": "Featured <classic>sales</classic>",
       "all": "View all",
-      "sleeps": "guests"
+      "sleeps": "guests",
+      "priceOnApplication": "Price on application"
     },
     "memories": {
       "title": "Create unforgettable <classic>Memories</classic>",

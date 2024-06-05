@@ -130,14 +130,12 @@ const Card = ({ data }: { data: IYacht }) => {
             </div>
 
             <div
-                className={`w-full flex justify-between ${price ? "items-baseline" : "items-center"} text-black uppercase`}>
+                className={`w-full flex justify-between ${data.price ? "items-baseline" : "items-center"} text-black uppercase`}>
                 <p>{data.name}</p>
-                {price ? (
+                {data.price ? (
                     <p>{price}</p>
                 ) : (
-                    <div
-                        className={"bg-rock-300 lg:w-[10vw] h-[1rem] rounded-full animate-pulse"}
-                    />
+                    <p className={"text-rock-400"}>{t("priceOnApplication")}</p>
                 )}
             </div>
             <p className={"uppercase text-rock-400"}>
