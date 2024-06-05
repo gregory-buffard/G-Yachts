@@ -7,7 +7,6 @@ import { convertUnit } from "@/utils/yachts";
 import { useViewContext } from "@/context/view";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { AnimatePresence } from "framer-motion";
 
 const Gallery = dynamic(() => import("@/components/yacht/gallery/gallery"));
 
@@ -32,7 +31,7 @@ const SwitchView = ({
   );
 };
 
-const Details = () => {
+const Details = ({ children }: { children: React.ReactNode }) => {
   const { yacht, changeView, view } = useYacht(),
     { units } = useViewContext(),
     params = useParams(),
@@ -83,7 +82,7 @@ const Details = () => {
     >
       <div
         className={
-          "flex flex-wrap gap-[1vw] md:gap-[0.25vw] justify-center items-center md:w-[41vw] w-full h-max"
+          "flex flex-wrap gap-[1vw] md:gap-[0.25vw] justify-center items-center md:w-[38vw] w-full h-max"
         }
       >
         {yacht.photos.gallery.slice(0, 5).map((photo, i) => (
@@ -94,9 +93,9 @@ const Details = () => {
               if (!disabled) setPhoto(i);
             }}
             key={i}
-            className={`${i === 0 ? "w-full md:h-[28vw]" : "w-[45.5vw] md:w-[20.35vw] md:h-[14vw]"} bg-cover bg-center h-[28vh] ${!disabled && "active:scale-95"} transition-transform duration-300 ease-in-out flex justify-end items-end py-[1vh] md:py-[2vh] px-[2vw]`}
+            className={`${i === 0 ? "w-full md:h-[28vw]" : "w-[45.5vw] md:w-[18.85vw] md:h-[14vw]"} bg-cover bg-center h-[28vh] ${!disabled && "active:scale-95"} transition-transform duration-300 ease-in-out flex justify-end items-end py-[1vh] md:py-[2vh] px-[2vw]`}
             style={{
-              backgroundImage: `url(${process.env.NEXT_PUBLIC_API}/images/yachts/${params.id}/${photo})`,
+              backgroundImage: `url(${photo})`,
             }}
           >
             {i === yacht.photos.gallery.slice(0, 5).length - 1 && (
@@ -116,7 +115,7 @@ const Details = () => {
       </div>
       <div
         className={
-          "flex flex-col justify-center items-start md:w-[41vw] w-full h-max gap-[2vh]"
+          "flex flex-col justify-center items-start md:w-[38vw] w-full h-max gap-[2vh]"
         }
       >
         <div
@@ -150,14 +149,21 @@ const Details = () => {
               )))}
           <Gallery current={photo} setCurrent={setPhoto} />
         </div>
-        <a
-          href={`mailto:${yacht.brokerEmail}`}
+        <div
           className={
-            "py-[1vh] w-full text-white bg-black hover:bg-teal active:bg-teal transition-colors duration-200 ease-in-out uppercase text-center"
+            "w-full flex flex-col justify-center items-center gap-[2vh] border-rock-400 border-[0.25vh] p-[2vh]"
           }
         >
-          {t("CTA")}
-        </a>
+          {children}
+          <a
+            href={`mailto:${yacht.brokerEmail}`}
+            className={
+              "py-[1vh] w-full text-white bg-black hover:bg-teal active:bg-teal transition-colors duration-200 ease-in-out uppercase text-center"
+            }
+          >
+            {t("CTA")}
+          </a>
+        </div>
       </div>
     </section>
   );
