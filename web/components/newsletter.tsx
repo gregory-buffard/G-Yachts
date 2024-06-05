@@ -2,17 +2,19 @@
 
 import { useTranslations } from "next-intl";
 import { Input } from "@/components/nav/contact";
-import { contact } from "@/app/actions";
+import { contact } from "@/actions/contact";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { colorify } from "lottie-colorify";
 import submitted from "@/public/imagery/optimized/newsletter.json";
+import { useParams } from "next/navigation";
 
 const Newsletter = () => {
   const t = useTranslations("newsletter"),
     [registred, setRegistred] = useState<boolean>(false),
-    animationRef = useRef<LottieRefCurrentProps>(null);
+    animationRef = useRef<LottieRefCurrentProps>(null),
+    params = useParams();
 
   return (
     <section
@@ -89,7 +91,9 @@ const Newsletter = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             action={async (formData) => {
-              await contact(formData).then(() => setRegistred(true));
+              await contact(formData, {
+                locale: params.locale as string,
+              }).then(() => setRegistred(true));
             }}
             className={
               "h-max lg:w-[33vw] w-[92vw] bg-white flex flex-col justify-start items-center lg:px-[4vw] px-[4vw] lg:py-[4vh] py-[4vw] gap-[3vh]"
