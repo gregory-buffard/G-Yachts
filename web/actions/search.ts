@@ -61,23 +61,31 @@ export const searchAll = async (
         .limit(limit);
 
     // Search pages
-    const allPages = [
-        { title: "Sales", url: "/sales" },
-        { title: "Charters", url: "/charters" },
-        { title: "Company", url: "/company" },
-        { title: "Destinations", url: "/destinations" },
-        { title: "Partners", url: "/partners" },
-        { title: "News", url: "/news" },
-        { title: "Recruitment", url: "/recruitment" },
+    var pages = [
+        { titleEn: "Sales", titleFr: "Ventes", url: "/sales" },
+        { titleEn: "Charters", titleFr: "Charters", url: "/charters" },
+        { titleEn: "Company", titleFr: "Compagnie", url: "/company" },
+        { titleEn: "Destinations", titleFr: "Destinations", url: "/destinations" },
+        { titleEn: "Partners", titleFr: "Partenaires", url: "/partners" },
+        { titleEn: "News", titleFr: "Actualites", url: "/news" },
+        { titleEn: "Recruitment", titleFr: "Recrutement", url: "/recruitment" },
     ];
 
-    const pages = allPages.filter((page) => page.title.toLowerCase().includes(query.toLowerCase()));
-
+    // Filter pages by locale and query
+    pages = pages.filter((page) =>
+        page[locale === "fr" ? "titleFr" : "titleEn"].toLowerCase().includes(query.toLowerCase())
+    );
+    const finalPages = pages.map((page) => {
+        return {
+            title: locale === "fr" ? page.titleFr : page.titleEn,
+            url: page.url,
+        };
+    });
     return {
         yachts: yachts,
         charters: charters,
         destinations: destinations,
         articles: articles,
-        pages: pages,
+        pages: finalPages,
     };
 };
