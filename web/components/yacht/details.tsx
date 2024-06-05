@@ -8,7 +8,7 @@ import { useViewContext } from "@/context/view";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 
-const Gallery = dynamic(() => import("@/components/yacht/gallery/gallery"));
+const Gallery = dynamic(() => import("@/components/yacht/gallery"));
 
 const SwitchView = ({
   props,
