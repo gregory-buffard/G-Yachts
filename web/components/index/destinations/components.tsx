@@ -23,7 +23,7 @@ const Card = ({ card }: { card: IFeatured }) => {
           "transition-[background-color]  bg-cover bg-center duration-200 ease-in-out md:w-[18.5vw] md:h-[55vh] w-[35vw] h-[25vh] flex justify-start items-start mb-[1vh]"
         }
         style={{
-          backgroundImage: `url(http://51.75.16.185/images/destinations/${card._id}/${card.photos.featured})`,
+          backgroundImage: `url(${card.photos.featured})`,
         }}
       >
         <div className={"flex flex-col md:px-6 md:py-4 px-1 text-white"}>

@@ -49,10 +49,61 @@ const Card = ({ data }: { data: IYacht }) => {
     useEffect(() => {
         setPrice(formatCurrency(data.price * rates[currency], currency));
     }, [data, currency, rates]);
-
-    return (
-        <Link
-            href={{ pathname: "/yacht/[id]", params: { id: data._id } }}
+  
+  return (
+    <Link
+      href={{ pathname: "/yacht/[id]", params: { id: data._id } }}
+      className={
+        "w-full md:w-[44vw] lg:w-[30vw] h-max flex flex-col justify-start items-start overflow-x-clip"
+      }
+    >
+      <div className={"w-full h-max lg:overflow-x-hidden overflow-x-scroll"}>
+        <div
+          className={
+            "w-max lg:h-[18vw] md:h-[24vw] h-[28vh] flex justify-start items-center mb-[1vh]"
+          }
+        >
+          <Photo
+            url={`url(${data.photos.gallery[0]})`}
+            style={{
+              transform: `translateX(${translate}%)`,
+            }}
+          />
+          <Photo
+            url={`url(${data.photos.gallery[1]})`}
+            style={{
+              transform: `translateX(${translate}%)`,
+            }}
+          />
+          <Photo
+            url={`url(${data.photos.gallery[2]})`}
+            style={{
+              transform: `translateX(${translate}%)`,
+            }}
+          />
+          <div
+            className={
+              "w-[92vw] md:w-[44vw] lg:w-[30vw] absolute h-max flex justify-between items-center lg:px-[1vw] px-[2vw] -translate-y-[11vh] md:-translate-y-[9vw] lg:-translate-y-[7vw]"
+            }
+          >
+            <p>
+              {/* TODO: Add yacht's "status" (i.e. sold, exclusive, new, ...) */}
+            </p>
+            <button
+              type={"button"}
+              onClick={(e) => {
+                e.preventDefault();
+                bookmarks.includes(data._id)
+                  ? removeBookmark(data._id)
+                  : addBookmark(data._id);
+              }}
+            >
+              <Bookmark
+                className={`${bookmarks.includes(data._id) ? "fill-teal" : "fill-white"} transition-colors duration-500 ease-in-out lg:size-[2vw] size-[4vh]`}
+              />
+            </button>
+          </div>
+          <div
             className={
                 "w-full md:w-[44vw] lg:w-[30vw] h-max flex flex-col justify-start items-start overflow-x-clip"
             }>

@@ -83,7 +83,7 @@ const FeaturedContent = () => {
             "w-full h-[44vw] lg:h-[16vw] bg-cover bg-center translate-y-[var(--translate-featured)] rounded-3xl scale-[var(--scale-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out flex justify-start items-start py-[2vw] lg:py-[1vw] px-[2vw] lg:px-[1vw]"
           }
           style={{
-            backgroundImage: `url(http://51.75.16.185/images/yachts/${yacht._id}/${yacht.photos.featured})`,
+            backgroundImage: `url(${yacht.photos.featured})`,
           }}
         >
           <div className={"flex justify-center items-center"}>

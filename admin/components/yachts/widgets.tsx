@@ -21,7 +21,7 @@ export const Photos = () => {
     >
       <div
         style={{
-          backgroundImage: `url(http://51.75.16.185/images/yachts/sales/${_id}/${photos.gallery[0]})`,
+          backgroundImage: `url(${photos.gallery[0]})`,
         }}
         className={"w-1/2 h-full bg-cover bg-center rounded-3xl"}
       />
@@ -32,13 +32,13 @@ export const Photos = () => {
       >
         <div
           style={{
-            backgroundImage: `url(http://51.75.16.185/images/yachts/sales/${_id}/${photos.gallery[1]})`,
+            backgroundImage: `url(${photos.gallery[1]})`,
           }}
           className={"h-1/2 w-full bg-cover bg-center rounded-3xl"}
         />
         <div
           style={{
-            backgroundImage: `url(http://51.75.16.185/images/yachts/sales/${_id}/${photos.gallery[2]})`,
+            backgroundImage: `url(${photos.gallery[2]})`,
           }}
           className={"h-1/2 w-full bg-cover bg-center rounded-3xl"}
         />
