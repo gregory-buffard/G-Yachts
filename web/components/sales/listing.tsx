@@ -135,7 +135,7 @@ const Card = ({ data }: { data: IYacht }) => {
                 {data.price ? (
                     <p>{price}</p>
                 ) : (
-                    <p className={"text-rock-400"}>{t("priceOnApplication")}</p>
+                    <p>{t("priceOnApplication")}</p>
                 )}
             </div>
             <p className={"uppercase text-rock-400"}>
