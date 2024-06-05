@@ -99,7 +99,7 @@ const Card = ({ data }: { data: IYacht }) => {
                     </div>
                     <div
                         className={
-                            "w-[92vw] lg:w-[30vw] absolute hidden h-max gap-[0.20vw] mb-[2vh] lg:flex justify-center items-center"
+                            "w-[92vw] lg:w-[30vw] absolute hidden h-max gap-[0.20vw] mb-[2vh] lg:mt-[17vw] md:mt-[23vw] mt-[27vh] lg:flex justify-center items-center"
                         }>
                         <button
                             type={"button"}
