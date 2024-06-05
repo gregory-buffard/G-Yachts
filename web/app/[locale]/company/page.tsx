@@ -7,7 +7,7 @@ const Footer = dynamic(() => import("@/components/footer"));
 const Story = dynamic(() => import("@/components/company/story"));
 const Accordion = dynamic(() => import("@/components/company/accordion"));
 const Team = dynamic(() => import("@/components/company/team"));
-const Lifyestyle = dynamic(() => import("@/components/company/lifestyle"));
+const Lifestyle = dynamic(() => import("@/components/company/lifestyle"));
 
 const Company = () => {
   return (
@@ -18,7 +18,7 @@ const Company = () => {
       <Story />
       <Accordion />
       <Team />
-      <Lifyestyle />
+      <Lifestyle />
       <Footer />
     </main>
   );
