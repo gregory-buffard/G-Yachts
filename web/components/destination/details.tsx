@@ -38,7 +38,7 @@ const Details = () => {
         <h1 className="text-4xl">
           {t("explore")} <span className="classic">{destination.destination}</span>
         </h1>
-        <p className="mt-10 lg:mr-20 text-justify">{destination.description}</p>
+        <p className="mt-10 lg:mr-20 text-justify" dangerouslySetInnerHTML={{ __html: destination.description }} />
         <div className="mt-10 grid grid-cols-2 gap-4">
           {info.map((item, index) => (
             <InfoRow key={index} {...item} />
