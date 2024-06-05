@@ -113,7 +113,7 @@ const Card = ({photo}: { photo: string }) => {
                         "size-[45vw] bg-cover bg-center rounded-3xl lg:hover:scale-105 transition-transform duration-500 ease-in-out"
                     }
                     style={{
-                        backgroundImage: `url(http://51.75.16.185/images/yachts/sales/${_id}/${photo})`,
+                        backgroundImage: `url(${photo})`,
                     }}
                 ></button>
             </Badge>

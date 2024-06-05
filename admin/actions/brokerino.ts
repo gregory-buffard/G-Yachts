@@ -65,5 +65,4 @@ export const updateBrokerino = async (
   }
 
   await Brokerino.findByIdAndUpdate(id, rawFormData);
-  revalidatePath("/");
 };
