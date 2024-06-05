@@ -73,19 +73,19 @@ const Card = ({ data }: { data: IYacht }) => {
           }
         >
           <Photo
-            url={`url(http://51.75.16.185/images/yachts/${data._id}/${data.photos.gallery[0]})`}
+            url={`url(${data.photos.gallery[0]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(http://51.75.16.185/images/yachts/${data._id}/${data.photos.gallery[1]})`}
+            url={`url(${data.photos.gallery[1]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(http://51.75.16.185/images/yachts/${data._id}/${data.photos.gallery[2]})`}
+            url={`url(${data.photos.gallery[2]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
