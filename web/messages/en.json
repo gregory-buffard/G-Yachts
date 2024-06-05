@@ -380,5 +380,20 @@
     "postedOn": "Posted on",
     "category": "Category",
     "moreArticles": "More <classic>articles</classic>"
+  },
+  "search": {
+    "search": "Search",
+    "placeholder": "Search for a yacht, charter or destination",
+    "noResults": "No results found",
+    "yacht": "Yacht",
+    "yachts": "Yachts",
+    "charter": "Charter",
+    "charters": "Charters",
+    "destination": "Destination",
+    "destinations": "Destinations",
+    "article": "Article",
+    "articles": "Articles",
+    "page": "Page",
+    "pages": "Pages"
   }
 }

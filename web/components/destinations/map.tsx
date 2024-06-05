@@ -4,10 +4,7 @@ import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps
 import { type IDestination } from "@/types/destination";
 
 const Map = ({ destinations }: { destinations: IDestination[] }) => {
-  const geoUrl = "https://gist.githubusercontent.com/d3noob/5193723/raw/world-110m2.json";
-
   const markers = destinations.filter((destination) => destination.coordinates);
-  console.log(markers);
 
   return (
     <ComposableMap className="w-full max-h-[800]">
