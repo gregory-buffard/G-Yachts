@@ -33,7 +33,7 @@ const Thumb: React.FC<TThumbnail> = (props) => {
         type="button"
         className={`w-[24vw] md:w-[16vw] md:h-[16vh] h-[10vh] bg-cover bg-center mx-[0.5vw] ${selected ? "brightness-100 scale-100" : "brightness-50 scale-90"} hover:brightness-100 hover:scale-95 transition-[filter,_transform] duration-200 ease-in-out`}
         style={{
-          backgroundImage: `url(${process.env.NEXT_PUBLIC_API}/images/yachts/${params.id}/${yacht.photos.gallery[index]})`,
+          backgroundImage: `url(${yacht.photos.gallery[index]})`,
         }}
       />
     </div>
@@ -85,7 +85,7 @@ const EmblaCarousel: React.FC<TCarousel> = (props) => {
               key={index}
               width={500}
               height={500}
-              src={`${process.env.NEXT_PUBLIC_API}/images/yachts/${params.id}/${index}`}
+              src={`${index}`}
               alt={""}
               className={"cursor-grab mx-[1vw] h-full w-auto"}
             />
@@ -159,7 +159,7 @@ const Gallery = ({
                 onClick={() => setCurrent(i)}
                 width={500}
                 height={500}
-                src={`${process.env.NEXT_PUBLIC_API}/images/yachts/${params.id}/${photo}`}
+                src={`${photo}`}
                 alt={yacht.name}
                 className={
                   "size-[49vw] md:size-[24vw] lg:size-[16vw] object-cover object-center hover:scale-95 transition-transform duration-200 ease-in-out hover:cursor-pointer"
