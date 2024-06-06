@@ -1,6 +1,6 @@
 "use client";
 
-import { ICharter as Charter } from "@/types/charter";
+import { IYacht as Yacht } from "@/types/yacht";
 import { useEffect, useState } from "react";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
 import { useTranslations } from "next-intl";
@@ -9,9 +9,9 @@ import { useViewContext } from "@/context/view";
 import Bookmark from "@/public/imagery/optimized/sales/bookmark";
 import { ListingModifier, Range, Select, Radio } from "@/components/filters";
 
-interface ICharter
+interface IYacht
   extends Pick<
-    Charter,
+    Yacht,
     | "name"
     | "category"
     | "price"
@@ -48,7 +48,7 @@ const Photo = ({ url, style }: { url: string; style: React.CSSProperties }) => {
   );
 };
 
-const Card = ({ data }: { data: ICharter }) => {
+const Card = ({ data }: { data: IYacht }) => {
   const t = useTranslations("index.featured"),
     { currency, units, bookmarks, addBookmark, removeBookmark, rates } =
       useViewContext(),
@@ -73,19 +73,19 @@ const Card = ({ data }: { data: ICharter }) => {
           }
         >
           <Photo
-            url={`url(${process.env.NEXT_PUBLIC_API}/images/charters/${data._id}/${data.photos.gallery[0]})`}
+            url={`url(${data.photos.featured})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(${process.env.NEXT_PUBLIC_API}/images/charters/${data._id}/${data.photos.gallery[1]})`}
+            url={`url(${data.photos.gallery[0]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(${process.env.NEXT_PUBLIC_API}/images/charters/${data._id}/${data.photos.gallery[2]})`}
+            url={`url(${data.photos.gallery[1]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
@@ -95,7 +95,9 @@ const Card = ({ data }: { data: ICharter }) => {
               "w-[92vw] md:w-[44vw] lg:w-[30vw] absolute h-max flex justify-between items-center lg:px-[1vw] px-[2vw] -translate-y-[11vh] md:-translate-y-[9vw] lg:-translate-y-[7vw]"
             }
           >
-            <p></p>
+            <p>
+              {/* TODO: Add yacht's "status" (i.e. sold, exclusive, new, ...) */}
+            </p>
             <button
               type={"button"}
               onClick={(e) => {
@@ -112,7 +114,7 @@ const Card = ({ data }: { data: ICharter }) => {
           </div>
           <div
             className={
-              "w-[92vw] lg:w-[30vw] absolute hidden h-max gap-[0.20vw] mb-[2vh] lg:flex justify-center items-center"
+              "w-[92vw] lg:w-[30vw] absolute hidden h-max gap-[0.20vw] mb-[2vh] lg:mt-[17vw] md:mt-[23vw] mt-[27vh] lg:flex justify-center items-center"
             }
           >
             <button
@@ -144,18 +146,10 @@ const Card = ({ data }: { data: ICharter }) => {
       </div>
 
       <div
-        className={`w-full flex justify-between ${price ? "items-baseline" : "items-center"} text-black uppercase`}
+        className={`w-full flex justify-between ${data.price ? "items-baseline" : "items-center"} text-black uppercase`}
       >
         <p>{data.name}</p>
-        {price ? (
-          <p>{price}</p>
-        ) : (
-          <div
-            className={
-              "bg-rock-300 lg:w-[10vw] h-[1rem] rounded-full animate-pulse"
-            }
-          />
-        )}
+        {data.price ? <p>{price}</p> : <p>{t("priceOnApplication")}</p>}
       </div>
       <p className={"uppercase text-rock-400"}>
         {data.builder} | {convertUnit(data.length, units.length) + units.length}{" "}
@@ -176,7 +170,7 @@ const ViewButton = ({
   currentView: "global" | "bookmarks";
   onClick: () => void;
 }) => {
-  const t = useTranslations("charters.listing.views");
+  const t = useTranslations("sales.listing.views");
   return (
     <button
       type={"button"}
@@ -200,8 +194,8 @@ const ListView = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const Listing = ({ data }: { data: ICharter[] }) => {
-  const t = useTranslations("charters.listing"),
+const Listing = ({ data }: { data: IYacht[] }) => {
+  const t = useTranslations("sales.listing"),
     { bookmarks } = useViewContext(),
     { currency, units, changeCurrency } = useViewContext(),
     [maxListing, setMaxListing] = useState<number>(12);
@@ -211,51 +205,44 @@ const Listing = ({ data }: { data: ICharter[] }) => {
     category: undefined,
     year: undefined,
     length: {
-      min: Math.min(...data.map((charter) => charter.length)),
-      max: Math.max(...data.map((charter) => charter.length)),
+      min: Math.min(...data.map((yacht) => yacht.length)),
+      max: Math.max(...data.map((yacht) => yacht.length)),
     },
     builder: undefined,
     price: {
-      min: Math.min(...data.map((charter) => charter.price)),
-      max: Math.max(...data.map((charter) => charter.price)),
+      min: Math.min(...data.map((yacht) => yacht.price)),
+      max: Math.max(...data.map((yacht) => yacht.price)),
     },
     sleeps: undefined,
     name: undefined,
   });
-  const [filteredData, setFilteredData] = useState<ICharter[]>(data);
+  const [filteredData, setFilteredData] = useState<IYacht[]>(data);
 
   useEffect(() => {
-    const filtered = data.filter((charter) => {
-      if (filter.category && charter.category !== filter.category) return false;
-      if (filter.year && charter.yearBuilt !== filter.year) return false;
+    const filtered = data.filter((yacht) => {
+      if (filter.category && yacht.category !== filter.category) return false;
+      if (filter.year && yacht.yearBuilt !== filter.year) return false;
       if (filter.length.min !== undefined && filter.length.max !== undefined) {
         if (
-          charter.length < filter.length.min ||
-          charter.length > filter.length.max
+          yacht.length < filter.length.min ||
+          yacht.length > filter.length.max
         )
           return false;
       }
-      if (filter.builder && charter.builder !== filter.builder) return false;
+      if (filter.builder && yacht.builder !== filter.builder) return false;
       if (filter.price.min !== undefined && filter.price.max !== undefined) {
-        if (
-          charter.price < filter.price.min ||
-          charter.price > filter.price.max
-        )
+        if (yacht.price < filter.price.min || yacht.price > filter.price.max)
           return false;
       }
-      if (filter.sleeps !== undefined && charter.sleeps !== filter.sleeps)
+      if (filter.sleeps !== undefined && yacht.sleeps !== filter.sleeps)
         return false;
-      if (filter.name && charter.name !== filter.name) return false;
+      if (filter.name && yacht.name !== filter.name) return false;
 
       return true;
     });
 
     setFilteredData(filtered);
   }, [filter, data]);
-
-  useEffect(() => {
-    console.log(units.length);
-  }, [units]);
 
   return (
     <section
@@ -288,9 +275,9 @@ const Listing = ({ data }: { data: ICharter[] }) => {
             label={t("filters.year")}
             options={[
               { value: undefined, label: t("filters.any") },
-              ...Array.from(
-                new Set(data.map((charter) => charter.yearBuilt)),
-              ).map((year) => ({ value: year, label: year.toString() })),
+              ...Array.from(new Set(data.map((yacht) => yacht.yearBuilt))).map(
+                (year) => ({ value: year, label: year.toString() }),
+              ),
             ]}
             currentOption={filter.year}
             onChange={(value) => {
@@ -303,8 +290,8 @@ const Listing = ({ data }: { data: ICharter[] }) => {
           <div className={"filter"}>
             <label>{t("filters.length", { unit: units.length })}</label>
             <Range
-              min={Math.min(...data.map((charter) => charter.length))}
-              max={Math.max(...data.map((charter) => charter.length))}
+              min={Math.min(...data.map((yacht) => yacht.length))}
+              max={Math.max(...data.map((yacht) => yacht.length))}
               step={0.5}
               onChange={(value) => setFilter({ ...filter, length: value })}
               dataType={"length"}
@@ -314,9 +301,9 @@ const Listing = ({ data }: { data: ICharter[] }) => {
             label={t("filters.builder")}
             options={[
               { value: undefined, label: t("filters.any") },
-              ...Array.from(
-                new Set(data.map((charter) => charter.builder)),
-              ).map((builder) => ({ value: builder, label: builder })),
+              ...Array.from(new Set(data.map((yacht) => yacht.builder))).map(
+                (builder) => ({ value: builder, label: builder }),
+              ),
             ]}
             currentOption={filter.builder}
             onChange={(value) => {
@@ -329,8 +316,8 @@ const Listing = ({ data }: { data: ICharter[] }) => {
           <div className={"filter"}>
             <label>{t("filters.price")}</label>
             <Range
-              min={Math.min(...data.map((charter) => charter.price))}
-              max={Math.max(...data.map((charter) => charter.price))}
+              min={Math.min(...data.map((yacht) => yacht.price))}
+              max={Math.max(...data.map((yacht) => yacht.price))}
               step={10000}
               onChange={(value) => setFilter({ ...filter, price: value })}
               dataType={"price"}
@@ -340,7 +327,7 @@ const Listing = ({ data }: { data: ICharter[] }) => {
             label={t("filters.sleeps")}
             options={[
               { value: undefined, label: t("filters.any") },
-              ...Array.from(new Set(data.map((charter) => charter.sleeps))).map(
+              ...Array.from(new Set(data.map((yacht) => yacht.sleeps))).map(
                 (sleeps) => ({ value: sleeps, label: sleeps.toString() }),
               ),
             ]}
@@ -355,8 +342,11 @@ const Listing = ({ data }: { data: ICharter[] }) => {
             label={t("filters.name.label")}
             options={[
               { value: undefined, label: t("filters.name.all") },
-              ...Array.from(new Set(data.map((charter) => charter.name))).map(
-                (name) => ({ value: name, label: name }),
+              ...Array.from(new Set(data.map((yacht) => yacht.name))).map(
+                (name) => ({
+                  value: name,
+                  label: name,
+                }),
               ),
             ]}
             currentOption={filter.name}
@@ -373,13 +363,13 @@ const Listing = ({ data }: { data: ICharter[] }) => {
                 category: undefined,
                 year: undefined,
                 length: {
-                  min: Math.min(...data.map((charter) => charter.length)),
-                  max: Math.max(...data.map((charter) => charter.length)),
+                  min: Math.min(...data.map((yacht) => yacht.length)),
+                  max: Math.max(...data.map((yacht) => yacht.length)),
                 },
                 builder: undefined,
                 price: {
-                  min: Math.min(...data.map((charter) => charter.price)),
-                  max: Math.max(...data.map((charter) => charter.price)),
+                  min: Math.min(...data.map((yacht) => yacht.price)),
+                  max: Math.max(...data.map((yacht) => yacht.price)),
                 },
                 sleeps: undefined,
                 name: undefined,
@@ -424,26 +414,30 @@ const Listing = ({ data }: { data: ICharter[] }) => {
             onChange={(value) => {
               switch (value) {
                 case "priceAsc":
-                  setFilteredData(data.sort((a, b) => a.price - b.price));
+                  setFilteredData([...data.sort((a, b) => a.price - b.price)]);
                   break;
                 case "priceDesc":
-                  setFilteredData(data.sort((a, b) => b.price - a.price));
+                  setFilteredData([...data.sort((a, b) => b.price - a.price)]);
                   break;
                 case "lengthAsc":
-                  setFilteredData(data.sort((a, b) => a.length - b.length));
+                  setFilteredData([
+                    ...data.sort((a, b) => a.length - b.length),
+                  ]);
                   break;
                 case "lengthDesc":
-                  setFilteredData(data.sort((a, b) => b.length - a.length));
+                  setFilteredData([
+                    ...data.sort((a, b) => b.length - a.length),
+                  ]);
                   break;
                 case "yearAsc":
-                  setFilteredData(
-                    filteredData.sort((a, b) => a.yearBuilt - b.yearBuilt),
-                  );
+                  setFilteredData([
+                    ...data.sort((a, b) => a.yearBuilt - b.yearBuilt),
+                  ]);
                   break;
                 case "yearDesc":
-                  setFilteredData(
-                    filteredData.sort((a, b) => b.yearBuilt - a.yearBuilt),
-                  );
+                  setFilteredData([
+                    ...data.sort((a, b) => b.yearBuilt - a.yearBuilt),
+                  ]);
                   break;
               }
             }}
@@ -474,8 +468,8 @@ const Listing = ({ data }: { data: ICharter[] }) => {
         {view === "global" ? (
           <>
             <ListView>
-              {filteredData.slice(0, maxListing).map((charter, i) => (
-                <Card key={i} data={charter} />
+              {filteredData.slice(0, maxListing).map((yacht, i) => (
+                <Card key={i} data={yacht} />
               ))}
             </ListView>
             <div
@@ -520,10 +514,8 @@ const Listing = ({ data }: { data: ICharter[] }) => {
           <>
             <ListView>
               {bookmarks.map((bookmark) => {
-                const charter = data.find(
-                  (charter) => charter._id === bookmark,
-                );
-                return <Card key={charter!._id} data={charter!} />;
+                const yacht = data.find((yacht) => yacht._id === bookmark);
+                return <Card key={yacht!._id} data={yacht!} />;
               })}
             </ListView>
             <div

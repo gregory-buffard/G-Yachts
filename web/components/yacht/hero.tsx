@@ -18,7 +18,7 @@ const Hero = () => {
         "w-full px-[4vw] md:px-[8vw] h-[36dvh] md:h-screen bg-cover bg-center flex flex-col justify-end items-start text-white uppercase py-[2vh] md:py-[6vh]"
       }
       style={{
-        backgroundImage: `url(${yacht.photos.gallery[0]})`,
+        backgroundImage: `url(${yacht.photos.featured})`,
       }}
     >
       <h1 className={"font-classic normal-case"}>{yacht.name}</h1>

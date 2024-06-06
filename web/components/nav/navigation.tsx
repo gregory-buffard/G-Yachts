@@ -60,19 +60,26 @@ const Language = ({ locale }: { locale: string }): JSX.Element => {
 };
 
 const Page = ({ href }: { href: any }) => {
-  const t = useTranslations("navigation.links");
+  const t = useTranslations("navigation.links"),
+    { openView } = useViewContext();
+
   return (
     <div
       className={
         "flex flex-col overflow-hidden justify-start items-start h-[3rem] group"
       }
     >
-      <Link href={href} className={"navigation-link font-slick font-light"}>
+      <Link
+        href={href}
+        className={"navigation-link font-slick font-light"}
+        onClick={() => openView(null)}
+      >
         {t(`${href.slice(1)}`)}
       </Link>
       <Link
         href={href}
         className={"navigation-link font-classic font-medium uppercase"}
+        onClick={() => openView(null)}
       >
         {t(`${href.slice(1)}`)}
       </Link>
