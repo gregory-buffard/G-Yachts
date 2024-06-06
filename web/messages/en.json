@@ -313,6 +313,70 @@
         "subtitle": "RECRUITMENT"
     }
   },
+  "management": {
+    "metadata": {
+      "title": "Management",
+      "description": "Sail with peace of mind as we navigate the complexities of yacht ownership. G–Yachts offers a wide range of yacht management services.",
+      "keywords": "management, yachts, luxury, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "We take care of everything for your <classic>Peace of mind</classic>",
+      "subtitle": "YACHT MANAGEMENT"
+    },
+    "services": {
+      "subtitle": "CUSTOMIZED SERVICES",
+      "title": "Your Dedicated Yacht <classic>Expert</classic>",
+      "paragraph1": "G-Yachts relies on 25 years’ experience in the Yachting industry.As we know each yacht is different, we elaborate an appropriated and personalized strategy in order to provide an optimal use.",
+      "paragraph2": "Our strong knowledge of yachts enables us to have a global understanding of the management of each vessel. Our range of services follows the regulations in permanent evolution.",
+      "paragraph3": "Our goal : reduce costs, optimize the use and enable the owner to enjoy his yacht in great serenity"
+    },
+    "servicesList": {
+      "finance": {
+        "title": "Finance Management",
+        "description": "G-Yachts will develop annual budgets based on the Owner's needs, manage the yacht's finances, select high-quality suppliers, and provide monthly financial reports. We recommend using Deepblue software for efficient organization, which the yacht will own."
+      },
+      "support": {
+        "title": "Technical Support",
+        "description": "G-Yachts will oversee all yacht maintenance and repairs, adhering to manufacturer and regulatory standards. We will handle the procurement and delivery of spare parts and equipment, select shipyards, and organize audits and surveys."
+      },
+      "administrative": {
+        "title": "Administrative",
+        "description": "G-Yachts will manage all legal and administrative tasks, including registrations and communications with relevant authorities, and will also negotiate insurance for the yacht and its crew."
+      },
+      "crew": {
+        "title": "Crew Management",
+        "description": "G-Yachts will hire and manage qualified crew for the yacht as per the Owner's needs and regulatory standards, including Safe Manning and STCW 2010. We will oversee necessary crew training in line with ISM/ISPS codes and ensure crew discretion to align with the Owner’s philosophy."
+      }
+    },
+    "assets": {
+      "title": "Our <classic>Assets</classic>",
+      "paragraph1": "Our Management Team is composed of experts providing highly personalized services, tailored solution, with attention to detail and discretion.",
+      "paragraph2": "While many of our competitors focus on a biggest management fleet, at G-Yachts we favor quality over quantity, giving more time to each of our clients in order to work efficiently with their crew.",
+      "paragraph3": "A Yacht Manager will ensure the 24/7 assistance, the highest standards of quality and safety, and will help to avoid any critical situation. We aim to offer you an unrivealed service.",
+      "paragraph4": "We provide support and assistance worldwide."
+    },
+    "experience": {
+      "title": "Our <classic>Experience</classic>",
+      "subtitle": "MANAGEMENT",
+      "professionals": {
+        "title": "A team of professionals",
+        "description": "As a guarantee of quality, Gaspard Milazzo has gathered a team of passionate, skilled and renowned professionals."
+      },
+      "needs": {
+        "title": "We anticipate your needs",
+        "description": "Being an active actor of the Yachting Industry enables us to guarantee an efficient service. We attend multiple yacht shows and conferences in order to be familiar with the regulation in permanent evolution."
+      },
+      "performance": {
+        "title": "Performance in service",
+        "description": "Our team of experts and our quality partners insures the analysis, programs maintenance schedules and logistic.\nWe value in-depth dialogue and cooperation with captains and crew which we believe increases and intensifies high standing service."
+      }
+    },
+    "bottom": {
+      "title": "For Yacht <classic>Management</classic>",
+      "CTA": "GET IN TOUCH"
+    }
+  },
   "contact": {
     "metadata": {
       "title": "Contact",
