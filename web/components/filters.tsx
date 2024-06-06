@@ -228,7 +228,7 @@ export const ListingModifier = ({
   }, [opened]);
 
   return (
-    <div className={"w-1/2"}>
+    <div className={"w-1/2 relative"}>
       <button
         type={"button"}
         onBlur={() => setTimeout(() => open(false), 200)}
@@ -236,7 +236,7 @@ export const ListingModifier = ({
           e.preventDefault();
           setTimeout(() => open(!opened), 200);
         }}
-        className={"w-full flex justify-start items-center gap-[0.5vw]"}
+        className={"w-full flex justify-center items-center gap-[0.5vw]"}
       >
         <label className={"cursor-pointer"}>{label}</label>
         <svg
@@ -252,7 +252,7 @@ export const ListingModifier = ({
       {opened && (
         <div
           className={
-            "absolute flex flex-col justify-start items-start bg-white w-max h-max overflow-y-auto drop-shadow-2xl gap-[1vh] px-[0.5vw] py-[0.5vw] rounded-[1vh]"
+            "absolute flex right-0 flex-col justify-start items-start bg-white w-max h-max overflow-y-auto drop-shadow-2xl gap-[1vh] px-[0.5vw] py-[0.5vw] rounded-[1vh]"
           }
           ref={menuRef}
         >
