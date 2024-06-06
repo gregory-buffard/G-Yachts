@@ -73,6 +73,12 @@ const Card = ({ data }: { data: IYacht }) => {
           }
         >
           <Photo
+            url={`url(${data.photos.featured})`}
+            style={{
+              transform: `translateX(${translate}%)`,
+            }}
+          />
+          <Photo
             url={`url(${data.photos.gallery[0]})`}
             style={{
               transform: `translateX(${translate}%)`,
@@ -80,12 +86,6 @@ const Card = ({ data }: { data: IYacht }) => {
           />
           <Photo
             url={`url(${data.photos.gallery[1]})`}
-            style={{
-              transform: `translateX(${translate}%)`,
-            }}
-          />
-          <Photo
-            url={`url(${data.photos.gallery[2]})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
@@ -114,104 +114,47 @@ const Card = ({ data }: { data: IYacht }) => {
           </div>
           <div
             className={
-              "w-full md:w-[44vw] lg:w-[30vw] h-max flex flex-col justify-start items-start overflow-x-clip"
+              "w-[92vw] lg:w-[30vw] absolute hidden h-max gap-[0.20vw] mb-[2vh] lg:mt-[17vw] md:mt-[23vw] mt-[27vh] lg:flex justify-center items-center"
             }
           >
-            <div
-              className={"w-full h-max lg:overflow-x-hidden overflow-x-scroll"}
-            >
-              <div
-                className={
-                  "w-max lg:h-[18vw] md:h-[24vw] h-[28vh] flex justify-start items-center mb-[1vh]"
-                }
-              >
-                <Photo
-                  url={`url(${process.env.NEXT_PUBLIC_API}/images/yachts/${data._id}/${data.photos.gallery[0]})`}
-                  style={{
-                    transform: `translateX(${translate}%)`,
-                  }}
-                />
-                <Photo
-                  url={`url(${process.env.NEXT_PUBLIC_API}/images/yachts/${data._id}/${data.photos.gallery[1]})`}
-                  style={{
-                    transform: `translateX(${translate}%)`,
-                  }}
-                />
-                <Photo
-                  url={`url(${process.env.NEXT_PUBLIC_API}/images/yachts/${data._id}/${data.photos.gallery[2]})`}
-                  style={{
-                    transform: `translateX(${translate}%)`,
-                  }}
-                />
-                <div
-                  className={
-                    "w-[92vw] md:w-[44vw] lg:w-[30vw] absolute h-max flex justify-between items-center lg:px-[1vw] px-[2vw] -translate-y-[11vh] md:-translate-y-[9vw] lg:-translate-y-[7vw]"
-                  }
-                >
-                  <p>
-                    {/* TODO: Add yacht's "status" (i.e. sold, exclusive, new, ...) */}
-                  </p>
-                  <button
-                    type={"button"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      bookmarks.includes(data._id)
-                        ? removeBookmark(data._id)
-                        : addBookmark(data._id);
-                    }}
-                  >
-                    <Bookmark
-                      className={`${bookmarks.includes(data._id) ? "fill-teal" : "fill-white"} transition-colors duration-500 ease-in-out lg:size-[2vw] size-[4vh]`}
-                    />
-                  </button>
-                </div>
-                <div
-                  className={
-                    "w-[92vw] lg:w-[30vw] absolute hidden h-max gap-[0.20vw] mb-[2vh] lg:mt-[17vw] md:mt-[23vw] mt-[27vh] lg:flex justify-center items-center"
-                  }
-                >
-                  <button
-                    type={"button"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setTranslate(0);
-                    }}
-                    className={`w-[2vw] h-[0.25vh] mt-[1vh] rounded-full ${translate === 0 ? "bg-white" : "bg-white/50"} transition-[background-color] duration-500 ease-in-out cursor-crosshair`}
-                  />
-                  <button
-                    type={"button"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setTranslate(-100);
-                    }}
-                    className={`w-[2vw] h-[0.25vh] mt-[1vh] rounded-full ${translate === -100 ? "bg-white" : "bg-white/50"} transition-[background-color] duration-500 ease-in-out cursor-crosshair`}
-                  />
-                  <button
-                    type={"button"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setTranslate(-200);
-                    }}
-                    className={`w-[2vw] h-[0.25vh] mt-[1vh] rounded-full ${translate === -200 ? "bg-white" : "bg-white/50"} transition-[background-color] duration-500 ease-in-out cursor-crosshair`}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div
-              className={`w-full flex justify-between ${data.price ? "items-baseline" : "items-center"} text-black uppercase`}
-            >
-              <p>{data.name}</p>
-              {data.price ? <p>{price}</p> : <p>{t("priceOnApplication")}</p>}
-            </div>
-            <p className={"uppercase text-rock-400"}>
-              {data.builder} |{" "}
-              {convertUnit(data.length, units.length) + units.length} |{" "}
-              {data.yearBuilt} | {data.sleeps} {t("sleeps")}
-            </p>
+            <button
+              type={"button"}
+              onClick={(e) => {
+                e.preventDefault();
+                setTranslate(0);
+              }}
+              className={`w-[2vw] h-[0.25vh] mt-[1vh] rounded-full ${translate === 0 ? "bg-white" : "bg-white/50"} transition-[background-color] duration-500 ease-in-out cursor-crosshair`}
+            />
+            <button
+              type={"button"}
+              onClick={(e) => {
+                e.preventDefault();
+                setTranslate(-100);
+              }}
+              className={`w-[2vw] h-[0.25vh] mt-[1vh] rounded-full ${translate === -100 ? "bg-white" : "bg-white/50"} transition-[background-color] duration-500 ease-in-out cursor-crosshair`}
+            />
+            <button
+              type={"button"}
+              onClick={(e) => {
+                e.preventDefault();
+                setTranslate(-200);
+              }}
+              className={`w-[2vw] h-[0.25vh] mt-[1vh] rounded-full ${translate === -200 ? "bg-white" : "bg-white/50"} transition-[background-color] duration-500 ease-in-out cursor-crosshair`}
+            />
           </div>
         </div>
       </div>
+
+      <div
+        className={`w-full flex justify-between ${data.price ? "items-baseline" : "items-center"} text-black uppercase`}
+      >
+        <p>{data.name}</p>
+        {data.price ? <p>{price}</p> : <p>{t("priceOnApplication")}</p>}
+      </div>
+      <p className={"uppercase text-rock-400"}>
+        {data.builder} | {convertUnit(data.length, units.length) + units.length}{" "}
+        | {data.yearBuilt} | {data.sleeps} {t("sleeps")}
+      </p>
     </Link>
   );
 };
