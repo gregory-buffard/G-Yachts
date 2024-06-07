@@ -97,7 +97,7 @@ const Navigation = () => {
       animate={{ x: "0" }}
       exit={{ x: "-100%" }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className={`fixed left-0 top-0 z-20 h-[100dvh] lg:w-[44vw] w-full lg:px-[2vw] px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col overflow-x-hidden overflow-y-auto`}
+      className={`fixed left-0 top-0 z-30 h-[100dvh] lg:w-[44vw] w-full lg:px-[2vw] px-[4vw] py-[4vh] bg-rock-100 text-navy flex justify-between items-start flex-col overflow-x-hidden overflow-y-auto`}
       onMouseMove={handleMouseMove}
     >
       <div className={"navigation-section"}>
