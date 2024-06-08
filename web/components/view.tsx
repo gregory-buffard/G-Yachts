@@ -30,7 +30,7 @@ const View = () => {
                     }}
                     transition={{ duration: 0.2, ease: "easeInOut" }}
                     className={
-                        "fixed lg:block hidden w-screen h-screen inset-0 cursor-pointer z-10"
+                        "fixed lg:block hidden w-screen h-screen inset-0 cursor-pointer z-20"
                     }
                     onClick={() => openView(null)}
                 />
