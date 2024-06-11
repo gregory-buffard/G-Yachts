@@ -9,8 +9,8 @@ import management from "@/public/imagery/optimized/management/management.webp";
 const ServiceList = () => {
   const t = useTranslations("management.servicesList");
   return (
-    <section className={"bg-rock-100 w-full h-full px-[2vw]"}>
-      <div className="grid md:grid-cols-4 md:gap-6 gap-2 p-[10vw]">
+    <section className={"bg-rock-100 w-full h-full"}>
+      <div className="grid md:grid-cols-4 md:gap-6 gap-2 p-[10vw] md:py-[2vw]">
         <div className="flex flex-col pb-[5vw]">
           <Image
             src={finance}
@@ -53,7 +53,7 @@ const ServiceList = () => {
           </p>
         </div>
 
-        <div className="flex flex-col pb-[5vw]">
+        <div className="flex flex-col">
           <Image
             src={management}
             alt="New Construction"

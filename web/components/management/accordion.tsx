@@ -7,7 +7,7 @@ const Accordion = () => {
   const t = useTranslations("management.experience");
 
   return (
-    <section className={"w-full h-full bg-rock-100 overflow-hidden"}>
+    <section className={"w-full h-full bg-rock-100 overflow-hidden pb-[10vw]"}>
       <div className={"grid md:grid-cols-2 px-[10vw]"}>
         <div className={"mt-12"}>
           <h4 className={"font-classic font-normal"}>{t("subtitle")}</h4>
