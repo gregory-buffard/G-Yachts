@@ -3,30 +3,22 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { useEffect, useState } from "react";
-import { useViewContext } from "@/context/view";
-import { convertUnit, formatCurrency } from "@/utils/yachts";
 import { IArticle } from "@/types/article";
-import { useArticle } from "@/context/article";
 
 const Card = ({ card }: { card: IArticle }) => {
-    const { locale } = useArticle();
-    const localeArticle = locale === "en" ? card.en : card.fr;
-
     return (
         <Link
-            href={{ pathname: "/news/[id]", params: { id: card._id } }}
+            href={{ pathname: "/news/[id]", params: { id: card.id } }}
             className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw]`}>
             <div
                 className={
                     "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
                 }
                 style={{
-                    backgroundImage: `url(${card.heroImage})`,
+                    backgroundImage: `url(${card.image.url})`,
                 }}></div>
-            <span className="w-full text-black uppercase text-xl">{localeArticle.category }</span>
-            <p className="uppercase text-rock-800 text-2xl font-slick font-light">
-                {localeArticle.headline || card.en.headline}
-            </p>
+            <span className="w-full text-black uppercase text-xl">{card.category.title}</span>
+            <p className="uppercase text-rock-800 text-2xl font-slick font-light">{card.title}</p>
         </Link>
     );
 };

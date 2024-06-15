@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import Bar from "@/components/nav/bar";
 import Hero from "@/components/article/hero";
 import { ArticleProvider } from "@/context/article";
-import { fetchArticle } from "@/actions/acrticles";
+import { fetchArticle } from "@/actions/articles";
 import Detail from "@/components/article/detail";
 import { IArticle } from "@/types/article";
 import { getLocale } from "next-intl/server";
@@ -19,13 +19,11 @@ const Destinations = async ({
         id: string;
     };
 }) => {
-    const article: IArticle = await fetchArticle(params.id);
     const locale = await getLocale();
-
-    const localeArticle = locale === "en" ? article.en : article.fr;
+    const article: IArticle = await fetchArticle(params.id, locale);
 
     return (
-        <ArticleProvider article={article} localeArticle={localeArticle} locale={locale}>
+        <ArticleProvider article={article} locale={locale}>
             <main className="w-full flex flex-col justify-start items-center">
                 <Bar dynamicColor={100} />
                 <View />

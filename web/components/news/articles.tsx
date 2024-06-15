@@ -45,9 +45,7 @@ const Articles = ({ articles, locale }: { articles: IArticle[]; locale: string }
     useEffect(() => {
         if (selectedCategory) {
             const newFilteredArticles = articles.filter((article) => {
-                return locale === "en"
-                    ? article.en.category === selectedCategory
-                    : article.fr.category === selectedCategory;
+                return article.category.title === selectedCategory;
             });
             setFilteredArticles(newFilteredArticles);
         } else {
@@ -129,18 +127,17 @@ const Articles = ({ articles, locale }: { articles: IArticle[]; locale: string }
 };
 
 const ArticleCard = ({ article, locale }: { article: IArticle; locale: string }) => {
-    const articleData = locale === "en" ? article.en : article.fr;
     const t = useTranslations("news");
     return (
         <Link
             href={{
                 pathname: "/news/[id]",
-                params: { id: article._id },
+                params: { id: article.id },
             }}
             className="flex flex-col gap-4">
-            <img src={article.heroImage} alt={article.en.headline} />
-            <h4 className="text-xl">{articleData.category}</h4>
-            <h3 className="font-slick font-light uppercase text-2xl">{articleData.headline}</h3>
+            <img src={article.image.url} alt={article.title} />
+            <h4 className="text-xl">{article.category.title}</h4>
+            <h3 className="font-slick font-light uppercase text-2xl">{article.title}</h3>
             <span className="text-xl text-gray-400 uppercase underline">{t("readArticle")}</span>
         </Link>
     );

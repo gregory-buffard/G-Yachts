@@ -1,7 +1,7 @@
 import Hero from "@/components/news/hero";
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
-import { fetchArticles } from "@/actions/acrticles";
+import { fetchArticles } from "@/actions/articles";
 import { IArticle } from "@/types/article";
 import { getLocale } from "next-intl/server";
 
@@ -20,11 +20,9 @@ const News = async ({
     const locale = await getLocale();
 
     const selectedCategory = searchParams.category;
-    const articles: IArticle[] = await fetchArticles();
+    const articles: IArticle[] = await fetchArticles(locale == "fr" ? "fr" : "en");
 
-    var categories = articles.map((article) =>
-        locale === "en" ? article.en.category : article.fr.category
-    );
+    var categories = articles.map((article) => article.category.title);
     categories = categories.filter((category, index) => categories.indexOf(category) === index);
     categories.sort();
 
@@ -32,9 +30,7 @@ const News = async ({
 
     if (selectedCategory) {
         heroArticle = articles.filter((article) => {
-            return locale === "en"
-                ? article.en.category === selectedCategory
-                : article.fr.category === selectedCategory;
+            return article.category.title == selectedCategory;
         })[0];
     }
 

@@ -1,16 +1,27 @@
-FROM node:20
-LABEL authors="g-yachts"
+FROM node:18.8-alpine as base
 
-WORKDIR /app/admin
+FROM base as builder
 
+WORKDIR /home/node/app
 COPY package*.json ./
 
-RUN npm install
-
 COPY . .
+RUN yarn install
+RUN yarn build
 
-RUN npm run build
+FROM base as runtime
+
+ENV NODE_ENV=production
+ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
+
+WORKDIR /home/node/app
+COPY package*.json  ./
+COPY yarn.lock ./
+
+RUN yarn install --production
+COPY --from=builder /home/node/app/dist ./dist
+COPY --from=builder /home/node/app/build ./build
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["node", "dist/server.js"]

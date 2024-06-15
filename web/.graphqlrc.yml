@@ -1,0 +1,2 @@
+schema: "../admin/src/payload/generated-schema.graphql"
+documents: "actions/*.{graphql,js,ts,jsx,tsx}"
