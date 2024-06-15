@@ -3,8 +3,6 @@ import { IArticle } from "@/types/article";
 import { getLocale } from "next-intl/server";
 
 const Hero = async ({ article, categories }: { article: IArticle; categories: string[] }) => {
-    const locale = await getLocale();
-    const articleData = locale === "en" ? article.en : article.fr;
     return (
         <div className="w-full h-[36dvh] md:h-screen mt-[24vh] md:mt-0">
             <div className="h-1/3 flex flex-col justify-end items-center">
@@ -36,15 +34,15 @@ const Hero = async ({ article, categories }: { article: IArticle; categories: st
                     "w-full px-[4vw] md:px-[8vw] h-2/3 bg-cover bg-center flex flex-col justify-end items-start text-white uppercase py-[2vh] md:py-[6vh]"
                 }
                 style={{
-                    backgroundImage: `url(${article.heroImage})`,
+                    backgroundImage: `url(${article.image.url})`,
                 }}>
-                <h4>{articleData.category}</h4>
+                <h4>{article.category.title}</h4>
                 <Link
                     href={{
                         pathname: "/news/[id]",
-                        params: { id: article._id },
+                        params: { id: article.id },
                     }}>
-                    <h1>{articleData.headline}</h1>
+                    <h1>{article.category.title}</h1>
                 </Link>
             </section>
         </div>
