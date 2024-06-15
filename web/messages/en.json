@@ -243,6 +243,140 @@
       "CTA": "Contact broker"
     }
   },
+  "company": {
+    "metadata": {
+      "title": "Company",
+      "description": "Learn more about G–Yachts, a yacht brokerage company based in Monaco. We offer a wide range of services including yacht sales, yacht charters, yacht management and yacht construction.",
+      "keywords": "yachts, sales, charters, management, construction, Monaco, G–Yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "subtitle": "A FAMILY LEGACY",
+      "title": "Trusted for <classic>25 YEARS</classic>",
+      "description": "G-Yachts embodies determination, business ethic and experience. Over time, the Milazzo family has managed to lead successful sales, charters and the management of many renowned yachts thanks to a remarkable network and quality counterparts all around the world"
+    },
+    "story": {
+      "header": {
+        "title": "Our <classic>Story</classic>"
+      },
+      "content": {
+        "first": {
+          "title": "BEGINNING OF A NEW COMPANY CANNES NAUTIC",
+          "text": "Former sailors, the Milazzo family creates “Cannes Nautic”. The company was specialized in sales, maintenance and repairs in the bay of Cannes."
+        },
+        "second": {
+          "title": "ACQUISITION OF S.A GLEMOT",
+          "text": "After the success of Cannes Nautic, the Milazzo’s have decided to expand by acquiring S. A Glemot. The latter had a consequent fleet of yachts for sale, charter and management, in Mandelieu la Napoule Harbor."
+        },
+        "third": {
+          "title": "GASPARD YACHTS",
+          "text": "Following his father’s path, Gaspard Milazzo jumped ahead and decided to found his own company in Cannes: Gaspard Yachts. Empowered with reliability and strong knowledge of the yachting industry, he quickly gained a worldwide renowned reputation. The high standard service provided to his international clientele were since then cheered by numerous yacht owners, captains and the whole industry : Gaspard Yachts was a reference."
+        },
+        "fourth": {
+          "title": "JETCRAFT SUPPORT & G-YACHTS CREATION IN MONACO",
+          "text": "Further the partnership with the worldwide leader in private and commercial aviation, Jetcraft, Gaspard Milazzo created G-Yachts and settled it in Monaco on a long-term basis in order to provide the highest customized service."
+        },
+        "citation": "“G-YACHTS has built strong relationships with its clients for over 25 years, based on trust, dedication, and impeccable service. We are proud of our work and our position in the industry. By collaborating with renowned shipyards and architects, we have consistently enhanced our services and strengthened our client relationships. As passionate yachting experts, we are committed to being your premier yachting partner and providing you with an exceptional yachting experience.”",
+        "signature": "FOUNDER AND CEO"
+      }
+    },
+    "philosophy": {
+      "header": {
+        "title": "Yachting is a matter of <classic>Passion</classic>",
+        "subtitle": "OUR PHILOSOPHY",
+        "undertitle": "Two decades of <classic>Experience</classic>",
+        "description": "Thanks to our long experience with numerous units we had in management, we became a reference in terms of commitment, comprehension and operation of any kind of yacht. We understand the needs, the regulations and the requisites of this industry. Our strength is to always be one step forward."
+      },
+      "dropdown": {
+        "services": {
+          "title": "Customized Services",
+          "description": "Our company principles have always been to provide our clients a customized service. As per today, G-Yachts has been at the helm of plenty and successful sales, new constructions and charters for extremely renowned yachts. Our specialized and experienced team enabled this privately-owned company evolved through the years. Leader in this industry G-Yachts has always been financially independent and faithful to its principles."
+        },
+        "presence": {
+          "title": "A presence around the world",
+          "description": "G-Yachts located in heart of Monaco, beneficiates of the support of counterparts of choice in more than 20 countries thanks to our partnership with Jetcraft."
+        },
+        "partnership": {
+          "title": "Partnership and recommendations",
+          "description": "G-Yachts is a « Gold » member of the international Company MYBA (Mediterranean Yacht Broker Association), also ECPY, Riviera Yachting Network and finally PYA (Professional Yachtsmen's Association). The founder Gaspard Milazzo takes excellence as his own professional leitmotiv. The company is insured by Lloyd's in London. All the team, trained by Gaspard Milazzo, is comfortable with Lloyd's and Bureau Veritas conditions and regulations in order to respond effectively to ISM (International Safety Management) et ISPS (International Ship and Port Facility Security)"
+        }
+      }
+    },
+    "bottom": {
+      "title": "Build your <classic>Lifestyle</classic>",
+      "description": "Explore our exclusive selection of yachts for sale, presented by our luxury yacht brokers. Our diverse collection includes the world’s premier sailing and motor yachts, encompassing everything from entry-level vessels to opulent mega yachts. Our global fleet includes both brand-new and privately owned yachts. Leveraging our deep expertise and connections with top shipyards and brokers, our yacht specialists are dedicated to guiding you through the search and acquisition of your dream yacht."
+    }
+  },
+  "recruitment": {
+    "hero": {
+      "title": "Discover the opportunities at <classic>G–Yachts</classic>",
+        "subtitle": "RECRUITMENT"
+    }
+  },
+  "management": {
+    "metadata": {
+      "title": "Management",
+      "description": "Sail with peace of mind as we navigate the complexities of yacht ownership. G–Yachts offers a wide range of yacht management services.",
+      "keywords": "management, yachts, luxury, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "We take care of everything for your <classic>Peace of mind</classic>",
+      "subtitle": "YACHT MANAGEMENT"
+    },
+    "services": {
+      "subtitle": "CUSTOMIZED SERVICES",
+      "title": "Your Dedicated Yacht <classic>Expert</classic>",
+      "paragraph1": "G-Yachts relies on 25 years’ experience in the Yachting industry.As we know each yacht is different, we elaborate an appropriated and personalized strategy in order to provide an optimal use.",
+      "paragraph2": "Our strong knowledge of yachts enables us to have a global understanding of the management of each vessel. Our range of services follows the regulations in permanent evolution.",
+      "paragraph3": "Our goal : reduce costs, optimize the use and enable the owner to enjoy his yacht in great serenity"
+    },
+    "servicesList": {
+      "finance": {
+        "title": "Finance Management",
+        "description": "G-Yachts will develop annual budgets based on the Owner's needs, manage the yacht's finances, select high-quality suppliers, and provide monthly financial reports. We recommend using Deepblue software for efficient organization, which the yacht will own."
+      },
+      "support": {
+        "title": "Technical Support",
+        "description": "G-Yachts will oversee all yacht maintenance and repairs, adhering to manufacturer and regulatory standards. We will handle the procurement and delivery of spare parts and equipment, select shipyards, and organize audits and surveys."
+      },
+      "administrative": {
+        "title": "Administrative",
+        "description": "G-Yachts will manage all legal and administrative tasks, including registrations and communications with relevant authorities, and will also negotiate insurance for the yacht and its crew."
+      },
+      "crew": {
+        "title": "Crew Management",
+        "description": "G-Yachts will hire and manage qualified crew for the yacht as per the Owner's needs and regulatory standards, including Safe Manning and STCW 2010. We will oversee necessary crew training in line with ISM/ISPS codes and ensure crew discretion to align with the Owner’s philosophy."
+      }
+    },
+    "assets": {
+      "title": "Our <classic>Assets</classic>",
+      "paragraph1": "Our Management Team is composed of experts providing highly personalized services, tailored solution, with attention to detail and discretion.",
+      "paragraph2": "While many of our competitors focus on a biggest management fleet, at G-Yachts we favor quality over quantity, giving more time to each of our clients in order to work efficiently with their crew.",
+      "paragraph3": "A Yacht Manager will ensure the 24/7 assistance, the highest standards of quality and safety, and will help to avoid any critical situation. We aim to offer you an unrivealed service.",
+      "paragraph4": "We provide support and assistance worldwide."
+    },
+    "experience": {
+      "title": "Our <classic>Experience</classic>",
+      "subtitle": "MANAGEMENT",
+      "professionals": {
+        "title": "A team of professionals",
+        "description": "As a guarantee of quality, Gaspard Milazzo has gathered a team of passionate, skilled and renowned professionals."
+      },
+      "needs": {
+        "title": "We anticipate your needs",
+        "description": "Being an active actor of the Yachting Industry enables us to guarantee an efficient service. We attend multiple yacht shows and conferences in order to be familiar with the regulation in permanent evolution."
+      },
+      "performance": {
+        "title": "Performance in service",
+        "description": "Our team of experts and our quality partners insures the analysis, programs maintenance schedules and logistic.\nWe value in-depth dialogue and cooperation with captains and crew which we believe increases and intensifies high standing service."
+      }
+    },
+    "bottom": {
+      "title": "For Yacht <classic>Management</classic>",
+      "CTA": "GET IN TOUCH"
+    }
+  },
   "contact": {
     "metadata": {
       "title": "Contact",
