@@ -163,11 +163,11 @@ const ArticlesResults = ({ articles, locale }: { articles: IArticle[]; locale: s
                     onClick={() => openView(null)}
                     href={{
                         pathname: "/news/[id]",
-                        params: { id: article._id },
+                        params: { id: article.id },
                     }}
-                    key={article._id}
+                    key={article.id}
                     className="w-full flex flex-col py-2 px-4 border-2 border-rock-300 hover:bg-rock-200 transition-colors duration-200 cursor-pointer mt-2">
-                    <span>{locale === "fr" ? article.fr.headline : article.en.headline}</span>
+                    <span>{article.title}</span>
                     <p className="text-sm text-gray-500">{t("article")}</p>
                 </Link>
             ))}
