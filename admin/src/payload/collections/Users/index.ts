@@ -6,6 +6,7 @@ import { checkRole } from './checkRole'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
 import { isAdminOrSelf } from '../../access/adminOrSelf'
+import { anyone } from '../../access/anyone'
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -25,7 +26,7 @@ const Users: CollectionConfig = {
     hideAPIURL: true,
   },
   access: {
-    read: adminsAndUser,
+    read: anyone,
     create: admins,
     update: isAdminOrSelf,
     delete: admins,

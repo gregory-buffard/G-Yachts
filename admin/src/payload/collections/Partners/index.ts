@@ -63,7 +63,7 @@ export const Partners: CollectionConfig = {
       },
       name: 'logo',
       type: 'upload',
-      relationTo: 'uploads',
+      relationTo: 'media',
       required: true,
     },
     {
@@ -73,7 +73,7 @@ export const Partners: CollectionConfig = {
       },
       name: 'banner',
       type: 'upload',
-      relationTo: 'uploads',
+      relationTo: 'media',
       required: true,
     },
   ],

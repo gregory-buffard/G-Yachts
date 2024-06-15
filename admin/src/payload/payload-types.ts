@@ -16,6 +16,7 @@ export interface Config {
     categories: Category;
     destinations: Destination;
     events: Event;
+    partners: Partner;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -35,6 +36,7 @@ export interface Article {
   content: {
     [k: string]: unknown;
   }[];
+  image: string | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -225,6 +227,20 @@ export interface Event {
   fromDate: string;
   toDate: string;
   image: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners".
+ */
+export interface Partner {
+  id: string;
+  name: string;
+  quote: string;
+  comment: string;
+  logo: string | Media;
+  banner: string | Media;
   updatedAt: string;
   createdAt: string;
 }

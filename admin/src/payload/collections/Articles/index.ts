@@ -80,7 +80,7 @@ export const Articles: CollectionConfig = {
       admin: {
         position: 'sidebar',
         date: {
-          pickerAppearance: 'dayAndTime',
+          pickerAppearance: 'dayOnly',
         },
       },
       hooks: {
@@ -99,12 +99,23 @@ export const Articles: CollectionConfig = {
       type: 'relationship',
       relationTo: 'users',
       hasMany: false,
-      defaultValue: ({ user }) => user.id,
       required: true,
       admin: {
         position: 'sidebar',
       },
-      hidden: true,
+      hooks: {
+        beforeChange: [
+          ({ req }) => {
+            return req.user.id
+          },
+        ],
+        beforeValidate: [
+          ({ req }) => {
+            return req.user.id
+          },
+        ],
+      },
+      // hidden: true,
       label: {
         en: 'Author',
         fr: 'Auteur',
@@ -119,6 +130,16 @@ export const Articles: CollectionConfig = {
       },
       required: true,
       localized: true,
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      label: {
+        en: 'Image',
+        fr: 'Image',
+      },
+      required: true,
     },
   ],
 }
