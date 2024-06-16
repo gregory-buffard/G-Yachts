@@ -11,6 +11,12 @@ const nextConfig = {
                 hostname: "51.75.16.185",
                 port: "",
                 pathname: "/images/**"
+            },
+            {
+                protocol: "http",
+                hostname: "localhost",
+                port: "3001",
+                pathname: "/media/**"
             }
         ]
     }

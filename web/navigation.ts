@@ -37,6 +37,14 @@ export const pathnames = {
     en: "/news/[id]",
     fr: "/actualites/[id]",
   },
+  "/events": {
+    en: "/events",
+    fr: "/evenements",
+  },
+  "/events/[id]": {
+    en: "/events/[id]",
+    fr: "/evenements/[id]",
+  },
   "/recruitment": {
     en: "/recruitment",
     fr: "/recrutement",

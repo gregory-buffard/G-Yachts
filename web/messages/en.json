@@ -452,6 +452,18 @@
     "category": "Category",
     "moreArticles": "More <classic>articles</classic>"
   },
+  "events": {
+    "hero": {
+      "title": "Your invitation to the most exclusive <classic>events</classic>",
+      "subtitle": "Events"
+    },
+    "upcoming": "Events to <classic>come</classic>",
+    "past": "Past <classic>events</classic>",
+    "more": "Read more",
+    "listed": "You've viewed {count} of {total}",
+    "expand": "Load more",
+    "end": "You've reached the end of our events"
+  },
   "search": {
     "search": "Search",
     "placeholder": "Search for a yacht, charter or destination",
