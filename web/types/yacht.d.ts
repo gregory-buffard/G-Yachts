@@ -2,7 +2,10 @@ export interface IYacht {
   _id: string;
   LOA: number;
   beam: number;
-  brokerEmail: string;
+  broker: {
+    name: string;
+    email: string;
+  }
   builder: string;
   category: string;
   city: string;
