@@ -1,89 +1,363 @@
 "use server";
 
-import { Charter, ICharter } from "@/models/charter";
+import { ICharter } from "@/models/charter";
 import { IFeatured } from "@/types/charter";
 import { IDestination } from "@/types/destination";
 import axios from "axios";
+import { getClient } from "@/apollo";
+import { gql } from "@apollo/client";
 
 export const fetchFeatured = async () => {
-  return await Charter.find({ featured: true })
-    .select("_id name price builder length yearBuilt sleeps photos")
-    .catch((e) => {
-      throw e;
+    const client = getClient();
+    const { data } = await client.query({
+        query: gql`
+            query Charters {
+                Charters(where: { featured: { equals: true } }) {
+                    docs {
+                        id
+                        name
+                        model
+                        price
+                        LOA
+                        beam
+                        builder
+                        category
+                        city
+                        continent
+                        country
+                        cruising
+                        crypto
+                        length
+                        state
+                        material
+                        maxDraft
+                        minDraft
+                        region
+                        rooms
+                        sleeps
+                        subcategory
+                        tonnage
+                        yearBuilt
+                        yearModel
+                        featured
+                        keyFeatures
+                        broker {
+                            id
+                            name
+                            email
+                            picture {
+                                url
+                            }
+                            position
+                            phones {
+                                prefix
+                                number
+                            }
+                            langs {
+                                lang
+                            }
+                        }
+                        photos {
+                            featured {
+                                url
+                            }
+                            gallery {
+                                image {
+                                    url
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        `,
     });
+    const charters: ICharter[] = data.Charters.docs.map(remapChartersPhotos);
+    return charters;
+};
+const remapChartersPhotos = (charter: any): ICharter => {
+    return {
+        ...charter,
+        photos: {
+            featured: charter.photos.featured.url,
+            gallery: charter.photos.gallery.map((photo: any) => photo.image.url),
+        },
+        keyFeatures: charter.keyFeatures.map((feature: any) => feature.keyFeature),
+        broker: {
+            ...charter.broker,
+            langs: charter.broker.langs.map((lang: any) => lang.lang),
+        },
+    };
 };
 
 export const fetchGallery = async ({
-  type,
-  id,
-  query,
+    type,
+    id,
+    query,
 }: {
-  type: "sales" | "charters";
-  id: string;
-  query: string;
+    type: "sales" | "charters";
+    id: string;
+    query: string;
 }) => {
-  const res = await axios
-    .get(`${process.env.API_URL}/charters/images/${id}`, {
-      data: { type: type, target: query },
-    })
-    .catch((e) => {
-      throw e;
-    });
-  return res.data;
+    const res = await axios
+        .get(`${process.env.API_URL}/charters/images/${id}`, {
+            data: { type: type, target: query },
+        })
+        .catch((e) => {
+            throw e;
+        });
+    return res.data;
 };
 
 export const fetchListing = async () => {
-  return await Charter.find({})
-    .select("_id name category price builder length yearBuilt sleeps photos")
-    .catch((e) => {
-      throw e;
+    const client = getClient();
+    const { data } = await client.query({
+        query: gql`
+            query Charters {
+                Charters {
+                    docs {
+                        id
+                        name
+                        model
+                        price
+                        LOA
+                        beam
+                        builder
+                        category
+                        city
+                        continent
+                        country
+                        cruising
+                        crypto
+                        length
+                        state
+                        material
+                        maxDraft
+                        minDraft
+                        region
+                        rooms
+                        sleeps
+                        subcategory
+                        tonnage
+                        yearBuilt
+                        yearModel
+                        featured
+                        keyFeatures
+                        broker {
+                            id
+                            name
+                            email
+                            picture {
+                                url
+                            }
+                            position
+                            phones {
+                                prefix
+                                number
+                            }
+                            langs {
+                                lang
+                            }
+                        }
+                        photos {
+                            featured {
+                                url
+                            }
+                            gallery {
+                                image {
+                                    url
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        `,
     });
+    const charters: ICharter[] = data.Charters.docs.map(remapChartersPhotos);
+    return charters;
 };
 
 export const fetchCharter = async (id: string) => {
-  return await Charter.findById(id).catch((e) => {
-    throw e;
-  });
+    const client = getClient();
+    const { data } = await client.query({
+        query: gql`
+            query Charter($id: String!) {
+                Charter(id: $id) {
+                    id
+                    name
+                    model
+                    price
+                    LOA
+                    beam
+                    builder
+                    category
+                    city
+                    continent
+                    country
+                    cruising
+                    crypto
+                    length
+                    state
+                    material
+                    maxDraft
+                    minDraft
+                    region
+                    rooms
+                    sleeps
+                    subcategory
+                    tonnage
+                    yearBuilt
+                    yearModel
+                    featured
+                    keyFeatures
+                    broker {
+                        id
+                        name
+                        email
+                        picture {
+                            url
+                        }
+                        position
+                        phones {
+                            prefix
+                            number
+                        }
+                        langs {
+                            lang
+                        }
+                    }
+                    photos {
+                        featured {
+                            url
+                        }
+                        gallery {
+                            image {
+                                url
+                            }
+                        }
+                    }
+                }
+            }
+        `,
+        variables: { id: id },
+    });
+    const charter: ICharter = remapChartersPhotos(data.Charter);
+    return charter;
 };
 
 export const getRate = async (currency: string) => {
-  if (currency === "EUR") return 1;
-  try {
-    const res = await axios.get(
-      `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.CURRENCY_API_KEY}&currencies=${currency}&base_currency=EUR`
-    );
-    return 1 * res.data.data[currency];
-  } catch (e) {
-    console.error("Error fetching currency: ", e);
-    return 1;
-  }
+    if (currency === "EUR") return 1;
+    try {
+        const res = await axios.get(
+            `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.CURRENCY_API_KEY}&currencies=${currency}&base_currency=EUR`
+        );
+        return 1 * res.data.data[currency];
+    } catch (e) {
+        console.error("Error fetching currency");
+        return 1;
+    }
 };
 
 export const fetchChartersForDestination = async (
-  destination: IDestination
+    destination: IDestination
 ): Promise<IFeatured[]> => {
-  const selectFields = "_id name price builder photos length yearBuilt sleeps";
-  const charters: IFeatured[] = [];
-  // Country
-  const countryCharters = await Charter.find({ country: destination.country })
-    .select(selectFields)
-    .limit(4)
-    .catch((e) => {
-      throw e;
+    const client = getClient();
+    const charters: IFeatured[] = [];
+    // Country
+    const { data: countryData } = await client.query({
+        query: gql`
+            query Charters($country: String!, $limit: Int!) {
+                Charters(where: { country: { equals: $country }, limit: $limit }) {
+                    docs {
+                        id
+                        name
+                        price
+                        builder
+                        photos {
+                            featured {
+                                url
+                            }
+                            gallery {
+                                image {
+                                    url
+                                }
+                            }
+                        }
+                        length
+                        yearBuilt
+                        sleeps
+                    }
+                }
+            }
+        `,
+        variables: { country: destination.country, limit: 4 },
     });
-  charters.push(...countryCharters);
-  if (charters.length >= 4) return charters;
-  // Continent
-  const continentCharters = await Charter.find({ continent: destination.continent })
-    .select(selectFields)
-    .limit(4 - charters.length)
-    .catch((e) => {
-      throw e;
+    const countryCharters: IFeatured[] = countryData.Charters.docs.map(remapChartersPhotos);
+    charters.push(...countryCharters);
+    if (charters.length >= 4) return charters;
+    // Continent
+    const { data: continentData } = await client.query({
+        query: gql`
+            query Charters($continent: String!, $limit: Int!) {
+                Charters(where: { continent: { equals: $continent }, limit: $limit }) {
+                    docs {
+                        id
+                        name
+                        price
+                        builder
+                        photos {
+                            featured {
+                                url
+                            }
+                            gallery {
+                                image {
+                                    url
+                                }
+                            }
+                        }
+                        length
+                        yearBuilt
+                        sleeps
+                    }
+                }
+            }
+        `,
+        variables: { continent: destination.continent, limit: 4 - charters.length },
     });
-  charters.push(...continentCharters);
-  if (charters.length >= 4) return charters;
-  // Random charters
-  const randomCharters = await Charter.aggregate([{ $sample: { size: 4 - charters.length } }]);
-  charters.push(...randomCharters);
-  return charters;
+    const continentCharters: IFeatured[] = continentData.Charters.docs.map(remapChartersPhotos);
+    charters.push(...continentCharters);
+    if (charters.length >= 4) return charters;
+    // Random
+    const { data: randomData } = await client.query({
+        query: gql`
+            query Charters($limit: Int!) {
+                Charters(limit: $limit) {
+                    docs {
+                        id
+                        name
+                        price
+                        builder
+                        photos {
+                            featured {
+                                url
+                            }
+                            gallery {
+                                image {
+                                    url
+                                }
+                            }
+                        }
+                        length
+                        yearBuilt
+                        sleeps
+                    }
+                }
+            }
+        `,
+        variables: { limit: 4 - charters.length },
+    });
+    const randomCharters: IFeatured[] = randomData.Charters.docs.map(remapChartersPhotos);
+    charters.push(...randomCharters);
+    return charters;
 };
