@@ -40,8 +40,17 @@ const Users: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      required: true,
+      label: {
+        en: 'Name',
+        fr: 'Nom',
+      },
     },
     {
+      label: {
+        en: 'Roles',
+        fr: 'Rôles',
+      },
       name: 'roles',
       type: 'select',
       hasMany: true,
@@ -66,11 +75,77 @@ const Users: CollectionConfig = {
       },
     },
     {
-      label: 'Profile picture',
+      label: {
+        en: 'Profile picture',
+        fr: 'Photo de profil',
+      },
       name: 'picture',
       type: 'upload',
       relationTo: 'media',
       required: false,
+    },
+    {
+      label: {
+        en: 'Position',
+        fr: 'Position',
+      },
+      name: 'position',
+      type: 'text',
+      required: true,
+    },
+    {
+      label: {
+        en: 'Email',
+        fr: 'Email',
+      },
+      name: 'email',
+      type: 'email',
+      required: true,
+    },
+    {
+      label: {
+        en: 'Phone numbers',
+        fr: 'Numéros de téléphone',
+      },
+      type: 'array',
+      name: 'phones',
+      fields: [
+        {
+          name: 'prefix',
+          type: 'text',
+          label: {
+            en: 'Prefix',
+            fr: 'Préfixe',
+          },
+        },
+        {
+          name: 'number',
+          type: 'text',
+          label: {
+            en: 'Number',
+            fr: 'Numéro',
+          },
+        },
+      ],
+    },
+    {
+      label: {
+        en: 'Languages',
+        fr: 'Langues',
+      },
+      name: 'langs',
+      type: 'array',
+      required: true,
+      fields: [
+        {
+          name: 'lang',
+          type: 'text',
+          label: {
+            en: 'Language',
+            fr: 'Langue',
+          },
+        },
+      ],
     },
   ],
   timestamps: true,

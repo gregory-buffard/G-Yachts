@@ -87,9 +87,9 @@ const YachtsResults = ({ yachts }: { yachts: IYacht[] }) => {
                     onClick={() => openView(null)}
                     href={{
                         pathname: "/yacht/[id]",
-                        params: { id: yacht._id },
+                        params: { id: yacht.id },
                     }}
-                    key={yacht._id}
+                    key={yacht.id}
                     className="w-full flex flex-col py-2 px-4 border-2 border-rock-300 hover:bg-rock-200 transition-colors duration-200 cursor-pointer mt-2">
                     <span>{yacht.name}</span>
                     <p className="text-sm text-gray-500">{t("yacht")}</p>
@@ -111,9 +111,9 @@ const ChartersResults = ({ charters }: { charters: ICharter[] }) => {
                     onClick={() => openView(null)}
                     href={{
                         pathname: "/charter/[id]",
-                        params: { id: charter._id },
+                        params: { id: charter.id },
                     }}
-                    key={charter._id}
+                    key={charter.id}
                     className="w-full flex flex-col py-2 px-4 border-2 border-rock-300 hover:bg-rock-200 transition-colors duration-200 cursor-pointer mt-2">
                     <span>{charter.name}</span>
                     <p className="text-sm text-gray-500">{t("charter")}</p>

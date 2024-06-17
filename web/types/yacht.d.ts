@@ -1,44 +1,42 @@
+import IBroker from "./broker";
+
 export interface IYacht {
-  _id: string;
-  LOA: number;
-  beam: number;
-  broker: {
+    id: string;
+    LOA: number;
+    beam: number;
+    broker: IBroker;
+    builder: string;
+    category: string;
+    city: string;
+    continent: string;
+    country: string;
+    cruising: boolean;
+    crypto: boolean;
+    length: number;
+    state: string;
+    material: string;
+    maxDraft: number;
+    minDraft: number;
+    model: string;
     name: string;
-    email: string;
-  }
-  builder: string;
-  category: string;
-  city: string;
-  continent: string;
-  country: string;
-  cruising: boolean;
-  crypto: boolean;
-  length: number;
-  state: string;
-  material: string;
-  maxDraft: number;
-  minDraft: number;
-  model: string;
-  name: string;
-  price: number;
-  region: string;
-  rooms: number;
-  sleeps: number;
-  subcategory: string;
-  tonnage: number;
-  yearBuilt: number;
-  yearModel: number;
-  featured: boolean;
-  photos: {
-    featured: string;
-    gallery: string[];
-  };
+    price: number;
+    region: string;
+    rooms: number;
+    sleeps: number;
+    subcategory: string;
+    tonnage: number;
+    yearBuilt: number;
+    yearModel: number;
+    featured: boolean;
+    keyFeatures: string[];
+    photos: {
+        featured: string;
+        gallery: string[];
+    };
 }
 
 export interface IFeatured
-  extends Pick<
-    IYacht,
-    "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps" | "photos"
-  > {
-  _id: string;
-}
+    extends Pick<
+        IYacht,
+        "id" | "price" | "name" | "builder" | "length" | "yearBuilt" | "sleeps" | "photos"
+    > {}

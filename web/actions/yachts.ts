@@ -2,7 +2,7 @@
 
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
-import { IYacht, Yacht } from "@/models/yacht";
+import { IYacht } from "@/models/yacht";
 import axios from "axios";
 
 export const fetchFeatured = async () => {
@@ -38,11 +38,22 @@ export const fetchFeatured = async () => {
                         yearBuilt
                         yearModel
                         featured
-                        updatedAt
-                        createdAt
+                        keyFeatures
                         broker {
+                            id
                             name
                             email
+                            picture {
+                                url
+                            }
+                            position
+                            phones {
+                                prefix
+                                number
+                            }
+                            langs {
+                                lang
+                            }
                         }
                         photos {
                             featured {
@@ -69,6 +80,11 @@ const remapYachtPhotos = (yacht: any) => {
         photos: {
             featured: yacht.photos.featured.url,
             gallery: yacht.photos.gallery.map((photo: any) => photo.image.url),
+        },
+        keyFeatures: yacht.keyFeatures.map((feature: any) => feature.keyFeature),
+        broker: {
+            ...yacht.broker,
+            langs: yacht.broker.langs.map((lang: any) => lang.lang),
         },
     };
 };
@@ -125,11 +141,22 @@ export const fetchListing = async () => {
                         yearBuilt
                         yearModel
                         featured
-                        updatedAt
-                        createdAt
+                        keyFeatures
                         broker {
+                            id
                             name
                             email
+                            picture {
+                                url
+                            }
+                            position
+                            phones {
+                                prefix
+                                number
+                            }
+                            langs {
+                                lang
+                            }
                         }
                         photos {
                             featured {
@@ -154,7 +181,7 @@ export const fetchYacht = async (id: string) => {
     const client = getClient();
     const { data } = await client.query({
         query: gql`
-            query Yacht($id: ID!) {
+            query Yacht($id: String!) {
                 Yacht(id: $id) {
                     id
                     name
@@ -182,11 +209,22 @@ export const fetchYacht = async (id: string) => {
                     yearBuilt
                     yearModel
                     featured
-                    updatedAt
-                    createdAt
+                    keyFeatures
                     broker {
+                        id
                         name
                         email
+                        picture {
+                            url
+                        }
+                        position
+                        phones {
+                            prefix
+                            number
+                        }
+                        langs {
+                            lang
+                        }
                     }
                     photos {
                         featured {
@@ -204,6 +242,7 @@ export const fetchYacht = async (id: string) => {
         variables: { id },
     });
     const yacht: IYacht = remapYachtPhotos(data.Yacht);
+    console.log(yacht.broker.phones);
     return yacht;
 };
 
