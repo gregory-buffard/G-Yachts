@@ -242,7 +242,6 @@ export const fetchYacht = async (id: string) => {
         variables: { id },
     });
     const yacht: IYacht = remapYachtPhotos(data.Yacht);
-    console.log(yacht.broker.phones);
     return yacht;
 };
 

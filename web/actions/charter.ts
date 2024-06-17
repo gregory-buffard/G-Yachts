@@ -243,7 +243,6 @@ export const fetchCharter = async (id: string) => {
         variables: { id: id },
     });
     const charter: ICharter = remapChartersPhotos(data.Charter);
-    console.log(charter.broker.phones);
     return charter;
 };
 
