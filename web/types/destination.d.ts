@@ -1,5 +1,5 @@
 export interface IDestination {
-  _id: string;
+  id: string;
   destination: string;
   country: string;
   region: string;

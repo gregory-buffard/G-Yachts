@@ -85,9 +85,12 @@ enum FallbackLocaleInputType {
 
 type User {
   id: String
-  name: String
+  name: String!
   roles: [User_roles!]
   picture(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: User_Picture_where): Media
+  position: String!
+  phones: [User_Phones!]
+  langs: [User_Langs!]!
   updatedAt: DateTime
   createdAt: DateTime
   email: EmailAddress!
@@ -298,6 +301,17 @@ input User_Picture_where_or {
   OR: [User_Picture_where_or]
 }
 
+type User_Phones {
+  prefix: String
+  number: String
+  id: String
+}
+
+type User_Langs {
+  lang: String
+  id: String
+}
+
 """
 A field whose value conforms to the standard internet email address format as specified in HTML Spec: https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address.
 """
@@ -504,6 +518,7 @@ input Article_where {
   title: Article_title_operator
   category: Article_category_operator
   date: Article_date_operator
+  author: Article_author_operator
   content: Article_content_operator
   image: Article_image_operator
   updatedAt: Article_updatedAt_operator
@@ -539,6 +554,14 @@ input Article_date_operator {
   less_than_equal: DateTime
   less_than: DateTime
   like: DateTime
+}
+
+input Article_author_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
 }
 
 input Article_content_operator {
@@ -590,6 +613,7 @@ input Article_where_and {
   title: Article_title_operator
   category: Article_category_operator
   date: Article_date_operator
+  author: Article_author_operator
   content: Article_content_operator
   image: Article_image_operator
   updatedAt: Article_updatedAt_operator
@@ -603,6 +627,7 @@ input Article_where_or {
   title: Article_title_operator
   category: Article_category_operator
   date: Article_date_operator
+  author: Article_author_operator
   content: Article_content_operator
   image: Article_image_operator
   updatedAt: Article_updatedAt_operator
@@ -628,6 +653,7 @@ type ArticlesDocAccessFields {
   title: ArticlesDocAccessFields_title
   category: ArticlesDocAccessFields_category
   date: ArticlesDocAccessFields_date
+  author: ArticlesDocAccessFields_author
   content: ArticlesDocAccessFields_content
   image: ArticlesDocAccessFields_image
   updatedAt: ArticlesDocAccessFields_updatedAt
@@ -700,6 +726,29 @@ type ArticlesDocAccessFields_date_Update {
 }
 
 type ArticlesDocAccessFields_date_Delete {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_author {
+  create: ArticlesDocAccessFields_author_Create
+  read: ArticlesDocAccessFields_author_Read
+  update: ArticlesDocAccessFields_author_Update
+  delete: ArticlesDocAccessFields_author_Delete
+}
+
+type ArticlesDocAccessFields_author_Create {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_author_Read {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_author_Update {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_author_Delete {
   permission: Boolean!
 }
 
@@ -1329,6 +1378,12 @@ input User_where {
   name: User_name_operator
   roles: User_roles_operator
   picture: User_picture_operator
+  position: User_position_operator
+  phones__prefix: User_phones__prefix_operator
+  phones__number: User_phones__number_operator
+  phones__id: User_phones__id_operator
+  langs__lang: User_langs__lang_operator
+  langs__id: User_langs__id_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -1345,7 +1400,6 @@ input User_name_operator {
   in: [String]
   not_in: [String]
   all: [String]
-  exists: Boolean
 }
 
 input User_roles_operator {
@@ -1365,6 +1419,71 @@ enum User_roles_Input {
 input User_picture_operator {
   equals: String
   not_equals: String
+  exists: Boolean
+}
+
+input User_position_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input User_phones__prefix_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_phones__number_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_phones__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_langs__lang_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_langs__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
   exists: Boolean
 }
 
@@ -1415,6 +1534,12 @@ input User_where_and {
   name: User_name_operator
   roles: User_roles_operator
   picture: User_picture_operator
+  position: User_position_operator
+  phones__prefix: User_phones__prefix_operator
+  phones__number: User_phones__number_operator
+  phones__id: User_phones__id_operator
+  langs__lang: User_langs__lang_operator
+  langs__id: User_langs__id_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -1427,6 +1552,12 @@ input User_where_or {
   name: User_name_operator
   roles: User_roles_operator
   picture: User_picture_operator
+  position: User_position_operator
+  phones__prefix: User_phones__prefix_operator
+  phones__number: User_phones__number_operator
+  phones__id: User_phones__id_operator
+  langs__lang: User_langs__lang_operator
+  langs__id: User_langs__id_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -1452,6 +1583,9 @@ type UsersDocAccessFields {
   name: UsersDocAccessFields_name
   roles: UsersDocAccessFields_roles
   picture: UsersDocAccessFields_picture
+  position: UsersDocAccessFields_position
+  phones: UsersDocAccessFields_phones
+  langs: UsersDocAccessFields_langs
   updatedAt: UsersDocAccessFields_updatedAt
   createdAt: UsersDocAccessFields_createdAt
   email: UsersDocAccessFields_email
@@ -1524,6 +1658,203 @@ type UsersDocAccessFields_picture_Update {
 }
 
 type UsersDocAccessFields_picture_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_position {
+  create: UsersDocAccessFields_position_Create
+  read: UsersDocAccessFields_position_Read
+  update: UsersDocAccessFields_position_Update
+  delete: UsersDocAccessFields_position_Delete
+}
+
+type UsersDocAccessFields_position_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_position_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_position_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_position_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones {
+  create: UsersDocAccessFields_phones_Create
+  read: UsersDocAccessFields_phones_Read
+  update: UsersDocAccessFields_phones_Update
+  delete: UsersDocAccessFields_phones_Delete
+  fields: UsersDocAccessFields_phones_Fields
+}
+
+type UsersDocAccessFields_phones_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_Fields {
+  prefix: UsersDocAccessFields_phones_prefix
+  number: UsersDocAccessFields_phones_number
+  id: UsersDocAccessFields_phones_id
+}
+
+type UsersDocAccessFields_phones_prefix {
+  create: UsersDocAccessFields_phones_prefix_Create
+  read: UsersDocAccessFields_phones_prefix_Read
+  update: UsersDocAccessFields_phones_prefix_Update
+  delete: UsersDocAccessFields_phones_prefix_Delete
+}
+
+type UsersDocAccessFields_phones_prefix_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_prefix_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_prefix_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_prefix_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_number {
+  create: UsersDocAccessFields_phones_number_Create
+  read: UsersDocAccessFields_phones_number_Read
+  update: UsersDocAccessFields_phones_number_Update
+  delete: UsersDocAccessFields_phones_number_Delete
+}
+
+type UsersDocAccessFields_phones_number_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_number_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_number_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_number_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_id {
+  create: UsersDocAccessFields_phones_id_Create
+  read: UsersDocAccessFields_phones_id_Read
+  update: UsersDocAccessFields_phones_id_Update
+  delete: UsersDocAccessFields_phones_id_Delete
+}
+
+type UsersDocAccessFields_phones_id_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_id_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_id_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_id_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs {
+  create: UsersDocAccessFields_langs_Create
+  read: UsersDocAccessFields_langs_Read
+  update: UsersDocAccessFields_langs_Update
+  delete: UsersDocAccessFields_langs_Delete
+  fields: UsersDocAccessFields_langs_Fields
+}
+
+type UsersDocAccessFields_langs_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_Fields {
+  lang: UsersDocAccessFields_langs_lang
+  id: UsersDocAccessFields_langs_id
+}
+
+type UsersDocAccessFields_langs_lang {
+  create: UsersDocAccessFields_langs_lang_Create
+  read: UsersDocAccessFields_langs_lang_Read
+  update: UsersDocAccessFields_langs_lang_Update
+  delete: UsersDocAccessFields_langs_lang_Delete
+}
+
+type UsersDocAccessFields_langs_lang_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_lang_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_lang_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_lang_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_id {
+  create: UsersDocAccessFields_langs_id_Create
+  read: UsersDocAccessFields_langs_id_Read
+  update: UsersDocAccessFields_langs_id_Update
+  delete: UsersDocAccessFields_langs_id_Delete
+}
+
+type UsersDocAccessFields_langs_id_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_id_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_id_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_id_Delete {
   permission: Boolean!
 }
 
@@ -1679,15 +2010,29 @@ type Yacht {
   yearBuilt: Float!
   yearModel: Float!
   featured: Boolean!
-  keyFeatures: [Yacht_KeyFeatures!]
+  keyFeatures: [Yacht_keyFeatures!]!
   photos: Yacht_Photos
   updatedAt: DateTime
   createdAt: DateTime
 }
 
-type Yacht_KeyFeatures {
-  keyFeature: String
-  id: String
+enum Yacht_keyFeatures {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 type Yacht_Photos {
@@ -2097,8 +2442,7 @@ input Yacht_where {
   yearBuilt: Yacht_yearBuilt_operator
   yearModel: Yacht_yearModel_operator
   featured: Yacht_featured_operator
-  keyFeatures__keyFeature: Yacht_keyFeatures__keyFeature_operator
-  keyFeatures__id: Yacht_keyFeatures__id_operator
+  keyFeatures: Yacht_keyFeatures_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
@@ -2341,25 +2685,31 @@ input Yacht_featured_operator {
   not_equals: Boolean
 }
 
-input Yacht_keyFeatures__keyFeature_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+input Yacht_keyFeatures_operator {
+  equals: Yacht_keyFeatures_Input
+  not_equals: Yacht_keyFeatures_Input
+  in: [Yacht_keyFeatures_Input]
+  not_in: [Yacht_keyFeatures_Input]
+  all: [Yacht_keyFeatures_Input]
 }
 
-input Yacht_keyFeatures__id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
+enum Yacht_keyFeatures_Input {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input Yacht_photos__featured_operator {
@@ -2443,8 +2793,7 @@ input Yacht_where_and {
   yearBuilt: Yacht_yearBuilt_operator
   yearModel: Yacht_yearModel_operator
   featured: Yacht_featured_operator
-  keyFeatures__keyFeature: Yacht_keyFeatures__keyFeature_operator
-  keyFeatures__id: Yacht_keyFeatures__id_operator
+  keyFeatures: Yacht_keyFeatures_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
@@ -2482,8 +2831,7 @@ input Yacht_where_or {
   yearBuilt: Yacht_yearBuilt_operator
   yearModel: Yacht_yearModel_operator
   featured: Yacht_featured_operator
-  keyFeatures__keyFeature: Yacht_keyFeatures__keyFeature_operator
-  keyFeatures__id: Yacht_keyFeatures__id_operator
+  keyFeatures: Yacht_keyFeatures_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
@@ -3142,7 +3490,6 @@ type YachtsDocAccessFields_keyFeatures {
   read: YachtsDocAccessFields_keyFeatures_Read
   update: YachtsDocAccessFields_keyFeatures_Update
   delete: YachtsDocAccessFields_keyFeatures_Delete
-  fields: YachtsDocAccessFields_keyFeatures_Fields
 }
 
 type YachtsDocAccessFields_keyFeatures_Create {
@@ -3158,57 +3505,6 @@ type YachtsDocAccessFields_keyFeatures_Update {
 }
 
 type YachtsDocAccessFields_keyFeatures_Delete {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_Fields {
-  keyFeature: YachtsDocAccessFields_keyFeatures_keyFeature
-  id: YachtsDocAccessFields_keyFeatures_id
-}
-
-type YachtsDocAccessFields_keyFeatures_keyFeature {
-  create: YachtsDocAccessFields_keyFeatures_keyFeature_Create
-  read: YachtsDocAccessFields_keyFeatures_keyFeature_Read
-  update: YachtsDocAccessFields_keyFeatures_keyFeature_Update
-  delete: YachtsDocAccessFields_keyFeatures_keyFeature_Delete
-}
-
-type YachtsDocAccessFields_keyFeatures_keyFeature_Create {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_keyFeature_Read {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_keyFeature_Update {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_keyFeature_Delete {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_id {
-  create: YachtsDocAccessFields_keyFeatures_id_Create
-  read: YachtsDocAccessFields_keyFeatures_id_Read
-  update: YachtsDocAccessFields_keyFeatures_id_Update
-  delete: YachtsDocAccessFields_keyFeatures_id_Delete
-}
-
-type YachtsDocAccessFields_keyFeatures_id_Create {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_id_Read {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_id_Update {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_id_Delete {
   permission: Boolean!
 }
 
@@ -3433,15 +3729,29 @@ type Charter {
   yearBuilt: Float!
   yearModel: Float!
   featured: Boolean!
-  keyFeatures: [Charter_KeyFeatures!]
+  keyFeatures: [Charter_keyFeatures!]!
   photos: Charter_Photos
   updatedAt: DateTime
   createdAt: DateTime
 }
 
-type Charter_KeyFeatures {
-  keyFeature: String
-  id: String
+enum Charter_keyFeatures {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 type Charter_Photos {
@@ -3851,8 +4161,7 @@ input Charter_where {
   yearBuilt: Charter_yearBuilt_operator
   yearModel: Charter_yearModel_operator
   featured: Charter_featured_operator
-  keyFeatures__keyFeature: Charter_keyFeatures__keyFeature_operator
-  keyFeatures__id: Charter_keyFeatures__id_operator
+  keyFeatures: Charter_keyFeatures_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
@@ -4095,25 +4404,31 @@ input Charter_featured_operator {
   not_equals: Boolean
 }
 
-input Charter_keyFeatures__keyFeature_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+input Charter_keyFeatures_operator {
+  equals: Charter_keyFeatures_Input
+  not_equals: Charter_keyFeatures_Input
+  in: [Charter_keyFeatures_Input]
+  not_in: [Charter_keyFeatures_Input]
+  all: [Charter_keyFeatures_Input]
 }
 
-input Charter_keyFeatures__id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
+enum Charter_keyFeatures_Input {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input Charter_photos__featured_operator {
@@ -4197,8 +4512,7 @@ input Charter_where_and {
   yearBuilt: Charter_yearBuilt_operator
   yearModel: Charter_yearModel_operator
   featured: Charter_featured_operator
-  keyFeatures__keyFeature: Charter_keyFeatures__keyFeature_operator
-  keyFeatures__id: Charter_keyFeatures__id_operator
+  keyFeatures: Charter_keyFeatures_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
@@ -4236,8 +4550,7 @@ input Charter_where_or {
   yearBuilt: Charter_yearBuilt_operator
   yearModel: Charter_yearModel_operator
   featured: Charter_featured_operator
-  keyFeatures__keyFeature: Charter_keyFeatures__keyFeature_operator
-  keyFeatures__id: Charter_keyFeatures__id_operator
+  keyFeatures: Charter_keyFeatures_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
@@ -4896,7 +5209,6 @@ type ChartersDocAccessFields_keyFeatures {
   read: ChartersDocAccessFields_keyFeatures_Read
   update: ChartersDocAccessFields_keyFeatures_Update
   delete: ChartersDocAccessFields_keyFeatures_Delete
-  fields: ChartersDocAccessFields_keyFeatures_Fields
 }
 
 type ChartersDocAccessFields_keyFeatures_Create {
@@ -4912,57 +5224,6 @@ type ChartersDocAccessFields_keyFeatures_Update {
 }
 
 type ChartersDocAccessFields_keyFeatures_Delete {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_Fields {
-  keyFeature: ChartersDocAccessFields_keyFeatures_keyFeature
-  id: ChartersDocAccessFields_keyFeatures_id
-}
-
-type ChartersDocAccessFields_keyFeatures_keyFeature {
-  create: ChartersDocAccessFields_keyFeatures_keyFeature_Create
-  read: ChartersDocAccessFields_keyFeatures_keyFeature_Read
-  update: ChartersDocAccessFields_keyFeatures_keyFeature_Update
-  delete: ChartersDocAccessFields_keyFeatures_keyFeature_Delete
-}
-
-type ChartersDocAccessFields_keyFeatures_keyFeature_Create {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_keyFeature_Read {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_keyFeature_Update {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_keyFeature_Delete {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_id {
-  create: ChartersDocAccessFields_keyFeatures_id_Create
-  read: ChartersDocAccessFields_keyFeatures_id_Read
-  update: ChartersDocAccessFields_keyFeatures_id_Update
-  delete: ChartersDocAccessFields_keyFeatures_id_Delete
-}
-
-type ChartersDocAccessFields_keyFeatures_id_Create {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_id_Read {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_id_Update {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_id_Delete {
   permission: Boolean!
 }
 
@@ -8228,6 +8489,7 @@ type ArticlesFields {
   title: ArticlesFields_title
   category: ArticlesFields_category
   date: ArticlesFields_date
+  author: ArticlesFields_author
   content: ArticlesFields_content
   image: ArticlesFields_image
   updatedAt: ArticlesFields_updatedAt
@@ -8300,6 +8562,29 @@ type ArticlesFields_date_Update {
 }
 
 type ArticlesFields_date_Delete {
+  permission: Boolean!
+}
+
+type ArticlesFields_author {
+  create: ArticlesFields_author_Create
+  read: ArticlesFields_author_Read
+  update: ArticlesFields_author_Update
+  delete: ArticlesFields_author_Delete
+}
+
+type ArticlesFields_author_Create {
+  permission: Boolean!
+}
+
+type ArticlesFields_author_Read {
+  permission: Boolean!
+}
+
+type ArticlesFields_author_Update {
+  permission: Boolean!
+}
+
+type ArticlesFields_author_Delete {
   permission: Boolean!
 }
 
@@ -8723,6 +9008,9 @@ type UsersFields {
   name: UsersFields_name
   roles: UsersFields_roles
   picture: UsersFields_picture
+  position: UsersFields_position
+  phones: UsersFields_phones
+  langs: UsersFields_langs
   updatedAt: UsersFields_updatedAt
   createdAt: UsersFields_createdAt
   email: UsersFields_email
@@ -8795,6 +9083,203 @@ type UsersFields_picture_Update {
 }
 
 type UsersFields_picture_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_position {
+  create: UsersFields_position_Create
+  read: UsersFields_position_Read
+  update: UsersFields_position_Update
+  delete: UsersFields_position_Delete
+}
+
+type UsersFields_position_Create {
+  permission: Boolean!
+}
+
+type UsersFields_position_Read {
+  permission: Boolean!
+}
+
+type UsersFields_position_Update {
+  permission: Boolean!
+}
+
+type UsersFields_position_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_phones {
+  create: UsersFields_phones_Create
+  read: UsersFields_phones_Read
+  update: UsersFields_phones_Update
+  delete: UsersFields_phones_Delete
+  fields: UsersFields_phones_Fields
+}
+
+type UsersFields_phones_Create {
+  permission: Boolean!
+}
+
+type UsersFields_phones_Read {
+  permission: Boolean!
+}
+
+type UsersFields_phones_Update {
+  permission: Boolean!
+}
+
+type UsersFields_phones_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_phones_Fields {
+  prefix: UsersFields_phones_prefix
+  number: UsersFields_phones_number
+  id: UsersFields_phones_id
+}
+
+type UsersFields_phones_prefix {
+  create: UsersFields_phones_prefix_Create
+  read: UsersFields_phones_prefix_Read
+  update: UsersFields_phones_prefix_Update
+  delete: UsersFields_phones_prefix_Delete
+}
+
+type UsersFields_phones_prefix_Create {
+  permission: Boolean!
+}
+
+type UsersFields_phones_prefix_Read {
+  permission: Boolean!
+}
+
+type UsersFields_phones_prefix_Update {
+  permission: Boolean!
+}
+
+type UsersFields_phones_prefix_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_phones_number {
+  create: UsersFields_phones_number_Create
+  read: UsersFields_phones_number_Read
+  update: UsersFields_phones_number_Update
+  delete: UsersFields_phones_number_Delete
+}
+
+type UsersFields_phones_number_Create {
+  permission: Boolean!
+}
+
+type UsersFields_phones_number_Read {
+  permission: Boolean!
+}
+
+type UsersFields_phones_number_Update {
+  permission: Boolean!
+}
+
+type UsersFields_phones_number_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_phones_id {
+  create: UsersFields_phones_id_Create
+  read: UsersFields_phones_id_Read
+  update: UsersFields_phones_id_Update
+  delete: UsersFields_phones_id_Delete
+}
+
+type UsersFields_phones_id_Create {
+  permission: Boolean!
+}
+
+type UsersFields_phones_id_Read {
+  permission: Boolean!
+}
+
+type UsersFields_phones_id_Update {
+  permission: Boolean!
+}
+
+type UsersFields_phones_id_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_langs {
+  create: UsersFields_langs_Create
+  read: UsersFields_langs_Read
+  update: UsersFields_langs_Update
+  delete: UsersFields_langs_Delete
+  fields: UsersFields_langs_Fields
+}
+
+type UsersFields_langs_Create {
+  permission: Boolean!
+}
+
+type UsersFields_langs_Read {
+  permission: Boolean!
+}
+
+type UsersFields_langs_Update {
+  permission: Boolean!
+}
+
+type UsersFields_langs_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_langs_Fields {
+  lang: UsersFields_langs_lang
+  id: UsersFields_langs_id
+}
+
+type UsersFields_langs_lang {
+  create: UsersFields_langs_lang_Create
+  read: UsersFields_langs_lang_Read
+  update: UsersFields_langs_lang_Update
+  delete: UsersFields_langs_lang_Delete
+}
+
+type UsersFields_langs_lang_Create {
+  permission: Boolean!
+}
+
+type UsersFields_langs_lang_Read {
+  permission: Boolean!
+}
+
+type UsersFields_langs_lang_Update {
+  permission: Boolean!
+}
+
+type UsersFields_langs_lang_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_langs_id {
+  create: UsersFields_langs_id_Create
+  read: UsersFields_langs_id_Read
+  update: UsersFields_langs_id_Update
+  delete: UsersFields_langs_id_Delete
+}
+
+type UsersFields_langs_id_Create {
+  permission: Boolean!
+}
+
+type UsersFields_langs_id_Read {
+  permission: Boolean!
+}
+
+type UsersFields_langs_id_Update {
+  permission: Boolean!
+}
+
+type UsersFields_langs_id_Delete {
   permission: Boolean!
 }
 
@@ -9559,7 +10044,6 @@ type YachtsFields_keyFeatures {
   read: YachtsFields_keyFeatures_Read
   update: YachtsFields_keyFeatures_Update
   delete: YachtsFields_keyFeatures_Delete
-  fields: YachtsFields_keyFeatures_Fields
 }
 
 type YachtsFields_keyFeatures_Create {
@@ -9575,57 +10059,6 @@ type YachtsFields_keyFeatures_Update {
 }
 
 type YachtsFields_keyFeatures_Delete {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_Fields {
-  keyFeature: YachtsFields_keyFeatures_keyFeature
-  id: YachtsFields_keyFeatures_id
-}
-
-type YachtsFields_keyFeatures_keyFeature {
-  create: YachtsFields_keyFeatures_keyFeature_Create
-  read: YachtsFields_keyFeatures_keyFeature_Read
-  update: YachtsFields_keyFeatures_keyFeature_Update
-  delete: YachtsFields_keyFeatures_keyFeature_Delete
-}
-
-type YachtsFields_keyFeatures_keyFeature_Create {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_keyFeature_Read {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_keyFeature_Update {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_keyFeature_Delete {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_id {
-  create: YachtsFields_keyFeatures_id_Create
-  read: YachtsFields_keyFeatures_id_Read
-  update: YachtsFields_keyFeatures_id_Update
-  delete: YachtsFields_keyFeatures_id_Delete
-}
-
-type YachtsFields_keyFeatures_id_Create {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_id_Read {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_id_Update {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_id_Delete {
   permission: Boolean!
 }
 
@@ -10466,7 +10899,6 @@ type ChartersFields_keyFeatures {
   read: ChartersFields_keyFeatures_Read
   update: ChartersFields_keyFeatures_Update
   delete: ChartersFields_keyFeatures_Delete
-  fields: ChartersFields_keyFeatures_Fields
 }
 
 type ChartersFields_keyFeatures_Create {
@@ -10482,57 +10914,6 @@ type ChartersFields_keyFeatures_Update {
 }
 
 type ChartersFields_keyFeatures_Delete {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_Fields {
-  keyFeature: ChartersFields_keyFeatures_keyFeature
-  id: ChartersFields_keyFeatures_id
-}
-
-type ChartersFields_keyFeatures_keyFeature {
-  create: ChartersFields_keyFeatures_keyFeature_Create
-  read: ChartersFields_keyFeatures_keyFeature_Read
-  update: ChartersFields_keyFeatures_keyFeature_Update
-  delete: ChartersFields_keyFeatures_keyFeature_Delete
-}
-
-type ChartersFields_keyFeatures_keyFeature_Create {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_keyFeature_Read {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_keyFeature_Update {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_keyFeature_Delete {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_id {
-  create: ChartersFields_keyFeatures_id_Create
-  read: ChartersFields_keyFeatures_id_Read
-  update: ChartersFields_keyFeatures_id_Update
-  delete: ChartersFields_keyFeatures_id_Delete
-}
-
-type ChartersFields_keyFeatures_id_Create {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_id_Read {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_id_Update {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_id_Delete {
   permission: Boolean!
 }
 
@@ -12077,9 +12458,12 @@ input mutationMediaUpdateInput {
 }
 
 input mutationUserInput {
-  name: String
+  name: String!
   roles: [User_roles_MutationInput]
   picture: String
+  position: String!
+  phones: [mutationUser_PhonesInput]
+  langs: [mutationUser_LangsInput!]
   updatedAt: String
   createdAt: String
   email: String!
@@ -12097,10 +12481,24 @@ enum User_roles_MutationInput {
   user
 }
 
+input mutationUser_PhonesInput {
+  prefix: String
+  number: String
+  id: String
+}
+
+input mutationUser_LangsInput {
+  lang: String
+  id: String
+}
+
 input mutationUserUpdateInput {
   name: String
   roles: [UserUpdate_roles_MutationInput]
   picture: String
+  position: String
+  phones: [mutationUserUpdate_PhonesInput]
+  langs: [mutationUserUpdate_LangsInput]
   updatedAt: String
   createdAt: String
   email: String
@@ -12116,6 +12514,17 @@ input mutationUserUpdateInput {
 enum UserUpdate_roles_MutationInput {
   admin
   user
+}
+
+input mutationUserUpdate_PhonesInput {
+  prefix: String
+  number: String
+  id: String
+}
+
+input mutationUserUpdate_LangsInput {
+  lang: String
+  id: String
 }
 
 type usersRefreshedUser {
@@ -12167,15 +12576,29 @@ input mutationYachtInput {
   yearBuilt: Float!
   yearModel: Float!
   featured: Boolean
-  keyFeatures: [mutationYacht_KeyFeaturesInput]
+  keyFeatures: [Yacht_keyFeatures_MutationInput]!
   photos: mutationYacht_PhotosInput!
   updatedAt: String
   createdAt: String
 }
 
-input mutationYacht_KeyFeaturesInput {
-  keyFeature: String!
-  id: String
+enum Yacht_keyFeatures_MutationInput {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input mutationYacht_PhotosInput {
@@ -12215,15 +12638,29 @@ input mutationYachtUpdateInput {
   yearBuilt: Float
   yearModel: Float
   featured: Boolean
-  keyFeatures: [mutationYachtUpdate_KeyFeaturesInput]
+  keyFeatures: [YachtUpdate_keyFeatures_MutationInput]
   photos: mutationYachtUpdate_PhotosInput!
   updatedAt: String
   createdAt: String
 }
 
-input mutationYachtUpdate_KeyFeaturesInput {
-  keyFeature: String!
-  id: String
+enum YachtUpdate_keyFeatures_MutationInput {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input mutationYachtUpdate_PhotosInput {
@@ -12263,15 +12700,29 @@ input mutationCharterInput {
   yearBuilt: Float!
   yearModel: Float!
   featured: Boolean
-  keyFeatures: [mutationCharter_KeyFeaturesInput]
+  keyFeatures: [Charter_keyFeatures_MutationInput]!
   photos: mutationCharter_PhotosInput!
   updatedAt: String
   createdAt: String
 }
 
-input mutationCharter_KeyFeaturesInput {
-  keyFeature: String!
-  id: String
+enum Charter_keyFeatures_MutationInput {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input mutationCharter_PhotosInput {
@@ -12311,15 +12762,29 @@ input mutationCharterUpdateInput {
   yearBuilt: Float
   yearModel: Float
   featured: Boolean
-  keyFeatures: [mutationCharterUpdate_KeyFeaturesInput]
+  keyFeatures: [CharterUpdate_keyFeatures_MutationInput]
   photos: mutationCharterUpdate_PhotosInput!
   updatedAt: String
   createdAt: String
 }
 
-input mutationCharterUpdate_KeyFeaturesInput {
-  keyFeature: String!
-  id: String
+enum CharterUpdate_keyFeatures_MutationInput {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input mutationCharterUpdate_PhotosInput {

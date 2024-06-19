@@ -1,6 +1,6 @@
 "use server";
 
-import { ICharter } from "@/models/charter";
+import { ICharter } from "@/types/charter";
 import { IFeatured } from "@/types/charter";
 import { IDestination } from "@/types/destination";
 import axios from "axios";
@@ -287,14 +287,33 @@ export const fetchChartersForDestination = async (
                         length
                         yearBuilt
                         sleeps
+                        keyFeatures
+                        broker {
+                            id
+                            name
+                            email
+                            picture {
+                                url
+                            }
+                            position
+                            phones {
+                                prefix
+                                number
+                            }
+                            langs {
+                                lang
+                            }
+                        }
                     }
                 }
             }
         `,
         variables: { country: destination.country, limit: 4 },
     });
-    const countryCharters: IFeatured[] = countryData.Charters.docs.map(remapChartersPhotos);
-    charters.push(...countryCharters);
+    if (countryData) {
+        const countryCharters: IFeatured[] = countryData.Charters.docs.map(remapChartersPhotos);
+        charters.push(...countryCharters);
+    }
     if (charters.length >= 4) return charters;
     // Continent
     const { data: continentData } = await client.query({
@@ -319,14 +338,33 @@ export const fetchChartersForDestination = async (
                         length
                         yearBuilt
                         sleeps
+                        keyFeatures
+                        broker {
+                            id
+                            name
+                            email
+                            picture {
+                                url
+                            }
+                            position
+                            phones {
+                                prefix
+                                number
+                            }
+                            langs {
+                                lang
+                            }
+                        }
                     }
                 }
             }
         `,
         variables: { continent: destination.continent, limit: 4 - charters.length },
     });
-    const continentCharters: IFeatured[] = continentData.Charters.docs.map(remapChartersPhotos);
-    charters.push(...continentCharters);
+    if (continentData) {
+        const continentCharters: IFeatured[] = continentData.Charters.docs.map(remapChartersPhotos);
+        charters.push(...continentCharters);
+    }
     if (charters.length >= 4) return charters;
     // Random
     const { data: randomData } = await client.query({
@@ -351,12 +389,30 @@ export const fetchChartersForDestination = async (
                         length
                         yearBuilt
                         sleeps
+                        keyFeatures
+                        broker {
+                            id
+                            name
+                            email
+                            picture {
+                                url
+                            }
+                            position
+                            phones {
+                                prefix
+                                number
+                            }
+                            langs {
+                                lang
+                            }
+                        }
                     }
                 }
             }
         `,
         variables: { limit: 4 - charters.length },
     });
+    if (!randomData) return charters;
     const randomCharters: IFeatured[] = randomData.Charters.docs.map(remapChartersPhotos);
     charters.push(...randomCharters);
     return charters;

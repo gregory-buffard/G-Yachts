@@ -2,7 +2,7 @@
 
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
-import { IYacht } from "@/models/yacht";
+import { IYacht } from "@/types/yacht";
 import axios from "axios";
 
 export const fetchFeatured = async () => {
