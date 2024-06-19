@@ -56,9 +56,21 @@ export interface Category {
  */
 export interface User {
   id: string;
-  name?: string | null;
+  name: string;
   roles?: ('admin' | 'user')[] | null;
   picture?: string | Media | null;
+  position: string;
+  phones?:
+    | {
+        prefix?: string | null;
+        number?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  langs: {
+    lang?: string | null;
+    id?: string | null;
+  }[];
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -120,12 +132,24 @@ export interface Yacht {
   yearBuilt: number;
   yearModel: number;
   featured: boolean;
-  keyFeatures?:
-    | {
-        keyFeature: string;
-        id?: string | null;
-      }[]
-    | null;
+  keyFeatures: (
+    | 'price'
+    | 'LOA'
+    | 'beam'
+    | 'builder'
+    | 'category'
+    | 'crusing'
+    | 'crypto'
+    | 'length'
+    | 'maxDraft'
+    | 'minDraft'
+    | 'rooms'
+    | 'sleeps'
+    | 'subcategory'
+    | 'tonnage'
+    | 'yearBuilt'
+    | 'yearModel'
+  )[];
   photos: {
     featured: string | Media;
     gallery?:
@@ -170,12 +194,24 @@ export interface Charter {
   yearBuilt: number;
   yearModel: number;
   featured: boolean;
-  keyFeatures?:
-    | {
-        keyFeature: string;
-        id?: string | null;
-      }[]
-    | null;
+  keyFeatures: (
+    | 'price'
+    | 'LOA'
+    | 'beam'
+    | 'builder'
+    | 'category'
+    | 'crusing'
+    | 'crypto'
+    | 'length'
+    | 'maxDraft'
+    | 'minDraft'
+    | 'rooms'
+    | 'sleeps'
+    | 'subcategory'
+    | 'tonnage'
+    | 'yearBuilt'
+    | 'yearModel'
+  )[];
   photos: {
     featured: string | Media;
     gallery?:

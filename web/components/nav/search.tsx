@@ -137,9 +137,9 @@ const DestinationsResults = ({ destinations }: { destinations: IDestination[] })
                     onClick={() => openView(null)}
                     href={{
                         pathname: "/destinations/[id]",
-                        params: { id: destination._id },
+                        params: { id: destination.id },
                     }}
-                    key={destination._id}
+                    key={destination.id}
                     className="w-full flex flex-col py-2 px-4 border-2 border-rock-300 hover:bg-rock-200 transition-colors duration-200 cursor-pointer mt-2">
                     <span>{destination.destination}</span>
                     <p className="text-sm text-gray-500">{t("destination")}</p>

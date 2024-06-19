@@ -170,7 +170,7 @@ export const Destinations: CollectionConfig = {
       type: 'point',
       required: false,
       validate: val => {
-        if (Math.abs(val[0]) > 90 && Math.abs(val[1]) > 180) {
+        if (val && Math.abs(val[0]) > 90 && Math.abs(val[1]) > 180) {
           return 'Invalid coordinates'
         }
         return true

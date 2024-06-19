@@ -26,7 +26,7 @@ const Map = ({ destinations }: { destinations: IDestination[] }) => {
         }
       </Geographies>
       {markers.map((destination) => (
-        <Marker key={destination._id} coordinates={destination.coordinates}>
+        <Marker key={destination.id} coordinates={destination.coordinates}>
           <circle r={8} fill="#6db8c9" stroke="#fff" strokeWidth={2} />
         </Marker>
       ))}

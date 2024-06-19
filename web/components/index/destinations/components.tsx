@@ -10,7 +10,7 @@ interface IFeatured extends Pick<IDestination, "country" | "region" | "photos"> 
   _id: ObjectId;
 }
 
-const Card = ({ card }: { card: IFeatured }) => {
+const Card = ({ card }: { card: IDestination }) => {
   return (
     <Link
       href={"/charters"}
@@ -75,7 +75,7 @@ const CarouselButton = ({
   );
 };
 
-const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
+const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
   const t = useTranslations("index.destinations"),
     carouselExtended = [
       ...carouselData,

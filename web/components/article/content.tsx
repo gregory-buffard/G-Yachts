@@ -1,5 +1,6 @@
 import { ArticleContentBlock, ArticleContentLink, ArticleContentUpload } from "@/types/article";
 import { clsx } from "clsx";
+import Image from "next/image";
 
 export const ContentRenderer = ({ blocks }: { blocks: ArticleContentBlock[] }) => {
     return <div className="text-justify">{blocks.map((block, index) => renderNode(block))}</div>;
@@ -38,9 +39,9 @@ const renderNode = (node: ArticleContentBlock) => {
         case "upload":
             const media: ArticleContentUpload = node as ArticleContentUpload;
             return (
-                <img
+                <Image
                     src={media.value.url}
-                    alt={media.value.alt}
+                    alt={media.value.alt || ""}
                     className="w-full object-cover my-4"
                 />
             );

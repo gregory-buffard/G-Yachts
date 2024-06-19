@@ -156,7 +156,7 @@ const Details = ({ children }: { children: React.ReactNode }) => {
         >
           {children}
           <a
-            href={`mailto:${yacht.brokerEmail}`}
+            href={`mailto:${yacht.broker.email}`}
             className={
               "py-[1vh] w-full text-white bg-black hover:bg-teal active:bg-teal transition-colors duration-200 ease-in-out uppercase text-center"
             }

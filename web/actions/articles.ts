@@ -1,6 +1,6 @@
 "use server";
 
-import { IArticle } from "@/models/article";
+import { IArticle } from "@/types/article";
 import { gql } from "@apollo/client";
 import { getClient } from "@/apollo";
 
