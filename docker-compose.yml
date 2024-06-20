@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   nginx:
     image: nginx:latest
@@ -56,6 +55,14 @@ services:
         ipv4_address: ${ADMIN_API_IP}
     volumes:
       - /var/www/images/yachts:/app/api/images/yachts
+  
+  admin:
+    image: ghcr.io/${GITHUB_OWNER}/g-yachts-admin:${GITHUB_SHA}
+    container_name: admin
+    env_file:
+      - .env
+    networks:
+      admin:
 
 networks:
   public:

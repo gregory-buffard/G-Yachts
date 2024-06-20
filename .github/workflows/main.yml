@@ -38,6 +38,14 @@ jobs:
         file: ./api/Dockerfile
         push: true
         tags: ghcr.io/${{github.repository_owner}}/g-yachts-api:${{github.sha}}
+    
+    - name: Build and push Admin
+      uses: docker/build-push-action@v5.3.0
+      with:
+        context: ./admin
+        file: ./admin/Dockerfile
+        push: true
+        tags: ghcr.io/${{github.repository_owner}}/g-yachts-admin:${{github.sha}}
         
   Deploy:
     runs-on: ubuntu-latest
@@ -68,6 +76,13 @@ jobs:
           echo "ADMIN_IP=${{secrets.ADMIN_IP}}" >> .env
           echo "PUBLIC_API_IP=${{secrets.PUBLIC_API_IP}}" >> .env
           echo "ADMIN_API_IP=${{secrets.ADMIN_API_IP}}" >> .env
+
+          # ADMIN
+          echo "PAYLOAD_DATABASE_URI=mongodb://${{secrets.MONGO_USER}}:${{secrets.MONGO_PASS}}@${{secrets.SERVER_IP}}:27017" >> .env
+          echo "PAYLOAD_DATABASE_NAME=${{secrets.PAYLOAD_DATABASE_NAME}}" >> .env
+          echo "PAYLOAD_PUBLIC_FRONTEND_URL=http://${{secrets.WEB_IP}}" >> .env
+          echo "PAYLOAD_SECRET=${{secrets.PAYLOAD_SECRET}}" >> .env
+          echo "PAYLOAD_PUBLIC_SERVER_URL=http://${{secrets.WEB_IP}}/admin" >> .env
 
     - name: Transfer Compose
       uses: appleboy/scp-action@master

@@ -53,9 +53,9 @@ export default buildConfig({
     },
   }),
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI,
+    url: process.env.PAYLOAD_DATABASE_URI,
     connectOptions: {
-      dbName: process.env.DATABASE_NAME,
+      dbName: process.env.PAYLOAD_DATABASE_NAME,
     },
   }),
   localization: {
