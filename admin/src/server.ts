@@ -9,7 +9,7 @@ import express from 'express'
 import payload from 'payload'
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PAYLOAD_PORT || 3000
 
 const start = async (): Promise<void> => {
   await payload.init({
@@ -21,7 +21,7 @@ const start = async (): Promise<void> => {
   })
 
   app.listen(PORT, async () => {
-    payload.logger.info(`Server started on port: ${process.env.PORT}`)
+    payload.logger.info(`Server started on port: ${process.env.PAYLOAD_PORT}`)
   })
 }
 

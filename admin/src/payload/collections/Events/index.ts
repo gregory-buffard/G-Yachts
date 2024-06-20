@@ -61,6 +61,16 @@ export const Events: CollectionConfig = {
       ],
     },
     {
+      type: 'richText',
+      name: 'content',
+      label: {
+        en: 'Content',
+        fr: 'Contenu',
+      },
+      required: false,
+      localized: true,
+    },
+    {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
