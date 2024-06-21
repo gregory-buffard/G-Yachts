@@ -77,6 +77,9 @@ jobs:
           echo "PUBLIC_API_IP=${{secrets.PUBLIC_API_IP}}" >> .env
           echo "ADMIN_API_IP=${{secrets.ADMIN_API_IP}}" >> .env
 
+          # WEB
+          echo "NEXT_PUBLIC_ADMIN_BASE_URI=http://admin:3000"
+
           # ADMIN
           echo "PAYLOAD_DATABASE_URI=mongodb://${{secrets.MONGO_USER}}:${{secrets.MONGO_PASS}}@${{secrets.SERVER_IP}}:27017" >> .env
           echo "PAYLOAD_DATABASE_NAME=${{secrets.PAYLOAD_DATABASE_NAME}}" >> .env
