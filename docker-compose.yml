@@ -10,7 +10,7 @@ services:
       - /var/www/images:/var/www/images
       - /var/www/videos:/var/www/videos
     networks:
-      - public
+      - gYachts
 
   web:
     image: ghcr.io/${GITHUB_OWNER}/g-yachts-web:${GITHUB_SHA}
@@ -23,8 +23,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      public:
-        ipv4_address: ${WEB_IP}
+      - gYachts
 
   api-public:
     image: ghcr.io/${GITHUB_OWNER}/g-yachts-api:${GITHUB_SHA}
@@ -36,8 +35,7 @@ services:
     ports:
       - "5000:5000"
     networks:
-      public:
-        ipv4_address: ${PUBLIC_API_IP}
+      - gYachts
     volumes:
       - /var/www/images/yachts:/app/api/images/yachts
 
@@ -51,8 +49,7 @@ services:
     ports:
       - "8080:5000"
     networks:
-      admin:
-        ipv4_address: ${ADMIN_API_IP}
+      - gYachts
     volumes:
       - /var/www/images/yachts:/app/api/images/yachts
   
@@ -62,16 +59,8 @@ services:
     env_file:
       - .env
     networks:
-      admin:
+      - gYachts
 
 networks:
-  public:
-    ipam:
-      driver: default
-      config:
-        - subnet: "192.168.92.0/24"
-  admin:
-    ipam:
-      driver: default
-      config:
-        - subnet: "192.178.92.0/24"
+  gYachts:
+    driver: bridge
