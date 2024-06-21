@@ -23,3 +23,5 @@ export const { getClient } = registerApolloClient(() => {
         },
     });
 });
+
+~ ^/(admin|api/graphql)/
