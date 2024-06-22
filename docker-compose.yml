@@ -72,6 +72,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
     ports:
       - "27017:27017"
+    networks:
+      - gYachts
 
 networks:
   gYachts:
