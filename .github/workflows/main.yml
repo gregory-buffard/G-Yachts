@@ -81,7 +81,7 @@ jobs:
           echo "NEXT_PUBLIC_ADMIN_BASE_URI=http://admin:3000" >> .env
 
           # ADMIN
-          echo "PAYLOAD_DATABASE_URI=mongodb://${{secrets.MONGO_USER}}:${{secrets.MONGO_PASS}}@172.17.0.1:27017" >> .env
+          echo "PAYLOAD_DATABASE_URI=mongodb://${{secrets.MONGO_USER}}:${{secrets.MONGO_PASS}}@mongo:27017" >> .env
           echo "PAYLOAD_DATABASE_NAME=${{secrets.PAYLOAD_DATABASE_NAME}}" >> .env
           echo "PAYLOAD_PUBLIC_FRONTEND_URL=http://${{secrets.SERVER_IP}}" >> .env
           echo "PAYLOAD_SECRET=${{secrets.PAYLOAD_SECRET}}" >> .env
