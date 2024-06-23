@@ -74,6 +74,9 @@ services:
       - "27017:27017"
     networks:
       - gYachts
+    volumes:
+      - /var/www/mongo:/data/db
+    command: mongod --auth --wiredTigerCacheSizeGB 1
 
 networks:
   gYachts:
