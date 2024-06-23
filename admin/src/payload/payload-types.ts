@@ -17,7 +17,8 @@ export interface Config {
     destinations: Destination;
     events: Event;
     partners: Partner;
-    redirects: Redirect;
+    shipyards: Shipyard;
+    recruitment: Recruitment;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -262,6 +263,11 @@ export interface Event {
   title: string;
   fromDate: string;
   toDate: string;
+  content?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
   image: string | Media;
   updatedAt: string;
   createdAt: string;
@@ -282,19 +288,28 @@ export interface Partner {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
+ * via the `definition` "shipyards".
  */
-export interface Redirect {
+export interface Shipyard {
   id: string;
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?: {
-      relationTo: 'articles';
-      value: string | Article;
-    } | null;
-    url?: string | null;
-  };
+  name: string;
+  quote: string;
+  website: string;
+  logo: string | Media;
+  banner: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "recruitment".
+ */
+export interface Recruitment {
+  id: string;
+  title: string;
+  description: {
+    [k: string]: unknown;
+  }[];
   updatedAt: string;
   createdAt: string;
 }

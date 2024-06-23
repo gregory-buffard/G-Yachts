@@ -1,8 +1,7 @@
-import { CollectionConfig } from 'payload/types'
-import { admins } from '../../access/admins'
-import { users } from '../../access/users'
+import type { CollectionConfig } from 'payload/types'
+
 import { anyone } from '../../access/anyone'
-import e from 'express'
+import { users } from '../../access/users'
 import { yachtsAndCharterCommonFields } from '../YachtAndCharterFields'
 
 export const Charters: CollectionConfig = {
