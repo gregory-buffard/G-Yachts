@@ -1,9 +1,11 @@
 "use server";
 
-import { IYacht, Yacht } from "@/models/yacht";
-import { Charter, ICharter } from "@/models/charter";
-import { Destination, IDestination } from "@/models/destination";
-import { Article, IArticle } from "@/models/article";
+import { IYacht } from "@/types/yacht";
+import { ICharter } from "@/types/charter";
+import { IDestination } from "@/types/destination";
+import { IArticle } from "@/types/article";
+import { getClient } from "@/apollo";
+import { gql } from "@apollo/client";
 
 export const searchAll = async (
     query: string,
@@ -15,50 +17,52 @@ export const searchAll = async (
     articles: IArticle[];
     pages: { title: string; url: string }[];
 }> => {
+    const client = getClient();
     const limit = 3;
 
     // Search yachts
-    const yachts = await Yacht.find({
-        $or: [
-            { builder: { $regex: query, $options: "i" } },
-            { category: { $regex: query, $options: "i" } },
-            { city: { $regex: query, $options: "i" } },
-            { model: { $regex: query, $options: "i" } },
-            { name: { $regex: query, $options: "i" } },
-        ],
-    }).limit(limit);
-
-    // Search charters
-    const charters = await Charter.find({
-        $or: [
-            { builder: { $regex: query, $options: "i" } },
-            { category: { $regex: query, $options: "i" } },
-            { city: { $regex: query, $options: "i" } },
-            { model: { $regex: query, $options: "i" } },
-            { name: { $regex: query, $options: "i" } },
-        ],
-    }).limit(limit);
-
-    // Search destinations
-    const destinations = await Destination.find({
-        $or: [
-            { country: { $regex: query, $options: "i" } },
-            { region: { $regex: query, $options: "i" } },
-            { continent: { $regex: query, $options: "i" } },
-            { destination: { $regex: query, $options: "i" } },
-        ],
-    }).limit(limit);
-
-    // Search articles
-    const articlesQuery =
-        locale === "fr"
-            ? { "fr.headline": { $regex: query, $options: "i" } }
-            : { "en.headline": { $regex: query, $options: "i" } };
-    const articles = await Article.find(articlesQuery)
-        .sort({
-            date: -1,
-        })
-        .limit(limit);
+    const { data } = await client.query({
+        query: gql`
+            query Yachts($query: String!, $limit: Int, $locale: LocaleInputType!) {
+                Yachts(where: { name: { contains: $query } }, limit: $limit) {
+                    docs {
+                        id
+                        name
+                    }
+                }
+            }
+            query Charters($query: String!, $limit: Int, $locale: LocaleInputType!) {
+                Charters(where: { name: { contains: $query } }, limit: $limit) {
+                    docs {
+                        id
+                        name
+                    }
+                }
+            }
+            query Destinations($query: String!, $limit: Int, $locale: LocaleInputType!) {
+                Destinations(where: { destination: { contains: $query } }, limit: $limit) {
+                    docs {
+                        id
+                        destination
+                    }
+                }
+            }
+            query Articles($query: String!, $limit: Int, $locale: LocaleInputType!) {
+                Articles(where: { title: { contains: $query } }, locale: $locale, limit: $limit) {
+                    docs {
+                        id
+                        title
+                    }
+                }
+            }
+        `,
+        variables: {
+            query,
+            limit,
+            locale,
+        },
+    });
+    console.log(data);
 
     // Search pages
     var pages = [
@@ -82,10 +86,10 @@ export const searchAll = async (
         };
     });
     return {
-        yachts: yachts,
-        charters: charters,
-        destinations: destinations,
-        articles: articles,
+        yachts: data.Yachts.docs,
+        charters: data.Charters.docs,
+        destinations: data.Destinations.docs,
+        articles: data.Articles.docs,
         pages: finalPages,
     };
 };

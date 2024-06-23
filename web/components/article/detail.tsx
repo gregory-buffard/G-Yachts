@@ -2,6 +2,7 @@
 
 import { useArticle } from "@/context/article";
 import { useTranslations } from "next-intl";
+import { ContentRenderer } from "./content";
 
 const ArticleDetail = () => {
     const t = useTranslations("article");
@@ -24,10 +25,9 @@ const ArticleDetail = () => {
                     })}
                 </h4>
             </div>
-            <div
-                className="w-full md:w-2/3 h-full text-justify mt-10 pt-10 md:mt-0 md:pt-0 border-t-2 border-gray-700 md:border-none text-lg"
-                dangerouslySetInnerHTML={{ __html: article.content }}
-            />
+            <div className="w-full md:w-2/3 h-full text-justify mt-10 pt-10 md:mt-0 md:pt-0 border-t-2 border-gray-700 md:border-none text-lg">
+                <ContentRenderer blocks={article.content} />
+            </div>
         </div>
     );
 };

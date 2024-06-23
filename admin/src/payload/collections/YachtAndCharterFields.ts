@@ -1,4 +1,4 @@
-import { Field } from 'payload/types'
+import type { Field } from 'payload/types'
 
 export const yachtsAndCharterCommonFields: Field[] = [
   {
@@ -243,13 +243,26 @@ export const yachtsAndCharterCommonFields: Field[] = [
       fr: 'Caractéristiques clés',
     },
     name: 'keyFeatures',
-    type: 'array',
-    fields: [
-      {
-        name: 'keyFeature',
-        type: 'text',
-        required: true,
-      },
+    type: 'select',
+    hasMany: true,
+    required: true,
+    options: [
+      'price',
+      'LOA',
+      'beam',
+      'builder',
+      'category',
+      'crusing',
+      'crypto',
+      'length',
+      'maxDraft',
+      'minDraft',
+      'rooms',
+      'sleeps',
+      'subcategory',
+      'tonnage',
+      'yearBuilt',
+      'yearModel',
     ],
   },
   {

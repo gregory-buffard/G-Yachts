@@ -3,16 +3,16 @@ import type { CollectionConfig } from 'payload/types'
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 
-export const Partners: CollectionConfig = {
-  slug: 'partners',
+export const Shipyards: CollectionConfig = {
+  slug: 'shipyards',
   labels: {
     singular: {
-      en: 'Partner',
-      fr: 'Partenaire',
+      en: 'Shipyard',
+      fr: 'Chantier Naval',
     },
     plural: {
-      en: 'Partners',
-      fr: 'Partenaires',
+      en: 'Shipyards',
+      fr: 'Chantiers Navals',
     },
   },
   admin: {
@@ -49,13 +49,12 @@ export const Partners: CollectionConfig = {
     },
     {
       label: {
-        en: 'Comment',
-        fr: 'Commentaire',
+        en: 'Website',
+        fr: 'Site Web',
       },
-      name: 'comment',
-      type: 'textarea',
+      name: 'website',
+      type: 'text',
       required: true,
-      localized: true,
     },
     {
       label: {

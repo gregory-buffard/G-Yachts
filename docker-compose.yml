@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   nginx:
     image: nginx:latest
@@ -11,7 +10,7 @@ services:
       - /var/www/images:/var/www/images
       - /var/www/videos:/var/www/videos
     networks:
-      - public
+      - gYachts
 
   web:
     image: ghcr.io/${GITHUB_OWNER}/g-yachts-web:${GITHUB_SHA}
@@ -24,8 +23,9 @@ services:
     ports:
       - "3000:3000"
     networks:
-      public:
-        ipv4_address: ${WEB_IP}
+      - gYachts
+    env_file:
+      - .env
 
   api-public:
     image: ghcr.io/${GITHUB_OWNER}/g-yachts-api:${GITHUB_SHA}
@@ -37,8 +37,7 @@ services:
     ports:
       - "5000:5000"
     networks:
-      public:
-        ipv4_address: ${PUBLIC_API_IP}
+      - gYachts
     volumes:
       - /var/www/images/yachts:/app/api/images/yachts
 
@@ -52,19 +51,41 @@ services:
     ports:
       - "8080:5000"
     networks:
-      admin:
-        ipv4_address: ${ADMIN_API_IP}
+      - gYachts
     volumes:
       - /var/www/images/yachts:/app/api/images/yachts
+  
+  admin:
+    image: ghcr.io/${GITHUB_OWNER}/g-yachts-admin:${GITHUB_SHA}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    container_name: admin
+    env_file:
+      - .env
+    networks:
+      - gYachts
+    volumes:
+      - /var/www/media:/home/node/app/media
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
+    ports:
+      - "27017:27017"
+    networks:
+      - gYachts
+    volumes:
+      - /var/www/mongo:/data/db
+    command: mongod --auth --wiredTigerCacheSizeGB 1
 
 networks:
-  public:
+  gYachts:
+    driver: bridge
     ipam:
       driver: default
       config:
-        - subnet: "192.168.92.0/24"
-  admin:
-    ipam:
-      driver: default
-      config:
-        - subnet: "192.178.92.0/24"
+        - subnet: 172.28.0.0/16
+          ip_range: 172.28.5.0/24
+          gateway: 172.28.5.254

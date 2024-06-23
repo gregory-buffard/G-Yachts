@@ -15,14 +15,14 @@ const Card = ({ card }: { card: IFeatured }) => {
 
   return (
     <Link
-      href={{ pathname: "/charter/[id]", params: { id: card._id } }}
+      href={{ pathname: "/charter/[id]", params: { id: card.id } }}
       className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw]`}>
       <div
         className={
           "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
         }
         style={{
-          backgroundImage: `url(${process.env.NEXT_PUBLIC_API}/images/charters/${card._id}/${card.photos.featured})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_API}/images/charters/${card.id}/${card.photos.featured})`,
         }}>
         <p className={"bg-white px-[1.5vw] py-[0.5vh] rounded-sm m-[1vh]"}>{t("exclusive")}</p>
       </div>

@@ -15,7 +15,7 @@ const Card = ({ card }: { card: IFeatured }) => {
   return (
     <Link
       href={"/sales"}
-      key={`${card._id}`}
+      key={`${card.id}`}
       className={
         "w-screen h-full bg-cover bg-right-bottom translate-x-[var(--translate-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out flex flex-col justify-end items-end py-[4vh] lg:py-[12vh] px-[4vw]"
       }

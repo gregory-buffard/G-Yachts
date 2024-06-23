@@ -37,10 +37,14 @@ type Query {
   Partners(where: Partner_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Partners
   countPartners(where: Partner_where, locale: LocaleInputType): countPartners
   docAccessPartner(id: String!): partnersDocAccess
-  Redirect(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Redirect
-  Redirects(where: Redirect_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Redirects
-  countRedirects(where: Redirect_where, locale: LocaleInputType): countRedirects
-  docAccessRedirect(id: String!): redirectsDocAccess
+  Shipyard(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Shipyard
+  Shipyards(where: Shipyard_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Shipyards
+  countShipyards(where: Shipyard_where, locale: LocaleInputType): countShipyards
+  docAccessShipyard(id: String!): shipyardsDocAccess
+  Recruitment(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Recruitment
+  Recruitments(where: Recruitment_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Recruitments
+  countRecruitments(where: Recruitment_where, locale: LocaleInputType): countRecruitments
+  docAccessRecruitment(id: String!): recruitmentDocAccess
   PayloadPreference(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): PayloadPreference
   PayloadPreferences(where: PayloadPreference_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): PayloadPreferences
   countPayloadPreferences(where: PayloadPreference_where, locale: LocaleInputType): countPayloadPreferences
@@ -85,9 +89,12 @@ enum FallbackLocaleInputType {
 
 type User {
   id: String
-  name: String
+  name: String!
   roles: [User_roles!]
   picture(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: User_Picture_where): Media
+  position: String!
+  phones: [User_Phones!]
+  langs: [User_Langs!]!
   updatedAt: DateTime
   createdAt: DateTime
   email: EmailAddress!
@@ -298,6 +305,17 @@ input User_Picture_where_or {
   OR: [User_Picture_where_or]
 }
 
+type User_Phones {
+  prefix: String
+  number: String
+  id: String
+}
+
+type User_Langs {
+  lang: String
+  id: String
+}
+
 """
 A field whose value conforms to the standard internet email address format as specified in HTML Spec: https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address.
 """
@@ -504,6 +522,7 @@ input Article_where {
   title: Article_title_operator
   category: Article_category_operator
   date: Article_date_operator
+  author: Article_author_operator
   content: Article_content_operator
   image: Article_image_operator
   updatedAt: Article_updatedAt_operator
@@ -539,6 +558,14 @@ input Article_date_operator {
   less_than_equal: DateTime
   less_than: DateTime
   like: DateTime
+}
+
+input Article_author_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
 }
 
 input Article_content_operator {
@@ -590,6 +617,7 @@ input Article_where_and {
   title: Article_title_operator
   category: Article_category_operator
   date: Article_date_operator
+  author: Article_author_operator
   content: Article_content_operator
   image: Article_image_operator
   updatedAt: Article_updatedAt_operator
@@ -603,6 +631,7 @@ input Article_where_or {
   title: Article_title_operator
   category: Article_category_operator
   date: Article_date_operator
+  author: Article_author_operator
   content: Article_content_operator
   image: Article_image_operator
   updatedAt: Article_updatedAt_operator
@@ -628,6 +657,7 @@ type ArticlesDocAccessFields {
   title: ArticlesDocAccessFields_title
   category: ArticlesDocAccessFields_category
   date: ArticlesDocAccessFields_date
+  author: ArticlesDocAccessFields_author
   content: ArticlesDocAccessFields_content
   image: ArticlesDocAccessFields_image
   updatedAt: ArticlesDocAccessFields_updatedAt
@@ -700,6 +730,29 @@ type ArticlesDocAccessFields_date_Update {
 }
 
 type ArticlesDocAccessFields_date_Delete {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_author {
+  create: ArticlesDocAccessFields_author_Create
+  read: ArticlesDocAccessFields_author_Read
+  update: ArticlesDocAccessFields_author_Update
+  delete: ArticlesDocAccessFields_author_Delete
+}
+
+type ArticlesDocAccessFields_author_Create {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_author_Read {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_author_Update {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_author_Delete {
   permission: Boolean!
 }
 
@@ -1329,6 +1382,12 @@ input User_where {
   name: User_name_operator
   roles: User_roles_operator
   picture: User_picture_operator
+  position: User_position_operator
+  phones__prefix: User_phones__prefix_operator
+  phones__number: User_phones__number_operator
+  phones__id: User_phones__id_operator
+  langs__lang: User_langs__lang_operator
+  langs__id: User_langs__id_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -1345,7 +1404,6 @@ input User_name_operator {
   in: [String]
   not_in: [String]
   all: [String]
-  exists: Boolean
 }
 
 input User_roles_operator {
@@ -1365,6 +1423,71 @@ enum User_roles_Input {
 input User_picture_operator {
   equals: String
   not_equals: String
+  exists: Boolean
+}
+
+input User_position_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input User_phones__prefix_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_phones__number_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_phones__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_langs__lang_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_langs__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
   exists: Boolean
 }
 
@@ -1415,6 +1538,12 @@ input User_where_and {
   name: User_name_operator
   roles: User_roles_operator
   picture: User_picture_operator
+  position: User_position_operator
+  phones__prefix: User_phones__prefix_operator
+  phones__number: User_phones__number_operator
+  phones__id: User_phones__id_operator
+  langs__lang: User_langs__lang_operator
+  langs__id: User_langs__id_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -1427,6 +1556,12 @@ input User_where_or {
   name: User_name_operator
   roles: User_roles_operator
   picture: User_picture_operator
+  position: User_position_operator
+  phones__prefix: User_phones__prefix_operator
+  phones__number: User_phones__number_operator
+  phones__id: User_phones__id_operator
+  langs__lang: User_langs__lang_operator
+  langs__id: User_langs__id_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -1452,6 +1587,9 @@ type UsersDocAccessFields {
   name: UsersDocAccessFields_name
   roles: UsersDocAccessFields_roles
   picture: UsersDocAccessFields_picture
+  position: UsersDocAccessFields_position
+  phones: UsersDocAccessFields_phones
+  langs: UsersDocAccessFields_langs
   updatedAt: UsersDocAccessFields_updatedAt
   createdAt: UsersDocAccessFields_createdAt
   email: UsersDocAccessFields_email
@@ -1524,6 +1662,203 @@ type UsersDocAccessFields_picture_Update {
 }
 
 type UsersDocAccessFields_picture_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_position {
+  create: UsersDocAccessFields_position_Create
+  read: UsersDocAccessFields_position_Read
+  update: UsersDocAccessFields_position_Update
+  delete: UsersDocAccessFields_position_Delete
+}
+
+type UsersDocAccessFields_position_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_position_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_position_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_position_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones {
+  create: UsersDocAccessFields_phones_Create
+  read: UsersDocAccessFields_phones_Read
+  update: UsersDocAccessFields_phones_Update
+  delete: UsersDocAccessFields_phones_Delete
+  fields: UsersDocAccessFields_phones_Fields
+}
+
+type UsersDocAccessFields_phones_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_Fields {
+  prefix: UsersDocAccessFields_phones_prefix
+  number: UsersDocAccessFields_phones_number
+  id: UsersDocAccessFields_phones_id
+}
+
+type UsersDocAccessFields_phones_prefix {
+  create: UsersDocAccessFields_phones_prefix_Create
+  read: UsersDocAccessFields_phones_prefix_Read
+  update: UsersDocAccessFields_phones_prefix_Update
+  delete: UsersDocAccessFields_phones_prefix_Delete
+}
+
+type UsersDocAccessFields_phones_prefix_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_prefix_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_prefix_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_prefix_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_number {
+  create: UsersDocAccessFields_phones_number_Create
+  read: UsersDocAccessFields_phones_number_Read
+  update: UsersDocAccessFields_phones_number_Update
+  delete: UsersDocAccessFields_phones_number_Delete
+}
+
+type UsersDocAccessFields_phones_number_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_number_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_number_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_number_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_id {
+  create: UsersDocAccessFields_phones_id_Create
+  read: UsersDocAccessFields_phones_id_Read
+  update: UsersDocAccessFields_phones_id_Update
+  delete: UsersDocAccessFields_phones_id_Delete
+}
+
+type UsersDocAccessFields_phones_id_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_id_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_id_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_phones_id_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs {
+  create: UsersDocAccessFields_langs_Create
+  read: UsersDocAccessFields_langs_Read
+  update: UsersDocAccessFields_langs_Update
+  delete: UsersDocAccessFields_langs_Delete
+  fields: UsersDocAccessFields_langs_Fields
+}
+
+type UsersDocAccessFields_langs_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_Fields {
+  lang: UsersDocAccessFields_langs_lang
+  id: UsersDocAccessFields_langs_id
+}
+
+type UsersDocAccessFields_langs_lang {
+  create: UsersDocAccessFields_langs_lang_Create
+  read: UsersDocAccessFields_langs_lang_Read
+  update: UsersDocAccessFields_langs_lang_Update
+  delete: UsersDocAccessFields_langs_lang_Delete
+}
+
+type UsersDocAccessFields_langs_lang_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_lang_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_lang_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_lang_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_id {
+  create: UsersDocAccessFields_langs_id_Create
+  read: UsersDocAccessFields_langs_id_Read
+  update: UsersDocAccessFields_langs_id_Update
+  delete: UsersDocAccessFields_langs_id_Delete
+}
+
+type UsersDocAccessFields_langs_id_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_id_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_id_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_langs_id_Delete {
   permission: Boolean!
 }
 
@@ -1679,15 +2014,29 @@ type Yacht {
   yearBuilt: Float!
   yearModel: Float!
   featured: Boolean!
-  keyFeatures: [Yacht_KeyFeatures!]
+  keyFeatures: [Yacht_keyFeatures!]!
   photos: Yacht_Photos
   updatedAt: DateTime
   createdAt: DateTime
 }
 
-type Yacht_KeyFeatures {
-  keyFeature: String
-  id: String
+enum Yacht_keyFeatures {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 type Yacht_Photos {
@@ -2097,8 +2446,7 @@ input Yacht_where {
   yearBuilt: Yacht_yearBuilt_operator
   yearModel: Yacht_yearModel_operator
   featured: Yacht_featured_operator
-  keyFeatures__keyFeature: Yacht_keyFeatures__keyFeature_operator
-  keyFeatures__id: Yacht_keyFeatures__id_operator
+  keyFeatures: Yacht_keyFeatures_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
@@ -2341,25 +2689,31 @@ input Yacht_featured_operator {
   not_equals: Boolean
 }
 
-input Yacht_keyFeatures__keyFeature_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+input Yacht_keyFeatures_operator {
+  equals: Yacht_keyFeatures_Input
+  not_equals: Yacht_keyFeatures_Input
+  in: [Yacht_keyFeatures_Input]
+  not_in: [Yacht_keyFeatures_Input]
+  all: [Yacht_keyFeatures_Input]
 }
 
-input Yacht_keyFeatures__id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
+enum Yacht_keyFeatures_Input {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input Yacht_photos__featured_operator {
@@ -2443,8 +2797,7 @@ input Yacht_where_and {
   yearBuilt: Yacht_yearBuilt_operator
   yearModel: Yacht_yearModel_operator
   featured: Yacht_featured_operator
-  keyFeatures__keyFeature: Yacht_keyFeatures__keyFeature_operator
-  keyFeatures__id: Yacht_keyFeatures__id_operator
+  keyFeatures: Yacht_keyFeatures_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
@@ -2482,8 +2835,7 @@ input Yacht_where_or {
   yearBuilt: Yacht_yearBuilt_operator
   yearModel: Yacht_yearModel_operator
   featured: Yacht_featured_operator
-  keyFeatures__keyFeature: Yacht_keyFeatures__keyFeature_operator
-  keyFeatures__id: Yacht_keyFeatures__id_operator
+  keyFeatures: Yacht_keyFeatures_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
@@ -3142,7 +3494,6 @@ type YachtsDocAccessFields_keyFeatures {
   read: YachtsDocAccessFields_keyFeatures_Read
   update: YachtsDocAccessFields_keyFeatures_Update
   delete: YachtsDocAccessFields_keyFeatures_Delete
-  fields: YachtsDocAccessFields_keyFeatures_Fields
 }
 
 type YachtsDocAccessFields_keyFeatures_Create {
@@ -3158,57 +3509,6 @@ type YachtsDocAccessFields_keyFeatures_Update {
 }
 
 type YachtsDocAccessFields_keyFeatures_Delete {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_Fields {
-  keyFeature: YachtsDocAccessFields_keyFeatures_keyFeature
-  id: YachtsDocAccessFields_keyFeatures_id
-}
-
-type YachtsDocAccessFields_keyFeatures_keyFeature {
-  create: YachtsDocAccessFields_keyFeatures_keyFeature_Create
-  read: YachtsDocAccessFields_keyFeatures_keyFeature_Read
-  update: YachtsDocAccessFields_keyFeatures_keyFeature_Update
-  delete: YachtsDocAccessFields_keyFeatures_keyFeature_Delete
-}
-
-type YachtsDocAccessFields_keyFeatures_keyFeature_Create {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_keyFeature_Read {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_keyFeature_Update {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_keyFeature_Delete {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_id {
-  create: YachtsDocAccessFields_keyFeatures_id_Create
-  read: YachtsDocAccessFields_keyFeatures_id_Read
-  update: YachtsDocAccessFields_keyFeatures_id_Update
-  delete: YachtsDocAccessFields_keyFeatures_id_Delete
-}
-
-type YachtsDocAccessFields_keyFeatures_id_Create {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_id_Read {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_id_Update {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_keyFeatures_id_Delete {
   permission: Boolean!
 }
 
@@ -3433,15 +3733,29 @@ type Charter {
   yearBuilt: Float!
   yearModel: Float!
   featured: Boolean!
-  keyFeatures: [Charter_KeyFeatures!]
+  keyFeatures: [Charter_keyFeatures!]!
   photos: Charter_Photos
   updatedAt: DateTime
   createdAt: DateTime
 }
 
-type Charter_KeyFeatures {
-  keyFeature: String
-  id: String
+enum Charter_keyFeatures {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 type Charter_Photos {
@@ -3851,8 +4165,7 @@ input Charter_where {
   yearBuilt: Charter_yearBuilt_operator
   yearModel: Charter_yearModel_operator
   featured: Charter_featured_operator
-  keyFeatures__keyFeature: Charter_keyFeatures__keyFeature_operator
-  keyFeatures__id: Charter_keyFeatures__id_operator
+  keyFeatures: Charter_keyFeatures_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
@@ -4095,25 +4408,31 @@ input Charter_featured_operator {
   not_equals: Boolean
 }
 
-input Charter_keyFeatures__keyFeature_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+input Charter_keyFeatures_operator {
+  equals: Charter_keyFeatures_Input
+  not_equals: Charter_keyFeatures_Input
+  in: [Charter_keyFeatures_Input]
+  not_in: [Charter_keyFeatures_Input]
+  all: [Charter_keyFeatures_Input]
 }
 
-input Charter_keyFeatures__id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
+enum Charter_keyFeatures_Input {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input Charter_photos__featured_operator {
@@ -4197,8 +4516,7 @@ input Charter_where_and {
   yearBuilt: Charter_yearBuilt_operator
   yearModel: Charter_yearModel_operator
   featured: Charter_featured_operator
-  keyFeatures__keyFeature: Charter_keyFeatures__keyFeature_operator
-  keyFeatures__id: Charter_keyFeatures__id_operator
+  keyFeatures: Charter_keyFeatures_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
@@ -4236,8 +4554,7 @@ input Charter_where_or {
   yearBuilt: Charter_yearBuilt_operator
   yearModel: Charter_yearModel_operator
   featured: Charter_featured_operator
-  keyFeatures__keyFeature: Charter_keyFeatures__keyFeature_operator
-  keyFeatures__id: Charter_keyFeatures__id_operator
+  keyFeatures: Charter_keyFeatures_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
@@ -4896,7 +5213,6 @@ type ChartersDocAccessFields_keyFeatures {
   read: ChartersDocAccessFields_keyFeatures_Read
   update: ChartersDocAccessFields_keyFeatures_Update
   delete: ChartersDocAccessFields_keyFeatures_Delete
-  fields: ChartersDocAccessFields_keyFeatures_Fields
 }
 
 type ChartersDocAccessFields_keyFeatures_Create {
@@ -4912,57 +5228,6 @@ type ChartersDocAccessFields_keyFeatures_Update {
 }
 
 type ChartersDocAccessFields_keyFeatures_Delete {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_Fields {
-  keyFeature: ChartersDocAccessFields_keyFeatures_keyFeature
-  id: ChartersDocAccessFields_keyFeatures_id
-}
-
-type ChartersDocAccessFields_keyFeatures_keyFeature {
-  create: ChartersDocAccessFields_keyFeatures_keyFeature_Create
-  read: ChartersDocAccessFields_keyFeatures_keyFeature_Read
-  update: ChartersDocAccessFields_keyFeatures_keyFeature_Update
-  delete: ChartersDocAccessFields_keyFeatures_keyFeature_Delete
-}
-
-type ChartersDocAccessFields_keyFeatures_keyFeature_Create {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_keyFeature_Read {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_keyFeature_Update {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_keyFeature_Delete {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_id {
-  create: ChartersDocAccessFields_keyFeatures_id_Create
-  read: ChartersDocAccessFields_keyFeatures_id_Read
-  update: ChartersDocAccessFields_keyFeatures_id_Update
-  delete: ChartersDocAccessFields_keyFeatures_id_Delete
-}
-
-type ChartersDocAccessFields_keyFeatures_id_Create {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_id_Read {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_id_Update {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_keyFeatures_id_Delete {
   permission: Boolean!
 }
 
@@ -6384,6 +6649,7 @@ type Event {
   title: String
   fromDate: DateTime!
   toDate: DateTime!
+  content(depth: Int): JSON
   image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Event_Image_where): Media!
   updatedAt: DateTime
   createdAt: DateTime
@@ -6585,6 +6851,7 @@ input Event_where {
   title: Event_title_operator
   fromDate: Event_fromDate_operator
   toDate: Event_toDate_operator
+  content: Event_content_operator
   image: Event_image_operator
   updatedAt: Event_updatedAt_operator
   createdAt: Event_createdAt_operator
@@ -6621,6 +6888,14 @@ input Event_toDate_operator {
   less_than_equal: DateTime
   less_than: DateTime
   like: DateTime
+}
+
+input Event_content_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
 }
 
 input Event_image_operator {
@@ -6665,6 +6940,7 @@ input Event_where_and {
   title: Event_title_operator
   fromDate: Event_fromDate_operator
   toDate: Event_toDate_operator
+  content: Event_content_operator
   image: Event_image_operator
   updatedAt: Event_updatedAt_operator
   createdAt: Event_createdAt_operator
@@ -6677,6 +6953,7 @@ input Event_where_or {
   title: Event_title_operator
   fromDate: Event_fromDate_operator
   toDate: Event_toDate_operator
+  content: Event_content_operator
   image: Event_image_operator
   updatedAt: Event_updatedAt_operator
   createdAt: Event_createdAt_operator
@@ -6701,6 +6978,7 @@ type EventsDocAccessFields {
   title: EventsDocAccessFields_title
   fromDate: EventsDocAccessFields_fromDate
   toDate: EventsDocAccessFields_toDate
+  content: EventsDocAccessFields_content
   image: EventsDocAccessFields_image
   updatedAt: EventsDocAccessFields_updatedAt
   createdAt: EventsDocAccessFields_createdAt
@@ -6772,6 +7050,29 @@ type EventsDocAccessFields_toDate_Update {
 }
 
 type EventsDocAccessFields_toDate_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_content {
+  create: EventsDocAccessFields_content_Create
+  read: EventsDocAccessFields_content_Read
+  update: EventsDocAccessFields_content_Update
+  delete: EventsDocAccessFields_content_Delete
+}
+
+type EventsDocAccessFields_content_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_content_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_content_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_content_Delete {
   permission: Boolean!
 }
 
@@ -7554,38 +7855,375 @@ type PartnersDeleteDocAccess {
   where: JSONObject
 }
 
-type Redirect {
+type Shipyard {
   id: String
-  from: String!
-  to: Redirect_To
+  name: String!
+  quote: String
+  website: String!
+  logo(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Shipyard_Logo_where): Media!
+  banner(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Shipyard_Banner_where): Media!
   updatedAt: DateTime
   createdAt: DateTime
 }
 
-type Redirect_To {
-  type: Redirect_To_type
-  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Redirect_To_Reference_Relationship
-  url: String
+input Shipyard_Logo_where {
+  alt: Shipyard_Logo_alt_operator
+  updatedAt: Shipyard_Logo_updatedAt_operator
+  createdAt: Shipyard_Logo_createdAt_operator
+  url: Shipyard_Logo_url_operator
+  filename: Shipyard_Logo_filename_operator
+  mimeType: Shipyard_Logo_mimeType_operator
+  filesize: Shipyard_Logo_filesize_operator
+  width: Shipyard_Logo_width_operator
+  height: Shipyard_Logo_height_operator
+  focalX: Shipyard_Logo_focalX_operator
+  focalY: Shipyard_Logo_focalY_operator
+  id: Shipyard_Logo_id_operator
+  AND: [Shipyard_Logo_where_and]
+  OR: [Shipyard_Logo_where_or]
 }
 
-enum Redirect_To_type {
-  reference
-  custom
+input Shipyard_Logo_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
-type Redirect_To_Reference_Relationship {
-  relationTo: Redirect_To_Reference_RelationTo
-  value: Redirect_To_Reference
+input Shipyard_Logo_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
 }
 
-enum Redirect_To_Reference_RelationTo {
-  articles
+input Shipyard_Logo_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
 }
 
-union Redirect_To_Reference = Article
+input Shipyard_Logo_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
 
-type Redirects {
-  docs: [Redirect]
+input Shipyard_Logo_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Shipyard_Logo_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Shipyard_Logo_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Shipyard_Logo_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Shipyard_Logo_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Shipyard_Logo_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Shipyard_Logo_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Shipyard_Logo_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Shipyard_Logo_where_and {
+  alt: Shipyard_Logo_alt_operator
+  updatedAt: Shipyard_Logo_updatedAt_operator
+  createdAt: Shipyard_Logo_createdAt_operator
+  url: Shipyard_Logo_url_operator
+  filename: Shipyard_Logo_filename_operator
+  mimeType: Shipyard_Logo_mimeType_operator
+  filesize: Shipyard_Logo_filesize_operator
+  width: Shipyard_Logo_width_operator
+  height: Shipyard_Logo_height_operator
+  focalX: Shipyard_Logo_focalX_operator
+  focalY: Shipyard_Logo_focalY_operator
+  id: Shipyard_Logo_id_operator
+  AND: [Shipyard_Logo_where_and]
+  OR: [Shipyard_Logo_where_or]
+}
+
+input Shipyard_Logo_where_or {
+  alt: Shipyard_Logo_alt_operator
+  updatedAt: Shipyard_Logo_updatedAt_operator
+  createdAt: Shipyard_Logo_createdAt_operator
+  url: Shipyard_Logo_url_operator
+  filename: Shipyard_Logo_filename_operator
+  mimeType: Shipyard_Logo_mimeType_operator
+  filesize: Shipyard_Logo_filesize_operator
+  width: Shipyard_Logo_width_operator
+  height: Shipyard_Logo_height_operator
+  focalX: Shipyard_Logo_focalX_operator
+  focalY: Shipyard_Logo_focalY_operator
+  id: Shipyard_Logo_id_operator
+  AND: [Shipyard_Logo_where_and]
+  OR: [Shipyard_Logo_where_or]
+}
+
+input Shipyard_Banner_where {
+  alt: Shipyard_Banner_alt_operator
+  updatedAt: Shipyard_Banner_updatedAt_operator
+  createdAt: Shipyard_Banner_createdAt_operator
+  url: Shipyard_Banner_url_operator
+  filename: Shipyard_Banner_filename_operator
+  mimeType: Shipyard_Banner_mimeType_operator
+  filesize: Shipyard_Banner_filesize_operator
+  width: Shipyard_Banner_width_operator
+  height: Shipyard_Banner_height_operator
+  focalX: Shipyard_Banner_focalX_operator
+  focalY: Shipyard_Banner_focalY_operator
+  id: Shipyard_Banner_id_operator
+  AND: [Shipyard_Banner_where_and]
+  OR: [Shipyard_Banner_where_or]
+}
+
+input Shipyard_Banner_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Shipyard_Banner_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Shipyard_Banner_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Shipyard_Banner_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Shipyard_Banner_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Shipyard_Banner_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Shipyard_Banner_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Shipyard_Banner_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Shipyard_Banner_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Shipyard_Banner_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Shipyard_Banner_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Shipyard_Banner_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Shipyard_Banner_where_and {
+  alt: Shipyard_Banner_alt_operator
+  updatedAt: Shipyard_Banner_updatedAt_operator
+  createdAt: Shipyard_Banner_createdAt_operator
+  url: Shipyard_Banner_url_operator
+  filename: Shipyard_Banner_filename_operator
+  mimeType: Shipyard_Banner_mimeType_operator
+  filesize: Shipyard_Banner_filesize_operator
+  width: Shipyard_Banner_width_operator
+  height: Shipyard_Banner_height_operator
+  focalX: Shipyard_Banner_focalX_operator
+  focalY: Shipyard_Banner_focalY_operator
+  id: Shipyard_Banner_id_operator
+  AND: [Shipyard_Banner_where_and]
+  OR: [Shipyard_Banner_where_or]
+}
+
+input Shipyard_Banner_where_or {
+  alt: Shipyard_Banner_alt_operator
+  updatedAt: Shipyard_Banner_updatedAt_operator
+  createdAt: Shipyard_Banner_createdAt_operator
+  url: Shipyard_Banner_url_operator
+  filename: Shipyard_Banner_filename_operator
+  mimeType: Shipyard_Banner_mimeType_operator
+  filesize: Shipyard_Banner_filesize_operator
+  width: Shipyard_Banner_width_operator
+  height: Shipyard_Banner_height_operator
+  focalX: Shipyard_Banner_focalX_operator
+  focalY: Shipyard_Banner_focalY_operator
+  id: Shipyard_Banner_id_operator
+  AND: [Shipyard_Banner_where_and]
+  OR: [Shipyard_Banner_where_or]
+}
+
+type Shipyards {
+  docs: [Shipyard]
   hasNextPage: Boolean
   hasPrevPage: Boolean
   limit: Int
@@ -7598,19 +8236,20 @@ type Redirects {
   totalPages: Int
 }
 
-input Redirect_where {
-  from: Redirect_from_operator
-  to__type: Redirect_to__type_operator
-  to__reference: Redirect_to__reference_Relation
-  to__url: Redirect_to__url_operator
-  updatedAt: Redirect_updatedAt_operator
-  createdAt: Redirect_createdAt_operator
-  id: Redirect_id_operator
-  AND: [Redirect_where_and]
-  OR: [Redirect_where_or]
+input Shipyard_where {
+  name: Shipyard_name_operator
+  quote: Shipyard_quote_operator
+  website: Shipyard_website_operator
+  logo: Shipyard_logo_operator
+  banner: Shipyard_banner_operator
+  updatedAt: Shipyard_updatedAt_operator
+  createdAt: Shipyard_createdAt_operator
+  id: Shipyard_id_operator
+  AND: [Shipyard_where_and]
+  OR: [Shipyard_where_or]
 }
 
-input Redirect_from_operator {
+input Shipyard_name_operator {
   equals: String
   not_equals: String
   like: String
@@ -7620,29 +8259,14 @@ input Redirect_from_operator {
   all: [String]
 }
 
-input Redirect_to__type_operator {
-  equals: Redirect_to__type_Input
-  not_equals: Redirect_to__type_Input
-  like: Redirect_to__type_Input
-  contains: Redirect_to__type_Input
-  exists: Boolean
+input Shipyard_quote_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
 }
 
-enum Redirect_to__type_Input {
-  reference
-  custom
-}
-
-input Redirect_to__reference_Relation {
-  relationTo: Redirect_to__reference_Relation_RelationTo
-  value: JSON
-}
-
-enum Redirect_to__reference_Relation_RelationTo {
-  articles
-}
-
-input Redirect_to__url_operator {
+input Shipyard_website_operator {
   equals: String
   not_equals: String
   like: String
@@ -7652,7 +8276,17 @@ input Redirect_to__url_operator {
   all: [String]
 }
 
-input Redirect_updatedAt_operator {
+input Shipyard_logo_operator {
+  equals: String
+  not_equals: String
+}
+
+input Shipyard_banner_operator {
+  equals: String
+  not_equals: String
+}
+
+input Shipyard_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -7663,7 +8297,7 @@ input Redirect_updatedAt_operator {
   exists: Boolean
 }
 
-input Redirect_createdAt_operator {
+input Shipyard_createdAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -7674,7 +8308,7 @@ input Redirect_createdAt_operator {
   exists: Boolean
 }
 
-input Redirect_id_operator {
+input Shipyard_id_operator {
   equals: String
   not_equals: String
   like: String
@@ -7685,233 +8319,464 @@ input Redirect_id_operator {
   exists: Boolean
 }
 
-input Redirect_where_and {
-  from: Redirect_from_operator
-  to__type: Redirect_to__type_operator
-  to__reference: Redirect_to__reference_Relation
-  to__url: Redirect_to__url_operator
-  updatedAt: Redirect_updatedAt_operator
-  createdAt: Redirect_createdAt_operator
-  id: Redirect_id_operator
-  AND: [Redirect_where_and]
-  OR: [Redirect_where_or]
+input Shipyard_where_and {
+  name: Shipyard_name_operator
+  quote: Shipyard_quote_operator
+  website: Shipyard_website_operator
+  logo: Shipyard_logo_operator
+  banner: Shipyard_banner_operator
+  updatedAt: Shipyard_updatedAt_operator
+  createdAt: Shipyard_createdAt_operator
+  id: Shipyard_id_operator
+  AND: [Shipyard_where_and]
+  OR: [Shipyard_where_or]
 }
 
-input Redirect_where_or {
-  from: Redirect_from_operator
-  to__type: Redirect_to__type_operator
-  to__reference: Redirect_to__reference_Relation
-  to__url: Redirect_to__url_operator
-  updatedAt: Redirect_updatedAt_operator
-  createdAt: Redirect_createdAt_operator
-  id: Redirect_id_operator
-  AND: [Redirect_where_and]
-  OR: [Redirect_where_or]
+input Shipyard_where_or {
+  name: Shipyard_name_operator
+  quote: Shipyard_quote_operator
+  website: Shipyard_website_operator
+  logo: Shipyard_logo_operator
+  banner: Shipyard_banner_operator
+  updatedAt: Shipyard_updatedAt_operator
+  createdAt: Shipyard_createdAt_operator
+  id: Shipyard_id_operator
+  AND: [Shipyard_where_and]
+  OR: [Shipyard_where_or]
 }
 
-type countRedirects {
+type countShipyards {
   totalDocs: Int
 }
 
-type redirectsDocAccess {
-  fields: RedirectsDocAccessFields
-  create: RedirectsCreateDocAccess
-  read: RedirectsReadDocAccess
-  update: RedirectsUpdateDocAccess
-  delete: RedirectsDeleteDocAccess
+type shipyardsDocAccess {
+  fields: ShipyardsDocAccessFields
+  create: ShipyardsCreateDocAccess
+  read: ShipyardsReadDocAccess
+  update: ShipyardsUpdateDocAccess
+  delete: ShipyardsDeleteDocAccess
 }
 
-type RedirectsDocAccessFields {
-  from: RedirectsDocAccessFields_from
-  to: RedirectsDocAccessFields_to
-  updatedAt: RedirectsDocAccessFields_updatedAt
-  createdAt: RedirectsDocAccessFields_createdAt
+type ShipyardsDocAccessFields {
+  name: ShipyardsDocAccessFields_name
+  quote: ShipyardsDocAccessFields_quote
+  website: ShipyardsDocAccessFields_website
+  logo: ShipyardsDocAccessFields_logo
+  banner: ShipyardsDocAccessFields_banner
+  updatedAt: ShipyardsDocAccessFields_updatedAt
+  createdAt: ShipyardsDocAccessFields_createdAt
 }
 
-type RedirectsDocAccessFields_from {
-  create: RedirectsDocAccessFields_from_Create
-  read: RedirectsDocAccessFields_from_Read
-  update: RedirectsDocAccessFields_from_Update
-  delete: RedirectsDocAccessFields_from_Delete
+type ShipyardsDocAccessFields_name {
+  create: ShipyardsDocAccessFields_name_Create
+  read: ShipyardsDocAccessFields_name_Read
+  update: ShipyardsDocAccessFields_name_Update
+  delete: ShipyardsDocAccessFields_name_Delete
 }
 
-type RedirectsDocAccessFields_from_Create {
+type ShipyardsDocAccessFields_name_Create {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_from_Read {
+type ShipyardsDocAccessFields_name_Read {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_from_Update {
+type ShipyardsDocAccessFields_name_Update {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_from_Delete {
+type ShipyardsDocAccessFields_name_Delete {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to {
-  create: RedirectsDocAccessFields_to_Create
-  read: RedirectsDocAccessFields_to_Read
-  update: RedirectsDocAccessFields_to_Update
-  delete: RedirectsDocAccessFields_to_Delete
-  fields: RedirectsDocAccessFields_to_Fields
+type ShipyardsDocAccessFields_quote {
+  create: ShipyardsDocAccessFields_quote_Create
+  read: ShipyardsDocAccessFields_quote_Read
+  update: ShipyardsDocAccessFields_quote_Update
+  delete: ShipyardsDocAccessFields_quote_Delete
 }
 
-type RedirectsDocAccessFields_to_Create {
+type ShipyardsDocAccessFields_quote_Create {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_Read {
+type ShipyardsDocAccessFields_quote_Read {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_Update {
+type ShipyardsDocAccessFields_quote_Update {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_Delete {
+type ShipyardsDocAccessFields_quote_Delete {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_Fields {
-  type: RedirectsDocAccessFields_to_type
-  reference: RedirectsDocAccessFields_to_reference
-  url: RedirectsDocAccessFields_to_url
+type ShipyardsDocAccessFields_website {
+  create: ShipyardsDocAccessFields_website_Create
+  read: ShipyardsDocAccessFields_website_Read
+  update: ShipyardsDocAccessFields_website_Update
+  delete: ShipyardsDocAccessFields_website_Delete
 }
 
-type RedirectsDocAccessFields_to_type {
-  create: RedirectsDocAccessFields_to_type_Create
-  read: RedirectsDocAccessFields_to_type_Read
-  update: RedirectsDocAccessFields_to_type_Update
-  delete: RedirectsDocAccessFields_to_type_Delete
-}
-
-type RedirectsDocAccessFields_to_type_Create {
+type ShipyardsDocAccessFields_website_Create {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_type_Read {
+type ShipyardsDocAccessFields_website_Read {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_type_Update {
+type ShipyardsDocAccessFields_website_Update {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_type_Delete {
+type ShipyardsDocAccessFields_website_Delete {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_reference {
-  create: RedirectsDocAccessFields_to_reference_Create
-  read: RedirectsDocAccessFields_to_reference_Read
-  update: RedirectsDocAccessFields_to_reference_Update
-  delete: RedirectsDocAccessFields_to_reference_Delete
+type ShipyardsDocAccessFields_logo {
+  create: ShipyardsDocAccessFields_logo_Create
+  read: ShipyardsDocAccessFields_logo_Read
+  update: ShipyardsDocAccessFields_logo_Update
+  delete: ShipyardsDocAccessFields_logo_Delete
 }
 
-type RedirectsDocAccessFields_to_reference_Create {
+type ShipyardsDocAccessFields_logo_Create {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_reference_Read {
+type ShipyardsDocAccessFields_logo_Read {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_reference_Update {
+type ShipyardsDocAccessFields_logo_Update {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_reference_Delete {
+type ShipyardsDocAccessFields_logo_Delete {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_url {
-  create: RedirectsDocAccessFields_to_url_Create
-  read: RedirectsDocAccessFields_to_url_Read
-  update: RedirectsDocAccessFields_to_url_Update
-  delete: RedirectsDocAccessFields_to_url_Delete
+type ShipyardsDocAccessFields_banner {
+  create: ShipyardsDocAccessFields_banner_Create
+  read: ShipyardsDocAccessFields_banner_Read
+  update: ShipyardsDocAccessFields_banner_Update
+  delete: ShipyardsDocAccessFields_banner_Delete
 }
 
-type RedirectsDocAccessFields_to_url_Create {
+type ShipyardsDocAccessFields_banner_Create {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_url_Read {
+type ShipyardsDocAccessFields_banner_Read {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_url_Update {
+type ShipyardsDocAccessFields_banner_Update {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_to_url_Delete {
+type ShipyardsDocAccessFields_banner_Delete {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_updatedAt {
-  create: RedirectsDocAccessFields_updatedAt_Create
-  read: RedirectsDocAccessFields_updatedAt_Read
-  update: RedirectsDocAccessFields_updatedAt_Update
-  delete: RedirectsDocAccessFields_updatedAt_Delete
+type ShipyardsDocAccessFields_updatedAt {
+  create: ShipyardsDocAccessFields_updatedAt_Create
+  read: ShipyardsDocAccessFields_updatedAt_Read
+  update: ShipyardsDocAccessFields_updatedAt_Update
+  delete: ShipyardsDocAccessFields_updatedAt_Delete
 }
 
-type RedirectsDocAccessFields_updatedAt_Create {
+type ShipyardsDocAccessFields_updatedAt_Create {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_updatedAt_Read {
+type ShipyardsDocAccessFields_updatedAt_Read {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_updatedAt_Update {
+type ShipyardsDocAccessFields_updatedAt_Update {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_updatedAt_Delete {
+type ShipyardsDocAccessFields_updatedAt_Delete {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_createdAt {
-  create: RedirectsDocAccessFields_createdAt_Create
-  read: RedirectsDocAccessFields_createdAt_Read
-  update: RedirectsDocAccessFields_createdAt_Update
-  delete: RedirectsDocAccessFields_createdAt_Delete
+type ShipyardsDocAccessFields_createdAt {
+  create: ShipyardsDocAccessFields_createdAt_Create
+  read: ShipyardsDocAccessFields_createdAt_Read
+  update: ShipyardsDocAccessFields_createdAt_Update
+  delete: ShipyardsDocAccessFields_createdAt_Delete
 }
 
-type RedirectsDocAccessFields_createdAt_Create {
+type ShipyardsDocAccessFields_createdAt_Create {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_createdAt_Read {
+type ShipyardsDocAccessFields_createdAt_Read {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_createdAt_Update {
+type ShipyardsDocAccessFields_createdAt_Update {
   permission: Boolean!
 }
 
-type RedirectsDocAccessFields_createdAt_Delete {
+type ShipyardsDocAccessFields_createdAt_Delete {
   permission: Boolean!
 }
 
-type RedirectsCreateDocAccess {
+type ShipyardsCreateDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type RedirectsReadDocAccess {
+type ShipyardsReadDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type RedirectsUpdateDocAccess {
+type ShipyardsUpdateDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type RedirectsDeleteDocAccess {
+type ShipyardsDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type Recruitment {
+  id: String
+  title: String
+  description(depth: Int): JSON
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type Recruitments {
+  docs: [Recruitment]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input Recruitment_where {
+  title: Recruitment_title_operator
+  description: Recruitment_description_operator
+  updatedAt: Recruitment_updatedAt_operator
+  createdAt: Recruitment_createdAt_operator
+  id: Recruitment_id_operator
+  AND: [Recruitment_where_and]
+  OR: [Recruitment_where_or]
+}
+
+input Recruitment_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Recruitment_description_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+}
+
+input Recruitment_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Recruitment_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Recruitment_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Recruitment_where_and {
+  title: Recruitment_title_operator
+  description: Recruitment_description_operator
+  updatedAt: Recruitment_updatedAt_operator
+  createdAt: Recruitment_createdAt_operator
+  id: Recruitment_id_operator
+  AND: [Recruitment_where_and]
+  OR: [Recruitment_where_or]
+}
+
+input Recruitment_where_or {
+  title: Recruitment_title_operator
+  description: Recruitment_description_operator
+  updatedAt: Recruitment_updatedAt_operator
+  createdAt: Recruitment_createdAt_operator
+  id: Recruitment_id_operator
+  AND: [Recruitment_where_and]
+  OR: [Recruitment_where_or]
+}
+
+type countRecruitments {
+  totalDocs: Int
+}
+
+type recruitmentDocAccess {
+  fields: RecruitmentDocAccessFields
+  create: RecruitmentCreateDocAccess
+  read: RecruitmentReadDocAccess
+  update: RecruitmentUpdateDocAccess
+  delete: RecruitmentDeleteDocAccess
+}
+
+type RecruitmentDocAccessFields {
+  title: RecruitmentDocAccessFields_title
+  description: RecruitmentDocAccessFields_description
+  updatedAt: RecruitmentDocAccessFields_updatedAt
+  createdAt: RecruitmentDocAccessFields_createdAt
+}
+
+type RecruitmentDocAccessFields_title {
+  create: RecruitmentDocAccessFields_title_Create
+  read: RecruitmentDocAccessFields_title_Read
+  update: RecruitmentDocAccessFields_title_Update
+  delete: RecruitmentDocAccessFields_title_Delete
+}
+
+type RecruitmentDocAccessFields_title_Create {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_title_Read {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_title_Update {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_description {
+  create: RecruitmentDocAccessFields_description_Create
+  read: RecruitmentDocAccessFields_description_Read
+  update: RecruitmentDocAccessFields_description_Update
+  delete: RecruitmentDocAccessFields_description_Delete
+}
+
+type RecruitmentDocAccessFields_description_Create {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_description_Read {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_description_Update {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_description_Delete {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_updatedAt {
+  create: RecruitmentDocAccessFields_updatedAt_Create
+  read: RecruitmentDocAccessFields_updatedAt_Read
+  update: RecruitmentDocAccessFields_updatedAt_Update
+  delete: RecruitmentDocAccessFields_updatedAt_Delete
+}
+
+type RecruitmentDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_createdAt {
+  create: RecruitmentDocAccessFields_createdAt_Create
+  read: RecruitmentDocAccessFields_createdAt_Read
+  update: RecruitmentDocAccessFields_createdAt_Update
+  delete: RecruitmentDocAccessFields_createdAt_Delete
+}
+
+type RecruitmentDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type RecruitmentDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type RecruitmentCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type RecruitmentReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type RecruitmentUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type RecruitmentDeleteDocAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -8212,7 +9077,8 @@ type Access {
   destinations: destinationsAccess
   events: eventsAccess
   partners: partnersAccess
-  redirects: redirectsAccess
+  shipyards: shipyardsAccess
+  recruitment: recruitmentAccess
   payload_preferences: payload_preferencesAccess
 }
 
@@ -8228,6 +9094,7 @@ type ArticlesFields {
   title: ArticlesFields_title
   category: ArticlesFields_category
   date: ArticlesFields_date
+  author: ArticlesFields_author
   content: ArticlesFields_content
   image: ArticlesFields_image
   updatedAt: ArticlesFields_updatedAt
@@ -8300,6 +9167,29 @@ type ArticlesFields_date_Update {
 }
 
 type ArticlesFields_date_Delete {
+  permission: Boolean!
+}
+
+type ArticlesFields_author {
+  create: ArticlesFields_author_Create
+  read: ArticlesFields_author_Read
+  update: ArticlesFields_author_Update
+  delete: ArticlesFields_author_Delete
+}
+
+type ArticlesFields_author_Create {
+  permission: Boolean!
+}
+
+type ArticlesFields_author_Read {
+  permission: Boolean!
+}
+
+type ArticlesFields_author_Update {
+  permission: Boolean!
+}
+
+type ArticlesFields_author_Delete {
   permission: Boolean!
 }
 
@@ -8723,6 +9613,9 @@ type UsersFields {
   name: UsersFields_name
   roles: UsersFields_roles
   picture: UsersFields_picture
+  position: UsersFields_position
+  phones: UsersFields_phones
+  langs: UsersFields_langs
   updatedAt: UsersFields_updatedAt
   createdAt: UsersFields_createdAt
   email: UsersFields_email
@@ -8795,6 +9688,203 @@ type UsersFields_picture_Update {
 }
 
 type UsersFields_picture_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_position {
+  create: UsersFields_position_Create
+  read: UsersFields_position_Read
+  update: UsersFields_position_Update
+  delete: UsersFields_position_Delete
+}
+
+type UsersFields_position_Create {
+  permission: Boolean!
+}
+
+type UsersFields_position_Read {
+  permission: Boolean!
+}
+
+type UsersFields_position_Update {
+  permission: Boolean!
+}
+
+type UsersFields_position_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_phones {
+  create: UsersFields_phones_Create
+  read: UsersFields_phones_Read
+  update: UsersFields_phones_Update
+  delete: UsersFields_phones_Delete
+  fields: UsersFields_phones_Fields
+}
+
+type UsersFields_phones_Create {
+  permission: Boolean!
+}
+
+type UsersFields_phones_Read {
+  permission: Boolean!
+}
+
+type UsersFields_phones_Update {
+  permission: Boolean!
+}
+
+type UsersFields_phones_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_phones_Fields {
+  prefix: UsersFields_phones_prefix
+  number: UsersFields_phones_number
+  id: UsersFields_phones_id
+}
+
+type UsersFields_phones_prefix {
+  create: UsersFields_phones_prefix_Create
+  read: UsersFields_phones_prefix_Read
+  update: UsersFields_phones_prefix_Update
+  delete: UsersFields_phones_prefix_Delete
+}
+
+type UsersFields_phones_prefix_Create {
+  permission: Boolean!
+}
+
+type UsersFields_phones_prefix_Read {
+  permission: Boolean!
+}
+
+type UsersFields_phones_prefix_Update {
+  permission: Boolean!
+}
+
+type UsersFields_phones_prefix_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_phones_number {
+  create: UsersFields_phones_number_Create
+  read: UsersFields_phones_number_Read
+  update: UsersFields_phones_number_Update
+  delete: UsersFields_phones_number_Delete
+}
+
+type UsersFields_phones_number_Create {
+  permission: Boolean!
+}
+
+type UsersFields_phones_number_Read {
+  permission: Boolean!
+}
+
+type UsersFields_phones_number_Update {
+  permission: Boolean!
+}
+
+type UsersFields_phones_number_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_phones_id {
+  create: UsersFields_phones_id_Create
+  read: UsersFields_phones_id_Read
+  update: UsersFields_phones_id_Update
+  delete: UsersFields_phones_id_Delete
+}
+
+type UsersFields_phones_id_Create {
+  permission: Boolean!
+}
+
+type UsersFields_phones_id_Read {
+  permission: Boolean!
+}
+
+type UsersFields_phones_id_Update {
+  permission: Boolean!
+}
+
+type UsersFields_phones_id_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_langs {
+  create: UsersFields_langs_Create
+  read: UsersFields_langs_Read
+  update: UsersFields_langs_Update
+  delete: UsersFields_langs_Delete
+  fields: UsersFields_langs_Fields
+}
+
+type UsersFields_langs_Create {
+  permission: Boolean!
+}
+
+type UsersFields_langs_Read {
+  permission: Boolean!
+}
+
+type UsersFields_langs_Update {
+  permission: Boolean!
+}
+
+type UsersFields_langs_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_langs_Fields {
+  lang: UsersFields_langs_lang
+  id: UsersFields_langs_id
+}
+
+type UsersFields_langs_lang {
+  create: UsersFields_langs_lang_Create
+  read: UsersFields_langs_lang_Read
+  update: UsersFields_langs_lang_Update
+  delete: UsersFields_langs_lang_Delete
+}
+
+type UsersFields_langs_lang_Create {
+  permission: Boolean!
+}
+
+type UsersFields_langs_lang_Read {
+  permission: Boolean!
+}
+
+type UsersFields_langs_lang_Update {
+  permission: Boolean!
+}
+
+type UsersFields_langs_lang_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_langs_id {
+  create: UsersFields_langs_id_Create
+  read: UsersFields_langs_id_Read
+  update: UsersFields_langs_id_Update
+  delete: UsersFields_langs_id_Delete
+}
+
+type UsersFields_langs_id_Create {
+  permission: Boolean!
+}
+
+type UsersFields_langs_id_Read {
+  permission: Boolean!
+}
+
+type UsersFields_langs_id_Update {
+  permission: Boolean!
+}
+
+type UsersFields_langs_id_Delete {
   permission: Boolean!
 }
 
@@ -9559,7 +10649,6 @@ type YachtsFields_keyFeatures {
   read: YachtsFields_keyFeatures_Read
   update: YachtsFields_keyFeatures_Update
   delete: YachtsFields_keyFeatures_Delete
-  fields: YachtsFields_keyFeatures_Fields
 }
 
 type YachtsFields_keyFeatures_Create {
@@ -9575,57 +10664,6 @@ type YachtsFields_keyFeatures_Update {
 }
 
 type YachtsFields_keyFeatures_Delete {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_Fields {
-  keyFeature: YachtsFields_keyFeatures_keyFeature
-  id: YachtsFields_keyFeatures_id
-}
-
-type YachtsFields_keyFeatures_keyFeature {
-  create: YachtsFields_keyFeatures_keyFeature_Create
-  read: YachtsFields_keyFeatures_keyFeature_Read
-  update: YachtsFields_keyFeatures_keyFeature_Update
-  delete: YachtsFields_keyFeatures_keyFeature_Delete
-}
-
-type YachtsFields_keyFeatures_keyFeature_Create {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_keyFeature_Read {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_keyFeature_Update {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_keyFeature_Delete {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_id {
-  create: YachtsFields_keyFeatures_id_Create
-  read: YachtsFields_keyFeatures_id_Read
-  update: YachtsFields_keyFeatures_id_Update
-  delete: YachtsFields_keyFeatures_id_Delete
-}
-
-type YachtsFields_keyFeatures_id_Create {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_id_Read {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_id_Update {
-  permission: Boolean!
-}
-
-type YachtsFields_keyFeatures_id_Delete {
   permission: Boolean!
 }
 
@@ -10466,7 +11504,6 @@ type ChartersFields_keyFeatures {
   read: ChartersFields_keyFeatures_Read
   update: ChartersFields_keyFeatures_Update
   delete: ChartersFields_keyFeatures_Delete
-  fields: ChartersFields_keyFeatures_Fields
 }
 
 type ChartersFields_keyFeatures_Create {
@@ -10482,57 +11519,6 @@ type ChartersFields_keyFeatures_Update {
 }
 
 type ChartersFields_keyFeatures_Delete {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_Fields {
-  keyFeature: ChartersFields_keyFeatures_keyFeature
-  id: ChartersFields_keyFeatures_id
-}
-
-type ChartersFields_keyFeatures_keyFeature {
-  create: ChartersFields_keyFeatures_keyFeature_Create
-  read: ChartersFields_keyFeatures_keyFeature_Read
-  update: ChartersFields_keyFeatures_keyFeature_Update
-  delete: ChartersFields_keyFeatures_keyFeature_Delete
-}
-
-type ChartersFields_keyFeatures_keyFeature_Create {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_keyFeature_Read {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_keyFeature_Update {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_keyFeature_Delete {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_id {
-  create: ChartersFields_keyFeatures_id_Create
-  read: ChartersFields_keyFeatures_id_Read
-  update: ChartersFields_keyFeatures_id_Update
-  delete: ChartersFields_keyFeatures_id_Delete
-}
-
-type ChartersFields_keyFeatures_id_Create {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_id_Read {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_id_Update {
-  permission: Boolean!
-}
-
-type ChartersFields_keyFeatures_id_Delete {
   permission: Boolean!
 }
 
@@ -11267,6 +12253,7 @@ type EventsFields {
   title: EventsFields_title
   fromDate: EventsFields_fromDate
   toDate: EventsFields_toDate
+  content: EventsFields_content
   image: EventsFields_image
   updatedAt: EventsFields_updatedAt
   createdAt: EventsFields_createdAt
@@ -11338,6 +12325,29 @@ type EventsFields_toDate_Update {
 }
 
 type EventsFields_toDate_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_content {
+  create: EventsFields_content_Create
+  read: EventsFields_content_Read
+  update: EventsFields_content_Update
+  delete: EventsFields_content_Delete
+}
+
+type EventsFields_content_Create {
+  permission: Boolean!
+}
+
+type EventsFields_content_Read {
+  permission: Boolean!
+}
+
+type EventsFields_content_Update {
+  permission: Boolean!
+}
+
+type EventsFields_content_Delete {
   permission: Boolean!
 }
 
@@ -11629,205 +12639,328 @@ type PartnersDeleteAccess {
   where: JSONObject
 }
 
-type redirectsAccess {
-  fields: RedirectsFields
-  create: RedirectsCreateAccess
-  read: RedirectsReadAccess
-  update: RedirectsUpdateAccess
-  delete: RedirectsDeleteAccess
+type shipyardsAccess {
+  fields: ShipyardsFields
+  create: ShipyardsCreateAccess
+  read: ShipyardsReadAccess
+  update: ShipyardsUpdateAccess
+  delete: ShipyardsDeleteAccess
 }
 
-type RedirectsFields {
-  from: RedirectsFields_from
-  to: RedirectsFields_to
-  updatedAt: RedirectsFields_updatedAt
-  createdAt: RedirectsFields_createdAt
+type ShipyardsFields {
+  name: ShipyardsFields_name
+  quote: ShipyardsFields_quote
+  website: ShipyardsFields_website
+  logo: ShipyardsFields_logo
+  banner: ShipyardsFields_banner
+  updatedAt: ShipyardsFields_updatedAt
+  createdAt: ShipyardsFields_createdAt
 }
 
-type RedirectsFields_from {
-  create: RedirectsFields_from_Create
-  read: RedirectsFields_from_Read
-  update: RedirectsFields_from_Update
-  delete: RedirectsFields_from_Delete
+type ShipyardsFields_name {
+  create: ShipyardsFields_name_Create
+  read: ShipyardsFields_name_Read
+  update: ShipyardsFields_name_Update
+  delete: ShipyardsFields_name_Delete
 }
 
-type RedirectsFields_from_Create {
+type ShipyardsFields_name_Create {
   permission: Boolean!
 }
 
-type RedirectsFields_from_Read {
+type ShipyardsFields_name_Read {
   permission: Boolean!
 }
 
-type RedirectsFields_from_Update {
+type ShipyardsFields_name_Update {
   permission: Boolean!
 }
 
-type RedirectsFields_from_Delete {
+type ShipyardsFields_name_Delete {
   permission: Boolean!
 }
 
-type RedirectsFields_to {
-  create: RedirectsFields_to_Create
-  read: RedirectsFields_to_Read
-  update: RedirectsFields_to_Update
-  delete: RedirectsFields_to_Delete
-  fields: RedirectsFields_to_Fields
+type ShipyardsFields_quote {
+  create: ShipyardsFields_quote_Create
+  read: ShipyardsFields_quote_Read
+  update: ShipyardsFields_quote_Update
+  delete: ShipyardsFields_quote_Delete
 }
 
-type RedirectsFields_to_Create {
+type ShipyardsFields_quote_Create {
   permission: Boolean!
 }
 
-type RedirectsFields_to_Read {
+type ShipyardsFields_quote_Read {
   permission: Boolean!
 }
 
-type RedirectsFields_to_Update {
+type ShipyardsFields_quote_Update {
   permission: Boolean!
 }
 
-type RedirectsFields_to_Delete {
+type ShipyardsFields_quote_Delete {
   permission: Boolean!
 }
 
-type RedirectsFields_to_Fields {
-  type: RedirectsFields_to_type
-  reference: RedirectsFields_to_reference
-  url: RedirectsFields_to_url
+type ShipyardsFields_website {
+  create: ShipyardsFields_website_Create
+  read: ShipyardsFields_website_Read
+  update: ShipyardsFields_website_Update
+  delete: ShipyardsFields_website_Delete
 }
 
-type RedirectsFields_to_type {
-  create: RedirectsFields_to_type_Create
-  read: RedirectsFields_to_type_Read
-  update: RedirectsFields_to_type_Update
-  delete: RedirectsFields_to_type_Delete
-}
-
-type RedirectsFields_to_type_Create {
+type ShipyardsFields_website_Create {
   permission: Boolean!
 }
 
-type RedirectsFields_to_type_Read {
+type ShipyardsFields_website_Read {
   permission: Boolean!
 }
 
-type RedirectsFields_to_type_Update {
+type ShipyardsFields_website_Update {
   permission: Boolean!
 }
 
-type RedirectsFields_to_type_Delete {
+type ShipyardsFields_website_Delete {
   permission: Boolean!
 }
 
-type RedirectsFields_to_reference {
-  create: RedirectsFields_to_reference_Create
-  read: RedirectsFields_to_reference_Read
-  update: RedirectsFields_to_reference_Update
-  delete: RedirectsFields_to_reference_Delete
+type ShipyardsFields_logo {
+  create: ShipyardsFields_logo_Create
+  read: ShipyardsFields_logo_Read
+  update: ShipyardsFields_logo_Update
+  delete: ShipyardsFields_logo_Delete
 }
 
-type RedirectsFields_to_reference_Create {
+type ShipyardsFields_logo_Create {
   permission: Boolean!
 }
 
-type RedirectsFields_to_reference_Read {
+type ShipyardsFields_logo_Read {
   permission: Boolean!
 }
 
-type RedirectsFields_to_reference_Update {
+type ShipyardsFields_logo_Update {
   permission: Boolean!
 }
 
-type RedirectsFields_to_reference_Delete {
+type ShipyardsFields_logo_Delete {
   permission: Boolean!
 }
 
-type RedirectsFields_to_url {
-  create: RedirectsFields_to_url_Create
-  read: RedirectsFields_to_url_Read
-  update: RedirectsFields_to_url_Update
-  delete: RedirectsFields_to_url_Delete
+type ShipyardsFields_banner {
+  create: ShipyardsFields_banner_Create
+  read: ShipyardsFields_banner_Read
+  update: ShipyardsFields_banner_Update
+  delete: ShipyardsFields_banner_Delete
 }
 
-type RedirectsFields_to_url_Create {
+type ShipyardsFields_banner_Create {
   permission: Boolean!
 }
 
-type RedirectsFields_to_url_Read {
+type ShipyardsFields_banner_Read {
   permission: Boolean!
 }
 
-type RedirectsFields_to_url_Update {
+type ShipyardsFields_banner_Update {
   permission: Boolean!
 }
 
-type RedirectsFields_to_url_Delete {
+type ShipyardsFields_banner_Delete {
   permission: Boolean!
 }
 
-type RedirectsFields_updatedAt {
-  create: RedirectsFields_updatedAt_Create
-  read: RedirectsFields_updatedAt_Read
-  update: RedirectsFields_updatedAt_Update
-  delete: RedirectsFields_updatedAt_Delete
+type ShipyardsFields_updatedAt {
+  create: ShipyardsFields_updatedAt_Create
+  read: ShipyardsFields_updatedAt_Read
+  update: ShipyardsFields_updatedAt_Update
+  delete: ShipyardsFields_updatedAt_Delete
 }
 
-type RedirectsFields_updatedAt_Create {
+type ShipyardsFields_updatedAt_Create {
   permission: Boolean!
 }
 
-type RedirectsFields_updatedAt_Read {
+type ShipyardsFields_updatedAt_Read {
   permission: Boolean!
 }
 
-type RedirectsFields_updatedAt_Update {
+type ShipyardsFields_updatedAt_Update {
   permission: Boolean!
 }
 
-type RedirectsFields_updatedAt_Delete {
+type ShipyardsFields_updatedAt_Delete {
   permission: Boolean!
 }
 
-type RedirectsFields_createdAt {
-  create: RedirectsFields_createdAt_Create
-  read: RedirectsFields_createdAt_Read
-  update: RedirectsFields_createdAt_Update
-  delete: RedirectsFields_createdAt_Delete
+type ShipyardsFields_createdAt {
+  create: ShipyardsFields_createdAt_Create
+  read: ShipyardsFields_createdAt_Read
+  update: ShipyardsFields_createdAt_Update
+  delete: ShipyardsFields_createdAt_Delete
 }
 
-type RedirectsFields_createdAt_Create {
+type ShipyardsFields_createdAt_Create {
   permission: Boolean!
 }
 
-type RedirectsFields_createdAt_Read {
+type ShipyardsFields_createdAt_Read {
   permission: Boolean!
 }
 
-type RedirectsFields_createdAt_Update {
+type ShipyardsFields_createdAt_Update {
   permission: Boolean!
 }
 
-type RedirectsFields_createdAt_Delete {
+type ShipyardsFields_createdAt_Delete {
   permission: Boolean!
 }
 
-type RedirectsCreateAccess {
+type ShipyardsCreateAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type RedirectsReadAccess {
+type ShipyardsReadAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type RedirectsUpdateAccess {
+type ShipyardsUpdateAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type RedirectsDeleteAccess {
+type ShipyardsDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type recruitmentAccess {
+  fields: RecruitmentFields
+  create: RecruitmentCreateAccess
+  read: RecruitmentReadAccess
+  update: RecruitmentUpdateAccess
+  delete: RecruitmentDeleteAccess
+}
+
+type RecruitmentFields {
+  title: RecruitmentFields_title
+  description: RecruitmentFields_description
+  updatedAt: RecruitmentFields_updatedAt
+  createdAt: RecruitmentFields_createdAt
+}
+
+type RecruitmentFields_title {
+  create: RecruitmentFields_title_Create
+  read: RecruitmentFields_title_Read
+  update: RecruitmentFields_title_Update
+  delete: RecruitmentFields_title_Delete
+}
+
+type RecruitmentFields_title_Create {
+  permission: Boolean!
+}
+
+type RecruitmentFields_title_Read {
+  permission: Boolean!
+}
+
+type RecruitmentFields_title_Update {
+  permission: Boolean!
+}
+
+type RecruitmentFields_title_Delete {
+  permission: Boolean!
+}
+
+type RecruitmentFields_description {
+  create: RecruitmentFields_description_Create
+  read: RecruitmentFields_description_Read
+  update: RecruitmentFields_description_Update
+  delete: RecruitmentFields_description_Delete
+}
+
+type RecruitmentFields_description_Create {
+  permission: Boolean!
+}
+
+type RecruitmentFields_description_Read {
+  permission: Boolean!
+}
+
+type RecruitmentFields_description_Update {
+  permission: Boolean!
+}
+
+type RecruitmentFields_description_Delete {
+  permission: Boolean!
+}
+
+type RecruitmentFields_updatedAt {
+  create: RecruitmentFields_updatedAt_Create
+  read: RecruitmentFields_updatedAt_Read
+  update: RecruitmentFields_updatedAt_Update
+  delete: RecruitmentFields_updatedAt_Delete
+}
+
+type RecruitmentFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type RecruitmentFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type RecruitmentFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type RecruitmentFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type RecruitmentFields_createdAt {
+  create: RecruitmentFields_createdAt_Create
+  read: RecruitmentFields_createdAt_Read
+  update: RecruitmentFields_createdAt_Update
+  delete: RecruitmentFields_createdAt_Delete
+}
+
+type RecruitmentFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type RecruitmentFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type RecruitmentFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type RecruitmentFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type RecruitmentCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type RecruitmentReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type RecruitmentUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type RecruitmentDeleteAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -12018,9 +13151,12 @@ type Mutation {
   createPartner(data: mutationPartnerInput!, locale: LocaleInputType): Partner
   updatePartner(id: String!, autosave: Boolean, data: mutationPartnerUpdateInput!, locale: LocaleInputType): Partner
   deletePartner(id: String!): Partner
-  createRedirect(data: mutationRedirectInput!, locale: LocaleInputType): Redirect
-  updateRedirect(id: String!, autosave: Boolean, data: mutationRedirectUpdateInput!, locale: LocaleInputType): Redirect
-  deleteRedirect(id: String!): Redirect
+  createShipyard(data: mutationShipyardInput!, locale: LocaleInputType): Shipyard
+  updateShipyard(id: String!, autosave: Boolean, data: mutationShipyardUpdateInput!, locale: LocaleInputType): Shipyard
+  deleteShipyard(id: String!): Shipyard
+  createRecruitment(data: mutationRecruitmentInput!, locale: LocaleInputType): Recruitment
+  updateRecruitment(id: String!, autosave: Boolean, data: mutationRecruitmentUpdateInput!, locale: LocaleInputType): Recruitment
+  deleteRecruitment(id: String!): Recruitment
   createPayloadPreference(data: mutationPayloadPreferenceInput!, locale: LocaleInputType): PayloadPreference
   updatePayloadPreference(id: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!, locale: LocaleInputType): PayloadPreference
   deletePayloadPreference(id: String!): PayloadPreference
@@ -12077,9 +13213,12 @@ input mutationMediaUpdateInput {
 }
 
 input mutationUserInput {
-  name: String
+  name: String!
   roles: [User_roles_MutationInput]
   picture: String
+  position: String!
+  phones: [mutationUser_PhonesInput]
+  langs: [mutationUser_LangsInput!]
   updatedAt: String
   createdAt: String
   email: String!
@@ -12097,10 +13236,24 @@ enum User_roles_MutationInput {
   user
 }
 
+input mutationUser_PhonesInput {
+  prefix: String
+  number: String
+  id: String
+}
+
+input mutationUser_LangsInput {
+  lang: String
+  id: String
+}
+
 input mutationUserUpdateInput {
   name: String
   roles: [UserUpdate_roles_MutationInput]
   picture: String
+  position: String
+  phones: [mutationUserUpdate_PhonesInput]
+  langs: [mutationUserUpdate_LangsInput]
   updatedAt: String
   createdAt: String
   email: String
@@ -12116,6 +13269,17 @@ input mutationUserUpdateInput {
 enum UserUpdate_roles_MutationInput {
   admin
   user
+}
+
+input mutationUserUpdate_PhonesInput {
+  prefix: String
+  number: String
+  id: String
+}
+
+input mutationUserUpdate_LangsInput {
+  lang: String
+  id: String
 }
 
 type usersRefreshedUser {
@@ -12167,15 +13331,29 @@ input mutationYachtInput {
   yearBuilt: Float!
   yearModel: Float!
   featured: Boolean
-  keyFeatures: [mutationYacht_KeyFeaturesInput]
+  keyFeatures: [Yacht_keyFeatures_MutationInput]!
   photos: mutationYacht_PhotosInput!
   updatedAt: String
   createdAt: String
 }
 
-input mutationYacht_KeyFeaturesInput {
-  keyFeature: String!
-  id: String
+enum Yacht_keyFeatures_MutationInput {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input mutationYacht_PhotosInput {
@@ -12215,15 +13393,29 @@ input mutationYachtUpdateInput {
   yearBuilt: Float
   yearModel: Float
   featured: Boolean
-  keyFeatures: [mutationYachtUpdate_KeyFeaturesInput]
+  keyFeatures: [YachtUpdate_keyFeatures_MutationInput]
   photos: mutationYachtUpdate_PhotosInput!
   updatedAt: String
   createdAt: String
 }
 
-input mutationYachtUpdate_KeyFeaturesInput {
-  keyFeature: String!
-  id: String
+enum YachtUpdate_keyFeatures_MutationInput {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input mutationYachtUpdate_PhotosInput {
@@ -12263,15 +13455,29 @@ input mutationCharterInput {
   yearBuilt: Float!
   yearModel: Float!
   featured: Boolean
-  keyFeatures: [mutationCharter_KeyFeaturesInput]
+  keyFeatures: [Charter_keyFeatures_MutationInput]!
   photos: mutationCharter_PhotosInput!
   updatedAt: String
   createdAt: String
 }
 
-input mutationCharter_KeyFeaturesInput {
-  keyFeature: String!
-  id: String
+enum Charter_keyFeatures_MutationInput {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input mutationCharter_PhotosInput {
@@ -12311,15 +13517,29 @@ input mutationCharterUpdateInput {
   yearBuilt: Float
   yearModel: Float
   featured: Boolean
-  keyFeatures: [mutationCharterUpdate_KeyFeaturesInput]
+  keyFeatures: [CharterUpdate_keyFeatures_MutationInput]
   photos: mutationCharterUpdate_PhotosInput!
   updatedAt: String
   createdAt: String
 }
 
-input mutationCharterUpdate_KeyFeaturesInput {
-  keyFeature: String!
-  id: String
+enum CharterUpdate_keyFeatures_MutationInput {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
 }
 
 input mutationCharterUpdate_PhotosInput {
@@ -12398,6 +13618,7 @@ input mutationEventInput {
   title: String
   fromDate: String!
   toDate: String!
+  content: JSON
   image: String!
   updatedAt: String
   createdAt: String
@@ -12407,6 +13628,7 @@ input mutationEventUpdateInput {
   title: String
   fromDate: String
   toDate: String
+  content: JSON
   image: String
   updatedAt: String
   createdAt: String
@@ -12432,48 +13654,38 @@ input mutationPartnerUpdateInput {
   createdAt: String
 }
 
-input mutationRedirectInput {
-  from: String!
-  to: mutationRedirect_ToInput!
+input mutationShipyardInput {
+  name: String!
+  quote: String
+  website: String!
+  logo: String!
+  banner: String!
   updatedAt: String
   createdAt: String
 }
 
-input mutationRedirect_ToInput {
-  type: String
-  reference: Redirect_To_ReferenceRelationshipInput
-  url: String
-}
-
-input Redirect_To_ReferenceRelationshipInput {
-  relationTo: Redirect_To_ReferenceRelationshipInputRelationTo
-  value: JSON
-}
-
-enum Redirect_To_ReferenceRelationshipInputRelationTo {
-  articles
-}
-
-input mutationRedirectUpdateInput {
-  from: String
-  to: mutationRedirectUpdate_ToInput!
+input mutationShipyardUpdateInput {
+  name: String
+  quote: String
+  website: String
+  logo: String
+  banner: String
   updatedAt: String
   createdAt: String
 }
 
-input mutationRedirectUpdate_ToInput {
-  type: String
-  reference: RedirectUpdate_To_ReferenceRelationshipInput
-  url: String
+input mutationRecruitmentInput {
+  title: String
+  description: JSON
+  updatedAt: String
+  createdAt: String
 }
 
-input RedirectUpdate_To_ReferenceRelationshipInput {
-  relationTo: RedirectUpdate_To_ReferenceRelationshipInputRelationTo
-  value: JSON
-}
-
-enum RedirectUpdate_To_ReferenceRelationshipInputRelationTo {
-  articles
+input mutationRecruitmentUpdateInput {
+  title: String
+  description: JSON
+  updatedAt: String
+  createdAt: String
 }
 
 input mutationPayloadPreferenceInput {

@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload/types'
-import { users } from '../../access/users'
+
 import { anyone } from '../../access/anyone'
+import { users } from '../../access/users'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -59,6 +60,16 @@ export const Events: CollectionConfig = {
           required: true,
         },
       ],
+    },
+    {
+      type: 'richText',
+      name: 'content',
+      label: {
+        en: 'Content',
+        fr: 'Contenu',
+      },
+      required: false,
+      localized: true,
     },
     {
       name: 'image',

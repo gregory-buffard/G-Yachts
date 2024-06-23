@@ -1,6 +1,10 @@
 import dotenv from 'dotenv'
 import path from 'path'
 
+// This file is used to replace `server.ts` when ejecting i.e. `yarn eject`
+// See `../eject.ts` for exact details on how this file is used
+// See `./README.md#eject` for more information
+
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })
@@ -9,7 +13,12 @@ import express from 'express'
 import payload from 'payload'
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PAYLOAD_PORT || 3000
+
+// Redirect root to the admin panel
+app.get('/', (_, res) => {
+  res.redirect('/admin')
+})
 
 const start = async (): Promise<void> => {
   await payload.init({
@@ -21,7 +30,7 @@ const start = async (): Promise<void> => {
   })
 
   app.listen(PORT, async () => {
-    payload.logger.info(`Server started on port: ${process.env.PORT}`)
+    payload.logger.info(`Server started`)
   })
 }
 

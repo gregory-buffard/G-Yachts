@@ -1,9 +1,8 @@
 import type { CollectionConfig } from 'payload/types'
 
-import { populatePublishedAt } from '../../hooks/populatePublishedAt'
-import { revalidatePost } from './hooks/revalidatePost'
-import { users } from '../../access/users'
 import { anyone } from '../../access/anyone'
+import { users } from '../../access/users'
+import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -34,7 +33,13 @@ export const Articles: CollectionConfig = {
         return data
       },
     ],
-    afterChange: [revalidatePost],
+    beforeValidate: [
+      ({ data, req: { user } }) => {
+        // Set the author to the current user
+        data.author = user.id
+        return data
+      },
+    ],
   },
   versions: false,
   access: {
