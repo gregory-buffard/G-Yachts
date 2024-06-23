@@ -1,6 +1,7 @@
-import { CollectionConfig } from 'payload/types'
-import { users } from '../../access/users'
+import type { CollectionConfig } from 'payload/types'
+
 import { anyone } from '../../access/anyone'
+import { users } from '../../access/users'
 import { yachtsAndCharterCommonFields } from '../YachtAndCharterFields'
 
 export const Yachts: CollectionConfig = {
@@ -19,7 +20,7 @@ export const Yachts: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'model', 'price', 'region'],
     preview: doc => {
-      return `${process.env.PAYLOAD_PUBLIC_FRONTEND_URL}/yachts/${doc?.id}`
+      return `${process.env.PAYLOAD_PUBLIC_FRONTEND_URL}/yacht/${doc?.id}`
     },
     hideAPIURL: true,
   },

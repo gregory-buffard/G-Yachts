@@ -1,8 +1,8 @@
 import type { CollectionConfig } from 'payload/types'
 
-import { populatePublishedAt } from '../../hooks/populatePublishedAt'
-import { users } from '../../access/users'
 import { anyone } from '../../access/anyone'
+import { users } from '../../access/users'
+import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',

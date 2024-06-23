@@ -1,12 +1,11 @@
 import type { CollectionConfig } from 'payload/types'
 
+import { isAdminOrSelf } from '../../access/adminOrSelf'
 import { admins } from '../../access/admins'
-import adminsAndUser from './access/adminsAndUser'
+import { anyone } from '../../access/anyone'
 import { checkRole } from './checkRole'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
-import { isAdminOrSelf } from '../../access/adminOrSelf'
-import { anyone } from '../../access/anyone'
 
 const Users: CollectionConfig = {
   slug: 'users',

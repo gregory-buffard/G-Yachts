@@ -1,6 +1,7 @@
-import { CollectionConfig } from 'payload/types'
-import { admins } from '../../access/admins'
+import type { CollectionConfig } from 'payload/types'
+
 import { anyone } from '../../access/anyone'
+import { users } from '../../access/users'
 
 export const Destinations: CollectionConfig = {
   slug: 'destinations',
@@ -26,9 +27,9 @@ export const Destinations: CollectionConfig = {
   versions: false,
   access: {
     read: anyone,
-    create: admins,
-    update: admins,
-    delete: admins,
+    create: users,
+    update: users,
+    delete: users,
   },
   fields: [
     {

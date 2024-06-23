@@ -7,7 +7,6 @@ import type {
 import type { RichTextField } from 'payload/dist/fields/config/types'
 
 import deepMerge from '../../utilities/deepMerge'
-import link from '../link'
 import elements from './elements'
 import leaves from './leaves'
 
@@ -68,15 +67,6 @@ const richText: RichText = (
                 type: 'checkbox',
                 label: 'Enable Link',
               },
-              link({
-                appearances: false,
-                disableLabel: true,
-                overrides: {
-                  admin: {
-                    condition: (_, data) => Boolean(data?.enableLink),
-                  },
-                },
-              }),
             ],
           },
         },
