@@ -307,6 +307,76 @@
       "description": "Découvrez notre sélection exclusive de yachts à vendre, présentée par nos courtiers en yachts de luxe. Notre collection variée comprend les plus grands yachts à voile et à moteur du monde, depuis les bateaux d'entrée de gamme jusqu'aux opulents méga yachts. Notre flotte mondiale comprend à la fois des yachts neufs et des yachts appartenant à des particuliers. En s'appuyant sur notre expertise et nos relations avec les meilleurs chantiers navals et courtiers, nos spécialistes des yachts sont là pour vous guider dans la recherche et l'acquisition du yacht de vos rêves."
     }
   },
+  "recruitment": {
+    "hero": {
+      "title": "Découvrez les opportunités offertes par <classic>G-Yachts</classic>.",
+      "subtitle": "RECRUTEMENT"
+    }
+  },
+  "management": {
+    "metadata": {
+      "title": "Management",
+      "description": "Naviguez en toute tranquillité d'esprit grâce à nous, qui gérons les complexités de la propriété d'un yacht. G-Yachts propose une large gamme de services de gestion de yachts.",
+      "keywords": "management, yachts, luxury, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Nous nous occupons de tout pour votre <classic>Paix d'esprit</classic>",
+      "subtitle": "YACHT MANAGEMENT"
+    },
+    "services": {
+      "subtitle": "SERVICES PERSONNALISÉS",
+      "title": "Votre expert dédié aux <classic>Yachts</classic>",
+      "paragraph1": "G-Yachts s'appuie sur 25 ans d'expérience dans l'industrie du Yachting. Parce que nous savons que chaque yacht est différent, nous élaborons une stratégie adaptée et personnalisée afin d'en assurer une utilisation optimale.",
+      "paragraph2": "Notre forte connaissance des yachts nous permet d'avoir une compréhension globale de la gestion de chaque navire. Notre gamme de services suit les réglementations en évolution permanente.",
+      "paragraph3": "Notre objectif : réduire les coûts, optimiser l'utilisation et permettre au propriétaire de profiter de son yacht en toute sérénité."
+    },
+    "servicesList": {
+      "finance": {
+        "title": "Gestion financière",
+        "description": "G-Yachts développera des budgets annuels basés sur les besoins du propriétaire, gérera les finances du yacht, sélectionnera des fournisseurs de haute qualité et fournira des rapports financiers mensuels. Pour une organisation efficace, nous recommandons l'utilisation du logiciel Deepblue, dont le yacht sera propriétaire."
+      },
+      "support": {
+        "title": "Assistance technique",
+        "description": "G-Yachts supervisera l'ensemble de la maintenance et des réparations des yachts, dans le respect des normes du fabricant et des réglementations en vigueur. Nous nous occupons de l'achat et de la livraison des pièces détachées et de l'équipement, nous sélectionnons les chantiers navals et nous organisons les audits et les visites."
+      },
+      "administrative": {
+        "title": "Administratif",
+        "description": "G-Yachts s'occupera de toutes les tâches juridiques et administratives, y compris les enregistrements et les communications avec les autorités compétentes, et négociera également l'assurance pour le yacht et son équipage."
+      },
+      "crew": {
+        "title": "Gestion d'équipage",
+        "description": "G-Yachts recrutera et gérera un équipage qualifié pour le yacht selon les besoins du propriétaire et les normes réglementaires, y compris Safe Manning et STCW 2010. Nous superviserons la formation nécessaire de l'équipage conformément aux codes ISM/ISPS et veillerons à la discrétion de l'équipage afin de l'aligner sur la philosophie de l'armateur."
+      }
+    },
+    "assets": {
+      "title": "Nos <classic>Atouts</classic>",
+      "paragraph1": "Notre équipe de gestion est composée d'experts qui fournissent des services hautement personnalisés, des solutions sur mesure, avec le souci du détail et de la discrétion.",
+      "paragraph2": "Alors que beaucoup de nos concurrents se concentrent sur la gestion d'une flotte plus importante, chez G-Yachts nous privilégions la qualité à la quantité, en accordant plus de temps à chacun de nos clients afin de travailler efficacement avec leur équipage.",
+      "paragraph3": "Un Yacht Manager assurera une assistance 24/7, les plus hauts standards de qualité et de sécurité, et aidera à éviter toute situation critique. Notre objectif est de vous offrir un service inégalé.",
+      "paragraph4": "Nous fournissons un soutien et une assistance dans le monde entier."
+    },
+    "experience": {
+      "title": "Notre <classic>Expérience</classic>",
+      "subtitle": "MANAGEMENT",
+      "professionals": {
+        "title": "Une équipe de professionnels",
+        "description": "Gage de qualité, Gaspard Milazzo s'est entouré d'une équipe de professionnels passionnés, compétents et reconnus."
+      },
+      "needs": {
+        "title": "Nous anticipons vos besoins",
+        "description": "Le fait d'être un acteur actif de l'industrie du yachting nous permet de garantir un service efficace. Nous assistons à de nombreux salons nautiques et conférences afin de nous familiariser avec la réglementation en évolution permanente."
+      },
+      "performance": {
+        "title": "Performance en service",
+        "description": "Notre équipe d'experts et nos partenaires de qualité assurent l'analyse, les programmes d'entretien et la logistique. Nous apprécions le dialogue approfondi et la coopération avec les capitaines et les équipages qui, nous le croyons, augmentent et intensifient un service de haute qualité."
+      }
+    },
+    "bottom": {
+      "title": "Pour la Gestion des <classic>Yachts</classic>",
+      "CTA": "CONTACTEZ-NOUS"
+    }
+  },
   "contact": {
     "metadata": {
       "title": "Contact",
