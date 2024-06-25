@@ -32,7 +32,7 @@ const Grid = ({ data }: { data: IEvent[] }) => {
 
         return (
           <Link
-            href={"/"}
+            href={{ pathname: "/events/[id]", params: { id: event.id } }}
             key={event.title}
             className={"flex flex-col justify-center items-start gap-[2vh]"}
           >

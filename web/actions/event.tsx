@@ -28,3 +28,30 @@ export const fetchEvents = async (locale: "en" | "fr"): Promise<IEvent[]> => {
   });
   return data.Events.docs;
 };
+
+export const fetchEvent = async (
+  locale: "en" | "fr",
+  id: string,
+): Promise<IEvent> => {
+  const client = getClient();
+  const { data } = await client.query({
+    query: gql`
+      query Event($locale: LocaleInputType!, $id: String!) {
+        Event(id: $id, locale: $locale) {
+          title
+          fromDate
+          toDate
+          content
+          image {
+            url
+          }
+        }
+      }
+    `,
+    variables: {
+      locale,
+      id,
+    },
+  });
+  return data.Event;
+};

@@ -392,7 +392,8 @@
     "more": "Lire plus",
     "listed": "Vous avez vu {count} sur {total}",
     "expand": "Charger plus",
-    "end": "Vous avez atteint la fin de nos événements"
+    "end": "Vous avez atteint la fin de nos événements",
+    "charter": "Affréter un <classic>yacht</classic>"
   },
   "search": {
     "search": "Recherche",

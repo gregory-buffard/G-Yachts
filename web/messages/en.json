@@ -462,7 +462,8 @@
     "more": "Read more",
     "listed": "You've viewed {count} of {total}",
     "expand": "Load more",
-    "end": "You've reached the end of our events"
+    "end": "You've reached the end of our events",
+    "charter": "Charter a <classic>yacht</classic>"
   },
   "search": {
     "search": "Search",
