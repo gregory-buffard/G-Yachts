@@ -17,6 +17,7 @@ import { Events } from './collections/Events'
 import { Partners } from './collections/Partners'
 import { Recruitment } from './collections/Recruitment'
 import { Shipyards } from './collections/Shipyards'
+import { NewConstructions } from './collections/NewConstructions'
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -51,26 +52,13 @@ export default buildConfig({
   },
   editor: slateEditor({
     admin: {
-      elements: [
-        'h1',
-        'h2',
-        'h3',
-        'h4',
-        'h5',
-        'h6',
-        'blockquote',
-        'link',
-        'ol',
-        'ul',
-        'textAlign',
-        'upload',
-      ],
+      elements: ['h1', 'h2', 'h3', 'blockquote', 'link', 'ol', 'ul', 'upload'],
     },
   }),
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI,
+    url: process.env.PAYLOAD_DATABASE_URI,
     connectOptions: {
-      dbName: process.env.DATABASE_NAME,
+      dbName: process.env.PAYLOAD_DATABASE_NAME,
     },
   }),
   localization: {
@@ -79,7 +67,20 @@ export default buildConfig({
     fallback: true,
   },
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Articles, Media, Users, Yachts, Charters, Categories, Destinations, Events, Partners],
+  collections: [
+    Articles,
+    Media,
+    Users,
+    Yachts,
+    Charters,
+    Categories,
+    Destinations,
+    Events,
+    Partners,
+    Shipyards,
+    Recruitment,
+    NewConstructions,
+  ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
@@ -98,9 +99,6 @@ export default buildConfig({
     // },
   ],
   plugins: [
-    redirects({
-      collections: ['articles'],
-    }),
     // seo({
     //   collections: ['articles'],
     //   generateTitle,
