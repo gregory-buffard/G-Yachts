@@ -1,21 +1,22 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import redirects from '@payloadcms/plugin-redirects'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv'
 import path from 'path'
 import { buildConfig } from 'payload/config'
 
+import { Media } from './collections/Media'
 import { Articles } from './collections/Articles'
-import Categories from './collections/Categories'
+import Users from './collections/Users'
+import { Yachts } from './collections/Yachts'
 import { Charters } from './collections/Charters'
+import Categories from './collections/Categories'
 import { Destinations } from './collections/Destinations'
 import { Events } from './collections/Events'
-import { Media } from './collections/Media'
 import { Partners } from './collections/Partners'
 import { Recruitment } from './collections/Recruitment'
 import { Shipyards } from './collections/Shipyards'
-import Users from './collections/Users'
-import { Yachts } from './collections/Yachts'
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -50,13 +51,26 @@ export default buildConfig({
   },
   editor: slateEditor({
     admin: {
-      elements: ['h1', 'h2', 'h3', 'blockquote', 'link', 'ol', 'ul', 'upload'],
+      elements: [
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'blockquote',
+        'link',
+        'ol',
+        'ul',
+        'textAlign',
+        'upload',
+      ],
     },
   }),
   db: mongooseAdapter({
-    url: process.env.PAYLOAD_DATABASE_URI,
+    url: process.env.DATABASE_URI,
     connectOptions: {
-      dbName: process.env.PAYLOAD_DATABASE_NAME,
+      dbName: process.env.DATABASE_NAME,
     },
   }),
   localization: {
@@ -65,19 +79,7 @@ export default buildConfig({
     fallback: true,
   },
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [
-    Articles,
-    Media,
-    Users,
-    Yachts,
-    Charters,
-    Categories,
-    Destinations,
-    Events,
-    Partners,
-    Shipyards,
-    Recruitment,
-  ],
+  collections: [Articles, Media, Users, Yachts, Charters, Categories, Destinations, Events, Partners],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
@@ -96,9 +98,9 @@ export default buildConfig({
     // },
   ],
   plugins: [
-    // redirects({
-    //   collections: ['articles'],
-    // }),
+    redirects({
+      collections: ['articles'],
+    }),
     // seo({
     //   collections: ['articles'],
     //   generateTitle,
