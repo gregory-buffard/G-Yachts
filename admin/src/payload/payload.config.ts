@@ -16,6 +16,7 @@ import { Recruitment } from './collections/Recruitment'
 import { Shipyards } from './collections/Shipyards'
 import Users from './collections/Users'
 import { Yachts } from './collections/Yachts'
+import { NewConstructions } from './collections/NewConstructions'
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -77,6 +78,7 @@ export default buildConfig({
     Partners,
     Shipyards,
     Recruitment,
+    NewConstructions,
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
