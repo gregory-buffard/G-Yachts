@@ -62,6 +62,34 @@ export const Events: CollectionConfig = {
       ],
     },
     {
+      type: 'group',
+      name: 'location',
+      label: {
+        en: 'Location',
+        fr: 'Lieu',
+      },
+      fields: [
+        {
+          type: 'text',
+          label: {
+            en: 'City',
+            fr: 'Ville',
+          },
+          name: 'city',
+          required: false,
+        },
+        {
+          type: 'text',
+          label: {
+            en: 'Country',
+            fr: 'Pays',
+          },
+          name: 'country',
+          required: false,
+        },
+      ],
+    },
+    {
       type: 'richText',
       name: 'content',
       label: {
