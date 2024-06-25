@@ -17,6 +17,9 @@ import { Events } from './collections/Events'
 import { Partners } from './collections/Partners'
 import { Recruitment } from './collections/Recruitment'
 import { Shipyards } from './collections/Shipyards'
+import Users from './collections/Users'
+import { Yachts } from './collections/Yachts'
+import { NewConstructions } from './collections/NewConstructions'
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -79,7 +82,20 @@ export default buildConfig({
     fallback: true,
   },
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Articles, Media, Users, Yachts, Charters, Categories, Destinations, Events, Partners],
+  collections: [
+    Articles,
+    Media,
+    Users,
+    Yachts,
+    Charters,
+    Categories,
+    Destinations,
+    Events,
+    Partners,
+    Shipyards,
+    Recruitment,
+    NewConstructions,
+  ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
