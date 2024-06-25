@@ -382,6 +382,19 @@
     "category": "Catégorie",
     "moreArticles": "Plus <classic>d'articles</classic>"
   },
+  "events": {
+    "hero": {
+      "title": "Votre invitation aux <classic>événements</classic> les plus exclusifs",
+      "subtitle": "Événements"
+    },
+    "upcoming": "Événements <classic>à venir</classic>",
+    "past": "Événements <classic>passés</classic>",
+    "more": "Lire plus",
+    "listed": "Vous avez vu {count} sur {total}",
+    "expand": "Charger plus",
+    "end": "Vous avez atteint la fin de nos événements",
+    "charter": "Affréter un <classic>yacht</classic>"
+  },
   "search": {
     "search": "Recherche",
     "placeholder": "Rechercher un yacht, une destination, un article...",

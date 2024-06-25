@@ -14,6 +14,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         hero: "url('../public/imagery/optimized/index/hero.webp')",
+        events: "url('../public/imagery/optimized/events.webp')",
       },
       colors: {
         navy: "#011936",
