@@ -87,6 +87,15 @@ export const Events: CollectionConfig = {
           name: 'country',
           required: false,
         },
+        {
+          type: 'text',
+          label: {
+            en: 'Destination',
+            fr: 'Destination',
+          },
+          name: 'destination',
+          required: false,
+        },
       ],
     },
     {
