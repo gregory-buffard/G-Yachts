@@ -45,6 +45,10 @@ type Query {
   Recruitments(where: Recruitment_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Recruitments
   countRecruitments(where: Recruitment_where, locale: LocaleInputType): countRecruitments
   docAccessRecruitment(id: String!): recruitmentDocAccess
+  NewConstruction(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): NewConstruction
+  NewConstructions(where: NewConstruction_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): NewConstructions
+  countNewConstructions(where: NewConstruction_where, locale: LocaleInputType): countNewConstructions
+  docAccessNewConstruction(id: String!): new_constructionsDocAccess
   PayloadPreference(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): PayloadPreference
   PayloadPreferences(where: PayloadPreference_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): PayloadPreferences
   countPayloadPreferences(where: PayloadPreference_where, locale: LocaleInputType): countPayloadPreferences
@@ -6649,10 +6653,16 @@ type Event {
   title: String
   fromDate: DateTime!
   toDate: DateTime!
+  location: Event_Location
   content(depth: Int): JSON
   image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Event_Image_where): Media!
   updatedAt: DateTime
   createdAt: DateTime
+}
+
+type Event_Location {
+  city: String
+  country: String
 }
 
 input Event_Image_where {
@@ -6851,6 +6861,8 @@ input Event_where {
   title: Event_title_operator
   fromDate: Event_fromDate_operator
   toDate: Event_toDate_operator
+  location__city: Event_location__city_operator
+  location__country: Event_location__country_operator
   content: Event_content_operator
   image: Event_image_operator
   updatedAt: Event_updatedAt_operator
@@ -6888,6 +6900,28 @@ input Event_toDate_operator {
   less_than_equal: DateTime
   less_than: DateTime
   like: DateTime
+}
+
+input Event_location__city_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Event_location__country_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Event_content_operator {
@@ -6940,6 +6974,8 @@ input Event_where_and {
   title: Event_title_operator
   fromDate: Event_fromDate_operator
   toDate: Event_toDate_operator
+  location__city: Event_location__city_operator
+  location__country: Event_location__country_operator
   content: Event_content_operator
   image: Event_image_operator
   updatedAt: Event_updatedAt_operator
@@ -6953,6 +6989,8 @@ input Event_where_or {
   title: Event_title_operator
   fromDate: Event_fromDate_operator
   toDate: Event_toDate_operator
+  location__city: Event_location__city_operator
+  location__country: Event_location__country_operator
   content: Event_content_operator
   image: Event_image_operator
   updatedAt: Event_updatedAt_operator
@@ -6978,6 +7016,7 @@ type EventsDocAccessFields {
   title: EventsDocAccessFields_title
   fromDate: EventsDocAccessFields_fromDate
   toDate: EventsDocAccessFields_toDate
+  location: EventsDocAccessFields_location
   content: EventsDocAccessFields_content
   image: EventsDocAccessFields_image
   updatedAt: EventsDocAccessFields_updatedAt
@@ -7050,6 +7089,81 @@ type EventsDocAccessFields_toDate_Update {
 }
 
 type EventsDocAccessFields_toDate_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location {
+  create: EventsDocAccessFields_location_Create
+  read: EventsDocAccessFields_location_Read
+  update: EventsDocAccessFields_location_Update
+  delete: EventsDocAccessFields_location_Delete
+  fields: EventsDocAccessFields_location_Fields
+}
+
+type EventsDocAccessFields_location_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_Fields {
+  city: EventsDocAccessFields_location_city
+  country: EventsDocAccessFields_location_country
+}
+
+type EventsDocAccessFields_location_city {
+  create: EventsDocAccessFields_location_city_Create
+  read: EventsDocAccessFields_location_city_Read
+  update: EventsDocAccessFields_location_city_Update
+  delete: EventsDocAccessFields_location_city_Delete
+}
+
+type EventsDocAccessFields_location_city_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_city_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_city_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_city_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_country {
+  create: EventsDocAccessFields_location_country_Create
+  read: EventsDocAccessFields_location_country_Read
+  update: EventsDocAccessFields_location_country_Update
+  delete: EventsDocAccessFields_location_country_Delete
+}
+
+type EventsDocAccessFields_location_country_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_country_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_country_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_country_Delete {
   permission: Boolean!
 }
 
@@ -8781,6 +8895,1763 @@ type RecruitmentDeleteDocAccess {
   where: JSONObject
 }
 
+type NewConstruction {
+  id: String
+  delivery: String!
+  name: String!
+  model: String!
+  price: Float!
+  LOA: Float!
+  beam: Float!
+  broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User!
+  builder: String!
+  category: String!
+  city: String!
+  continent: String!
+  country: String!
+  cruising: Boolean!
+  crypto: Boolean!
+  length: Float!
+  state: String!
+  material: String!
+  maxDraft: Float!
+  minDraft: Float!
+  region: String!
+  rooms: Float!
+  sleeps: Float!
+  subcategory: String!
+  tonnage: Float!
+  yearBuilt: Float!
+  yearModel: Float!
+  featured: Boolean!
+  keyFeatures: [NewConstruction_keyFeatures!]!
+  photos: NewConstruction_Photos
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+enum NewConstruction_keyFeatures {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
+}
+
+type NewConstruction_Photos {
+  featured(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: NewConstruction_Photos_Featured_where): Media
+  gallery: [NewConstruction_Photos_Gallery!]
+}
+
+input NewConstruction_Photos_Featured_where {
+  alt: NewConstruction_Photos_Featured_alt_operator
+  updatedAt: NewConstruction_Photos_Featured_updatedAt_operator
+  createdAt: NewConstruction_Photos_Featured_createdAt_operator
+  url: NewConstruction_Photos_Featured_url_operator
+  filename: NewConstruction_Photos_Featured_filename_operator
+  mimeType: NewConstruction_Photos_Featured_mimeType_operator
+  filesize: NewConstruction_Photos_Featured_filesize_operator
+  width: NewConstruction_Photos_Featured_width_operator
+  height: NewConstruction_Photos_Featured_height_operator
+  focalX: NewConstruction_Photos_Featured_focalX_operator
+  focalY: NewConstruction_Photos_Featured_focalY_operator
+  id: NewConstruction_Photos_Featured_id_operator
+  AND: [NewConstruction_Photos_Featured_where_and]
+  OR: [NewConstruction_Photos_Featured_where_or]
+}
+
+input NewConstruction_Photos_Featured_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Featured_where_and {
+  alt: NewConstruction_Photos_Featured_alt_operator
+  updatedAt: NewConstruction_Photos_Featured_updatedAt_operator
+  createdAt: NewConstruction_Photos_Featured_createdAt_operator
+  url: NewConstruction_Photos_Featured_url_operator
+  filename: NewConstruction_Photos_Featured_filename_operator
+  mimeType: NewConstruction_Photos_Featured_mimeType_operator
+  filesize: NewConstruction_Photos_Featured_filesize_operator
+  width: NewConstruction_Photos_Featured_width_operator
+  height: NewConstruction_Photos_Featured_height_operator
+  focalX: NewConstruction_Photos_Featured_focalX_operator
+  focalY: NewConstruction_Photos_Featured_focalY_operator
+  id: NewConstruction_Photos_Featured_id_operator
+  AND: [NewConstruction_Photos_Featured_where_and]
+  OR: [NewConstruction_Photos_Featured_where_or]
+}
+
+input NewConstruction_Photos_Featured_where_or {
+  alt: NewConstruction_Photos_Featured_alt_operator
+  updatedAt: NewConstruction_Photos_Featured_updatedAt_operator
+  createdAt: NewConstruction_Photos_Featured_createdAt_operator
+  url: NewConstruction_Photos_Featured_url_operator
+  filename: NewConstruction_Photos_Featured_filename_operator
+  mimeType: NewConstruction_Photos_Featured_mimeType_operator
+  filesize: NewConstruction_Photos_Featured_filesize_operator
+  width: NewConstruction_Photos_Featured_width_operator
+  height: NewConstruction_Photos_Featured_height_operator
+  focalX: NewConstruction_Photos_Featured_focalX_operator
+  focalY: NewConstruction_Photos_Featured_focalY_operator
+  id: NewConstruction_Photos_Featured_id_operator
+  AND: [NewConstruction_Photos_Featured_where_and]
+  OR: [NewConstruction_Photos_Featured_where_or]
+}
+
+type NewConstruction_Photos_Gallery {
+  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: NewConstruction_Photos_Gallery_Image_where): Media
+  id: String
+}
+
+input NewConstruction_Photos_Gallery_Image_where {
+  alt: NewConstruction_Photos_Gallery_Image_alt_operator
+  updatedAt: NewConstruction_Photos_Gallery_Image_updatedAt_operator
+  createdAt: NewConstruction_Photos_Gallery_Image_createdAt_operator
+  url: NewConstruction_Photos_Gallery_Image_url_operator
+  filename: NewConstruction_Photos_Gallery_Image_filename_operator
+  mimeType: NewConstruction_Photos_Gallery_Image_mimeType_operator
+  filesize: NewConstruction_Photos_Gallery_Image_filesize_operator
+  width: NewConstruction_Photos_Gallery_Image_width_operator
+  height: NewConstruction_Photos_Gallery_Image_height_operator
+  focalX: NewConstruction_Photos_Gallery_Image_focalX_operator
+  focalY: NewConstruction_Photos_Gallery_Image_focalY_operator
+  id: NewConstruction_Photos_Gallery_Image_id_operator
+  AND: [NewConstruction_Photos_Gallery_Image_where_and]
+  OR: [NewConstruction_Photos_Gallery_Image_where_or]
+}
+
+input NewConstruction_Photos_Gallery_Image_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_Photos_Gallery_Image_where_and {
+  alt: NewConstruction_Photos_Gallery_Image_alt_operator
+  updatedAt: NewConstruction_Photos_Gallery_Image_updatedAt_operator
+  createdAt: NewConstruction_Photos_Gallery_Image_createdAt_operator
+  url: NewConstruction_Photos_Gallery_Image_url_operator
+  filename: NewConstruction_Photos_Gallery_Image_filename_operator
+  mimeType: NewConstruction_Photos_Gallery_Image_mimeType_operator
+  filesize: NewConstruction_Photos_Gallery_Image_filesize_operator
+  width: NewConstruction_Photos_Gallery_Image_width_operator
+  height: NewConstruction_Photos_Gallery_Image_height_operator
+  focalX: NewConstruction_Photos_Gallery_Image_focalX_operator
+  focalY: NewConstruction_Photos_Gallery_Image_focalY_operator
+  id: NewConstruction_Photos_Gallery_Image_id_operator
+  AND: [NewConstruction_Photos_Gallery_Image_where_and]
+  OR: [NewConstruction_Photos_Gallery_Image_where_or]
+}
+
+input NewConstruction_Photos_Gallery_Image_where_or {
+  alt: NewConstruction_Photos_Gallery_Image_alt_operator
+  updatedAt: NewConstruction_Photos_Gallery_Image_updatedAt_operator
+  createdAt: NewConstruction_Photos_Gallery_Image_createdAt_operator
+  url: NewConstruction_Photos_Gallery_Image_url_operator
+  filename: NewConstruction_Photos_Gallery_Image_filename_operator
+  mimeType: NewConstruction_Photos_Gallery_Image_mimeType_operator
+  filesize: NewConstruction_Photos_Gallery_Image_filesize_operator
+  width: NewConstruction_Photos_Gallery_Image_width_operator
+  height: NewConstruction_Photos_Gallery_Image_height_operator
+  focalX: NewConstruction_Photos_Gallery_Image_focalX_operator
+  focalY: NewConstruction_Photos_Gallery_Image_focalY_operator
+  id: NewConstruction_Photos_Gallery_Image_id_operator
+  AND: [NewConstruction_Photos_Gallery_Image_where_and]
+  OR: [NewConstruction_Photos_Gallery_Image_where_or]
+}
+
+type NewConstructions {
+  docs: [NewConstruction]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input NewConstruction_where {
+  delivery: NewConstruction_delivery_operator
+  name: NewConstruction_name_operator
+  model: NewConstruction_model_operator
+  price: NewConstruction_price_operator
+  LOA: NewConstruction_LOA_operator
+  beam: NewConstruction_beam_operator
+  broker: NewConstruction_broker_operator
+  builder: NewConstruction_builder_operator
+  category: NewConstruction_category_operator
+  city: NewConstruction_city_operator
+  continent: NewConstruction_continent_operator
+  country: NewConstruction_country_operator
+  cruising: NewConstruction_cruising_operator
+  crypto: NewConstruction_crypto_operator
+  length: NewConstruction_length_operator
+  state: NewConstruction_state_operator
+  material: NewConstruction_material_operator
+  maxDraft: NewConstruction_maxDraft_operator
+  minDraft: NewConstruction_minDraft_operator
+  region: NewConstruction_region_operator
+  rooms: NewConstruction_rooms_operator
+  sleeps: NewConstruction_sleeps_operator
+  subcategory: NewConstruction_subcategory_operator
+  tonnage: NewConstruction_tonnage_operator
+  yearBuilt: NewConstruction_yearBuilt_operator
+  yearModel: NewConstruction_yearModel_operator
+  featured: NewConstruction_featured_operator
+  keyFeatures: NewConstruction_keyFeatures_operator
+  photos__featured: NewConstruction_photos__featured_operator
+  photos__gallery__image: NewConstruction_photos__gallery__image_operator
+  photos__gallery__id: NewConstruction_photos__gallery__id_operator
+  updatedAt: NewConstruction_updatedAt_operator
+  createdAt: NewConstruction_createdAt_operator
+  id: NewConstruction_id_operator
+  AND: [NewConstruction_where_and]
+  OR: [NewConstruction_where_or]
+}
+
+input NewConstruction_delivery_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_model_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_price_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_LOA_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_beam_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_broker_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input NewConstruction_builder_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_category_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_city_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_continent_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_country_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_cruising_operator {
+  equals: Boolean
+  not_equals: Boolean
+}
+
+input NewConstruction_crypto_operator {
+  equals: Boolean
+  not_equals: Boolean
+}
+
+input NewConstruction_length_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_state_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_material_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_maxDraft_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_minDraft_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_region_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_rooms_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_sleeps_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_subcategory_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input NewConstruction_tonnage_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_yearBuilt_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_yearModel_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input NewConstruction_featured_operator {
+  equals: Boolean
+  not_equals: Boolean
+}
+
+input NewConstruction_keyFeatures_operator {
+  equals: NewConstruction_keyFeatures_Input
+  not_equals: NewConstruction_keyFeatures_Input
+  in: [NewConstruction_keyFeatures_Input]
+  not_in: [NewConstruction_keyFeatures_Input]
+  all: [NewConstruction_keyFeatures_Input]
+}
+
+enum NewConstruction_keyFeatures_Input {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
+}
+
+input NewConstruction_photos__featured_operator {
+  equals: String
+  not_equals: String
+}
+
+input NewConstruction_photos__gallery__image_operator {
+  equals: String
+  not_equals: String
+}
+
+input NewConstruction_photos__gallery__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input NewConstruction_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input NewConstruction_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_where_and {
+  delivery: NewConstruction_delivery_operator
+  name: NewConstruction_name_operator
+  model: NewConstruction_model_operator
+  price: NewConstruction_price_operator
+  LOA: NewConstruction_LOA_operator
+  beam: NewConstruction_beam_operator
+  broker: NewConstruction_broker_operator
+  builder: NewConstruction_builder_operator
+  category: NewConstruction_category_operator
+  city: NewConstruction_city_operator
+  continent: NewConstruction_continent_operator
+  country: NewConstruction_country_operator
+  cruising: NewConstruction_cruising_operator
+  crypto: NewConstruction_crypto_operator
+  length: NewConstruction_length_operator
+  state: NewConstruction_state_operator
+  material: NewConstruction_material_operator
+  maxDraft: NewConstruction_maxDraft_operator
+  minDraft: NewConstruction_minDraft_operator
+  region: NewConstruction_region_operator
+  rooms: NewConstruction_rooms_operator
+  sleeps: NewConstruction_sleeps_operator
+  subcategory: NewConstruction_subcategory_operator
+  tonnage: NewConstruction_tonnage_operator
+  yearBuilt: NewConstruction_yearBuilt_operator
+  yearModel: NewConstruction_yearModel_operator
+  featured: NewConstruction_featured_operator
+  keyFeatures: NewConstruction_keyFeatures_operator
+  photos__featured: NewConstruction_photos__featured_operator
+  photos__gallery__image: NewConstruction_photos__gallery__image_operator
+  photos__gallery__id: NewConstruction_photos__gallery__id_operator
+  updatedAt: NewConstruction_updatedAt_operator
+  createdAt: NewConstruction_createdAt_operator
+  id: NewConstruction_id_operator
+  AND: [NewConstruction_where_and]
+  OR: [NewConstruction_where_or]
+}
+
+input NewConstruction_where_or {
+  delivery: NewConstruction_delivery_operator
+  name: NewConstruction_name_operator
+  model: NewConstruction_model_operator
+  price: NewConstruction_price_operator
+  LOA: NewConstruction_LOA_operator
+  beam: NewConstruction_beam_operator
+  broker: NewConstruction_broker_operator
+  builder: NewConstruction_builder_operator
+  category: NewConstruction_category_operator
+  city: NewConstruction_city_operator
+  continent: NewConstruction_continent_operator
+  country: NewConstruction_country_operator
+  cruising: NewConstruction_cruising_operator
+  crypto: NewConstruction_crypto_operator
+  length: NewConstruction_length_operator
+  state: NewConstruction_state_operator
+  material: NewConstruction_material_operator
+  maxDraft: NewConstruction_maxDraft_operator
+  minDraft: NewConstruction_minDraft_operator
+  region: NewConstruction_region_operator
+  rooms: NewConstruction_rooms_operator
+  sleeps: NewConstruction_sleeps_operator
+  subcategory: NewConstruction_subcategory_operator
+  tonnage: NewConstruction_tonnage_operator
+  yearBuilt: NewConstruction_yearBuilt_operator
+  yearModel: NewConstruction_yearModel_operator
+  featured: NewConstruction_featured_operator
+  keyFeatures: NewConstruction_keyFeatures_operator
+  photos__featured: NewConstruction_photos__featured_operator
+  photos__gallery__image: NewConstruction_photos__gallery__image_operator
+  photos__gallery__id: NewConstruction_photos__gallery__id_operator
+  updatedAt: NewConstruction_updatedAt_operator
+  createdAt: NewConstruction_createdAt_operator
+  id: NewConstruction_id_operator
+  AND: [NewConstruction_where_and]
+  OR: [NewConstruction_where_or]
+}
+
+type countNewConstructions {
+  totalDocs: Int
+}
+
+type new_constructionsDocAccess {
+  fields: NewConstructionsDocAccessFields
+  create: NewConstructionsCreateDocAccess
+  read: NewConstructionsReadDocAccess
+  update: NewConstructionsUpdateDocAccess
+  delete: NewConstructionsDeleteDocAccess
+}
+
+type NewConstructionsDocAccessFields {
+  delivery: NewConstructionsDocAccessFields_delivery
+  name: NewConstructionsDocAccessFields_name
+  model: NewConstructionsDocAccessFields_model
+  price: NewConstructionsDocAccessFields_price
+  LOA: NewConstructionsDocAccessFields_LOA
+  beam: NewConstructionsDocAccessFields_beam
+  broker: NewConstructionsDocAccessFields_broker
+  builder: NewConstructionsDocAccessFields_builder
+  category: NewConstructionsDocAccessFields_category
+  city: NewConstructionsDocAccessFields_city
+  continent: NewConstructionsDocAccessFields_continent
+  country: NewConstructionsDocAccessFields_country
+  cruising: NewConstructionsDocAccessFields_cruising
+  crypto: NewConstructionsDocAccessFields_crypto
+  length: NewConstructionsDocAccessFields_length
+  state: NewConstructionsDocAccessFields_state
+  material: NewConstructionsDocAccessFields_material
+  maxDraft: NewConstructionsDocAccessFields_maxDraft
+  minDraft: NewConstructionsDocAccessFields_minDraft
+  region: NewConstructionsDocAccessFields_region
+  rooms: NewConstructionsDocAccessFields_rooms
+  sleeps: NewConstructionsDocAccessFields_sleeps
+  subcategory: NewConstructionsDocAccessFields_subcategory
+  tonnage: NewConstructionsDocAccessFields_tonnage
+  yearBuilt: NewConstructionsDocAccessFields_yearBuilt
+  yearModel: NewConstructionsDocAccessFields_yearModel
+  featured: NewConstructionsDocAccessFields_featured
+  keyFeatures: NewConstructionsDocAccessFields_keyFeatures
+  photos: NewConstructionsDocAccessFields_photos
+  updatedAt: NewConstructionsDocAccessFields_updatedAt
+  createdAt: NewConstructionsDocAccessFields_createdAt
+}
+
+type NewConstructionsDocAccessFields_delivery {
+  create: NewConstructionsDocAccessFields_delivery_Create
+  read: NewConstructionsDocAccessFields_delivery_Read
+  update: NewConstructionsDocAccessFields_delivery_Update
+  delete: NewConstructionsDocAccessFields_delivery_Delete
+}
+
+type NewConstructionsDocAccessFields_delivery_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_delivery_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_delivery_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_delivery_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_name {
+  create: NewConstructionsDocAccessFields_name_Create
+  read: NewConstructionsDocAccessFields_name_Read
+  update: NewConstructionsDocAccessFields_name_Update
+  delete: NewConstructionsDocAccessFields_name_Delete
+}
+
+type NewConstructionsDocAccessFields_name_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_name_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_name_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_model {
+  create: NewConstructionsDocAccessFields_model_Create
+  read: NewConstructionsDocAccessFields_model_Read
+  update: NewConstructionsDocAccessFields_model_Update
+  delete: NewConstructionsDocAccessFields_model_Delete
+}
+
+type NewConstructionsDocAccessFields_model_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_model_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_model_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_model_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_price {
+  create: NewConstructionsDocAccessFields_price_Create
+  read: NewConstructionsDocAccessFields_price_Read
+  update: NewConstructionsDocAccessFields_price_Update
+  delete: NewConstructionsDocAccessFields_price_Delete
+}
+
+type NewConstructionsDocAccessFields_price_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_price_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_price_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_price_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_LOA {
+  create: NewConstructionsDocAccessFields_LOA_Create
+  read: NewConstructionsDocAccessFields_LOA_Read
+  update: NewConstructionsDocAccessFields_LOA_Update
+  delete: NewConstructionsDocAccessFields_LOA_Delete
+}
+
+type NewConstructionsDocAccessFields_LOA_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_LOA_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_LOA_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_LOA_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_beam {
+  create: NewConstructionsDocAccessFields_beam_Create
+  read: NewConstructionsDocAccessFields_beam_Read
+  update: NewConstructionsDocAccessFields_beam_Update
+  delete: NewConstructionsDocAccessFields_beam_Delete
+}
+
+type NewConstructionsDocAccessFields_beam_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_beam_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_beam_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_beam_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_broker {
+  create: NewConstructionsDocAccessFields_broker_Create
+  read: NewConstructionsDocAccessFields_broker_Read
+  update: NewConstructionsDocAccessFields_broker_Update
+  delete: NewConstructionsDocAccessFields_broker_Delete
+}
+
+type NewConstructionsDocAccessFields_broker_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_broker_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_broker_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_broker_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_builder {
+  create: NewConstructionsDocAccessFields_builder_Create
+  read: NewConstructionsDocAccessFields_builder_Read
+  update: NewConstructionsDocAccessFields_builder_Update
+  delete: NewConstructionsDocAccessFields_builder_Delete
+}
+
+type NewConstructionsDocAccessFields_builder_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_builder_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_builder_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_builder_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_category {
+  create: NewConstructionsDocAccessFields_category_Create
+  read: NewConstructionsDocAccessFields_category_Read
+  update: NewConstructionsDocAccessFields_category_Update
+  delete: NewConstructionsDocAccessFields_category_Delete
+}
+
+type NewConstructionsDocAccessFields_category_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_category_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_category_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_category_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_city {
+  create: NewConstructionsDocAccessFields_city_Create
+  read: NewConstructionsDocAccessFields_city_Read
+  update: NewConstructionsDocAccessFields_city_Update
+  delete: NewConstructionsDocAccessFields_city_Delete
+}
+
+type NewConstructionsDocAccessFields_city_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_city_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_city_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_city_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_continent {
+  create: NewConstructionsDocAccessFields_continent_Create
+  read: NewConstructionsDocAccessFields_continent_Read
+  update: NewConstructionsDocAccessFields_continent_Update
+  delete: NewConstructionsDocAccessFields_continent_Delete
+}
+
+type NewConstructionsDocAccessFields_continent_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_continent_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_continent_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_continent_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_country {
+  create: NewConstructionsDocAccessFields_country_Create
+  read: NewConstructionsDocAccessFields_country_Read
+  update: NewConstructionsDocAccessFields_country_Update
+  delete: NewConstructionsDocAccessFields_country_Delete
+}
+
+type NewConstructionsDocAccessFields_country_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_country_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_country_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_country_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruising {
+  create: NewConstructionsDocAccessFields_cruising_Create
+  read: NewConstructionsDocAccessFields_cruising_Read
+  update: NewConstructionsDocAccessFields_cruising_Update
+  delete: NewConstructionsDocAccessFields_cruising_Delete
+}
+
+type NewConstructionsDocAccessFields_cruising_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruising_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruising_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruising_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_crypto {
+  create: NewConstructionsDocAccessFields_crypto_Create
+  read: NewConstructionsDocAccessFields_crypto_Read
+  update: NewConstructionsDocAccessFields_crypto_Update
+  delete: NewConstructionsDocAccessFields_crypto_Delete
+}
+
+type NewConstructionsDocAccessFields_crypto_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_crypto_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_crypto_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_crypto_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_length {
+  create: NewConstructionsDocAccessFields_length_Create
+  read: NewConstructionsDocAccessFields_length_Read
+  update: NewConstructionsDocAccessFields_length_Update
+  delete: NewConstructionsDocAccessFields_length_Delete
+}
+
+type NewConstructionsDocAccessFields_length_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_length_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_length_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_length_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_state {
+  create: NewConstructionsDocAccessFields_state_Create
+  read: NewConstructionsDocAccessFields_state_Read
+  update: NewConstructionsDocAccessFields_state_Update
+  delete: NewConstructionsDocAccessFields_state_Delete
+}
+
+type NewConstructionsDocAccessFields_state_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_state_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_state_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_state_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_material {
+  create: NewConstructionsDocAccessFields_material_Create
+  read: NewConstructionsDocAccessFields_material_Read
+  update: NewConstructionsDocAccessFields_material_Update
+  delete: NewConstructionsDocAccessFields_material_Delete
+}
+
+type NewConstructionsDocAccessFields_material_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_material_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_material_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_material_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_maxDraft {
+  create: NewConstructionsDocAccessFields_maxDraft_Create
+  read: NewConstructionsDocAccessFields_maxDraft_Read
+  update: NewConstructionsDocAccessFields_maxDraft_Update
+  delete: NewConstructionsDocAccessFields_maxDraft_Delete
+}
+
+type NewConstructionsDocAccessFields_maxDraft_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_maxDraft_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_maxDraft_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_maxDraft_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_minDraft {
+  create: NewConstructionsDocAccessFields_minDraft_Create
+  read: NewConstructionsDocAccessFields_minDraft_Read
+  update: NewConstructionsDocAccessFields_minDraft_Update
+  delete: NewConstructionsDocAccessFields_minDraft_Delete
+}
+
+type NewConstructionsDocAccessFields_minDraft_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_minDraft_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_minDraft_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_minDraft_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_region {
+  create: NewConstructionsDocAccessFields_region_Create
+  read: NewConstructionsDocAccessFields_region_Read
+  update: NewConstructionsDocAccessFields_region_Update
+  delete: NewConstructionsDocAccessFields_region_Delete
+}
+
+type NewConstructionsDocAccessFields_region_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_region_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_region_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_region_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_rooms {
+  create: NewConstructionsDocAccessFields_rooms_Create
+  read: NewConstructionsDocAccessFields_rooms_Read
+  update: NewConstructionsDocAccessFields_rooms_Update
+  delete: NewConstructionsDocAccessFields_rooms_Delete
+}
+
+type NewConstructionsDocAccessFields_rooms_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_rooms_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_rooms_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_rooms_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_sleeps {
+  create: NewConstructionsDocAccessFields_sleeps_Create
+  read: NewConstructionsDocAccessFields_sleeps_Read
+  update: NewConstructionsDocAccessFields_sleeps_Update
+  delete: NewConstructionsDocAccessFields_sleeps_Delete
+}
+
+type NewConstructionsDocAccessFields_sleeps_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_sleeps_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_sleeps_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_sleeps_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_subcategory {
+  create: NewConstructionsDocAccessFields_subcategory_Create
+  read: NewConstructionsDocAccessFields_subcategory_Read
+  update: NewConstructionsDocAccessFields_subcategory_Update
+  delete: NewConstructionsDocAccessFields_subcategory_Delete
+}
+
+type NewConstructionsDocAccessFields_subcategory_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_subcategory_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_subcategory_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_subcategory_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_tonnage {
+  create: NewConstructionsDocAccessFields_tonnage_Create
+  read: NewConstructionsDocAccessFields_tonnage_Read
+  update: NewConstructionsDocAccessFields_tonnage_Update
+  delete: NewConstructionsDocAccessFields_tonnage_Delete
+}
+
+type NewConstructionsDocAccessFields_tonnage_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_tonnage_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_tonnage_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_tonnage_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_yearBuilt {
+  create: NewConstructionsDocAccessFields_yearBuilt_Create
+  read: NewConstructionsDocAccessFields_yearBuilt_Read
+  update: NewConstructionsDocAccessFields_yearBuilt_Update
+  delete: NewConstructionsDocAccessFields_yearBuilt_Delete
+}
+
+type NewConstructionsDocAccessFields_yearBuilt_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_yearBuilt_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_yearBuilt_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_yearBuilt_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_yearModel {
+  create: NewConstructionsDocAccessFields_yearModel_Create
+  read: NewConstructionsDocAccessFields_yearModel_Read
+  update: NewConstructionsDocAccessFields_yearModel_Update
+  delete: NewConstructionsDocAccessFields_yearModel_Delete
+}
+
+type NewConstructionsDocAccessFields_yearModel_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_yearModel_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_yearModel_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_yearModel_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_featured {
+  create: NewConstructionsDocAccessFields_featured_Create
+  read: NewConstructionsDocAccessFields_featured_Read
+  update: NewConstructionsDocAccessFields_featured_Update
+  delete: NewConstructionsDocAccessFields_featured_Delete
+}
+
+type NewConstructionsDocAccessFields_featured_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_featured_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_featured_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_featured_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_keyFeatures {
+  create: NewConstructionsDocAccessFields_keyFeatures_Create
+  read: NewConstructionsDocAccessFields_keyFeatures_Read
+  update: NewConstructionsDocAccessFields_keyFeatures_Update
+  delete: NewConstructionsDocAccessFields_keyFeatures_Delete
+}
+
+type NewConstructionsDocAccessFields_keyFeatures_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_keyFeatures_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_keyFeatures_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_keyFeatures_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos {
+  create: NewConstructionsDocAccessFields_photos_Create
+  read: NewConstructionsDocAccessFields_photos_Read
+  update: NewConstructionsDocAccessFields_photos_Update
+  delete: NewConstructionsDocAccessFields_photos_Delete
+  fields: NewConstructionsDocAccessFields_photos_Fields
+}
+
+type NewConstructionsDocAccessFields_photos_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_Fields {
+  featured: NewConstructionsDocAccessFields_photos_featured
+  gallery: NewConstructionsDocAccessFields_photos_gallery
+}
+
+type NewConstructionsDocAccessFields_photos_featured {
+  create: NewConstructionsDocAccessFields_photos_featured_Create
+  read: NewConstructionsDocAccessFields_photos_featured_Read
+  update: NewConstructionsDocAccessFields_photos_featured_Update
+  delete: NewConstructionsDocAccessFields_photos_featured_Delete
+}
+
+type NewConstructionsDocAccessFields_photos_featured_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_featured_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_featured_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_featured_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery {
+  create: NewConstructionsDocAccessFields_photos_gallery_Create
+  read: NewConstructionsDocAccessFields_photos_gallery_Read
+  update: NewConstructionsDocAccessFields_photos_gallery_Update
+  delete: NewConstructionsDocAccessFields_photos_gallery_Delete
+  fields: NewConstructionsDocAccessFields_photos_gallery_Fields
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_Fields {
+  image: NewConstructionsDocAccessFields_photos_gallery_image
+  id: NewConstructionsDocAccessFields_photos_gallery_id
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_image {
+  create: NewConstructionsDocAccessFields_photos_gallery_image_Create
+  read: NewConstructionsDocAccessFields_photos_gallery_image_Read
+  update: NewConstructionsDocAccessFields_photos_gallery_image_Update
+  delete: NewConstructionsDocAccessFields_photos_gallery_image_Delete
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_image_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_image_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_image_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_image_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_id {
+  create: NewConstructionsDocAccessFields_photos_gallery_id_Create
+  read: NewConstructionsDocAccessFields_photos_gallery_id_Read
+  update: NewConstructionsDocAccessFields_photos_gallery_id_Update
+  delete: NewConstructionsDocAccessFields_photos_gallery_id_Delete
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_id_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_id_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_id_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_photos_gallery_id_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_updatedAt {
+  create: NewConstructionsDocAccessFields_updatedAt_Create
+  read: NewConstructionsDocAccessFields_updatedAt_Read
+  update: NewConstructionsDocAccessFields_updatedAt_Update
+  delete: NewConstructionsDocAccessFields_updatedAt_Delete
+}
+
+type NewConstructionsDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_createdAt {
+  create: NewConstructionsDocAccessFields_createdAt_Create
+  read: NewConstructionsDocAccessFields_createdAt_Read
+  update: NewConstructionsDocAccessFields_createdAt_Update
+  delete: NewConstructionsDocAccessFields_createdAt_Delete
+}
+
+type NewConstructionsDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type NewConstructionsReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type NewConstructionsUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type NewConstructionsDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type PayloadPreference {
   id: String
   user(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): PayloadPreference_User_Relationship!
@@ -9079,6 +10950,7 @@ type Access {
   partners: partnersAccess
   shipyards: shipyardsAccess
   recruitment: recruitmentAccess
+  new_constructions: new_constructionsAccess
   payload_preferences: payload_preferencesAccess
 }
 
@@ -12253,6 +14125,7 @@ type EventsFields {
   title: EventsFields_title
   fromDate: EventsFields_fromDate
   toDate: EventsFields_toDate
+  location: EventsFields_location
   content: EventsFields_content
   image: EventsFields_image
   updatedAt: EventsFields_updatedAt
@@ -12325,6 +14198,81 @@ type EventsFields_toDate_Update {
 }
 
 type EventsFields_toDate_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_location {
+  create: EventsFields_location_Create
+  read: EventsFields_location_Read
+  update: EventsFields_location_Update
+  delete: EventsFields_location_Delete
+  fields: EventsFields_location_Fields
+}
+
+type EventsFields_location_Create {
+  permission: Boolean!
+}
+
+type EventsFields_location_Read {
+  permission: Boolean!
+}
+
+type EventsFields_location_Update {
+  permission: Boolean!
+}
+
+type EventsFields_location_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_location_Fields {
+  city: EventsFields_location_city
+  country: EventsFields_location_country
+}
+
+type EventsFields_location_city {
+  create: EventsFields_location_city_Create
+  read: EventsFields_location_city_Read
+  update: EventsFields_location_city_Update
+  delete: EventsFields_location_city_Delete
+}
+
+type EventsFields_location_city_Create {
+  permission: Boolean!
+}
+
+type EventsFields_location_city_Read {
+  permission: Boolean!
+}
+
+type EventsFields_location_city_Update {
+  permission: Boolean!
+}
+
+type EventsFields_location_city_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_location_country {
+  create: EventsFields_location_country_Create
+  read: EventsFields_location_country_Read
+  update: EventsFields_location_country_Update
+  delete: EventsFields_location_country_Delete
+}
+
+type EventsFields_location_country_Create {
+  permission: Boolean!
+}
+
+type EventsFields_location_country_Read {
+  permission: Boolean!
+}
+
+type EventsFields_location_country_Update {
+  permission: Boolean!
+}
+
+type EventsFields_location_country_Delete {
   permission: Boolean!
 }
 
@@ -12965,6 +14913,885 @@ type RecruitmentDeleteAccess {
   where: JSONObject
 }
 
+type new_constructionsAccess {
+  fields: NewConstructionsFields
+  create: NewConstructionsCreateAccess
+  read: NewConstructionsReadAccess
+  update: NewConstructionsUpdateAccess
+  delete: NewConstructionsDeleteAccess
+}
+
+type NewConstructionsFields {
+  delivery: NewConstructionsFields_delivery
+  name: NewConstructionsFields_name
+  model: NewConstructionsFields_model
+  price: NewConstructionsFields_price
+  LOA: NewConstructionsFields_LOA
+  beam: NewConstructionsFields_beam
+  broker: NewConstructionsFields_broker
+  builder: NewConstructionsFields_builder
+  category: NewConstructionsFields_category
+  city: NewConstructionsFields_city
+  continent: NewConstructionsFields_continent
+  country: NewConstructionsFields_country
+  cruising: NewConstructionsFields_cruising
+  crypto: NewConstructionsFields_crypto
+  length: NewConstructionsFields_length
+  state: NewConstructionsFields_state
+  material: NewConstructionsFields_material
+  maxDraft: NewConstructionsFields_maxDraft
+  minDraft: NewConstructionsFields_minDraft
+  region: NewConstructionsFields_region
+  rooms: NewConstructionsFields_rooms
+  sleeps: NewConstructionsFields_sleeps
+  subcategory: NewConstructionsFields_subcategory
+  tonnage: NewConstructionsFields_tonnage
+  yearBuilt: NewConstructionsFields_yearBuilt
+  yearModel: NewConstructionsFields_yearModel
+  featured: NewConstructionsFields_featured
+  keyFeatures: NewConstructionsFields_keyFeatures
+  photos: NewConstructionsFields_photos
+  updatedAt: NewConstructionsFields_updatedAt
+  createdAt: NewConstructionsFields_createdAt
+}
+
+type NewConstructionsFields_delivery {
+  create: NewConstructionsFields_delivery_Create
+  read: NewConstructionsFields_delivery_Read
+  update: NewConstructionsFields_delivery_Update
+  delete: NewConstructionsFields_delivery_Delete
+}
+
+type NewConstructionsFields_delivery_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_delivery_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_delivery_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_delivery_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_name {
+  create: NewConstructionsFields_name_Create
+  read: NewConstructionsFields_name_Read
+  update: NewConstructionsFields_name_Update
+  delete: NewConstructionsFields_name_Delete
+}
+
+type NewConstructionsFields_name_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_name_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_name_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_name_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_model {
+  create: NewConstructionsFields_model_Create
+  read: NewConstructionsFields_model_Read
+  update: NewConstructionsFields_model_Update
+  delete: NewConstructionsFields_model_Delete
+}
+
+type NewConstructionsFields_model_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_model_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_model_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_model_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_price {
+  create: NewConstructionsFields_price_Create
+  read: NewConstructionsFields_price_Read
+  update: NewConstructionsFields_price_Update
+  delete: NewConstructionsFields_price_Delete
+}
+
+type NewConstructionsFields_price_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_price_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_price_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_price_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_LOA {
+  create: NewConstructionsFields_LOA_Create
+  read: NewConstructionsFields_LOA_Read
+  update: NewConstructionsFields_LOA_Update
+  delete: NewConstructionsFields_LOA_Delete
+}
+
+type NewConstructionsFields_LOA_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_LOA_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_LOA_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_LOA_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_beam {
+  create: NewConstructionsFields_beam_Create
+  read: NewConstructionsFields_beam_Read
+  update: NewConstructionsFields_beam_Update
+  delete: NewConstructionsFields_beam_Delete
+}
+
+type NewConstructionsFields_beam_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_beam_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_beam_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_beam_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_broker {
+  create: NewConstructionsFields_broker_Create
+  read: NewConstructionsFields_broker_Read
+  update: NewConstructionsFields_broker_Update
+  delete: NewConstructionsFields_broker_Delete
+}
+
+type NewConstructionsFields_broker_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_broker_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_broker_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_broker_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_builder {
+  create: NewConstructionsFields_builder_Create
+  read: NewConstructionsFields_builder_Read
+  update: NewConstructionsFields_builder_Update
+  delete: NewConstructionsFields_builder_Delete
+}
+
+type NewConstructionsFields_builder_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_builder_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_builder_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_builder_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_category {
+  create: NewConstructionsFields_category_Create
+  read: NewConstructionsFields_category_Read
+  update: NewConstructionsFields_category_Update
+  delete: NewConstructionsFields_category_Delete
+}
+
+type NewConstructionsFields_category_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_category_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_category_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_category_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_city {
+  create: NewConstructionsFields_city_Create
+  read: NewConstructionsFields_city_Read
+  update: NewConstructionsFields_city_Update
+  delete: NewConstructionsFields_city_Delete
+}
+
+type NewConstructionsFields_city_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_city_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_city_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_city_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_continent {
+  create: NewConstructionsFields_continent_Create
+  read: NewConstructionsFields_continent_Read
+  update: NewConstructionsFields_continent_Update
+  delete: NewConstructionsFields_continent_Delete
+}
+
+type NewConstructionsFields_continent_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_continent_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_continent_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_continent_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_country {
+  create: NewConstructionsFields_country_Create
+  read: NewConstructionsFields_country_Read
+  update: NewConstructionsFields_country_Update
+  delete: NewConstructionsFields_country_Delete
+}
+
+type NewConstructionsFields_country_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_country_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_country_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_country_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruising {
+  create: NewConstructionsFields_cruising_Create
+  read: NewConstructionsFields_cruising_Read
+  update: NewConstructionsFields_cruising_Update
+  delete: NewConstructionsFields_cruising_Delete
+}
+
+type NewConstructionsFields_cruising_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruising_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruising_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruising_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_crypto {
+  create: NewConstructionsFields_crypto_Create
+  read: NewConstructionsFields_crypto_Read
+  update: NewConstructionsFields_crypto_Update
+  delete: NewConstructionsFields_crypto_Delete
+}
+
+type NewConstructionsFields_crypto_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_crypto_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_crypto_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_crypto_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_length {
+  create: NewConstructionsFields_length_Create
+  read: NewConstructionsFields_length_Read
+  update: NewConstructionsFields_length_Update
+  delete: NewConstructionsFields_length_Delete
+}
+
+type NewConstructionsFields_length_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_length_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_length_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_length_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_state {
+  create: NewConstructionsFields_state_Create
+  read: NewConstructionsFields_state_Read
+  update: NewConstructionsFields_state_Update
+  delete: NewConstructionsFields_state_Delete
+}
+
+type NewConstructionsFields_state_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_state_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_state_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_state_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_material {
+  create: NewConstructionsFields_material_Create
+  read: NewConstructionsFields_material_Read
+  update: NewConstructionsFields_material_Update
+  delete: NewConstructionsFields_material_Delete
+}
+
+type NewConstructionsFields_material_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_material_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_material_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_material_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_maxDraft {
+  create: NewConstructionsFields_maxDraft_Create
+  read: NewConstructionsFields_maxDraft_Read
+  update: NewConstructionsFields_maxDraft_Update
+  delete: NewConstructionsFields_maxDraft_Delete
+}
+
+type NewConstructionsFields_maxDraft_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_maxDraft_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_maxDraft_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_maxDraft_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_minDraft {
+  create: NewConstructionsFields_minDraft_Create
+  read: NewConstructionsFields_minDraft_Read
+  update: NewConstructionsFields_minDraft_Update
+  delete: NewConstructionsFields_minDraft_Delete
+}
+
+type NewConstructionsFields_minDraft_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_minDraft_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_minDraft_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_minDraft_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_region {
+  create: NewConstructionsFields_region_Create
+  read: NewConstructionsFields_region_Read
+  update: NewConstructionsFields_region_Update
+  delete: NewConstructionsFields_region_Delete
+}
+
+type NewConstructionsFields_region_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_region_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_region_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_region_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_rooms {
+  create: NewConstructionsFields_rooms_Create
+  read: NewConstructionsFields_rooms_Read
+  update: NewConstructionsFields_rooms_Update
+  delete: NewConstructionsFields_rooms_Delete
+}
+
+type NewConstructionsFields_rooms_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_rooms_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_rooms_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_rooms_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_sleeps {
+  create: NewConstructionsFields_sleeps_Create
+  read: NewConstructionsFields_sleeps_Read
+  update: NewConstructionsFields_sleeps_Update
+  delete: NewConstructionsFields_sleeps_Delete
+}
+
+type NewConstructionsFields_sleeps_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_sleeps_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_sleeps_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_sleeps_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_subcategory {
+  create: NewConstructionsFields_subcategory_Create
+  read: NewConstructionsFields_subcategory_Read
+  update: NewConstructionsFields_subcategory_Update
+  delete: NewConstructionsFields_subcategory_Delete
+}
+
+type NewConstructionsFields_subcategory_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_subcategory_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_subcategory_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_subcategory_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_tonnage {
+  create: NewConstructionsFields_tonnage_Create
+  read: NewConstructionsFields_tonnage_Read
+  update: NewConstructionsFields_tonnage_Update
+  delete: NewConstructionsFields_tonnage_Delete
+}
+
+type NewConstructionsFields_tonnage_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_tonnage_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_tonnage_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_tonnage_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_yearBuilt {
+  create: NewConstructionsFields_yearBuilt_Create
+  read: NewConstructionsFields_yearBuilt_Read
+  update: NewConstructionsFields_yearBuilt_Update
+  delete: NewConstructionsFields_yearBuilt_Delete
+}
+
+type NewConstructionsFields_yearBuilt_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_yearBuilt_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_yearBuilt_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_yearBuilt_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_yearModel {
+  create: NewConstructionsFields_yearModel_Create
+  read: NewConstructionsFields_yearModel_Read
+  update: NewConstructionsFields_yearModel_Update
+  delete: NewConstructionsFields_yearModel_Delete
+}
+
+type NewConstructionsFields_yearModel_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_yearModel_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_yearModel_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_yearModel_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_featured {
+  create: NewConstructionsFields_featured_Create
+  read: NewConstructionsFields_featured_Read
+  update: NewConstructionsFields_featured_Update
+  delete: NewConstructionsFields_featured_Delete
+}
+
+type NewConstructionsFields_featured_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_featured_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_featured_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_featured_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_keyFeatures {
+  create: NewConstructionsFields_keyFeatures_Create
+  read: NewConstructionsFields_keyFeatures_Read
+  update: NewConstructionsFields_keyFeatures_Update
+  delete: NewConstructionsFields_keyFeatures_Delete
+}
+
+type NewConstructionsFields_keyFeatures_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_keyFeatures_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_keyFeatures_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_keyFeatures_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos {
+  create: NewConstructionsFields_photos_Create
+  read: NewConstructionsFields_photos_Read
+  update: NewConstructionsFields_photos_Update
+  delete: NewConstructionsFields_photos_Delete
+  fields: NewConstructionsFields_photos_Fields
+}
+
+type NewConstructionsFields_photos_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_Fields {
+  featured: NewConstructionsFields_photos_featured
+  gallery: NewConstructionsFields_photos_gallery
+}
+
+type NewConstructionsFields_photos_featured {
+  create: NewConstructionsFields_photos_featured_Create
+  read: NewConstructionsFields_photos_featured_Read
+  update: NewConstructionsFields_photos_featured_Update
+  delete: NewConstructionsFields_photos_featured_Delete
+}
+
+type NewConstructionsFields_photos_featured_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_featured_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_featured_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_featured_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery {
+  create: NewConstructionsFields_photos_gallery_Create
+  read: NewConstructionsFields_photos_gallery_Read
+  update: NewConstructionsFields_photos_gallery_Update
+  delete: NewConstructionsFields_photos_gallery_Delete
+  fields: NewConstructionsFields_photos_gallery_Fields
+}
+
+type NewConstructionsFields_photos_gallery_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_Fields {
+  image: NewConstructionsFields_photos_gallery_image
+  id: NewConstructionsFields_photos_gallery_id
+}
+
+type NewConstructionsFields_photos_gallery_image {
+  create: NewConstructionsFields_photos_gallery_image_Create
+  read: NewConstructionsFields_photos_gallery_image_Read
+  update: NewConstructionsFields_photos_gallery_image_Update
+  delete: NewConstructionsFields_photos_gallery_image_Delete
+}
+
+type NewConstructionsFields_photos_gallery_image_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_image_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_image_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_image_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_id {
+  create: NewConstructionsFields_photos_gallery_id_Create
+  read: NewConstructionsFields_photos_gallery_id_Read
+  update: NewConstructionsFields_photos_gallery_id_Update
+  delete: NewConstructionsFields_photos_gallery_id_Delete
+}
+
+type NewConstructionsFields_photos_gallery_id_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_id_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_id_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_photos_gallery_id_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_updatedAt {
+  create: NewConstructionsFields_updatedAt_Create
+  read: NewConstructionsFields_updatedAt_Read
+  update: NewConstructionsFields_updatedAt_Update
+  delete: NewConstructionsFields_updatedAt_Delete
+}
+
+type NewConstructionsFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_createdAt {
+  create: NewConstructionsFields_createdAt_Create
+  read: NewConstructionsFields_createdAt_Read
+  update: NewConstructionsFields_createdAt_Update
+  delete: NewConstructionsFields_createdAt_Delete
+}
+
+type NewConstructionsFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type NewConstructionsReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type NewConstructionsUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type NewConstructionsDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type payload_preferencesAccess {
   fields: PayloadPreferencesFields
   create: PayloadPreferencesCreateAccess
@@ -13157,6 +15984,9 @@ type Mutation {
   createRecruitment(data: mutationRecruitmentInput!, locale: LocaleInputType): Recruitment
   updateRecruitment(id: String!, autosave: Boolean, data: mutationRecruitmentUpdateInput!, locale: LocaleInputType): Recruitment
   deleteRecruitment(id: String!): Recruitment
+  createNewConstruction(data: mutationNewConstructionInput!, locale: LocaleInputType): NewConstruction
+  updateNewConstruction(id: String!, autosave: Boolean, data: mutationNewConstructionUpdateInput!, locale: LocaleInputType): NewConstruction
+  deleteNewConstruction(id: String!): NewConstruction
   createPayloadPreference(data: mutationPayloadPreferenceInput!, locale: LocaleInputType): PayloadPreference
   updatePayloadPreference(id: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!, locale: LocaleInputType): PayloadPreference
   deletePayloadPreference(id: String!): PayloadPreference
@@ -13618,20 +16448,32 @@ input mutationEventInput {
   title: String
   fromDate: String!
   toDate: String!
+  location: mutationEvent_LocationInput
   content: JSON
   image: String!
   updatedAt: String
   createdAt: String
 }
 
+input mutationEvent_LocationInput {
+  city: String
+  country: String
+}
+
 input mutationEventUpdateInput {
   title: String
   fromDate: String
   toDate: String
+  location: mutationEventUpdate_LocationInput
   content: JSON
   image: String
   updatedAt: String
   createdAt: String
+}
+
+input mutationEventUpdate_LocationInput {
+  city: String
+  country: String
 }
 
 input mutationPartnerInput {
@@ -13686,6 +16528,132 @@ input mutationRecruitmentUpdateInput {
   description: JSON
   updatedAt: String
   createdAt: String
+}
+
+input mutationNewConstructionInput {
+  delivery: String!
+  name: String!
+  model: String!
+  price: Float!
+  LOA: Float!
+  beam: Float!
+  broker: String
+  builder: String!
+  category: String!
+  city: String!
+  continent: String!
+  country: String!
+  cruising: Boolean
+  crypto: Boolean
+  length: Float!
+  state: String!
+  material: String!
+  maxDraft: Float!
+  minDraft: Float!
+  region: String!
+  rooms: Float!
+  sleeps: Float!
+  subcategory: String!
+  tonnage: Float!
+  yearBuilt: Float!
+  yearModel: Float!
+  featured: Boolean
+  keyFeatures: [NewConstruction_keyFeatures_MutationInput]!
+  photos: mutationNewConstruction_PhotosInput!
+  updatedAt: String
+  createdAt: String
+}
+
+enum NewConstruction_keyFeatures_MutationInput {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
+}
+
+input mutationNewConstruction_PhotosInput {
+  featured: String!
+  gallery: [mutationNewConstruction_Photos_GalleryInput]
+}
+
+input mutationNewConstruction_Photos_GalleryInput {
+  image: String!
+  id: String
+}
+
+input mutationNewConstructionUpdateInput {
+  delivery: String
+  name: String
+  model: String
+  price: Float
+  LOA: Float
+  beam: Float
+  broker: String
+  builder: String
+  category: String
+  city: String
+  continent: String
+  country: String
+  cruising: Boolean
+  crypto: Boolean
+  length: Float
+  state: String
+  material: String
+  maxDraft: Float
+  minDraft: Float
+  region: String
+  rooms: Float
+  sleeps: Float
+  subcategory: String
+  tonnage: Float
+  yearBuilt: Float
+  yearModel: Float
+  featured: Boolean
+  keyFeatures: [NewConstructionUpdate_keyFeatures_MutationInput]
+  photos: mutationNewConstructionUpdate_PhotosInput!
+  updatedAt: String
+  createdAt: String
+}
+
+enum NewConstructionUpdate_keyFeatures_MutationInput {
+  price
+  LOA
+  beam
+  builder
+  category
+  crusing
+  crypto
+  length
+  maxDraft
+  minDraft
+  rooms
+  sleeps
+  subcategory
+  tonnage
+  yearBuilt
+  yearModel
+}
+
+input mutationNewConstructionUpdate_PhotosInput {
+  featured: String!
+  gallery: [mutationNewConstructionUpdate_Photos_GalleryInput]
+}
+
+input mutationNewConstructionUpdate_Photos_GalleryInput {
+  image: String!
+  id: String
 }
 
 input mutationPayloadPreferenceInput {

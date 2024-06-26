@@ -19,6 +19,7 @@ export interface Config {
     partners: Partner;
     shipyards: Shipyard;
     recruitment: Recruitment;
+    'new-constructions': NewConstruction;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -263,6 +264,10 @@ export interface Event {
   title: string;
   fromDate: string;
   toDate: string;
+  location?: {
+    city?: string | null;
+    country?: string | null;
+  };
   content?:
     | {
         [k: string]: unknown;
@@ -310,6 +315,69 @@ export interface Recruitment {
   description: {
     [k: string]: unknown;
   }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "new-constructions".
+ */
+export interface NewConstruction {
+  id: string;
+  delivery: string;
+  name: string;
+  model: string;
+  price: number;
+  LOA: number;
+  beam: number;
+  broker: string | User;
+  builder: string;
+  category: string;
+  city: string;
+  continent: string;
+  country: string;
+  cruising: boolean;
+  crypto: boolean;
+  length: number;
+  state: string;
+  material: string;
+  maxDraft: number;
+  minDraft: number;
+  region: string;
+  rooms: number;
+  sleeps: number;
+  subcategory: string;
+  tonnage: number;
+  yearBuilt: number;
+  yearModel: number;
+  featured: boolean;
+  keyFeatures: (
+    | 'price'
+    | 'LOA'
+    | 'beam'
+    | 'builder'
+    | 'category'
+    | 'crusing'
+    | 'crypto'
+    | 'length'
+    | 'maxDraft'
+    | 'minDraft'
+    | 'rooms'
+    | 'sleeps'
+    | 'subcategory'
+    | 'tonnage'
+    | 'yearBuilt'
+    | 'yearModel'
+  )[];
+  photos: {
+    featured: string | Media;
+    gallery?:
+      | {
+          image: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt: string;
   createdAt: string;
 }

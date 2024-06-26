@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload/types'
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
+import { seoField } from '../shared/seo'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -108,6 +109,7 @@ export const Articles: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
+      defaultValue: ({ user }) => user?.id || null,
       hooks: {
         beforeChange: [
           ({ req }) => {
@@ -146,5 +148,6 @@ export const Articles: CollectionConfig = {
       },
       required: true,
     },
+    seoField,
   ],
 }

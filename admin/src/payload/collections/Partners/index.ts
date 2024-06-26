@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload/types'
 
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
+import { seoField } from '../shared/seo'
 
 export const Partners: CollectionConfig = {
   slug: 'partners',
@@ -77,5 +78,6 @@ export const Partners: CollectionConfig = {
       relationTo: 'media',
       required: true,
     },
+    seoField
   ],
 }
