@@ -1,11 +1,17 @@
 import { Field } from 'payload/types'
 
 export const seoField: Field = {
-  type: 'text',
+  type: 'array',
   name: 'seo',
   label: {
     en: 'SEO',
     fr: 'SEO',
   },
+  fields: [
+    {
+      type: 'text',
+      name: 'value',
+    },
+  ],
   required: false,
 }
