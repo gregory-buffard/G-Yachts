@@ -2,7 +2,8 @@ import type { CollectionConfig } from 'payload/types'
 
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
-import { yachtsAndCharterCommonFields } from '../YachtAndCharterFields'
+import { yachtsAndCharterCommonFields } from '../shared/YachtAndCharterFields'
+import { seoField } from '../shared/seo'
 
 export const Yachts: CollectionConfig = {
   slug: 'yachts',
@@ -32,5 +33,5 @@ export const Yachts: CollectionConfig = {
     update: users,
     delete: users,
   },
-  fields: [...yachtsAndCharterCommonFields],
+  fields: [...yachtsAndCharterCommonFields, seoField],
 }

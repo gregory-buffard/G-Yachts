@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload/types'
 
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
+import { seoField } from '../shared/seo'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -118,5 +119,6 @@ export const Events: CollectionConfig = {
       },
       required: true,
     },
+    seoField,
   ],
 }

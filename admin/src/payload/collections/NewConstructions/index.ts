@@ -2,7 +2,8 @@ import type { CollectionConfig } from 'payload/types'
 
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
-import { yachtsAndCharterCommonFields } from '../YachtAndCharterFields'
+import { yachtsAndCharterCommonFields } from '../shared/YachtAndCharterFields'
+import { seoField } from '../shared/seo'
 
 export const NewConstructions: CollectionConfig = {
   slug: 'new-constructions',
@@ -39,5 +40,6 @@ export const NewConstructions: CollectionConfig = {
       required: true,
     },
     ...yachtsAndCharterCommonFields,
+    seoField,
   ],
 }
