@@ -1,9 +1,10 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig, PayloadRequest } from 'payload/types'
 
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { seoField } from '../shared/seo'
+import { Article } from '../../payload-types'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -28,16 +29,9 @@ export const Articles: CollectionConfig = {
   hooks: {
     beforeChange: [
       populatePublishedAt,
-      ({ data, req: { user } }) => {
+      ({ data, req }: { data: any; req: PayloadRequest }) => {
         // Set the author to the current user
-        data.author = user.id
-        return data
-      },
-    ],
-    beforeValidate: [
-      ({ data, req: { user } }) => {
-        // Set the author to the current user
-        data.author = user.id
+        data.author = req.user.id
         return data
       },
     ],
@@ -108,6 +102,7 @@ export const Articles: CollectionConfig = {
       required: true,
       admin: {
         position: 'sidebar',
+        readOnly: true,
       },
       defaultValue: ({ user }) => user?.id || null,
       hooks: {

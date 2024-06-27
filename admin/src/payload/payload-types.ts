@@ -20,6 +20,8 @@ export interface Config {
     shipyards: Shipyard;
     recruitment: Recruitment;
     'new-constructions': NewConstruction;
+    messages: Message;
+    'archived-customers': ArchivedCustomer;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -39,6 +41,12 @@ export interface Article {
     [k: string]: unknown;
   }[];
   image: string | Media;
+  seo?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -161,6 +169,12 @@ export interface Yacht {
         }[]
       | null;
   };
+  seo?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -223,6 +237,20 @@ export interface Charter {
         }[]
       | null;
   };
+  seo?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  reservations?:
+    | {
+        from: string;
+        to?: string | null;
+        customer?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -252,6 +280,12 @@ export interface Destination {
    * @maxItems 2
    */
   coordinates?: [number, number] | null;
+  seo?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -267,6 +301,7 @@ export interface Event {
   location?: {
     city?: string | null;
     country?: string | null;
+    destination?: string | null;
   };
   content?:
     | {
@@ -274,6 +309,12 @@ export interface Event {
       }[]
     | null;
   image: string | Media;
+  seo?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -288,6 +329,12 @@ export interface Partner {
   comment: string;
   logo: string | Media;
   banner: string | Media;
+  seo?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -377,6 +424,65 @@ export interface NewConstruction {
           id?: string | null;
         }[]
       | null;
+  };
+  seo?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "messages".
+ */
+export interface Message {
+  id: string;
+  name: string;
+  email: string;
+  tel?: string | null;
+  message: string;
+  page?: string | null;
+  status?: ('pending' | 'claimed' | 'fulfilled') | null;
+  user?: (string | null) | User;
+  newsletter?: boolean | null;
+  closed?: boolean | null;
+  type?: ('charter' | 'sale') | null;
+  yacht?: (string | null) | Yacht;
+  charter?: (string | null) | Charter;
+  dealPrice?: number | null;
+  charterDates?: {
+    from?: string | null;
+    to?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "archived-customers".
+ */
+export interface ArchivedCustomer {
+  id: string;
+  closureDate: string;
+  name: string;
+  email: string;
+  tel?: string | null;
+  message: string;
+  page?: string | null;
+  status?: ('pending' | 'claimed' | 'fulfilled') | null;
+  user?: (string | null) | User;
+  newsletter?: boolean | null;
+  closed?: boolean | null;
+  type?: ('charter' | 'sale') | null;
+  yacht?: (string | null) | Yacht;
+  charter?: (string | null) | Charter;
+  dealPrice?: number | null;
+  charterDates?: {
+    from?: string | null;
+    to?: string | null;
   };
   updatedAt: string;
   createdAt: string;

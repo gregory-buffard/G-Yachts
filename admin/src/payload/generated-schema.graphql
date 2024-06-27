@@ -49,6 +49,14 @@ type Query {
   NewConstructions(where: NewConstruction_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): NewConstructions
   countNewConstructions(where: NewConstruction_where, locale: LocaleInputType): countNewConstructions
   docAccessNewConstruction(id: String!): new_constructionsDocAccess
+  Message(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Message
+  Messages(where: Message_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Messages
+  countMessages(where: Message_where, locale: LocaleInputType): countMessages
+  docAccessMessage(id: String!): messagesDocAccess
+  ArchivedCustomer(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): ArchivedCustomer
+  ArchivedCustomers(where: ArchivedCustomer_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): ArchivedCustomers
+  countArchivedCustomers(where: ArchivedCustomer_where, locale: LocaleInputType): countArchivedCustomers
+  docAccessArchivedCustomer(id: String!): archived_customersDocAccess
   PayloadPreference(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): PayloadPreference
   PayloadPreferences(where: PayloadPreference_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): PayloadPreferences
   countPayloadPreferences(where: PayloadPreference_where, locale: LocaleInputType): countPayloadPreferences
@@ -64,6 +72,7 @@ type Article {
   author(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User!
   content(depth: Int): JSON
   image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Article_Image_where): Media!
+  seo: [Article_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -508,6 +517,11 @@ input Article_Image_where_or {
   OR: [Article_Image_where_or]
 }
 
+type Article_Seo {
+  value: String
+  id: String
+}
+
 type Articles {
   docs: [Article]
   hasNextPage: Boolean
@@ -529,6 +543,8 @@ input Article_where {
   author: Article_author_operator
   content: Article_content_operator
   image: Article_image_operator
+  seo__value: Article_seo__value_operator
+  seo__id: Article_seo__id_operator
   updatedAt: Article_updatedAt_operator
   createdAt: Article_createdAt_operator
   id: Article_id_operator
@@ -584,6 +600,28 @@ input Article_image_operator {
   not_equals: String
 }
 
+input Article_seo__value_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Article_seo__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Article_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -624,6 +662,8 @@ input Article_where_and {
   author: Article_author_operator
   content: Article_content_operator
   image: Article_image_operator
+  seo__value: Article_seo__value_operator
+  seo__id: Article_seo__id_operator
   updatedAt: Article_updatedAt_operator
   createdAt: Article_createdAt_operator
   id: Article_id_operator
@@ -638,6 +678,8 @@ input Article_where_or {
   author: Article_author_operator
   content: Article_content_operator
   image: Article_image_operator
+  seo__value: Article_seo__value_operator
+  seo__id: Article_seo__id_operator
   updatedAt: Article_updatedAt_operator
   createdAt: Article_createdAt_operator
   id: Article_id_operator
@@ -664,6 +706,7 @@ type ArticlesDocAccessFields {
   author: ArticlesDocAccessFields_author
   content: ArticlesDocAccessFields_content
   image: ArticlesDocAccessFields_image
+  seo: ArticlesDocAccessFields_seo
   updatedAt: ArticlesDocAccessFields_updatedAt
   createdAt: ArticlesDocAccessFields_createdAt
 }
@@ -803,6 +846,81 @@ type ArticlesDocAccessFields_image_Update {
 }
 
 type ArticlesDocAccessFields_image_Delete {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo {
+  create: ArticlesDocAccessFields_seo_Create
+  read: ArticlesDocAccessFields_seo_Read
+  update: ArticlesDocAccessFields_seo_Update
+  delete: ArticlesDocAccessFields_seo_Delete
+  fields: ArticlesDocAccessFields_seo_Fields
+}
+
+type ArticlesDocAccessFields_seo_Create {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_Read {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_Update {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_Delete {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_Fields {
+  value: ArticlesDocAccessFields_seo_value
+  id: ArticlesDocAccessFields_seo_id
+}
+
+type ArticlesDocAccessFields_seo_value {
+  create: ArticlesDocAccessFields_seo_value_Create
+  read: ArticlesDocAccessFields_seo_value_Read
+  update: ArticlesDocAccessFields_seo_value_Update
+  delete: ArticlesDocAccessFields_seo_value_Delete
+}
+
+type ArticlesDocAccessFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_id {
+  create: ArticlesDocAccessFields_seo_id_Create
+  read: ArticlesDocAccessFields_seo_id_Read
+  update: ArticlesDocAccessFields_seo_id_Update
+  delete: ArticlesDocAccessFields_seo_id_Delete
+}
+
+type ArticlesDocAccessFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_seo_id_Delete {
   permission: Boolean!
 }
 
@@ -2020,6 +2138,7 @@ type Yacht {
   featured: Boolean!
   keyFeatures: [Yacht_keyFeatures!]!
   photos: Yacht_Photos
+  seo: [Yacht_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -2409,6 +2528,11 @@ input Yacht_Photos_Gallery_Image_where_or {
   OR: [Yacht_Photos_Gallery_Image_where_or]
 }
 
+type Yacht_Seo {
+  value: String
+  id: String
+}
+
 type Yachts {
   docs: [Yacht]
   hasNextPage: Boolean
@@ -2454,6 +2578,8 @@ input Yacht_where {
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
+  seo__value: Yacht_seo__value_operator
+  seo__id: Yacht_seo__id_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -2741,6 +2867,28 @@ input Yacht_photos__gallery__id_operator {
   exists: Boolean
 }
 
+input Yacht_seo__value_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Yacht_seo__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Yacht_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -2805,6 +2953,8 @@ input Yacht_where_and {
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
+  seo__value: Yacht_seo__value_operator
+  seo__id: Yacht_seo__id_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -2843,6 +2993,8 @@ input Yacht_where_or {
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
+  seo__value: Yacht_seo__value_operator
+  seo__id: Yacht_seo__id_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -2891,6 +3043,7 @@ type YachtsDocAccessFields {
   featured: YachtsDocAccessFields_featured
   keyFeatures: YachtsDocAccessFields_keyFeatures
   photos: YachtsDocAccessFields_photos
+  seo: YachtsDocAccessFields_seo
   updatedAt: YachtsDocAccessFields_updatedAt
   createdAt: YachtsDocAccessFields_createdAt
 }
@@ -3643,6 +3796,81 @@ type YachtsDocAccessFields_photos_gallery_id_Delete {
   permission: Boolean!
 }
 
+type YachtsDocAccessFields_seo {
+  create: YachtsDocAccessFields_seo_Create
+  read: YachtsDocAccessFields_seo_Read
+  update: YachtsDocAccessFields_seo_Update
+  delete: YachtsDocAccessFields_seo_Delete
+  fields: YachtsDocAccessFields_seo_Fields
+}
+
+type YachtsDocAccessFields_seo_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_Delete {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_Fields {
+  value: YachtsDocAccessFields_seo_value
+  id: YachtsDocAccessFields_seo_id
+}
+
+type YachtsDocAccessFields_seo_value {
+  create: YachtsDocAccessFields_seo_value_Create
+  read: YachtsDocAccessFields_seo_value_Read
+  update: YachtsDocAccessFields_seo_value_Update
+  delete: YachtsDocAccessFields_seo_value_Delete
+}
+
+type YachtsDocAccessFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_id {
+  create: YachtsDocAccessFields_seo_id_Create
+  read: YachtsDocAccessFields_seo_id_Read
+  update: YachtsDocAccessFields_seo_id_Update
+  delete: YachtsDocAccessFields_seo_id_Delete
+}
+
+type YachtsDocAccessFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
 type YachtsDocAccessFields_updatedAt {
   create: YachtsDocAccessFields_updatedAt_Create
   read: YachtsDocAccessFields_updatedAt_Read
@@ -3739,6 +3967,8 @@ type Charter {
   featured: Boolean!
   keyFeatures: [Charter_keyFeatures!]!
   photos: Charter_Photos
+  seo: [Charter_Seo!]
+  reservations: [Charter_Reservations!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -4128,6 +4358,18 @@ input Charter_Photos_Gallery_Image_where_or {
   OR: [Charter_Photos_Gallery_Image_where_or]
 }
 
+type Charter_Seo {
+  value: String
+  id: String
+}
+
+type Charter_Reservations {
+  from: DateTime
+  to: DateTime
+  customer: String
+  id: String
+}
+
 type Charters {
   docs: [Charter]
   hasNextPage: Boolean
@@ -4173,6 +4415,12 @@ input Charter_where {
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
+  seo__value: Charter_seo__value_operator
+  seo__id: Charter_seo__id_operator
+  reservations__from: Charter_reservations__from_operator
+  reservations__to: Charter_reservations__to_operator
+  reservations__customer: Charter_reservations__customer_operator
+  reservations__id: Charter_reservations__id_operator
   updatedAt: Charter_updatedAt_operator
   createdAt: Charter_createdAt_operator
   id: Charter_id_operator
@@ -4460,6 +4708,71 @@ input Charter_photos__gallery__id_operator {
   exists: Boolean
 }
 
+input Charter_seo__value_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Charter_seo__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Charter_reservations__from_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+}
+
+input Charter_reservations__to_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Charter_reservations__customer_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Charter_reservations__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Charter_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -4524,6 +4837,12 @@ input Charter_where_and {
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
+  seo__value: Charter_seo__value_operator
+  seo__id: Charter_seo__id_operator
+  reservations__from: Charter_reservations__from_operator
+  reservations__to: Charter_reservations__to_operator
+  reservations__customer: Charter_reservations__customer_operator
+  reservations__id: Charter_reservations__id_operator
   updatedAt: Charter_updatedAt_operator
   createdAt: Charter_createdAt_operator
   id: Charter_id_operator
@@ -4562,6 +4881,12 @@ input Charter_where_or {
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
+  seo__value: Charter_seo__value_operator
+  seo__id: Charter_seo__id_operator
+  reservations__from: Charter_reservations__from_operator
+  reservations__to: Charter_reservations__to_operator
+  reservations__customer: Charter_reservations__customer_operator
+  reservations__id: Charter_reservations__id_operator
   updatedAt: Charter_updatedAt_operator
   createdAt: Charter_createdAt_operator
   id: Charter_id_operator
@@ -4610,6 +4935,8 @@ type ChartersDocAccessFields {
   featured: ChartersDocAccessFields_featured
   keyFeatures: ChartersDocAccessFields_keyFeatures
   photos: ChartersDocAccessFields_photos
+  seo: ChartersDocAccessFields_seo
+  reservations: ChartersDocAccessFields_reservations
   updatedAt: ChartersDocAccessFields_updatedAt
   createdAt: ChartersDocAccessFields_createdAt
 }
@@ -5362,6 +5689,204 @@ type ChartersDocAccessFields_photos_gallery_id_Delete {
   permission: Boolean!
 }
 
+type ChartersDocAccessFields_seo {
+  create: ChartersDocAccessFields_seo_Create
+  read: ChartersDocAccessFields_seo_Read
+  update: ChartersDocAccessFields_seo_Update
+  delete: ChartersDocAccessFields_seo_Delete
+  fields: ChartersDocAccessFields_seo_Fields
+}
+
+type ChartersDocAccessFields_seo_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_Fields {
+  value: ChartersDocAccessFields_seo_value
+  id: ChartersDocAccessFields_seo_id
+}
+
+type ChartersDocAccessFields_seo_value {
+  create: ChartersDocAccessFields_seo_value_Create
+  read: ChartersDocAccessFields_seo_value_Read
+  update: ChartersDocAccessFields_seo_value_Update
+  delete: ChartersDocAccessFields_seo_value_Delete
+}
+
+type ChartersDocAccessFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_id {
+  create: ChartersDocAccessFields_seo_id_Create
+  read: ChartersDocAccessFields_seo_id_Read
+  update: ChartersDocAccessFields_seo_id_Update
+  delete: ChartersDocAccessFields_seo_id_Delete
+}
+
+type ChartersDocAccessFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations {
+  create: ChartersDocAccessFields_reservations_Create
+  read: ChartersDocAccessFields_reservations_Read
+  update: ChartersDocAccessFields_reservations_Update
+  delete: ChartersDocAccessFields_reservations_Delete
+  fields: ChartersDocAccessFields_reservations_Fields
+}
+
+type ChartersDocAccessFields_reservations_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_Fields {
+  from: ChartersDocAccessFields_reservations_from
+  to: ChartersDocAccessFields_reservations_to
+  customer: ChartersDocAccessFields_reservations_customer
+  id: ChartersDocAccessFields_reservations_id
+}
+
+type ChartersDocAccessFields_reservations_from {
+  create: ChartersDocAccessFields_reservations_from_Create
+  read: ChartersDocAccessFields_reservations_from_Read
+  update: ChartersDocAccessFields_reservations_from_Update
+  delete: ChartersDocAccessFields_reservations_from_Delete
+}
+
+type ChartersDocAccessFields_reservations_from_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_from_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_from_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_from_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_to {
+  create: ChartersDocAccessFields_reservations_to_Create
+  read: ChartersDocAccessFields_reservations_to_Read
+  update: ChartersDocAccessFields_reservations_to_Update
+  delete: ChartersDocAccessFields_reservations_to_Delete
+}
+
+type ChartersDocAccessFields_reservations_to_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_to_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_to_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_to_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_customer {
+  create: ChartersDocAccessFields_reservations_customer_Create
+  read: ChartersDocAccessFields_reservations_customer_Read
+  update: ChartersDocAccessFields_reservations_customer_Update
+  delete: ChartersDocAccessFields_reservations_customer_Delete
+}
+
+type ChartersDocAccessFields_reservations_customer_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_customer_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_customer_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_customer_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_id {
+  create: ChartersDocAccessFields_reservations_id_Create
+  read: ChartersDocAccessFields_reservations_id_Read
+  update: ChartersDocAccessFields_reservations_id_Update
+  delete: ChartersDocAccessFields_reservations_id_Delete
+}
+
+type ChartersDocAccessFields_reservations_id_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_id_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_id_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_reservations_id_Delete {
+  permission: Boolean!
+}
+
 type ChartersDocAccessFields_updatedAt {
   create: ChartersDocAccessFields_updatedAt_Create
   read: ChartersDocAccessFields_updatedAt_Read
@@ -5630,6 +6155,7 @@ type Destination {
   description: String
   info: Destination_Info
   coordinates: [Float!]
+  seo: [Destination_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -6002,6 +6528,11 @@ type Destination_Info {
   currency: String
 }
 
+type Destination_Seo {
+  value: String
+  id: String
+}
+
 type Destinations {
   docs: [Destination]
   hasNextPage: Boolean
@@ -6029,6 +6560,8 @@ input Destination_where {
   info__gettingThere: Destination_info__gettingThere_operator
   info__currency: Destination_info__currency_operator
   coordinates: Destination_coordinates_operator
+  seo__value: Destination_seo__value_operator
+  seo__id: Destination_seo__id_operator
   updatedAt: Destination_updatedAt_operator
   createdAt: Destination_createdAt_operator
   id: Destination_id_operator
@@ -6148,6 +6681,28 @@ input GeoJSONObject {
   type: String
 }
 
+input Destination_seo__value_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Destination_seo__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Destination_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -6194,6 +6749,8 @@ input Destination_where_and {
   info__gettingThere: Destination_info__gettingThere_operator
   info__currency: Destination_info__currency_operator
   coordinates: Destination_coordinates_operator
+  seo__value: Destination_seo__value_operator
+  seo__id: Destination_seo__id_operator
   updatedAt: Destination_updatedAt_operator
   createdAt: Destination_createdAt_operator
   id: Destination_id_operator
@@ -6214,6 +6771,8 @@ input Destination_where_or {
   info__gettingThere: Destination_info__gettingThere_operator
   info__currency: Destination_info__currency_operator
   coordinates: Destination_coordinates_operator
+  seo__value: Destination_seo__value_operator
+  seo__id: Destination_seo__id_operator
   updatedAt: Destination_updatedAt_operator
   createdAt: Destination_createdAt_operator
   id: Destination_id_operator
@@ -6242,6 +6801,7 @@ type DestinationsDocAccessFields {
   description: DestinationsDocAccessFields_description
   info: DestinationsDocAccessFields_info
   coordinates: DestinationsDocAccessFields_coordinates
+  seo: DestinationsDocAccessFields_seo
   updatedAt: DestinationsDocAccessFields_updatedAt
   createdAt: DestinationsDocAccessFields_createdAt
 }
@@ -6582,6 +7142,81 @@ type DestinationsDocAccessFields_coordinates_Delete {
   permission: Boolean!
 }
 
+type DestinationsDocAccessFields_seo {
+  create: DestinationsDocAccessFields_seo_Create
+  read: DestinationsDocAccessFields_seo_Read
+  update: DestinationsDocAccessFields_seo_Update
+  delete: DestinationsDocAccessFields_seo_Delete
+  fields: DestinationsDocAccessFields_seo_Fields
+}
+
+type DestinationsDocAccessFields_seo_Create {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_Read {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_Update {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_Delete {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_Fields {
+  value: DestinationsDocAccessFields_seo_value
+  id: DestinationsDocAccessFields_seo_id
+}
+
+type DestinationsDocAccessFields_seo_value {
+  create: DestinationsDocAccessFields_seo_value_Create
+  read: DestinationsDocAccessFields_seo_value_Read
+  update: DestinationsDocAccessFields_seo_value_Update
+  delete: DestinationsDocAccessFields_seo_value_Delete
+}
+
+type DestinationsDocAccessFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_id {
+  create: DestinationsDocAccessFields_seo_id_Create
+  read: DestinationsDocAccessFields_seo_id_Read
+  update: DestinationsDocAccessFields_seo_id_Update
+  delete: DestinationsDocAccessFields_seo_id_Delete
+}
+
+type DestinationsDocAccessFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
 type DestinationsDocAccessFields_updatedAt {
   create: DestinationsDocAccessFields_updatedAt_Create
   read: DestinationsDocAccessFields_updatedAt_Read
@@ -6656,6 +7291,7 @@ type Event {
   location: Event_Location
   content(depth: Int): JSON
   image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Event_Image_where): Media!
+  seo: [Event_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -6663,6 +7299,7 @@ type Event {
 type Event_Location {
   city: String
   country: String
+  destination: String
 }
 
 input Event_Image_where {
@@ -6843,6 +7480,11 @@ input Event_Image_where_or {
   OR: [Event_Image_where_or]
 }
 
+type Event_Seo {
+  value: String
+  id: String
+}
+
 type Events {
   docs: [Event]
   hasNextPage: Boolean
@@ -6863,8 +7505,11 @@ input Event_where {
   toDate: Event_toDate_operator
   location__city: Event_location__city_operator
   location__country: Event_location__country_operator
+  location__destination: Event_location__destination_operator
   content: Event_content_operator
   image: Event_image_operator
+  seo__value: Event_seo__value_operator
+  seo__id: Event_seo__id_operator
   updatedAt: Event_updatedAt_operator
   createdAt: Event_createdAt_operator
   id: Event_id_operator
@@ -6924,6 +7569,17 @@ input Event_location__country_operator {
   exists: Boolean
 }
 
+input Event_location__destination_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Event_content_operator {
   equals: JSON
   not_equals: JSON
@@ -6935,6 +7591,28 @@ input Event_content_operator {
 input Event_image_operator {
   equals: String
   not_equals: String
+}
+
+input Event_seo__value_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Event_seo__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Event_updatedAt_operator {
@@ -6976,8 +7654,11 @@ input Event_where_and {
   toDate: Event_toDate_operator
   location__city: Event_location__city_operator
   location__country: Event_location__country_operator
+  location__destination: Event_location__destination_operator
   content: Event_content_operator
   image: Event_image_operator
+  seo__value: Event_seo__value_operator
+  seo__id: Event_seo__id_operator
   updatedAt: Event_updatedAt_operator
   createdAt: Event_createdAt_operator
   id: Event_id_operator
@@ -6991,8 +7672,11 @@ input Event_where_or {
   toDate: Event_toDate_operator
   location__city: Event_location__city_operator
   location__country: Event_location__country_operator
+  location__destination: Event_location__destination_operator
   content: Event_content_operator
   image: Event_image_operator
+  seo__value: Event_seo__value_operator
+  seo__id: Event_seo__id_operator
   updatedAt: Event_updatedAt_operator
   createdAt: Event_createdAt_operator
   id: Event_id_operator
@@ -7019,6 +7703,7 @@ type EventsDocAccessFields {
   location: EventsDocAccessFields_location
   content: EventsDocAccessFields_content
   image: EventsDocAccessFields_image
+  seo: EventsDocAccessFields_seo
   updatedAt: EventsDocAccessFields_updatedAt
   createdAt: EventsDocAccessFields_createdAt
 }
@@ -7119,6 +7804,7 @@ type EventsDocAccessFields_location_Delete {
 type EventsDocAccessFields_location_Fields {
   city: EventsDocAccessFields_location_city
   country: EventsDocAccessFields_location_country
+  destination: EventsDocAccessFields_location_destination
 }
 
 type EventsDocAccessFields_location_city {
@@ -7167,6 +7853,29 @@ type EventsDocAccessFields_location_country_Delete {
   permission: Boolean!
 }
 
+type EventsDocAccessFields_location_destination {
+  create: EventsDocAccessFields_location_destination_Create
+  read: EventsDocAccessFields_location_destination_Read
+  update: EventsDocAccessFields_location_destination_Update
+  delete: EventsDocAccessFields_location_destination_Delete
+}
+
+type EventsDocAccessFields_location_destination_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_destination_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_destination_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_location_destination_Delete {
+  permission: Boolean!
+}
+
 type EventsDocAccessFields_content {
   create: EventsDocAccessFields_content_Create
   read: EventsDocAccessFields_content_Read
@@ -7210,6 +7919,81 @@ type EventsDocAccessFields_image_Update {
 }
 
 type EventsDocAccessFields_image_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo {
+  create: EventsDocAccessFields_seo_Create
+  read: EventsDocAccessFields_seo_Read
+  update: EventsDocAccessFields_seo_Update
+  delete: EventsDocAccessFields_seo_Delete
+  fields: EventsDocAccessFields_seo_Fields
+}
+
+type EventsDocAccessFields_seo_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_Fields {
+  value: EventsDocAccessFields_seo_value
+  id: EventsDocAccessFields_seo_id
+}
+
+type EventsDocAccessFields_seo_value {
+  create: EventsDocAccessFields_seo_value_Create
+  read: EventsDocAccessFields_seo_value_Read
+  update: EventsDocAccessFields_seo_value_Update
+  delete: EventsDocAccessFields_seo_value_Delete
+}
+
+type EventsDocAccessFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_id {
+  create: EventsDocAccessFields_seo_id_Create
+  read: EventsDocAccessFields_seo_id_Read
+  update: EventsDocAccessFields_seo_id_Update
+  delete: EventsDocAccessFields_seo_id_Delete
+}
+
+type EventsDocAccessFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_seo_id_Delete {
   permission: Boolean!
 }
 
@@ -7286,6 +8070,7 @@ type Partner {
   comment: String
   logo(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Partner_Logo_where): Media!
   banner(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Partner_Banner_where): Media!
+  seo: [Partner_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -7646,6 +8431,11 @@ input Partner_Banner_where_or {
   OR: [Partner_Banner_where_or]
 }
 
+type Partner_Seo {
+  value: String
+  id: String
+}
+
 type Partners {
   docs: [Partner]
   hasNextPage: Boolean
@@ -7666,6 +8456,8 @@ input Partner_where {
   comment: Partner_comment_operator
   logo: Partner_logo_operator
   banner: Partner_banner_operator
+  seo__value: Partner_seo__value_operator
+  seo__id: Partner_seo__id_operator
   updatedAt: Partner_updatedAt_operator
   createdAt: Partner_createdAt_operator
   id: Partner_id_operator
@@ -7707,6 +8499,28 @@ input Partner_banner_operator {
   not_equals: String
 }
 
+input Partner_seo__value_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Partner_seo__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Partner_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -7746,6 +8560,8 @@ input Partner_where_and {
   comment: Partner_comment_operator
   logo: Partner_logo_operator
   banner: Partner_banner_operator
+  seo__value: Partner_seo__value_operator
+  seo__id: Partner_seo__id_operator
   updatedAt: Partner_updatedAt_operator
   createdAt: Partner_createdAt_operator
   id: Partner_id_operator
@@ -7759,6 +8575,8 @@ input Partner_where_or {
   comment: Partner_comment_operator
   logo: Partner_logo_operator
   banner: Partner_banner_operator
+  seo__value: Partner_seo__value_operator
+  seo__id: Partner_seo__id_operator
   updatedAt: Partner_updatedAt_operator
   createdAt: Partner_createdAt_operator
   id: Partner_id_operator
@@ -7784,6 +8602,7 @@ type PartnersDocAccessFields {
   comment: PartnersDocAccessFields_comment
   logo: PartnersDocAccessFields_logo
   banner: PartnersDocAccessFields_banner
+  seo: PartnersDocAccessFields_seo
   updatedAt: PartnersDocAccessFields_updatedAt
   createdAt: PartnersDocAccessFields_createdAt
 }
@@ -7900,6 +8719,81 @@ type PartnersDocAccessFields_banner_Update {
 }
 
 type PartnersDocAccessFields_banner_Delete {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo {
+  create: PartnersDocAccessFields_seo_Create
+  read: PartnersDocAccessFields_seo_Read
+  update: PartnersDocAccessFields_seo_Update
+  delete: PartnersDocAccessFields_seo_Delete
+  fields: PartnersDocAccessFields_seo_Fields
+}
+
+type PartnersDocAccessFields_seo_Create {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_Read {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_Update {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_Delete {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_Fields {
+  value: PartnersDocAccessFields_seo_value
+  id: PartnersDocAccessFields_seo_id
+}
+
+type PartnersDocAccessFields_seo_value {
+  create: PartnersDocAccessFields_seo_value_Create
+  read: PartnersDocAccessFields_seo_value_Read
+  update: PartnersDocAccessFields_seo_value_Update
+  delete: PartnersDocAccessFields_seo_value_Delete
+}
+
+type PartnersDocAccessFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_id {
+  create: PartnersDocAccessFields_seo_id_Create
+  read: PartnersDocAccessFields_seo_id_Read
+  update: PartnersDocAccessFields_seo_id_Update
+  delete: PartnersDocAccessFields_seo_id_Delete
+}
+
+type PartnersDocAccessFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_seo_id_Delete {
   permission: Boolean!
 }
 
@@ -8926,6 +9820,7 @@ type NewConstruction {
   featured: Boolean!
   keyFeatures: [NewConstruction_keyFeatures!]!
   photos: NewConstruction_Photos
+  seo: [NewConstruction_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -9315,6 +10210,11 @@ input NewConstruction_Photos_Gallery_Image_where_or {
   OR: [NewConstruction_Photos_Gallery_Image_where_or]
 }
 
+type NewConstruction_Seo {
+  value: String
+  id: String
+}
+
 type NewConstructions {
   docs: [NewConstruction]
   hasNextPage: Boolean
@@ -9361,6 +10261,8 @@ input NewConstruction_where {
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
   photos__gallery__id: NewConstruction_photos__gallery__id_operator
+  seo__value: NewConstruction_seo__value_operator
+  seo__id: NewConstruction_seo__id_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -9658,6 +10560,28 @@ input NewConstruction_photos__gallery__id_operator {
   exists: Boolean
 }
 
+input NewConstruction_seo__value_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input NewConstruction_seo__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input NewConstruction_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -9723,6 +10647,8 @@ input NewConstruction_where_and {
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
   photos__gallery__id: NewConstruction_photos__gallery__id_operator
+  seo__value: NewConstruction_seo__value_operator
+  seo__id: NewConstruction_seo__id_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -9762,6 +10688,8 @@ input NewConstruction_where_or {
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
   photos__gallery__id: NewConstruction_photos__gallery__id_operator
+  seo__value: NewConstruction_seo__value_operator
+  seo__id: NewConstruction_seo__id_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -9811,6 +10739,7 @@ type NewConstructionsDocAccessFields {
   featured: NewConstructionsDocAccessFields_featured
   keyFeatures: NewConstructionsDocAccessFields_keyFeatures
   photos: NewConstructionsDocAccessFields_photos
+  seo: NewConstructionsDocAccessFields_seo
   updatedAt: NewConstructionsDocAccessFields_updatedAt
   createdAt: NewConstructionsDocAccessFields_createdAt
 }
@@ -10586,6 +11515,81 @@ type NewConstructionsDocAccessFields_photos_gallery_id_Delete {
   permission: Boolean!
 }
 
+type NewConstructionsDocAccessFields_seo {
+  create: NewConstructionsDocAccessFields_seo_Create
+  read: NewConstructionsDocAccessFields_seo_Read
+  update: NewConstructionsDocAccessFields_seo_Update
+  delete: NewConstructionsDocAccessFields_seo_Delete
+  fields: NewConstructionsDocAccessFields_seo_Fields
+}
+
+type NewConstructionsDocAccessFields_seo_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_Fields {
+  value: NewConstructionsDocAccessFields_seo_value
+  id: NewConstructionsDocAccessFields_seo_id
+}
+
+type NewConstructionsDocAccessFields_seo_value {
+  create: NewConstructionsDocAccessFields_seo_value_Create
+  read: NewConstructionsDocAccessFields_seo_value_Read
+  update: NewConstructionsDocAccessFields_seo_value_Update
+  delete: NewConstructionsDocAccessFields_seo_value_Delete
+}
+
+type NewConstructionsDocAccessFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_id {
+  create: NewConstructionsDocAccessFields_seo_id_Create
+  read: NewConstructionsDocAccessFields_seo_id_Read
+  update: NewConstructionsDocAccessFields_seo_id_Update
+  delete: NewConstructionsDocAccessFields_seo_id_Delete
+}
+
+type NewConstructionsDocAccessFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
 type NewConstructionsDocAccessFields_updatedAt {
   create: NewConstructionsDocAccessFields_updatedAt_Create
   read: NewConstructionsDocAccessFields_updatedAt_Read
@@ -10648,6 +11652,1586 @@ type NewConstructionsUpdateDocAccess {
 }
 
 type NewConstructionsDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type Message {
+  id: String
+  name: String!
+  email: EmailAddress!
+  tel: String
+  message: String!
+  page: String
+  status: Message_status
+  user(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
+  newsletter: Boolean
+  closed: Boolean
+  type: Message_type
+  yacht(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Yacht
+  charter(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Charter
+  dealPrice: Float
+  charterDates: Message_CharterDates
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+enum Message_status {
+  pending
+  claimed
+  fulfilled
+}
+
+enum Message_type {
+  charter
+  sale
+}
+
+type Message_CharterDates {
+  from: DateTime
+  to: DateTime
+}
+
+type Messages {
+  docs: [Message]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input Message_where {
+  name: Message_name_operator
+  email: Message_email_operator
+  tel: Message_tel_operator
+  message: Message_message_operator
+  page: Message_page_operator
+  status: Message_status_operator
+  user: Message_user_operator
+  newsletter: Message_newsletter_operator
+  closed: Message_closed_operator
+  type: Message_type_operator
+  yacht: Message_yacht_operator
+  charter: Message_charter_operator
+  dealPrice: Message_dealPrice_operator
+  charterDates__from: Message_charterDates__from_operator
+  charterDates__to: Message_charterDates__to_operator
+  updatedAt: Message_updatedAt_operator
+  createdAt: Message_createdAt_operator
+  id: Message_id_operator
+  AND: [Message_where_and]
+  OR: [Message_where_or]
+}
+
+input Message_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Message_email_operator {
+  equals: EmailAddress
+  not_equals: EmailAddress
+  like: EmailAddress
+  contains: EmailAddress
+  in: [EmailAddress]
+  not_in: [EmailAddress]
+  all: [EmailAddress]
+}
+
+input Message_tel_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Message_message_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+}
+
+input Message_page_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Message_status_operator {
+  equals: Message_status_Input
+  not_equals: Message_status_Input
+  in: [Message_status_Input]
+  not_in: [Message_status_Input]
+  all: [Message_status_Input]
+  exists: Boolean
+}
+
+enum Message_status_Input {
+  pending
+  claimed
+  fulfilled
+}
+
+input Message_user_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input Message_newsletter_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input Message_closed_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input Message_type_operator {
+  equals: Message_type_Input
+  not_equals: Message_type_Input
+  like: Message_type_Input
+  contains: Message_type_Input
+  exists: Boolean
+}
+
+enum Message_type_Input {
+  charter
+  sale
+}
+
+input Message_yacht_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input Message_charter_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input Message_dealPrice_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Message_charterDates__from_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Message_charterDates__to_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Message_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Message_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Message_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Message_where_and {
+  name: Message_name_operator
+  email: Message_email_operator
+  tel: Message_tel_operator
+  message: Message_message_operator
+  page: Message_page_operator
+  status: Message_status_operator
+  user: Message_user_operator
+  newsletter: Message_newsletter_operator
+  closed: Message_closed_operator
+  type: Message_type_operator
+  yacht: Message_yacht_operator
+  charter: Message_charter_operator
+  dealPrice: Message_dealPrice_operator
+  charterDates__from: Message_charterDates__from_operator
+  charterDates__to: Message_charterDates__to_operator
+  updatedAt: Message_updatedAt_operator
+  createdAt: Message_createdAt_operator
+  id: Message_id_operator
+  AND: [Message_where_and]
+  OR: [Message_where_or]
+}
+
+input Message_where_or {
+  name: Message_name_operator
+  email: Message_email_operator
+  tel: Message_tel_operator
+  message: Message_message_operator
+  page: Message_page_operator
+  status: Message_status_operator
+  user: Message_user_operator
+  newsletter: Message_newsletter_operator
+  closed: Message_closed_operator
+  type: Message_type_operator
+  yacht: Message_yacht_operator
+  charter: Message_charter_operator
+  dealPrice: Message_dealPrice_operator
+  charterDates__from: Message_charterDates__from_operator
+  charterDates__to: Message_charterDates__to_operator
+  updatedAt: Message_updatedAt_operator
+  createdAt: Message_createdAt_operator
+  id: Message_id_operator
+  AND: [Message_where_and]
+  OR: [Message_where_or]
+}
+
+type countMessages {
+  totalDocs: Int
+}
+
+type messagesDocAccess {
+  fields: MessagesDocAccessFields
+  create: MessagesCreateDocAccess
+  read: MessagesReadDocAccess
+  update: MessagesUpdateDocAccess
+  delete: MessagesDeleteDocAccess
+}
+
+type MessagesDocAccessFields {
+  name: MessagesDocAccessFields_name
+  email: MessagesDocAccessFields_email
+  tel: MessagesDocAccessFields_tel
+  message: MessagesDocAccessFields_message
+  page: MessagesDocAccessFields_page
+  status: MessagesDocAccessFields_status
+  user: MessagesDocAccessFields_user
+  newsletter: MessagesDocAccessFields_newsletter
+  closed: MessagesDocAccessFields_closed
+  type: MessagesDocAccessFields_type
+  yacht: MessagesDocAccessFields_yacht
+  charter: MessagesDocAccessFields_charter
+  dealPrice: MessagesDocAccessFields_dealPrice
+  charterDates: MessagesDocAccessFields_charterDates
+  updatedAt: MessagesDocAccessFields_updatedAt
+  createdAt: MessagesDocAccessFields_createdAt
+}
+
+type MessagesDocAccessFields_name {
+  create: MessagesDocAccessFields_name_Create
+  read: MessagesDocAccessFields_name_Read
+  update: MessagesDocAccessFields_name_Update
+  delete: MessagesDocAccessFields_name_Delete
+}
+
+type MessagesDocAccessFields_name_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_name_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_name_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_email {
+  create: MessagesDocAccessFields_email_Create
+  read: MessagesDocAccessFields_email_Read
+  update: MessagesDocAccessFields_email_Update
+  delete: MessagesDocAccessFields_email_Delete
+}
+
+type MessagesDocAccessFields_email_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_email_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_email_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_email_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_tel {
+  create: MessagesDocAccessFields_tel_Create
+  read: MessagesDocAccessFields_tel_Read
+  update: MessagesDocAccessFields_tel_Update
+  delete: MessagesDocAccessFields_tel_Delete
+}
+
+type MessagesDocAccessFields_tel_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_tel_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_tel_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_tel_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_message {
+  create: MessagesDocAccessFields_message_Create
+  read: MessagesDocAccessFields_message_Read
+  update: MessagesDocAccessFields_message_Update
+  delete: MessagesDocAccessFields_message_Delete
+}
+
+type MessagesDocAccessFields_message_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_message_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_message_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_message_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_page {
+  create: MessagesDocAccessFields_page_Create
+  read: MessagesDocAccessFields_page_Read
+  update: MessagesDocAccessFields_page_Update
+  delete: MessagesDocAccessFields_page_Delete
+}
+
+type MessagesDocAccessFields_page_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_page_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_page_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_page_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_status {
+  create: MessagesDocAccessFields_status_Create
+  read: MessagesDocAccessFields_status_Read
+  update: MessagesDocAccessFields_status_Update
+  delete: MessagesDocAccessFields_status_Delete
+}
+
+type MessagesDocAccessFields_status_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_status_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_status_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_status_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_user {
+  create: MessagesDocAccessFields_user_Create
+  read: MessagesDocAccessFields_user_Read
+  update: MessagesDocAccessFields_user_Update
+  delete: MessagesDocAccessFields_user_Delete
+}
+
+type MessagesDocAccessFields_user_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_user_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_user_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_user_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_newsletter {
+  create: MessagesDocAccessFields_newsletter_Create
+  read: MessagesDocAccessFields_newsletter_Read
+  update: MessagesDocAccessFields_newsletter_Update
+  delete: MessagesDocAccessFields_newsletter_Delete
+}
+
+type MessagesDocAccessFields_newsletter_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_newsletter_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_newsletter_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_newsletter_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_closed {
+  create: MessagesDocAccessFields_closed_Create
+  read: MessagesDocAccessFields_closed_Read
+  update: MessagesDocAccessFields_closed_Update
+  delete: MessagesDocAccessFields_closed_Delete
+}
+
+type MessagesDocAccessFields_closed_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_closed_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_closed_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_closed_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_type {
+  create: MessagesDocAccessFields_type_Create
+  read: MessagesDocAccessFields_type_Read
+  update: MessagesDocAccessFields_type_Update
+  delete: MessagesDocAccessFields_type_Delete
+}
+
+type MessagesDocAccessFields_type_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_type_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_type_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_type_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_yacht {
+  create: MessagesDocAccessFields_yacht_Create
+  read: MessagesDocAccessFields_yacht_Read
+  update: MessagesDocAccessFields_yacht_Update
+  delete: MessagesDocAccessFields_yacht_Delete
+}
+
+type MessagesDocAccessFields_yacht_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_yacht_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_yacht_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_yacht_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charter {
+  create: MessagesDocAccessFields_charter_Create
+  read: MessagesDocAccessFields_charter_Read
+  update: MessagesDocAccessFields_charter_Update
+  delete: MessagesDocAccessFields_charter_Delete
+}
+
+type MessagesDocAccessFields_charter_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charter_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charter_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charter_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_dealPrice {
+  create: MessagesDocAccessFields_dealPrice_Create
+  read: MessagesDocAccessFields_dealPrice_Read
+  update: MessagesDocAccessFields_dealPrice_Update
+  delete: MessagesDocAccessFields_dealPrice_Delete
+}
+
+type MessagesDocAccessFields_dealPrice_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_dealPrice_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_dealPrice_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_dealPrice_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates {
+  create: MessagesDocAccessFields_charterDates_Create
+  read: MessagesDocAccessFields_charterDates_Read
+  update: MessagesDocAccessFields_charterDates_Update
+  delete: MessagesDocAccessFields_charterDates_Delete
+  fields: MessagesDocAccessFields_charterDates_Fields
+}
+
+type MessagesDocAccessFields_charterDates_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_Fields {
+  from: MessagesDocAccessFields_charterDates_from
+  to: MessagesDocAccessFields_charterDates_to
+}
+
+type MessagesDocAccessFields_charterDates_from {
+  create: MessagesDocAccessFields_charterDates_from_Create
+  read: MessagesDocAccessFields_charterDates_from_Read
+  update: MessagesDocAccessFields_charterDates_from_Update
+  delete: MessagesDocAccessFields_charterDates_from_Delete
+}
+
+type MessagesDocAccessFields_charterDates_from_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_from_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_from_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_from_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_to {
+  create: MessagesDocAccessFields_charterDates_to_Create
+  read: MessagesDocAccessFields_charterDates_to_Read
+  update: MessagesDocAccessFields_charterDates_to_Update
+  delete: MessagesDocAccessFields_charterDates_to_Delete
+}
+
+type MessagesDocAccessFields_charterDates_to_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_to_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_to_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_charterDates_to_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_updatedAt {
+  create: MessagesDocAccessFields_updatedAt_Create
+  read: MessagesDocAccessFields_updatedAt_Read
+  update: MessagesDocAccessFields_updatedAt_Update
+  delete: MessagesDocAccessFields_updatedAt_Delete
+}
+
+type MessagesDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_createdAt {
+  create: MessagesDocAccessFields_createdAt_Create
+  read: MessagesDocAccessFields_createdAt_Read
+  update: MessagesDocAccessFields_createdAt_Update
+  delete: MessagesDocAccessFields_createdAt_Delete
+}
+
+type MessagesDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type MessagesDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type MessagesCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type MessagesReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type MessagesUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type MessagesDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ArchivedCustomer {
+  id: String
+  closureDate: DateTime!
+  name: String!
+  email: EmailAddress!
+  tel: String
+  message: String!
+  page: String
+  status: ArchivedCustomer_status
+  user(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
+  newsletter: Boolean
+  closed: Boolean
+  type: ArchivedCustomer_type
+  yacht(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Yacht
+  charter(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Charter
+  dealPrice: Float
+  charterDates: ArchivedCustomer_CharterDates
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+enum ArchivedCustomer_status {
+  pending
+  claimed
+  fulfilled
+}
+
+enum ArchivedCustomer_type {
+  charter
+  sale
+}
+
+type ArchivedCustomer_CharterDates {
+  from: DateTime
+  to: DateTime
+}
+
+type ArchivedCustomers {
+  docs: [ArchivedCustomer]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input ArchivedCustomer_where {
+  closureDate: ArchivedCustomer_closureDate_operator
+  name: ArchivedCustomer_name_operator
+  email: ArchivedCustomer_email_operator
+  tel: ArchivedCustomer_tel_operator
+  message: ArchivedCustomer_message_operator
+  page: ArchivedCustomer_page_operator
+  status: ArchivedCustomer_status_operator
+  user: ArchivedCustomer_user_operator
+  newsletter: ArchivedCustomer_newsletter_operator
+  closed: ArchivedCustomer_closed_operator
+  type: ArchivedCustomer_type_operator
+  yacht: ArchivedCustomer_yacht_operator
+  charter: ArchivedCustomer_charter_operator
+  dealPrice: ArchivedCustomer_dealPrice_operator
+  charterDates__from: ArchivedCustomer_charterDates__from_operator
+  charterDates__to: ArchivedCustomer_charterDates__to_operator
+  updatedAt: ArchivedCustomer_updatedAt_operator
+  createdAt: ArchivedCustomer_createdAt_operator
+  id: ArchivedCustomer_id_operator
+  AND: [ArchivedCustomer_where_and]
+  OR: [ArchivedCustomer_where_or]
+}
+
+input ArchivedCustomer_closureDate_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+}
+
+input ArchivedCustomer_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input ArchivedCustomer_email_operator {
+  equals: EmailAddress
+  not_equals: EmailAddress
+  like: EmailAddress
+  contains: EmailAddress
+  in: [EmailAddress]
+  not_in: [EmailAddress]
+  all: [EmailAddress]
+}
+
+input ArchivedCustomer_tel_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ArchivedCustomer_message_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+}
+
+input ArchivedCustomer_page_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ArchivedCustomer_status_operator {
+  equals: ArchivedCustomer_status_Input
+  not_equals: ArchivedCustomer_status_Input
+  in: [ArchivedCustomer_status_Input]
+  not_in: [ArchivedCustomer_status_Input]
+  all: [ArchivedCustomer_status_Input]
+  exists: Boolean
+}
+
+enum ArchivedCustomer_status_Input {
+  pending
+  claimed
+  fulfilled
+}
+
+input ArchivedCustomer_user_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input ArchivedCustomer_newsletter_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input ArchivedCustomer_closed_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input ArchivedCustomer_type_operator {
+  equals: ArchivedCustomer_type_Input
+  not_equals: ArchivedCustomer_type_Input
+  like: ArchivedCustomer_type_Input
+  contains: ArchivedCustomer_type_Input
+  exists: Boolean
+}
+
+enum ArchivedCustomer_type_Input {
+  charter
+  sale
+}
+
+input ArchivedCustomer_yacht_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input ArchivedCustomer_charter_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input ArchivedCustomer_dealPrice_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input ArchivedCustomer_charterDates__from_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input ArchivedCustomer_charterDates__to_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input ArchivedCustomer_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input ArchivedCustomer_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input ArchivedCustomer_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ArchivedCustomer_where_and {
+  closureDate: ArchivedCustomer_closureDate_operator
+  name: ArchivedCustomer_name_operator
+  email: ArchivedCustomer_email_operator
+  tel: ArchivedCustomer_tel_operator
+  message: ArchivedCustomer_message_operator
+  page: ArchivedCustomer_page_operator
+  status: ArchivedCustomer_status_operator
+  user: ArchivedCustomer_user_operator
+  newsletter: ArchivedCustomer_newsletter_operator
+  closed: ArchivedCustomer_closed_operator
+  type: ArchivedCustomer_type_operator
+  yacht: ArchivedCustomer_yacht_operator
+  charter: ArchivedCustomer_charter_operator
+  dealPrice: ArchivedCustomer_dealPrice_operator
+  charterDates__from: ArchivedCustomer_charterDates__from_operator
+  charterDates__to: ArchivedCustomer_charterDates__to_operator
+  updatedAt: ArchivedCustomer_updatedAt_operator
+  createdAt: ArchivedCustomer_createdAt_operator
+  id: ArchivedCustomer_id_operator
+  AND: [ArchivedCustomer_where_and]
+  OR: [ArchivedCustomer_where_or]
+}
+
+input ArchivedCustomer_where_or {
+  closureDate: ArchivedCustomer_closureDate_operator
+  name: ArchivedCustomer_name_operator
+  email: ArchivedCustomer_email_operator
+  tel: ArchivedCustomer_tel_operator
+  message: ArchivedCustomer_message_operator
+  page: ArchivedCustomer_page_operator
+  status: ArchivedCustomer_status_operator
+  user: ArchivedCustomer_user_operator
+  newsletter: ArchivedCustomer_newsletter_operator
+  closed: ArchivedCustomer_closed_operator
+  type: ArchivedCustomer_type_operator
+  yacht: ArchivedCustomer_yacht_operator
+  charter: ArchivedCustomer_charter_operator
+  dealPrice: ArchivedCustomer_dealPrice_operator
+  charterDates__from: ArchivedCustomer_charterDates__from_operator
+  charterDates__to: ArchivedCustomer_charterDates__to_operator
+  updatedAt: ArchivedCustomer_updatedAt_operator
+  createdAt: ArchivedCustomer_createdAt_operator
+  id: ArchivedCustomer_id_operator
+  AND: [ArchivedCustomer_where_and]
+  OR: [ArchivedCustomer_where_or]
+}
+
+type countArchivedCustomers {
+  totalDocs: Int
+}
+
+type archived_customersDocAccess {
+  fields: ArchivedCustomersDocAccessFields
+  create: ArchivedCustomersCreateDocAccess
+  read: ArchivedCustomersReadDocAccess
+  update: ArchivedCustomersUpdateDocAccess
+  delete: ArchivedCustomersDeleteDocAccess
+}
+
+type ArchivedCustomersDocAccessFields {
+  closureDate: ArchivedCustomersDocAccessFields_closureDate
+  name: ArchivedCustomersDocAccessFields_name
+  email: ArchivedCustomersDocAccessFields_email
+  tel: ArchivedCustomersDocAccessFields_tel
+  message: ArchivedCustomersDocAccessFields_message
+  page: ArchivedCustomersDocAccessFields_page
+  status: ArchivedCustomersDocAccessFields_status
+  user: ArchivedCustomersDocAccessFields_user
+  newsletter: ArchivedCustomersDocAccessFields_newsletter
+  closed: ArchivedCustomersDocAccessFields_closed
+  type: ArchivedCustomersDocAccessFields_type
+  yacht: ArchivedCustomersDocAccessFields_yacht
+  charter: ArchivedCustomersDocAccessFields_charter
+  dealPrice: ArchivedCustomersDocAccessFields_dealPrice
+  charterDates: ArchivedCustomersDocAccessFields_charterDates
+  updatedAt: ArchivedCustomersDocAccessFields_updatedAt
+  createdAt: ArchivedCustomersDocAccessFields_createdAt
+}
+
+type ArchivedCustomersDocAccessFields_closureDate {
+  create: ArchivedCustomersDocAccessFields_closureDate_Create
+  read: ArchivedCustomersDocAccessFields_closureDate_Read
+  update: ArchivedCustomersDocAccessFields_closureDate_Update
+  delete: ArchivedCustomersDocAccessFields_closureDate_Delete
+}
+
+type ArchivedCustomersDocAccessFields_closureDate_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_closureDate_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_closureDate_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_closureDate_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_name {
+  create: ArchivedCustomersDocAccessFields_name_Create
+  read: ArchivedCustomersDocAccessFields_name_Read
+  update: ArchivedCustomersDocAccessFields_name_Update
+  delete: ArchivedCustomersDocAccessFields_name_Delete
+}
+
+type ArchivedCustomersDocAccessFields_name_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_name_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_name_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_email {
+  create: ArchivedCustomersDocAccessFields_email_Create
+  read: ArchivedCustomersDocAccessFields_email_Read
+  update: ArchivedCustomersDocAccessFields_email_Update
+  delete: ArchivedCustomersDocAccessFields_email_Delete
+}
+
+type ArchivedCustomersDocAccessFields_email_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_email_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_email_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_email_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_tel {
+  create: ArchivedCustomersDocAccessFields_tel_Create
+  read: ArchivedCustomersDocAccessFields_tel_Read
+  update: ArchivedCustomersDocAccessFields_tel_Update
+  delete: ArchivedCustomersDocAccessFields_tel_Delete
+}
+
+type ArchivedCustomersDocAccessFields_tel_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_tel_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_tel_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_tel_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_message {
+  create: ArchivedCustomersDocAccessFields_message_Create
+  read: ArchivedCustomersDocAccessFields_message_Read
+  update: ArchivedCustomersDocAccessFields_message_Update
+  delete: ArchivedCustomersDocAccessFields_message_Delete
+}
+
+type ArchivedCustomersDocAccessFields_message_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_message_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_message_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_message_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_page {
+  create: ArchivedCustomersDocAccessFields_page_Create
+  read: ArchivedCustomersDocAccessFields_page_Read
+  update: ArchivedCustomersDocAccessFields_page_Update
+  delete: ArchivedCustomersDocAccessFields_page_Delete
+}
+
+type ArchivedCustomersDocAccessFields_page_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_page_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_page_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_page_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_status {
+  create: ArchivedCustomersDocAccessFields_status_Create
+  read: ArchivedCustomersDocAccessFields_status_Read
+  update: ArchivedCustomersDocAccessFields_status_Update
+  delete: ArchivedCustomersDocAccessFields_status_Delete
+}
+
+type ArchivedCustomersDocAccessFields_status_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_status_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_status_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_status_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_user {
+  create: ArchivedCustomersDocAccessFields_user_Create
+  read: ArchivedCustomersDocAccessFields_user_Read
+  update: ArchivedCustomersDocAccessFields_user_Update
+  delete: ArchivedCustomersDocAccessFields_user_Delete
+}
+
+type ArchivedCustomersDocAccessFields_user_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_user_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_user_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_user_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_newsletter {
+  create: ArchivedCustomersDocAccessFields_newsletter_Create
+  read: ArchivedCustomersDocAccessFields_newsletter_Read
+  update: ArchivedCustomersDocAccessFields_newsletter_Update
+  delete: ArchivedCustomersDocAccessFields_newsletter_Delete
+}
+
+type ArchivedCustomersDocAccessFields_newsletter_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_newsletter_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_newsletter_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_newsletter_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_closed {
+  create: ArchivedCustomersDocAccessFields_closed_Create
+  read: ArchivedCustomersDocAccessFields_closed_Read
+  update: ArchivedCustomersDocAccessFields_closed_Update
+  delete: ArchivedCustomersDocAccessFields_closed_Delete
+}
+
+type ArchivedCustomersDocAccessFields_closed_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_closed_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_closed_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_closed_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_type {
+  create: ArchivedCustomersDocAccessFields_type_Create
+  read: ArchivedCustomersDocAccessFields_type_Read
+  update: ArchivedCustomersDocAccessFields_type_Update
+  delete: ArchivedCustomersDocAccessFields_type_Delete
+}
+
+type ArchivedCustomersDocAccessFields_type_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_type_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_type_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_type_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_yacht {
+  create: ArchivedCustomersDocAccessFields_yacht_Create
+  read: ArchivedCustomersDocAccessFields_yacht_Read
+  update: ArchivedCustomersDocAccessFields_yacht_Update
+  delete: ArchivedCustomersDocAccessFields_yacht_Delete
+}
+
+type ArchivedCustomersDocAccessFields_yacht_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_yacht_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_yacht_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_yacht_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter {
+  create: ArchivedCustomersDocAccessFields_charter_Create
+  read: ArchivedCustomersDocAccessFields_charter_Read
+  update: ArchivedCustomersDocAccessFields_charter_Update
+  delete: ArchivedCustomersDocAccessFields_charter_Delete
+}
+
+type ArchivedCustomersDocAccessFields_charter_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_dealPrice {
+  create: ArchivedCustomersDocAccessFields_dealPrice_Create
+  read: ArchivedCustomersDocAccessFields_dealPrice_Read
+  update: ArchivedCustomersDocAccessFields_dealPrice_Update
+  delete: ArchivedCustomersDocAccessFields_dealPrice_Delete
+}
+
+type ArchivedCustomersDocAccessFields_dealPrice_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_dealPrice_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_dealPrice_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_dealPrice_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates {
+  create: ArchivedCustomersDocAccessFields_charterDates_Create
+  read: ArchivedCustomersDocAccessFields_charterDates_Read
+  update: ArchivedCustomersDocAccessFields_charterDates_Update
+  delete: ArchivedCustomersDocAccessFields_charterDates_Delete
+  fields: ArchivedCustomersDocAccessFields_charterDates_Fields
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_Fields {
+  from: ArchivedCustomersDocAccessFields_charterDates_from
+  to: ArchivedCustomersDocAccessFields_charterDates_to
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_from {
+  create: ArchivedCustomersDocAccessFields_charterDates_from_Create
+  read: ArchivedCustomersDocAccessFields_charterDates_from_Read
+  update: ArchivedCustomersDocAccessFields_charterDates_from_Update
+  delete: ArchivedCustomersDocAccessFields_charterDates_from_Delete
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_from_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_from_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_from_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_from_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_to {
+  create: ArchivedCustomersDocAccessFields_charterDates_to_Create
+  read: ArchivedCustomersDocAccessFields_charterDates_to_Read
+  update: ArchivedCustomersDocAccessFields_charterDates_to_Update
+  delete: ArchivedCustomersDocAccessFields_charterDates_to_Delete
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_to_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_to_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_to_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charterDates_to_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_updatedAt {
+  create: ArchivedCustomersDocAccessFields_updatedAt_Create
+  read: ArchivedCustomersDocAccessFields_updatedAt_Read
+  update: ArchivedCustomersDocAccessFields_updatedAt_Update
+  delete: ArchivedCustomersDocAccessFields_updatedAt_Delete
+}
+
+type ArchivedCustomersDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_createdAt {
+  create: ArchivedCustomersDocAccessFields_createdAt_Create
+  read: ArchivedCustomersDocAccessFields_createdAt_Read
+  update: ArchivedCustomersDocAccessFields_createdAt_Update
+  delete: ArchivedCustomersDocAccessFields_createdAt_Delete
+}
+
+type ArchivedCustomersDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ArchivedCustomersReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ArchivedCustomersUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ArchivedCustomersDeleteDocAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -10951,6 +13535,8 @@ type Access {
   shipyards: shipyardsAccess
   recruitment: recruitmentAccess
   new_constructions: new_constructionsAccess
+  messages: messagesAccess
+  archived_customers: archived_customersAccess
   payload_preferences: payload_preferencesAccess
 }
 
@@ -10969,6 +13555,7 @@ type ArticlesFields {
   author: ArticlesFields_author
   content: ArticlesFields_content
   image: ArticlesFields_image
+  seo: ArticlesFields_seo
   updatedAt: ArticlesFields_updatedAt
   createdAt: ArticlesFields_createdAt
 }
@@ -11108,6 +13695,81 @@ type ArticlesFields_image_Update {
 }
 
 type ArticlesFields_image_Delete {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo {
+  create: ArticlesFields_seo_Create
+  read: ArticlesFields_seo_Read
+  update: ArticlesFields_seo_Update
+  delete: ArticlesFields_seo_Delete
+  fields: ArticlesFields_seo_Fields
+}
+
+type ArticlesFields_seo_Create {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_Read {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_Update {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_Delete {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_Fields {
+  value: ArticlesFields_seo_value
+  id: ArticlesFields_seo_id
+}
+
+type ArticlesFields_seo_value {
+  create: ArticlesFields_seo_value_Create
+  read: ArticlesFields_seo_value_Read
+  update: ArticlesFields_seo_value_Update
+  delete: ArticlesFields_seo_value_Delete
+}
+
+type ArticlesFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_id {
+  create: ArticlesFields_seo_id_Create
+  read: ArticlesFields_seo_id_Read
+  update: ArticlesFields_seo_id_Update
+  delete: ArticlesFields_seo_id_Delete
+}
+
+type ArticlesFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type ArticlesFields_seo_id_Delete {
   permission: Boolean!
 }
 
@@ -11914,6 +14576,7 @@ type YachtsFields {
   featured: YachtsFields_featured
   keyFeatures: YachtsFields_keyFeatures
   photos: YachtsFields_photos
+  seo: YachtsFields_seo
   updatedAt: YachtsFields_updatedAt
   createdAt: YachtsFields_createdAt
 }
@@ -12666,6 +15329,81 @@ type YachtsFields_photos_gallery_id_Delete {
   permission: Boolean!
 }
 
+type YachtsFields_seo {
+  create: YachtsFields_seo_Create
+  read: YachtsFields_seo_Read
+  update: YachtsFields_seo_Update
+  delete: YachtsFields_seo_Delete
+  fields: YachtsFields_seo_Fields
+}
+
+type YachtsFields_seo_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_Delete {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_Fields {
+  value: YachtsFields_seo_value
+  id: YachtsFields_seo_id
+}
+
+type YachtsFields_seo_value {
+  create: YachtsFields_seo_value_Create
+  read: YachtsFields_seo_value_Read
+  update: YachtsFields_seo_value_Update
+  delete: YachtsFields_seo_value_Delete
+}
+
+type YachtsFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_id {
+  create: YachtsFields_seo_id_Create
+  read: YachtsFields_seo_id_Read
+  update: YachtsFields_seo_id_Update
+  delete: YachtsFields_seo_id_Delete
+}
+
+type YachtsFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_seo_id_Delete {
+  permission: Boolean!
+}
+
 type YachtsFields_updatedAt {
   create: YachtsFields_updatedAt_Create
   read: YachtsFields_updatedAt_Read
@@ -12769,6 +15507,8 @@ type ChartersFields {
   featured: ChartersFields_featured
   keyFeatures: ChartersFields_keyFeatures
   photos: ChartersFields_photos
+  seo: ChartersFields_seo
+  reservations: ChartersFields_reservations
   updatedAt: ChartersFields_updatedAt
   createdAt: ChartersFields_createdAt
 }
@@ -13521,6 +16261,204 @@ type ChartersFields_photos_gallery_id_Delete {
   permission: Boolean!
 }
 
+type ChartersFields_seo {
+  create: ChartersFields_seo_Create
+  read: ChartersFields_seo_Read
+  update: ChartersFields_seo_Update
+  delete: ChartersFields_seo_Delete
+  fields: ChartersFields_seo_Fields
+}
+
+type ChartersFields_seo_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_Fields {
+  value: ChartersFields_seo_value
+  id: ChartersFields_seo_id
+}
+
+type ChartersFields_seo_value {
+  create: ChartersFields_seo_value_Create
+  read: ChartersFields_seo_value_Read
+  update: ChartersFields_seo_value_Update
+  delete: ChartersFields_seo_value_Delete
+}
+
+type ChartersFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_id {
+  create: ChartersFields_seo_id_Create
+  read: ChartersFields_seo_id_Read
+  update: ChartersFields_seo_id_Update
+  delete: ChartersFields_seo_id_Delete
+}
+
+type ChartersFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations {
+  create: ChartersFields_reservations_Create
+  read: ChartersFields_reservations_Read
+  update: ChartersFields_reservations_Update
+  delete: ChartersFields_reservations_Delete
+  fields: ChartersFields_reservations_Fields
+}
+
+type ChartersFields_reservations_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_Fields {
+  from: ChartersFields_reservations_from
+  to: ChartersFields_reservations_to
+  customer: ChartersFields_reservations_customer
+  id: ChartersFields_reservations_id
+}
+
+type ChartersFields_reservations_from {
+  create: ChartersFields_reservations_from_Create
+  read: ChartersFields_reservations_from_Read
+  update: ChartersFields_reservations_from_Update
+  delete: ChartersFields_reservations_from_Delete
+}
+
+type ChartersFields_reservations_from_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_from_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_from_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_from_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_to {
+  create: ChartersFields_reservations_to_Create
+  read: ChartersFields_reservations_to_Read
+  update: ChartersFields_reservations_to_Update
+  delete: ChartersFields_reservations_to_Delete
+}
+
+type ChartersFields_reservations_to_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_to_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_to_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_to_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_customer {
+  create: ChartersFields_reservations_customer_Create
+  read: ChartersFields_reservations_customer_Read
+  update: ChartersFields_reservations_customer_Update
+  delete: ChartersFields_reservations_customer_Delete
+}
+
+type ChartersFields_reservations_customer_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_customer_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_customer_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_customer_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_id {
+  create: ChartersFields_reservations_id_Create
+  read: ChartersFields_reservations_id_Read
+  update: ChartersFields_reservations_id_Update
+  delete: ChartersFields_reservations_id_Delete
+}
+
+type ChartersFields_reservations_id_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_id_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_id_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_reservations_id_Delete {
+  permission: Boolean!
+}
+
 type ChartersFields_updatedAt {
   create: ChartersFields_updatedAt_Create
   read: ChartersFields_updatedAt_Read
@@ -13707,6 +16645,7 @@ type DestinationsFields {
   description: DestinationsFields_description
   info: DestinationsFields_info
   coordinates: DestinationsFields_coordinates
+  seo: DestinationsFields_seo
   updatedAt: DestinationsFields_updatedAt
   createdAt: DestinationsFields_createdAt
 }
@@ -14047,6 +16986,81 @@ type DestinationsFields_coordinates_Delete {
   permission: Boolean!
 }
 
+type DestinationsFields_seo {
+  create: DestinationsFields_seo_Create
+  read: DestinationsFields_seo_Read
+  update: DestinationsFields_seo_Update
+  delete: DestinationsFields_seo_Delete
+  fields: DestinationsFields_seo_Fields
+}
+
+type DestinationsFields_seo_Create {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_Read {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_Update {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_Delete {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_Fields {
+  value: DestinationsFields_seo_value
+  id: DestinationsFields_seo_id
+}
+
+type DestinationsFields_seo_value {
+  create: DestinationsFields_seo_value_Create
+  read: DestinationsFields_seo_value_Read
+  update: DestinationsFields_seo_value_Update
+  delete: DestinationsFields_seo_value_Delete
+}
+
+type DestinationsFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_id {
+  create: DestinationsFields_seo_id_Create
+  read: DestinationsFields_seo_id_Read
+  update: DestinationsFields_seo_id_Update
+  delete: DestinationsFields_seo_id_Delete
+}
+
+type DestinationsFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type DestinationsFields_seo_id_Delete {
+  permission: Boolean!
+}
+
 type DestinationsFields_updatedAt {
   create: DestinationsFields_updatedAt_Create
   read: DestinationsFields_updatedAt_Read
@@ -14128,6 +17142,7 @@ type EventsFields {
   location: EventsFields_location
   content: EventsFields_content
   image: EventsFields_image
+  seo: EventsFields_seo
   updatedAt: EventsFields_updatedAt
   createdAt: EventsFields_createdAt
 }
@@ -14228,6 +17243,7 @@ type EventsFields_location_Delete {
 type EventsFields_location_Fields {
   city: EventsFields_location_city
   country: EventsFields_location_country
+  destination: EventsFields_location_destination
 }
 
 type EventsFields_location_city {
@@ -14276,6 +17292,29 @@ type EventsFields_location_country_Delete {
   permission: Boolean!
 }
 
+type EventsFields_location_destination {
+  create: EventsFields_location_destination_Create
+  read: EventsFields_location_destination_Read
+  update: EventsFields_location_destination_Update
+  delete: EventsFields_location_destination_Delete
+}
+
+type EventsFields_location_destination_Create {
+  permission: Boolean!
+}
+
+type EventsFields_location_destination_Read {
+  permission: Boolean!
+}
+
+type EventsFields_location_destination_Update {
+  permission: Boolean!
+}
+
+type EventsFields_location_destination_Delete {
+  permission: Boolean!
+}
+
 type EventsFields_content {
   create: EventsFields_content_Create
   read: EventsFields_content_Read
@@ -14319,6 +17358,81 @@ type EventsFields_image_Update {
 }
 
 type EventsFields_image_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_seo {
+  create: EventsFields_seo_Create
+  read: EventsFields_seo_Read
+  update: EventsFields_seo_Update
+  delete: EventsFields_seo_Delete
+  fields: EventsFields_seo_Fields
+}
+
+type EventsFields_seo_Create {
+  permission: Boolean!
+}
+
+type EventsFields_seo_Read {
+  permission: Boolean!
+}
+
+type EventsFields_seo_Update {
+  permission: Boolean!
+}
+
+type EventsFields_seo_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_seo_Fields {
+  value: EventsFields_seo_value
+  id: EventsFields_seo_id
+}
+
+type EventsFields_seo_value {
+  create: EventsFields_seo_value_Create
+  read: EventsFields_seo_value_Read
+  update: EventsFields_seo_value_Update
+  delete: EventsFields_seo_value_Delete
+}
+
+type EventsFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type EventsFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type EventsFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type EventsFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_seo_id {
+  create: EventsFields_seo_id_Create
+  read: EventsFields_seo_id_Read
+  update: EventsFields_seo_id_Update
+  delete: EventsFields_seo_id_Delete
+}
+
+type EventsFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type EventsFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type EventsFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type EventsFields_seo_id_Delete {
   permission: Boolean!
 }
 
@@ -14402,6 +17516,7 @@ type PartnersFields {
   comment: PartnersFields_comment
   logo: PartnersFields_logo
   banner: PartnersFields_banner
+  seo: PartnersFields_seo
   updatedAt: PartnersFields_updatedAt
   createdAt: PartnersFields_createdAt
 }
@@ -14518,6 +17633,81 @@ type PartnersFields_banner_Update {
 }
 
 type PartnersFields_banner_Delete {
+  permission: Boolean!
+}
+
+type PartnersFields_seo {
+  create: PartnersFields_seo_Create
+  read: PartnersFields_seo_Read
+  update: PartnersFields_seo_Update
+  delete: PartnersFields_seo_Delete
+  fields: PartnersFields_seo_Fields
+}
+
+type PartnersFields_seo_Create {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_Read {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_Update {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_Delete {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_Fields {
+  value: PartnersFields_seo_value
+  id: PartnersFields_seo_id
+}
+
+type PartnersFields_seo_value {
+  create: PartnersFields_seo_value_Create
+  read: PartnersFields_seo_value_Read
+  update: PartnersFields_seo_value_Update
+  delete: PartnersFields_seo_value_Delete
+}
+
+type PartnersFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_id {
+  create: PartnersFields_seo_id_Create
+  read: PartnersFields_seo_id_Read
+  update: PartnersFields_seo_id_Update
+  delete: PartnersFields_seo_id_Delete
+}
+
+type PartnersFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type PartnersFields_seo_id_Delete {
   permission: Boolean!
 }
 
@@ -14951,6 +18141,7 @@ type NewConstructionsFields {
   featured: NewConstructionsFields_featured
   keyFeatures: NewConstructionsFields_keyFeatures
   photos: NewConstructionsFields_photos
+  seo: NewConstructionsFields_seo
   updatedAt: NewConstructionsFields_updatedAt
   createdAt: NewConstructionsFields_createdAt
 }
@@ -15726,6 +18917,81 @@ type NewConstructionsFields_photos_gallery_id_Delete {
   permission: Boolean!
 }
 
+type NewConstructionsFields_seo {
+  create: NewConstructionsFields_seo_Create
+  read: NewConstructionsFields_seo_Read
+  update: NewConstructionsFields_seo_Update
+  delete: NewConstructionsFields_seo_Delete
+  fields: NewConstructionsFields_seo_Fields
+}
+
+type NewConstructionsFields_seo_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_Fields {
+  value: NewConstructionsFields_seo_value
+  id: NewConstructionsFields_seo_id
+}
+
+type NewConstructionsFields_seo_value {
+  create: NewConstructionsFields_seo_value_Create
+  read: NewConstructionsFields_seo_value_Read
+  update: NewConstructionsFields_seo_value_Update
+  delete: NewConstructionsFields_seo_value_Delete
+}
+
+type NewConstructionsFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_id {
+  create: NewConstructionsFields_seo_id_Create
+  read: NewConstructionsFields_seo_id_Read
+  update: NewConstructionsFields_seo_id_Update
+  delete: NewConstructionsFields_seo_id_Delete
+}
+
+type NewConstructionsFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_seo_id_Delete {
+  permission: Boolean!
+}
+
 type NewConstructionsFields_updatedAt {
   create: NewConstructionsFields_updatedAt_Create
   read: NewConstructionsFields_updatedAt_Read
@@ -15788,6 +19054,964 @@ type NewConstructionsUpdateAccess {
 }
 
 type NewConstructionsDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type messagesAccess {
+  fields: MessagesFields
+  create: MessagesCreateAccess
+  read: MessagesReadAccess
+  update: MessagesUpdateAccess
+  delete: MessagesDeleteAccess
+}
+
+type MessagesFields {
+  name: MessagesFields_name
+  email: MessagesFields_email
+  tel: MessagesFields_tel
+  message: MessagesFields_message
+  page: MessagesFields_page
+  status: MessagesFields_status
+  user: MessagesFields_user
+  newsletter: MessagesFields_newsletter
+  closed: MessagesFields_closed
+  type: MessagesFields_type
+  yacht: MessagesFields_yacht
+  charter: MessagesFields_charter
+  dealPrice: MessagesFields_dealPrice
+  charterDates: MessagesFields_charterDates
+  updatedAt: MessagesFields_updatedAt
+  createdAt: MessagesFields_createdAt
+}
+
+type MessagesFields_name {
+  create: MessagesFields_name_Create
+  read: MessagesFields_name_Read
+  update: MessagesFields_name_Update
+  delete: MessagesFields_name_Delete
+}
+
+type MessagesFields_name_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_name_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_name_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_name_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_email {
+  create: MessagesFields_email_Create
+  read: MessagesFields_email_Read
+  update: MessagesFields_email_Update
+  delete: MessagesFields_email_Delete
+}
+
+type MessagesFields_email_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_email_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_email_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_email_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_tel {
+  create: MessagesFields_tel_Create
+  read: MessagesFields_tel_Read
+  update: MessagesFields_tel_Update
+  delete: MessagesFields_tel_Delete
+}
+
+type MessagesFields_tel_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_tel_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_tel_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_tel_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_message {
+  create: MessagesFields_message_Create
+  read: MessagesFields_message_Read
+  update: MessagesFields_message_Update
+  delete: MessagesFields_message_Delete
+}
+
+type MessagesFields_message_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_message_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_message_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_message_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_page {
+  create: MessagesFields_page_Create
+  read: MessagesFields_page_Read
+  update: MessagesFields_page_Update
+  delete: MessagesFields_page_Delete
+}
+
+type MessagesFields_page_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_page_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_page_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_page_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_status {
+  create: MessagesFields_status_Create
+  read: MessagesFields_status_Read
+  update: MessagesFields_status_Update
+  delete: MessagesFields_status_Delete
+}
+
+type MessagesFields_status_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_status_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_status_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_status_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_user {
+  create: MessagesFields_user_Create
+  read: MessagesFields_user_Read
+  update: MessagesFields_user_Update
+  delete: MessagesFields_user_Delete
+}
+
+type MessagesFields_user_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_user_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_user_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_user_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_newsletter {
+  create: MessagesFields_newsletter_Create
+  read: MessagesFields_newsletter_Read
+  update: MessagesFields_newsletter_Update
+  delete: MessagesFields_newsletter_Delete
+}
+
+type MessagesFields_newsletter_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_newsletter_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_newsletter_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_newsletter_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_closed {
+  create: MessagesFields_closed_Create
+  read: MessagesFields_closed_Read
+  update: MessagesFields_closed_Update
+  delete: MessagesFields_closed_Delete
+}
+
+type MessagesFields_closed_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_closed_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_closed_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_closed_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_type {
+  create: MessagesFields_type_Create
+  read: MessagesFields_type_Read
+  update: MessagesFields_type_Update
+  delete: MessagesFields_type_Delete
+}
+
+type MessagesFields_type_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_type_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_type_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_type_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_yacht {
+  create: MessagesFields_yacht_Create
+  read: MessagesFields_yacht_Read
+  update: MessagesFields_yacht_Update
+  delete: MessagesFields_yacht_Delete
+}
+
+type MessagesFields_yacht_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_yacht_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_yacht_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_yacht_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_charter {
+  create: MessagesFields_charter_Create
+  read: MessagesFields_charter_Read
+  update: MessagesFields_charter_Update
+  delete: MessagesFields_charter_Delete
+}
+
+type MessagesFields_charter_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_charter_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_charter_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_charter_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_dealPrice {
+  create: MessagesFields_dealPrice_Create
+  read: MessagesFields_dealPrice_Read
+  update: MessagesFields_dealPrice_Update
+  delete: MessagesFields_dealPrice_Delete
+}
+
+type MessagesFields_dealPrice_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_dealPrice_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_dealPrice_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_dealPrice_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates {
+  create: MessagesFields_charterDates_Create
+  read: MessagesFields_charterDates_Read
+  update: MessagesFields_charterDates_Update
+  delete: MessagesFields_charterDates_Delete
+  fields: MessagesFields_charterDates_Fields
+}
+
+type MessagesFields_charterDates_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_Fields {
+  from: MessagesFields_charterDates_from
+  to: MessagesFields_charterDates_to
+}
+
+type MessagesFields_charterDates_from {
+  create: MessagesFields_charterDates_from_Create
+  read: MessagesFields_charterDates_from_Read
+  update: MessagesFields_charterDates_from_Update
+  delete: MessagesFields_charterDates_from_Delete
+}
+
+type MessagesFields_charterDates_from_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_from_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_from_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_from_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_to {
+  create: MessagesFields_charterDates_to_Create
+  read: MessagesFields_charterDates_to_Read
+  update: MessagesFields_charterDates_to_Update
+  delete: MessagesFields_charterDates_to_Delete
+}
+
+type MessagesFields_charterDates_to_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_to_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_to_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_charterDates_to_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_updatedAt {
+  create: MessagesFields_updatedAt_Create
+  read: MessagesFields_updatedAt_Read
+  update: MessagesFields_updatedAt_Update
+  delete: MessagesFields_updatedAt_Delete
+}
+
+type MessagesFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type MessagesFields_createdAt {
+  create: MessagesFields_createdAt_Create
+  read: MessagesFields_createdAt_Read
+  update: MessagesFields_createdAt_Update
+  delete: MessagesFields_createdAt_Delete
+}
+
+type MessagesFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type MessagesFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type MessagesFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type MessagesFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type MessagesCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type MessagesReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type MessagesUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type MessagesDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type archived_customersAccess {
+  fields: ArchivedCustomersFields
+  create: ArchivedCustomersCreateAccess
+  read: ArchivedCustomersReadAccess
+  update: ArchivedCustomersUpdateAccess
+  delete: ArchivedCustomersDeleteAccess
+}
+
+type ArchivedCustomersFields {
+  closureDate: ArchivedCustomersFields_closureDate
+  name: ArchivedCustomersFields_name
+  email: ArchivedCustomersFields_email
+  tel: ArchivedCustomersFields_tel
+  message: ArchivedCustomersFields_message
+  page: ArchivedCustomersFields_page
+  status: ArchivedCustomersFields_status
+  user: ArchivedCustomersFields_user
+  newsletter: ArchivedCustomersFields_newsletter
+  closed: ArchivedCustomersFields_closed
+  type: ArchivedCustomersFields_type
+  yacht: ArchivedCustomersFields_yacht
+  charter: ArchivedCustomersFields_charter
+  dealPrice: ArchivedCustomersFields_dealPrice
+  charterDates: ArchivedCustomersFields_charterDates
+  updatedAt: ArchivedCustomersFields_updatedAt
+  createdAt: ArchivedCustomersFields_createdAt
+}
+
+type ArchivedCustomersFields_closureDate {
+  create: ArchivedCustomersFields_closureDate_Create
+  read: ArchivedCustomersFields_closureDate_Read
+  update: ArchivedCustomersFields_closureDate_Update
+  delete: ArchivedCustomersFields_closureDate_Delete
+}
+
+type ArchivedCustomersFields_closureDate_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_closureDate_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_closureDate_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_closureDate_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_name {
+  create: ArchivedCustomersFields_name_Create
+  read: ArchivedCustomersFields_name_Read
+  update: ArchivedCustomersFields_name_Update
+  delete: ArchivedCustomersFields_name_Delete
+}
+
+type ArchivedCustomersFields_name_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_name_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_name_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_name_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_email {
+  create: ArchivedCustomersFields_email_Create
+  read: ArchivedCustomersFields_email_Read
+  update: ArchivedCustomersFields_email_Update
+  delete: ArchivedCustomersFields_email_Delete
+}
+
+type ArchivedCustomersFields_email_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_email_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_email_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_email_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_tel {
+  create: ArchivedCustomersFields_tel_Create
+  read: ArchivedCustomersFields_tel_Read
+  update: ArchivedCustomersFields_tel_Update
+  delete: ArchivedCustomersFields_tel_Delete
+}
+
+type ArchivedCustomersFields_tel_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_tel_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_tel_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_tel_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_message {
+  create: ArchivedCustomersFields_message_Create
+  read: ArchivedCustomersFields_message_Read
+  update: ArchivedCustomersFields_message_Update
+  delete: ArchivedCustomersFields_message_Delete
+}
+
+type ArchivedCustomersFields_message_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_message_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_message_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_message_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_page {
+  create: ArchivedCustomersFields_page_Create
+  read: ArchivedCustomersFields_page_Read
+  update: ArchivedCustomersFields_page_Update
+  delete: ArchivedCustomersFields_page_Delete
+}
+
+type ArchivedCustomersFields_page_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_page_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_page_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_page_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_status {
+  create: ArchivedCustomersFields_status_Create
+  read: ArchivedCustomersFields_status_Read
+  update: ArchivedCustomersFields_status_Update
+  delete: ArchivedCustomersFields_status_Delete
+}
+
+type ArchivedCustomersFields_status_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_status_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_status_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_status_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_user {
+  create: ArchivedCustomersFields_user_Create
+  read: ArchivedCustomersFields_user_Read
+  update: ArchivedCustomersFields_user_Update
+  delete: ArchivedCustomersFields_user_Delete
+}
+
+type ArchivedCustomersFields_user_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_user_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_user_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_user_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_newsletter {
+  create: ArchivedCustomersFields_newsletter_Create
+  read: ArchivedCustomersFields_newsletter_Read
+  update: ArchivedCustomersFields_newsletter_Update
+  delete: ArchivedCustomersFields_newsletter_Delete
+}
+
+type ArchivedCustomersFields_newsletter_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_newsletter_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_newsletter_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_newsletter_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_closed {
+  create: ArchivedCustomersFields_closed_Create
+  read: ArchivedCustomersFields_closed_Read
+  update: ArchivedCustomersFields_closed_Update
+  delete: ArchivedCustomersFields_closed_Delete
+}
+
+type ArchivedCustomersFields_closed_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_closed_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_closed_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_closed_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_type {
+  create: ArchivedCustomersFields_type_Create
+  read: ArchivedCustomersFields_type_Read
+  update: ArchivedCustomersFields_type_Update
+  delete: ArchivedCustomersFields_type_Delete
+}
+
+type ArchivedCustomersFields_type_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_type_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_type_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_type_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_yacht {
+  create: ArchivedCustomersFields_yacht_Create
+  read: ArchivedCustomersFields_yacht_Read
+  update: ArchivedCustomersFields_yacht_Update
+  delete: ArchivedCustomersFields_yacht_Delete
+}
+
+type ArchivedCustomersFields_yacht_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_yacht_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_yacht_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_yacht_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter {
+  create: ArchivedCustomersFields_charter_Create
+  read: ArchivedCustomersFields_charter_Read
+  update: ArchivedCustomersFields_charter_Update
+  delete: ArchivedCustomersFields_charter_Delete
+}
+
+type ArchivedCustomersFields_charter_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_dealPrice {
+  create: ArchivedCustomersFields_dealPrice_Create
+  read: ArchivedCustomersFields_dealPrice_Read
+  update: ArchivedCustomersFields_dealPrice_Update
+  delete: ArchivedCustomersFields_dealPrice_Delete
+}
+
+type ArchivedCustomersFields_dealPrice_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_dealPrice_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_dealPrice_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_dealPrice_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates {
+  create: ArchivedCustomersFields_charterDates_Create
+  read: ArchivedCustomersFields_charterDates_Read
+  update: ArchivedCustomersFields_charterDates_Update
+  delete: ArchivedCustomersFields_charterDates_Delete
+  fields: ArchivedCustomersFields_charterDates_Fields
+}
+
+type ArchivedCustomersFields_charterDates_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_Fields {
+  from: ArchivedCustomersFields_charterDates_from
+  to: ArchivedCustomersFields_charterDates_to
+}
+
+type ArchivedCustomersFields_charterDates_from {
+  create: ArchivedCustomersFields_charterDates_from_Create
+  read: ArchivedCustomersFields_charterDates_from_Read
+  update: ArchivedCustomersFields_charterDates_from_Update
+  delete: ArchivedCustomersFields_charterDates_from_Delete
+}
+
+type ArchivedCustomersFields_charterDates_from_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_from_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_from_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_from_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_to {
+  create: ArchivedCustomersFields_charterDates_to_Create
+  read: ArchivedCustomersFields_charterDates_to_Read
+  update: ArchivedCustomersFields_charterDates_to_Update
+  delete: ArchivedCustomersFields_charterDates_to_Delete
+}
+
+type ArchivedCustomersFields_charterDates_to_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_to_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_to_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charterDates_to_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_updatedAt {
+  create: ArchivedCustomersFields_updatedAt_Create
+  read: ArchivedCustomersFields_updatedAt_Read
+  update: ArchivedCustomersFields_updatedAt_Update
+  delete: ArchivedCustomersFields_updatedAt_Delete
+}
+
+type ArchivedCustomersFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_createdAt {
+  create: ArchivedCustomersFields_createdAt_Create
+  read: ArchivedCustomersFields_createdAt_Read
+  update: ArchivedCustomersFields_createdAt_Update
+  delete: ArchivedCustomersFields_createdAt_Delete
+}
+
+type ArchivedCustomersFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ArchivedCustomersReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ArchivedCustomersUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ArchivedCustomersDeleteAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -15987,6 +20211,12 @@ type Mutation {
   createNewConstruction(data: mutationNewConstructionInput!, locale: LocaleInputType): NewConstruction
   updateNewConstruction(id: String!, autosave: Boolean, data: mutationNewConstructionUpdateInput!, locale: LocaleInputType): NewConstruction
   deleteNewConstruction(id: String!): NewConstruction
+  createMessage(data: mutationMessageInput!, locale: LocaleInputType): Message
+  updateMessage(id: String!, autosave: Boolean, data: mutationMessageUpdateInput!, locale: LocaleInputType): Message
+  deleteMessage(id: String!): Message
+  createArchivedCustomer(data: mutationArchivedCustomerInput!, locale: LocaleInputType): ArchivedCustomer
+  updateArchivedCustomer(id: String!, autosave: Boolean, data: mutationArchivedCustomerUpdateInput!, locale: LocaleInputType): ArchivedCustomer
+  deleteArchivedCustomer(id: String!): ArchivedCustomer
   createPayloadPreference(data: mutationPayloadPreferenceInput!, locale: LocaleInputType): PayloadPreference
   updatePayloadPreference(id: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!, locale: LocaleInputType): PayloadPreference
   deletePayloadPreference(id: String!): PayloadPreference
@@ -15999,8 +20229,14 @@ input mutationArticleInput {
   author: String
   content: JSON
   image: String!
+  seo: [mutationArticle_SeoInput]
   updatedAt: String
   createdAt: String
+}
+
+input mutationArticle_SeoInput {
+  value: String
+  id: String
 }
 
 input mutationArticleUpdateInput {
@@ -16010,8 +20246,14 @@ input mutationArticleUpdateInput {
   author: String
   content: JSON
   image: String
+  seo: [mutationArticleUpdate_SeoInput]
   updatedAt: String
   createdAt: String
+}
+
+input mutationArticleUpdate_SeoInput {
+  value: String
+  id: String
 }
 
 input mutationMediaInput {
@@ -16163,6 +20405,7 @@ input mutationYachtInput {
   featured: Boolean
   keyFeatures: [Yacht_keyFeatures_MutationInput]!
   photos: mutationYacht_PhotosInput!
+  seo: [mutationYacht_SeoInput]
   updatedAt: String
   createdAt: String
 }
@@ -16196,6 +20439,11 @@ input mutationYacht_Photos_GalleryInput {
   id: String
 }
 
+input mutationYacht_SeoInput {
+  value: String
+  id: String
+}
+
 input mutationYachtUpdateInput {
   name: String
   model: String
@@ -16225,6 +20473,7 @@ input mutationYachtUpdateInput {
   featured: Boolean
   keyFeatures: [YachtUpdate_keyFeatures_MutationInput]
   photos: mutationYachtUpdate_PhotosInput!
+  seo: [mutationYachtUpdate_SeoInput]
   updatedAt: String
   createdAt: String
 }
@@ -16258,6 +20507,11 @@ input mutationYachtUpdate_Photos_GalleryInput {
   id: String
 }
 
+input mutationYachtUpdate_SeoInput {
+  value: String
+  id: String
+}
+
 input mutationCharterInput {
   name: String!
   model: String!
@@ -16287,6 +20541,8 @@ input mutationCharterInput {
   featured: Boolean
   keyFeatures: [Charter_keyFeatures_MutationInput]!
   photos: mutationCharter_PhotosInput!
+  seo: [mutationCharter_SeoInput]
+  reservations: [mutationCharter_ReservationsInput]
   updatedAt: String
   createdAt: String
 }
@@ -16320,6 +20576,18 @@ input mutationCharter_Photos_GalleryInput {
   id: String
 }
 
+input mutationCharter_SeoInput {
+  value: String
+  id: String
+}
+
+input mutationCharter_ReservationsInput {
+  from: String!
+  to: String
+  customer: String
+  id: String
+}
+
 input mutationCharterUpdateInput {
   name: String
   model: String
@@ -16349,6 +20617,8 @@ input mutationCharterUpdateInput {
   featured: Boolean
   keyFeatures: [CharterUpdate_keyFeatures_MutationInput]
   photos: mutationCharterUpdate_PhotosInput!
+  seo: [mutationCharterUpdate_SeoInput]
+  reservations: [mutationCharterUpdate_ReservationsInput]
   updatedAt: String
   createdAt: String
 }
@@ -16382,6 +20652,18 @@ input mutationCharterUpdate_Photos_GalleryInput {
   id: String
 }
 
+input mutationCharterUpdate_SeoInput {
+  value: String
+  id: String
+}
+
+input mutationCharterUpdate_ReservationsInput {
+  from: String!
+  to: String
+  customer: String
+  id: String
+}
+
 input mutationCategoryInput {
   title: String
   updatedAt: String
@@ -16403,6 +20685,7 @@ input mutationDestinationInput {
   description: String
   info: mutationDestination_InfoInput!
   coordinates: [Float]
+  seo: [mutationDestination_SeoInput]
   updatedAt: String
   createdAt: String
 }
@@ -16419,6 +20702,11 @@ input mutationDestination_InfoInput {
   currency: String
 }
 
+input mutationDestination_SeoInput {
+  value: String
+  id: String
+}
+
 input mutationDestinationUpdateInput {
   destination: String
   country: String
@@ -16428,6 +20716,7 @@ input mutationDestinationUpdateInput {
   description: String
   info: mutationDestinationUpdate_InfoInput!
   coordinates: [Float]
+  seo: [mutationDestinationUpdate_SeoInput]
   updatedAt: String
   createdAt: String
 }
@@ -16444,6 +20733,11 @@ input mutationDestinationUpdate_InfoInput {
   currency: String
 }
 
+input mutationDestinationUpdate_SeoInput {
+  value: String
+  id: String
+}
+
 input mutationEventInput {
   title: String
   fromDate: String!
@@ -16451,6 +20745,7 @@ input mutationEventInput {
   location: mutationEvent_LocationInput
   content: JSON
   image: String!
+  seo: [mutationEvent_SeoInput]
   updatedAt: String
   createdAt: String
 }
@@ -16458,6 +20753,12 @@ input mutationEventInput {
 input mutationEvent_LocationInput {
   city: String
   country: String
+  destination: String
+}
+
+input mutationEvent_SeoInput {
+  value: String
+  id: String
 }
 
 input mutationEventUpdateInput {
@@ -16467,6 +20768,7 @@ input mutationEventUpdateInput {
   location: mutationEventUpdate_LocationInput
   content: JSON
   image: String
+  seo: [mutationEventUpdate_SeoInput]
   updatedAt: String
   createdAt: String
 }
@@ -16474,6 +20776,12 @@ input mutationEventUpdateInput {
 input mutationEventUpdate_LocationInput {
   city: String
   country: String
+  destination: String
+}
+
+input mutationEventUpdate_SeoInput {
+  value: String
+  id: String
 }
 
 input mutationPartnerInput {
@@ -16482,8 +20790,14 @@ input mutationPartnerInput {
   comment: String
   logo: String!
   banner: String!
+  seo: [mutationPartner_SeoInput]
   updatedAt: String
   createdAt: String
+}
+
+input mutationPartner_SeoInput {
+  value: String
+  id: String
 }
 
 input mutationPartnerUpdateInput {
@@ -16492,8 +20806,14 @@ input mutationPartnerUpdateInput {
   comment: String
   logo: String
   banner: String
+  seo: [mutationPartnerUpdate_SeoInput]
   updatedAt: String
   createdAt: String
+}
+
+input mutationPartnerUpdate_SeoInput {
+  value: String
+  id: String
 }
 
 input mutationShipyardInput {
@@ -16560,6 +20880,7 @@ input mutationNewConstructionInput {
   featured: Boolean
   keyFeatures: [NewConstruction_keyFeatures_MutationInput]!
   photos: mutationNewConstruction_PhotosInput!
+  seo: [mutationNewConstruction_SeoInput]
   updatedAt: String
   createdAt: String
 }
@@ -16593,6 +20914,11 @@ input mutationNewConstruction_Photos_GalleryInput {
   id: String
 }
 
+input mutationNewConstruction_SeoInput {
+  value: String
+  id: String
+}
+
 input mutationNewConstructionUpdateInput {
   delivery: String
   name: String
@@ -16623,6 +20949,7 @@ input mutationNewConstructionUpdateInput {
   featured: Boolean
   keyFeatures: [NewConstructionUpdate_keyFeatures_MutationInput]
   photos: mutationNewConstructionUpdate_PhotosInput!
+  seo: [mutationNewConstructionUpdate_SeoInput]
   updatedAt: String
   createdAt: String
 }
@@ -16654,6 +20981,133 @@ input mutationNewConstructionUpdate_PhotosInput {
 input mutationNewConstructionUpdate_Photos_GalleryInput {
   image: String!
   id: String
+}
+
+input mutationNewConstructionUpdate_SeoInput {
+  value: String
+  id: String
+}
+
+input mutationMessageInput {
+  name: String!
+  email: String!
+  tel: String
+  message: String!
+  page: String
+  status: Message_status_MutationInput
+  user: String
+  newsletter: Boolean
+  closed: Boolean
+  type: String
+  yacht: String
+  charter: String
+  dealPrice: Float
+  charterDates: mutationMessage_CharterDatesInput
+  updatedAt: String
+  createdAt: String
+}
+
+enum Message_status_MutationInput {
+  pending
+  claimed
+  fulfilled
+}
+
+input mutationMessage_CharterDatesInput {
+  from: String
+  to: String
+}
+
+input mutationMessageUpdateInput {
+  name: String
+  email: String
+  tel: String
+  message: String
+  page: String
+  status: MessageUpdate_status_MutationInput
+  user: String
+  newsletter: Boolean
+  closed: Boolean
+  type: String
+  yacht: String
+  charter: String
+  dealPrice: Float
+  charterDates: mutationMessageUpdate_CharterDatesInput
+  updatedAt: String
+  createdAt: String
+}
+
+enum MessageUpdate_status_MutationInput {
+  pending
+  claimed
+  fulfilled
+}
+
+input mutationMessageUpdate_CharterDatesInput {
+  from: String
+  to: String
+}
+
+input mutationArchivedCustomerInput {
+  closureDate: String!
+  name: String!
+  email: String!
+  tel: String
+  message: String!
+  page: String
+  status: ArchivedCustomer_status_MutationInput
+  user: String
+  newsletter: Boolean
+  closed: Boolean
+  type: String
+  yacht: String
+  charter: String
+  dealPrice: Float
+  charterDates: mutationArchivedCustomer_CharterDatesInput
+  updatedAt: String
+  createdAt: String
+}
+
+enum ArchivedCustomer_status_MutationInput {
+  pending
+  claimed
+  fulfilled
+}
+
+input mutationArchivedCustomer_CharterDatesInput {
+  from: String
+  to: String
+}
+
+input mutationArchivedCustomerUpdateInput {
+  closureDate: String
+  name: String
+  email: String
+  tel: String
+  message: String
+  page: String
+  status: ArchivedCustomerUpdate_status_MutationInput
+  user: String
+  newsletter: Boolean
+  closed: Boolean
+  type: String
+  yacht: String
+  charter: String
+  dealPrice: Float
+  charterDates: mutationArchivedCustomerUpdate_CharterDatesInput
+  updatedAt: String
+  createdAt: String
+}
+
+enum ArchivedCustomerUpdate_status_MutationInput {
+  pending
+  claimed
+  fulfilled
+}
+
+input mutationArchivedCustomerUpdate_CharterDatesInput {
+  from: String
+  to: String
 }
 
 input mutationPayloadPreferenceInput {
