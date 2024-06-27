@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload/types'
 
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
+import { seoField } from '../shared/seo'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -62,6 +63,43 @@ export const Events: CollectionConfig = {
       ],
     },
     {
+      type: 'group',
+      name: 'location',
+      label: {
+        en: 'Location',
+        fr: 'Lieu',
+      },
+      fields: [
+        {
+          type: 'text',
+          label: {
+            en: 'City',
+            fr: 'Ville',
+          },
+          name: 'city',
+          required: false,
+        },
+        {
+          type: 'text',
+          label: {
+            en: 'Country',
+            fr: 'Pays',
+          },
+          name: 'country',
+          required: false,
+        },
+        {
+          type: 'text',
+          label: {
+            en: 'Destination',
+            fr: 'Destination',
+          },
+          name: 'destination',
+          required: false,
+        },
+      ],
+    },
+    {
       type: 'richText',
       name: 'content',
       label: {
@@ -81,5 +119,6 @@ export const Events: CollectionConfig = {
       },
       required: true,
     },
+    seoField,
   ],
 }
