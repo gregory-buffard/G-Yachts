@@ -1,6 +1,5 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import redirects from '@payloadcms/plugin-redirects'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv'
 import path from 'path'
@@ -20,6 +19,7 @@ import { Shipyards } from './collections/Shipyards'
 import { NewConstructions } from './collections/NewConstructions'
 import { Messages } from './collections/Messages'
 import { ArchivedCustomers } from './collections/ArchivedCustomers'
+import { getBrochure } from './utilities/getBrochure'
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -32,6 +32,9 @@ export default buildConfig({
     components: {},
     webpack: config => ({
       ...config,
+      externals: {
+        puppeteer: "require('puppeteer')",
+      },
       resolve: {
         ...config.resolve,
         alias: {
@@ -82,7 +85,13 @@ export default buildConfig({
   },
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
-  endpoints: [],
+  endpoints: [
+    {
+      path: '/brochure/yachts/:id',
+      method: 'get',
+      handler: async (req, res, next) => getBrochure(req, res),
+    },
+  ],
   plugins: [],
   upload: {
     limits: {

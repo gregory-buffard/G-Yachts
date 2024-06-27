@@ -289,6 +289,7 @@ export interface ArchivedCustomer {
   user?: (string | null) | User;
   newsletter?: boolean | null;
   closed?: boolean | null;
+  dealPrice?: number | null;
   type?: ('charter' | 'sale') | null;
   yacht?: {
     name?: string | null;
@@ -318,7 +319,6 @@ export interface ArchivedCustomer {
     yearBuilt?: number | null;
     yearModel?: number | null;
   };
-  dealPrice?: number | null;
   charterDates?: {
     from?: string | null;
     to?: string | null;
