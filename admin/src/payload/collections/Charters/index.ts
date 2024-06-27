@@ -4,6 +4,7 @@ import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 import { yachtsAndCharterCommonFields } from '../shared/YachtAndCharterFields'
 import { seoField } from '../shared/seo'
+import LinkToCustomer from './components/linkToCustomer'
 
 export const Charters: CollectionConfig = {
   slug: 'charters',
@@ -82,13 +83,25 @@ export const Charters: CollectionConfig = {
                   },
                 },
                 {
-                  name: 'customer',
+                  name: 'customerName',
                   type: 'text',
                   label: {
                     en: 'Customer',
                     fr: 'Client',
                   },
                   required: false,
+                },
+                {
+                  name: 'customer',
+                  type: 'relationship',
+                  relationTo: 'archived-customers',
+                  required: false,
+                  admin: {
+                    condition: (data, siblingData, { user }) => siblingData.customer,
+                    components: {
+                      Field: LinkToCustomer,
+                    },
+                  },
                 },
               ],
               validate: val => {

@@ -5,7 +5,7 @@ import { assignedOrUnclaimed } from './hooks/read'
 import Status from './components/status'
 import Reply from './components/reply'
 import Label from './components/label'
-import { Message } from '../../payload-types'
+import { Charter, Message, Yacht } from '../../payload-types'
 import { validateCharertDates } from './hooks/validateCharterDates'
 
 export const Messages: CollectionConfig = {
@@ -38,10 +38,31 @@ export const Messages: CollectionConfig = {
         const data = doc as Message
         if (operation === 'update' && data.closed) {
           data.status = 'fulfilled'
+          let charter: Charter | null = null
+          let yacht: Yacht | null = null
+          if (data.type === 'charter') {
+            data.yacht = null
+            charter = await req.payload.findByID({
+              collection: 'charters',
+              id: typeof data.charter === 'string' ? data.charter : data.charter.id,
+              depth: 1,
+            })
+          }
+          if (data.type === 'sale') {
+            data.charter = null
+            data.charterDates = null
+            yacht = await req.payload.findByID({
+              collection: 'yachts',
+              id: typeof data.yacht === 'string' ? data.yacht : data.yacht.id,
+              depth: 1,
+            })
+          }
+          console.log('data', data)
+          console.log('yacht', yacht)
           const { id } = await req.payload.create({
             collection: 'archived-customers',
             data: {
-              charterDates: data.charterDates,
+              charterDates: data.charterDates || {},
               closureDate: new Date().toISOString(),
               dealPrice: data.dealPrice,
               email: data.email,
@@ -52,12 +73,64 @@ export const Messages: CollectionConfig = {
               tel: data.tel,
               type: data.type,
               user: data.user,
-              yacht: data.yacht,
-              charter: data.charter,
+              yacht: yacht
+                ? {
+                    broker: typeof yacht.broker === 'string' ? yacht.broker : yacht.broker.id,
+                    builder: yacht.builder,
+                    model: yacht.model,
+                    name: yacht.name,
+                    price: yacht.price,
+                    city: yacht.city,
+                    continent: yacht.continent,
+                    country: yacht.country,
+                    region: yacht.region,
+                    state: yacht.state,
+                    yearBuilt: yacht.yearBuilt,
+                    yearModel: yacht.yearModel,
+                  }
+                : {},
+              charter: charter
+                ? {
+                    broker: typeof charter.broker === 'string' ? charter.broker : charter.broker.id,
+                    builder: charter.builder,
+                    model: charter.model,
+                    name: charter.name,
+                    price: charter.price,
+                    city: charter.city,
+                    continent: charter.continent,
+                    country: charter.country,
+                    region: charter.region,
+                    state: charter.state,
+                    yearBuilt: charter.yearBuilt,
+                    yearModel: charter.yearModel,
+                  }
+                : {},
               closed: data.closed,
               newsletter: data.newsletter,
             },
           })
+          if (data.type === 'charter') {
+            await req.payload.update({
+              collection: 'charters',
+              where: {
+                id: {
+                  equals: charter.id,
+                },
+              },
+              data: {
+                reservations: [
+                  ...charter.reservations,
+                  {
+                    id,
+                    from: data.charterDates.from,
+                    to: data.charterDates.to,
+                    customerName: data.name,
+                    customer: id,
+                  },
+                ],
+              },
+            })
+          }
           await req.payload.delete({
             collection: 'messages',
             id: data.id,

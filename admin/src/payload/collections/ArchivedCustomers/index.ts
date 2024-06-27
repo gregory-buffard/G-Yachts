@@ -1,7 +1,8 @@
-import { CollectionConfig } from 'payload/types'
+import { CollectionConfig, Field } from 'payload/types'
 import { users } from '../../access/users'
 import Status from '../Messages/components/status'
 import Label from '../Messages/components/label'
+import { sharedYachtAndCharterFields } from './sharedFields'
 
 export const ArchivedCustomers: CollectionConfig = {
   slug: 'archived-customers',
@@ -196,6 +197,19 @@ export const ArchivedCustomers: CollectionConfig = {
       },
     },
     {
+      type: 'number',
+      name: 'dealPrice',
+      label: {
+        en: 'Deal Price',
+        fr: "Prix de l'offre",
+      },
+      admin: {
+        components: {
+          Field: Label,
+        },
+      },
+    },
+    {
       type: 'radio',
       name: 'type',
       label: {
@@ -225,44 +239,31 @@ export const ArchivedCustomers: CollectionConfig = {
       },
     },
     {
-      type: 'relationship',
+      type: 'group',
       name: 'yacht',
       label: {
         en: 'Yacht',
         fr: 'Yacht',
       },
-      relationTo: 'yachts',
-      hasMany: false,
+      fields: sharedYachtAndCharterFields,
+      defaultValue: {},
       admin: {
         readOnly: true,
-        condition: (data, _, { user }) => data.closed && data.type === 'sale',
+        condition: (data, _, { user }) => data.type === 'sale',
       },
     },
     {
-      type: 'relationship',
+      type: 'group',
       name: 'charter',
       label: {
         en: 'Charter',
         fr: 'Charter',
       },
-      relationTo: 'charters',
-      hasMany: false,
+      fields: sharedYachtAndCharterFields,
+      defaultValue: {},
       admin: {
         readOnly: true,
-        condition: (data, _, { user }) => data.closed && data.type === 'charter',
-      },
-    },
-    {
-      type: 'number',
-      name: 'dealPrice',
-      label: {
-        en: 'Deal Price',
-        fr: "Prix de l'offre",
-      },
-      admin: {
-        components: {
-          Field: Label,
-        },
+        condition: (data, _, { user }) => data.type === 'charter',
       },
     },
     {
@@ -271,6 +272,9 @@ export const ArchivedCustomers: CollectionConfig = {
       label: {
         en: 'Charter Dates',
         fr: 'Dates de la charte',
+      },
+      admin: {
+        condition: (data, _, { user }) => data.type === 'charter',
       },
       fields: [
         {

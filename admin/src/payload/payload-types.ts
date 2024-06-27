@@ -109,6 +109,24 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    fhd?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -247,10 +265,64 @@ export interface Charter {
     | {
         from: string;
         to?: string | null;
-        customer?: string | null;
+        customerName?: string | null;
+        customer?: (string | null) | ArchivedCustomer;
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "archived-customers".
+ */
+export interface ArchivedCustomer {
+  id: string;
+  closureDate: string;
+  name: string;
+  email: string;
+  tel?: string | null;
+  message: string;
+  page?: string | null;
+  status?: ('pending' | 'claimed' | 'fulfilled') | null;
+  user?: (string | null) | User;
+  newsletter?: boolean | null;
+  closed?: boolean | null;
+  type?: ('charter' | 'sale') | null;
+  yacht?: {
+    name?: string | null;
+    model?: string | null;
+    price?: number | null;
+    broker?: (string | null) | User;
+    builder?: string | null;
+    city?: string | null;
+    continent?: string | null;
+    country?: string | null;
+    state?: string | null;
+    region?: string | null;
+    yearBuilt?: number | null;
+    yearModel?: number | null;
+  };
+  charter?: {
+    name?: string | null;
+    model?: string | null;
+    price?: number | null;
+    broker?: (string | null) | User;
+    builder?: string | null;
+    city?: string | null;
+    continent?: string | null;
+    country?: string | null;
+    state?: string | null;
+    region?: string | null;
+    yearBuilt?: number | null;
+    yearModel?: number | null;
+  };
+  dealPrice?: number | null;
+  charterDates?: {
+    from?: string | null;
+    to?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -440,33 +512,6 @@ export interface NewConstruction {
  */
 export interface Message {
   id: string;
-  name: string;
-  email: string;
-  tel?: string | null;
-  message: string;
-  page?: string | null;
-  status?: ('pending' | 'claimed' | 'fulfilled') | null;
-  user?: (string | null) | User;
-  newsletter?: boolean | null;
-  closed?: boolean | null;
-  type?: ('charter' | 'sale') | null;
-  yacht?: (string | null) | Yacht;
-  charter?: (string | null) | Charter;
-  dealPrice?: number | null;
-  charterDates?: {
-    from?: string | null;
-    to?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "archived-customers".
- */
-export interface ArchivedCustomer {
-  id: string;
-  closureDate: string;
   name: string;
   email: string;
   tel?: string | null;

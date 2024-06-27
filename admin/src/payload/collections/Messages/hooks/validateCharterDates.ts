@@ -2,7 +2,7 @@ import { Payload } from 'payload'
 import { Message } from '../../../payload-types'
 
 export const validateCharertDates = async (
-  value: any,
+  _: any,
   {
     data,
     payload,
@@ -13,27 +13,28 @@ export const validateCharertDates = async (
 ) => {
   if (!payload) return true
   if (data.type !== 'charter') return true
-  if (!value.from || !value.to) return 'Both start and end dates are required'
-  if (value.from && value.to) {
-    if (new Date(value.from) > new Date(value.to)) {
-      return 'The start date must be before the end date'
-    }
+  if (!data.charterDates.from || !data.charterDates.to)
+    return 'Both start and end dates are required'
+  if (new Date(data.charterDates.from) > new Date(data.charterDates.to)) {
+    return 'The start date must be before the end date'
   }
+
   const { reservations } = await payload.findByID({
     collection: 'charters',
     id: typeof data.charter === 'string' ? data.charter : data.charter.id.toString(),
   })
 
   // Check if the new reservation overlaps with any existing reservations
+  const from = new Date(data.charterDates.from).getTime()
+  const to = new Date(data.charterDates.to).getTime()
   for (let i = 0; i < reservations.length; i++) {
-    for (let j = i + 1; j < reservations.length; j++) {
-      if (
-        (reservations[i].from <= reservations[j].from &&
-          reservations[j].from <= reservations[i].to) ||
-        (reservations[i].from <= reservations[j].to && reservations[j].to <= reservations[i].to)
-      ) {
-        return 'Reservations cannot overlap'
-      }
+    if (
+      (new Date(reservations[i].from).getTime() <= from &&
+        from <= new Date(reservations[i].to).getTime()) ||
+      (new Date(reservations[i].from).getTime() <= to &&
+        to <= new Date(reservations[i].to).getTime())
+    ) {
+      return 'Reservations cannot overlap'
     }
   }
   return true
