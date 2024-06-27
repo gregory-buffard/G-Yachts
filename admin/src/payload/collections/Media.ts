@@ -1,5 +1,6 @@
 import path from 'path'
 import type { CollectionConfig } from 'payload/types'
+import { users } from '../access/users'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -21,9 +22,39 @@ export const Media: CollectionConfig = {
   versions: false,
   upload: {
     staticDir: path.resolve(__dirname, '../../../media'),
+    formatOptions: {
+      format: 'webp',
+    },
+    imageSizes: [
+      {
+        name: 'thumbnail',
+        width: 400,
+        height: undefined,
+        position: 'center',
+      },
+      {
+        name: 'fhd',
+        width: 1920,
+        height: undefined,
+        position: 'center',
+      },
+    ],
+    adminThumbnail: 'thumbnail',
+    resizeOptions: {
+      fit: 'contain',
+      position: 'center',
+      background: 'rgba(0, 0, 0, 0)',
+      withoutEnlargement: true,
+      fastShrinkOnLoad: false,
+    },
+    focalPoint: false,
+    mimeTypes: ['image/*'],
   },
   access: {
     read: () => true,
+    create: users,
+    update: users,
+    delete: users,
   },
   fields: [
     {
