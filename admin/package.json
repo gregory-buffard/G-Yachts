@@ -30,7 +30,7 @@
     "dotenv": "^8.2.0",
     "escape-html": "^1.0.3",
     "express": "^4.19.2",
-    "payload": "^2.0.0",
+    "payload": "^2.22.2",
     "payload-admin-bar": "^1.0.6",
     "qs": "6.11.2",
     "react-hook-form": "7.45.4",

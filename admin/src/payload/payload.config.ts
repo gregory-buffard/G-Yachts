@@ -29,14 +29,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
-    components: {
-      // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
-      // beforeLogin: [BeforeLogin],
-      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
-      // beforeDashboard: [BeforeDashboard],
-    },
+    components: {},
     webpack: config => ({
       ...config,
       resolve: {
@@ -44,10 +37,6 @@ export default buildConfig({
         alias: {
           ...config.resolve.alias,
           dotenv: path.resolve(__dirname, './dotenv.js'),
-          [path.resolve(__dirname, './endpoints/seed')]: path.resolve(
-            __dirname,
-            './emptyModuleMock.js',
-          ),
         },
       },
     }),
@@ -93,20 +82,11 @@ export default buildConfig({
   },
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
-  endpoints: [
-    // The seed endpoint is used to populate the database with some example data
-    // You should delete this endpoint before deploying your site to production
-    // {
-    //   path: '/seed',
-    //   method: 'get',
-    //   handler: seed,
-    // },
-  ],
-  plugins: [
-    // seo({
-    //   collections: ['articles'],
-    //   generateTitle,
-    //   uploadsCollection: 'media',
-    // }),
-  ],
+  endpoints: [],
+  plugins: [],
+  upload: {
+    limits: {
+      fileSize: 5000000, // 5MB, written in bytes
+    },
+  },
 })
