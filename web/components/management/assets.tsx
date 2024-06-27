@@ -11,7 +11,7 @@ const Assets = () => {
         <Image
           src={assets}
           alt={"Yacht show in Monaco"}
-          className={"py-[5vw] md:py-[0vw]"}
+          className={"py-[5vw] md:py-[0vw] w-[800px]"}
         />
         <div className={"order-first md:order-last md:pl-[10vh]"}>
           <h1 className={"pb-[3vw] md:pb-[1vw]"}>
@@ -23,16 +23,32 @@ const Assets = () => {
               ),
             })}
           </h1>
-          <p className={"py-[2vw] md:py[0vw] md:text-xl font-classic font-light text-justify"}>
+          <p
+            className={
+              "py-[2vw] md:py-[1vw] md:text-xl font-classic font-light text-justify"
+            }
+          >
             {t("paragraph1")}
           </p>
-          <p className={"py-[2vw] md:py[0vw] md:text-xl font-classic font-light text-justify"}>
+          <p
+            className={
+              "py-[2vw] md:py-[1vw] md:text-xl font-classic font-light text-justify"
+            }
+          >
             {t("paragraph2")}
           </p>
-          <p className={"py-[2vw] md:py[0vw] md:text-xl font-classic font-light text-justify"}>
+          <p
+            className={
+              "py-[2vw] md:py-[1vw] md:text-xl font-classic font-light text-justify"
+            }
+          >
             {t("paragraph3")}
           </p>
-          <p className={"py-[2vw] md:py[0vw] md:text-xl font-classic font-light text-justify"}>
+          <p
+            className={
+              "py-[2vw] md:py-[1vw] md:text-xl font-classic font-light text-justify"
+            }
+          >
             {t("paragraph4")}
           </p>
         </div>

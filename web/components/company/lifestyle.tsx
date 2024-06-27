@@ -1,18 +1,28 @@
+"use client";
+
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { useViewContext } from "@/context/view";
 import React from "react";
 
 const Lifestyle = () => {
-  const t = useTranslations("company.bottom");
+  const t = useTranslations("company.bottom"),
+    { openView } = useViewContext();
   return (
     <section
       className={
-        "h-[56dvh] w-full overflow-hidden items-center flex flex-col justify-center text-center text-white"
+        "h-[56dvh] w-full relative overflow-hidden items-center flex flex-col justify-center text-center text-white"
       }
-      style={{
-        backgroundImage: `url(/imagery/original/IMG_8260.JPG)`,
-      }}
     >
+      <video
+        src="/imagery/optimized/management/bottomVideo.mp4"
+        autoPlay
+        loop
+        muted
+        preload={"none"}
+        className="w-full absolute -z-10 h-full object-cover object-center"
+        playsInline
+      />
       <h1 className={"py-[2vw]"}>
         {t.rich("title", {
           classic: (chunks) => (
@@ -23,6 +33,12 @@ const Lifestyle = () => {
         })}
       </h1>
       <p className={"md:w-[42vw] w-full px-[3vw]"}>{t("description")}</p>
+      <button
+        className={"glass-button glass-button-light mt-4"}
+        onClick={() => openView("contact")}
+      >
+        {t("CTA")}
+      </button>
     </section>
   );
 };
