@@ -19,11 +19,11 @@ const Hero = () => {
       />
       <Scrolldown />
       <div className="grid grid-rows-6 h-full relative">
-        <div className="row-span-4 flex flex-col items-start justify-end md:ml-56 ml-4 mb-28">
-          <h2 className="font-classic text-white md:text-xl text-sm py-2">
+        <div className="row-span-4 flex flex-col items-start justify-end md:ml-28 lg:ml-26 xl:ml-56 ml-4 mb-28">
+          <h2 className="font-classic text-white md:text-sm lg:text-xl text-sm py-2">
             {t("subtitle")}
           </h2>
-          <div className="font-slick font-light text-3xl md:text-6xl text-white [text-wrap:balance] bg-clip-text">
+          <div className="font-slick font-light text-3xl md:text-4xl lg:text-6xl text-white [text-wrap:balance] bg-clip-text">
             Superyachts{" "}
             <span className="font-classic font-medium inline-flex flex-col h-[calc(theme(fontSize.3xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.6xl)*theme(lineHeight.tight))] overflow-hidden">
               <ul className="block animate-text-slide-4 text-left leading-tight [&_li]:block">
