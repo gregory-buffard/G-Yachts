@@ -24,7 +24,7 @@ const SwitchView = ({
         e.preventDefault();
         changeView(props.view);
       }}
-      className={`uppercase py-[0.5vh] border-b-[0.25vh] ${view === props.view ? "border-black text-black" : "border-transparent text-rock-300"}`}
+      className={`uppercase py-[0.5vh] border-b-[0.25vh] ${view === props.view ? "border-black text-black" : "border-transparent text-rock-300"} transition-colors duration-200 ease-in-out`}
     >
       <p>{props.label}</p>
     </button>
@@ -149,6 +149,24 @@ const Details = () => {
         >
           <SwitchView props={{ view: "info", label: t("info") }} />
           <SwitchView props={{ view: "features", label: t("features") }} />
+          <a
+            target={"_blank"}
+            href={`${process.env.NEXT_PUBLIC_ADMIN_BASE_URI}/api/brochure/${yacht.id}`}
+            className={
+              "uppercase py-[0.5vh] border-b-[0.25vh] hover:border-black border-transparent hover:text-black text-rock-300 hover:fill-black fill-rock-300 transition-colors duration-200 ease-in-out flex justify-center items-start"
+            }
+          >
+            <p>{t("brochure")}</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              viewBox="0 0 24 24"
+              className={"size-[1.3rem] -rotate-45"}
+            >
+              <path d="M 14 4.9296875 L 12.5 6.4296875 L 17.070312 11 L 3 11 L 3 13 L 17.070312 13 L 12.5 17.570312 L 14 19.070312 L 21.070312 12 L 14 4.9296875 z"></path>
+            </svg>
+          </a>
         </div>
         <div className={"w-full flex-col justify-center items-center"}>
           {view === "info"
@@ -157,7 +175,7 @@ const Details = () => {
                   <div
                     key={i}
                     className={
-                      "w-full flex flex-row justify-between items-center py-[0.5vh]"
+                      "w-full flex flex-row justify-between items-baseline py-[0.5vh]"
                     }
                   >
                     <div className={"w-1/2 text-rock-300"}>
