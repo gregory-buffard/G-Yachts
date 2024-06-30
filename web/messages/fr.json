@@ -156,7 +156,12 @@
         "yearBuilt": "Année de construction",
         "yearModel": "Année du modèle",
         "hull": "Type de coque",
-        "location": "Emplacement"
+        "location": "Emplacement",
+        "crypto": {
+          "label": "Cryptomonnaie",
+          "true": "Accepté",
+          "false": "Non accepté"
+        }
       },
       "CTA": "Contactez un courtier"
     }

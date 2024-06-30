@@ -1,12 +1,12 @@
 "use client";
 
 import { useYacht } from "@/context/yacht";
-import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { convertUnit } from "@/utils/yachts";
 import { useViewContext } from "@/context/view";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import Brokerino from "@/components/yacht/brokerino";
 
 const Gallery = dynamic(() => import("@/components/yacht/gallery"));
 
@@ -24,17 +24,16 @@ const SwitchView = ({
         e.preventDefault();
         changeView(props.view);
       }}
-      className={`uppercase py-[0.5vh] border-b-[0.25vh] ${view === props.view ? "border-black text-black" : "border-transparent text-rock-300"}`}
+      className={`uppercase py-[0.5vh] border-b-[0.25vh] ${view === props.view ? "border-black text-black" : "border-transparent text-rock-300"} transition-colors duration-200 ease-in-out`}
     >
       <p>{props.label}</p>
     </button>
   );
 };
 
-const Details = ({ children }: { children: React.ReactNode }) => {
+const Details = () => {
   const { yacht, changeView, view } = useYacht(),
     { units } = useViewContext(),
-    params = useParams(),
     [photo, setPhoto] = useState<number | null>(null),
     [disabled, disable] = useState<boolean>(false),
     t = useTranslations("yacht.details");
@@ -46,31 +45,56 @@ const Details = ({ children }: { children: React.ReactNode }) => {
         yacht.category === "motor"
           ? t("characteristics.type.motor")
           : t("characteristics.type.sail"),
+      key: "category",
     },
     {
       label: t("characteristics.length"),
       value: convertUnit(yacht.length, units.length),
+      key: "length",
     },
     {
       label: t("characteristics.beam"),
       value: convertUnit(yacht.beam, units.length),
+      key: "beam",
     },
     {
       label: t("characteristics.draft"),
       value: (yacht.maxDraft + yacht.minDraft) / 2,
+      key: "draft",
     },
     {
       label: t("characteristics.tonnage"),
       value: convertUnit(yacht.tonnage, units.weight),
+      key: "tonnage",
     },
-    { label: t("characteristics.hull"), value: yacht.material },
-    { label: t("characteristics.sleeps"), value: yacht.sleeps },
-    { label: t("characteristics.rooms"), value: yacht.rooms },
-    { label: t("characteristics.yearBuilt"), value: yacht.yearBuilt },
-    { label: t("characteristics.yearModel"), value: yacht.yearModel },
+    {
+      label: t("characteristics.hull"),
+      value: yacht.material,
+      key: "material",
+    },
+    { label: t("characteristics.sleeps"), value: yacht.sleeps, key: "sleeps" },
+    { label: t("characteristics.rooms"), value: yacht.rooms, key: "rooms" },
+    {
+      label: t("characteristics.yearBuilt"),
+      value: yacht.yearBuilt,
+      key: "yearBuilt",
+    },
+    {
+      label: t("characteristics.yearModel"),
+      value: yacht.yearModel,
+      key: "yearModel",
+    },
     {
       label: t("characteristics.location"),
       value: `${yacht.city}, ${yacht.country}`,
+      key: "location",
+    },
+    {
+      label: t("characteristics.crypto.label"),
+      value: yacht.crypto
+        ? t("characteristics.crypto.true")
+        : t("characteristics.crypto.false"),
+      key: "crypto",
     },
   ];
 
@@ -125,28 +149,66 @@ const Details = ({ children }: { children: React.ReactNode }) => {
         >
           <SwitchView props={{ view: "info", label: t("info") }} />
           <SwitchView props={{ view: "features", label: t("features") }} />
+          <a
+            target={"_blank"}
+            href={`${process.env.NEXT_PUBLIC_ADMIN_BASE_URI}/api/brochure/${yacht.id}`}
+            className={
+              "uppercase py-[0.5vh] border-b-[0.25vh] hover:border-black border-transparent hover:text-black text-rock-300 hover:fill-black fill-rock-300 transition-colors duration-200 ease-in-out flex justify-center items-start"
+            }
+          >
+            <p>{t("brochure")}</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              viewBox="0 0 24 24"
+              className={"size-[1.3rem] -rotate-45"}
+            >
+              <path d="M 14 4.9296875 L 12.5 6.4296875 L 17.070312 11 L 3 11 L 3 13 L 17.070312 13 L 12.5 17.570312 L 14 19.070312 L 21.070312 12 L 14 4.9296875 z"></path>
+            </svg>
+          </a>
         </div>
         <div className={"w-full flex-col justify-center items-center"}>
-          {view === "features" ||
-            (view === "info" &&
-              characteristics.map((property, i) => (
+          {view === "info"
+            ? characteristics.map((property, i) => (
                 <>
                   <div
                     key={i}
                     className={
-                      "w-full flex flex-row justify-between items-center py-[0.5vh]"
+                      "w-full flex flex-row justify-between items-baseline py-[0.5vh]"
                     }
                   >
                     <div className={"w-1/2 text-rock-300"}>
-                      {property.label}
+                      <p>{property.label}</p>
                     </div>
-                    <div className={"w-1/2 text-black"}>{property.value}</div>
+                    <div className={"w-1/2 text-black"}>
+                      <p>{property.value}</p>
+                    </div>
                   </div>
-                  {i !== characteristics.length - 1 ? (
+                  {i !== characteristics.length - 1 && (
                     <div className={"w-full h-[0.25vh] bg-rock-200"} />
-                  ) : null}
+                  )}
                 </>
-              )))}
+              ))
+            : view === "features" && (
+                <div
+                  className={"w-full grid grid-cols-2 md:grid-cols-3 gap-[2vh]"}
+                >
+                  {characteristics
+                    .filter((property) =>
+                      yacht.keyFeatures.includes(property.key),
+                    )
+                    .map((property, i) => (
+                      <div
+                        key={i}
+                        className={"flex flex-col justify-center items-start"}
+                      >
+                        <h3>{property.value}</h3>
+                        <p className={"text-rock-300"}>{property.label}</p>
+                      </div>
+                    ))}
+                </div>
+              )}
           <Gallery current={photo} setCurrent={setPhoto} />
         </div>
         <div
@@ -154,7 +216,7 @@ const Details = ({ children }: { children: React.ReactNode }) => {
             "w-full flex flex-col justify-center items-center gap-[2vh] border-rock-400 border-[0.25vh] p-[2vh]"
           }
         >
-          {children}
+          <Brokerino brokerino={yacht.broker} />
           <a
             href={`mailto:${yacht.broker.email}`}
             className={
