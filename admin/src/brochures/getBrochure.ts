@@ -1,7 +1,9 @@
 import { Request, Response } from 'express'
 import puppeteer from 'puppeteer'
 import { generateBrochure } from './brochureGeneration/generateBrochure'
-import { PDFDocument } from 'pdf-lib'
+import { PDFEngines, Chromiumly } from 'chromiumly'
+
+Chromiumly.configure({ endpoint: process.env.GOTENBERG_ENDPOINT })
 
 export const getBrochure = async (req: Request, res: Response) => {
   try {
@@ -25,7 +27,7 @@ export const getBrochure = async (req: Request, res: Response) => {
         printBackground: true,
         displayHeaderFooter: false,
         // This number is a bit of a magic number, but it seems to work well
-        scale: 0.95,
+        scale: 0.9,
       })
 
       pdfs.push(pdfBuffer)
@@ -34,24 +36,14 @@ export const getBrochure = async (req: Request, res: Response) => {
     // Close the browser
     await browser.close()
 
-    // // Combine all PDFs into one
-    const mergedPdf = await PDFDocument.create({
-      updateMetadata: false,
+    // Combine all PDFs into one
+    const finalPdf = await PDFEngines.merge({
+      files: pdfs,
+      metadata: {
+        title: `Brochure - ${pages.name}`,
+      },
+      pdfUA: true,
     })
-    for (let i = 0; i < pdfs.length; i++) {
-      //   const pdf = await PDFDocument.load(pdfs[i], {
-      //     throwOnInvalidObject: true,
-      //   })
-      //   const copiedPages = await mergedPdf.copyPages(pdf, [0])
-      //   for (let j = 0; j < copiedPages.length; j++) {
-      //     mergedPdf.addPage(copiedPages[j])
-      // }
-    }
-
-    // mergedPdf.setTitle(`${pages.name} - Brochure`)
-    // mergedPdf.setAuthor('G-Yachts')
-
-    const finalPdf = await mergedPdf.save()
 
     // Set the response headers and send the PDF
     res.setHeader('Content-Type', 'application/pdf')

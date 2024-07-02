@@ -1,4 +1,4 @@
-import type { Charter, NewConstruction, Yacht } from '../../../payload-types'
+import type { Charter, NewConstruction, Yacht } from '../../../payload/payload-types'
 
 export const generateBrochureDetailsPage = (doc: Yacht | Charter | NewConstruction): string => {
   const details = [
@@ -34,16 +34,16 @@ export const generateBrochureDetailsPage = (doc: Yacht | Charter | NewConstructi
     <div class="w-screen h-screen flex flex-col justify-center items-center py-12 px-28" id="bg">
         <div class="w-full h-full flex flex-col items-center justify-between">
             <div class="flex flex-col items-center bg-black/50 h-full w-full">
-                <h1 class="text-white text-6xl text-center font-slick py-12 px-20 uppercase drop-shadow-2xl">
+                <h1 class="text-white text-6xl text-center font-slick pt-12 pb-10 px-20 uppercase drop-shadow-2xl">
                     General <br /> Specifications
                 </h1>
                 <div class="flex flex-row w-full justify-center">
                     <!-- 1st Columne -->
-                    <div class="flex flex-col items-center w-1/3 gap-2">
+                    <div class="flex flex-col items-center w-1/3 gap-1">
                         ${sixDetails.map(detail => row(detail.label, detail.value.toString()))}
                     </div>
                     <!-- 2nd Column -->
-                    <div class="flex flex-col items-center w-1/3 gap-2">
+                    <div class="flex flex-col items-center w-1/3 gap-1">
                         ${remainingDetails.map(detail =>
                           row(detail.label, detail.value.toString()),
                         )}
@@ -142,14 +142,18 @@ export const generateBrochureDetailsPage = (doc: Yacht | Charter | NewConstructi
         font-family: 'Beausite Slick';
         font-weight: 400;
         font-style: normal;
-        src: url('../fonts/Beausite Slick Trial Regular.ttf') format('truetype');
+        src: url('${
+          process.env.PAYLOAD_PUBLIC_SERVER_URL
+        }/images/Beausite Slick Trial Regular.ttf') format('truetype');
     }
 
     @font-face {
         font-family: 'Beausite Classic';
         font-weight: 400;
         font-style: normal;
-        src: url('../fonts/Beausite Classic Regular.ttf') format('truetype');
+        src: url('${
+          process.env.PAYLOAD_PUBLIC_SERVER_URL
+        }/images/Beausite Classic Regular.ttf') format('truetype');
     }
 
     body {

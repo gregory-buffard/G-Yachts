@@ -19,7 +19,6 @@ import { Shipyards } from './collections/Shipyards'
 import { NewConstructions } from './collections/NewConstructions'
 import { Messages } from './collections/Messages'
 import { ArchivedCustomers } from './collections/ArchivedCustomers'
-import { getBrochure } from './utilities/getBrochure'
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -32,9 +31,6 @@ export default buildConfig({
     components: {},
     webpack: config => ({
       ...config,
-      externals: {
-        puppeteer: "require('puppeteer')",
-      },
       resolve: {
         ...config.resolve,
         alias: {
@@ -85,13 +81,7 @@ export default buildConfig({
   },
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
-  endpoints: [
-    {
-      path: '/brochure/yachts/:id',
-      method: 'get',
-      handler: async (req, res, next) => getBrochure(req, res),
-    },
-  ],
+  endpoints: [],
   plugins: [],
   upload: {
     limits: {

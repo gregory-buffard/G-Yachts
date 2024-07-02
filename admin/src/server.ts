@@ -11,6 +11,7 @@ dotenv.config({
 
 import express from 'express'
 import payload from 'payload'
+import { getBrochure } from './brochures/getBrochure'
 
 const app = express()
 const PORT = process.env.PAYLOAD_PORT || 3000
@@ -19,6 +20,8 @@ const PORT = process.env.PAYLOAD_PORT || 3000
 app.get('/', (_, res) => {
   res.redirect('/admin')
 })
+
+app.get('/brochure/yachts/:id', getBrochure)
 
 const start = async (): Promise<void> => {
   await payload.init({

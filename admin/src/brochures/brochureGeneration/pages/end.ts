@@ -1,9 +1,7 @@
-import type { Charter, NewConstruction, Yacht } from '../../../payload-types'
+import type { Charter, NewConstruction, User, Yacht } from '../../../payload/payload-types'
 
-export const generateBrochurePhotoPage = (
-  doc: Yacht | Charter | NewConstruction,
-  index: number,
-): string => {
+export const generateBrochureLastPage = (doc: Yacht | Charter | NewConstruction): string => {
+  const broker = doc.broker as User
   const rootHtml = `
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +14,8 @@ export const generateBrochurePhotoPage = (
 </head>
 
 <body class="bg-cover bg-center">
-    <div class="flex flex-col h-screen w-screen">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 559.389 160.628"
-            class="fill-white h-8 absolute top-8 left-6 drop-shadow-2xl">
+    <div class="w-screen h-screen flex flex-col justify-center items-center py-12 px-28 bg-black/50 gap-4" id="bg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 559.389 160.628" class="fill-white h-12 shrink-0 mx-4">
             <g id="Black" transform="translate(-751.816 -306.891)">
                 <g id="g18" transform="translate(897.741 375.048)">
                     <path id="path20"
@@ -97,17 +94,56 @@ export const generateBrochurePhotoPage = (
                 </g>
             </g>
         </svg>
-        <div class="absolute bottom-16 left-0 w-full flex flex-row items-center">
-            <hr class="w-full border-white border mr-4 grow" />
-            <div class="flex flex-col items-start w-fit shrink-0">
-                <span class="text-white text-2xl text-center uppercase font-classic px-20 drop-shadow-2xl">
-                    ${doc.name}
-                </span>
-                <span class="text-white text-2xl text-center uppercase font-classic px-20 drop-shadow-2xl">
-                    ${doc.builder} | ${doc.length} | ${doc.yearBuilt}
-                </span>
-            </div>
+        <h1 class="text-white text-7xl font-slick uppercase mt-10">
+            Contact
+        </h1>
+        <div class="flex flex-col gap-2 mt-6 items-center">
+            <p class="text-white text-xl font-classic">
+                ${broker.name} - ${broker.position}
+            </p>
+            <hr class="w-full border-white border">
+            <p class="text-white text-xl font-classic">
+                ${broker.email}
+            </p>
+            <hr class="w-full border-white border">
+            <p class="text-white text-xl font-classic">
+                ${broker.phones[0].prefix} ${broker.phones[0].number}
+            </p>
+            <hr class="w-full border-white border">
+            <p class="text-white text-xl font-classic">
+                www.g-yachts.com
+            </p>
+            <hr class="w-full border-white border">
+            <p class="text-white text-xl font-classic text-center">
+                Le Beau Rivage <br />
+                9, avenue d'Ostende <br />
+                98000, Monaco
+            </p>
         </div>
+        <h2 class="text-white text-3xl font-slick uppercase mt-6">
+            Your dedicated yacht expert!
+        </h2>
+        <div class="flex flex-row items-center gap-4 mt-6">
+            <svg class="fill-white h-10" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+            </svg>
+            <svg class="fill-white h-10" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                    d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z" />
+            </svg>
+            <svg class="fill-white h-10" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                    d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" />
+            </svg>
+        </div>
+        <span class="text-gray-400 absolute left-50 bottom-10 text-base font-classic w-1/2 text-center">
+            The particulars are believed to be correct but are not guaranteed and may not be used for
+            contractual purposes. Specification provided for information only.
+        </span>
     </div>
 </body>
 <style>
@@ -115,18 +151,18 @@ export const generateBrochurePhotoPage = (
         font-family: 'Beausite Slick';
         font-weight: 400;
         font-style: normal;
-        src: url('../fonts/Beausite Slick Trial Regular.ttf') format('truetype');
+        src: url('${process.env.PAYLOAD_PUBLIC_SERVER_URL}/images/Beausite Slick Trial Regular.ttf') format('truetype');
     }
 
     @font-face {
         font-family: 'Beausite Classic';
         font-weight: 400;
         font-style: normal;
-        src: url('../fonts/Beausite Classic Regular.ttf') format('truetype');
+        src: url('${process.env.PAYLOAD_PUBLIC_SERVER_URL}/images/Beausite Classic Regular.ttf') format('truetype');
     }
 
     body {
-        background-image: url("${(doc.photos.gallery[index].image as any).url}");
+        background-image: url("http://51.75.16.185/media/featured.png");
     }
 
     .font-slick {

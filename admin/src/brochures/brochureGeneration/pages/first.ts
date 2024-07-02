@@ -1,4 +1,4 @@
-import type { Charter, NewConstruction, Yacht } from '../../../payload-types'
+import type { Charter, NewConstruction, Yacht } from '../../../payload/payload-types'
 
 export const generateBrochureFirstPage = (doc: Yacht | Charter | NewConstruction): string => {
   const rootHtml = `
@@ -115,14 +115,14 @@ export const generateBrochureFirstPage = (doc: Yacht | Charter | NewConstruction
     font-family: 'Beausite Slick';
     font-weight: 400;
     font-style: normal;
-    src: url('../fonts/Beausite Slick Trial Regular.ttf') format('truetype');
+    src: url('${process.env.PAYLOAD_PUBLIC_SERVER_URL}/images/Beausite Slick Trial Regular.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Beausite Classic';
     font-weight: 400;
     font-style: normal;
-    src: url('../fonts/Beausite Classic Regular.ttf') format('truetype');
+    src: url('${process.env.PAYLOAD_PUBLIC_SERVER_URL}/images/Beausite Classic Regular.ttf') format('truetype');
 }
 
 body {

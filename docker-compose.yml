@@ -72,13 +72,15 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
-    ports:
-      - "27017:27017"
+#    ports:
+#      - "27017:27017"
     networks:
       - gYachts
     volumes:
       - /var/www/mongo:/data/db
     command: mongod --auth --wiredTigerCacheSizeGB 1
+  gotenberg:
+    image: gotenberg/gotenberg:8
 
 networks:
   gYachts:
