@@ -105,6 +105,7 @@ export const Charters: CollectionConfig = {
                 },
               ],
               validate: val => {
+                if (!val) return true
                 // Ensure that the 'from' date is before the 'to' date
                 for (let i = 0; i < val.length; i++) {
                   if (val[i].from >= val[i].to) {
