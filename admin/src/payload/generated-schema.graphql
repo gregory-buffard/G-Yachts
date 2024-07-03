@@ -3021,6 +3021,7 @@ type Yacht {
   featured: Boolean!
   keyFeatures: [Yacht_keyFeatures!]!
   photos: Yacht_Photos
+  brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   seo: [Yacht_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
@@ -3785,6 +3786,7 @@ input Yacht_where {
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
+  brochure: Yacht_brochure_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
   updatedAt: Yacht_updatedAt_operator
@@ -4074,6 +4076,15 @@ input Yacht_photos__gallery__id_operator {
   exists: Boolean
 }
 
+input Yacht_brochure_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input Yacht_seo__value_operator {
   equals: String
   not_equals: String
@@ -4160,6 +4171,7 @@ input Yacht_where_and {
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
+  brochure: Yacht_brochure_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
   updatedAt: Yacht_updatedAt_operator
@@ -4200,6 +4212,7 @@ input Yacht_where_or {
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
+  brochure: Yacht_brochure_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
   updatedAt: Yacht_updatedAt_operator
@@ -4250,6 +4263,7 @@ type YachtsDocAccessFields {
   featured: YachtsDocAccessFields_featured
   keyFeatures: YachtsDocAccessFields_keyFeatures
   photos: YachtsDocAccessFields_photos
+  brochure: YachtsDocAccessFields_brochure
   seo: YachtsDocAccessFields_seo
   updatedAt: YachtsDocAccessFields_updatedAt
   createdAt: YachtsDocAccessFields_createdAt
@@ -5003,6 +5017,29 @@ type YachtsDocAccessFields_photos_gallery_id_Delete {
   permission: Boolean!
 }
 
+type YachtsDocAccessFields_brochure {
+  create: YachtsDocAccessFields_brochure_Create
+  read: YachtsDocAccessFields_brochure_Read
+  update: YachtsDocAccessFields_brochure_Update
+  delete: YachtsDocAccessFields_brochure_Delete
+}
+
+type YachtsDocAccessFields_brochure_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_brochure_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_brochure_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_brochure_Delete {
+  permission: Boolean!
+}
+
 type YachtsDocAccessFields_seo {
   create: YachtsDocAccessFields_seo_Create
   read: YachtsDocAccessFields_seo_Read
@@ -5174,6 +5211,7 @@ type Charter {
   featured: Boolean!
   keyFeatures: [Charter_keyFeatures!]!
   photos: Charter_Photos
+  brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   seo: [Charter_Seo!]
   reservations: [Charter_Reservations!]
   updatedAt: DateTime
@@ -6014,6 +6052,7 @@ input Charter_where {
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
+  brochure: Charter_brochure_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
   reservations__from: Charter_reservations__from_operator
@@ -6308,6 +6347,15 @@ input Charter_photos__gallery__id_operator {
   exists: Boolean
 }
 
+input Charter_brochure_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input Charter_seo__value_operator {
   equals: String
   not_equals: String
@@ -6446,6 +6494,7 @@ input Charter_where_and {
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
+  brochure: Charter_brochure_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
   reservations__from: Charter_reservations__from_operator
@@ -6491,6 +6540,7 @@ input Charter_where_or {
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
+  brochure: Charter_brochure_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
   reservations__from: Charter_reservations__from_operator
@@ -6546,6 +6596,7 @@ type ChartersDocAccessFields {
   featured: ChartersDocAccessFields_featured
   keyFeatures: ChartersDocAccessFields_keyFeatures
   photos: ChartersDocAccessFields_photos
+  brochure: ChartersDocAccessFields_brochure
   seo: ChartersDocAccessFields_seo
   reservations: ChartersDocAccessFields_reservations
   updatedAt: ChartersDocAccessFields_updatedAt
@@ -7297,6 +7348,29 @@ type ChartersDocAccessFields_photos_gallery_id_Update {
 }
 
 type ChartersDocAccessFields_photos_gallery_id_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_brochure {
+  create: ChartersDocAccessFields_brochure_Create
+  read: ChartersDocAccessFields_brochure_Read
+  update: ChartersDocAccessFields_brochure_Update
+  delete: ChartersDocAccessFields_brochure_Delete
+}
+
+type ChartersDocAccessFields_brochure_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_brochure_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_brochure_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_brochure_Delete {
   permission: Boolean!
 }
 
@@ -9258,7 +9332,7 @@ type Event {
 type Event_Location {
   city: String
   country: String
-  destination: String
+  destination(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Destination
 }
 
 input Event_Image_where {
@@ -9691,13 +9765,11 @@ input Event_location__country_operator {
 }
 
 input Event_location__destination_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
   exists: Boolean
 }
 
@@ -12589,6 +12661,7 @@ type NewConstruction {
   featured: Boolean!
   keyFeatures: [NewConstruction_keyFeatures!]!
   photos: NewConstruction_Photos
+  brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   seo: [NewConstruction_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
@@ -13354,6 +13427,7 @@ input NewConstruction_where {
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
   photos__gallery__id: NewConstruction_photos__gallery__id_operator
+  brochure: NewConstruction_brochure_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
   updatedAt: NewConstruction_updatedAt_operator
@@ -13653,6 +13727,15 @@ input NewConstruction_photos__gallery__id_operator {
   exists: Boolean
 }
 
+input NewConstruction_brochure_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input NewConstruction_seo__value_operator {
   equals: String
   not_equals: String
@@ -13740,6 +13823,7 @@ input NewConstruction_where_and {
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
   photos__gallery__id: NewConstruction_photos__gallery__id_operator
+  brochure: NewConstruction_brochure_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
   updatedAt: NewConstruction_updatedAt_operator
@@ -13781,6 +13865,7 @@ input NewConstruction_where_or {
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
   photos__gallery__id: NewConstruction_photos__gallery__id_operator
+  brochure: NewConstruction_brochure_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
   updatedAt: NewConstruction_updatedAt_operator
@@ -13832,6 +13917,7 @@ type NewConstructionsDocAccessFields {
   featured: NewConstructionsDocAccessFields_featured
   keyFeatures: NewConstructionsDocAccessFields_keyFeatures
   photos: NewConstructionsDocAccessFields_photos
+  brochure: NewConstructionsDocAccessFields_brochure
   seo: NewConstructionsDocAccessFields_seo
   updatedAt: NewConstructionsDocAccessFields_updatedAt
   createdAt: NewConstructionsDocAccessFields_createdAt
@@ -14605,6 +14691,29 @@ type NewConstructionsDocAccessFields_photos_gallery_id_Update {
 }
 
 type NewConstructionsDocAccessFields_photos_gallery_id_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_brochure {
+  create: NewConstructionsDocAccessFields_brochure_Create
+  read: NewConstructionsDocAccessFields_brochure_Read
+  update: NewConstructionsDocAccessFields_brochure_Update
+  delete: NewConstructionsDocAccessFields_brochure_Delete
+}
+
+type NewConstructionsDocAccessFields_brochure_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_brochure_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_brochure_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_brochure_Delete {
   permission: Boolean!
 }
 
@@ -18890,6 +18999,7 @@ type YachtsFields {
   featured: YachtsFields_featured
   keyFeatures: YachtsFields_keyFeatures
   photos: YachtsFields_photos
+  brochure: YachtsFields_brochure
   seo: YachtsFields_seo
   updatedAt: YachtsFields_updatedAt
   createdAt: YachtsFields_createdAt
@@ -19643,6 +19753,29 @@ type YachtsFields_photos_gallery_id_Delete {
   permission: Boolean!
 }
 
+type YachtsFields_brochure {
+  create: YachtsFields_brochure_Create
+  read: YachtsFields_brochure_Read
+  update: YachtsFields_brochure_Update
+  delete: YachtsFields_brochure_Delete
+}
+
+type YachtsFields_brochure_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_brochure_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_brochure_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_brochure_Delete {
+  permission: Boolean!
+}
+
 type YachtsFields_seo {
   create: YachtsFields_seo_Create
   read: YachtsFields_seo_Read
@@ -19821,6 +19954,7 @@ type ChartersFields {
   featured: ChartersFields_featured
   keyFeatures: ChartersFields_keyFeatures
   photos: ChartersFields_photos
+  brochure: ChartersFields_brochure
   seo: ChartersFields_seo
   reservations: ChartersFields_reservations
   updatedAt: ChartersFields_updatedAt
@@ -20572,6 +20706,29 @@ type ChartersFields_photos_gallery_id_Update {
 }
 
 type ChartersFields_photos_gallery_id_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_brochure {
+  create: ChartersFields_brochure_Create
+  read: ChartersFields_brochure_Read
+  update: ChartersFields_brochure_Update
+  delete: ChartersFields_brochure_Delete
+}
+
+type ChartersFields_brochure_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_brochure_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_brochure_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_brochure_Delete {
   permission: Boolean!
 }
 
@@ -22479,6 +22636,7 @@ type NewConstructionsFields {
   featured: NewConstructionsFields_featured
   keyFeatures: NewConstructionsFields_keyFeatures
   photos: NewConstructionsFields_photos
+  brochure: NewConstructionsFields_brochure
   seo: NewConstructionsFields_seo
   updatedAt: NewConstructionsFields_updatedAt
   createdAt: NewConstructionsFields_createdAt
@@ -23252,6 +23410,29 @@ type NewConstructionsFields_photos_gallery_id_Update {
 }
 
 type NewConstructionsFields_photos_gallery_id_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_brochure {
+  create: NewConstructionsFields_brochure_Create
+  read: NewConstructionsFields_brochure_Read
+  update: NewConstructionsFields_brochure_Update
+  delete: NewConstructionsFields_brochure_Delete
+}
+
+type NewConstructionsFields_brochure_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_brochure_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_brochure_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_brochure_Delete {
   permission: Boolean!
 }
 
@@ -25376,6 +25557,7 @@ input mutationYachtInput {
   featured: Boolean
   keyFeatures: [Yacht_keyFeatures_MutationInput]!
   photos: mutationYacht_PhotosInput!
+  brochure: String
   seo: [mutationYacht_SeoInput]
   updatedAt: String
   createdAt: String
@@ -25444,6 +25626,7 @@ input mutationYachtUpdateInput {
   featured: Boolean
   keyFeatures: [YachtUpdate_keyFeatures_MutationInput]
   photos: mutationYachtUpdate_PhotosInput!
+  brochure: String
   seo: [mutationYachtUpdate_SeoInput]
   updatedAt: String
   createdAt: String
@@ -25512,6 +25695,7 @@ input mutationCharterInput {
   featured: Boolean
   keyFeatures: [Charter_keyFeatures_MutationInput]!
   photos: mutationCharter_PhotosInput!
+  brochure: String
   seo: [mutationCharter_SeoInput]
   reservations: [mutationCharter_ReservationsInput]
   updatedAt: String
@@ -25589,6 +25773,7 @@ input mutationCharterUpdateInput {
   featured: Boolean
   keyFeatures: [CharterUpdate_keyFeatures_MutationInput]
   photos: mutationCharterUpdate_PhotosInput!
+  brochure: String
   seo: [mutationCharterUpdate_SeoInput]
   reservations: [mutationCharterUpdate_ReservationsInput]
   updatedAt: String
@@ -25853,6 +26038,7 @@ input mutationNewConstructionInput {
   featured: Boolean
   keyFeatures: [NewConstruction_keyFeatures_MutationInput]!
   photos: mutationNewConstruction_PhotosInput!
+  brochure: String
   seo: [mutationNewConstruction_SeoInput]
   updatedAt: String
   createdAt: String
@@ -25922,6 +26108,7 @@ input mutationNewConstructionUpdateInput {
   featured: Boolean
   keyFeatures: [NewConstructionUpdate_keyFeatures_MutationInput]
   photos: mutationNewConstructionUpdate_PhotosInput!
+  brochure: String
   seo: [mutationNewConstructionUpdate_SeoInput]
   updatedAt: String
   createdAt: String
