@@ -303,6 +303,15 @@ export const yachtsAndCharterCommonFields: Field[] = [
     ],
   },
   {
+    type: 'text',
+    name: 'description',
+    label: {
+      en: 'Description',
+      fr: 'Description',
+    },
+    required: false,
+  },
+  {
     type: 'relationship',
     relationTo: 'media',
     name: 'brochure',
