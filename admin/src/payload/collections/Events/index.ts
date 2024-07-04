@@ -89,7 +89,8 @@ export const Events: CollectionConfig = {
           required: false,
         },
         {
-          type: 'text',
+          type: 'relationship',
+          relationTo: 'destinations',
           label: {
             en: 'Destination',
             fr: 'Destination',

@@ -1,6 +1,5 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import redirects from '@payloadcms/plugin-redirects'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv'
 import path from 'path'
