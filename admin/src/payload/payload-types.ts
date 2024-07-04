@@ -187,6 +187,7 @@ export interface Yacht {
         }[]
       | null;
   };
+  description?: string | null;
   brochure?: (string | null) | Media;
   seo?:
     | {
@@ -256,6 +257,7 @@ export interface Charter {
         }[]
       | null;
   };
+  description?: string | null;
   brochure?: (string | null) | Media;
   seo?:
     | {
@@ -499,6 +501,7 @@ export interface NewConstruction {
         }[]
       | null;
   };
+  description?: string | null;
   brochure?: (string | null) | Media;
   seo?:
     | {
