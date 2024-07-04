@@ -1,4 +1,5 @@
 import type { Field } from 'payload/types'
+import BrochureComponent from './brochureComponent'
 
 export const yachtsAndCharterCommonFields: Field[] = [
   {
@@ -300,5 +301,15 @@ export const yachtsAndCharterCommonFields: Field[] = [
         ],
       },
     ],
+  },
+  {
+    type: 'relationship',
+    relationTo: 'media',
+    name: 'brochure',
+    admin: {
+      components: {
+        Field: BrochureComponent,
+      },
+    },
   },
 ]

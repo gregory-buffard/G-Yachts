@@ -21,7 +21,7 @@ app.get('/', (_, res) => {
   res.redirect('/admin')
 })
 
-app.get('/brochure/yachts/:id', getBrochure)
+// app.get('/brochure/:id', getBrochure)
 
 const start = async (): Promise<void> => {
   await payload.init({
