@@ -5,7 +5,8 @@ import Bar from "@/components/nav/bar";
 import Hero from "@/components/events/event/hero";
 import Detail from "@/components/events/event/detail";
 import dynamic from "next/dynamic";
-import { fetchFeatured } from "@/actions/charter";
+
+import { fetchFeaturedCharters } from "@/actions/yachts";
 
 const View = dynamic(() => import("@/components/view")),
   Charter = dynamic(() => import("@/components/events/event/charter")),
@@ -22,7 +23,7 @@ const Event = async ({ params }: { params: { id: string } }) => (
       <Hero />
       <Detail />
     </EventProvider>
-    <Charter carouselData={await fetchFeatured()} />
+    <Charter carouselData={await fetchFeaturedCharters()} />
     {/* TODO: Use different action for fetching charters depending on yacht's location. */}
     <Newsletter />
     <Footer />

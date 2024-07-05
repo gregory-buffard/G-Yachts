@@ -1,7 +1,8 @@
 import Hero from "@/components/charters/hero";
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
-import { fetchFeatured, fetchListing } from "@/actions/charter";
+
+import { fetchCharters, fetchFeaturedCharters } from "@/actions/yachts";
 
 const View = dynamic(() => import("@/components/view"));
 const Listing = dynamic(() => import("@/components/charters/listing"));
@@ -13,8 +14,8 @@ const Charters = async () => {
     <main className="w-full flex flex-col justify-start items-center">
       <Bar dynamicColor={100} />
       <View />
-      <Hero data={await fetchFeatured()} />
-      <Listing data={await fetchListing()} />
+      <Hero data={await fetchFeaturedCharters()} />
+      <Listing data={await fetchCharters()} />
       <Newsletter />
       <Footer />
     </main>
