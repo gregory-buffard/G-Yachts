@@ -81,6 +81,9 @@ services:
     command: mongod --auth --wiredTigerCacheSizeGB 1
   gotenberg:
     image: gotenberg/gotenberg:8
+    container_name: gotenberg
+    networks:
+      - gYachts
 
 networks:
   gYachts:
