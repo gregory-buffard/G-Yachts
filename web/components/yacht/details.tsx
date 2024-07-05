@@ -151,7 +151,7 @@ const Details = () => {
           <SwitchView props={{ view: "features", label: t("features") }} />
           <a
             target={"_blank"}
-            href={`${process.env.NEXT_PUBLIC_ADMIN_BASE_URI}/api/brochure/${yacht.id}`}
+            href={`/media/brochure-yachts-${yacht.id}.pdf`}
             className={
               "uppercase py-[0.5vh] border-b-[0.25vh] hover:border-black border-transparent hover:text-black text-rock-300 hover:fill-black fill-rock-300 transition-colors duration-200 ease-in-out flex justify-center items-start"
             }
