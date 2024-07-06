@@ -1,5 +1,6 @@
 import type { Field } from 'payload/types'
 import BrochureComponent from './brochureComponent'
+import BulkUpload from '../../components/bulkUpload'
 
 export const yachtsAndCharterCommonFields: Field[] = [
   {
@@ -283,6 +284,15 @@ export const yachtsAndCharterCommonFields: Field[] = [
         type: 'upload',
         relationTo: 'media',
         required: true,
+      },
+      {
+        type: 'ui',
+        admin: {
+          components: {
+            Field: BulkUpload,
+          },
+        },
+        name: 'bulk-upload',
       },
       {
         label: {
