@@ -1,10 +1,10 @@
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
-import { fetchCharter } from "@/actions/charter";
 import { CharterProvider } from "@/context/charter";
 import Hero from "@/components/charter/hero";
 import Details from "@/components/charter/details/details";
 import { ICharter } from "@/types/charter";
+import { fetchCharter } from "@/actions/yachts";
 
 const View = dynamic(() => import("@/components/view"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));

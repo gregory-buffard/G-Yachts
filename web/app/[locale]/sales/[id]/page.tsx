@@ -1,6 +1,6 @@
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
-import { fetchYacht } from "@/actions/yachts";
+import { fetchSale } from "@/actions/yachts";
 import { YachtProvider } from "@/context/yacht";
 import Hero from "@/components/yacht/hero";
 import Details from "@/components/yacht/details";
@@ -9,8 +9,8 @@ const View = dynamic(() => import("@/components/view"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 
-const Yacht = async ({ params }: { params: { id: string } }) => {
-  const yacht: IYacht = await fetchYacht(params.id);
+const Sale = async ({ params }: { params: { id: string } }) => {
+  const yacht: IYacht = await fetchSale(params.id);
 
   return (
     <YachtProvider yacht={yacht}>
@@ -26,4 +26,4 @@ const Yacht = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default Yacht;
+export default Sale;
