@@ -15,16 +15,15 @@ const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 
 const Home = () => {
-
   return (
     <main className="w-full flex flex-col justify-start items-center">
       <Bar dynamicColor={100} />
       <View />
       <Hero />
-      <Learn/>
+      <Learn />
       <Services />
       <WorkingTogether />
-      <Featured />
+      {/*<Featured */}
       <Memories />
       <Destinations />
       <Newsletter />

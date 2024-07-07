@@ -75,3 +75,17 @@ export const formatCurrency = (amount: number, currency: string) => {
       });
   }
 };
+
+export const remapYachtPhotos = (yacht: any) => {
+  return {
+    ...yacht,
+    photos: {
+      featured: yacht.photos.featured.url,
+      gallery: yacht.photos.gallery.map((photo: any) => photo.image.url),
+    },
+    broker: {
+      ...yacht.broker,
+      langs: yacht.broker.langs.map((lang: any) => lang.lang),
+    },
+  };
+};
