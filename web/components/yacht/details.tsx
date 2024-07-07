@@ -119,7 +119,7 @@ const Details = () => {
             key={i}
             className={`${i === 0 ? "w-full md:h-[28vw]" : "w-[45.5vw] md:w-[18.85vw] md:h-[14vw]"} bg-cover bg-center h-[28vh] ${!disabled && "active:scale-95"} transition-transform duration-300 ease-in-out flex justify-end items-end py-[1vh] md:py-[2vh] px-[2vw]`}
             style={{
-              backgroundImage: `url(${photo})`,
+              backgroundImage: `url(${photo.image.url})`,
             }}
           >
             {i === yacht.photos.gallery.slice(0, 5).length - 1 && (

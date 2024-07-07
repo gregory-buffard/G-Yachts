@@ -2,7 +2,7 @@
 
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
-import { IYacht } from "@/types/yacht";
+import { IYacht, ISale } from "@/types/yacht";
 import { ICharter, IFeatured } from "@/types/charter";
 import { IDestination } from "@/types/destination";
 import { remapYachtPhotos } from "@/utils/yachts";
@@ -88,47 +88,13 @@ export const fetchSales = async () => {
           docs {
             id
             name
-            model
             price
-            LOA
-            beam
             builder
             category
-            city
-            continent
-            country
-            cruising
-            crypto
             length
-            state
-            material
-            maxDraft
-            minDraft
-            region
-            rooms
             sleeps
-            subcategory
-            tonnage
             yearBuilt
-            yearModel
             featured
-            keyFeatures
-            broker {
-              id
-              name
-              email
-              picture {
-                url
-              }
-              position
-              phones {
-                prefix
-                number
-              }
-              langs {
-                lang
-              }
-            }
             photos {
               featured {
                 url
@@ -144,10 +110,7 @@ export const fetchSales = async () => {
       }
     `,
   });
-  const yachts: IYacht[] = data.Yachts.docs.map((yacht: any) =>
-    remapYachtPhotos(yacht),
-  );
-  return yachts;
+  return data.Yachts.docs as ISale[];
 };
 
 export const fetchSale = async (id: string) => {
@@ -181,10 +144,8 @@ export const fetchSale = async (id: string) => {
           tonnage
           yearBuilt
           yearModel
-          featured
           keyFeatures
           broker {
-            id
             name
             email
             picture {
@@ -194,9 +155,6 @@ export const fetchSale = async (id: string) => {
             phones {
               prefix
               number
-            }
-            langs {
-              lang
             }
           }
           photos {
@@ -214,8 +172,7 @@ export const fetchSale = async (id: string) => {
     `,
     variables: { id },
   });
-  const yacht: IYacht = remapYachtPhotos(data.Yacht);
-  return yacht;
+  return data.Yacht;
 };
 
 export const fetchFeaturedCharters = async () => {

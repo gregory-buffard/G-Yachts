@@ -1,6 +1,6 @@
 "use client";
 
-import { IYacht } from "@/types/yacht";
+import { ISale } from "@/types/yacht";
 import { useEffect, useState } from "react";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
 import { useTranslations } from "next-intl";
@@ -33,7 +33,7 @@ const Photo = ({ url, style }: { url: string; style: React.CSSProperties }) => {
   );
 };
 
-const Card = ({ data }: { data: IYacht }) => {
+const Card = ({ data }: { data: ISale }) => {
   const t = useTranslations("index.featured"),
     { currency, units, bookmarks, addBookmark, removeBookmark, rates } =
       useViewContext(),
@@ -58,19 +58,19 @@ const Card = ({ data }: { data: IYacht }) => {
           }
         >
           <Photo
-            url={`url(${data.photos.featured})`}
+            url={`url(${data.photos.featured.url})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(${data.photos.gallery[0]})`}
+            url={`url(${data.photos.gallery[0]?.image.url})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(${data.photos.gallery[1]})`}
+            url={`url(${data.photos.gallery[1]?.image.url})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
@@ -80,9 +80,6 @@ const Card = ({ data }: { data: IYacht }) => {
               "w-[92vw] md:w-[44vw] lg:w-[30vw] absolute h-max flex justify-between items-center lg:px-[1vw] px-[2vw] -translate-y-[11vh] md:-translate-y-[9vw] lg:-translate-y-[7vw]"
             }
           >
-            <p>
-              {/* TODO: Add yacht's "status" (i.e. sold, exclusive, new, ...) */}
-            </p>
             <button
               type={"button"}
               onClick={(e) => {
@@ -179,7 +176,7 @@ const ListView = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const Listing = ({ data }: { data: IYacht[] }) => {
+const Listing = ({ data }: { data: ISale[] }) => {
   const t = useTranslations("sales.listing"),
     { bookmarks } = useViewContext(),
     { currency, units, changeCurrency } = useViewContext(),
@@ -201,7 +198,7 @@ const Listing = ({ data }: { data: IYacht[] }) => {
     sleeps: undefined,
     name: undefined,
   });
-  const [filteredData, setFilteredData] = useState<IYacht[]>(data);
+  const [filteredData, setFilteredData] = useState<ISale[]>(data);
 
   useEffect(() => {
     const filtered = data.filter((yacht) => {

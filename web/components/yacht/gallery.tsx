@@ -33,7 +33,7 @@ const Thumb: React.FC<TThumbnail> = (props) => {
         type="button"
         className={`w-[24vw] md:w-[16vw] md:h-[16vh] h-[10vh] bg-cover bg-center mx-[0.5vw] ${selected ? "brightness-100 scale-100" : "brightness-50 scale-90"} hover:brightness-100 hover:scale-95 transition-[filter,_transform] duration-200 ease-in-out`}
         style={{
-          backgroundImage: `url(${yacht.photos.gallery[index]})`,
+          backgroundImage: `url(${yacht.photos.gallery[index].image.url})`,
         }}
       />
     </div>
@@ -85,8 +85,8 @@ const EmblaCarousel: React.FC<TCarousel> = (props) => {
               key={index}
               width={500}
               height={500}
-              src={`${index}`}
-              alt={""}
+              src={`${index.image.url}`}
+              alt={index.image.alt}
               className={"cursor-grab mx-[1vw] h-full w-auto"}
             />
           ))}
@@ -157,10 +157,10 @@ const Gallery = ({
               <Image
                 key={photo}
                 onClick={() => setCurrent(i)}
-                width={500}
-                height={500}
-                src={`${photo}`}
-                alt={yacht.name}
+                width={photo.image.width}
+                height={photo.image.height}
+                src={`${photo.image.url}`}
+                alt={photo.image.alt}
                 className={
                   "size-[49vw] md:size-[24vw] lg:size-[16vw] object-cover object-center hover:scale-95 transition-transform duration-200 ease-in-out hover:cursor-pointer"
                 }
@@ -193,7 +193,7 @@ const Gallery = ({
                 lottieRef.current?.play();
               }}
               onMouseLeave={() => lottieRef.current?.stop()}
-              className={"h-[4vh] cursor-pointer"}
+              className={"size-[4vh] cursor-pointer"}
               autoplay={false}
               loop={false}
               animationData={replaceColor("#000000", "#FFFFFF", galleryView)}
