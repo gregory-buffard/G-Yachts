@@ -12,7 +12,12 @@ export const getBrochure = async (req: Request, res: Response) => {
     }
 
     // Load the HTML template
-    const pdf = await generateBrochure(req.params.id, type)
+    const pdf: Buffer | null = await generateBrochure(req.params.id, type)
+    if (!pdf) {
+      return res
+        .status(404)
+        .send('No data found for the given ID, or data is missing required fields')
+    }
 
     // Set the response headers and send the PDF
     res.setHeader('Content-Type', 'application/pdf')

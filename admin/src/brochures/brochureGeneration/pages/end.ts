@@ -98,18 +98,7 @@ export const generateBrochureLastPage = (doc: Yacht | Charter | NewConstruction)
             Contact
         </h1>
         <div class="flex flex-col gap-2 mt-6 items-center">
-            <p class="text-white text-xl font-classic">
-                ${broker.name} - ${broker.position}
-            </p>
-            <hr class="w-full border-white border">
-            <p class="text-white text-xl font-classic">
-                ${broker.email}
-            </p>
-            <hr class="w-full border-white border">
-            <p class="text-white text-xl font-classic">
-                ${broker.phones[0].prefix} ${broker.phones[0].number}
-            </p>
-            <hr class="w-full border-white border">
+            ${generateBrokerInfo(broker)}
             <p class="text-white text-xl font-classic">
                 www.g-yachts.com
             </p>
@@ -151,14 +140,18 @@ export const generateBrochureLastPage = (doc: Yacht | Charter | NewConstruction)
         font-family: 'Beausite Slick';
         font-weight: 400;
         font-style: normal;
-        src: url('${process.env.PAYLOAD_PUBLIC_SERVER_URL}/images/Beausite Slick Trial Regular.ttf') format('truetype');
+        src: url('${
+          process.env.PAYLOAD_PUBLIC_SERVER_URL
+        }/images/Beausite Slick Trial Regular.ttf') format('truetype');
     }
 
     @font-face {
         font-family: 'Beausite Classic';
         font-weight: 400;
         font-style: normal;
-        src: url('${process.env.PAYLOAD_PUBLIC_SERVER_URL}/images/Beausite Classic Regular.ttf') format('truetype');
+        src: url('${
+          process.env.PAYLOAD_PUBLIC_SERVER_URL
+        }/images/Beausite Classic Regular.ttf') format('truetype');
     }
 
     body {
@@ -177,4 +170,33 @@ export const generateBrochureLastPage = (doc: Yacht | Charter | NewConstruction)
 </html>
 `
   return rootHtml
+}
+
+const generateBrokerInfo = (broker?: User) => {
+  if (!broker) {
+    return ''
+  }
+  return `
+    <p class="text-white text-xl font-classic">
+        ${broker.name} - ${broker.position}
+    </p>
+    <hr class="w-full border-white border">
+    <p class="text-white text-xl font-classic">
+        ${broker.email}
+    </p>
+    <hr class="w-full border-white border">
+    ${brokerPhone(broker)}
+    <hr class="w-full border-white border">
+    `
+}
+
+const brokerPhone = (broker: User) => {
+  if (broker.phones.length === 0) {
+    return ''
+  }
+  return `
+    <p class="text-white text-xl font-classic">
+        ${broker.phones[0].prefix} ${broker.phones[0].number}
+    </p>
+        `
 }

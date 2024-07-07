@@ -1,7 +1,7 @@
 import type { Charter, NewConstruction, Yacht } from '../../../payload/payload-types'
 
 export const generateBrochureDetailsPage = (doc: Yacht | Charter | NewConstruction): string => {
-  const details = [
+  var details = [
     { label: 'Builder', value: doc.builder },
     { label: 'Year built', value: doc.yearBuilt },
     { label: 'Year model', value: doc.yearModel },
@@ -15,6 +15,8 @@ export const generateBrochureDetailsPage = (doc: Yacht | Charter | NewConstructi
     { label: 'Material', value: doc.material },
     { label: 'Tonnage', value: doc.tonnage },
   ]
+
+  details = details.filter(detail => detail.value)
 
   const sixDetails = details.slice(0, 6)
   const remainingDetails = details.slice(6, 12)
