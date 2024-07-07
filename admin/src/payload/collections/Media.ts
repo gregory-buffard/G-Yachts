@@ -48,7 +48,7 @@ export const Media: CollectionConfig = {
       fastShrinkOnLoad: false,
     },
     focalPoint: false,
-    mimeTypes: ['image/*'],
+    mimeTypes: ['image/*', 'application/pdf'],
   },
   access: {
     read: () => true,

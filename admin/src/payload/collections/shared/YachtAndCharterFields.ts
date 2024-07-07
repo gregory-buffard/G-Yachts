@@ -1,4 +1,6 @@
 import type { Field } from 'payload/types'
+import BrochureComponent from './brochureComponent'
+import BulkUpload from '../../components/bulkUpload'
 
 export const yachtsAndCharterCommonFields: Field[] = [
   {
@@ -284,6 +286,15 @@ export const yachtsAndCharterCommonFields: Field[] = [
         required: true,
       },
       {
+        type: 'ui',
+        admin: {
+          components: {
+            Field: BulkUpload,
+          },
+        },
+        name: 'bulk-upload',
+      },
+      {
         label: {
           en: 'Gallery',
           fr: 'Galerie',
@@ -300,5 +311,24 @@ export const yachtsAndCharterCommonFields: Field[] = [
         ],
       },
     ],
+  },
+  {
+    type: 'text',
+    name: 'description',
+    label: {
+      en: 'Description',
+      fr: 'Description',
+    },
+    required: false,
+  },
+  {
+    type: 'relationship',
+    relationTo: 'media',
+    name: 'brochure',
+    admin: {
+      components: {
+        Field: BrochureComponent,
+      },
+    },
   },
 ]

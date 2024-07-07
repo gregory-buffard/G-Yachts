@@ -4,6 +4,8 @@ import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 import { yachtsAndCharterCommonFields } from '../shared/YachtAndCharterFields'
 import { seoField } from '../shared/seo'
+import { deleteBrochureHook } from '../../hooks/deleteBrochure'
+import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 
 export const NewConstructions: CollectionConfig = {
   slug: 'new-constructions',
@@ -21,7 +23,13 @@ export const NewConstructions: CollectionConfig = {
     useAsTitle: 'name',
     hideAPIURL: true,
   },
-  hooks: {},
+  hooks: {
+    afterChange: [
+      ({ doc, req, previousDoc, operation }) =>
+        generateBrochureHook({ doc, req, previousDoc, operation, collection: 'new-constructions' }),
+    ],
+    afterDelete: [({ doc, req }) => deleteBrochureHook({ doc, req })],
+  },
   versions: false,
   access: {
     read: anyone,

@@ -5,6 +5,8 @@ import { users } from '../../access/users'
 import { yachtsAndCharterCommonFields } from '../shared/YachtAndCharterFields'
 import { seoField } from '../shared/seo'
 import LinkToCustomer from './components/linkToCustomer'
+import { generateBrochureHook } from '../../hooks/generateBrochureHook'
+import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 
 export const Charters: CollectionConfig = {
   slug: 'charters',
@@ -26,7 +28,13 @@ export const Charters: CollectionConfig = {
     },
     hideAPIURL: true,
   },
-  hooks: {},
+  hooks: {
+    afterChange: [
+      ({ doc, req, previousDoc, operation }) =>
+        generateBrochureHook({ doc, req, previousDoc, operation, collection: 'charters' }),
+    ],
+    afterDelete: [({ doc, req }) => deleteBrochureHook({ doc, req })],
+  },
   versions: false,
   access: {
     read: anyone,
