@@ -6,6 +6,7 @@ import { anyone } from '../../access/anyone'
 import { checkRole } from './checkRole'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
+import values from './values'
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -111,11 +112,13 @@ const Users: CollectionConfig = {
       fields: [
         {
           name: 'prefix',
-          type: 'text',
+          type: 'select',
+          hasMany: false,
           label: {
             en: 'Prefix',
             fr: 'Préfixe',
           },
+          options: values.prefixes,
         },
         {
           name: 'number',
@@ -132,19 +135,10 @@ const Users: CollectionConfig = {
         en: 'Languages',
         fr: 'Langues',
       },
+      type: 'select',
+      hasMany: true,
       name: 'langs',
-      type: 'array',
-      required: true,
-      fields: [
-        {
-          name: 'lang',
-          type: 'text',
-          label: {
-            en: 'Language',
-            fr: 'Langue',
-          },
-        },
-      ],
+      options: values.langs,
     },
   ],
   timestamps: true,

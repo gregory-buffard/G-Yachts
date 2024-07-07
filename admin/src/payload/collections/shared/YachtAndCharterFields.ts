@@ -19,7 +19,7 @@ export const yachtsAndCharterCommonFields: Field[] = [
     },
     name: 'model',
     type: 'text',
-    required: true,
+    required: false,
   },
   {
     label: {
@@ -75,7 +75,7 @@ export const yachtsAndCharterCommonFields: Field[] = [
     },
     name: 'category',
     type: 'text',
-    required: true,
+    required: false,
   },
   {
     label: {
@@ -84,7 +84,7 @@ export const yachtsAndCharterCommonFields: Field[] = [
     },
     name: 'city',
     type: 'text',
-    required: true,
+    required: false,
   },
   {
     label: {
@@ -93,7 +93,7 @@ export const yachtsAndCharterCommonFields: Field[] = [
     },
     name: 'continent',
     type: 'text',
-    required: true,
+    required: false,
   },
   {
     label: {
@@ -102,7 +102,7 @@ export const yachtsAndCharterCommonFields: Field[] = [
     },
     name: 'country',
     type: 'text',
-    required: true,
+    required: false,
   },
   {
     label: {
@@ -124,8 +124,8 @@ export const yachtsAndCharterCommonFields: Field[] = [
   },
   {
     label: {
-      en: 'Draft',
-      fr: "Tirant d'eau",
+      en: 'Length',
+      fr: 'Longueur',
     },
     name: 'length',
     type: 'number',
@@ -138,7 +138,7 @@ export const yachtsAndCharterCommonFields: Field[] = [
     },
     name: 'state',
     type: 'text',
-    required: true,
+    required: false,
   },
   {
     label: {
@@ -174,7 +174,7 @@ export const yachtsAndCharterCommonFields: Field[] = [
     },
     name: 'region',
     type: 'text',
-    required: true,
+    required: false,
   },
   {
     label: {
@@ -201,7 +201,7 @@ export const yachtsAndCharterCommonFields: Field[] = [
     },
     name: 'subcategory',
     type: 'text',
-    required: true,
+    required: false,
   },
   {
     label: {

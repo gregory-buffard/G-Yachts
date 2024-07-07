@@ -31,6 +31,7 @@ const generateAndDontBlock = async <T extends Yacht | Charter | NewConstruction>
   collection: 'yachts' | 'charters' | 'new-constructions'
 }) => {
   payload.logger.info(`Generating brochure for collection ${collection} with ID ${doc.id}...`)
+  await deleteOldBrochure(doc.id, collection)
   const resp = await fetch(
     `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/brochure/${doc.id}?type=${collection}`,
   )
@@ -40,6 +41,40 @@ const generateAndDontBlock = async <T extends Yacht | Charter | NewConstruction>
     throw new Error('Failed to generate brochure')
   }
   const pdf = await resp.blob()
+
+  const arrayBuffer = await pdf.arrayBuffer()
+  const buffer = Buffer.from(arrayBuffer)
+
+  const name = `brochure-${collection}-${doc.id}.pdf`
+  const createdMedia = await payload.create({
+    collection: 'media',
+    file: {
+      data: buffer,
+      mimetype: 'application/pdf',
+      size: buffer.byteLength,
+      name: name,
+    },
+    data: {
+      alt: `${doc.name} brochure`,
+    },
+  })
+  await deleteOldBrochure(doc.id, collection)
+  await payload.db.collections[collection].findByIdAndUpdate(doc.id, {
+    brochure: createdMedia.id,
+  })
+  payload.logger.info('Brochure generated.')
+}
+
+const deleteOldBrochure = async <T extends Yacht | Charter | NewConstruction>(
+  id: string,
+  collection: 'yachts' | 'charters' | 'new-constructions'
+) => {
+  const doc: T = (await payload.findByID({
+    collection: collection,
+    id: id,
+    depth: 5,
+    locale: 'en',
+  })) as T
   if (doc.brochure) {
     try {
       const exists = await payload.findByID({
@@ -55,25 +90,4 @@ const generateAndDontBlock = async <T extends Yacht | Charter | NewConstruction>
       payload.logger.info('Old brochure not found, skipping deletion')
     }
   }
-
-  const arrayBuffer = await pdf.arrayBuffer()
-  const buffer = Buffer.from(arrayBuffer)
-
-  const name = `brochure-${collection}-${doc.id}.pdf`
-  const createdMedia = await payload.create({
-    collection: 'media',
-    file: {
-      data: buffer,
-      mimetype: 'application/pdf',
-      size: buffer.byteLength,
-      name: name,
-    },
-    data: {
-      alt: `${doc.name} brochure`
-    },
-  })
-  await payload.db.collections[collection].findByIdAndUpdate(doc.id, {
-    brochure: createdMedia.id,
-  })
-  payload.logger.info('Brochure generated.')
 }

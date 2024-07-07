@@ -4,21 +4,31 @@ import { generateBrochureDetailsPage } from './pages/detail'
 import { generateBrochurePhotoPage } from './pages/photo'
 import { generateBrochureLastPage } from './pages/end'
 import puppeteer from 'puppeteer'
-import { PDFEngines, Chromiumly } from 'chromiumly'
+import { PDFEngines, Chromiumly, PdfFormat } from 'chromiumly'
+import { TypeWithID } from 'payload/types'
+import { Charter, NewConstruction, Yacht } from '../../payload/payload-types'
 
 Chromiumly.configure({ endpoint: process.env.GOTENBERG_ENDPOINT })
 
-export async function generateBrochure(
+export const generateBrochure = async <T extends Yacht | Charter | NewConstruction>(
   id: string,
   type: 'yachts' | 'charters' | 'new-constructions',
-): Promise<Buffer> {
-  // GEt full data
-  const data = await payload.findByID({
+): Promise<Buffer> => {
+  const data: T = (await payload.findByID({
     collection: type,
     id: id,
     depth: 5,
     locale: 'en',
-  })
+  })) as T
+
+  if (!data) {
+    return null
+  }
+
+  if (data.photos.gallery.length === 0 || !data.photos.featured) {
+    payload.logger.error(`No photos found for ${type} with id ${id}, skipping brochure generation`)
+    return null
+  }
 
   // Generate brochure
   const firstPage = generateBrochureFirstPage(data)
@@ -64,7 +74,7 @@ export async function generateBrochure(
     metadata: {
       title: `Brochure - ${data.name}`,
     },
-    pdfUA: true,
+    pdfUA: false,
   })
 
   return finalPdf
