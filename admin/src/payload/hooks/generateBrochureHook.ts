@@ -67,7 +67,7 @@ const generateAndDontBlock = async <T extends Yacht | Charter | NewConstruction>
 
 const deleteOldBrochure = async <T extends Yacht | Charter | NewConstruction>(
   id: string,
-  collection: string,
+  collection: 'yachts' | 'charters' | 'new-constructions'
 ) => {
   const doc: T = (await payload.findByID({
     collection: collection,
