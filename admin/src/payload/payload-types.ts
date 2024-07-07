@@ -72,15 +72,444 @@ export interface User {
   position: string;
   phones?:
     | {
-        prefix?: string | null;
+        prefix?:
+          | (
+              | '+93'
+              | '+358'
+              | '+355'
+              | '+213'
+              | '+1684'
+              | '+376'
+              | '+244'
+              | '+1264'
+              | '+672'
+              | '+1268'
+              | '+54'
+              | '+374'
+              | '+297'
+              | '+61'
+              | '+43'
+              | '+994'
+              | '+1242'
+              | '+973'
+              | '+880'
+              | '+1246'
+              | '+375'
+              | '+32'
+              | '+501'
+              | '+229'
+              | '+1441'
+              | '+975'
+              | '+591'
+              | '+387'
+              | '+267'
+              | '+55'
+              | '+246'
+              | '+673'
+              | '+359'
+              | '+226'
+              | '+257'
+              | '+855'
+              | '+237'
+              | '+1'
+              | '+238'
+              | '+ 345'
+              | '+236'
+              | '+235'
+              | '+56'
+              | '+86'
+              | '+61'
+              | '+61'
+              | '+57'
+              | '+269'
+              | '+242'
+              | '+243'
+              | '+682'
+              | '+506'
+              | '+225'
+              | '+385'
+              | '+53'
+              | '+357'
+              | '+420'
+              | '+45'
+              | '+253'
+              | '+1767'
+              | '+1849'
+              | '+593'
+              | '+20'
+              | '+503'
+              | '+240'
+              | '+291'
+              | '+372'
+              | '+251'
+              | '+500'
+              | '+298'
+              | '+679'
+              | '+358'
+              | '+33'
+              | '+594'
+              | '+689'
+              | '+241'
+              | '+220'
+              | '+995'
+              | '+49'
+              | '+233'
+              | '+350'
+              | '+30'
+              | '+299'
+              | '+1473'
+              | '+590'
+              | '+1671'
+              | '+502'
+              | '+44'
+              | '+224'
+              | '+245'
+              | '+595'
+              | '+509'
+              | '+379'
+              | '+504'
+              | '+852'
+              | '+36'
+              | '+354'
+              | '+91'
+              | '+62'
+              | '+98'
+              | '+964'
+              | '+353'
+              | '+44'
+              | '+972'
+              | '+39'
+              | '+1876'
+              | '+81'
+              | '+44'
+              | '+962'
+              | '+77'
+              | '+254'
+              | '+686'
+              | '+850'
+              | '+82'
+              | '+965'
+              | '+996'
+              | '+856'
+              | '+371'
+              | '+961'
+              | '+266'
+              | '+231'
+              | '+218'
+              | '+423'
+              | '+370'
+              | '+352'
+              | '+853'
+              | '+389'
+              | '+261'
+              | '+265'
+              | '+60'
+              | '+960'
+              | '+223'
+              | '+356'
+              | '+692'
+              | '+596'
+              | '+222'
+              | '+230'
+              | '+262'
+              | '+52'
+              | '+691'
+              | '+373'
+              | '+377'
+              | '+976'
+              | '+382'
+              | '+1664'
+              | '+212'
+              | '+258'
+              | '+95'
+              | '+264'
+              | '+674'
+              | '+977'
+              | '+31'
+              | '+599'
+              | '+687'
+              | '+64'
+              | '+505'
+              | '+227'
+              | '+234'
+              | '+683'
+              | '+672'
+              | '+1670'
+              | '+47'
+              | '+968'
+              | '+92'
+              | '+680'
+              | '+970'
+              | '+507'
+              | '+675'
+              | '+595'
+              | '+51'
+              | '+63'
+              | '+872'
+              | '+48'
+              | '+351'
+              | '+1939'
+              | '+974'
+              | '+40'
+              | '+7'
+              | '+250'
+              | '+262'
+              | '+590'
+              | '+290'
+              | '+1869'
+              | '+1758'
+              | '+590'
+              | '+508'
+              | '+1784'
+              | '+685'
+              | '+378'
+              | '+239'
+              | '+966'
+              | '+221'
+              | '+381'
+              | '+248'
+              | '+232'
+              | '+65'
+              | '+421'
+              | '+386'
+              | '+677'
+              | '+252'
+              | '+27'
+              | '+211'
+              | '+500'
+              | '+34'
+              | '+94'
+              | '+249'
+              | '+597'
+              | '+47'
+              | '+268'
+              | '+46'
+              | '+41'
+              | '+963'
+              | '+886'
+              | '+992'
+              | '+255'
+              | '+66'
+              | '+670'
+              | '+228'
+              | '+690'
+              | '+676'
+              | '+1868'
+              | '+216'
+              | '+90'
+              | '+993'
+              | '+1649'
+              | '+688'
+              | '+256'
+              | '+380'
+              | '+971'
+              | '+44'
+              | '+1'
+              | '+598'
+              | '+998'
+              | '+678'
+              | '+58'
+              | '+84'
+              | '+1284'
+              | '+1340'
+              | '+681'
+              | '+967'
+              | '+260'
+              | '+263'
+            )
+          | null;
         number?: string | null;
         id?: string | null;
       }[]
     | null;
-  langs: {
-    lang?: string | null;
-    id?: string | null;
-  }[];
+  langs?:
+    | (
+        | 'Afar'
+        | 'Abkhazian'
+        | 'Avestan'
+        | 'Afrikaans'
+        | 'Akan'
+        | 'Amharic'
+        | 'Aragonese'
+        | 'Arabic'
+        | 'Assamese'
+        | 'Avaric'
+        | 'Aymara'
+        | 'Azerbaijani'
+        | 'Bashkir'
+        | 'Belarusian'
+        | 'Bulgarian'
+        | 'Bihari languages'
+        | 'Bislama'
+        | 'Bambara'
+        | 'Bengali'
+        | 'Tibetan'
+        | 'Breton'
+        | 'Bosnian'
+        | 'Catalan'
+        | 'Chechen'
+        | 'Chamorro'
+        | 'Corsican'
+        | 'Cree'
+        | 'Czech'
+        | 'Church Slavic'
+        | 'Chuvash'
+        | 'Welsh'
+        | 'Danish'
+        | 'German'
+        | 'Maldivian'
+        | 'Dzongkha'
+        | 'Ewe'
+        | 'Greek'
+        | 'English'
+        | 'Esperanto'
+        | 'Spanish'
+        | 'Estonian'
+        | 'Basque'
+        | 'Persian'
+        | 'Fulah'
+        | 'Finnish'
+        | 'Fijian'
+        | 'Faroese'
+        | 'French'
+        | 'Western Frisian'
+        | 'Irish'
+        | 'Gaelic'
+        | 'Galician'
+        | 'Guarani'
+        | 'Gujarati'
+        | 'Manx'
+        | 'Hausa'
+        | 'Hebrew'
+        | 'Hindi'
+        | 'Hiri Motu'
+        | 'Croatian'
+        | 'Haitian'
+        | 'Hungarian'
+        | 'Armenian'
+        | 'Herero'
+        | 'Interlingua'
+        | 'Indonesian'
+        | 'Interlingue'
+        | 'Igbo'
+        | 'Sichuan Yi'
+        | 'Inupiaq'
+        | 'Ido'
+        | 'Icelandic'
+        | 'Italian'
+        | 'Inuktitut'
+        | 'Japanese'
+        | 'Javanese'
+        | 'Georgian'
+        | 'Kongo'
+        | 'Kikuyu'
+        | 'Kuanyama'
+        | 'Kazakh'
+        | 'Kalaallisut'
+        | 'Central Khmer'
+        | 'Kannada'
+        | 'Korean'
+        | 'Kanuri'
+        | 'Kashmiri'
+        | 'Kurdish'
+        | 'Komi'
+        | 'Cornish'
+        | 'Kirghiz'
+        | 'Latin'
+        | 'Luxembourgish'
+        | 'Ganda'
+        | 'Limburgan'
+        | 'Lingala'
+        | 'Lao'
+        | 'Lithuanian'
+        | 'Luba-Katanga'
+        | 'Latvian'
+        | 'Malagasy'
+        | 'Marshallese'
+        | 'Maori'
+        | 'Macedonian'
+        | 'Malayalam'
+        | 'Mongolian'
+        | 'Marathi'
+        | 'Malay'
+        | 'Maltese'
+        | 'Burmese'
+        | 'Nauru'
+        | 'Norwegian'
+        | 'North Ndebele'
+        | 'Nepali'
+        | 'Ndonga'
+        | 'Dutch'
+        | 'Norwegian'
+        | 'Norwegian'
+        | 'South Ndebele'
+        | 'Navajo'
+        | 'Chichewa'
+        | 'Occitan'
+        | 'Ojibwa'
+        | 'Oromo'
+        | 'Oriya'
+        | 'Ossetic'
+        | 'Panjabi'
+        | 'Pali'
+        | 'Polish'
+        | 'Pushto'
+        | 'Portuguese'
+        | 'Quechua'
+        | 'Romansh'
+        | 'Rundi'
+        | 'Romanian'
+        | 'Russian'
+        | 'Kinyarwanda'
+        | 'Sanskrit'
+        | 'Sardinian'
+        | 'Sindhi'
+        | 'Northern Sami'
+        | 'Sango'
+        | 'Sinhala'
+        | 'Slovak'
+        | 'Slovenian'
+        | 'Samoan'
+        | 'Shona'
+        | 'Somali'
+        | 'Albanian'
+        | 'Serbian'
+        | 'Swati'
+        | 'Sotho, Southern'
+        | 'Sundanese'
+        | 'Swedish'
+        | 'Swahili'
+        | 'Tamil'
+        | 'Telugu'
+        | 'Tajik'
+        | 'Thai'
+        | 'Tigrinya'
+        | 'Turkmen'
+        | 'Tagalog'
+        | 'Tswana'
+        | 'Tonga'
+        | 'Turkish'
+        | 'Tsonga'
+        | 'Tatar'
+        | 'Twi'
+        | 'Tahitian'
+        | 'Uighur'
+        | 'Ukrainian'
+        | 'Urdu'
+        | 'Uzbek'
+        | 'Venda'
+        | 'Vietnamese'
+        | 'Volapük'
+        | 'Walloon'
+        | 'Wolof'
+        | 'Xhosa'
+        | 'Yiddish'
+        | 'Yoruba'
+        | 'Zhuang'
+        | 'Chinese'
+        | 'Zulu'
+      )[]
+    | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -135,27 +564,27 @@ export interface Media {
 export interface Yacht {
   id: string;
   name: string;
-  model: string;
+  model?: string | null;
   price: number;
   LOA: number;
   beam: number;
   broker: string | User;
   builder: string;
-  category: string;
-  city: string;
-  continent: string;
-  country: string;
+  category?: string | null;
+  city?: string | null;
+  continent?: string | null;
+  country?: string | null;
   cruising: boolean;
   crypto: boolean;
   length: number;
-  state: string;
+  state?: string | null;
   material: string;
   maxDraft: number;
   minDraft: number;
-  region: string;
+  region?: string | null;
   rooms: number;
   sleeps: number;
-  subcategory: string;
+  subcategory?: string | null;
   tonnage: number;
   yearBuilt: number;
   yearModel: number;
@@ -205,27 +634,27 @@ export interface Yacht {
 export interface Charter {
   id: string;
   name: string;
-  model: string;
+  model?: string | null;
   price: number;
   LOA: number;
   beam: number;
   broker: string | User;
   builder: string;
-  category: string;
-  city: string;
-  continent: string;
-  country: string;
+  category?: string | null;
+  city?: string | null;
+  continent?: string | null;
+  country?: string | null;
   cruising: boolean;
   crypto: boolean;
   length: number;
-  state: string;
+  state?: string | null;
   material: string;
   maxDraft: number;
   minDraft: number;
-  region: string;
+  region?: string | null;
   rooms: number;
   sleeps: number;
-  subcategory: string;
+  subcategory?: string | null;
   tonnage: number;
   yearBuilt: number;
   yearModel: number;
@@ -449,27 +878,27 @@ export interface NewConstruction {
   id: string;
   delivery: string;
   name: string;
-  model: string;
+  model?: string | null;
   price: number;
   LOA: number;
   beam: number;
   broker: string | User;
   builder: string;
-  category: string;
-  city: string;
-  continent: string;
-  country: string;
+  category?: string | null;
+  city?: string | null;
+  continent?: string | null;
+  country?: string | null;
   cruising: boolean;
   crypto: boolean;
   length: number;
-  state: string;
+  state?: string | null;
   material: string;
   maxDraft: number;
   minDraft: number;
-  region: string;
+  region?: string | null;
   rooms: number;
   sleeps: number;
-  subcategory: string;
+  subcategory?: string | null;
   tonnage: number;
   yearBuilt: number;
   yearModel: number;
