@@ -4,7 +4,7 @@ import { generateBrochureDetailsPage } from './pages/detail'
 import { generateBrochurePhotoPage } from './pages/photo'
 import { generateBrochureLastPage } from './pages/end'
 import puppeteer from 'puppeteer'
-import { PDFEngines, Chromiumly } from 'chromiumly'
+import { PDFEngines, Chromiumly, PdfFormat } from 'chromiumly'
 import { TypeWithID } from 'payload/types'
 import { Charter, NewConstruction, Yacht } from '../../payload/payload-types'
 
@@ -74,7 +74,7 @@ export const generateBrochure = async <T extends Yacht | Charter | NewConstructi
     metadata: {
       title: `Brochure - ${data.name}`,
     },
-    pdfUA: true,
+    pdfUA: false,
   })
 
   return finalPdf
