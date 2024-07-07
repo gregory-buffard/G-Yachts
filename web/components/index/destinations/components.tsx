@@ -6,7 +6,8 @@ import { Link } from "@/navigation";
 import { useEffect, useState } from "react";
 import { ObjectId } from "mongoose";
 
-interface IFeatured extends Pick<IDestination, "country" | "region" | "photos"> {
+interface IFeatured
+  extends Pick<IDestination, "country" | "region" | "photos"> {
   _id: ObjectId;
 }
 
@@ -170,7 +171,7 @@ const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
             {t("description")}
           </p>
           <Link
-            href={"/charters"}
+            href={"/destinations"}
             type={"button"}
             className="glass-button glass-button-dark lg:ml-44 ml-4 lg:mt-10 mt-5 whitespace-nowrap"
           >
