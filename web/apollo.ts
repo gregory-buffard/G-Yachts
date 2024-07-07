@@ -21,7 +21,7 @@ export const { getClient } = registerApolloClient(() => {
                 const featureNameToIndex: Record<string, number> = {};
 
                 // Populate merged array and map from existing features
-                existing.forEach((feature, index) => {
+                existing.forEach((feature: any, index: any) => {
                   const name = readField<string>("name", feature);
                   if (name) {
                     featureNameToIndex[name] = index;
