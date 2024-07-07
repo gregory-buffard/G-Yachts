@@ -8,7 +8,7 @@ export const contact = async (
   params: {
     prefix?: string;
     locale: string;
-    page: string;
+    page?: string;
   },
 ) => {
   if (formData.get("surname")) {

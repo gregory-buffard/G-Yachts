@@ -9,9 +9,10 @@ import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { replaceColor } from "lottie-colorify";
 import galleryView from "@/public/imagery/optimized/yacht/gallery.json";
+import { IYacht } from "@/types/yacht";
 
 type TCarousel = {
-  slides: string[];
+  slides: IYacht["photos"]["gallery"];
   options?: EmblaOptionsType;
 };
 
@@ -82,7 +83,7 @@ const EmblaCarousel: React.FC<TCarousel> = (props) => {
         <div className="flex justify-start items-center w-full md:h-[64vh]">
           {slides.map((index) => (
             <Image
-              key={index}
+              key={index.image.url}
               width={500}
               height={500}
               src={`${index.image.url}`}
@@ -155,7 +156,7 @@ const Gallery = ({
           >
             {yacht.photos.gallery.map((photo, i) => (
               <Image
-                key={photo}
+                key={i}
                 onClick={() => setCurrent(i)}
                 width={photo.image.width}
                 height={photo.image.height}

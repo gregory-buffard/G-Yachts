@@ -14,7 +14,7 @@ const Card = ({ card }: { card: IFeatured }) => {
 
   return (
     <Link
-      href={{ pathname: "/yacht/[id]", params: { id: card.id } }}
+      href={{ pathname: "/sales/[id]", params: { id: card.id } }}
       className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw]`}
     >
       <div

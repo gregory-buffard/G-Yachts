@@ -54,9 +54,7 @@ export const fetchFeaturedSales = async () => {
                 prefix
                 number
               }
-              langs {
-                lang
-              }
+              langs
             }
             photos {
               featured {
@@ -221,9 +219,7 @@ export const fetchFeaturedCharters = async () => {
                 prefix
                 number
               }
-              langs {
-                lang
-              }
+              langs
             }
             photos {
               featured {
@@ -253,47 +249,13 @@ export const fetchCharters = async () => {
           docs {
             id
             name
-            model
             price
-            LOA
-            beam
             builder
-            category
-            city
-            continent
-            country
-            cruising
-            crypto
             length
-            state
-            material
-            maxDraft
-            minDraft
-            region
-            rooms
             sleeps
-            subcategory
-            tonnage
             yearBuilt
             yearModel
             featured
-            keyFeatures
-            broker {
-              id
-              name
-              email
-              picture {
-                url
-              }
-              position
-              phones {
-                prefix
-                number
-              }
-              langs {
-                lang
-              }
-            }
             photos {
               featured {
                 url
@@ -309,8 +271,7 @@ export const fetchCharters = async () => {
       }
     `,
   });
-  const charters: ICharter[] = data.Charters.docs.map(remapYachtPhotos);
-  return charters;
+  return data.Charters.docs as ICharter[];
 };
 
 export const fetchCharter = async (id: string) => {
@@ -358,9 +319,7 @@ export const fetchCharter = async (id: string) => {
               prefix
               number
             }
-            langs {
-              lang
-            }
+            langs
           }
           photos {
             featured {
@@ -377,8 +336,7 @@ export const fetchCharter = async (id: string) => {
     `,
     variables: { id: id },
   });
-  const charter = remapYachtPhotos(data.Charter);
-  return charter;
+  return data.Charter;
 };
 
 export const fetchChartersForDestination = async (
@@ -422,9 +380,7 @@ export const fetchChartersForDestination = async (
                 prefix
                 number
               }
-              langs {
-                lang
-              }
+              langs
             }
           }
         }
@@ -474,9 +430,7 @@ export const fetchChartersForDestination = async (
                 prefix
                 number
               }
-              langs {
-                lang
-              }
+              langs
             }
           }
         }
@@ -526,9 +480,7 @@ export const fetchChartersForDestination = async (
                 prefix
                 number
               }
-              langs {
-                lang
-              }
+              langs
             }
           }
         }
