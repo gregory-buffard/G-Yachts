@@ -107,7 +107,7 @@ type User {
   picture(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: User_Picture_where): Media
   position: String!
   phones: [User_Phones!]
-  langs: [User_Langs!]!
+  langs: [User_langs!]
   updatedAt: DateTime
   createdAt: DateTime
   email: EmailAddress!
@@ -505,14 +505,425 @@ input User_Picture_where_or {
 }
 
 type User_Phones {
-  prefix: String
+  prefix: User_Phones_prefix
   number: String
   id: String
 }
 
-type User_Langs {
-  lang: String
-  id: String
+enum User_Phones_prefix {
+  _93
+  _358
+  _355
+  _213
+  _1684
+  _376
+  _244
+  _1264
+  _672
+  _1268
+  _54
+  _374
+  _297
+  _61
+  _43
+  _994
+  _1242
+  _973
+  _880
+  _1246
+  _375
+  _32
+  _501
+  _229
+  _1441
+  _975
+  _591
+  _387
+  _267
+  _55
+  _246
+  _673
+  _359
+  _226
+  _257
+  _855
+  _237
+  _1
+  _238
+  _345
+  _236
+  _235
+  _56
+  _86
+  _57
+  _269
+  _242
+  _243
+  _682
+  _506
+  _225
+  _385
+  _53
+  _357
+  _420
+  _45
+  _253
+  _1767
+  _1849
+  _593
+  _20
+  _503
+  _240
+  _291
+  _372
+  _251
+  _500
+  _298
+  _679
+  _33
+  _594
+  _689
+  _241
+  _220
+  _995
+  _49
+  _233
+  _350
+  _30
+  _299
+  _1473
+  _590
+  _1671
+  _502
+  _44
+  _224
+  _245
+  _595
+  _509
+  _379
+  _504
+  _852
+  _36
+  _354
+  _91
+  _62
+  _98
+  _964
+  _353
+  _972
+  _39
+  _1876
+  _81
+  _962
+  _77
+  _254
+  _686
+  _850
+  _82
+  _965
+  _996
+  _856
+  _371
+  _961
+  _266
+  _231
+  _218
+  _423
+  _370
+  _352
+  _853
+  _389
+  _261
+  _265
+  _60
+  _960
+  _223
+  _356
+  _692
+  _596
+  _222
+  _230
+  _262
+  _52
+  _691
+  _373
+  _377
+  _976
+  _382
+  _1664
+  _212
+  _258
+  _95
+  _264
+  _674
+  _977
+  _31
+  _599
+  _687
+  _64
+  _505
+  _227
+  _234
+  _683
+  _1670
+  _47
+  _968
+  _92
+  _680
+  _970
+  _507
+  _675
+  _51
+  _63
+  _872
+  _48
+  _351
+  _1939
+  _974
+  _40
+  _7
+  _250
+  _290
+  _1869
+  _1758
+  _508
+  _1784
+  _685
+  _378
+  _239
+  _966
+  _221
+  _381
+  _248
+  _232
+  _65
+  _421
+  _386
+  _677
+  _252
+  _27
+  _211
+  _34
+  _94
+  _249
+  _597
+  _268
+  _46
+  _41
+  _963
+  _886
+  _992
+  _255
+  _66
+  _670
+  _228
+  _690
+  _676
+  _1868
+  _216
+  _90
+  _993
+  _1649
+  _688
+  _256
+  _380
+  _971
+  _598
+  _998
+  _678
+  _58
+  _84
+  _1284
+  _1340
+  _681
+  _967
+  _260
+  _263
+}
+
+enum User_langs {
+  Afar
+  Abkhazian
+  Avestan
+  Afrikaans
+  Akan
+  Amharic
+  Aragonese
+  Arabic
+  Assamese
+  Avaric
+  Aymara
+  Azerbaijani
+  Bashkir
+  Belarusian
+  Bulgarian
+  Biharilanguages
+  Bislama
+  Bambara
+  Bengali
+  Tibetan
+  Breton
+  Bosnian
+  Catalan
+  Chechen
+  Chamorro
+  Corsican
+  Cree
+  Czech
+  ChurchSlavic
+  Chuvash
+  Welsh
+  Danish
+  German
+  Maldivian
+  Dzongkha
+  Ewe
+  Greek
+  English
+  Esperanto
+  Spanish
+  Estonian
+  Basque
+  Persian
+  Fulah
+  Finnish
+  Fijian
+  Faroese
+  French
+  WesternFrisian
+  Irish
+  Gaelic
+  Galician
+  Guarani
+  Gujarati
+  Manx
+  Hausa
+  Hebrew
+  Hindi
+  HiriMotu
+  Croatian
+  Haitian
+  Hungarian
+  Armenian
+  Herero
+  Interlingua
+  Indonesian
+  Interlingue
+  Igbo
+  SichuanYi
+  Inupiaq
+  Ido
+  Icelandic
+  Italian
+  Inuktitut
+  Japanese
+  Javanese
+  Georgian
+  Kongo
+  Kikuyu
+  Kuanyama
+  Kazakh
+  Kalaallisut
+  CentralKhmer
+  Kannada
+  Korean
+  Kanuri
+  Kashmiri
+  Kurdish
+  Komi
+  Cornish
+  Kirghiz
+  Latin
+  Luxembourgish
+  Ganda
+  Limburgan
+  Lingala
+  Lao
+  Lithuanian
+  Luba_Katanga
+  Latvian
+  Malagasy
+  Marshallese
+  Maori
+  Macedonian
+  Malayalam
+  Mongolian
+  Marathi
+  Malay
+  Maltese
+  Burmese
+  Nauru
+  Norwegian
+  NorthNdebele
+  Nepali
+  Ndonga
+  Dutch
+  SouthNdebele
+  Navajo
+  Chichewa
+  Occitan
+  Ojibwa
+  Oromo
+  Oriya
+  Ossetic
+  Panjabi
+  Pali
+  Polish
+  Pushto
+  Portuguese
+  Quechua
+  Romansh
+  Rundi
+  Romanian
+  Russian
+  Kinyarwanda
+  Sanskrit
+  Sardinian
+  Sindhi
+  NorthernSami
+  Sango
+  Sinhala
+  Slovak
+  Slovenian
+  Samoan
+  Shona
+  Somali
+  Albanian
+  Serbian
+  Swati
+  Sotho_Southern
+  Sundanese
+  Swedish
+  Swahili
+  Tamil
+  Telugu
+  Tajik
+  Thai
+  Tigrinya
+  Turkmen
+  Tagalog
+  Tswana
+  Tonga
+  Turkish
+  Tsonga
+  Tatar
+  Twi
+  Tahitian
+  Uighur
+  Ukrainian
+  Urdu
+  Uzbek
+  Venda
+  Vietnamese
+  Volapuk
+  Walloon
+  Wolof
+  Xhosa
+  Yiddish
+  Yoruba
+  Zhuang
+  Chinese
+  Zulu
 }
 
 """
@@ -2390,8 +2801,7 @@ input User_where {
   phones__prefix: User_phones__prefix_operator
   phones__number: User_phones__number_operator
   phones__id: User_phones__id_operator
-  langs__lang: User_langs__lang_operator
-  langs__id: User_langs__id_operator
+  langs: User_langs_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -2441,14 +2851,243 @@ input User_position_operator {
 }
 
 input User_phones__prefix_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+  equals: User_phones__prefix_Input
+  not_equals: User_phones__prefix_Input
+  in: [User_phones__prefix_Input]
+  not_in: [User_phones__prefix_Input]
+  all: [User_phones__prefix_Input]
   exists: Boolean
+}
+
+enum User_phones__prefix_Input {
+  _93
+  _358
+  _355
+  _213
+  _1684
+  _376
+  _244
+  _1264
+  _672
+  _1268
+  _54
+  _374
+  _297
+  _61
+  _43
+  _994
+  _1242
+  _973
+  _880
+  _1246
+  _375
+  _32
+  _501
+  _229
+  _1441
+  _975
+  _591
+  _387
+  _267
+  _55
+  _246
+  _673
+  _359
+  _226
+  _257
+  _855
+  _237
+  _1
+  _238
+  _345
+  _236
+  _235
+  _56
+  _86
+  _57
+  _269
+  _242
+  _243
+  _682
+  _506
+  _225
+  _385
+  _53
+  _357
+  _420
+  _45
+  _253
+  _1767
+  _1849
+  _593
+  _20
+  _503
+  _240
+  _291
+  _372
+  _251
+  _500
+  _298
+  _679
+  _33
+  _594
+  _689
+  _241
+  _220
+  _995
+  _49
+  _233
+  _350
+  _30
+  _299
+  _1473
+  _590
+  _1671
+  _502
+  _44
+  _224
+  _245
+  _595
+  _509
+  _379
+  _504
+  _852
+  _36
+  _354
+  _91
+  _62
+  _98
+  _964
+  _353
+  _972
+  _39
+  _1876
+  _81
+  _962
+  _77
+  _254
+  _686
+  _850
+  _82
+  _965
+  _996
+  _856
+  _371
+  _961
+  _266
+  _231
+  _218
+  _423
+  _370
+  _352
+  _853
+  _389
+  _261
+  _265
+  _60
+  _960
+  _223
+  _356
+  _692
+  _596
+  _222
+  _230
+  _262
+  _52
+  _691
+  _373
+  _377
+  _976
+  _382
+  _1664
+  _212
+  _258
+  _95
+  _264
+  _674
+  _977
+  _31
+  _599
+  _687
+  _64
+  _505
+  _227
+  _234
+  _683
+  _1670
+  _47
+  _968
+  _92
+  _680
+  _970
+  _507
+  _675
+  _51
+  _63
+  _872
+  _48
+  _351
+  _1939
+  _974
+  _40
+  _7
+  _250
+  _290
+  _1869
+  _1758
+  _508
+  _1784
+  _685
+  _378
+  _239
+  _966
+  _221
+  _381
+  _248
+  _232
+  _65
+  _421
+  _386
+  _677
+  _252
+  _27
+  _211
+  _34
+  _94
+  _249
+  _597
+  _268
+  _46
+  _41
+  _963
+  _886
+  _992
+  _255
+  _66
+  _670
+  _228
+  _690
+  _676
+  _1868
+  _216
+  _90
+  _993
+  _1649
+  _688
+  _256
+  _380
+  _971
+  _598
+  _998
+  _678
+  _58
+  _84
+  _1284
+  _1340
+  _681
+  _967
+  _260
+  _263
 }
 
 input User_phones__number_operator {
@@ -2473,26 +3112,198 @@ input User_phones__id_operator {
   exists: Boolean
 }
 
-input User_langs__lang_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+input User_langs_operator {
+  equals: User_langs_Input
+  not_equals: User_langs_Input
+  in: [User_langs_Input]
+  not_in: [User_langs_Input]
+  all: [User_langs_Input]
   exists: Boolean
 }
 
-input User_langs__id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
+enum User_langs_Input {
+  Afar
+  Abkhazian
+  Avestan
+  Afrikaans
+  Akan
+  Amharic
+  Aragonese
+  Arabic
+  Assamese
+  Avaric
+  Aymara
+  Azerbaijani
+  Bashkir
+  Belarusian
+  Bulgarian
+  Biharilanguages
+  Bislama
+  Bambara
+  Bengali
+  Tibetan
+  Breton
+  Bosnian
+  Catalan
+  Chechen
+  Chamorro
+  Corsican
+  Cree
+  Czech
+  ChurchSlavic
+  Chuvash
+  Welsh
+  Danish
+  German
+  Maldivian
+  Dzongkha
+  Ewe
+  Greek
+  English
+  Esperanto
+  Spanish
+  Estonian
+  Basque
+  Persian
+  Fulah
+  Finnish
+  Fijian
+  Faroese
+  French
+  WesternFrisian
+  Irish
+  Gaelic
+  Galician
+  Guarani
+  Gujarati
+  Manx
+  Hausa
+  Hebrew
+  Hindi
+  HiriMotu
+  Croatian
+  Haitian
+  Hungarian
+  Armenian
+  Herero
+  Interlingua
+  Indonesian
+  Interlingue
+  Igbo
+  SichuanYi
+  Inupiaq
+  Ido
+  Icelandic
+  Italian
+  Inuktitut
+  Japanese
+  Javanese
+  Georgian
+  Kongo
+  Kikuyu
+  Kuanyama
+  Kazakh
+  Kalaallisut
+  CentralKhmer
+  Kannada
+  Korean
+  Kanuri
+  Kashmiri
+  Kurdish
+  Komi
+  Cornish
+  Kirghiz
+  Latin
+  Luxembourgish
+  Ganda
+  Limburgan
+  Lingala
+  Lao
+  Lithuanian
+  Luba_Katanga
+  Latvian
+  Malagasy
+  Marshallese
+  Maori
+  Macedonian
+  Malayalam
+  Mongolian
+  Marathi
+  Malay
+  Maltese
+  Burmese
+  Nauru
+  Norwegian
+  NorthNdebele
+  Nepali
+  Ndonga
+  Dutch
+  SouthNdebele
+  Navajo
+  Chichewa
+  Occitan
+  Ojibwa
+  Oromo
+  Oriya
+  Ossetic
+  Panjabi
+  Pali
+  Polish
+  Pushto
+  Portuguese
+  Quechua
+  Romansh
+  Rundi
+  Romanian
+  Russian
+  Kinyarwanda
+  Sanskrit
+  Sardinian
+  Sindhi
+  NorthernSami
+  Sango
+  Sinhala
+  Slovak
+  Slovenian
+  Samoan
+  Shona
+  Somali
+  Albanian
+  Serbian
+  Swati
+  Sotho_Southern
+  Sundanese
+  Swedish
+  Swahili
+  Tamil
+  Telugu
+  Tajik
+  Thai
+  Tigrinya
+  Turkmen
+  Tagalog
+  Tswana
+  Tonga
+  Turkish
+  Tsonga
+  Tatar
+  Twi
+  Tahitian
+  Uighur
+  Ukrainian
+  Urdu
+  Uzbek
+  Venda
+  Vietnamese
+  Volapuk
+  Walloon
+  Wolof
+  Xhosa
+  Yiddish
+  Yoruba
+  Zhuang
+  Chinese
+  Zulu
 }
 
 input User_updatedAt_operator {
@@ -2546,8 +3357,7 @@ input User_where_and {
   phones__prefix: User_phones__prefix_operator
   phones__number: User_phones__number_operator
   phones__id: User_phones__id_operator
-  langs__lang: User_langs__lang_operator
-  langs__id: User_langs__id_operator
+  langs: User_langs_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -2564,8 +3374,7 @@ input User_where_or {
   phones__prefix: User_phones__prefix_operator
   phones__number: User_phones__number_operator
   phones__id: User_phones__id_operator
-  langs__lang: User_langs__lang_operator
-  langs__id: User_langs__id_operator
+  langs: User_langs_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -2796,7 +3605,6 @@ type UsersDocAccessFields_langs {
   read: UsersDocAccessFields_langs_Read
   update: UsersDocAccessFields_langs_Update
   delete: UsersDocAccessFields_langs_Delete
-  fields: UsersDocAccessFields_langs_Fields
 }
 
 type UsersDocAccessFields_langs_Create {
@@ -2812,57 +3620,6 @@ type UsersDocAccessFields_langs_Update {
 }
 
 type UsersDocAccessFields_langs_Delete {
-  permission: Boolean!
-}
-
-type UsersDocAccessFields_langs_Fields {
-  lang: UsersDocAccessFields_langs_lang
-  id: UsersDocAccessFields_langs_id
-}
-
-type UsersDocAccessFields_langs_lang {
-  create: UsersDocAccessFields_langs_lang_Create
-  read: UsersDocAccessFields_langs_lang_Read
-  update: UsersDocAccessFields_langs_lang_Update
-  delete: UsersDocAccessFields_langs_lang_Delete
-}
-
-type UsersDocAccessFields_langs_lang_Create {
-  permission: Boolean!
-}
-
-type UsersDocAccessFields_langs_lang_Read {
-  permission: Boolean!
-}
-
-type UsersDocAccessFields_langs_lang_Update {
-  permission: Boolean!
-}
-
-type UsersDocAccessFields_langs_lang_Delete {
-  permission: Boolean!
-}
-
-type UsersDocAccessFields_langs_id {
-  create: UsersDocAccessFields_langs_id_Create
-  read: UsersDocAccessFields_langs_id_Read
-  update: UsersDocAccessFields_langs_id_Update
-  delete: UsersDocAccessFields_langs_id_Delete
-}
-
-type UsersDocAccessFields_langs_id_Create {
-  permission: Boolean!
-}
-
-type UsersDocAccessFields_langs_id_Read {
-  permission: Boolean!
-}
-
-type UsersDocAccessFields_langs_id_Update {
-  permission: Boolean!
-}
-
-type UsersDocAccessFields_langs_id_Delete {
   permission: Boolean!
 }
 
@@ -2994,27 +3751,27 @@ type usersMe {
 type Yacht {
   id: String
   name: String!
-  model: String!
+  model: String
   price: Float!
   LOA: Float!
   beam: Float!
   broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User!
   builder: String!
-  category: String!
-  city: String!
-  continent: String!
-  country: String!
+  category: String
+  city: String
+  continent: String
+  country: String
   cruising: Boolean!
   crypto: Boolean!
   length: Float!
-  state: String!
+  state: String
   material: String!
   maxDraft: Float!
   minDraft: Float!
-  region: String!
+  region: String
   rooms: Float!
   sleeps: Float!
-  subcategory: String!
+  subcategory: String
   tonnage: Float!
   yearBuilt: Float!
   yearModel: Float!
@@ -3816,6 +4573,7 @@ input Yacht_model_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Yacht_price_operator {
@@ -3871,6 +4629,7 @@ input Yacht_category_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Yacht_city_operator {
@@ -3881,6 +4640,7 @@ input Yacht_city_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Yacht_continent_operator {
@@ -3891,6 +4651,7 @@ input Yacht_continent_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Yacht_country_operator {
@@ -3901,6 +4662,7 @@ input Yacht_country_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Yacht_cruising_operator {
@@ -3930,6 +4692,7 @@ input Yacht_state_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Yacht_material_operator {
@@ -3968,6 +4731,7 @@ input Yacht_region_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Yacht_rooms_operator {
@@ -3996,6 +4760,7 @@ input Yacht_subcategory_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Yacht_tonnage_operator {
@@ -5223,27 +5988,27 @@ type YachtsDeleteDocAccess {
 type Charter {
   id: String
   name: String!
-  model: String!
+  model: String
   price: Float!
   LOA: Float!
   beam: Float!
   broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User!
   builder: String!
-  category: String!
-  city: String!
-  continent: String!
-  country: String!
+  category: String
+  city: String
+  continent: String
+  country: String
   cruising: Boolean!
   crypto: Boolean!
   length: Float!
-  state: String!
+  state: String
   material: String!
   maxDraft: Float!
   minDraft: Float!
-  region: String!
+  region: String
   rooms: Float!
   sleeps: Float!
-  subcategory: String!
+  subcategory: String
   tonnage: Float!
   yearBuilt: Float!
   yearModel: Float!
@@ -6126,6 +6891,7 @@ input Charter_model_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Charter_price_operator {
@@ -6181,6 +6947,7 @@ input Charter_category_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Charter_city_operator {
@@ -6191,6 +6958,7 @@ input Charter_city_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Charter_continent_operator {
@@ -6201,6 +6969,7 @@ input Charter_continent_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Charter_country_operator {
@@ -6211,6 +6980,7 @@ input Charter_country_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Charter_cruising_operator {
@@ -6240,6 +7010,7 @@ input Charter_state_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Charter_material_operator {
@@ -6278,6 +7049,7 @@ input Charter_region_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Charter_rooms_operator {
@@ -6306,6 +7078,7 @@ input Charter_subcategory_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Charter_tonnage_operator {
@@ -12712,27 +13485,27 @@ type NewConstruction {
   id: String
   delivery: String!
   name: String!
-  model: String!
+  model: String
   price: Float!
   LOA: Float!
   beam: Float!
   broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User!
   builder: String!
-  category: String!
-  city: String!
-  continent: String!
-  country: String!
+  category: String
+  city: String
+  continent: String
+  country: String
   cruising: Boolean!
   crypto: Boolean!
   length: Float!
-  state: String!
+  state: String
   material: String!
   maxDraft: Float!
   minDraft: Float!
-  region: String!
+  region: String
   rooms: Float!
   sleeps: Float!
-  subcategory: String!
+  subcategory: String
   tonnage: Float!
   yearBuilt: Float!
   yearModel: Float!
@@ -13545,6 +14318,7 @@ input NewConstruction_model_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input NewConstruction_price_operator {
@@ -13600,6 +14374,7 @@ input NewConstruction_category_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input NewConstruction_city_operator {
@@ -13610,6 +14385,7 @@ input NewConstruction_city_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input NewConstruction_continent_operator {
@@ -13620,6 +14396,7 @@ input NewConstruction_continent_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input NewConstruction_country_operator {
@@ -13630,6 +14407,7 @@ input NewConstruction_country_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input NewConstruction_cruising_operator {
@@ -13659,6 +14437,7 @@ input NewConstruction_state_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input NewConstruction_material_operator {
@@ -13697,6 +14476,7 @@ input NewConstruction_region_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input NewConstruction_rooms_operator {
@@ -13725,6 +14505,7 @@ input NewConstruction_subcategory_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input NewConstruction_tonnage_operator {
@@ -18892,7 +19673,6 @@ type UsersFields_langs {
   read: UsersFields_langs_Read
   update: UsersFields_langs_Update
   delete: UsersFields_langs_Delete
-  fields: UsersFields_langs_Fields
 }
 
 type UsersFields_langs_Create {
@@ -18908,57 +19688,6 @@ type UsersFields_langs_Update {
 }
 
 type UsersFields_langs_Delete {
-  permission: Boolean!
-}
-
-type UsersFields_langs_Fields {
-  lang: UsersFields_langs_lang
-  id: UsersFields_langs_id
-}
-
-type UsersFields_langs_lang {
-  create: UsersFields_langs_lang_Create
-  read: UsersFields_langs_lang_Read
-  update: UsersFields_langs_lang_Update
-  delete: UsersFields_langs_lang_Delete
-}
-
-type UsersFields_langs_lang_Create {
-  permission: Boolean!
-}
-
-type UsersFields_langs_lang_Read {
-  permission: Boolean!
-}
-
-type UsersFields_langs_lang_Update {
-  permission: Boolean!
-}
-
-type UsersFields_langs_lang_Delete {
-  permission: Boolean!
-}
-
-type UsersFields_langs_id {
-  create: UsersFields_langs_id_Create
-  read: UsersFields_langs_id_Read
-  update: UsersFields_langs_id_Update
-  delete: UsersFields_langs_id_Delete
-}
-
-type UsersFields_langs_id_Create {
-  permission: Boolean!
-}
-
-type UsersFields_langs_id_Read {
-  permission: Boolean!
-}
-
-type UsersFields_langs_id_Update {
-  permission: Boolean!
-}
-
-type UsersFields_langs_id_Delete {
   permission: Boolean!
 }
 
@@ -25469,7 +26198,7 @@ type Mutation {
   createUser(data: mutationUserInput!, locale: LocaleInputType): User
   updateUser(id: String!, autosave: Boolean, data: mutationUserUpdateInput!, locale: LocaleInputType): User
   deleteUser(id: String!): User
-  refreshTokenUser(token: String): usersRefreshedUser
+  refreshTokenUser: usersRefreshedUser
   logoutUser: String
   unlockUser(email: String!): Boolean!
   loginUser(email: String, password: String): usersLoginResult
@@ -25630,7 +26359,7 @@ input mutationUserInput {
   picture: String
   position: String!
   phones: [mutationUser_PhonesInput]
-  langs: [mutationUser_LangsInput!]
+  langs: [User_langs_MutationInput]
   updatedAt: String
   createdAt: String
   email: String!
@@ -25649,14 +26378,425 @@ enum User_roles_MutationInput {
 }
 
 input mutationUser_PhonesInput {
-  prefix: String
+  prefix: User_Phones_prefix_MutationInput
   number: String
   id: String
 }
 
-input mutationUser_LangsInput {
-  lang: String
-  id: String
+enum User_Phones_prefix_MutationInput {
+  _93
+  _358
+  _355
+  _213
+  _1684
+  _376
+  _244
+  _1264
+  _672
+  _1268
+  _54
+  _374
+  _297
+  _61
+  _43
+  _994
+  _1242
+  _973
+  _880
+  _1246
+  _375
+  _32
+  _501
+  _229
+  _1441
+  _975
+  _591
+  _387
+  _267
+  _55
+  _246
+  _673
+  _359
+  _226
+  _257
+  _855
+  _237
+  _1
+  _238
+  _345
+  _236
+  _235
+  _56
+  _86
+  _57
+  _269
+  _242
+  _243
+  _682
+  _506
+  _225
+  _385
+  _53
+  _357
+  _420
+  _45
+  _253
+  _1767
+  _1849
+  _593
+  _20
+  _503
+  _240
+  _291
+  _372
+  _251
+  _500
+  _298
+  _679
+  _33
+  _594
+  _689
+  _241
+  _220
+  _995
+  _49
+  _233
+  _350
+  _30
+  _299
+  _1473
+  _590
+  _1671
+  _502
+  _44
+  _224
+  _245
+  _595
+  _509
+  _379
+  _504
+  _852
+  _36
+  _354
+  _91
+  _62
+  _98
+  _964
+  _353
+  _972
+  _39
+  _1876
+  _81
+  _962
+  _77
+  _254
+  _686
+  _850
+  _82
+  _965
+  _996
+  _856
+  _371
+  _961
+  _266
+  _231
+  _218
+  _423
+  _370
+  _352
+  _853
+  _389
+  _261
+  _265
+  _60
+  _960
+  _223
+  _356
+  _692
+  _596
+  _222
+  _230
+  _262
+  _52
+  _691
+  _373
+  _377
+  _976
+  _382
+  _1664
+  _212
+  _258
+  _95
+  _264
+  _674
+  _977
+  _31
+  _599
+  _687
+  _64
+  _505
+  _227
+  _234
+  _683
+  _1670
+  _47
+  _968
+  _92
+  _680
+  _970
+  _507
+  _675
+  _51
+  _63
+  _872
+  _48
+  _351
+  _1939
+  _974
+  _40
+  _7
+  _250
+  _290
+  _1869
+  _1758
+  _508
+  _1784
+  _685
+  _378
+  _239
+  _966
+  _221
+  _381
+  _248
+  _232
+  _65
+  _421
+  _386
+  _677
+  _252
+  _27
+  _211
+  _34
+  _94
+  _249
+  _597
+  _268
+  _46
+  _41
+  _963
+  _886
+  _992
+  _255
+  _66
+  _670
+  _228
+  _690
+  _676
+  _1868
+  _216
+  _90
+  _993
+  _1649
+  _688
+  _256
+  _380
+  _971
+  _598
+  _998
+  _678
+  _58
+  _84
+  _1284
+  _1340
+  _681
+  _967
+  _260
+  _263
+}
+
+enum User_langs_MutationInput {
+  Afar
+  Abkhazian
+  Avestan
+  Afrikaans
+  Akan
+  Amharic
+  Aragonese
+  Arabic
+  Assamese
+  Avaric
+  Aymara
+  Azerbaijani
+  Bashkir
+  Belarusian
+  Bulgarian
+  Biharilanguages
+  Bislama
+  Bambara
+  Bengali
+  Tibetan
+  Breton
+  Bosnian
+  Catalan
+  Chechen
+  Chamorro
+  Corsican
+  Cree
+  Czech
+  ChurchSlavic
+  Chuvash
+  Welsh
+  Danish
+  German
+  Maldivian
+  Dzongkha
+  Ewe
+  Greek
+  English
+  Esperanto
+  Spanish
+  Estonian
+  Basque
+  Persian
+  Fulah
+  Finnish
+  Fijian
+  Faroese
+  French
+  WesternFrisian
+  Irish
+  Gaelic
+  Galician
+  Guarani
+  Gujarati
+  Manx
+  Hausa
+  Hebrew
+  Hindi
+  HiriMotu
+  Croatian
+  Haitian
+  Hungarian
+  Armenian
+  Herero
+  Interlingua
+  Indonesian
+  Interlingue
+  Igbo
+  SichuanYi
+  Inupiaq
+  Ido
+  Icelandic
+  Italian
+  Inuktitut
+  Japanese
+  Javanese
+  Georgian
+  Kongo
+  Kikuyu
+  Kuanyama
+  Kazakh
+  Kalaallisut
+  CentralKhmer
+  Kannada
+  Korean
+  Kanuri
+  Kashmiri
+  Kurdish
+  Komi
+  Cornish
+  Kirghiz
+  Latin
+  Luxembourgish
+  Ganda
+  Limburgan
+  Lingala
+  Lao
+  Lithuanian
+  Luba_Katanga
+  Latvian
+  Malagasy
+  Marshallese
+  Maori
+  Macedonian
+  Malayalam
+  Mongolian
+  Marathi
+  Malay
+  Maltese
+  Burmese
+  Nauru
+  Norwegian
+  NorthNdebele
+  Nepali
+  Ndonga
+  Dutch
+  SouthNdebele
+  Navajo
+  Chichewa
+  Occitan
+  Ojibwa
+  Oromo
+  Oriya
+  Ossetic
+  Panjabi
+  Pali
+  Polish
+  Pushto
+  Portuguese
+  Quechua
+  Romansh
+  Rundi
+  Romanian
+  Russian
+  Kinyarwanda
+  Sanskrit
+  Sardinian
+  Sindhi
+  NorthernSami
+  Sango
+  Sinhala
+  Slovak
+  Slovenian
+  Samoan
+  Shona
+  Somali
+  Albanian
+  Serbian
+  Swati
+  Sotho_Southern
+  Sundanese
+  Swedish
+  Swahili
+  Tamil
+  Telugu
+  Tajik
+  Thai
+  Tigrinya
+  Turkmen
+  Tagalog
+  Tswana
+  Tonga
+  Turkish
+  Tsonga
+  Tatar
+  Twi
+  Tahitian
+  Uighur
+  Ukrainian
+  Urdu
+  Uzbek
+  Venda
+  Vietnamese
+  Volapuk
+  Walloon
+  Wolof
+  Xhosa
+  Yiddish
+  Yoruba
+  Zhuang
+  Chinese
+  Zulu
 }
 
 input mutationUserUpdateInput {
@@ -25665,7 +26805,7 @@ input mutationUserUpdateInput {
   picture: String
   position: String
   phones: [mutationUserUpdate_PhonesInput]
-  langs: [mutationUserUpdate_LangsInput]
+  langs: [UserUpdate_langs_MutationInput]
   updatedAt: String
   createdAt: String
   email: String
@@ -25684,14 +26824,425 @@ enum UserUpdate_roles_MutationInput {
 }
 
 input mutationUserUpdate_PhonesInput {
-  prefix: String
+  prefix: UserUpdate_Phones_prefix_MutationInput
   number: String
   id: String
 }
 
-input mutationUserUpdate_LangsInput {
-  lang: String
-  id: String
+enum UserUpdate_Phones_prefix_MutationInput {
+  _93
+  _358
+  _355
+  _213
+  _1684
+  _376
+  _244
+  _1264
+  _672
+  _1268
+  _54
+  _374
+  _297
+  _61
+  _43
+  _994
+  _1242
+  _973
+  _880
+  _1246
+  _375
+  _32
+  _501
+  _229
+  _1441
+  _975
+  _591
+  _387
+  _267
+  _55
+  _246
+  _673
+  _359
+  _226
+  _257
+  _855
+  _237
+  _1
+  _238
+  _345
+  _236
+  _235
+  _56
+  _86
+  _57
+  _269
+  _242
+  _243
+  _682
+  _506
+  _225
+  _385
+  _53
+  _357
+  _420
+  _45
+  _253
+  _1767
+  _1849
+  _593
+  _20
+  _503
+  _240
+  _291
+  _372
+  _251
+  _500
+  _298
+  _679
+  _33
+  _594
+  _689
+  _241
+  _220
+  _995
+  _49
+  _233
+  _350
+  _30
+  _299
+  _1473
+  _590
+  _1671
+  _502
+  _44
+  _224
+  _245
+  _595
+  _509
+  _379
+  _504
+  _852
+  _36
+  _354
+  _91
+  _62
+  _98
+  _964
+  _353
+  _972
+  _39
+  _1876
+  _81
+  _962
+  _77
+  _254
+  _686
+  _850
+  _82
+  _965
+  _996
+  _856
+  _371
+  _961
+  _266
+  _231
+  _218
+  _423
+  _370
+  _352
+  _853
+  _389
+  _261
+  _265
+  _60
+  _960
+  _223
+  _356
+  _692
+  _596
+  _222
+  _230
+  _262
+  _52
+  _691
+  _373
+  _377
+  _976
+  _382
+  _1664
+  _212
+  _258
+  _95
+  _264
+  _674
+  _977
+  _31
+  _599
+  _687
+  _64
+  _505
+  _227
+  _234
+  _683
+  _1670
+  _47
+  _968
+  _92
+  _680
+  _970
+  _507
+  _675
+  _51
+  _63
+  _872
+  _48
+  _351
+  _1939
+  _974
+  _40
+  _7
+  _250
+  _290
+  _1869
+  _1758
+  _508
+  _1784
+  _685
+  _378
+  _239
+  _966
+  _221
+  _381
+  _248
+  _232
+  _65
+  _421
+  _386
+  _677
+  _252
+  _27
+  _211
+  _34
+  _94
+  _249
+  _597
+  _268
+  _46
+  _41
+  _963
+  _886
+  _992
+  _255
+  _66
+  _670
+  _228
+  _690
+  _676
+  _1868
+  _216
+  _90
+  _993
+  _1649
+  _688
+  _256
+  _380
+  _971
+  _598
+  _998
+  _678
+  _58
+  _84
+  _1284
+  _1340
+  _681
+  _967
+  _260
+  _263
+}
+
+enum UserUpdate_langs_MutationInput {
+  Afar
+  Abkhazian
+  Avestan
+  Afrikaans
+  Akan
+  Amharic
+  Aragonese
+  Arabic
+  Assamese
+  Avaric
+  Aymara
+  Azerbaijani
+  Bashkir
+  Belarusian
+  Bulgarian
+  Biharilanguages
+  Bislama
+  Bambara
+  Bengali
+  Tibetan
+  Breton
+  Bosnian
+  Catalan
+  Chechen
+  Chamorro
+  Corsican
+  Cree
+  Czech
+  ChurchSlavic
+  Chuvash
+  Welsh
+  Danish
+  German
+  Maldivian
+  Dzongkha
+  Ewe
+  Greek
+  English
+  Esperanto
+  Spanish
+  Estonian
+  Basque
+  Persian
+  Fulah
+  Finnish
+  Fijian
+  Faroese
+  French
+  WesternFrisian
+  Irish
+  Gaelic
+  Galician
+  Guarani
+  Gujarati
+  Manx
+  Hausa
+  Hebrew
+  Hindi
+  HiriMotu
+  Croatian
+  Haitian
+  Hungarian
+  Armenian
+  Herero
+  Interlingua
+  Indonesian
+  Interlingue
+  Igbo
+  SichuanYi
+  Inupiaq
+  Ido
+  Icelandic
+  Italian
+  Inuktitut
+  Japanese
+  Javanese
+  Georgian
+  Kongo
+  Kikuyu
+  Kuanyama
+  Kazakh
+  Kalaallisut
+  CentralKhmer
+  Kannada
+  Korean
+  Kanuri
+  Kashmiri
+  Kurdish
+  Komi
+  Cornish
+  Kirghiz
+  Latin
+  Luxembourgish
+  Ganda
+  Limburgan
+  Lingala
+  Lao
+  Lithuanian
+  Luba_Katanga
+  Latvian
+  Malagasy
+  Marshallese
+  Maori
+  Macedonian
+  Malayalam
+  Mongolian
+  Marathi
+  Malay
+  Maltese
+  Burmese
+  Nauru
+  Norwegian
+  NorthNdebele
+  Nepali
+  Ndonga
+  Dutch
+  SouthNdebele
+  Navajo
+  Chichewa
+  Occitan
+  Ojibwa
+  Oromo
+  Oriya
+  Ossetic
+  Panjabi
+  Pali
+  Polish
+  Pushto
+  Portuguese
+  Quechua
+  Romansh
+  Rundi
+  Romanian
+  Russian
+  Kinyarwanda
+  Sanskrit
+  Sardinian
+  Sindhi
+  NorthernSami
+  Sango
+  Sinhala
+  Slovak
+  Slovenian
+  Samoan
+  Shona
+  Somali
+  Albanian
+  Serbian
+  Swati
+  Sotho_Southern
+  Sundanese
+  Swedish
+  Swahili
+  Tamil
+  Telugu
+  Tajik
+  Thai
+  Tigrinya
+  Turkmen
+  Tagalog
+  Tswana
+  Tonga
+  Turkish
+  Tsonga
+  Tatar
+  Twi
+  Tahitian
+  Uighur
+  Ukrainian
+  Urdu
+  Uzbek
+  Venda
+  Vietnamese
+  Volapuk
+  Walloon
+  Wolof
+  Xhosa
+  Yiddish
+  Yoruba
+  Zhuang
+  Chinese
+  Zulu
 }
 
 type usersRefreshedUser {
@@ -25719,27 +27270,27 @@ type usersResetPassword {
 
 input mutationYachtInput {
   name: String!
-  model: String!
+  model: String
   price: Float!
   LOA: Float!
   beam: Float!
   broker: String
   builder: String!
-  category: String!
-  city: String!
-  continent: String!
-  country: String!
+  category: String
+  city: String
+  continent: String
+  country: String
   cruising: Boolean
   crypto: Boolean
   length: Float!
-  state: String!
+  state: String
   material: String!
   maxDraft: Float!
   minDraft: Float!
-  region: String!
+  region: String
   rooms: Float!
   sleeps: Float!
-  subcategory: String!
+  subcategory: String
   tonnage: Float!
   yearBuilt: Float!
   yearModel: Float!
@@ -25859,27 +27410,27 @@ input mutationYachtUpdate_SeoInput {
 
 input mutationCharterInput {
   name: String!
-  model: String!
+  model: String
   price: Float!
   LOA: Float!
   beam: Float!
   broker: String
   builder: String!
-  category: String!
-  city: String!
-  continent: String!
-  country: String!
+  category: String
+  city: String
+  continent: String
+  country: String
   cruising: Boolean
   crypto: Boolean
   length: Float!
-  state: String!
+  state: String
   material: String!
   maxDraft: Float!
   minDraft: Float!
-  region: String!
+  region: String
   rooms: Float!
   sleeps: Float!
-  subcategory: String!
+  subcategory: String
   tonnage: Float!
   yearBuilt: Float!
   yearModel: Float!
@@ -26204,27 +27755,27 @@ input mutationRecruitmentUpdateInput {
 input mutationNewConstructionInput {
   delivery: String!
   name: String!
-  model: String!
+  model: String
   price: Float!
   LOA: Float!
   beam: Float!
   broker: String
   builder: String!
-  category: String!
-  city: String!
-  continent: String!
-  country: String!
+  category: String
+  city: String
+  continent: String
+  country: String
   cruising: Boolean
   crypto: Boolean
   length: Float!
-  state: String!
+  state: String
   material: String!
   maxDraft: Float!
   minDraft: Float!
-  region: String!
+  region: String
   rooms: Float!
   sleeps: Float!
-  subcategory: String!
+  subcategory: String
   tonnage: Float!
   yearBuilt: Float!
   yearModel: Float!
