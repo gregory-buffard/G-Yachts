@@ -31,17 +31,35 @@ export interface IYacht {
   keyFeatures: string[];
   photos: {
     featured: {
-      url: string;
       alt: string;
-      width: number;
-      height: number;
+      sizes: {
+        thumbnail: {
+          url: string;
+          width: number;
+          height: number;
+        };
+        fhd: {
+          url: string;
+          width: number;
+          height: number;
+        };
+      };
     };
     gallery: {
       image: {
-        url: string;
         alt: string;
-        width: number;
-        height: number;
+        sizes: {
+          thumbnail: {
+            url: string;
+            width: number;
+            height: number;
+          };
+          fhd: {
+            url: string;
+            width: number;
+            height: number;
+          };
+        };
       };
     }[];
   };

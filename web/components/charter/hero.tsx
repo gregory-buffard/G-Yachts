@@ -18,7 +18,7 @@ const Hero = () => {
         "w-full px-[4vw] md:px-[8vw] h-[36dvh] md:h-screen bg-cover bg-center flex flex-col justify-end items-start text-white uppercase py-[2vh] md:py-[6vh]"
       }
       style={{
-        backgroundImage: `url(${charter.photos.featured})`,
+        backgroundImage: `url(${charter.photos.featured.sizes.fhd.url})`,
       }}
     >
       <h1 className={"font-classic normal-case"}>{charter.name}</h1>

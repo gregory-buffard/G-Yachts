@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
-import { IFeatured } from "@/types/yacht";
+import { IFeatured } from "@/types/sale";
 import { useEffect, useState } from "react";
 import { useViewContext } from "@/context/view";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
@@ -14,7 +14,7 @@ const Card = ({ card }: { card: IFeatured }) => {
 
   return (
     <Link
-      href={{ pathname: "/yacht/[id]", params: { id: card.id } }}
+      href={{ pathname: "/sales/[id]", params: { id: card.id } }}
       className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw]`}
     >
       <div

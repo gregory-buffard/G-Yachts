@@ -2,13 +2,17 @@
 
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
-import { IYacht, ISale } from "@/types/yacht";
-import { ICharter, IFeatured } from "@/types/charter";
+import { IYacht as SYacht, IFeatured as SFeatured, ISale } from "@/types/sale";
+import {
+  IYacht as CYacht,
+  IFeatured as CFeatured,
+  ICharter,
+} from "@/types/charter";
 import { IDestination } from "@/types/destination";
 import { remapYachtPhotos } from "@/utils/yachts";
 import axios from "axios";
 
-export const fetchFeaturedSales = async () => {
+export const fetchFeaturedSales = async (): Promise<SFeatured[]> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
@@ -17,54 +21,17 @@ export const fetchFeaturedSales = async () => {
           docs {
             id
             name
-            model
             price
-            LOA
-            beam
             builder
-            category
-            city
-            continent
-            country
-            cruising
-            crypto
             length
-            state
-            material
-            maxDraft
-            minDraft
-            region
-            rooms
             sleeps
-            subcategory
-            tonnage
             yearBuilt
-            yearModel
-            featured
-            keyFeatures
-            broker {
-              id
-              name
-              email
-              picture {
-                url
-              }
-              position
-              phones {
-                prefix
-                number
-              }
-              langs {
-                lang
-              }
-            }
             photos {
               featured {
-                url
-              }
-              gallery {
-                image {
-                  url
+                sizes {
+                  fhd {
+                    url
+                  }
                 }
               }
             }
@@ -73,13 +40,10 @@ export const fetchFeaturedSales = async () => {
       }
     `,
   });
-  const yachts: IYacht[] = data.Yachts.docs.map((yacht: any) =>
-    remapYachtPhotos(yacht),
-  );
-  return yachts;
+  return data.Yachts.docs;
 };
 
-export const fetchSales = async () => {
+export const fetchSales = async (): Promise<ISale[]> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
@@ -97,11 +61,25 @@ export const fetchSales = async () => {
             featured
             photos {
               featured {
-                url
+                alt
+                sizes {
+                  thumbnail {
+                    url
+                    width
+                    height
+                  }
+                }
               }
               gallery {
                 image {
-                  url
+                  alt
+                  sizes {
+                    thumbnail {
+                      url
+                      width
+                      height
+                    }
+                  }
                 }
               }
             }
@@ -110,10 +88,10 @@ export const fetchSales = async () => {
       }
     `,
   });
-  return data.Yachts.docs as ISale[];
+  return data.Yachts.docs;
 };
 
-export const fetchSale = async (id: string) => {
+export const fetchSale = async (id: string): Promise<SYacht> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
@@ -159,11 +137,30 @@ export const fetchSale = async (id: string) => {
           }
           photos {
             featured {
-              url
+              alt
+              sizes {
+                fhd {
+                  url
+                  width
+                  height
+                }
+              }
             }
             gallery {
               image {
-                url
+                alt
+                sizes {
+                  thumbnail {
+                    url
+                    width
+                    height
+                  }
+                  fhd {
+                    url
+                    width
+                    height
+                  }
+                }
               }
             }
           }
@@ -175,7 +172,7 @@ export const fetchSale = async (id: string) => {
   return data.Yacht;
 };
 
-export const fetchFeaturedCharters = async () => {
+export const fetchFeaturedCharters = async (): Promise<CFeatured[]> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
@@ -184,54 +181,17 @@ export const fetchFeaturedCharters = async () => {
           docs {
             id
             name
-            model
             price
-            LOA
-            beam
             builder
-            category
-            city
-            continent
-            country
-            cruising
-            crypto
             length
-            state
-            material
-            maxDraft
-            minDraft
-            region
-            rooms
             sleeps
-            subcategory
-            tonnage
             yearBuilt
-            yearModel
-            featured
-            keyFeatures
-            broker {
-              id
-              name
-              email
-              picture {
-                url
-              }
-              position
-              phones {
-                prefix
-                number
-              }
-              langs {
-                lang
-              }
-            }
             photos {
               featured {
-                url
-              }
-              gallery {
-                image {
-                  url
+                sizes {
+                  fhd {
+                    url
+                  }
                 }
               }
             }
@@ -240,11 +200,10 @@ export const fetchFeaturedCharters = async () => {
       }
     `,
   });
-  const charters: ICharter[] = data.Charters.docs.map(remapYachtPhotos);
-  return charters;
+  return data.Charters.docs;
 };
 
-export const fetchCharters = async () => {
+export const fetchCharters = async (): Promise<ICharter[]> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
@@ -253,54 +212,26 @@ export const fetchCharters = async () => {
           docs {
             id
             name
-            model
             price
-            LOA
-            beam
             builder
-            category
-            city
-            continent
-            country
-            cruising
-            crypto
             length
-            state
-            material
-            maxDraft
-            minDraft
-            region
-            rooms
             sleeps
-            subcategory
-            tonnage
             yearBuilt
-            yearModel
-            featured
-            keyFeatures
-            broker {
-              id
-              name
-              email
-              picture {
-                url
-              }
-              position
-              phones {
-                prefix
-                number
-              }
-              langs {
-                lang
-              }
-            }
             photos {
               featured {
-                url
+                sizes {
+                  thumbnail {
+                    url
+                  }
+                }
               }
               gallery {
                 image {
-                  url
+                  sizes {
+                    thumbnail {
+                      url
+                    }
+                  }
                 }
               }
             }
@@ -309,11 +240,10 @@ export const fetchCharters = async () => {
       }
     `,
   });
-  const charters: ICharter[] = data.Charters.docs.map(remapYachtPhotos);
-  return charters;
+  return data.Charters.docs;
 };
 
-export const fetchCharter = async (id: string) => {
+export const fetchCharter = async (id: string): Promise<CYacht> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
@@ -358,17 +288,34 @@ export const fetchCharter = async (id: string) => {
               prefix
               number
             }
-            langs {
-              lang
-            }
+            langs
           }
           photos {
             featured {
-              url
+              alt
+              sizes {
+                fhd {
+                  url
+                  width
+                  height
+                }
+              }
             }
             gallery {
               image {
-                url
+                alt
+                sizes {
+                  thumbnail {
+                    url
+                    width
+                    height
+                  }
+                  fhd {
+                    url
+                    width
+                    height
+                  }
+                }
               }
             }
           }
@@ -377,15 +324,14 @@ export const fetchCharter = async (id: string) => {
     `,
     variables: { id: id },
   });
-  const charter = remapYachtPhotos(data.Charter);
-  return charter;
+  return data.Charter;
 };
 
 export const fetchChartersForDestination = async (
   destination: IDestination,
-): Promise<IFeatured[]> => {
+): Promise<CFeatured[]> => {
   const client = getClient();
-  const charters: IFeatured[] = [];
+  const charters: CFeatured[] = [];
   // Country
   const { data: countryData } = await client.query({
     query: gql`
@@ -422,9 +368,7 @@ export const fetchChartersForDestination = async (
                 prefix
                 number
               }
-              langs {
-                lang
-              }
+              langs
             }
           }
         }
@@ -433,7 +377,7 @@ export const fetchChartersForDestination = async (
     variables: { country: destination.country, limit: 4 },
   });
   if (countryData) {
-    const countryCharters: IFeatured[] =
+    const countryCharters: CFeatured[] =
       countryData.Charters.docs.map(remapYachtPhotos);
     charters.push(...countryCharters);
   }
@@ -474,9 +418,7 @@ export const fetchChartersForDestination = async (
                 prefix
                 number
               }
-              langs {
-                lang
-              }
+              langs
             }
           }
         }
@@ -485,7 +427,7 @@ export const fetchChartersForDestination = async (
     variables: { continent: destination.continent, limit: 4 - charters.length },
   });
   if (continentData) {
-    const continentCharters: IFeatured[] =
+    const continentCharters: CFeatured[] =
       continentData.Charters.docs.map(remapYachtPhotos);
     charters.push(...continentCharters);
   }
@@ -526,9 +468,7 @@ export const fetchChartersForDestination = async (
                 prefix
                 number
               }
-              langs {
-                lang
-              }
+              langs
             }
           }
         }
@@ -537,7 +477,7 @@ export const fetchChartersForDestination = async (
     variables: { limit: 4 - charters.length },
   });
   if (!randomData) return charters;
-  const randomCharters: IFeatured[] =
+  const randomCharters: CFeatured[] =
     randomData.Charters.docs.map(remapYachtPhotos);
   charters.push(...randomCharters);
   return charters;
