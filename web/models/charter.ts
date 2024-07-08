@@ -1,8 +1,8 @@
 // import { Schema } from "mongoose";
-// import { ICharter } from "@/types/charter";
+// import { IYacht } from "@/types/charter";
 // import { useWeb } from "@/utils/mongoose";
 
-// const CharterSchema = new Schema<ICharter>(
+// const CharterSchema = new Schema<IYacht>(
 //   {
 //     LOA: { type: Number, required: true },
 //     beam: { type: Number, required: true },
@@ -42,4 +42,4 @@
 
 // const Charter = useWeb.models.Charter || useWeb.model("Charter", CharterSchema);
 
-// export { Charter, type ICharter };
+// export { Charter, type IYacht };

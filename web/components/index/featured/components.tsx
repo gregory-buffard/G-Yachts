@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
-import { IFeatured } from "@/types/yacht";
+import { IFeatured } from "@/types/sale";
 import { useEffect, useState } from "react";
 import { useViewContext } from "@/context/view";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
@@ -22,7 +22,7 @@ const Card = ({ card }: { card: IFeatured }) => {
           "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
         }
         style={{
-          backgroundImage: `url(${card.photos.featured.url})`,
+          backgroundImage: `url(${card.photos.featured.sizes.fhd.url})`,
         }}
       >
         <p className={"bg-white px-[1.5vw] py-[0.5vh] rounded-sm m-[1vh]"}>

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { IYacht } from "@/types/yacht";
+import { IYacht } from "@/types/sale";
 
 interface IActions {
   changeView: (view: "info" | "features" | "gallery") => void;

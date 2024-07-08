@@ -1,6 +1,6 @@
 "use client";
 
-import { ISale } from "@/types/yacht";
+import { ISale } from "@/types/sale";
 import { useEffect, useState } from "react";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
 import { useTranslations } from "next-intl";
@@ -58,19 +58,19 @@ const Card = ({ data }: { data: ISale }) => {
           }
         >
           <Photo
-            url={`url(${data.photos.featured.url})`}
+            url={`url(${data.photos.featured.sizes.thumbnail.url})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(${data.photos.gallery[0]?.image.url})`}
+            url={`url(${data.photos.gallery[0]?.image.sizes.thumbnail.url})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(${data.photos.gallery[1]?.image.url})`}
+            url={`url(${data.photos.gallery[1]?.image.sizes.thumbnail.url})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}

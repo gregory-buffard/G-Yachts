@@ -1,7 +1,6 @@
 import Hero from "@/components/charters/hero";
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
-
 import { fetchCharters, fetchFeaturedCharters } from "@/actions/yachts";
 
 const View = dynamic(() => import("@/components/view"));

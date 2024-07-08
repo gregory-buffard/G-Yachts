@@ -7,8 +7,8 @@ import { useViewContext } from "@/context/view";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { searchAll } from "@/actions/search";
-import { IYacht } from "@/types/yacht";
-import { ICharter } from "@/types/charter";
+import { IYacht as SYacht } from "@/types/sale";
+import { IYacht as CYacht } from "@/types/charter";
 import { IDestination } from "@/types/destination";
 import { IArticle } from "@/types/article";
 import { Link } from "@/navigation";
@@ -21,8 +21,8 @@ const Search = () => {
   const locale = params.locale as string;
   const [results, setResults] = useState<
     | {
-        yachts: IYacht[];
-        charters: ICharter[];
+        yachts: SYacht[];
+        charters: CYacht[];
         destinations: IDestination[];
         articles: IArticle[];
         pages: { title: string; url: string }[];
@@ -82,7 +82,7 @@ const Search = () => {
   );
 };
 
-const YachtsResults = ({ yachts }: { yachts: IYacht[] }) => {
+const YachtsResults = ({ yachts }: { yachts: SYacht[] }) => {
   const t = useTranslations("search");
   const { openView } = useViewContext();
   return (
@@ -109,7 +109,7 @@ const YachtsResults = ({ yachts }: { yachts: IYacht[] }) => {
   );
 };
 
-const ChartersResults = ({ charters }: { charters: ICharter[] }) => {
+const ChartersResults = ({ charters }: { charters: CYacht[] }) => {
   const t = useTranslations("search");
   const { openView } = useViewContext();
   return (

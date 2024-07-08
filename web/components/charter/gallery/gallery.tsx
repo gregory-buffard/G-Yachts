@@ -9,10 +9,10 @@ import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { replaceColor } from "lottie-colorify";
 import galleryView from "@/public/imagery/optimized/yacht/gallery.json";
-import { ICharter } from "@/types/charter";
+import { IYacht } from "@/types/charter";
 
 type TCarousel = {
-  slides: ICharter["photos"]["gallery"];
+  slides: IYacht["photos"]["gallery"];
   options?: EmblaOptionsType;
 };
 
@@ -34,7 +34,7 @@ const Thumb: React.FC<TThumbnail> = (props) => {
         type="button"
         className={`w-[24vw] md:w-[16vw] md:h-[16vh] h-[10vh] bg-cover bg-center mx-[0.5vw] ${selected ? "brightness-100 scale-100" : "brightness-50 scale-90"} hover:brightness-100 hover:scale-95 transition-[filter,_transform] duration-200 ease-in-out`}
         style={{
-          backgroundImage: `url(${charter.photos.gallery[index].image.url})`,
+          backgroundImage: `url(${charter.photos.gallery[index].image.sizes.thumbnail.url})`,
         }}
       />
     </div>
@@ -81,12 +81,12 @@ const EmblaCarousel: React.FC<TCarousel> = (props) => {
     <div className="w-full flex flex-col justify-center gap-[2vh] overflow-clip">
       <div className="w-full" ref={emblaMainRef}>
         <div className="flex justify-start items-center w-full md:h-[64vh]">
-          {slides.map((index) => (
+          {slides.map((index, i) => (
             <Image
-              key={index.image.url}
-              width={500}
-              height={500}
-              src={`${index.image.url}`}
+              key={i}
+              width={index.image.sizes.fhd.width}
+              height={index.image.sizes.fhd.height}
+              src={`${index.image.sizes.fhd.url}`}
               alt={index.image.alt}
               className={"cursor-grab mx-[1vw] h-full w-auto"}
             />
@@ -158,9 +158,9 @@ const Gallery = ({
               <Image
                 key={i}
                 onClick={() => setCurrent(i)}
-                width={photo.image.width}
-                height={photo.image.height}
-                src={`${photo.image.url}`}
+                width={photo.image.sizes.fhd.width}
+                height={photo.image.sizes.fhd.height}
+                src={`${photo.image.sizes.fhd.url}`}
                 alt={photo.image.alt}
                 className={
                   "size-[49vw] md:size-[24vw] lg:size-[16vw] object-cover object-center hover:scale-95 transition-transform duration-200 ease-in-out hover:cursor-pointer"

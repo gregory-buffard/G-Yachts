@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
-import { IFeatured } from "@/types/yacht";
+import { IFeatured } from "@/types/sale";
 import { useEffect, useState } from "react";
 import { useViewContext } from "@/context/view";
 import { convertUnit, formatCurrency } from "@/utils/yachts";

@@ -1,4 +1,4 @@
-export interface ICharter {
+export interface IYacht {
   id: string;
   LOA: number;
   beam: number;
@@ -29,25 +29,58 @@ export interface ICharter {
   keyFeatures: string[];
   photos: {
     featured: {
-      url: string;
       alt: string;
-      width: number;
-      height: number;
+      sizes: {
+        thumbnail: {
+          url: string;
+          width: number;
+          height: number;
+        };
+        fhd: {
+          url: string;
+          width: number;
+          height: number;
+        };
+      };
     };
     gallery: {
       image: {
-        url: string;
         alt: string;
-        width: number;
-        height: number;
+        sizes: {
+          thumbnail: {
+            url: string;
+            width: number;
+            height: number;
+          };
+          fhd: {
+            url: string;
+            width: number;
+            height: number;
+          };
+        };
       };
     }[];
   };
 }
 
+export interface ICharter
+  extends Pick<
+    IYacht,
+    | "id"
+    | "name"
+    | "price"
+    | "builder"
+    | "category"
+    | "length"
+    | "sleeps"
+    | "yearBuilt"
+    | "featured"
+    | "photos"
+  > {}
+
 export interface IFeatured
   extends Pick<
-    ICharter,
+    IYacht,
     | "id"
     | "price"
     | "name"
