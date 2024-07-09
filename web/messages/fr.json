@@ -383,6 +383,22 @@
       "CTA": "CONTACTEZ-NOUS"
     }
   },
+  "partners": {
+    "metadata": {
+      "title": "Partners",
+      "description": "G–Yachts collaborates with a wide range of partners in the yachting industry. Discover our partners.",
+      "keywords": "partners, yachts, luxury, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Together, we create unique <classic>Experiences</classic>",
+      "subtitle": "OUR PARTNERS"
+    },
+    "partners": {
+      "title": "Our <classic>Partners</classic>",
+      "description": "G-Yachts collaborates with a wide range of partners in the yachting industry. Discover our partners."
+    }
+  },
   "contact": {
     "metadata": {
       "title": "Contact",
