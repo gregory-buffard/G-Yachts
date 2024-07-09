@@ -132,7 +132,6 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
         setTranslate(defaultTranslate);
       }, 500);
     }
-    console.log(getTranslation());
   };
 
   return (
