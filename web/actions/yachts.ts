@@ -9,7 +9,6 @@ import {
   ICharter,
 } from "@/types/charter";
 import { IDestination } from "@/types/destination";
-import { remapYachtPhotos } from "@/utils/yachts";
 import axios from "axios";
 
 export const fetchFeaturedSales = async (): Promise<SFeatured[]> => {
@@ -123,6 +122,7 @@ export const fetchSale = async (id: string): Promise<SYacht> => {
           yearBuilt
           yearModel
           keyFeatures
+          description
           broker {
             name
             email
