@@ -17,6 +17,9 @@ export const fetchEvents = async (locale: "en" | "fr"): Promise<IEvent[]> => {
             toDate
             image {
               url
+              width
+              height
+              alt
             }
           }
         }
@@ -39,11 +42,20 @@ export const fetchEvent = async (
       query Event($locale: LocaleInputType!, $id: String!) {
         Event(id: $id, locale: $locale) {
           title
+          content
           fromDate
           toDate
-          content
+          location {
+            destination {
+              country
+              continent
+            }
+          }
           image {
             url
+            width
+            height
+            alt
           }
         }
       }

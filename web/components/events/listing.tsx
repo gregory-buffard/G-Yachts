@@ -11,6 +11,8 @@ const Grid = ({ data }: { data: IEvent[] }) => {
   const t = useTranslations("events");
   const format = useFormatter();
 
+  console.log(data);
+
   return (
     <div
       className={
@@ -38,9 +40,9 @@ const Grid = ({ data }: { data: IEvent[] }) => {
           >
             <Image
               src={event.image.url}
-              width={500}
-              height={1000}
-              alt={event.title}
+              width={event.image.width}
+              height={event.image.height}
+              alt={event.image.alt}
               className={"w-full h-[56vh] object-cover object-center"}
             />
             <div

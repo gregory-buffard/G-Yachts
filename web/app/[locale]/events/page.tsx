@@ -10,14 +10,12 @@ const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 
 const Events = async () => {
-  const locale = (await getLocale()) as "en" | "fr";
-
   return (
     <main className={"w-full flex flex-col justify-start items-center"}>
       <Bar dynamicColor={100} />
       <View />
       <Hero />
-      <Listing data={await fetchEvents(locale)} />
+      <Listing data={await fetchEvents((await getLocale()) as "en" | "fr")} />
       <Newsletter />
       <Footer />
     </main>
