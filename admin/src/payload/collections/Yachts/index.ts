@@ -42,5 +42,5 @@ export const Yachts: CollectionConfig = {
     update: users,
     delete: users,
   },
-  fields: [...yachtsAndCharterCommonFields, seoField],
+  fields: [...yachtsAndCharterCommonFields("yacht"), seoField],
 }

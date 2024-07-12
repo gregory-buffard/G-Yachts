@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { IYacht } from "@/types/charter";
+import { ICharter } from "@/types/charter";
 
 interface IActions {
   changeView: (view: "info" | "features" | "gallery") => void;
@@ -9,7 +9,7 @@ interface IActions {
 
 interface IContext extends IActions {
   view: "info" | "features" | "gallery";
-  charter: IYacht;
+  charter: ICharter;
 }
 
 const CharterContext = createContext<IContext | undefined>(undefined);
@@ -18,7 +18,7 @@ export const CharterProvider = ({
   charter,
   children,
 }: {
-  charter: IYacht;
+  charter: ICharter;
   children: React.ReactNode;
 }) => {
   const [view, changeView] = useState<IContext["view"]>("info");

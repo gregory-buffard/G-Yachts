@@ -47,7 +47,7 @@ export const NewConstructions: CollectionConfig = {
       },
       required: true,
     },
-    ...yachtsAndCharterCommonFields,
+    ...yachtsAndCharterCommonFields('yacht'),
     seoField,
   ],
 }

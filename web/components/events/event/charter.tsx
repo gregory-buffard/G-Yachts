@@ -2,15 +2,18 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
-import { IFeatured } from "@/types/sale";
 import { useEffect, useState } from "react";
 import { useViewContext } from "@/context/view";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
+import { ICFeatured } from "@/types/charter";
 
-const Card = ({ card }: { card: IFeatured }) => {
+const Card = ({ card }: { card: ICFeatured }) => {
   const t = useTranslations("index.featured"),
     { currency, units, rates } = useViewContext(),
-    price = formatCurrency(card.price * rates[currency], currency);
+    price = `${formatCurrency(card.price.low * rates[currency], currency)} - ${formatCurrency(
+      card.price.high * rates[currency],
+      currency
+  )}`;
 
   return (
     <Link
@@ -89,7 +92,7 @@ const CarouselButton = ({
   );
 };
 
-const Charter = ({ carouselData }: { carouselData: IFeatured[] }) => {
+const Charter = ({ carouselData }: { carouselData: ICFeatured[] }) => {
   const t = useTranslations(),
     carouselExtended = [...carouselData, ...carouselData, ...carouselData],
     defaultTranslate = carouselData.length * -100,

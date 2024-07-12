@@ -32,6 +32,10 @@ const generateAndDontBlock = async <T extends Yacht | Charter | NewConstruction>
 }) => {
   payload.logger.info(`Generating brochure for collection ${collection} with ID ${doc.id}...`)
   await deleteOldBrochure(doc.id, collection)
+  if (doc.photos.gallery.length === 0 || !doc.photos.featured) {
+    payload.logger.error(`No suitable images found for brochure generation for ${doc.id}`)
+    return null
+  }
   const resp = await fetch(
     `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/brochure/${doc.id}?type=${collection}`,
   )

@@ -52,7 +52,11 @@ export const generateBrochureDetailsPage = (doc: Yacht | Charter | NewConstructi
                     </div>
                 </div>
                 <span class="text-white text-4xl w-full text-center font-classic drop-shadow-2xl mt-6">
-                    Asking Price: €${doc.price}
+                    Asking Price: €${
+                      typeof doc.price === 'object'
+                        ? (doc.price as any).low + ' - ' + (doc.price as any).high
+                        : doc.price || "On application"
+                    }
                 </span>
             </div>
             <div class="flex flex-row items-center justify-center w-full mt-6">

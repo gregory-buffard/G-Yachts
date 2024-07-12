@@ -26,7 +26,10 @@ const Hero = () => {
         {charter.builder} | {convertUnit(charter.length, units.length)} |{" "}
         {charter.yearBuilt} | {charter.sleeps + " " + t("sleeps")}
       </p>
-      <p>{formatCurrency(charter.price * rates[currency], currency)}</p>
+      <p>{`${formatCurrency(charter.price.low * rates[currency], currency)} - ${formatCurrency(
+            charter.price.high * rates[currency],
+            currency
+        )}`}</p>
     </section>
   );
 };

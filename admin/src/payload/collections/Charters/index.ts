@@ -51,7 +51,7 @@ export const Charters: CollectionConfig = {
             en: 'Details',
             fr: 'Détails',
           },
-          fields: [...yachtsAndCharterCommonFields, seoField],
+          fields: [...yachtsAndCharterCommonFields("charter"), seoField],
         },
         {
           label: {

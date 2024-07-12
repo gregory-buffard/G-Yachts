@@ -9,7 +9,7 @@ import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { replaceColor } from "lottie-colorify";
 import galleryView from "@/public/imagery/optimized/yacht/gallery.json";
-import { IYacht } from "@/types/charter";
+import { IYacht } from "@/types/sale";
 
 type TCarousel = {
   slides: IYacht["photos"]["gallery"];
