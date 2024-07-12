@@ -2,7 +2,7 @@ import type { Field } from 'payload/types'
 import BrochureComponent from './brochureComponent'
 import BulkUpload from '../../components/bulkUpload'
 
-export const yachtsAndCharterCommonFields: Field[] = [
+export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[] => [
   {
     label: {
       en: 'Name',
@@ -21,15 +21,42 @@ export const yachtsAndCharterCommonFields: Field[] = [
     type: 'text',
     required: false,
   },
-  {
-    label: {
-      en: 'Price',
-      fr: 'Prix',
-    },
-    name: 'price',
-    type: 'number',
-    required: true,
-  },
+  type === 'charter'
+    ? {
+        label: {
+          en: 'Price',
+          fr: 'Prix',
+        },
+        name: 'price',
+        type: 'group',
+        fields: [ 
+          {
+            name: "low",
+            type: "number",
+            label: {
+              en: "Low season",
+              fr: "Basse saison"
+            },
+          },
+          {
+            name: "high",
+            type: "number",
+            label: {
+              en: "High season",
+              fr: "Haute saison"
+            },
+          },
+        ],
+      }
+    : {
+        label: {
+          en: 'Price',
+          fr: 'Prix',
+        },
+        name: 'price',
+        type: 'number',
+        required: true,
+      },
   {
     label: {
       en: 'LOA',
