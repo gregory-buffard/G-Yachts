@@ -5,8 +5,18 @@ export interface IDestination {
   region: string;
   continent: string;
   photos: {
-    featured: string;
-    destinationPhoto: string;
+    featured: {
+      url: string;
+      width: number;
+      height: number;
+      alt: string;
+    };
+    destinationPhoto: {
+      url: string;
+      width: number;
+      height: number;
+      alt: string;
+    };
   };
   description: string;
   info: {

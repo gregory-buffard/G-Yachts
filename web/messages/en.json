@@ -217,6 +217,7 @@
           "false": "Not accepted"
         }
       },
+      "description": "Read more",
       "CTA": "Contact broker"
     }
   },

@@ -29,6 +29,7 @@ export interface IYacht {
   yearModel: number;
   featured: boolean;
   keyFeatures: string[];
+  description: string;
   photos: {
     featured: {
       alt: string;

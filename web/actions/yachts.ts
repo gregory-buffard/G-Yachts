@@ -9,7 +9,6 @@ import {
   ICharter,
 } from "@/types/charter";
 import { IDestination } from "@/types/destination";
-import { remapYachtPhotos } from "@/utils/yachts";
 import axios from "axios";
 
 export const fetchFeaturedSales = async (): Promise<SFeatured[]> => {
@@ -123,6 +122,7 @@ export const fetchSale = async (id: string): Promise<SYacht> => {
           yearBuilt
           yearModel
           keyFeatures
+          description
           broker {
             name
             email
@@ -332,43 +332,29 @@ export const fetchChartersForDestination = async (
 ): Promise<CFeatured[]> => {
   const client = getClient();
   const charters: CFeatured[] = [];
-  // Country
   const { data: countryData } = await client.query({
     query: gql`
       query Charters($country: String!, $limit: Int!) {
-        Charters(where: { country: { equals: $country }, limit: $limit }) {
+        Charters(where: { country: { equals: $country } }, limit: $limit) {
           docs {
             id
             name
             price
             builder
+            length
+            sleeps
+            yearBuilt
             photos {
               featured {
-                url
-              }
-              gallery {
-                image {
-                  url
+                alt
+                sizes {
+                  thumbnail {
+                    url
+                    width
+                    height
+                  }
                 }
               }
-            }
-            length
-            yearBuilt
-            sleeps
-            keyFeatures
-            broker {
-              id
-              name
-              email
-              picture {
-                url
-              }
-              position
-              phones {
-                prefix
-                number
-              }
-              langs
             }
           }
         }
@@ -376,49 +362,31 @@ export const fetchChartersForDestination = async (
     `,
     variables: { country: destination.country, limit: 4 },
   });
-  if (countryData) {
-    const countryCharters: CFeatured[] =
-      countryData.Charters.docs.map(remapYachtPhotos);
-    charters.push(...countryCharters);
-  }
+  if (countryData) charters.push(...countryData.Charters.docs);
   if (charters.length >= 4) return charters;
-  // Continent
   const { data: continentData } = await client.query({
     query: gql`
       query Charters($continent: String!, $limit: Int!) {
-        Charters(where: { continent: { equals: $continent }, limit: $limit }) {
+        Charters(where: { continent: { equals: $continent } }, limit: $limit) {
           docs {
             id
             name
             price
             builder
+            length
+            sleeps
+            yearBuilt
             photos {
               featured {
-                url
-              }
-              gallery {
-                image {
-                  url
+                alt
+                sizes {
+                  thumbnail {
+                    url
+                    width
+                    height
+                  }
                 }
               }
-            }
-            length
-            yearBuilt
-            sleeps
-            keyFeatures
-            broker {
-              id
-              name
-              email
-              picture {
-                url
-              }
-              position
-              phones {
-                prefix
-                number
-              }
-              langs
             }
           }
         }
@@ -426,13 +394,8 @@ export const fetchChartersForDestination = async (
     `,
     variables: { continent: destination.continent, limit: 4 - charters.length },
   });
-  if (continentData) {
-    const continentCharters: CFeatured[] =
-      continentData.Charters.docs.map(remapYachtPhotos);
-    charters.push(...continentCharters);
-  }
+  if (continentData) charters.push(...continentData.Charters.docs);
   if (charters.length >= 4) return charters;
-  // Random
   const { data: randomData } = await client.query({
     query: gql`
       query Charters($limit: Int!) {
@@ -442,33 +405,20 @@ export const fetchChartersForDestination = async (
             name
             price
             builder
+            length
+            sleeps
+            yearBuilt
             photos {
               featured {
-                url
-              }
-              gallery {
-                image {
-                  url
+                alt
+                sizes {
+                  thumbnail {
+                    url
+                    width
+                    height
+                  }
                 }
               }
-            }
-            length
-            yearBuilt
-            sleeps
-            keyFeatures
-            broker {
-              id
-              name
-              email
-              picture {
-                url
-              }
-              position
-              phones {
-                prefix
-                number
-              }
-              langs
             }
           }
         }
@@ -476,10 +426,7 @@ export const fetchChartersForDestination = async (
     `,
     variables: { limit: 4 - charters.length },
   });
-  if (!randomData) return charters;
-  const randomCharters: CFeatured[] =
-    randomData.Charters.docs.map(remapYachtPhotos);
-  charters.push(...randomCharters);
+  if (randomData) charters.push(...randomData.Charters.docs);
   return charters;
 };
 

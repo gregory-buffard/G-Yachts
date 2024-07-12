@@ -36,6 +36,7 @@ const Details = () => {
     { units } = useViewContext(),
     [photo, setPhoto] = useState<number | null>(null),
     [disabled, disable] = useState<boolean>(false),
+    [expanded, expand] = useState<boolean>(false),
     t = useTranslations("yacht.details");
 
   const characteristics = [
@@ -210,6 +211,29 @@ const Details = () => {
                 </div>
               )}
           <Gallery current={photo} setCurrent={setPhoto} />
+        </div>
+        <div
+          className={
+            "w-full flex flex-col justify-center items-start gap-[2vh]"
+          }
+        >
+          <article
+            className={`relative w-full overflow-y-clip ${expanded ? "h-max" : "h-[17vh]"} transition-[height] duration-500 ease-in-out`}
+          >
+            <p className={"text-justify"}>{yacht.description}</p>
+            {!expanded && (
+              <div
+                className={
+                  "absolute w-full h-full bg-gradient-to-t from-white to-50% inset-0"
+                }
+              />
+            )}
+          </article>
+          {!expanded && (
+            <button type={"button"} onClick={() => expand(true)}>
+              <p className={"uppercase text-rock-400"}>{t("description")}</p>
+            </button>
+          )}
         </div>
         <div
           className={

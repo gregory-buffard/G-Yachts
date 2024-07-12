@@ -5,90 +5,96 @@ import { IDestination } from "@/types/destination";
 import { gql } from "@apollo/client";
 
 export const fetchDestination = async (id: string): Promise<IDestination> => {
-    const client = getClient();
-    const { data } = await client.query({
-        query: gql`
-            query Destination($id: String!) {
-                Destination(id: $id) {
-                    id
-                    destination
-                    country
-                    region
-                    continent
-                    description
-                    coordinates
-                    updatedAt
-                    createdAt
-                    photos {
-                        featured {
-                            url
-                        }
-                        destinationPhoto {
-                            url
-                        }
-                    }
-                    info {
-                        bestTimeToVisit
-                        languages
-                        gettingThere
-                        currency
-                    }
-                }
+  const client = getClient();
+  const { data } = await client.query({
+    query: gql`
+      query Destination($id: String!) {
+        Destination(id: $id) {
+          id
+          destination
+          country
+          region
+          continent
+          description
+          coordinates
+          updatedAt
+          createdAt
+          photos {
+            featured {
+              url
+              width
+              height
             }
-        `,
-        variables: {
-            id,
-        },
-    });
-    const destination: IDestination = await remapDestinationPhotos(await data.Destination);
-    return destination;
+            destinationPhoto {
+              url
+              width
+              height
+              alt
+            }
+          }
+          info {
+            bestTimeToVisit
+            languages
+            gettingThere
+            currency
+          }
+        }
+      }
+    `,
+    variables: {
+      id,
+    },
+  });
+  console.log(data.Destination);
+  return data.Destination;
 };
 
 export const fetchDestinations = async (): Promise<IDestination[]> => {
-    const client = getClient();
-    const destinationsResult = await client.query({
-        query: gql`
-            query Destinations {
-                Destinations {
-                    docs {
-                        id
-                        destination
-                        country
-                        region
-                        continent
-                        description
-                        coordinates
-                        updatedAt
-                        createdAt
-                        photos {
-                            featured {
-                                url
-                            }
-                            destinationPhoto {
-                                url
-                            }
-                        }
-                        info {
-                            bestTimeToVisit
-                            languages
-                            gettingThere
-                            currency
-                        }
-                    }
-                }
+  const client = getClient();
+  const destinationsResult = await client.query({
+    query: gql`
+      query Destinations {
+        Destinations {
+          docs {
+            id
+            destination
+            country
+            region
+            continent
+            description
+            coordinates
+            updatedAt
+            createdAt
+            photos {
+              featured {
+                url
+              }
+              destinationPhoto {
+                url
+              }
             }
-        `,
-    });
-    const destinations: IDestination[] = destinationsResult.data.Destinations.docs.map(remapDestinationPhotos);
-    return destinations;
+            info {
+              bestTimeToVisit
+              languages
+              gettingThere
+              currency
+            }
+          }
+        }
+      }
+    `,
+  });
+  const destinations: IDestination[] =
+    destinationsResult.data.Destinations.docs.map(remapDestinationPhotos);
+  return destinations;
 };
 
 const remapDestinationPhotos = (destination: any) => {
-    return {
-        ...destination,
-        photos: {
-            featured: destination.photos.featured.url,
-            destinationPhoto: destination.photos.destinationPhoto.url,
-        },
-    };
+  return {
+    ...destination,
+    photos: {
+      featured: destination.photos.featured.url,
+      destinationPhoto: destination.photos.destinationPhoto.url,
+    },
+  };
 };
