@@ -635,7 +635,10 @@ export interface Charter {
   id: string;
   name: string;
   model?: string | null;
-  price: number;
+  price?: {
+    low?: number | null;
+    high?: number | null;
+  };
   LOA: number;
   beam: number;
   broker: string | User;
@@ -741,7 +744,10 @@ export interface ArchivedCustomer {
   charter?: {
     name?: string | null;
     model?: string | null;
-    price?: number | null;
+    price?: {
+      low?: number | null;
+      high?: number | null;
+    };
     broker?: (string | null) | User;
     builder?: string | null;
     city?: string | null;

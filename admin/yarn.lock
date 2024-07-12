@@ -1924,6 +1924,14 @@
   integrity sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==
 
 "@types/node@*", "@types/node@18.11.3":
+"@types/node@*":
+  version "20.14.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.14.10.tgz#a1a218290f1b6428682e3af044785e5874db469a"
+  integrity sha512-MdiXf+nDuMvY0gJKxyfZ7/6UFsETO7mGKF54MVD/ekJS6HdFtpZFBgrh6Pseu64XTb2MLyFPlbW6hj8HYRQNOQ==
+  dependencies:
+    undici-types "~5.26.4"
+
+"@types/node@18.11.3":
   version "18.11.3"
   resolved "https://registry.npmjs.org/@types/node/-/node-18.11.3.tgz"
   integrity sha512-fNjDQzzOsZeKZu5NATgXUPsaFaTxeRgFXoosrHivTl8RGeV733OLawXsGfEk9a8/tySyZUyiZ6E8LcjPFZ2y1A==
@@ -2796,19 +2804,19 @@ chrome-trace-event@^1.0.2:
   resolved "https://registry.npmjs.org/chrome-trace-event/-/chrome-trace-event-1.0.4.tgz"
   integrity sha512-rNjApaLzuwaOTjCiT8lSDdGN1APCiqkChLMJxJPWLunPAt5fy8xgU9/jNOchV84wfIxrA0lRQB7oCT8jrn/wrQ==
 
-chromium-bidi@0.5.24:
-  version "0.5.24"
-  resolved "https://registry.npmjs.org/chromium-bidi/-/chromium-bidi-0.5.24.tgz"
-  integrity sha512-5xQNN2SVBdZv4TxeMLaI+PelrnZsHDhn8h2JtyriLr+0qHcZS8BMuo93qN6J1VmtmrgYP+rmcLHcbpnA8QJh+w==
+chromium-bidi@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/chromium-bidi/-/chromium-bidi-0.6.0.tgz#cba9737dcdf4285d0cb1ab8298e03d08e1370b64"
+  integrity sha512-VnxVrpGojAjkiGFN2I+KtsDILFAjiGWVEDizOEnKzEDkT93eQT1cqTfUkqmOyLq33i1q4a1KDYbH+52CUe4Ufw==
   dependencies:
     mitt "3.0.1"
     urlpattern-polyfill "10.0.0"
     zod "3.23.8"
 
 chromiumly@^3.3.4:
-  version "3.5.0"
-  resolved "https://registry.npmjs.org/chromiumly/-/chromiumly-3.5.0.tgz"
-  integrity sha512-bqVwXB4ydtZdDmBbur9F07FWHuBMdqxdtNY0st3LKfHJUpYAIqaMIGHPUWRe2sK+n1Fflkx3ZtMwPdkH6woMDQ==
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/chromiumly/-/chromiumly-3.6.0.tgz#ea07978bcf5ff04dee931c62b20a6a1816061be3"
+  integrity sha512-TvVy4WF7HipdqByXLBh30RFSVUvbqgykW6wknQu8Lpexi8DQaK639/rIlNcrgZnMwaKpridNoVv8tMWTK7EROA==
   dependencies:
     form-data "4.0.0"
     node-fetch "2.7.0"
@@ -4812,6 +4820,7 @@ http-status@1.6.2:
 https-proxy-agent@^7.0.3, https-proxy-agent@^7.0.5:
   version "7.0.5"
   resolved "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-7.0.5.tgz"
+  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-7.0.5.tgz#9e8b5013873299e11fab6fd548405da2d6c602b2"
   integrity sha512-1e4Wqeblerz+tMKPIq2EMGiiWW1dIjZOksyHWSUm1rmuvw/how9hBHZ38lAGj5ID4Ik6EdkOw7NmWPy6LAwalw==
   dependencies:
     agent-base "^7.0.2"
@@ -6026,6 +6035,7 @@ p-try@^2.0.0:
 pac-proxy-agent@^7.0.1:
   version "7.0.2"
   resolved "https://registry.npmjs.org/pac-proxy-agent/-/pac-proxy-agent-7.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/pac-proxy-agent/-/pac-proxy-agent-7.0.2.tgz#0fb02496bd9fb8ae7eb11cfd98386daaac442f58"
   integrity sha512-BFi3vZnO9X5Qt6NRz7ZOaPja3ic0PhlsmCRYLOpN11+mWBCR6XJDqW5RF3j8jm4WGGQZtBA+bTfxYzeKW73eHg==
   dependencies:
     "@tootallnate/quickjs-emscripten" "^0.23.0"
@@ -6832,26 +6842,26 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
-puppeteer-core@22.12.1:
-  version "22.12.1"
-  resolved "https://registry.npmjs.org/puppeteer-core/-/puppeteer-core-22.12.1.tgz"
-  integrity sha512-XmqeDPVdC5/3nGJys1jbgeoZ02wP0WV1GBlPtr/ULRbGXJFuqgXMcKQ3eeNtFpBzGRbpeoCGWHge1ZWKWl0Exw==
+puppeteer-core@22.13.0:
+  version "22.13.0"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-22.13.0.tgz#aba45e900cd5379fde88510b7f4915017cc6b5c3"
+  integrity sha512-ZkpRX8nm/S39BnpcCverMzIc6oGWBPOUeOeaWRLKHqiKVCZ1l28HxPTYLitJlDiB16xZATSKpjul+sl+ZEm0HQ==
   dependencies:
     "@puppeteer/browsers" "2.2.3"
-    chromium-bidi "0.5.24"
+    chromium-bidi "0.6.0"
     debug "^4.3.5"
     devtools-protocol "0.0.1299070"
-    ws "^8.17.1"
+    ws "^8.18.0"
 
 puppeteer@^22.12.1:
-  version "22.12.1"
-  resolved "https://registry.npmjs.org/puppeteer/-/puppeteer-22.12.1.tgz"
-  integrity sha512-1GxY8dnEnHr1SLzdSDr0FCjM6JQfAh2E2I/EqzeF8a58DbGVk9oVjj4lFdqNoVbpgFSpAbz7VER9St7S1wDpNg==
+  version "22.13.0"
+  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-22.13.0.tgz#ff566161652c2fbdc2dbf2c38c85be8418b8a302"
+  integrity sha512-nmICzeHTBtZiu+y4vs0fboe/NKIFwH5W8RZuxmEVAKNfBQg/8u5FEQAvPlWmyVpJoAVM5kXD5PEl3GlK3F9pPA==
   dependencies:
     "@puppeteer/browsers" "2.2.3"
     cosmiconfig "^9.0.0"
     devtools-protocol "0.0.1299070"
-    puppeteer-core "22.12.1"
+    puppeteer-core "22.13.0"
 
 qs-middleware@1.0.3:
   version "1.0.3"
@@ -7657,6 +7667,7 @@ smart-buffer@^4.2.0:
 socks-proxy-agent@^8.0.2, socks-proxy-agent@^8.0.4:
   version "8.0.4"
   resolved "https://registry.npmjs.org/socks-proxy-agent/-/socks-proxy-agent-8.0.4.tgz"
+  resolved "https://registry.yarnpkg.com/socks-proxy-agent/-/socks-proxy-agent-8.0.4.tgz#9071dca17af95f483300316f4b063578fa0db08c"
   integrity sha512-GNAq/eg8Udq2x0eNiFkr9gRg5bA7PXEWagQdeRX4cPSG+X/8V38v637gim9bjFptMk1QWsCTr0ttrJEiXbNnRw==
   dependencies:
     agent-base "^7.1.1"
@@ -8019,9 +8030,9 @@ terser@^5.10.0, terser@^5.16.8, terser@^5.26.0:
     source-map-support "~0.5.20"
 
 text-decoder@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/text-decoder/-/text-decoder-1.1.0.tgz"
-  integrity sha512-TmLJNj6UgX8xcUZo4UDStGQtDiTzF7BzWlzn9g7UWrjkpHr5uJTK1ld16wZ3LXb2vb6jH8qU89dW5whuMdXYdw==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/text-decoder/-/text-decoder-1.1.1.tgz#5df9c224cebac4a7977720b9f083f9efa1aefde8"
+  integrity sha512-8zll7REEv4GDD3x4/0pW+ppIxSNs7H1J10IKFZsuOMscumCdM2a+toDGLPA3T+1+fLBql4zbt5z83GEQGGV5VA==
   dependencies:
     b4a "^1.6.4"
 
@@ -8644,9 +8655,9 @@ ws@^7.3.1:
   resolved "https://registry.npmjs.org/ws/-/ws-7.5.9.tgz"
   integrity sha512-F+P9Jil7UiSKSkppIiD94dN07AwvFixvLIj1Og1Rl9GGMuNipJnV9JzjD6XuqmAeiswGvUmNLjr5cFuXwNS77Q==
 
-ws@^8.17.1:
+ws@^8.18.0:
   version "8.18.0"
-  resolved "https://registry.npmjs.org/ws/-/ws-8.18.0.tgz"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.18.0.tgz#0d7505a6eafe2b0e712d232b42279f53bc289bbc"
   integrity sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==
 
 xss@^1.0.6:

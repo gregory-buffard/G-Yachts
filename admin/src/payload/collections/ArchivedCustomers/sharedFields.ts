@@ -1,7 +1,7 @@
 import { Field } from 'payload/types'
 import Label from '../Messages/components/label'
 
-export const sharedYachtAndCharterFields: Field[] = [
+export const sharedYachtAndCharterFields = (type: 'charter' | 'yacht'): Field[] => [
   {
     label: {
       en: 'Name',
@@ -28,19 +28,56 @@ export const sharedYachtAndCharterFields: Field[] = [
       },
     },
   },
-  {
-    label: {
-      en: 'Price',
-      fr: 'Prix',
-    },
-    name: 'price',
-    type: 'number',
-    admin: {
-      components: {
-        Field: Label,
+  type === 'charter'
+    ? {
+        label: {
+          en: 'Price',
+          fr: 'Prix',
+        },
+        name: 'price',
+        type: 'group',
+        fields: [ 
+          {
+            name: "low",
+            type: "number",
+            label: {
+              en: "Low season",
+              fr: "Basse saison"
+            },
+            admin: {
+              components: {
+                Field: Label,
+              },
+            },
+          },
+          {
+            name: "high",
+            type: "number",
+            label: {
+              en: "High season",
+              fr: "Haute saison"
+            },
+            admin: {
+              components: {
+                Field: Label,
+              },
+            },
+          },
+        ],
+      }
+    : {
+        label: {
+          en: 'Price',
+          fr: 'Prix',
+        },
+        name: 'price',
+        type: 'number',
+        admin: {
+          components: {
+            Field: Label,
+          },
+        },
       },
-    },
-  },
   {
     label: {
       en: 'Broker',
