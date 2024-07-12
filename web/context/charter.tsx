@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { ICharter, IYacht } from "@/types/charter";
+import { ICharter } from "@/types/charter";
 
 interface IActions {
   changeView: (view: "info" | "features" | "gallery") => void;

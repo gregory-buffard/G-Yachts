@@ -744,7 +744,10 @@ export interface ArchivedCustomer {
   charter?: {
     name?: string | null;
     model?: string | null;
-    price?: number | null;
+    price?: {
+      low?: number | null;
+      high?: number | null;
+    };
     broker?: (string | null) | User;
     builder?: string | null;
     city?: string | null;

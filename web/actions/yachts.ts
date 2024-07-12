@@ -335,9 +335,9 @@ export const fetchCharter = async (id: string): Promise<ICharter> => {
 
 export const fetchChartersForDestination = async (
     destination: IDestination
-): Promise<ICFeatured[]> => {
+): Promise<ICharter[]> => {
     const client = getClient();
-    const charters: ICFeatured[] = [];
+    const charters: ICharter[] = [];
     const { data: countryData } = await client.query({
         query: gql`
             query Charters($country: String!, $limit: Int!) {

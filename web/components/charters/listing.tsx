@@ -1,6 +1,6 @@
 "use client";
 
-import { ICharter, IYacht } from "@/types/charter";
+import { ICharter } from "@/types/charter";
 import { useEffect, useState } from "react";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
 import { useTranslations } from "next-intl";

@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import { CharterProvider } from "@/context/charter";
 import Hero from "@/components/charter/hero";
 import Details from "@/components/charter/details/details";
-import { IYacht } from "@/types/charter";
 import { fetchCharter } from "@/actions/yachts";
 
 const View = dynamic(() => import("@/components/view"));

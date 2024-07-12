@@ -1,7 +1,7 @@
 "use server";
 
-import { IYacht as SYacht } from "@/types/sale";
-import { IYacht as CYacht } from "@/types/charter";
+import { IYacht } from "@/types/sale";
+import { ICharter } from "@/types/charter";
 import { IDestination } from "@/types/destination";
 import { IArticle } from "@/types/article";
 import { getClient } from "@/apollo";
@@ -11,8 +11,8 @@ export const searchAll = async (
   query: string,
   locale: string,
 ): Promise<{
-  yachts: SYacht[];
-  charters: CYacht[];
+  yachts: IYacht[];
+  charters: ICharter[];
   destinations: IDestination[];
   articles: IArticle[];
   pages: { title: string; url: string }[];
