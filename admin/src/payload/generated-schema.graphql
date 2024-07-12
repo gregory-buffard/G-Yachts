@@ -3765,7 +3765,7 @@ type Yacht {
   crypto: Boolean!
   length: Float!
   state: String
-  material: String!
+  material: String
   maxDraft: Float!
   minDraft: Float!
   region: String
@@ -4848,9 +4848,6 @@ input Yacht_description_operator {
   not_equals: String
   like: String
   contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
   exists: Boolean
 }
 
@@ -5989,7 +5986,7 @@ type Charter {
   id: String
   name: String!
   model: String
-  price: Float!
+  price: Charter_Price
   LOA: Float!
   beam: Float!
   broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User!
@@ -6002,7 +5999,7 @@ type Charter {
   crypto: Boolean!
   length: Float!
   state: String
-  material: String!
+  material: String
   maxDraft: Float!
   minDraft: Float!
   region: String
@@ -6021,6 +6018,11 @@ type Charter {
   reservations: [Charter_Reservations!]
   updatedAt: DateTime
   createdAt: DateTime
+}
+
+type Charter_Price {
+  low: Float
+  high: Float
 }
 
 enum Charter_keyFeatures {
@@ -6829,7 +6831,8 @@ type Charters {
 input Charter_where {
   name: Charter_name_operator
   model: Charter_model_operator
-  price: Charter_price_operator
+  price__low: Charter_price__low_operator
+  price__high: Charter_price__high_operator
   LOA: Charter_LOA_operator
   beam: Charter_beam_operator
   broker: Charter_broker_operator
@@ -6894,13 +6897,24 @@ input Charter_model_operator {
   exists: Boolean
 }
 
-input Charter_price_operator {
+input Charter_price__low_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
   greater_than: Float
   less_than_equal: Float
   less_than: Float
+  exists: Boolean
+}
+
+input Charter_price__high_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
 }
 
 input Charter_LOA_operator {
@@ -7166,9 +7180,6 @@ input Charter_description_operator {
   not_equals: String
   like: String
   contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
   exists: Boolean
 }
 
@@ -7291,7 +7302,8 @@ input Charter_id_operator {
 input Charter_where_and {
   name: Charter_name_operator
   model: Charter_model_operator
-  price: Charter_price_operator
+  price__low: Charter_price__low_operator
+  price__high: Charter_price__high_operator
   LOA: Charter_LOA_operator
   beam: Charter_beam_operator
   broker: Charter_broker_operator
@@ -7338,7 +7350,8 @@ input Charter_where_and {
 input Charter_where_or {
   name: Charter_name_operator
   model: Charter_model_operator
-  price: Charter_price_operator
+  price__low: Charter_price__low_operator
+  price__high: Charter_price__high_operator
   LOA: Charter_LOA_operator
   beam: Charter_beam_operator
   broker: Charter_broker_operator
@@ -7482,6 +7495,7 @@ type ChartersDocAccessFields_price {
   read: ChartersDocAccessFields_price_Read
   update: ChartersDocAccessFields_price_Update
   delete: ChartersDocAccessFields_price_Delete
+  fields: ChartersDocAccessFields_price_Fields
 }
 
 type ChartersDocAccessFields_price_Create {
@@ -7497,6 +7511,57 @@ type ChartersDocAccessFields_price_Update {
 }
 
 type ChartersDocAccessFields_price_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_price_Fields {
+  low: ChartersDocAccessFields_price_low
+  high: ChartersDocAccessFields_price_high
+}
+
+type ChartersDocAccessFields_price_low {
+  create: ChartersDocAccessFields_price_low_Create
+  read: ChartersDocAccessFields_price_low_Read
+  update: ChartersDocAccessFields_price_low_Update
+  delete: ChartersDocAccessFields_price_low_Delete
+}
+
+type ChartersDocAccessFields_price_low_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_price_low_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_price_low_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_price_low_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_price_high {
+  create: ChartersDocAccessFields_price_high_Create
+  read: ChartersDocAccessFields_price_high_Read
+  update: ChartersDocAccessFields_price_high_Update
+  delete: ChartersDocAccessFields_price_high_Delete
+}
+
+type ChartersDocAccessFields_price_high_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_price_high_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_price_high_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_price_high_Delete {
   permission: Boolean!
 }
 
@@ -13499,7 +13564,7 @@ type NewConstruction {
   crypto: Boolean!
   length: Float!
   state: String
-  material: String!
+  material: String
   maxDraft: Float!
   minDraft: Float!
   region: String
@@ -14593,9 +14658,6 @@ input NewConstruction_description_operator {
   not_equals: String
   like: String
   contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
   exists: Boolean
 }
 
@@ -20883,6 +20945,7 @@ type ChartersFields_price {
   read: ChartersFields_price_Read
   update: ChartersFields_price_Update
   delete: ChartersFields_price_Delete
+  fields: ChartersFields_price_Fields
 }
 
 type ChartersFields_price_Create {
@@ -20898,6 +20961,57 @@ type ChartersFields_price_Update {
 }
 
 type ChartersFields_price_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_price_Fields {
+  low: ChartersFields_price_low
+  high: ChartersFields_price_high
+}
+
+type ChartersFields_price_low {
+  create: ChartersFields_price_low_Create
+  read: ChartersFields_price_low_Read
+  update: ChartersFields_price_low_Update
+  delete: ChartersFields_price_low_Delete
+}
+
+type ChartersFields_price_low_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_price_low_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_price_low_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_price_low_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_price_high {
+  create: ChartersFields_price_high_Create
+  read: ChartersFields_price_high_Read
+  update: ChartersFields_price_high_Update
+  delete: ChartersFields_price_high_Delete
+}
+
+type ChartersFields_price_high_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_price_high_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_price_high_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_price_high_Delete {
   permission: Boolean!
 }
 
@@ -27284,7 +27398,7 @@ input mutationYachtInput {
   crypto: Boolean
   length: Float!
   state: String
-  material: String!
+  material: String
   maxDraft: Float!
   minDraft: Float!
   region: String
@@ -27411,7 +27525,7 @@ input mutationYachtUpdate_SeoInput {
 input mutationCharterInput {
   name: String!
   model: String
-  price: Float!
+  price: mutationCharter_PriceInput
   LOA: Float!
   beam: Float!
   broker: String
@@ -27424,7 +27538,7 @@ input mutationCharterInput {
   crypto: Boolean
   length: Float!
   state: String
-  material: String!
+  material: String
   maxDraft: Float!
   minDraft: Float!
   region: String
@@ -27443,6 +27557,11 @@ input mutationCharterInput {
   reservations: [mutationCharter_ReservationsInput]
   updatedAt: String
   createdAt: String
+}
+
+input mutationCharter_PriceInput {
+  low: Float
+  high: Float
 }
 
 enum Charter_keyFeatures_MutationInput {
@@ -27490,7 +27609,7 @@ input mutationCharter_ReservationsInput {
 input mutationCharterUpdateInput {
   name: String
   model: String
-  price: Float
+  price: mutationCharterUpdate_PriceInput
   LOA: Float
   beam: Float
   broker: String
@@ -27522,6 +27641,11 @@ input mutationCharterUpdateInput {
   reservations: [mutationCharterUpdate_ReservationsInput]
   updatedAt: String
   createdAt: String
+}
+
+input mutationCharterUpdate_PriceInput {
+  low: Float
+  high: Float
 }
 
 enum CharterUpdate_keyFeatures_MutationInput {
@@ -27769,7 +27893,7 @@ input mutationNewConstructionInput {
   crypto: Boolean
   length: Float!
   state: String
-  material: String!
+  material: String
   maxDraft: Float!
   minDraft: Float!
   region: String

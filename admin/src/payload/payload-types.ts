@@ -635,7 +635,10 @@ export interface Charter {
   id: string;
   name: string;
   model?: string | null;
-  price: number;
+  price?: {
+    low?: number | null;
+    high?: number | null;
+  };
   LOA: number;
   beam: number;
   broker: string | User;

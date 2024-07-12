@@ -341,7 +341,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     ],
   },
   {
-    type: 'text',
+    type: 'textarea',
     name: 'description',
     label: {
       en: 'Description',
