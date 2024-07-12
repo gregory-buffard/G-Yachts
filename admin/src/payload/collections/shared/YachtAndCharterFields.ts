@@ -148,6 +148,7 @@ export const yachtsAndCharterCommonFields: Field[] = [
     name: 'material',
     type: 'text',
     required: true,
+    localized: true,
   },
   {
     label: {
@@ -320,6 +321,7 @@ export const yachtsAndCharterCommonFields: Field[] = [
       fr: 'Description',
     },
     required: false,
+    localized: true,
   },
   {
     type: 'relationship',
