@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useViewContext } from "@/context/view";
 import React from "react";
@@ -15,12 +14,12 @@ const Lifestyle = () => {
       }
     >
       <video
-        src="/imagery/optimized/management/bottomVideo.mp4"
+        src="/imagery/optimized/company/bottom.mp4"
         autoPlay
         loop
         muted
         preload={"none"}
-        className="w-full absolute -z-10 h-full object-cover object-center"
+        className="w-full absolute -z-10 h-full object-cover object-top"
         playsInline
       />
       <h1 className={"py-[2vw]"}>

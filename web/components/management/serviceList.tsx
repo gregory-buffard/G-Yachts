@@ -10,7 +10,7 @@ const ServiceList = () => {
   const t = useTranslations("management.servicesList");
   return (
     <section className={"bg-rock-100 w-full h-full"}>
-      <div className="grid md:grid-cols-4 md:gap-6 gap-2 p-[10vw] md:py-[2vw]">
+      <div className="grid lg:grid-cols-4 md:gap-6 gap-2 p-[10vw] md:py-[2vw]">
         <div className="flex flex-col pb-[5vw]">
           <Image
             src={finance}

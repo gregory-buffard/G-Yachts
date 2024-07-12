@@ -20,7 +20,7 @@ const Bottom = () => {
           className="w-full absolute -z-10 h-full object-cover object-center"
           playsInline
         />
-        <h1 className={"text-white pt-[10vh] md:pt-[20vh]  mb-10"}>
+        <h1 className={"text-white pt-[10vh] md:pt-[20vh] mb-7 md:mb-10"}>
           {t.rich("title", {
             classic: (chunk) => <span className={"classic"}>{chunk}</span>,
           })}
