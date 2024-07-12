@@ -6797,7 +6797,7 @@ type ArchivedCustomer_Yacht {
 type ArchivedCustomer_Charter {
   name: String
   model: String
-  price: Float
+  price: ArchivedCustomer_Charter_Price
   broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   builder: String
   city: String
@@ -6807,6 +6807,11 @@ type ArchivedCustomer_Charter {
   region: String
   yearBuilt: Float
   yearModel: Float
+}
+
+type ArchivedCustomer_Charter_Price {
+  low: Float
+  high: Float
 }
 
 type ArchivedCustomer_CharterDates {
@@ -16630,7 +16635,8 @@ input ArchivedCustomer_where {
   yacht__yearModel: ArchivedCustomer_yacht__yearModel_operator
   charter__name: ArchivedCustomer_charter__name_operator
   charter__model: ArchivedCustomer_charter__model_operator
-  charter__price: ArchivedCustomer_charter__price_operator
+  charter__price__low: ArchivedCustomer_charter__price__low_operator
+  charter__price__high: ArchivedCustomer_charter__price__high_operator
   charter__broker: ArchivedCustomer_charter__broker_operator
   charter__builder: ArchivedCustomer_charter__builder_operator
   charter__city: ArchivedCustomer_charter__city_operator
@@ -16916,7 +16922,17 @@ input ArchivedCustomer_charter__model_operator {
   exists: Boolean
 }
 
-input ArchivedCustomer_charter__price_operator {
+input ArchivedCustomer_charter__price__low_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input ArchivedCustomer_charter__price__high_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -17103,7 +17119,8 @@ input ArchivedCustomer_where_and {
   yacht__yearModel: ArchivedCustomer_yacht__yearModel_operator
   charter__name: ArchivedCustomer_charter__name_operator
   charter__model: ArchivedCustomer_charter__model_operator
-  charter__price: ArchivedCustomer_charter__price_operator
+  charter__price__low: ArchivedCustomer_charter__price__low_operator
+  charter__price__high: ArchivedCustomer_charter__price__high_operator
   charter__broker: ArchivedCustomer_charter__broker_operator
   charter__builder: ArchivedCustomer_charter__builder_operator
   charter__city: ArchivedCustomer_charter__city_operator
@@ -17149,7 +17166,8 @@ input ArchivedCustomer_where_or {
   yacht__yearModel: ArchivedCustomer_yacht__yearModel_operator
   charter__name: ArchivedCustomer_charter__name_operator
   charter__model: ArchivedCustomer_charter__model_operator
-  charter__price: ArchivedCustomer_charter__price_operator
+  charter__price__low: ArchivedCustomer_charter__price__low_operator
+  charter__price__high: ArchivedCustomer_charter__price__high_operator
   charter__broker: ArchivedCustomer_charter__broker_operator
   charter__builder: ArchivedCustomer_charter__builder_operator
   charter__city: ArchivedCustomer_charter__city_operator
@@ -17881,6 +17899,7 @@ type ArchivedCustomersDocAccessFields_charter_price {
   read: ArchivedCustomersDocAccessFields_charter_price_Read
   update: ArchivedCustomersDocAccessFields_charter_price_Update
   delete: ArchivedCustomersDocAccessFields_charter_price_Delete
+  fields: ArchivedCustomersDocAccessFields_charter_price_Fields
 }
 
 type ArchivedCustomersDocAccessFields_charter_price_Create {
@@ -17896,6 +17915,57 @@ type ArchivedCustomersDocAccessFields_charter_price_Update {
 }
 
 type ArchivedCustomersDocAccessFields_charter_price_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_Fields {
+  low: ArchivedCustomersDocAccessFields_charter_price_low
+  high: ArchivedCustomersDocAccessFields_charter_price_high
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_low {
+  create: ArchivedCustomersDocAccessFields_charter_price_low_Create
+  read: ArchivedCustomersDocAccessFields_charter_price_low_Read
+  update: ArchivedCustomersDocAccessFields_charter_price_low_Update
+  delete: ArchivedCustomersDocAccessFields_charter_price_low_Delete
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_low_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_low_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_low_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_low_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_high {
+  create: ArchivedCustomersDocAccessFields_charter_price_high_Create
+  read: ArchivedCustomersDocAccessFields_charter_price_high_Read
+  update: ArchivedCustomersDocAccessFields_charter_price_high_Update
+  delete: ArchivedCustomersDocAccessFields_charter_price_high_Delete
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_high_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_high_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_high_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersDocAccessFields_charter_price_high_Delete {
   permission: Boolean!
 }
 
@@ -25785,6 +25855,7 @@ type ArchivedCustomersFields_charter_price {
   read: ArchivedCustomersFields_charter_price_Read
   update: ArchivedCustomersFields_charter_price_Update
   delete: ArchivedCustomersFields_charter_price_Delete
+  fields: ArchivedCustomersFields_charter_price_Fields
 }
 
 type ArchivedCustomersFields_charter_price_Create {
@@ -25800,6 +25871,57 @@ type ArchivedCustomersFields_charter_price_Update {
 }
 
 type ArchivedCustomersFields_charter_price_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_price_Fields {
+  low: ArchivedCustomersFields_charter_price_low
+  high: ArchivedCustomersFields_charter_price_high
+}
+
+type ArchivedCustomersFields_charter_price_low {
+  create: ArchivedCustomersFields_charter_price_low_Create
+  read: ArchivedCustomersFields_charter_price_low_Read
+  update: ArchivedCustomersFields_charter_price_low_Update
+  delete: ArchivedCustomersFields_charter_price_low_Delete
+}
+
+type ArchivedCustomersFields_charter_price_low_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_price_low_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_price_low_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_price_low_Delete {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_price_high {
+  create: ArchivedCustomersFields_charter_price_high_Create
+  read: ArchivedCustomersFields_charter_price_high_Read
+  update: ArchivedCustomersFields_charter_price_high_Update
+  delete: ArchivedCustomersFields_charter_price_high_Delete
+}
+
+type ArchivedCustomersFields_charter_price_high_Create {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_price_high_Read {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_price_high_Update {
+  permission: Boolean!
+}
+
+type ArchivedCustomersFields_charter_price_high_Delete {
   permission: Boolean!
 }
 
@@ -28122,7 +28244,7 @@ input mutationArchivedCustomer_YachtInput {
 input mutationArchivedCustomer_CharterInput {
   name: String
   model: String
-  price: Float
+  price: mutationArchivedCustomer_Charter_PriceInput
   broker: String
   builder: String
   city: String
@@ -28132,6 +28254,11 @@ input mutationArchivedCustomer_CharterInput {
   region: String
   yearBuilt: Float
   yearModel: Float
+}
+
+input mutationArchivedCustomer_Charter_PriceInput {
+  low: Float
+  high: Float
 }
 
 input mutationArchivedCustomer_CharterDatesInput {
@@ -28183,7 +28310,7 @@ input mutationArchivedCustomerUpdate_YachtInput {
 input mutationArchivedCustomerUpdate_CharterInput {
   name: String
   model: String
-  price: Float
+  price: mutationArchivedCustomerUpdate_Charter_PriceInput
   broker: String
   builder: String
   city: String
@@ -28193,6 +28320,11 @@ input mutationArchivedCustomerUpdate_CharterInput {
   region: String
   yearBuilt: Float
   yearModel: Float
+}
+
+input mutationArchivedCustomerUpdate_Charter_PriceInput {
+  low: Float
+  high: Float
 }
 
 input mutationArchivedCustomerUpdate_CharterDatesInput {
