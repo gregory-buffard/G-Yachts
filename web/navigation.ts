@@ -69,6 +69,10 @@ export const pathnames = {
     fr: "/destinations",
   },
   "/destinations/[id]": "/destinations/[id]",
+  "/partners/[id]": {
+    en: "/partners/[id]",
+    fr: "/partners/[id]",
+  },
 } satisfies Pathnames<typeof locales>;
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =
