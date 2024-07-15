@@ -172,12 +172,26 @@ export const Destinations: CollectionConfig = {
       type: 'point',
       required: false,
       validate: val => {
-        if (val && Math.abs(val[0]) > 90 && Math.abs(val[1]) > 180) {
-          return 'Invalid coordinates'
+        if (!val) return true
+        if (val && val.length !== 2) return 'Invalid coordinates, must be an array of 2 numbers'
+        if((val[0] == "" || val[0] == null) && (val[1] == "" || val[1] == null)) {
+          val = [0, 0]
+          return val
         }
+        if (!Number.isFinite(val[0]) || !Number.isFinite(val[1])) return 'Invalid coordinates, must be numbers'
+        if (Math.abs(val[0]) > 90 && Math.abs(val[1]) > 180) return 'Invalid coordinates, must be within range'
         return true
       },
+      hooks: {
+        beforeChange:[ ({ value }) => {
+          if((value[0] == "" || value[0] == null) && (value[1] == "" || value[1] == null)) {
+            value = null
+            return value
+          }
+          return value
+        }]
+      }
     },
-    seoField
+    seoField,
   ],
 }
