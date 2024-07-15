@@ -7,5 +7,6 @@ export interface IPartner {
     comment: string;
     logo: IImage;
     banner: IImage;
+    website?: string;
     seo: string[];
 }

@@ -11182,6 +11182,7 @@ type Partner {
   name: String!
   quote: String
   comment: String
+  website: String
   logo(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Partner_Logo_where): Media!
   banner(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Partner_Banner_where): Media!
   seo: [Partner_Seo!]
@@ -11892,6 +11893,7 @@ input Partner_where {
   name: Partner_name_operator
   quote: Partner_quote_operator
   comment: Partner_comment_operator
+  website: Partner_website_operator
   logo: Partner_logo_operator
   banner: Partner_banner_operator
   seo__value: Partner_seo__value_operator
@@ -11925,6 +11927,17 @@ input Partner_comment_operator {
   not_equals: String
   like: String
   contains: String
+}
+
+input Partner_website_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Partner_logo_operator {
@@ -11996,6 +12009,7 @@ input Partner_where_and {
   name: Partner_name_operator
   quote: Partner_quote_operator
   comment: Partner_comment_operator
+  website: Partner_website_operator
   logo: Partner_logo_operator
   banner: Partner_banner_operator
   seo__value: Partner_seo__value_operator
@@ -12011,6 +12025,7 @@ input Partner_where_or {
   name: Partner_name_operator
   quote: Partner_quote_operator
   comment: Partner_comment_operator
+  website: Partner_website_operator
   logo: Partner_logo_operator
   banner: Partner_banner_operator
   seo__value: Partner_seo__value_operator
@@ -12038,6 +12053,7 @@ type PartnersDocAccessFields {
   name: PartnersDocAccessFields_name
   quote: PartnersDocAccessFields_quote
   comment: PartnersDocAccessFields_comment
+  website: PartnersDocAccessFields_website
   logo: PartnersDocAccessFields_logo
   banner: PartnersDocAccessFields_banner
   seo: PartnersDocAccessFields_seo
@@ -12111,6 +12127,29 @@ type PartnersDocAccessFields_comment_Update {
 }
 
 type PartnersDocAccessFields_comment_Delete {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_website {
+  create: PartnersDocAccessFields_website_Create
+  read: PartnersDocAccessFields_website_Read
+  update: PartnersDocAccessFields_website_Update
+  delete: PartnersDocAccessFields_website_Delete
+}
+
+type PartnersDocAccessFields_website_Create {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_website_Read {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_website_Update {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_website_Delete {
   permission: Boolean!
 }
 
@@ -23087,6 +23126,7 @@ type PartnersFields {
   name: PartnersFields_name
   quote: PartnersFields_quote
   comment: PartnersFields_comment
+  website: PartnersFields_website
   logo: PartnersFields_logo
   banner: PartnersFields_banner
   seo: PartnersFields_seo
@@ -23160,6 +23200,29 @@ type PartnersFields_comment_Update {
 }
 
 type PartnersFields_comment_Delete {
+  permission: Boolean!
+}
+
+type PartnersFields_website {
+  create: PartnersFields_website_Create
+  read: PartnersFields_website_Read
+  update: PartnersFields_website_Update
+  delete: PartnersFields_website_Delete
+}
+
+type PartnersFields_website_Create {
+  permission: Boolean!
+}
+
+type PartnersFields_website_Read {
+  permission: Boolean!
+}
+
+type PartnersFields_website_Update {
+  permission: Boolean!
+}
+
+type PartnersFields_website_Delete {
   permission: Boolean!
 }
 
@@ -27936,6 +27999,7 @@ input mutationPartnerInput {
   name: String!
   quote: String
   comment: String
+  website: String
   logo: String!
   banner: String!
   seo: [mutationPartner_SeoInput]
@@ -27952,6 +28016,7 @@ input mutationPartnerUpdateInput {
   name: String
   quote: String
   comment: String
+  website: String
   logo: String
   banner: String
   seo: [mutationPartnerUpdate_SeoInput]

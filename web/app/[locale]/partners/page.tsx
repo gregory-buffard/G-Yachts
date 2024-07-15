@@ -16,7 +16,7 @@ const Partners = async () => {
             <Bar dynamicColor={100} />
             <View />
             <Hero />
-            <div className="w-full px-40">
+            <div className="w-full md:px-40">
                 <Listing data={await fetchPartners(locale == "fr" ? "fr" : "en")} />
             </div>
             <Newsletter />
