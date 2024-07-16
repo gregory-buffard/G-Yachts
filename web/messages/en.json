@@ -190,6 +190,7 @@
   "yacht": {
     "noPrice": "Price on application",
     "sleeps": "guests",
+    "delivery": "Delivery",
     "details": {
       "gallery": "View more images",
       "info": "Key information",
@@ -506,5 +507,11 @@
     "articles": "Articles",
     "page": "Page",
     "pages": "Pages"
+  },
+  "new-constructions": {
+    "hero": {
+      "title": "The Next Generation of Innovative Yacht DESIGNS",
+      "subtitle": "NEW CONSTRUCTION"
+    }
   }
 }

@@ -136,6 +136,7 @@
   "yacht": {
     "noPrice": "Prix sur demande",
     "sleeps": "invités",
+    "delivery": "Livraison",
     "details": {
       "gallery": "Explorer plus d'images",
       "info": "Informations clés",
@@ -506,5 +507,11 @@
     "articles": "Articles",
     "page": "Page",
     "pages": "Pages"
+  },
+  "new-constructions": {
+    "hero": {
+      "title": "La prochaine génération de conceptions de yachts innovantes",
+      "subtitle": "NOUVELLE CONSTRUCTION"
+    }
   }
 }
