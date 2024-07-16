@@ -3,7 +3,6 @@
 import { type IPartner } from "@/types/partner";
 import { clsx } from "clsx";
 import Image from "next/image";
-import Detail from "./detail";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
