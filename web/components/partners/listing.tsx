@@ -12,8 +12,8 @@ const Listing = ({ data }: { data: IPartner[] }) => {
     return (
         <div className="flex flex-col w-full">
             <h4 className="text-lg text-center text-sky-950 font-slick my-14">
-                "OVER THE YEARS G-YACHTS HAS DEVELOPED A STRATEGY FOCUSED ON COMPLEMENTARY AND A
-                SMART SYNERGY."
+                {`"OVER THE YEARS G-YACHTS HAS DEVELOPED A STRATEGY FOCUSED ON COMPLEMENTARY AND A
+                SMART SYNERGY."`}
             </h4>
             <div className="flex flex-row flex-wrap my-14">
                 {data.map((partner, index) => (
