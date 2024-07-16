@@ -60,6 +60,14 @@ export const Partners: CollectionConfig = {
     },
     {
       label: {
+        en: 'Website',
+        fr: 'Site Web',
+      },
+      name: 'website',
+      type: 'text',
+    },
+    {
+      label: {
         en: 'Logo',
         fr: 'Logo',
       },

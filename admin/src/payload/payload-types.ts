@@ -838,6 +838,7 @@ export interface Partner {
   name: string;
   quote: string;
   comment: string;
+  website?: string | null;
   logo: string | Media;
   banner: string | Media;
   seo?:

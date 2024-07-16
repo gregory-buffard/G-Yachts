@@ -399,6 +399,9 @@
     "partners": {
       "title": "Our <classic>Partners</classic>",
       "description": "G-Yachts collaborates with a wide range of partners in the yachting industry. Discover our partners."
+    },
+    "detail": {
+      "website": "Website"
     }
   },
   "contact": {

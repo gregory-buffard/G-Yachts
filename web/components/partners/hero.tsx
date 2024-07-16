@@ -5,14 +5,14 @@ const Hero = () => {
     return (
         <section
             className={
-                "w-full px-[4vw] md:px-[8vw] h-[36dvh] md:h-screen bg-cover bg-center flex flex-col justify-end items-start text-white py-[2vh] md:py-[9vh]"
+                "w-full px-[4vw] md:px-[8vw] h-[36dvh] md:h-screen bg-cover bg-center flex flex-col justify-end items-start text-white py-[2vh] md:py-[6vh]"
             }
             style={{
                 backgroundImage: `url(/imagery/optimized/partners/hero.webp)`,
             }}
         >
             <h4>{t("subtitle")}</h4>
-            <h1 className={"text-6xl font-regular"}>
+            <h1 className={"text-5xl font-regular"}>
                 {t.rich("title", {
                     classic: (chunk) => <span className={"classic"}>{chunk}</span>,
                 })}
