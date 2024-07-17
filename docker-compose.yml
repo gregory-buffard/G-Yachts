@@ -2,6 +2,10 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx
+    depends_on:
+      - web
+      - admin
+    restart: always
     ports:
       - "80:80"
     volumes:
@@ -22,6 +26,8 @@ services:
       - MONGO_PASS=${MONGO_PASS}
     ports:
       - "3000:3000"
+    depends_on:
+      - admin
     networks:
       - gYachts
     env_file:
@@ -60,6 +66,9 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     container_name: admin
+    restart: always
+    depends_on:
+      - mongo
     env_file:
       - .env
     networks:
