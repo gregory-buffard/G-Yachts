@@ -12,12 +12,12 @@ const Card = ({ card }: { card: ICFeatured }) => {
     { currency, units, rates } = useViewContext(),
     price = `${formatCurrency(card.price.low * rates[currency], currency)} - ${formatCurrency(
       card.price.high * rates[currency],
-      currency
-  )}`;
+      currency,
+    )}`;
 
   return (
     <Link
-      href={{ pathname: "/sales/[id]", params: { id: card.id } }}
+      href={{ pathname: "/charter/[id]", params: { id: card.id } }}
       className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw]`}
     >
       <div
@@ -25,7 +25,7 @@ const Card = ({ card }: { card: ICFeatured }) => {
           "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
         }
         style={{
-          backgroundImage: `url(${card.photos.featured})`,
+          backgroundImage: `url(${card.photos.featured.sizes.thumbnail.url})`,
         }}
       >
         <p className={"bg-white px-[1.5vw] py-[0.5vh] rounded-sm m-[1vh]"}>

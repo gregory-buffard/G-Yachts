@@ -71,14 +71,16 @@ const Page = ({ href }: { href: any }) => {
     >
       <Link
         href={href}
-        className={"navigation-link font-slick font-light"}
+        className={"navigation-link font-slick font-light text-3xl py-[0.5rem]"}
         onClick={() => openView(null)}
       >
         {t(`${href.slice(1)}`)}
       </Link>
       <Link
         href={href}
-        className={"navigation-link font-classic font-medium uppercase"}
+        className={
+          "navigation-link font-classic font-medium uppercase text-3xl py-[0.5rem]"
+        }
         onClick={() => openView(null)}
       >
         {t(`${href.slice(1)}`)}
@@ -111,14 +113,18 @@ const Navigation = () => {
           </div>
         </div>
         <div
-          className={"w-full flex flex-col justify-start items-start gap-[1vh]"}
+          className={
+            "w-full flex flex-col justify-start items-start gap-[0.5vh]"
+          }
         >
           <Page href={"/sales"} />
           <Page href={"/charters"} />
+          <Page href={"/destinations"} />
           <Page href={"/management"} />
           <Page href={"/company"} />
           <Page href={"/partners"} />
           <Page href={"/news"} />
+          <Page href={"/events"} />
           <Page href={"/recruitment"} />
           <div
             className={
@@ -128,14 +134,18 @@ const Navigation = () => {
             <button
               type={"button"}
               onClick={() => setTimeout(() => openView("contact"), 200)}
-              className={"navigation-link font-slick font-light"}
+              className={
+                "navigation-link font-slick font-light text-3xl py-[0.5rem]"
+              }
             >
               {t("contact")}
             </button>
             <button
               type={"button"}
               onClick={() => setTimeout(() => openView("contact"), 200)}
-              className={"navigation-link font-classic font-medium uppercase"}
+              className={
+                "navigation-link font-classic font-medium uppercase text-3xl py-[0.5rem]"
+              }
             >
               {t("contact")}
             </button>

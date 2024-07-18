@@ -12,10 +12,38 @@ export default interface IEvent {
     city: string;
     destination: IDestination;
   };
-  image: {
-    url: string;
-    width: number;
-    height: number;
-    alt: string;
+  photos: {
+    featured: {
+      alt: string;
+      sizes: {
+        thumbnail: {
+          url: string;
+          width: number;
+          height: number;
+        };
+        fhd: {
+          url: string;
+          width: number;
+          height: number;
+        };
+      };
+    };
+    gallery: {
+      image: {
+        alt: string;
+        sizes: {
+          thumbnail: {
+            url: string;
+            width: number;
+            height: number;
+          };
+          fhd: {
+            url: string;
+            width: number;
+            height: number;
+          };
+        };
+      };
+    };
   };
 }
