@@ -27,7 +27,7 @@ const Hero = () => {
         "w-full lg:h-screen h-[50vh] flex justify-center items-center bg-cover bg-center"
       }
       style={{
-        backgroundImage: `url(${image.url})`,
+        backgroundImage: `url(${image.sizes.fhd.url})`,
       }}
     >
       <div

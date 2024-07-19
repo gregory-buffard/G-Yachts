@@ -5,7 +5,7 @@ import { useFormatter } from "next-intl";
 import { ContentRenderer } from "@/components/article/content";
 
 const Detail = () => {
-  const {} = useEvent(),
+  const { location } = useEvent(),
     format = useFormatter(),
     fromDate = new Date(useEvent().fromDate),
     toDate = new Date(useEvent().toDate),
@@ -45,7 +45,9 @@ const Detail = () => {
         </div>
         <div className={"w-full flex flex-col justify-center items-start"}>
           <p className={"uppercase"}>Location</p>
-          <h3 className={"font-slick font-normal text-2xl"}>To be added</h3>
+          <h3
+            className={"font-slick font-normal text-2xl"}
+          >{`${location.city}, ${location.country}`}</h3>
         </div>
       </aside>
       <div

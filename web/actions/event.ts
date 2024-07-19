@@ -46,16 +46,27 @@ export const fetchEvent = async (
           fromDate
           toDate
           location {
+            city
+            country
             destination {
               country
               continent
             }
           }
           image {
-            url
-            width
-            height
             alt
+            sizes {
+              thumbnail {
+                url
+                width
+                height
+              }
+              fhd {
+                url
+                width
+                height
+              }
+            }
           }
         }
       }
