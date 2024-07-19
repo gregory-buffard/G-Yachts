@@ -45,7 +45,6 @@ export const fetchDestination = async (id: string): Promise<IDestination> => {
       id,
     },
   });
-  console.log(data.Destination);
   return data.Destination;
 };
 
@@ -54,7 +53,7 @@ export const fetchDestinations = async (): Promise<IDestination[]> => {
   const destinationsResult = await client.query({
     query: gql`
       query Destinations {
-        Destinations {
+        Destinations (limit: 0) {
           docs {
             id
             destination

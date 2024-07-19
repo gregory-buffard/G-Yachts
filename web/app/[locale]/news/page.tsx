@@ -20,7 +20,7 @@ const News = async ({
     const locale = await getLocale();
 
     const selectedCategory = searchParams.category;
-    const articles: IArticle[] = await fetchArticles(locale == "fr" ? "fr" : "en");
+    const articles: IArticle[] = await fetchArticles(locale == "fr" ? "fr" : "en", { limit: 0 });
 
     var categories = articles.map((article) => article.category.title);
     categories = categories.filter((category, index) => categories.indexOf(category) === index);
