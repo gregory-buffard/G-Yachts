@@ -12,7 +12,7 @@ const Listing = ({ data }: { data: IPartner[] }) => {
     return (
         <div className="flex flex-col w-full">
             <h4 className="text-xl text-center text-sky-950 font-slick mt-14 normal-case">
-                "{t("quote")}"
+                {`"${t("quote")}"`}
             </h4>
             <div className="flex flex-row flex-wrap my-14">
                 {data.map((partner, index) => (
