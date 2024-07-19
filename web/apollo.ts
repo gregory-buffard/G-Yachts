@@ -10,7 +10,15 @@ export const { getClient } = registerApolloClient(() => {
     link: new HttpLink({
       uri: `${process.env.NEXT_PUBLIC_ADMIN_BASE_URI}/api/graphql`,
     }),
+    defaultOptions: {
+      query: {
+        fetchPolicy: "network-only",
+      },
+    },
+    ssrMode: true,
+    ssrForceFetchDelay: 1,
     cache: new InMemoryCache({
+      resultCaching: false,
       typePolicies: {
         Yachts: {
           merge: true,
