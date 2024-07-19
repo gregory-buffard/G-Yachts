@@ -16,6 +16,7 @@
     "links": {
       "sales": "Sales",
       "charters": "Charters",
+      "new-constructions": "New Constructions",
       "management": "Management",
       "company": "Company",
       "partners": "Partners",
@@ -25,7 +26,7 @@
       "destinations": "Destinations",
       "events": "Events"
     },
-    "hq": "Headquarter"
+    "hq": "Headquarters"
   },
   "index": {
     "metadata": {

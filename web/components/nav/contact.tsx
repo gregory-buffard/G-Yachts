@@ -295,7 +295,7 @@ const Contact = () => {
               }).then(() => setSent(true));
             }}
             className={
-              "h-full lg:w-max w-full bg-white flex flex-col justify-start items-center lg:px-[4vh] px-[4vw] lg:py-[4vh] py-[4vw] gap-[3vh]"
+              "h-full lg:w-max w-full bg-white flex flex-col justify-between items-center lg:px-[4vh] px-[4vw] lg:py-[4vh] py-[4vw] gap-[3vh]"
             }
           >
             <Input

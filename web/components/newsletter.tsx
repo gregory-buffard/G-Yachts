@@ -19,7 +19,7 @@ const Newsletter = () => {
   return (
     <section
       className={
-        "relative w-full h-max flex flex-col justify-center items-center containerize py-[10vh] lg:py-[16vh] gap-[4vh]"
+        "relative w-full h-max flex flex-col justify-center items-center containerize py-[10vh] lg:py-[8vh] gap-[4vh]"
       }
     >
       <video

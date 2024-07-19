@@ -33,7 +33,7 @@
     }
 
     p {
-        @apply font-classic font-normal text-base tracking-wide;
+        @apply font-classic font-normal text-sm tracking-wide;
     }
 
     label {
@@ -98,7 +98,7 @@
     }
 
     .navigation-link {
-        @apply lg:group-hover:-translate-y-[2.25rem] group-hover:translate-y-0 lg:transition-transform lg:duration-300 lg:ease-in-out;
+        @apply text-3xl py-[0.5rem] lg:group-hover:-translate-y-[3.25rem] group-hover:translate-y-0 lg:transition-transform lg:duration-300 lg:ease-in-out;
     }
 
     .navigation-contact {

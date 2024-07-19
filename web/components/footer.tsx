@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <footer
       className={
-        "w-full h-max flex flex-col justify-center items-center containerize lg:py-[6vh] py-[8vw] gap-[2vh]"
+        "w-full h-max flex flex-col justify-center items-center containerize lg:py-[6vh] py-[8vw] gap-[2vh] bg-rock-100"
       }
     >
       <div className={"w-full flex justify-between items-center"}>

@@ -66,21 +66,19 @@ const Page = ({ href }: { href: any }) => {
   return (
     <div
       className={
-        "flex flex-col overflow-hidden justify-start items-start h-[3rem] group"
+        "flex flex-col overflow-hidden justify-start items-start h-[2.75rem] group"
       }
     >
       <Link
         href={href}
-        className={"navigation-link font-slick font-light text-3xl py-[0.5rem]"}
+        className={"navigation-link font-slick font-light"}
         onClick={() => openView(null)}
       >
         {t(`${href.slice(1)}`)}
       </Link>
       <Link
         href={href}
-        className={
-          "navigation-link font-classic font-medium uppercase text-3xl py-[0.5rem]"
-        }
+        className={"navigation-link font-classic font-medium uppercase"}
         onClick={() => openView(null)}
       >
         {t(`${href.slice(1)}`)}
@@ -113,12 +111,11 @@ const Navigation = () => {
           </div>
         </div>
         <div
-          className={
-            "w-full flex flex-col justify-start items-start gap-[0.5vh]"
-          }
+          className={"w-full flex flex-col justify-start items-start gap-[0vh]"}
         >
           <Page href={"/sales"} />
           <Page href={"/charters"} />
+          <Page href={"/new-constructions"} />
           <Page href={"/destinations"} />
           <Page href={"/management"} />
           <Page href={"/company"} />
@@ -128,24 +125,20 @@ const Navigation = () => {
           <Page href={"/recruitment"} />
           <div
             className={
-              "flex flex-col overflow-hidden justify-start items-start h-[3rem] group"
+              "flex flex-col overflow-hidden justify-start items-start h-[2.75rem] group"
             }
           >
             <button
               type={"button"}
               onClick={() => setTimeout(() => openView("contact"), 200)}
-              className={
-                "navigation-link font-slick font-light text-3xl py-[0.5rem]"
-              }
+              className={"navigation-link font-slick font-light"}
             >
               {t("contact")}
             </button>
             <button
               type={"button"}
               onClick={() => setTimeout(() => openView("contact"), 200)}
-              className={
-                "navigation-link font-classic font-medium uppercase text-3xl py-[0.5rem]"
-              }
+              className={"navigation-link font-classic font-medium uppercase"}
             >
               {t("contact")}
             </button>
