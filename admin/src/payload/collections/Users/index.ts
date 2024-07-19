@@ -140,6 +140,36 @@ const Users: CollectionConfig = {
       name: 'langs',
       options: values.langs,
     },
+    {
+      label: {
+        en: 'Social profiles',
+        fr: 'Profils sociaux',
+      },
+      type: 'array',
+      name: 'socials',
+      fields: [
+        {
+          type: 'select',
+          hasMany: false,
+          name: 'platform',
+          options: ['WhatsApp', 'Facebook', 'LinkedIn'],
+          required: true,
+          label: {
+            en: 'Platform',
+            fr: 'Plateforme',
+          },
+        },
+        {
+          type: 'text',
+          name: 'link',
+          required: true,
+          label: {
+            en: 'Link',
+            fr: 'Lien',
+          },
+        },
+      ],
+    },
   ],
   timestamps: true,
 }

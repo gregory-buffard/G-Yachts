@@ -29,21 +29,21 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
         },
         name: 'price',
         type: 'group',
-        fields: [ 
+        fields: [
           {
-            name: "low",
-            type: "number",
+            name: 'low',
+            type: 'number',
             label: {
-              en: "Low season",
-              fr: "Basse saison"
+              en: 'Low season',
+              fr: 'Basse saison',
             },
           },
           {
-            name: "high",
-            type: "number",
+            name: 'high',
+            type: 'number',
             label: {
-              en: "High season",
-              fr: "Haute saison"
+              en: 'High season',
+              fr: 'Haute saison',
             },
           },
         ],
@@ -296,6 +296,39 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     ],
   },
   {
+    type: 'select',
+    hasMany: false,
+    name: 'etiquette',
+    label: {
+      en: 'Etiquette',
+      fr: 'Etiquette',
+    },
+    required: false,
+    options: [
+      {
+        label: {
+          en: 'New',
+          fr: 'Nouveau',
+        },
+        value: 'new',
+      },
+      {
+        label: {
+          en: 'Exclusive',
+          fr: 'Exclusif',
+        },
+        value: 'exclusive',
+      },
+      {
+        label: {
+          en: 'Sold',
+          fr: 'Vendu',
+        },
+        value: 'sold',
+      },
+    ],
+  },
+  {
     label: {
       en: 'Photos',
       fr: 'Photos',
@@ -358,6 +391,18 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
       components: {
         Field: BrochureComponent,
       },
+    },
+  },
+  {
+    type: 'number',
+    name: 'clicks',
+    admin: {
+      readOnly: true,
+    },
+    defaultValue: 0,
+    label: {
+      en: 'Clicks',
+      fr: 'Clics',
     },
   },
 ]

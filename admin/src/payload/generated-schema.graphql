@@ -108,6 +108,7 @@ type User {
   position: String!
   phones: [User_Phones!]
   langs: [User_langs!]
+  socials: [User_Socials!]
   updatedAt: DateTime
   createdAt: DateTime
   email: EmailAddress!
@@ -924,6 +925,18 @@ enum User_langs {
   Zhuang
   Chinese
   Zulu
+}
+
+type User_Socials {
+  platform: User_Socials_platform
+  link: String
+  id: String
+}
+
+enum User_Socials_platform {
+  WhatsApp
+  Facebook
+  LinkedIn
 }
 
 """
@@ -2802,6 +2815,9 @@ input User_where {
   phones__number: User_phones__number_operator
   phones__id: User_phones__id_operator
   langs: User_langs_operator
+  socials__platform: User_socials__platform_operator
+  socials__link: User_socials__link_operator
+  socials__id: User_socials__id_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3306,6 +3322,41 @@ enum User_langs_Input {
   Zulu
 }
 
+input User_socials__platform_operator {
+  equals: User_socials__platform_Input
+  not_equals: User_socials__platform_Input
+  in: [User_socials__platform_Input]
+  not_in: [User_socials__platform_Input]
+  all: [User_socials__platform_Input]
+}
+
+enum User_socials__platform_Input {
+  WhatsApp
+  Facebook
+  LinkedIn
+}
+
+input User_socials__link_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input User_socials__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input User_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -3358,6 +3409,9 @@ input User_where_and {
   phones__number: User_phones__number_operator
   phones__id: User_phones__id_operator
   langs: User_langs_operator
+  socials__platform: User_socials__platform_operator
+  socials__link: User_socials__link_operator
+  socials__id: User_socials__id_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3375,6 +3429,9 @@ input User_where_or {
   phones__number: User_phones__number_operator
   phones__id: User_phones__id_operator
   langs: User_langs_operator
+  socials__platform: User_socials__platform_operator
+  socials__link: User_socials__link_operator
+  socials__id: User_socials__id_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3403,6 +3460,7 @@ type UsersDocAccessFields {
   position: UsersDocAccessFields_position
   phones: UsersDocAccessFields_phones
   langs: UsersDocAccessFields_langs
+  socials: UsersDocAccessFields_socials
   updatedAt: UsersDocAccessFields_updatedAt
   createdAt: UsersDocAccessFields_createdAt
   email: UsersDocAccessFields_email
@@ -3623,6 +3681,105 @@ type UsersDocAccessFields_langs_Delete {
   permission: Boolean!
 }
 
+type UsersDocAccessFields_socials {
+  create: UsersDocAccessFields_socials_Create
+  read: UsersDocAccessFields_socials_Read
+  update: UsersDocAccessFields_socials_Update
+  delete: UsersDocAccessFields_socials_Delete
+  fields: UsersDocAccessFields_socials_Fields
+}
+
+type UsersDocAccessFields_socials_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_Fields {
+  platform: UsersDocAccessFields_socials_platform
+  link: UsersDocAccessFields_socials_link
+  id: UsersDocAccessFields_socials_id
+}
+
+type UsersDocAccessFields_socials_platform {
+  create: UsersDocAccessFields_socials_platform_Create
+  read: UsersDocAccessFields_socials_platform_Read
+  update: UsersDocAccessFields_socials_platform_Update
+  delete: UsersDocAccessFields_socials_platform_Delete
+}
+
+type UsersDocAccessFields_socials_platform_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_platform_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_platform_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_platform_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_link {
+  create: UsersDocAccessFields_socials_link_Create
+  read: UsersDocAccessFields_socials_link_Read
+  update: UsersDocAccessFields_socials_link_Update
+  delete: UsersDocAccessFields_socials_link_Delete
+}
+
+type UsersDocAccessFields_socials_link_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_link_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_link_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_link_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_id {
+  create: UsersDocAccessFields_socials_id_Create
+  read: UsersDocAccessFields_socials_id_Read
+  update: UsersDocAccessFields_socials_id_Update
+  delete: UsersDocAccessFields_socials_id_Delete
+}
+
+type UsersDocAccessFields_socials_id_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_id_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_id_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_socials_id_Delete {
+  permission: Boolean!
+}
+
 type UsersDocAccessFields_updatedAt {
   create: UsersDocAccessFields_updatedAt_Create
   read: UsersDocAccessFields_updatedAt_Read
@@ -3777,9 +3934,11 @@ type Yacht {
   yearModel: Float!
   featured: Boolean!
   keyFeatures: [Yacht_keyFeatures!]!
+  etiquette: Yacht_etiquette
   photos: Yacht_Photos
   description: String
   brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  clicks: Float
   seo: [Yacht_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
@@ -3802,6 +3961,12 @@ enum Yacht_keyFeatures {
   tonnage
   yearBuilt
   yearModel
+}
+
+enum Yacht_etiquette {
+  new
+  exclusive
+  sold
 }
 
 type Yacht_Photos {
@@ -4541,11 +4706,13 @@ input Yacht_where {
   yearModel: Yacht_yearModel_operator
   featured: Yacht_featured_operator
   keyFeatures: Yacht_keyFeatures_operator
+  etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
   description: Yacht_description_operator
   brochure: Yacht_brochure_operator
+  clicks: Yacht_clicks_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
   updatedAt: Yacht_updatedAt_operator
@@ -4822,6 +4989,21 @@ enum Yacht_keyFeatures_Input {
   yearModel
 }
 
+input Yacht_etiquette_operator {
+  equals: Yacht_etiquette_Input
+  not_equals: Yacht_etiquette_Input
+  in: [Yacht_etiquette_Input]
+  not_in: [Yacht_etiquette_Input]
+  all: [Yacht_etiquette_Input]
+  exists: Boolean
+}
+
+enum Yacht_etiquette_Input {
+  new
+  exclusive
+  sold
+}
+
 input Yacht_photos__featured_operator {
   equals: String
   not_equals: String
@@ -4857,6 +5039,16 @@ input Yacht_brochure_operator {
   in: [JSON]
   not_in: [JSON]
   all: [JSON]
+  exists: Boolean
+}
+
+input Yacht_clicks_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
   exists: Boolean
 }
 
@@ -4943,11 +5135,13 @@ input Yacht_where_and {
   yearModel: Yacht_yearModel_operator
   featured: Yacht_featured_operator
   keyFeatures: Yacht_keyFeatures_operator
+  etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
   description: Yacht_description_operator
   brochure: Yacht_brochure_operator
+  clicks: Yacht_clicks_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
   updatedAt: Yacht_updatedAt_operator
@@ -4985,11 +5179,13 @@ input Yacht_where_or {
   yearModel: Yacht_yearModel_operator
   featured: Yacht_featured_operator
   keyFeatures: Yacht_keyFeatures_operator
+  etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
   photos__gallery__id: Yacht_photos__gallery__id_operator
   description: Yacht_description_operator
   brochure: Yacht_brochure_operator
+  clicks: Yacht_clicks_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
   updatedAt: Yacht_updatedAt_operator
@@ -5039,9 +5235,11 @@ type YachtsDocAccessFields {
   yearModel: YachtsDocAccessFields_yearModel
   featured: YachtsDocAccessFields_featured
   keyFeatures: YachtsDocAccessFields_keyFeatures
+  etiquette: YachtsDocAccessFields_etiquette
   photos: YachtsDocAccessFields_photos
   description: YachtsDocAccessFields_description
   brochure: YachtsDocAccessFields_brochure
+  clicks: YachtsDocAccessFields_clicks
   seo: YachtsDocAccessFields_seo
   updatedAt: YachtsDocAccessFields_updatedAt
   createdAt: YachtsDocAccessFields_createdAt
@@ -5668,6 +5866,29 @@ type YachtsDocAccessFields_keyFeatures_Delete {
   permission: Boolean!
 }
 
+type YachtsDocAccessFields_etiquette {
+  create: YachtsDocAccessFields_etiquette_Create
+  read: YachtsDocAccessFields_etiquette_Read
+  update: YachtsDocAccessFields_etiquette_Update
+  delete: YachtsDocAccessFields_etiquette_Delete
+}
+
+type YachtsDocAccessFields_etiquette_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_etiquette_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_etiquette_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_etiquette_Delete {
+  permission: Boolean!
+}
+
 type YachtsDocAccessFields_photos {
   create: YachtsDocAccessFields_photos_Create
   read: YachtsDocAccessFields_photos_Read
@@ -5841,6 +6062,29 @@ type YachtsDocAccessFields_brochure_Delete {
   permission: Boolean!
 }
 
+type YachtsDocAccessFields_clicks {
+  create: YachtsDocAccessFields_clicks_Create
+  read: YachtsDocAccessFields_clicks_Read
+  update: YachtsDocAccessFields_clicks_Update
+  delete: YachtsDocAccessFields_clicks_Delete
+}
+
+type YachtsDocAccessFields_clicks_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_clicks_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_clicks_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_clicks_Delete {
+  permission: Boolean!
+}
+
 type YachtsDocAccessFields_seo {
   create: YachtsDocAccessFields_seo_Create
   read: YachtsDocAccessFields_seo_Read
@@ -6011,9 +6255,11 @@ type Charter {
   yearModel: Float!
   featured: Boolean!
   keyFeatures: [Charter_keyFeatures!]!
+  etiquette: Charter_etiquette
   photos: Charter_Photos
   description: String
   brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  clicks: Float
   seo: [Charter_Seo!]
   reservations: [Charter_Reservations!]
   updatedAt: DateTime
@@ -6042,6 +6288,12 @@ enum Charter_keyFeatures {
   tonnage
   yearBuilt
   yearModel
+}
+
+enum Charter_etiquette {
+  new
+  exclusive
+  sold
 }
 
 type Charter_Photos {
@@ -6862,11 +7114,13 @@ input Charter_where {
   yearModel: Charter_yearModel_operator
   featured: Charter_featured_operator
   keyFeatures: Charter_keyFeatures_operator
+  etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
   description: Charter_description_operator
   brochure: Charter_brochure_operator
+  clicks: Charter_clicks_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
   reservations__from: Charter_reservations__from_operator
@@ -7159,6 +7413,21 @@ enum Charter_keyFeatures_Input {
   yearModel
 }
 
+input Charter_etiquette_operator {
+  equals: Charter_etiquette_Input
+  not_equals: Charter_etiquette_Input
+  in: [Charter_etiquette_Input]
+  not_in: [Charter_etiquette_Input]
+  all: [Charter_etiquette_Input]
+  exists: Boolean
+}
+
+enum Charter_etiquette_Input {
+  new
+  exclusive
+  sold
+}
+
 input Charter_photos__featured_operator {
   equals: String
   not_equals: String
@@ -7194,6 +7463,16 @@ input Charter_brochure_operator {
   in: [JSON]
   not_in: [JSON]
   all: [JSON]
+  exists: Boolean
+}
+
+input Charter_clicks_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
   exists: Boolean
 }
 
@@ -7333,11 +7612,13 @@ input Charter_where_and {
   yearModel: Charter_yearModel_operator
   featured: Charter_featured_operator
   keyFeatures: Charter_keyFeatures_operator
+  etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
   description: Charter_description_operator
   brochure: Charter_brochure_operator
+  clicks: Charter_clicks_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
   reservations__from: Charter_reservations__from_operator
@@ -7381,11 +7662,13 @@ input Charter_where_or {
   yearModel: Charter_yearModel_operator
   featured: Charter_featured_operator
   keyFeatures: Charter_keyFeatures_operator
+  etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
   photos__gallery__id: Charter_photos__gallery__id_operator
   description: Charter_description_operator
   brochure: Charter_brochure_operator
+  clicks: Charter_clicks_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
   reservations__from: Charter_reservations__from_operator
@@ -7440,9 +7723,11 @@ type ChartersDocAccessFields {
   yearModel: ChartersDocAccessFields_yearModel
   featured: ChartersDocAccessFields_featured
   keyFeatures: ChartersDocAccessFields_keyFeatures
+  etiquette: ChartersDocAccessFields_etiquette
   photos: ChartersDocAccessFields_photos
   description: ChartersDocAccessFields_description
   brochure: ChartersDocAccessFields_brochure
+  clicks: ChartersDocAccessFields_clicks
   seo: ChartersDocAccessFields_seo
   reservations: ChartersDocAccessFields_reservations
   updatedAt: ChartersDocAccessFields_updatedAt
@@ -8122,6 +8407,29 @@ type ChartersDocAccessFields_keyFeatures_Delete {
   permission: Boolean!
 }
 
+type ChartersDocAccessFields_etiquette {
+  create: ChartersDocAccessFields_etiquette_Create
+  read: ChartersDocAccessFields_etiquette_Read
+  update: ChartersDocAccessFields_etiquette_Update
+  delete: ChartersDocAccessFields_etiquette_Delete
+}
+
+type ChartersDocAccessFields_etiquette_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_etiquette_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_etiquette_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_etiquette_Delete {
+  permission: Boolean!
+}
+
 type ChartersDocAccessFields_photos {
   create: ChartersDocAccessFields_photos_Create
   read: ChartersDocAccessFields_photos_Read
@@ -8292,6 +8600,29 @@ type ChartersDocAccessFields_brochure_Update {
 }
 
 type ChartersDocAccessFields_brochure_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_clicks {
+  create: ChartersDocAccessFields_clicks_Create
+  read: ChartersDocAccessFields_clicks_Read
+  update: ChartersDocAccessFields_clicks_Update
+  delete: ChartersDocAccessFields_clicks_Delete
+}
+
+type ChartersDocAccessFields_clicks_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_clicks_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_clicks_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_clicks_Delete {
   permission: Boolean!
 }
 
@@ -13620,9 +13951,11 @@ type NewConstruction {
   yearModel: Float!
   featured: Boolean!
   keyFeatures: [NewConstruction_keyFeatures!]!
+  etiquette: NewConstruction_etiquette
   photos: NewConstruction_Photos
   description: String
   brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  clicks: Float
   seo: [NewConstruction_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
@@ -13645,6 +13978,12 @@ enum NewConstruction_keyFeatures {
   tonnage
   yearBuilt
   yearModel
+}
+
+enum NewConstruction_etiquette {
+  new
+  exclusive
+  sold
 }
 
 type NewConstruction_Photos {
@@ -14385,11 +14724,13 @@ input NewConstruction_where {
   yearModel: NewConstruction_yearModel_operator
   featured: NewConstruction_featured_operator
   keyFeatures: NewConstruction_keyFeatures_operator
+  etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
   photos__gallery__id: NewConstruction_photos__gallery__id_operator
   description: NewConstruction_description_operator
   brochure: NewConstruction_brochure_operator
+  clicks: NewConstruction_clicks_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
   updatedAt: NewConstruction_updatedAt_operator
@@ -14676,6 +15017,21 @@ enum NewConstruction_keyFeatures_Input {
   yearModel
 }
 
+input NewConstruction_etiquette_operator {
+  equals: NewConstruction_etiquette_Input
+  not_equals: NewConstruction_etiquette_Input
+  in: [NewConstruction_etiquette_Input]
+  not_in: [NewConstruction_etiquette_Input]
+  all: [NewConstruction_etiquette_Input]
+  exists: Boolean
+}
+
+enum NewConstruction_etiquette_Input {
+  new
+  exclusive
+  sold
+}
+
 input NewConstruction_photos__featured_operator {
   equals: String
   not_equals: String
@@ -14711,6 +15067,16 @@ input NewConstruction_brochure_operator {
   in: [JSON]
   not_in: [JSON]
   all: [JSON]
+  exists: Boolean
+}
+
+input NewConstruction_clicks_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
   exists: Boolean
 }
 
@@ -14798,11 +15164,13 @@ input NewConstruction_where_and {
   yearModel: NewConstruction_yearModel_operator
   featured: NewConstruction_featured_operator
   keyFeatures: NewConstruction_keyFeatures_operator
+  etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
   photos__gallery__id: NewConstruction_photos__gallery__id_operator
   description: NewConstruction_description_operator
   brochure: NewConstruction_brochure_operator
+  clicks: NewConstruction_clicks_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
   updatedAt: NewConstruction_updatedAt_operator
@@ -14841,11 +15209,13 @@ input NewConstruction_where_or {
   yearModel: NewConstruction_yearModel_operator
   featured: NewConstruction_featured_operator
   keyFeatures: NewConstruction_keyFeatures_operator
+  etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
   photos__gallery__id: NewConstruction_photos__gallery__id_operator
   description: NewConstruction_description_operator
   brochure: NewConstruction_brochure_operator
+  clicks: NewConstruction_clicks_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
   updatedAt: NewConstruction_updatedAt_operator
@@ -14896,9 +15266,11 @@ type NewConstructionsDocAccessFields {
   yearModel: NewConstructionsDocAccessFields_yearModel
   featured: NewConstructionsDocAccessFields_featured
   keyFeatures: NewConstructionsDocAccessFields_keyFeatures
+  etiquette: NewConstructionsDocAccessFields_etiquette
   photos: NewConstructionsDocAccessFields_photos
   description: NewConstructionsDocAccessFields_description
   brochure: NewConstructionsDocAccessFields_brochure
+  clicks: NewConstructionsDocAccessFields_clicks
   seo: NewConstructionsDocAccessFields_seo
   updatedAt: NewConstructionsDocAccessFields_updatedAt
   createdAt: NewConstructionsDocAccessFields_createdAt
@@ -15548,6 +15920,29 @@ type NewConstructionsDocAccessFields_keyFeatures_Delete {
   permission: Boolean!
 }
 
+type NewConstructionsDocAccessFields_etiquette {
+  create: NewConstructionsDocAccessFields_etiquette_Create
+  read: NewConstructionsDocAccessFields_etiquette_Read
+  update: NewConstructionsDocAccessFields_etiquette_Update
+  delete: NewConstructionsDocAccessFields_etiquette_Delete
+}
+
+type NewConstructionsDocAccessFields_etiquette_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_etiquette_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_etiquette_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_etiquette_Delete {
+  permission: Boolean!
+}
+
 type NewConstructionsDocAccessFields_photos {
   create: NewConstructionsDocAccessFields_photos_Create
   read: NewConstructionsDocAccessFields_photos_Read
@@ -15718,6 +16113,29 @@ type NewConstructionsDocAccessFields_brochure_Update {
 }
 
 type NewConstructionsDocAccessFields_brochure_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_clicks {
+  create: NewConstructionsDocAccessFields_clicks_Create
+  read: NewConstructionsDocAccessFields_clicks_Read
+  update: NewConstructionsDocAccessFields_clicks_Update
+  delete: NewConstructionsDocAccessFields_clicks_Delete
+}
+
+type NewConstructionsDocAccessFields_clicks_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_clicks_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_clicks_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_clicks_Delete {
   permission: Boolean!
 }
 
@@ -19642,6 +20060,7 @@ type UsersFields {
   position: UsersFields_position
   phones: UsersFields_phones
   langs: UsersFields_langs
+  socials: UsersFields_socials
   updatedAt: UsersFields_updatedAt
   createdAt: UsersFields_createdAt
   email: UsersFields_email
@@ -19862,6 +20281,105 @@ type UsersFields_langs_Delete {
   permission: Boolean!
 }
 
+type UsersFields_socials {
+  create: UsersFields_socials_Create
+  read: UsersFields_socials_Read
+  update: UsersFields_socials_Update
+  delete: UsersFields_socials_Delete
+  fields: UsersFields_socials_Fields
+}
+
+type UsersFields_socials_Create {
+  permission: Boolean!
+}
+
+type UsersFields_socials_Read {
+  permission: Boolean!
+}
+
+type UsersFields_socials_Update {
+  permission: Boolean!
+}
+
+type UsersFields_socials_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_socials_Fields {
+  platform: UsersFields_socials_platform
+  link: UsersFields_socials_link
+  id: UsersFields_socials_id
+}
+
+type UsersFields_socials_platform {
+  create: UsersFields_socials_platform_Create
+  read: UsersFields_socials_platform_Read
+  update: UsersFields_socials_platform_Update
+  delete: UsersFields_socials_platform_Delete
+}
+
+type UsersFields_socials_platform_Create {
+  permission: Boolean!
+}
+
+type UsersFields_socials_platform_Read {
+  permission: Boolean!
+}
+
+type UsersFields_socials_platform_Update {
+  permission: Boolean!
+}
+
+type UsersFields_socials_platform_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_socials_link {
+  create: UsersFields_socials_link_Create
+  read: UsersFields_socials_link_Read
+  update: UsersFields_socials_link_Update
+  delete: UsersFields_socials_link_Delete
+}
+
+type UsersFields_socials_link_Create {
+  permission: Boolean!
+}
+
+type UsersFields_socials_link_Read {
+  permission: Boolean!
+}
+
+type UsersFields_socials_link_Update {
+  permission: Boolean!
+}
+
+type UsersFields_socials_link_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_socials_id {
+  create: UsersFields_socials_id_Create
+  read: UsersFields_socials_id_Read
+  update: UsersFields_socials_id_Update
+  delete: UsersFields_socials_id_Delete
+}
+
+type UsersFields_socials_id_Create {
+  permission: Boolean!
+}
+
+type UsersFields_socials_id_Read {
+  permission: Boolean!
+}
+
+type UsersFields_socials_id_Update {
+  permission: Boolean!
+}
+
+type UsersFields_socials_id_Delete {
+  permission: Boolean!
+}
+
 type UsersFields_updatedAt {
   create: UsersFields_updatedAt_Create
   read: UsersFields_updatedAt_Read
@@ -20015,9 +20533,11 @@ type YachtsFields {
   yearModel: YachtsFields_yearModel
   featured: YachtsFields_featured
   keyFeatures: YachtsFields_keyFeatures
+  etiquette: YachtsFields_etiquette
   photos: YachtsFields_photos
   description: YachtsFields_description
   brochure: YachtsFields_brochure
+  clicks: YachtsFields_clicks
   seo: YachtsFields_seo
   updatedAt: YachtsFields_updatedAt
   createdAt: YachtsFields_createdAt
@@ -20644,6 +21164,29 @@ type YachtsFields_keyFeatures_Delete {
   permission: Boolean!
 }
 
+type YachtsFields_etiquette {
+  create: YachtsFields_etiquette_Create
+  read: YachtsFields_etiquette_Read
+  update: YachtsFields_etiquette_Update
+  delete: YachtsFields_etiquette_Delete
+}
+
+type YachtsFields_etiquette_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_etiquette_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_etiquette_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_etiquette_Delete {
+  permission: Boolean!
+}
+
 type YachtsFields_photos {
   create: YachtsFields_photos_Create
   read: YachtsFields_photos_Read
@@ -20814,6 +21357,29 @@ type YachtsFields_brochure_Update {
 }
 
 type YachtsFields_brochure_Delete {
+  permission: Boolean!
+}
+
+type YachtsFields_clicks {
+  create: YachtsFields_clicks_Create
+  read: YachtsFields_clicks_Read
+  update: YachtsFields_clicks_Update
+  delete: YachtsFields_clicks_Delete
+}
+
+type YachtsFields_clicks_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_clicks_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_clicks_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_clicks_Delete {
   permission: Boolean!
 }
 
@@ -20994,9 +21560,11 @@ type ChartersFields {
   yearModel: ChartersFields_yearModel
   featured: ChartersFields_featured
   keyFeatures: ChartersFields_keyFeatures
+  etiquette: ChartersFields_etiquette
   photos: ChartersFields_photos
   description: ChartersFields_description
   brochure: ChartersFields_brochure
+  clicks: ChartersFields_clicks
   seo: ChartersFields_seo
   reservations: ChartersFields_reservations
   updatedAt: ChartersFields_updatedAt
@@ -21676,6 +22244,29 @@ type ChartersFields_keyFeatures_Delete {
   permission: Boolean!
 }
 
+type ChartersFields_etiquette {
+  create: ChartersFields_etiquette_Create
+  read: ChartersFields_etiquette_Read
+  update: ChartersFields_etiquette_Update
+  delete: ChartersFields_etiquette_Delete
+}
+
+type ChartersFields_etiquette_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_etiquette_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_etiquette_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_etiquette_Delete {
+  permission: Boolean!
+}
+
 type ChartersFields_photos {
   create: ChartersFields_photos_Create
   read: ChartersFields_photos_Read
@@ -21846,6 +22437,29 @@ type ChartersFields_brochure_Update {
 }
 
 type ChartersFields_brochure_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_clicks {
+  create: ChartersFields_clicks_Create
+  read: ChartersFields_clicks_Read
+  update: ChartersFields_clicks_Update
+  delete: ChartersFields_clicks_Delete
+}
+
+type ChartersFields_clicks_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_clicks_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_clicks_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_clicks_Delete {
   permission: Boolean!
 }
 
@@ -23776,9 +24390,11 @@ type NewConstructionsFields {
   yearModel: NewConstructionsFields_yearModel
   featured: NewConstructionsFields_featured
   keyFeatures: NewConstructionsFields_keyFeatures
+  etiquette: NewConstructionsFields_etiquette
   photos: NewConstructionsFields_photos
   description: NewConstructionsFields_description
   brochure: NewConstructionsFields_brochure
+  clicks: NewConstructionsFields_clicks
   seo: NewConstructionsFields_seo
   updatedAt: NewConstructionsFields_updatedAt
   createdAt: NewConstructionsFields_createdAt
@@ -24428,6 +25044,29 @@ type NewConstructionsFields_keyFeatures_Delete {
   permission: Boolean!
 }
 
+type NewConstructionsFields_etiquette {
+  create: NewConstructionsFields_etiquette_Create
+  read: NewConstructionsFields_etiquette_Read
+  update: NewConstructionsFields_etiquette_Update
+  delete: NewConstructionsFields_etiquette_Delete
+}
+
+type NewConstructionsFields_etiquette_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_etiquette_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_etiquette_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_etiquette_Delete {
+  permission: Boolean!
+}
+
 type NewConstructionsFields_photos {
   create: NewConstructionsFields_photos_Create
   read: NewConstructionsFields_photos_Read
@@ -24598,6 +25237,29 @@ type NewConstructionsFields_brochure_Update {
 }
 
 type NewConstructionsFields_brochure_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_clicks {
+  create: NewConstructionsFields_clicks_Create
+  read: NewConstructionsFields_clicks_Read
+  update: NewConstructionsFields_clicks_Update
+  delete: NewConstructionsFields_clicks_Delete
+}
+
+type NewConstructionsFields_clicks_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_clicks_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_clicks_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_clicks_Delete {
   permission: Boolean!
 }
 
@@ -26659,6 +27321,7 @@ input mutationUserInput {
   position: String!
   phones: [mutationUser_PhonesInput]
   langs: [User_langs_MutationInput]
+  socials: [mutationUser_SocialsInput]
   updatedAt: String
   createdAt: String
   email: String!
@@ -27098,6 +27761,18 @@ enum User_langs_MutationInput {
   Zulu
 }
 
+input mutationUser_SocialsInput {
+  platform: User_Socials_platform_MutationInput!
+  link: String!
+  id: String
+}
+
+enum User_Socials_platform_MutationInput {
+  WhatsApp
+  Facebook
+  LinkedIn
+}
+
 input mutationUserUpdateInput {
   name: String
   roles: [UserUpdate_roles_MutationInput]
@@ -27105,6 +27780,7 @@ input mutationUserUpdateInput {
   position: String
   phones: [mutationUserUpdate_PhonesInput]
   langs: [UserUpdate_langs_MutationInput]
+  socials: [mutationUserUpdate_SocialsInput]
   updatedAt: String
   createdAt: String
   email: String
@@ -27544,6 +28220,18 @@ enum UserUpdate_langs_MutationInput {
   Zulu
 }
 
+input mutationUserUpdate_SocialsInput {
+  platform: UserUpdate_Socials_platform_MutationInput!
+  link: String!
+  id: String
+}
+
+enum UserUpdate_Socials_platform_MutationInput {
+  WhatsApp
+  Facebook
+  LinkedIn
+}
+
 type usersRefreshedUser {
   exp: Int
   refreshedToken: String
@@ -27595,9 +28283,11 @@ input mutationYachtInput {
   yearModel: Float!
   featured: Boolean
   keyFeatures: [Yacht_keyFeatures_MutationInput]!
+  etiquette: Yacht_etiquette_MutationInput
   photos: mutationYacht_PhotosInput!
   description: String
   brochure: String
+  clicks: Float
   seo: [mutationYacht_SeoInput]
   updatedAt: String
   createdAt: String
@@ -27620,6 +28310,12 @@ enum Yacht_keyFeatures_MutationInput {
   tonnage
   yearBuilt
   yearModel
+}
+
+enum Yacht_etiquette_MutationInput {
+  new
+  exclusive
+  sold
 }
 
 input mutationYacht_PhotosInput {
@@ -27665,9 +28361,11 @@ input mutationYachtUpdateInput {
   yearModel: Float
   featured: Boolean
   keyFeatures: [YachtUpdate_keyFeatures_MutationInput]
+  etiquette: YachtUpdate_etiquette_MutationInput
   photos: mutationYachtUpdate_PhotosInput!
   description: String
   brochure: String
+  clicks: Float
   seo: [mutationYachtUpdate_SeoInput]
   updatedAt: String
   createdAt: String
@@ -27690,6 +28388,12 @@ enum YachtUpdate_keyFeatures_MutationInput {
   tonnage
   yearBuilt
   yearModel
+}
+
+enum YachtUpdate_etiquette_MutationInput {
+  new
+  exclusive
+  sold
 }
 
 input mutationYachtUpdate_PhotosInput {
@@ -27735,9 +28439,11 @@ input mutationCharterInput {
   yearModel: Float!
   featured: Boolean
   keyFeatures: [Charter_keyFeatures_MutationInput]!
+  etiquette: Charter_etiquette_MutationInput
   photos: mutationCharter_PhotosInput!
   description: String
   brochure: String
+  clicks: Float
   seo: [mutationCharter_SeoInput]
   reservations: [mutationCharter_ReservationsInput]
   updatedAt: String
@@ -27766,6 +28472,12 @@ enum Charter_keyFeatures_MutationInput {
   tonnage
   yearBuilt
   yearModel
+}
+
+enum Charter_etiquette_MutationInput {
+  new
+  exclusive
+  sold
 }
 
 input mutationCharter_PhotosInput {
@@ -27819,9 +28531,11 @@ input mutationCharterUpdateInput {
   yearModel: Float
   featured: Boolean
   keyFeatures: [CharterUpdate_keyFeatures_MutationInput]
+  etiquette: CharterUpdate_etiquette_MutationInput
   photos: mutationCharterUpdate_PhotosInput!
   description: String
   brochure: String
+  clicks: Float
   seo: [mutationCharterUpdate_SeoInput]
   reservations: [mutationCharterUpdate_ReservationsInput]
   updatedAt: String
@@ -27850,6 +28564,12 @@ enum CharterUpdate_keyFeatures_MutationInput {
   tonnage
   yearBuilt
   yearModel
+}
+
+enum CharterUpdate_etiquette_MutationInput {
+  new
+  exclusive
+  sold
 }
 
 input mutationCharterUpdate_PhotosInput {
@@ -28092,9 +28812,11 @@ input mutationNewConstructionInput {
   yearModel: Float!
   featured: Boolean
   keyFeatures: [NewConstruction_keyFeatures_MutationInput]!
+  etiquette: NewConstruction_etiquette_MutationInput
   photos: mutationNewConstruction_PhotosInput!
   description: String
   brochure: String
+  clicks: Float
   seo: [mutationNewConstruction_SeoInput]
   updatedAt: String
   createdAt: String
@@ -28117,6 +28839,12 @@ enum NewConstruction_keyFeatures_MutationInput {
   tonnage
   yearBuilt
   yearModel
+}
+
+enum NewConstruction_etiquette_MutationInput {
+  new
+  exclusive
+  sold
 }
 
 input mutationNewConstruction_PhotosInput {
@@ -28163,9 +28891,11 @@ input mutationNewConstructionUpdateInput {
   yearModel: Float
   featured: Boolean
   keyFeatures: [NewConstructionUpdate_keyFeatures_MutationInput]
+  etiquette: NewConstructionUpdate_etiquette_MutationInput
   photos: mutationNewConstructionUpdate_PhotosInput!
   description: String
   brochure: String
+  clicks: Float
   seo: [mutationNewConstructionUpdate_SeoInput]
   updatedAt: String
   createdAt: String
@@ -28188,6 +28918,12 @@ enum NewConstructionUpdate_keyFeatures_MutationInput {
   tonnage
   yearBuilt
   yearModel
+}
+
+enum NewConstructionUpdate_etiquette_MutationInput {
+  new
+  exclusive
+  sold
 }
 
 input mutationNewConstructionUpdate_PhotosInput {
