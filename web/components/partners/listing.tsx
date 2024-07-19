@@ -11,9 +11,8 @@ const Listing = ({ data }: { data: IPartner[] }) => {
     const t = useTranslations("partners.detail");
     return (
         <div className="flex flex-col w-full">
-            <h4 className="text-lg text-center text-sky-950 font-slick my-14">
-                {`"OVER THE YEARS G-YACHTS HAS DEVELOPED A STRATEGY FOCUSED ON COMPLEMENTARY AND A
-                SMART SYNERGY."`}
+            <h4 className="text-xl text-center text-sky-950 font-slick mt-14 normal-case">
+                "{t("quote")}"
             </h4>
             <div className="flex flex-row flex-wrap my-14">
                 {data.map((partner, index) => (
@@ -33,7 +32,7 @@ const Listing = ({ data }: { data: IPartner[] }) => {
                             }
                         )}
                         style={{
-                            backgroundImage: `url(${partner.banner.sizes.fhd.url ?? partner.banner.url}), linear-gradient(to bottom right, #74ebd5, #acb6e5)`,
+                            backgroundImage: `url(${encodeURI(partner.banner.sizes.fhd.url ?? partner.banner.url)})`,
                         }}>
                         {current === partner.id ? (
                             <div className="w-full bg-black/50 flex flex-col items-start px-20 py-20">
@@ -43,12 +42,18 @@ const Listing = ({ data }: { data: IPartner[] }) => {
                                         alt={partner.logo.alt ?? partner.name}
                                         className="object-contain w-60"
                                     />
-                                    <img
-                                        src="/icons/xmark.svg"
-                                        alt="close"
-                                        className="w-8 h-8 fill-white cursor-pointer hover:brightness-90"
-                                        onClick={() => setCurrent(null)}
-                                    />
+                                    <button type={"button"} onClick={() => setCurrent(null)}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            x="0px"
+                                            y="0px"
+                                            viewBox="0 0 64 64"
+                                            className={
+                                                "lg:size-[1.5vw] size-[3vh] hover:rotate-90 transition-transform duration-200 ease-in-out fill-white"
+                                            }>
+                                            <path d="M 16 14 C 15.488 14 14.976938 14.194937 14.585938 14.585938 C 13.804937 15.366937 13.804937 16.633063 14.585938 17.414062 L 29.171875 32 L 14.585938 46.585938 C 13.804938 47.366938 13.804937 48.633063 14.585938 49.414062 C 14.976937 49.805062 15.488 50 16 50 C 16.512 50 17.023062 49.805062 17.414062 49.414062 L 32 34.828125 L 46.585938 49.414062 C 47.366938 50.195063 48.633063 50.195062 49.414062 49.414062 C 50.195063 48.633062 50.195062 47.366937 49.414062 46.585938 L 34.828125 32 L 49.414062 17.414062 C 50.195063 16.633063 50.195062 15.366938 49.414062 14.585938 C 48.633062 13.804938 47.366937 13.804938 46.585938 14.585938 L 32 29.171875 L 17.414062 14.585938 C 17.023062 14.194938 16.512 14 16 14 z"></path>
+                                        </svg>
+                                    </button>
                                 </div>
                                 <span className="text-white font-classic mt-10">
                                     {partner.comment}
@@ -65,11 +70,10 @@ const Listing = ({ data }: { data: IPartner[] }) => {
                             </div>
                         ) : (
                             <div className="w-full h-full bg-black/50 p-4 grid place-items-center hover:bg-black/25 transition-colors">
-                                <Image
+                                <img
                                     src={partner.logo.sizes.thumbnail.url ?? partner.logo.url}
                                     alt={partner.logo.alt ?? partner.name}
-                                    width={150}
-                                    height={150}
+                                    className="object-contain w-40"
                                 />
                             </div>
                         )}

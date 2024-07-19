@@ -40,16 +40,6 @@ export const Partners: CollectionConfig = {
     },
     {
       label: {
-        en: 'Quote',
-        fr: 'Citation',
-      },
-      name: 'quote',
-      type: 'textarea',
-      required: true,
-      localized: true,
-    },
-    {
-      label: {
         en: 'Comment',
         fr: 'Commentaire',
       },
