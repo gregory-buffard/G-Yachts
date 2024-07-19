@@ -510,6 +510,13 @@ export interface User {
         | 'Zulu'
       )[]
     | null;
+  socials?:
+    | {
+        platform: 'WhatsApp' | 'Facebook' | 'LinkedIn';
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -607,6 +614,7 @@ export interface Yacht {
     | 'yearBuilt'
     | 'yearModel'
   )[];
+  etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos: {
     featured: string | Media;
     gallery?:
@@ -618,6 +626,7 @@ export interface Yacht {
   };
   description?: string | null;
   brochure?: (string | null) | Media;
+  clicks?: number | null;
   seo?:
     | {
         value?: string | null;
@@ -680,6 +689,7 @@ export interface Charter {
     | 'yearBuilt'
     | 'yearModel'
   )[];
+  etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos: {
     featured: string | Media;
     gallery?:
@@ -691,6 +701,7 @@ export interface Charter {
   };
   description?: string | null;
   brochure?: (string | null) | Media;
+  clicks?: number | null;
   seo?:
     | {
         value?: string | null;
@@ -928,6 +939,7 @@ export interface NewConstruction {
     | 'yearBuilt'
     | 'yearModel'
   )[];
+  etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos: {
     featured: string | Media;
     gallery?:
@@ -939,6 +951,7 @@ export interface NewConstruction {
   };
   description?: string | null;
   brochure?: (string | null) | Media;
+  clicks?: number | null;
   seo?:
     | {
         value?: string | null;
