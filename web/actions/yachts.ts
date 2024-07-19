@@ -12,7 +12,7 @@ export const fetchFeaturedSales = async (): Promise<SFeatured[]> => {
   const { data } = await client.query({
     query: gql`
       query Yachts {
-        Yachts(where: { featured: { equals: true } }) {
+        Yachts(where: { featured: { equals: true } }, limit: 0) {
           docs {
             id
             name
@@ -43,7 +43,7 @@ export const fetchSales = async (): Promise<ISale[]> => {
   const { data } = await client.query({
     query: gql`
       query Yachts {
-        Yachts {
+        Yachts (limit: 0){
           docs {
             id
             name
@@ -173,7 +173,7 @@ export const fetchFeaturedCharters = async (): Promise<ICFeatured[]> => {
   const { data } = await client.query({
     query: gql`
       query Charters {
-        Charters(where: { featured: { equals: true } }) {
+        Charters(where: { featured: { equals: true } }, limit: 0) {
           docs {
             id
             name
@@ -207,7 +207,7 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
   const { data } = await client.query({
     query: gql`
       query Charters {
-        Charters {
+        Charters (limit: 0){
           docs {
             id
             name

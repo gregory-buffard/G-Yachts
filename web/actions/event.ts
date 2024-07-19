@@ -9,7 +9,7 @@ export const fetchEvents = async (locale: "en" | "fr"): Promise<IEvent[]> => {
   const { data } = await client.query({
     query: gql`
       query Events($locale: LocaleInputType!) {
-        Events(locale: $locale) {
+        Events(locale: $locale, limit: 0) {
           docs {
             id
             title

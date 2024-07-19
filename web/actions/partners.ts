@@ -7,7 +7,7 @@ export const fetchPartners = async (locale: "en" | "fr"): Promise<IPartner[]> =>
     const { data } = await client.query({
         query: gql`
             query Partners($locale: LocaleInputType!) {
-                Partners(locale: $locale) {
+                Partners(locale: $locale, limit: 0) {
                     docs {
                         id
                         name

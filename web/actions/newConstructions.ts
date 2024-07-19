@@ -11,7 +11,7 @@ export const fetchFeaturedConstructions = async (): Promise<INewConstruction[]> 
     const { data } = await client.query({
         query: gql`
             query NewConstructions {
-                NewConstructions(where: { featured: { equals: true } }) {
+                NewConstructions(where: { featured: { equals: true } }, limit: 0) {
                     docs {
                         id
                         delivery
@@ -43,7 +43,7 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
     const { data } = await client.query({
         query: gql`
             query NewConstructions {
-                NewConstructions {
+                NewConstructions(limit: 0) {
                     docs {
                         id
                         delivery
@@ -175,7 +175,7 @@ export const fetchShipyards = async (): Promise<IShipyard[]> => {
     const { data } = await client.query({
         query: gql`
             query Shipyards {
-                Shipyards {
+                Shipyards(limit: 0) {
                     docs {
                         id
                         name
