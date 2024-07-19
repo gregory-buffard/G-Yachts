@@ -77,7 +77,7 @@ const Card = ({ data }: { data: ISale }) => {
           />
           <div
             className={
-              "w-[92vw] md:w-[44vw] lg:w-[30vw] absolute h-max flex justify-between items-center lg:px-[1vw] px-[2vw] -translate-y-[11vh] md:-translate-y-[9vw] lg:-translate-y-[7vw]"
+              "w-[92vw] md:w-[44vw] lg:w-[30vw] absolute h-max flex flex-row-reverse justify-between items-center lg:px-[1vw] px-[2vw] -translate-y-[11vh] md:-translate-y-[9vw] lg:-translate-y-[7vw]"
             }
           >
             <button
@@ -168,7 +168,7 @@ const ListView = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={
-        "w-full h-max md:grid-cols-2 lg:grid-cols-3 md:grid flex flex-col justify-start items-start gap-[4vh] md:gap-[4vw] lg:gap-[1vw]"
+        "w-full h-max md:grid-cols-2 lg:grid-cols-3 md:grid flex flex-col justify-start items-start gap-y-[4vh] md:gap-y-[4vh] md:gap-x-[4vw] lg:gap-x-[1vw] lg:gap-y-[4vh]"
       }
     >
       {children}

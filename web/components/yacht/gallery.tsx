@@ -182,10 +182,10 @@ const Gallery = ({
         >
           <div
             className={
-              "absolute top-[2vh] containerize flex justify-between items-center"
+              "absolute top-[2vh] containerize flex justify-end items-center"
             }
           >
-            <Lottie
+            {/*<Lottie
               onClick={() => setCurrent(null)}
               lottieRef={lottieRef}
               onMouseEnter={() => {
@@ -197,7 +197,7 @@ const Gallery = ({
               autoplay={false}
               loop={false}
               animationData={replaceColor("#000000", "#FFFFFF", galleryView)}
-            />
+            />*/}
             <button
               type={"button"}
               onClick={() => {
