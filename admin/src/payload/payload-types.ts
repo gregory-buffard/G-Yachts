@@ -847,7 +847,6 @@ export interface Event {
 export interface Partner {
   id: string;
   name: string;
-  quote: string;
   comment: string;
   website?: string | null;
   logo: string | Media;
