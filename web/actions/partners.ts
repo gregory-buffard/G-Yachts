@@ -11,7 +11,6 @@ export const fetchPartners = async (locale: "en" | "fr"): Promise<IPartner[]> =>
                     docs {
                         id
                         name
-                        quote
                         comment
                         website
                         logo {
@@ -61,7 +60,6 @@ export const fetchPartner = async (locale: "en" | "fr", id: string): Promise<IPa
                 Partner(id: $id, locale: $locale) {
                     id
                     name
-                    quote
                     comment
                     website
                     logo {
