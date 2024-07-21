@@ -1,25 +1,10 @@
-"use client";
-
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import monaco from "@/public/imagery/optimized/company/monaco.webp";
 
 const Accordion = () => {
   const t = useTranslations("management.experience");
-
-  useEffect(() => {
-    const detailsElements = document.querySelectorAll("details");
-    detailsElements.forEach((el) => {
-      el.addEventListener("click", () => {
-        detailsElements.forEach((detail) => {
-          if (detail !== el) {
-            detail.removeAttribute("open");
-          }
-        });
-      });
-    });
-  }, []);
 
   return (
     <section className={"w-full h-full bg-rock-100 overflow-hidden pb-[10vw]"}>
