@@ -14,23 +14,34 @@ const Hero = () => {
             <h1>
               {t.rich("title", {
                 classic: (chunks) => (
-                    <span className={"font-classic font-normal uppercase"}>
-                    <br className={"hidden lg:block"}/>
-                      {chunks}
+                  <span className={"font-classic font-normal uppercase"}>
+                    <br className={"hidden lg:block"} />
+                    {chunks}
                   </span>
                 ),
               })}
             </h1>
             <p
-                className={
-                  "md:w-[30vw] w-[80vw] md:py-[2vw] font-classic font-light text-justify"
-                }
+              className={
+                "md:w-[30vw] w-[80vw] pt-5 font-classic font-light text-justify"
+              }
             >
               {t("description")}
             </p>
+            <p
+              className={
+                "md:w-[30vw] w-[80vw] py-5 font-classic font-light text-justify"
+              }
+            >
+              {t("description2")}
+            </p>
           </div>
         </div>
-        <Image src={herox} alt={"Yacht"} className={"object-cover md:h-screen"}/>
+        <Image
+          src={herox}
+          alt={"Yacht"}
+          className={"object-cover md:h-screen"}
+        />
       </div>
     </div>
   );

@@ -31,9 +31,11 @@ const Lifestyle = () => {
           ),
         })}
       </h1>
-      <p className={"md:w-[42vw] w-full px-[3vw]"}>{t("description")}</p>
+      <p className={"md:w-[42vw] w-full text-base px-[3vw]"}>
+        {t("description")}
+      </p>
       <button
-        className={"glass-button glass-button-light mt-4"}
+        className={"glass-button glass-button-light mt-10"}
         onClick={() => openView("contact")}
       >
         {t("CTA")}

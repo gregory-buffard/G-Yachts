@@ -71,9 +71,9 @@
       "priceOnApplication": "Price on application"
     },
     "memories": {
-      "title": "Create unforgettable <classic>Memories</classic>",
+      "title": "Create unforgettable <classic>Memory</classic>",
       "subtitle": "CHARTER WITH US",
-      "description": "At G-Yachts, we hold the conviction that a holiday aboard a superyacht is unmatched by any on land, dedicating ourselves to curating unparalleled yachting experiences that linger in memory.Our selection of elite charter yachts, bolstered by a passionate global team, promises to surpass every expectation.Allow us to tailor a voyage that embodies the essence of extraordinary",
+      "description": "At G-Yachts, we hold the conviction that a holiday aboard a superyacht is unmatched by any on land, dedicating ourselves to curating unparalleled yachting experiences that linger in memory. Our selection of elite charter yachts, bolstered by a passionate global team, promises to surpass every expectation. Allow us to tailor a voyage that embodies the essence of extraordinary",
       "CTA": "Charter a yacht"
     },
     "destinations": {
@@ -263,7 +263,8 @@
     "hero": {
       "subtitle": "A FAMILY LEGACY",
       "title": "Trusted for <classic>25 YEARS</classic>",
-      "description": "G-Yachts embodies determination, business ethic and experience. Over time, the Milazzo family has managed to lead successful sales, charters and the management of many renowned yachts thanks to a remarkable network and quality counterparts all around the world"
+      "description": "G-Yachts embodies determination, business ethics, and experience. Over time, the Milazzo family has successfully led sales, charters, and the management of many renowned yachts, thanks to a remarkable network and quality counterparts worldwide.",
+      "description2": "Gaspard Milazzo, a former captain and mechanical engineer, has trained numerous captains early in his career. Born into a family of pioneers in boat sales and charters on the French Riviera, he has experienced all facets of the yachting industry from an early age. In 1999, he founded G-Yachts, driven by his deep knowledge and commitment to excellence. Known for his honesty and long-term client relationships, Gaspard ensures every client receives expert advice and tailored solutions, reflecting his dedication to the yachting world and ability to meet any request."
     },
     "story": {
       "header": {
@@ -292,15 +293,18 @@
     },
     "philosophy": {
       "header": {
-        "title": "Yachting is a matter of <classic>Passion</classic>",
+        "title": "Yachting is a<br></br> matter of <classic>Passion</classic>",
         "subtitle": "OUR PHILOSOPHY",
         "undertitle": "Two decades of <classic>Experience</classic>",
-        "description": "Thanks to our long experience with numerous units we had in management, we became a reference in terms of commitment, comprehension and operation of any kind of yacht. We understand the needs, the regulations and the requisites of this industry. Our strength is to always be one step forward."
+        "description": "Thanks to our long experience with numerous units we had in management, we became a reference in terms of commitment, comprehension and operation of any kind of yacht.",
+        "description2": "We understand the needs, the regulations and the requisites of this industry. Our strength is to always be one step forward."
       },
       "dropdown": {
         "services": {
           "title": "Customized Services",
-          "description": "Our company principles have always been to provide our clients a customized service. As per today, G-Yachts has been at the helm of plenty and successful sales, new constructions and charters for extremely renowned yachts. Our specialized and experienced team enabled this privately-owned company evolved through the years. Leader in this industry G-Yachts has always been financially independent and faithful to its principles."
+          "description": "Our company principles have always been to provide our clients a customized service.",
+          "description2": "As per today, G-Yachts has been at the helm of plenty and successful sales, new constructions and charters for extremely renowned yachts. Our specialized and experienced team enabled this privately-owned company evolved through the years.",
+          "description3": "Leader in this industry G-Yachts has always been financially independent and faithful to its principles."
         },
         "presence": {
           "title": "A presence around the world",
@@ -308,7 +312,8 @@
         },
         "partnership": {
           "title": "Partnership and recommendations",
-          "description": "G-Yachts is a « Gold » member of the international Company MYBA (Mediterranean Yacht Broker Association), also ECPY, Riviera Yachting Network and finally PYA (Professional Yachtsmen's Association). The founder Gaspard Milazzo takes excellence as his own professional leitmotiv. The company is insured by Lloyd's in London. All the team, trained by Gaspard Milazzo, is comfortable with Lloyd's and Bureau Veritas conditions and regulations in order to respond effectively to ISM (International Safety Management) et ISPS (International Ship and Port Facility Security)"
+          "description": "G-Yachts is a « Gold » member of the international Company MYBA (Mediterranean Yacht Broker Association), also ECPY, Riviera Yachting Network and finally PYA (Professional Yachtsmen's Association). The founder Gaspard Milazzo takes excellence as his own professional leitmotiv.",
+          "description2": "The company is insured by Lloyd's in London. All the team, trained by Gaspard Milazzo, is comfortable with Lloyd's and Bureau Veritas conditions and regulations in order to respond effectively to ISM (International Safety Management) et ISPS (International Ship and Port Facility Security)"
         }
       }
     },

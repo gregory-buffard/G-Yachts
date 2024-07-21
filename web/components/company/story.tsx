@@ -11,7 +11,7 @@ const Story = () => {
   const t = useTranslations("company.story");
   return (
     <section className={"h-full w-full overflow-hidden bg-rock-100"}>
-      <h1 className={"py-[5vw] pl-[10vw]"}>
+      <h1 className={"py-[5vw] pl-[10vw] text-5xl"}>
         {t.rich("header.title", {
           classic: (chunks) => (
             <span className={"font-classic font-normal uppercase"}>
@@ -88,7 +88,7 @@ const Story = () => {
       <div className={"flex flex-col"}>
         <p
           className={
-            "font-slick font-light md:text-4xl text-xl px-[10vw] text-justify"
+            "font-slick font-light md:text-3xl text-xl px-[10vw] text-justify"
           }
         >
           {t("content.citation")}
@@ -100,10 +100,8 @@ const Story = () => {
             className={"md:w-[5vw] w-[20vw] rounded-full"}
           />
           <div className={"ml-[1vw]"}>
-            <h2 className={"md:text-2xl text-xl font-medium"}>
-              Gaspard MILAZZO
-            </h2>
-            <h2 className={"md:text-2xl text-xl"}>{t("content.signature")}</h2>
+            <h2 className={"text-xl font-medium"}>Gaspard MILAZZO</h2>
+            <h2 className={"text-xl"}>{t("content.signature")}</h2>
           </div>
         </div>
       </div>

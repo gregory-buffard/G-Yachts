@@ -73,7 +73,7 @@ const Services = () => {
           </div>
 
           <div className="flex flex-col">
-            <Link href="/">
+            <Link href={"/new-constructions"}>
               <Image
                 src={construction}
                 alt="New Construction"

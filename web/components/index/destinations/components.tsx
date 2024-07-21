@@ -14,7 +14,7 @@ interface IFeatured
 const Card = ({ card }: { card: IDestination }) => {
   return (
     <Link
-      href={"/charters"}
+      href={{ pathname: "/destinations/[id]", params: { id: card.id } }}
       className={
         " flex flex-col w-max justify-center items-start font-classic font-normal tracking-wider group transition-transform lg:duration-[var(--animate-destination)] ease-in-out lg:translate-x-[var(--translate-destination)] pr-[1.5vw]"
       }
@@ -165,7 +165,7 @@ const Section = ({ carouselData }: { carouselData: IDestination[] }) => {
         <div className="md:w-[33vw] w-full flex flex-col items-start justify-center">
           <p
             className={
-              "flex flex-col text-justify lg:pl-44 px-4 mt-10 lg:max-w-[27vw] w-full"
+              "flex flex-col text-left lg:pl-44 px-4 mt-10 lg:max-w-[27vw] w-full"
             }
           >
             {t("description")}

@@ -1,10 +1,25 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import monaco from "@/public/imagery/optimized/company/monaco.webp";
 
 const Accordion = () => {
   const t = useTranslations("company.philosophy");
+
+  useEffect(() => {
+    const detailsElements = document.querySelectorAll("details");
+    detailsElements.forEach((el) => {
+      el.addEventListener("click", () => {
+        detailsElements.forEach((detail) => {
+          if (detail !== el) {
+            detail.removeAttribute("open");
+          }
+        });
+      });
+    });
+  }, []);
 
   return (
     <section className={"w-full h-full bg-rock-100 overflow-hidden"}>
@@ -13,6 +28,7 @@ const Accordion = () => {
           <h4 className={"font-classic font-normal"}>{t("header.subtitle")}</h4>
           <h1 className={""}>
             {t.rich("header.title", {
+              br: () => <br />,
               classic: (chunks) => (
                 <span className={"font-classic font-normal uppercase"}>
                   {chunks}
@@ -21,7 +37,7 @@ const Accordion = () => {
             })}
           </h1>
         </div>
-        <div className="w-full mt-24">
+        <div className="w-full mt-20">
           <div className="divide-y divide-gray-300">
             <details className="group" open>
               <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-3xl font-classic text-secondary-900 group-open:text-primary-500">
@@ -57,8 +73,24 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 text-base font-classic text-secondary-500 text-justify">
-                {t("dropdown.services.description")}
+              <div className="pb-4 text-base font-classic text-secondary-500 text-justify pr-12">
+                <p
+                  className={
+                    "mb-5 text-justify text-base font-classic text-secondary-500"
+                  }
+                >
+                  {t("dropdown.services.description")}
+                </p>
+                <p className="text-justify text-base font-classic text-secondary-500">
+                  {t("dropdown.services.description2")}
+                </p>
+                <p
+                  className={
+                    "mt-5 text-justify text-base font-classic text-secondary-500"
+                  }
+                >
+                  {t("dropdown.services.description3")}
+                </p>
               </div>
             </details>
             <details className="group">
@@ -95,7 +127,7 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 font-classic text-base text-secondary-500 text-justify">
+              <div className="pb-4 font-classic text-base text-secondary-500 text-justify pr-12">
                 {t("dropdown.presence.description")}
               </div>
             </details>
@@ -133,8 +165,13 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 text-base font-classic text-secondary-500 text-justify">
-                {t("dropdown.partnership.description")}
+              <div className="pb-4 text-base font-classic text-secondary-500 text-justify pr-12">
+                <p className=" mb-5 text-justify text-base font-classic text-secondary-500">
+                  {t("dropdown.partnership.description")}
+                </p>
+                <p className="text-justify text-base font-classic text-secondary-500">
+                  {t("dropdown.partnership.description2")}
+                </p>
               </div>
             </details>
             <div />
@@ -152,7 +189,10 @@ const Accordion = () => {
               ),
             })}
           </h1>
-          <p className={"py-[2vw]"}>{t("header.description")}</p>
+          <div className={"text-justify md:pr-36"}>
+            <p className={"py-[2vw]"}>{t("header.description")}</p>
+            <p>{t("header.description2")}</p>
+          </div>
         </div>
         <Image src={monaco} alt={"Yacht show in Monaco"} className={""} />
       </div>
