@@ -20,7 +20,7 @@ const ServiceList = () => {
           <h3 className="text-2xl font-light font-slick text-left my-4">
             {t("finance.title")}
           </h3>
-          <p className={"font-classic font-light md:text-xl text-base"}>
+          <p className={"font-classic font-light text-base text-justify"}>
             {t("finance.description")}
           </p>
         </div>
@@ -34,7 +34,7 @@ const ServiceList = () => {
           <h3 className="text-2xl font-light font-slick text-left my-4">
             {t("support.title")}
           </h3>
-          <p className={"font-classic font-light md:text-xl text-base"}>
+          <p className={"font-classic font-light text-base text-justify"}>
             {t("support.description")}
           </p>
         </div>
@@ -48,7 +48,7 @@ const ServiceList = () => {
           <h3 className="text-2xl font-light font-slick text-left my-4">
             {t("administrative.title")}
           </h3>
-          <p className={"font-classic font-light md:text-xl text-base"}>
+          <p className={"font-classic text-base text-justify"}>
             {t("administrative.description")}
           </p>
         </div>
@@ -62,7 +62,7 @@ const ServiceList = () => {
           <h3 className="text-2xl font-light font-slick text-left my-4">
             {t("crew.title")}
           </h3>
-          <p className={"font-classic font-light md:text-xl text-base"}>
+          <p className={"font-classic font-light text-base text-justify"}>
             {t("crew.description")}
           </p>
         </div>

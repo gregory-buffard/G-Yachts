@@ -25,28 +25,28 @@ const Assets = () => {
           </h1>
           <p
             className={
-              "py-[2vw] md:py-[1vw] md:text-xl font-classic font-light text-justify"
+              "py-[2vw] md:py-[1vw] md:text-lg font-classic font-light text-justify"
             }
           >
             {t("paragraph1")}
           </p>
           <p
             className={
-              "py-[2vw] md:py-[1vw] md:text-xl font-classic font-light text-justify"
+              "py-[2vw] md:py-[1vw] md:text-lg font-classic font-light text-justify"
             }
           >
             {t("paragraph2")}
           </p>
           <p
             className={
-              "py-[2vw] md:py-[1vw] md:text-xl font-classic font-light text-justify"
+              "py-[2vw] md:py-[1vw] md:text-lg font-classic font-light text-justify"
             }
           >
             {t("paragraph3")}
           </p>
           <p
             className={
-              "py-[2vw] md:py-[1vw] md:text-xl font-classic font-light text-justify"
+              "py-[2vw] md:py-[1vw] md:text-lg font-classic font-light text-justify"
             }
           >
             {t("paragraph4")}

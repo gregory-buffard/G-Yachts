@@ -1,10 +1,25 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import monaco from "@/public/imagery/optimized/company/monaco.webp";
 
 const Accordion = () => {
   const t = useTranslations("management.experience");
+
+  useEffect(() => {
+    const detailsElements = document.querySelectorAll("details");
+    detailsElements.forEach((el) => {
+      el.addEventListener("click", () => {
+        detailsElements.forEach((detail) => {
+          if (detail !== el) {
+            detail.removeAttribute("open");
+          }
+        });
+      });
+    });
+  }, []);
 
   return (
     <section className={"w-full h-full bg-rock-100 overflow-hidden pb-[10vw]"}>
@@ -57,7 +72,7 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 text-base font-classic text-secondary-500 text-justify">
+              <div className="pb-4 text-base font-classic text-secondary-500 text-justify pr-12">
                 {t("professionals.description")}
               </div>
             </details>
@@ -95,7 +110,7 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 font-classic text-base text-secondary-500 text-justify">
+              <div className="pb-4 font-classic text-base text-secondary-500 text-justify pr-12">
                 {t("needs.description")}
               </div>
             </details>
@@ -133,7 +148,7 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 text-base font-classic text-secondary-500 text-justify">
+              <div className="pb-4 text-base font-classic text-secondary-500 text-justify pr-12">
                 {t("performance.description")}
               </div>
             </details>
