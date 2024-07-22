@@ -170,6 +170,15 @@ const Users: CollectionConfig = {
         },
       ],
     },
+    {
+      type: "checkbox",
+      name: "displayOnWebsite",
+      label: {
+        en: "Display on website",
+        fr: "Afficher sur le site web"
+      },
+      defaultValue: false,
+    }
   ],
   timestamps: true,
 }

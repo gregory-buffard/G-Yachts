@@ -109,6 +109,7 @@ type User {
   phones: [User_Phones!]
   langs: [User_langs!]
   socials: [User_Socials!]
+  displayOnWebsite: Boolean
   updatedAt: DateTime
   createdAt: DateTime
   email: EmailAddress!
@@ -2818,6 +2819,7 @@ input User_where {
   socials__platform: User_socials__platform_operator
   socials__link: User_socials__link_operator
   socials__id: User_socials__id_operator
+  displayOnWebsite: User_displayOnWebsite_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3357,6 +3359,12 @@ input User_socials__id_operator {
   exists: Boolean
 }
 
+input User_displayOnWebsite_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
 input User_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -3412,6 +3420,7 @@ input User_where_and {
   socials__platform: User_socials__platform_operator
   socials__link: User_socials__link_operator
   socials__id: User_socials__id_operator
+  displayOnWebsite: User_displayOnWebsite_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3432,6 +3441,7 @@ input User_where_or {
   socials__platform: User_socials__platform_operator
   socials__link: User_socials__link_operator
   socials__id: User_socials__id_operator
+  displayOnWebsite: User_displayOnWebsite_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3461,6 +3471,7 @@ type UsersDocAccessFields {
   phones: UsersDocAccessFields_phones
   langs: UsersDocAccessFields_langs
   socials: UsersDocAccessFields_socials
+  displayOnWebsite: UsersDocAccessFields_displayOnWebsite
   updatedAt: UsersDocAccessFields_updatedAt
   createdAt: UsersDocAccessFields_createdAt
   email: UsersDocAccessFields_email
@@ -3777,6 +3788,29 @@ type UsersDocAccessFields_socials_id_Update {
 }
 
 type UsersDocAccessFields_socials_id_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_displayOnWebsite {
+  create: UsersDocAccessFields_displayOnWebsite_Create
+  read: UsersDocAccessFields_displayOnWebsite_Read
+  update: UsersDocAccessFields_displayOnWebsite_Update
+  delete: UsersDocAccessFields_displayOnWebsite_Delete
+}
+
+type UsersDocAccessFields_displayOnWebsite_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_displayOnWebsite_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_displayOnWebsite_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_displayOnWebsite_Delete {
   permission: Boolean!
 }
 
@@ -11511,7 +11545,6 @@ type EventsDeleteDocAccess {
 type Partner {
   id: String
   name: String!
-  quote: String
   comment: String
   website: String
   logo(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Partner_Logo_where): Media!
@@ -12222,7 +12255,6 @@ type Partners {
 
 input Partner_where {
   name: Partner_name_operator
-  quote: Partner_quote_operator
   comment: Partner_comment_operator
   website: Partner_website_operator
   logo: Partner_logo_operator
@@ -12244,13 +12276,6 @@ input Partner_name_operator {
   in: [String]
   not_in: [String]
   all: [String]
-}
-
-input Partner_quote_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
 }
 
 input Partner_comment_operator {
@@ -12338,7 +12363,6 @@ input Partner_id_operator {
 
 input Partner_where_and {
   name: Partner_name_operator
-  quote: Partner_quote_operator
   comment: Partner_comment_operator
   website: Partner_website_operator
   logo: Partner_logo_operator
@@ -12354,7 +12378,6 @@ input Partner_where_and {
 
 input Partner_where_or {
   name: Partner_name_operator
-  quote: Partner_quote_operator
   comment: Partner_comment_operator
   website: Partner_website_operator
   logo: Partner_logo_operator
@@ -12382,7 +12405,6 @@ type partnersDocAccess {
 
 type PartnersDocAccessFields {
   name: PartnersDocAccessFields_name
-  quote: PartnersDocAccessFields_quote
   comment: PartnersDocAccessFields_comment
   website: PartnersDocAccessFields_website
   logo: PartnersDocAccessFields_logo
@@ -12412,29 +12434,6 @@ type PartnersDocAccessFields_name_Update {
 }
 
 type PartnersDocAccessFields_name_Delete {
-  permission: Boolean!
-}
-
-type PartnersDocAccessFields_quote {
-  create: PartnersDocAccessFields_quote_Create
-  read: PartnersDocAccessFields_quote_Read
-  update: PartnersDocAccessFields_quote_Update
-  delete: PartnersDocAccessFields_quote_Delete
-}
-
-type PartnersDocAccessFields_quote_Create {
-  permission: Boolean!
-}
-
-type PartnersDocAccessFields_quote_Read {
-  permission: Boolean!
-}
-
-type PartnersDocAccessFields_quote_Update {
-  permission: Boolean!
-}
-
-type PartnersDocAccessFields_quote_Delete {
   permission: Boolean!
 }
 
@@ -20061,6 +20060,7 @@ type UsersFields {
   phones: UsersFields_phones
   langs: UsersFields_langs
   socials: UsersFields_socials
+  displayOnWebsite: UsersFields_displayOnWebsite
   updatedAt: UsersFields_updatedAt
   createdAt: UsersFields_createdAt
   email: UsersFields_email
@@ -20377,6 +20377,29 @@ type UsersFields_socials_id_Update {
 }
 
 type UsersFields_socials_id_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_displayOnWebsite {
+  create: UsersFields_displayOnWebsite_Create
+  read: UsersFields_displayOnWebsite_Read
+  update: UsersFields_displayOnWebsite_Update
+  delete: UsersFields_displayOnWebsite_Delete
+}
+
+type UsersFields_displayOnWebsite_Create {
+  permission: Boolean!
+}
+
+type UsersFields_displayOnWebsite_Read {
+  permission: Boolean!
+}
+
+type UsersFields_displayOnWebsite_Update {
+  permission: Boolean!
+}
+
+type UsersFields_displayOnWebsite_Delete {
   permission: Boolean!
 }
 
@@ -23738,7 +23761,6 @@ type partnersAccess {
 
 type PartnersFields {
   name: PartnersFields_name
-  quote: PartnersFields_quote
   comment: PartnersFields_comment
   website: PartnersFields_website
   logo: PartnersFields_logo
@@ -23768,29 +23790,6 @@ type PartnersFields_name_Update {
 }
 
 type PartnersFields_name_Delete {
-  permission: Boolean!
-}
-
-type PartnersFields_quote {
-  create: PartnersFields_quote_Create
-  read: PartnersFields_quote_Read
-  update: PartnersFields_quote_Update
-  delete: PartnersFields_quote_Delete
-}
-
-type PartnersFields_quote_Create {
-  permission: Boolean!
-}
-
-type PartnersFields_quote_Read {
-  permission: Boolean!
-}
-
-type PartnersFields_quote_Update {
-  permission: Boolean!
-}
-
-type PartnersFields_quote_Delete {
   permission: Boolean!
 }
 
@@ -27322,6 +27321,7 @@ input mutationUserInput {
   phones: [mutationUser_PhonesInput]
   langs: [User_langs_MutationInput]
   socials: [mutationUser_SocialsInput]
+  displayOnWebsite: Boolean
   updatedAt: String
   createdAt: String
   email: String!
@@ -27781,6 +27781,7 @@ input mutationUserUpdateInput {
   phones: [mutationUserUpdate_PhonesInput]
   langs: [UserUpdate_langs_MutationInput]
   socials: [mutationUserUpdate_SocialsInput]
+  displayOnWebsite: Boolean
   updatedAt: String
   createdAt: String
   email: String
@@ -28717,7 +28718,6 @@ input mutationEventUpdate_SeoInput {
 
 input mutationPartnerInput {
   name: String!
-  quote: String
   comment: String
   website: String
   logo: String!
@@ -28734,7 +28734,6 @@ input mutationPartner_SeoInput {
 
 input mutationPartnerUpdateInput {
   name: String
-  quote: String
   comment: String
   website: String
   logo: String
