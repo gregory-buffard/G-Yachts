@@ -517,6 +517,7 @@ export interface User {
         id?: string | null;
       }[]
     | null;
+  displayOnWebsite?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
