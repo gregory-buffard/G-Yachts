@@ -1,10 +1,10 @@
-import IBroker from "./broker";
+import IBRokerino from "./brokerino";
 
 export interface IYacht {
   id: string;
   LOA: number;
   beam: number;
-  broker: IBroker;
+  broker: IBrokerino;
   builder: string;
   category: string;
   city: string;

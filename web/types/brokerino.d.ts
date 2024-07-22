@@ -1,11 +1,16 @@
 interface IBrokerino {
   _id?: string;
-  kindeID: string;
-  avatar: string;
+  picture?: {
+    url: string;
+  };
   name: string;
   position: string;
   email: string;
-  phone: { prefix: string; number: string }[];
+  phones: { prefix: string; number: string }[];
+  socials: {
+    platform: string;
+    link: string;
+  }[];
   langs: string[];
 }
 

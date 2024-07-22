@@ -243,7 +243,7 @@ const Details = () => {
         >
           <Brokerino brokerino={yacht.broker} />
           <a
-            href={`mailto:${yacht.broker.email}`}
+            href={`mailto:${yacht.broker.email}?subject=${encodeURIComponent(yacht.name)}`}
             className={
               "py-[1vh] w-full text-white bg-black hover:bg-teal active:bg-teal transition-colors duration-200 ease-in-out uppercase text-center"
             }

@@ -1,13 +1,18 @@
 "use client";
 
-import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker,
+} from "react-simple-maps";
 import { type IDestination } from "@/types/destination";
 
 const Map = ({ destinations }: { destinations: IDestination[] }) => {
   const markers = destinations.filter((destination) => destination.coordinates);
 
   return (
-    <ComposableMap className="w-full max-h-[800]">
+    <ComposableMap className={"w-full max-h-[800] h-[32vh]"}>
       <Geographies geography={"/map/topology.json"}>
         {({ geographies }: { geographies: any }) =>
           geographies.map((geo: any) => (

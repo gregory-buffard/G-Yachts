@@ -19,7 +19,19 @@ export const fetchArticle = async (id: string, locale: string) => {
             id
           }
           image {
-            url
+            alt
+            sizes {
+              thumbnail {
+                url
+                width
+                height
+              }
+              fhd {
+                url
+                width
+                height
+              }
+            }
           }
         }
       }

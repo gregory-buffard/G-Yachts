@@ -10,7 +10,7 @@ const ArticleDetail = () => {
 
   return (
     <div className="flex flex-col md:flex-row w-full my-20">
-      <div className="w-full md:w-1/3 pr-32 mr-32 md:border-r-2 border-gray-700 flex flex-col items-start">
+      <div className="w-full md:w-1/5 pr-32 mr-32 md:border-r-2 border-gray-700 flex flex-col items-start">
         <h4 className="text-xl">{t("category")}</h4>
         <h4 className="font-slick font-bold uppercase text-xl mt-2">
           {article.category.title}

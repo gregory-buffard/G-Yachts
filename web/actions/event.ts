@@ -16,10 +16,14 @@ export const fetchEvents = async (locale: "en" | "fr"): Promise<IEvent[]> => {
             fromDate
             toDate
             image {
-              url
-              width
-              height
               alt
+              sizes {
+                thumbnail {
+                  url
+                  width
+                  height
+                }
+              }
             }
           }
         }
