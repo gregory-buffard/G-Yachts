@@ -43,7 +43,7 @@ export const fetchSales = async (): Promise<ISale[]> => {
   const { data } = await client.query({
     query: gql`
       query Yachts {
-        Yachts (limit: 0){
+        Yachts(limit: 0) {
           docs {
             id
             name
@@ -130,6 +130,10 @@ export const fetchSale = async (id: string): Promise<SYacht> => {
               prefix
               number
             }
+            socials {
+              platform
+              link
+            }
           }
           photos {
             featured {
@@ -207,7 +211,7 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
   const { data } = await client.query({
     query: gql`
       query Charters {
-        Charters (limit: 0){
+        Charters(limit: 0) {
           docs {
             id
             name

@@ -12,11 +12,14 @@ const Hero = () => {
       }
       style={{
         backgroundImage: `url(/imagery/original/IMG_8260.JPG)`,
-      }}>
+      }}
+    >
       <h4>{t("heroSubtitle")}</h4>
-      <h1>
+      <h1 className={"normal-case"}>
         {t.rich("heroTitle", {
-          classic: (chunk) => <span className={"classic"}>{chunk}</span>,
+          classic: (chunk) => (
+            <span className={"font-classic uppercase"}>{chunk}</span>
+          ),
         })}
       </h1>
     </section>

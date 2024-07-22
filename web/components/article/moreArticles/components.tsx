@@ -16,7 +16,7 @@ const Card = ({ card }: { card: IArticle }) => {
           "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
         }
         style={{
-          backgroundImage: `url(${card.image.sizes.thumbnail.url})`,
+          backgroundImage: `url(${encodeURI(card.image.sizes.thumbnail.url)})`,
         }}
       ></div>
       <span className="w-full text-black uppercase text-xl">

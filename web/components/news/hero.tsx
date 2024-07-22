@@ -42,7 +42,7 @@ const Hero = async ({
           "w-full px-[4vw] md:px-[8vw] h-2/3 bg-cover bg-center flex flex-col justify-end items-start text-white uppercase py-[2vh] md:py-[6vh]"
         }
         style={{
-          backgroundImage: `url(${article.image.sizes.fhd.url})`,
+          backgroundImage: `url(${encodeURI(article.image.sizes.fhd.url)})`,
         }}
       >
         <h4>{article.category.title}</h4>
@@ -52,7 +52,7 @@ const Hero = async ({
             params: { id: article.id },
           }}
         >
-          <h1>{article.category.title}</h1>
+          <h1 className={"normal-case"}>{article.title}</h1>
         </Link>
       </section>
     </div>

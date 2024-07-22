@@ -68,7 +68,7 @@ const Articles = ({
   return (
     <div className="my-28 flex flex-col-reverse lg:flex-row">
       <div className="flex flex-col w-full lg:w-3/4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[2vh]">
           {filteredArticles.length === 0 && (
             <h2 className="mt-16 lg:mt-0">{t("noArticles")}</h2>
           )}
@@ -153,22 +153,20 @@ const ArticleCard = ({
         pathname: "/news/[id]",
         params: { id: article.id },
       }}
-      className="flex justify-center items-start flex-col gap-4"
+      className="flex justify-start items-start flex-col gap-[2vh]"
     >
       <Image
         src={article.image.sizes.thumbnail.url}
         width={article.image.sizes.thumbnail.width}
         height={article.image.sizes.thumbnail.height}
         alt={article.image.alt}
-        className={"w-full h-96 object-cover"}
+        className={"w-full h-[56vh] object-cover object-center"}
       />
-      <h4 className="text-xl">{article.category.title}</h4>
-      <h3 className="font-slick font-light uppercase text-2xl">
-        {article.title}
-      </h3>
-      <span className="text-xl text-gray-400 uppercase underline">
-        {t("readArticle")}
-      </span>
+      <div className={"flex flex-col justify-start items-start gap-[1vh]"}>
+        <p className={"uppercase"}>{article.category.title}</p>
+        <h3 className="font-slick font-light text-2xl">{article.title}</h3>
+        <p className="text-gray-400 uppercase underline">{t("readArticle")}</p>
+      </div>
     </Link>
   );
 };
