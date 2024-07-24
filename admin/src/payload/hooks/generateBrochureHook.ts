@@ -40,9 +40,15 @@ const generateAndDontBlock = async <T extends Yacht | Charter | NewConstruction>
     `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/brochure/${doc.id}?type=${collection}`,
   )
   if (resp.status !== 200) {
-    console.log(resp.status)
-    console.log(resp.body)
-    throw new Error('Failed to generate brochure')
+    console.error(
+      `Failed to generate brochure for ${doc.id}, status code: ${
+        resp.status
+      }, ${await resp.text()}`,
+    )
+    await payload.db.collections[collection].findByIdAndUpdate(doc.id, {
+      brochure: null,
+    })
+    return
   }
   const pdf = await resp.blob()
 
@@ -71,7 +77,7 @@ const generateAndDontBlock = async <T extends Yacht | Charter | NewConstruction>
 
 const deleteOldBrochure = async <T extends Yacht | Charter | NewConstruction>(
   id: string,
-  collection: 'yachts' | 'charters' | 'new-constructions'
+  collection: 'yachts' | 'charters' | 'new-constructions',
 ) => {
   const doc: T = (await payload.findByID({
     collection: collection,

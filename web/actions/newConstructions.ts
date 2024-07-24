@@ -5,6 +5,7 @@ import { gql } from "@apollo/client";
 import { INewConstruction } from "@/types/newConstruction";
 import { IShipyard } from "@/types/shipyard";
 import { randomBytes } from "crypto";
+import { IFeatured } from "@/types/sale";
 
 export const fetchFeaturedConstructions = async (): Promise<INewConstruction[]> => {
     const client = getClient();
@@ -132,6 +133,10 @@ export const fetchNewConstruction = async (id: string): Promise<INewConstruction
                             prefix
                             number
                         }
+                        socials {
+                            platform
+                            link
+                        }
                     }
                     photos {
                         featured {
@@ -212,4 +217,97 @@ export const fetchShipyards = async (): Promise<IShipyard[]> => {
         `,
     });
     return data.Shipyards.docs;
+};
+
+export const fetchSimilarNewConstructions = async (length: number): Promise<IFeatured[]> => {
+    const client = getClient();
+    const { data: highestClicks } = await client.query({
+        query: gql`
+            query NewConstructions {
+                NewConstructions(sort: "clicks", limit: 4) {
+                    docs {
+                        id
+                        name
+                        price
+                        builder
+                        length
+                        sleeps
+                        yearBuilt
+                        clicks
+                        photos {
+                            featured {
+                                sizes {
+                                    fhd {
+                                        url
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        `,
+        variables: { length },
+    });
+    const { data: biggerLength } = await client.query({
+        query: gql`
+            query NewConstructions($length: Float!) {
+                NewConstructions(sort: "length", limit: 2, where: { length: { greater_than: $length } }) {
+                    docs {
+                        id
+                        name
+                        price
+                        builder
+                        length
+                        sleeps
+                        yearBuilt
+                        clicks
+                        photos {
+                            featured {
+                                sizes {
+                                    fhd {
+                                        url
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        `,
+        variables: { length },
+    });
+    const { data: smallerLength } = await client.query({
+        query: gql`
+            query NewConstructions($length: Float!) {
+                NewConstructions(sort: "length", limit: 2, where: { length: { less_than: $length } }) {
+                    docs {
+                        id
+                        name
+                        price
+                        builder
+                        length
+                        sleeps
+                        yearBuilt
+                        clicks
+                        photos {
+                            featured {
+                                sizes {
+                                    fhd {
+                                        url
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        `,
+        variables: { length },
+    });
+    return [
+        ...highestClicks.NewConstructions.docs,
+        ...biggerLength.NewConstructions.docs,
+        ...smallerLength.NewConstructions.docs,
+    ];
 };
