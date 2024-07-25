@@ -518,5 +518,10 @@
             "title": "La prochaine génération de conceptions de yachts innovantes",
             "subtitle": "NOUVELLE CONSTRUCTION"
         }
+    },
+    "similar": {
+        "yachts": "<classic>Yachts</classic> similaires",
+        "charters": "<classic>Charters</classic> similaires",
+        "new-constructions": "<classic>Nouvelles constructions</classic> similaires"
     }
 }

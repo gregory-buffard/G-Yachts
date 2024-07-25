@@ -24,7 +24,7 @@ const Shipyards = ({ data }: { data: IShipyard[] }) => {
                         className={clsx(
                             "flex flex-col bg-center bg-cover h-80 text-white hover:shadow-xl transition-all duration-500 overflow-hidden",
                             {
-                                "w-1/4": current === null,
+                                "w-1/2 lg:w-1/4": current === null,
                                 "w-full h-auto": current !== null && current === shipyard.id,
                                 "w-0 h-0": current !== null && current !== shipyard.id,
                             }
