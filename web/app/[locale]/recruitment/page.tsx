@@ -1,6 +1,7 @@
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
 import Hero from "@/components/recruitment/hero";
+import Join from "@/components/recruitment/join";
 
 const View = dynamic(() => import("@/components/view"));
 const Footer = dynamic(() => import("@/components/footer"));
@@ -12,6 +13,7 @@ const Recruitment = () => {
       <Bar dynamicColor={100} />
       <View />
       <Hero />
+      <Join />
       <Newsletter />
       <Footer />
     </main>

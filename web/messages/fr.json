@@ -324,6 +324,10 @@
         "hero": {
             "title": "Découvrez les opportunités offertes par <classic>G-Yachts</classic>.",
             "subtitle": "RECRUTEMENT"
+        },
+        "section": {
+            "title": "Join our <classic>Team</classic>",
+            "subtitle": "Shall you be interested by any of our vacant positions, please feel free to contact us by sending your resume and your cover letter to <classic>recruitment@g-yachts.com</classic>"
         }
     },
     "management": {
