@@ -1,5 +1,4 @@
 import { CollectionConfig } from 'payload/types'
-import { users } from '../../access/users'
 import Claim from './components/claim'
 import { assignedOrUnclaimed } from './hooks/read'
 import Status from './components/status'
@@ -7,6 +6,7 @@ import Reply from './components/reply'
 import Label from './components/label'
 import { Charter, Message, Yacht } from '../../payload-types'
 import { validateCharertDates } from './hooks/validateCharterDates'
+import { anyone } from '../../access/anyone'
 
 export const Messages: CollectionConfig = {
   slug: 'messages',
@@ -28,7 +28,7 @@ export const Messages: CollectionConfig = {
   access: {
     // TODO: Update access control
     read: assignedOrUnclaimed,
-    create: users,
+    create: anyone,
     update: assignedOrUnclaimed,
     delete: assignedOrUnclaimed,
   },
