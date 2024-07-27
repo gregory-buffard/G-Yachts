@@ -288,10 +288,13 @@ const Contact = () => {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             key={"form"}
             action={async (formData) => {
-              await contact(formData, {
-                prefix: code,
-                locale: params.locale as string,
-                page: detectPage(),
+              await contact({
+                formData: formData,
+                params: {
+                  prefix: code,
+                  locale: params.locale as string,
+                  page: detectPage(),
+                },
               }).then(() => setSent(true));
             }}
             className={
