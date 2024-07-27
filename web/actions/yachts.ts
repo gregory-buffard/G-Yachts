@@ -143,7 +143,14 @@ export const fetchSale = async (
             name
             email
             picture {
-              url
+              alt
+              sizes {
+                thumbnail {
+                  url
+                  width
+                  height
+                }
+              }
             }
             position
             phones {
@@ -193,37 +200,37 @@ export const fetchSale = async (
 };
 
 export const fetchFeaturedCharters = async (): Promise<ICFeatured[]> => {
-    const client = getClient();
-    const { data } = await client.query({
-        query: gql`
-            query Charters {
-                Charters(where: { featured: { equals: true } }, limit: 0) {
-                    docs {
-                        id
-                        name
-                        price {
-                            low
-                            high
-                        }
-                        builder
-                        length
-                        sleeps
-                        yearBuilt
-                        photos {
-                            featured {
-                                sizes {
-                                    fhd {
-                                        url
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+  const client = getClient();
+  const { data } = await client.query({
+    query: gql`
+      query Charters {
+        Charters(where: { featured: { equals: true } }, limit: 0) {
+          docs {
+            id
+            name
+            price {
+              low
+              high
             }
-        `,
-    });
-    return data.Charters.docs;
+            builder
+            length
+            sleeps
+            yearBuilt
+            photos {
+              featured {
+                sizes {
+                  fhd {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+  });
+  return data.Charters.docs;
 };
 
 export const fetchCharters = async (): Promise<ICharter[]> => {
@@ -312,7 +319,14 @@ export const fetchCharter = async (id: string): Promise<ICharter> => {
             name
             email
             picture {
-              url
+              alt
+              sizes {
+                thumbnail {
+                  url
+                  width
+                  height
+                }
+              }
             }
             position
             phones {
@@ -488,197 +502,217 @@ export const getRate = async (currency: string) => {
   }
 };
 
-export const fetchSimilarYachts = async (length: number): Promise<SFeatured[]> => {
-    const client = getClient();
-    const { data: highestClicks } = await client.query({
-        query: gql`
-            query Yachts {
-                Yachts(sort: "clicks", limit: 4) {
-                    docs {
-                        id
-                        name
-                        price
-                        builder
-                        length
-                        sleeps
-                        yearBuilt
-                        clicks
-                        photos {
-                            featured {
-                                sizes {
-                                    fhd {
-                                        url
-                                    }
-                                }
-                            }
-                        }
-                    }
+export const fetchSimilarYachts = async (
+  length: number,
+): Promise<SFeatured[]> => {
+  const client = getClient();
+  const { data: highestClicks } = await client.query({
+    query: gql`
+      query Yachts {
+        Yachts(sort: "clicks", limit: 4) {
+          docs {
+            id
+            name
+            price
+            builder
+            length
+            sleeps
+            yearBuilt
+            clicks
+            photos {
+              featured {
+                sizes {
+                  fhd {
+                    url
+                  }
                 }
+              }
             }
-        `,
-        variables: { length },
-    });
-    const { data: biggerLength } = await client.query({
-        query: gql`
-            query Yachts($length: Float!) {
-                Yachts(sort: "length", limit: 2, where: { length: { greater_than: $length } }) {
-                    docs {
-                        id
-                        name
-                        price
-                        builder
-                        length
-                        sleeps
-                        yearBuilt
-                        clicks
-                        photos {
-                            featured {
-                                sizes {
-                                    fhd {
-                                        url
-                                    }
-                                }
-                            }
-                        }
-                    }
+          }
+        }
+      }
+    `,
+    variables: { length },
+  });
+  const { data: biggerLength } = await client.query({
+    query: gql`
+      query Yachts($length: Float!) {
+        Yachts(
+          sort: "length"
+          limit: 2
+          where: { length: { greater_than: $length } }
+        ) {
+          docs {
+            id
+            name
+            price
+            builder
+            length
+            sleeps
+            yearBuilt
+            clicks
+            photos {
+              featured {
+                sizes {
+                  fhd {
+                    url
+                  }
                 }
+              }
             }
-        `,
-        variables: { length },
-    });
-    const { data: smallerLength } = await client.query({
-        query: gql`
-            query Yachts($length: Float!) {
-                Yachts(sort: "length", limit: 2, where: { length: { less_than: $length } }) {
-                    docs {
-                        id
-                        name
-                        price
-                        builder
-                        length
-                        sleeps
-                        yearBuilt
-                        clicks
-                        photos {
-                            featured {
-                                sizes {
-                                    fhd {
-                                        url
-                                    }
-                                }
-                            }
-                        }
-                    }
+          }
+        }
+      }
+    `,
+    variables: { length },
+  });
+  const { data: smallerLength } = await client.query({
+    query: gql`
+      query Yachts($length: Float!) {
+        Yachts(
+          sort: "length"
+          limit: 2
+          where: { length: { less_than: $length } }
+        ) {
+          docs {
+            id
+            name
+            price
+            builder
+            length
+            sleeps
+            yearBuilt
+            clicks
+            photos {
+              featured {
+                sizes {
+                  fhd {
+                    url
+                  }
                 }
+              }
             }
-        `,
-        variables: { length },
-    });
-    return [
-        ...highestClicks.Yachts.docs,
-        ...biggerLength.Yachts.docs,
-        ...smallerLength.Yachts.docs,
-    ];
+          }
+        }
+      }
+    `,
+    variables: { length },
+  });
+  return [
+    ...highestClicks.Yachts.docs,
+    ...biggerLength.Yachts.docs,
+    ...smallerLength.Yachts.docs,
+  ];
 };
 
-export const fetchSimilarCharters = async (length: number): Promise<SFeatured[]> => {
-    const client = getClient();
-    const { data: highestClicks } = await client.query({
-        query: gql`
-            query Charters {
-                Charters(sort: "clicks", limit: 4) {
-                    docs {
-                        id
-                        name
-                        price {
-                            low
-                            high
-                        }
-                        builder
-                        length
-                        sleeps
-                        yearBuilt
-                        clicks
-                        photos {
-                            featured {
-                                sizes {
-                                    fhd {
-                                        url
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+export const fetchSimilarCharters = async (
+  length: number,
+): Promise<SFeatured[]> => {
+  const client = getClient();
+  const { data: highestClicks } = await client.query({
+    query: gql`
+      query Charters {
+        Charters(sort: "clicks", limit: 4) {
+          docs {
+            id
+            name
+            price {
+              low
+              high
             }
-        `,
-        variables: { length },
-    });
-    const { data: biggerLength } = await client.query({
-        query: gql`
-            query Charters($length: Float!) {
-                Charters(sort: "length", limit: 2, where: { length: { greater_than: $length } }) {
-                    docs {
-                        id
-                        name
-                        price {
-                            low
-                            high
-                        }
-                        builder
-                        length
-                        sleeps
-                        yearBuilt
-                        clicks
-                        photos {
-                            featured {
-                                sizes {
-                                    fhd {
-                                        url
-                                    }
-                                }
-                            }
-                        }
-                    }
+            builder
+            length
+            sleeps
+            yearBuilt
+            clicks
+            photos {
+              featured {
+                sizes {
+                  fhd {
+                    url
+                  }
                 }
+              }
             }
-        `,
-        variables: { length },
-    });
-    const { data: smallerLength } = await client.query({
-        query: gql`
-            query Charters($length: Float!) {
-                Charters(sort: "length", limit: 2, where: { length: { less_than: $length } }) {
-                    docs {
-                        id
-                        name
-                        price {
-                            low
-                            high
-                        }
-                        builder
-                        length
-                        sleeps
-                        yearBuilt
-                        clicks
-                        photos {
-                            featured {
-                                sizes {
-                                    fhd {
-                                        url
-                                    }
-                                }
-                            }
-                        }
-                    }
+          }
+        }
+      }
+    `,
+    variables: { length },
+  });
+  const { data: biggerLength } = await client.query({
+    query: gql`
+      query Charters($length: Float!) {
+        Charters(
+          sort: "length"
+          limit: 2
+          where: { length: { greater_than: $length } }
+        ) {
+          docs {
+            id
+            name
+            price {
+              low
+              high
+            }
+            builder
+            length
+            sleeps
+            yearBuilt
+            clicks
+            photos {
+              featured {
+                sizes {
+                  fhd {
+                    url
+                  }
                 }
+              }
             }
-        `,
-        variables: { length },
-    });
-    return [
-        ...highestClicks.Charters.docs,
-        ...biggerLength.Charters.docs,
-        ...smallerLength.Charters.docs,
-    ];
+          }
+        }
+      }
+    `,
+    variables: { length },
+  });
+  const { data: smallerLength } = await client.query({
+    query: gql`
+      query Charters($length: Float!) {
+        Charters(
+          sort: "length"
+          limit: 2
+          where: { length: { less_than: $length } }
+        ) {
+          docs {
+            id
+            name
+            price {
+              low
+              high
+            }
+            builder
+            length
+            sleeps
+            yearBuilt
+            clicks
+            photos {
+              featured {
+                sizes {
+                  fhd {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    variables: { length },
+  });
+  return [
+    ...highestClicks.Charters.docs,
+    ...biggerLength.Charters.docs,
+    ...smallerLength.Charters.docs,
+  ];
 };

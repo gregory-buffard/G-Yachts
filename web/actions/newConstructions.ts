@@ -130,7 +130,14 @@ export const fetchNewConstruction = async (
             name
             email
             picture {
-              url
+              alt
+              sizes {
+                thumbnail {
+                  url
+                  width
+                  height
+                }
+              }
             }
             position
             phones {
@@ -227,7 +234,6 @@ export const fetchShipyards = async (): Promise<IShipyard[]> => {
       }
     `,
   });
-  console.log(data.Shipyards.docs);
   return data.Shipyards.docs;
 };
 
