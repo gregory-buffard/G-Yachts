@@ -15,7 +15,7 @@ export const { getClient } = registerApolloClient(() => {
         fetchPolicy: "network-only",
       },
     },
-    ssrMode: false,
+    ssrMode: true,
     ssrForceFetchDelay: 1,
     cache: new InMemoryCache({
       resultCaching: false,
