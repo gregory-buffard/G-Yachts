@@ -90,23 +90,23 @@ const Listing = ({ data }: { data: IEvent[] }) => {
         "w-full px-[8vw] py-[8vh] flex flex-col justify-start items-center gap-[4vh]"
       }
     >
-      <h1 className={"w-full"}>
+      <h2 className={"w-full font-slick font-light"}>
         {t.rich("upcoming", {
           classic: (chunks) => (
             <span className={"font-classic uppercase"}>{chunks}</span>
           ),
         })}
-      </h1>
+      </h2>
 
       <Grid data={upcoming} />
 
-      <h1 className={"w-full"}>
+      <h2 className={"w-full font-slick font-light"}>
         {t.rich("past", {
           classic: (chunks) => (
             <span className={"font-classic uppercase"}>{chunks}</span>
           ),
         })}
-      </h1>
+      </h2>
 
       <Grid data={past.slice(0, maxListing)} />
 
