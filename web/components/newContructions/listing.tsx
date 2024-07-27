@@ -8,6 +8,7 @@ import { Link } from "@/navigation";
 import { useViewContext } from "@/context/view";
 import Bookmark from "@/public/imagery/optimized/sales/bookmark";
 import { ListingModifier, Range, Select, Radio } from "@/components/filters";
+import { useSearchParams } from "next/navigation";
 
 interface IFilters {
   category: "sail" | "motor" | undefined;
@@ -205,7 +206,8 @@ const Listing = ({ data }: { data: INewConstruction[] }) => {
   const t = useTranslations("sales.listing"),
     { bookmarks } = useViewContext(),
     { currency, units, changeCurrency } = useViewContext(),
-    [maxListing, setMaxListing] = useState<number>(12);
+    [maxListing, setMaxListing] = useState<number>(12),
+    searchParams = useSearchParams();
   const [view, setView] = useState<"global" | "bookmarks">("global");
 
   const [filter, setFilter] = useState<IFilters>({
@@ -215,7 +217,7 @@ const Listing = ({ data }: { data: INewConstruction[] }) => {
       min: Math.min(...data.map((yacht) => yacht.length)),
       max: Math.max(...data.map((yacht) => yacht.length)),
     },
-    builder: undefined,
+    builder: searchParams.get("builder") ?? undefined,
     price: {
       min: Math.min(...data.map((yacht) => yacht.price)),
       max: Math.max(...data.map((yacht) => yacht.price)),
@@ -226,7 +228,7 @@ const Listing = ({ data }: { data: INewConstruction[] }) => {
   const [filteredData, setFilteredData] = useState<INewConstruction[]>(data);
 
   useEffect(() => {
-    const filtered = data.filter((yacht) => {
+    const filtered = data.filter((yacht) => { 
       if (filter.category && yacht.category !== filter.category) return false;
       if (filter.year && yacht.yearBuilt !== filter.year) return false;
       if (filter.length.min !== undefined && filter.length.max !== undefined) {

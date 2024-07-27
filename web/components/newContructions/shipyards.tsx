@@ -5,6 +5,7 @@ import { clsx } from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/navigation";
 
 const Shipyards = ({ data }: { data: IShipyard[] }) => {
     const [current, setCurrent] = useState<string | null>(null);
@@ -51,13 +52,26 @@ const Shipyards = ({ data }: { data: IShipyard[] }) => {
                                     {shipyard.quote}
                                 </span>
                                 {shipyard.website && (
-                                    <a
-                                        className="glass-button glass-button-light mt-10"
-                                        href={shipyard.website}
-                                        target="_blank"
-                                        rel="noreferrer">
-                                        {t("website")}
-                                    </a>
+                                    <div className="flex flex-row items-center gap-2">
+                                        <a
+                                            className="glass-button glass-button-light mt-10"
+                                            href={shipyard.website}
+                                            target="_blank"
+                                            rel="noreferrer">
+                                            {t("website")}
+                                        </a>
+                                        <Link
+                                            href={{
+                                                pathname: `/new-constructions`,
+                                                query: {
+                                                    builder: shipyard.name
+                                                }
+                                            }}
+                                            className="glass-button glass-button-light mt-10"
+                                            rel="noreferrer">
+                                            {t("allProjects")}
+                                        </Link>
+                                    </div>
                                 )}
                             </div>
                         ) : (
