@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslations } from "next-intl";
+import Brokerino from "@/components/company/brokerino";
 
 const Team = () => {
   const t = useTranslations("company");
@@ -14,6 +15,8 @@ const Team = () => {
           ),
         })}
       </h1>
+        <div className={"flex flex-col items-center justify-center"}>
+            <Brokerino /></div>
     </section>
   );
 };
