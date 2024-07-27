@@ -38,11 +38,34 @@ const Card = ({ data }: { data: INewConstruction }) => {
     { currency, units, bookmarks, addBookmark, removeBookmark, rates } =
       useViewContext(),
     [price, setPrice] = useState<string | undefined>(undefined),
+    [interval, setPeriod] = useState<NodeJS.Timeout | null>(null),
     [translate, setTranslate] = useState<number>(0);
 
   useEffect(() => {
     setPrice(formatCurrency(data.price * rates[currency], currency));
   }, [data, currency, rates]);
+
+  useEffect(() => {
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [interval]);
+
+  const handleMouseEnter = () => {
+      const id = setInterval(() => {
+        setTranslate((prev) => {
+          const next = prev - 100;
+          return next <= -300 ? 0 : next;
+        });
+      }, 2000);
+      setPeriod(id);
+    },
+    handleMouseLeave = () => {
+      if (interval) {
+        clearInterval(interval);
+        setPeriod(null);
+      }
+    };
 
   return (
     <Link
@@ -50,6 +73,8 @@ const Card = ({ data }: { data: INewConstruction }) => {
       className={
         "w-full md:w-[44vw] lg:w-[30vw] h-max flex flex-col justify-start items-start overflow-x-clip"
       }
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className={"w-full h-max lg:overflow-x-hidden overflow-x-scroll"}>
         <div

@@ -7,12 +7,18 @@ import { ICFeatured, ICharter } from "@/types/charter";
 import { IDestination } from "@/types/destination";
 import axios from "axios";
 
-export const fetchFeaturedSales = async (): Promise<SFeatured[]> => {
+export const fetchFeaturedSales = async (
+  locale: "en" | "fr",
+): Promise<SFeatured[]> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Yachts {
-        Yachts(where: { featured: { equals: true } }, limit: 0) {
+      query Yachts($locale: LocaleInputType!) {
+        Yachts(
+          locale: $locale
+          where: { featured: { equals: true } }
+          limit: 0
+        ) {
           docs {
             id
             name
@@ -21,10 +27,14 @@ export const fetchFeaturedSales = async (): Promise<SFeatured[]> => {
             length
             sleeps
             yearBuilt
+            etiquette
             photos {
               featured {
                 sizes {
                   fhd {
+                    url
+                  }
+                  thumbnail {
                     url
                   }
                 }
@@ -34,16 +44,19 @@ export const fetchFeaturedSales = async (): Promise<SFeatured[]> => {
         }
       }
     `,
+    variables: {
+      locale,
+    },
   });
   return data.Yachts.docs;
 };
 
-export const fetchSales = async (): Promise<ISale[]> => {
+export const fetchSales = async (locale: "en" | "fr"): Promise<ISale[]> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Yachts {
-        Yachts(limit: 0) {
+      query Yachts($locale: LocaleInputType!) {
+        Yachts(locale: $locale, limit: 0) {
           docs {
             id
             name
@@ -54,6 +67,7 @@ export const fetchSales = async (): Promise<ISale[]> => {
             sleeps
             yearBuilt
             featured
+            etiquette
             photos {
               featured {
                 alt
@@ -82,16 +96,22 @@ export const fetchSales = async (): Promise<ISale[]> => {
         }
       }
     `,
+    variables: {
+      locale,
+    },
   });
   return data.Yachts.docs;
 };
 
-export const fetchSale = async (id: string): Promise<SYacht> => {
+export const fetchSale = async (
+  id: string,
+  locale: "en" | "fr",
+): Promise<SYacht> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Yacht($id: String!) {
-        Yacht(id: $id) {
+      query Yacht($locale: LocaleInputType!, $id: String!) {
+        Yacht(locale: $locale, id: $id) {
           id
           name
           model
@@ -167,7 +187,7 @@ export const fetchSale = async (id: string): Promise<SYacht> => {
         }
       }
     `,
-    variables: { id },
+    variables: { id, locale },
   });
   return data.Yacht;
 };
@@ -223,6 +243,7 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
             length
             sleeps
             yearBuilt
+            etiquette
             photos {
               featured {
                 sizes {
@@ -297,6 +318,10 @@ export const fetchCharter = async (id: string): Promise<ICharter> => {
             phones {
               prefix
               number
+            }
+            socials {
+              platform
+              link
             }
             langs
           }

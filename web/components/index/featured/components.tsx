@@ -15,36 +15,45 @@ const Card = ({ card }: { card: IFeatured }) => {
   return (
     <Link
       href={{ pathname: "/sales/[id]", params: { id: card.id } }}
-      className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw]`}
+      className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw] gap-[1vh]`}
     >
       <div
         className={
-          "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
+          "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start bg-cover bg-center p-[2vh]"
         }
         style={{
-          backgroundImage: `url(${card.photos.featured.sizes.fhd.url})`,
+          backgroundImage: `url(${card.photos.featured.sizes.thumbnail.url})`,
         }}
       >
-        <p className={"bg-white px-[1.5vw] py-[0.5vh] rounded-sm m-[1vh]"}>
-          {t("exclusive")}
-        </p>
-      </div>
-      <div
-        className={`w-full flex justify-between ${price ? "items-baseline" : "items-center"} text-black uppercase`}
-      >
-        <p>{card.name}</p>
-        {price ? (
-          <p>{price}</p>
-        ) : (
-          <div
-            className={"bg-rock-200 lg:w-[10vw] h-[1rem] rounded-full"}
-          ></div>
+        {card.etiquette && (
+          <p
+            className={
+              "bg-white rounded-lg uppercase py-[0.5rem] px-[1rem] drop-shadow-lg absolute"
+            }
+          >
+            {card.etiquette}
+          </p>
         )}
       </div>
-      <p className={"uppercase text-rock-400"}>
-        {card.builder} | {convertUnit(card.length, units.length) + units.length}{" "}
-        | {card.yearBuilt} | {card.sleeps} {t("sleeps")}
-      </p>
+      <div className={"w-full flex flex-col justify-start items-start"}>
+        <div
+          className={`w-full flex justify-between ${price ? "items-baseline" : "items-center"} text-black uppercase`}
+        >
+          <p>{card.name}</p>
+          {price ? (
+            <p>{price}</p>
+          ) : (
+            <div
+              className={"bg-rock-200 lg:w-[10vw] h-[1rem] rounded-full"}
+            ></div>
+          )}
+        </div>
+        <p className={"uppercase text-rock-400"}>
+          {card.builder} |{" "}
+          {convertUnit(card.length, units.length) + units.length} |{" "}
+          {card.yearBuilt} | {card.sleeps} {t("sleeps")}
+        </p>
+      </div>
     </Link>
   );
 };
