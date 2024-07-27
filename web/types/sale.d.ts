@@ -30,6 +30,7 @@ export interface IYacht {
   featured: boolean;
   keyFeatures: string[];
   description: string;
+  etiquette?: string;
   photos: {
     featured: {
       alt: string;
@@ -79,6 +80,7 @@ export interface ISale
     | "yearBuilt"
     | "featured"
     | "photos"
+    | "etiquette"
   > {}
 
 export interface IFeatured
@@ -92,4 +94,5 @@ export interface IFeatured
     | "yearBuilt"
     | "sleeps"
     | "photos"
+    | "etiquette"
   > {}

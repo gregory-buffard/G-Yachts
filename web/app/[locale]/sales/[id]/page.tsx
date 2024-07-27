@@ -8,9 +8,10 @@ import Similar from "@/components/similar/section";
 const View = dynamic(() => import("@/components/view"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
+import { getLocale } from "next-intl/server";
 
 const Sale = async ({ params }: { params: { id: string } }) => {
-  const yacht = await fetchSale(params.id);
+  const yacht = await fetchSale(params.id, (await getLocale()) as "en" | "fr");
   return (
     <YachtProvider yacht={yacht}>
       <main className="w-full flex flex-col justify-start items-center">
