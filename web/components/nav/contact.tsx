@@ -364,38 +364,6 @@ const Contact = () => {
                 }
               />
             </div>
-            <div className={"w-full flex flex-col justify-start items-start"}>
-              <label
-                htmlFor={"inquiry"}
-                className={
-                  "text-rock-300 text-xs uppercase font-classic font-normal mb-[1vh]"
-                }
-              >
-                {t("form.inquiry.title")}
-              </label>
-              <div
-                id={"inquiry"}
-                className={
-                  "flex justify-start items-baseline flex-wrap lg:gap-[2vw] gap-[4vw]"
-                }
-              >
-                <Inquiry
-                  props={{ label: t("form.inquiry.buying"), value: "buying" }}
-                />
-                <Inquiry
-                  props={{ label: t("form.inquiry.selling"), value: "selling" }}
-                />
-                <Inquiry
-                  props={{
-                    label: t("form.inquiry.chartering"),
-                    value: "chartering",
-                  }}
-                />
-                <Inquiry
-                  props={{ label: t("form.inquiry.other"), value: "other" }}
-                />
-              </div>
-            </div>
             <div
               className={
                 "w-full flex flex-col justify-start items-start gap-[1vh] text-black font-classic font-normal"

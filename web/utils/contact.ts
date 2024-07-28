@@ -41,3 +41,10 @@ export const usePath = (): string => {
       return "Unknown Page";
   }
 };
+
+export ççççconst checkField = (field: FormDataEntryValue | null): string => {
+  if (typeof field === "string") {
+    return field;
+  }
+  return "Unknown";
+};

@@ -2,6 +2,7 @@
 
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
+import { checkField } from "@/utils/contact";
 
 export const legacy = async (
   formData: FormData,
@@ -54,6 +55,10 @@ export const legacy = async (
   await Customer.create(rawFormData);*/
 };
 
+export const newsletter = async (formData: FormData) => {
+  // TODO: Need to connect MailChimp!
+};
+
 export const contact = async ({
   formData,
   params,
@@ -72,23 +77,42 @@ export const contact = async ({
         message
         page
         newsletter
+        status
       }
     }
   `;
 
-  const variables = {
+  const variables: {
     data: {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      message: formData.get("message"),
+      name: string;
+      email: string;
+      message: string;
+      page: string;
+      status: "pending";
+      tel?: string;
+    };
+  } = {
+    data: {
+      name: checkField(formData.get("name")),
+      email: checkField(formData.get("email")),
+      message: checkField(formData.get("message")),
       page: params.page,
+      status: "pending",
     },
   };
+
+  if (formData.get("tel") && params.prefix) {
+    variables.data.tel = `${params.prefix} ${formData.get("tel")}`;
+  }
 
   const { data } = await client.mutate({
     mutation,
     variables,
   });
+
+  if (formData.get("newsletter") === "on") {
+    await newsletter(formData);
+  }
 
   return data.createMessage;
 };
