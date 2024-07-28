@@ -1,7 +1,19 @@
 interface IBrokerino {
   _id?: string;
   picture?: {
-    url: string;
+    alt: string;
+    sizes: {
+      fhd: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      thumbnail: {
+        url: string;
+        width: number;
+        height: number;
+      };
+    };
   };
   name: string;
   position: string;

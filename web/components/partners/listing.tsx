@@ -24,7 +24,7 @@ const Listing = ({ data }: { data: IPartner[] }) => {
                 : () => setCurrent(null)
             }
             className={clsx(
-              "flex flex-col bg-center bg-cover h-80 text-white hover:shadow-xl transition-all duration-500 overflow-hidden",
+              "flex flex-col bg-center bg-cover h-80 text-white hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer",
               {
                 "w-1/2 lg:w-1/4": current === null,
                 "w-full h-auto": current !== null && current === partner.id,

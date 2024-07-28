@@ -9,9 +9,11 @@ import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { colorify } from "lottie-colorify";
 import submitted from "@/public/imagery/optimized/newsletter.json";
 import { useParams } from "next/navigation";
+import { usePath } from "@/utils/contact";
 
 const Newsletter = () => {
   const t = useTranslations("newsletter"),
+    path = usePath(),
     [registred, setRegistred] = useState<boolean>(false),
     animationRef = useRef<LottieRefCurrentProps>(null),
     params = useParams();
@@ -91,8 +93,13 @@ const Newsletter = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             action={async (formData) => {
-              await contact(formData, {
-                locale: params.locale as string,
+              await contact({
+                // @ts-ignore
+                formDate: formData,
+                params: {
+                  locale: params.locale as string,
+                  page: path,
+                },
               }).then(() => setRegistred(true));
             }}
             className={

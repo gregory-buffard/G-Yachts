@@ -1,9 +1,9 @@
 "use server";
 
-import { Customer } from "@/models/customer";
-import { Newsletter } from "@/models/newsletter";
+import { getClient } from "@/apollo";
+import { gql } from "@apollo/client";
 
-export const contact = async (
+export const legacy = async (
   formData: FormData,
   params: {
     prefix?: string;
@@ -52,4 +52,43 @@ export const contact = async (
     email: rawFormData.email,
   });
   await Customer.create(rawFormData);*/
+};
+
+export const contact = async ({
+  formData,
+  params,
+}: {
+  formData: FormData;
+  params: { locale: string; page: string; prefix?: string };
+}) => {
+  const client = getClient();
+  const mutation = gql`
+    mutation CreateMessage($data: mutationMessageInput!) {
+      createMessage(data: $data) {
+        id
+        name
+        email
+        tel
+        message
+        page
+        newsletter
+      }
+    }
+  `;
+
+  const variables = {
+    data: {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+      page: params.page,
+    },
+  };
+
+  const { data } = await client.mutate({
+    mutation,
+    variables,
+  });
+
+  return data.createMessage;
 };

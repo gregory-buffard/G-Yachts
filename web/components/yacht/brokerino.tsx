@@ -7,10 +7,10 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
   <div className={"w-full flex justify-between items-start"}>
     <div className={"flex justify-start items-stretch gap-[2vh] w-full"}>
       <Image
-        src={brokerino.picture?.url || "/icons/user.svg"}
-        width={128}
-        height={128}
-        alt={`${brokerino.name} photo`}
+        src={brokerino.picture?.sizes.thumbnail.url || "/icons/user.svg"}
+        width={brokerino.picture?.sizes.thumbnail.width || 128}
+        height={brokerino.picture?.sizes.thumbnail.height || 128}
+        alt={brokerino.picture?.alt || `${brokerino.name}'s picture`}
         className={clsx("object-cover object-center", {
           "md:min-size-[16vh] min-size-[12vh]": brokerino.picture,
           "size-[6vh]": !brokerino.picture,

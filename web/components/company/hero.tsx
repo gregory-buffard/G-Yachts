@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslations } from "next-intl";
-import herox from "@/public/imagery/optimized/index/herox.webp";
+import hero from "@/public/imagery/optimized/company/hero.webp";
 import Image from "next/image";
 
 const Hero = () => {
@@ -38,7 +38,7 @@ const Hero = () => {
           </div>
         </div>
         <Image
-          src={herox}
+          src={hero}
           alt={"Yacht"}
           className={"object-cover md:h-screen"}
         />

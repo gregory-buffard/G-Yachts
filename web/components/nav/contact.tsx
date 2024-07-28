@@ -15,7 +15,7 @@ import loading from "@/public/imagery/optimized/contact/loading.json";
 import submitted from "@/public/imagery/optimized/contact/submitted.json";
 import { handleMouseMove } from "@/utils/mouseCoords";
 import { useParams } from "next/navigation";
-import { usePathname } from "@/navigation";
+import { usePath } from "@/utils/contact";
 
 export const Input = ({
   props,
@@ -128,7 +128,7 @@ const Submit = () => {
 
 const Contact = () => {
   const t = useTranslations("contact"),
-    currentPath = usePathname(),
+    path = usePath(),
     [changeCode, setChangeCode] = useState(false),
     [code, setCode] = useState<string>("+377"),
     menuRef = useRef<HTMLDivElement>(null),
@@ -156,47 +156,6 @@ const Contact = () => {
 
     return () => window.removeEventListener("keypress", handleKeyPress);
   }, [changeCode]);
-
-  const detectPage = (): string => {
-    switch (currentPath) {
-      case "/":
-        return "Main Page";
-      case "/sales":
-        return "Sales Page";
-      case "/sales/[id]":
-        return "Yacht Page";
-      case "/charter/[id]":
-        return "Yacht for Charter Page";
-      case "/charters":
-        return "Charters Page";
-      case "/new-constructions":
-        return "New Constructions Page";
-      case "/new-constructions/[id]":
-        return "New Construction Page";
-      case "/management":
-        return "Management Page";
-      case "/company":
-        return "Company Page";
-      case "/partners":
-        return "Partners Page";
-      case "/news":
-        return "News Page";
-      case "/news/[id]":
-        return "News Article Page";
-      case "/events":
-        return "Events Page";
-      case "/events/[id]":
-        return "Event Page";
-      case "/recruitment":
-        return "Recruitment Page";
-      case "/destinations":
-        return "Destinations Page";
-      case "/destinations/[id]":
-        return "Destination Page";
-      default:
-        return "Unknown Page";
-    }
-  };
 
   return (
     <motion.section
@@ -288,10 +247,13 @@ const Contact = () => {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             key={"form"}
             action={async (formData) => {
-              await contact(formData, {
-                prefix: code,
-                locale: params.locale as string,
-                page: detectPage(),
+              await contact({
+                formData: formData,
+                params: {
+                  prefix: code,
+                  locale: params.locale as string,
+                  page: path,
+                },
               }).then(() => setSent(true));
             }}
             className={
