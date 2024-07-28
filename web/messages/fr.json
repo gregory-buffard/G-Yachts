@@ -65,6 +65,8 @@
         },
         "featured": {
             "exclusive": "Exclusif",
+            "new": "Nouveauté",
+            "sold": "Vendu",
             "title": "<classic>Ventes</classic> en vedette",
             "all": "Explorer",
             "sleeps": "invités",

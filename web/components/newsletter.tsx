@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Input } from "@/components/nav/contact";
-import { contact } from "@/actions/contact";
+import { newsletter } from "@/actions/contact";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
@@ -93,14 +93,7 @@ const Newsletter = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             action={async (formData) => {
-              await contact({
-                // @ts-ignore
-                formDate: formData,
-                params: {
-                  locale: params.locale as string,
-                  page: path,
-                },
-              }).then(() => setRegistred(true));
+              await newsletter(formData).then(() => setRegistred(true));
             }}
             className={
               "h-max lg:w-[33vw] w-[92vw] bg-white flex flex-col justify-start items-center lg:px-[4vw] px-[4vw] lg:py-[4vh] py-[4vw] gap-[3vh]"

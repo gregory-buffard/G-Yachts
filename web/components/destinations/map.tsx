@@ -12,7 +12,7 @@ const Map = ({ destinations }: { destinations: IDestination[] }) => {
   const markers = destinations.filter((destination) => destination.coordinates);
 
   return (
-    <ComposableMap className={"w-full max-h-[800] h-[32vh]"}>
+    <ComposableMap className={"m-auto w-[72vw] md:w-[56vw] lg:w-[56vw]"}>
       <Geographies geography={"/map/topology.json"}>
         {({ geographies }: { geographies: any }) =>
           geographies.map((geo: any) => (
