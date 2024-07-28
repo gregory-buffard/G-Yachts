@@ -206,8 +206,7 @@ const Listing = ({ data }: { data: INewConstruction[] }) => {
   const t = useTranslations("sales.listing"),
     { bookmarks } = useViewContext(),
     { currency, units, changeCurrency } = useViewContext(),
-    [maxListing, setMaxListing] = useState<number>(12),
-    searchParams = useSearchParams();
+    [maxListing, setMaxListing] = useState<number>(12);
   const [view, setView] = useState<"global" | "bookmarks">("global");
 
   const [filter, setFilter] = useState<IFilters>({
@@ -217,7 +216,7 @@ const Listing = ({ data }: { data: INewConstruction[] }) => {
       min: Math.min(...data.map((yacht) => yacht.length)),
       max: Math.max(...data.map((yacht) => yacht.length)),
     },
-    builder: searchParams.get("builder") ?? undefined,
+    builder: undefined,
     price: {
       min: Math.min(...data.map((yacht) => yacht.price)),
       max: Math.max(...data.map((yacht) => yacht.price)),

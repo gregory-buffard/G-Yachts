@@ -9,7 +9,21 @@ const Listing = dynamic(() => import("@/components/newContructions/listing"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 
-const NewConstructions = async () => {
+const NewConstructions = async ({
+    searchParams,
+}: {
+    searchParams: {
+        builder?: string;
+    };
+}) => {
+    let newConstructions = await fetchNewConstructions();
+    console.log(searchParams.builder);
+    console.log(newConstructions.map((construction) => construction.builder));
+    if (searchParams.builder) {
+        newConstructions = newConstructions.filter(
+            (construction) => construction.builder === searchParams.builder
+        );
+    }
     return (
         <main className="w-full flex flex-col justify-start items-center">
             <Bar dynamicColor={100} />
@@ -18,7 +32,7 @@ const NewConstructions = async () => {
             <div className="w-full md:px-40">
                 <Shipyards data={await fetchShipyards()} />
             </div>
-            <Listing data={await fetchNewConstructions()} />
+            <Listing data={newConstructions} />
             <Newsletter />
             <Footer />
         </main>
