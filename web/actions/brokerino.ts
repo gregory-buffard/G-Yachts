@@ -1,12 +1,38 @@
-// "use server";
+"use server";
 
-// import { Brokerino } from "@/models/brokerino";
-// import { IYacht } from "@/types/yacht";
+import IBrokerino from "@/types/brokerino";
+import { getClient } from "@/apollo";
+import { gql } from "@apollo/client";
 
-// export const fetchBrokerino = async (email: IYacht["brokerEmail"]) => {
-//   const res = await Brokerino.findOne({ email }).catch((e) => {
-//     throw e;
-//   });
-
-//   return JSON.parse(JSON.stringify(res));
-// };
+export const fetchBrokerinos = async (): Promise<IBrokerino[]> => {
+  const client = getClient();
+  const { data } = await client.query({
+    query: gql`
+      query Users {
+        Users {
+          docs {
+            name
+            picture {
+              alt
+              sizes {
+                fhd {
+                  url
+                  width
+                  height
+                }
+              }
+            }
+            phones {
+              prefix
+              number
+            }
+            langs
+            email
+            position
+          }
+        }
+      }
+    `,
+  });
+  return data.Users.docs;
+};
