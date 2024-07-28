@@ -65,6 +65,8 @@
         },
         "featured": {
             "exclusive": "Exclusive",
+            "new": "New",
+            "sold": "Sold",
             "title": "Featured <classic>sales</classic>",
             "all": "View all",
             "sleeps": "guests",

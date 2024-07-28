@@ -109,7 +109,7 @@ const Card = ({ data }: { data: ISale }) => {
                   "bg-white rounded-lg uppercase py-[0.5rem] px-[1rem] drop-shadow-lg"
                 }
               >
-                {data.etiquette}
+                {t(data.etiquette)}
               </p>
             )}
             <button
@@ -266,7 +266,7 @@ const Listing = ({ data }: { data: ISale[] }) => {
     >
       <div
         className={
-          "w-full md:px-0 px-[2vw] h-max flex md:flex-row flex-col justify-between md:justify-evenly items-center md:items-start z-10 gap-[2vh]"
+          "w-full md:px-0 px-[2vw] h-max flex md:flex-row flex-col justify-between md:justify-evenly items-center md:items-start gap-[2vh]"
         }
       >
         <div className={"filter-column"}>

@@ -101,10 +101,17 @@ const Card = ({ data }: { data: INewConstruction }) => {
             }}
           />
           <div
-            className={
-              "w-[92vw] md:w-[44vw] lg:w-[30vw] absolute h-max flex justify-between items-center lg:px-[1vw] px-[2vw] -translate-y-[11vh] md:-translate-y-[9vw] lg:-translate-y-[7vw]"
-            }
+            className={`w-[92vw] md:w-[44vw] lg:w-[30vw] absolute h-max flex justify-between items-center ${!data.etiquette && "flex-row-reverse"} lg:px-[1vw] px-[2vw] -translate-y-[11vh] md:-translate-y-[9vw] lg:-translate-y-[7vw]`}
           >
+            {data.etiquette && (
+              <p
+                className={
+                  "bg-white rounded-lg uppercase py-[0.5rem] px-[1rem] drop-shadow-lg"
+                }
+              >
+                {t(data.etiquette)}
+              </p>
+            )}
             <button
               type={"button"}
               onClick={(e) => {
@@ -259,7 +266,7 @@ const Listing = ({ data }: { data: INewConstruction[] }) => {
     >
       <div
         className={
-          "w-full md:px-0 px-[2vw] h-max flex md:flex-row flex-col justify-between md:justify-evenly items-center md:items-start z-10 gap-[2vh]"
+          "w-full md:px-0 px-[2vw] h-max flex md:flex-row flex-col justify-between md:justify-evenly items-center md:items-start gap-[2vh]"
         }
       >
         <div className={"filter-column"}>

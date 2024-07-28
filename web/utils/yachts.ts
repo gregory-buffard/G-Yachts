@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { IContext } from "@/context/view";
+import { useTranslations } from "next-intl";
 
 export const currency = (): IContext["currency"] => {
   const currency = Cookies.get("currency") as IContext["currency"];

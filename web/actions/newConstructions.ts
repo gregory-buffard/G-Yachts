@@ -58,6 +58,7 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
             sleeps
             yearBuilt
             featured
+            etiquette
             photos {
               featured {
                 alt

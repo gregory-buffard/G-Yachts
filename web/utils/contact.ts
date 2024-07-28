@@ -42,7 +42,7 @@ export const usePath = (): string => {
   }
 };
 
-export ççççconst checkField = (field: FormDataEntryValue | null): string => {
+export const checkField = (field: FormDataEntryValue | null): string => {
   if (typeof field === "string") {
     return field;
   }
