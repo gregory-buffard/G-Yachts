@@ -4,16 +4,16 @@ import { clsx } from "clsx";
 import codes from "@/data/CountryCodes.json";
 
 const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
-  <div className={"w-full flex justify-between items-start"}>
-    <div className={"flex justify-start items-stretch gap-[2vh] w-full"}>
+  <div className={"w-full flex flex-col justify-between items-start"}>
+    <div className={"flex flex-col justify-start items-stretch gap-[1vh] w-full"}>
       <Image
         src={brokerino.picture?.sizes.fhd.url || "/icons/user.svg"}
         width={brokerino.picture?.sizes.fhd.width || 128}
         height={brokerino.picture?.sizes.fhd.height || 128}
         alt={brokerino.picture?.alt || `${brokerino.name}'s picture`}
         className={clsx("object-cover object-center", {
-          "md:min-size-[16vh] min-size-[12vh]": brokerino.picture,
-          "size-[6vh]": !brokerino.picture,
+          "md:min-size-[25vh] min-size-[25vh] size-[25vh] object-cover object-center": brokerino.picture,
+          "size-[25vh]": !brokerino.picture,
         })}
       />
       <div className={"w-full flex flex-col justify-between items-start"}>

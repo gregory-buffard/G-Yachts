@@ -17,7 +17,7 @@ const Team = ({ brokerinos }: { brokerinos: IBrokerino[] }) => {
           ),
         })}
       </h1>
-      <div className={"flex flex-col items-center justify-center"}>
+      <div className={"grid md:grid-cols-4"}>
         {brokerinos.map((brokerino, i) => (
           <Brokerino key={i} brokerino={brokerino} />
         ))}
