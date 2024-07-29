@@ -5,7 +5,7 @@ import first from "@/public/imagery/optimized/company/first.webp";
 import second from "@/public/imagery/optimized/company/second.webp";
 import third from "@/public/imagery/optimized/company/third.webp";
 import fourth from "@/public/imagery/optimized/company/fourth.webp";
-import gaspard from "@/public/imagery/optimized/company/Gaspard.webp";
+import gaspard from "@/public/imagery/optimized/company/Gaspard.jpeg";
 
 const Story = () => {
   const t = useTranslations("company.story");
