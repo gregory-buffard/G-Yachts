@@ -8,7 +8,7 @@ const Team = ({ brokerinos }: { brokerinos: IBrokerino[] }) => {
 
   return (
     <section className={"w-full h-full bg-rock-100 overflow-hidden"}>
-      <h1 className={"px-[10vw]"}>
+      <h1 className={"px-[10vw] pb-10"}>
         {t.rich("team", {
           classic: (chunks) => (
             <span className={"font-classic font-normal uppercase"}>
@@ -17,7 +17,7 @@ const Team = ({ brokerinos }: { brokerinos: IBrokerino[] }) => {
           ),
         })}
       </h1>
-      <div className={"grid md:grid-cols-4"}>
+      <div className={"grid md:grid-cols-4 justify-center gap-[2vh] px-[10vw]"}>
         {brokerinos.map((brokerino, i) => (
           <Brokerino key={i} brokerino={brokerino} />
         ))}

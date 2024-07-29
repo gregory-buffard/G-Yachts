@@ -37,7 +37,8 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
             const code = country ? country.code : "";
             return <p key={phone.number}>{`${code}: ${phone.number}`}</p>;
           })}
-          <p className={"break-words"}>{brokerino.email}</p>
+            <a href={"mailto:"}><p className={"break-words"}>{brokerino.email}</p></a>
+            <p>{brokerino.langs}</p>
         </div>
       </div>
     </div>
