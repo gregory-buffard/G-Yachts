@@ -7,8 +7,8 @@ const Team = ({ brokerinos }: { brokerinos: IBrokerino[] }) => {
   const t = useTranslations("company");
 
   return (
-    <section className={"w-full h-full bg-rock-100 overflow-hidden"}>
-      <h1 className={"px-[10vw] pb-10"}>
+    <section className={"w-full h-full pb-[5vh] bg-rock-100 overflow-hidden"}>
+      <h1 className={"px-[10vw] pb-[5vh]"}>
         {t.rich("team", {
           classic: (chunks) => (
             <span className={"font-classic font-normal uppercase"}>
