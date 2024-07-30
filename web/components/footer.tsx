@@ -44,7 +44,13 @@ const Footer = () => {
         <div className={"flex justify-end items-baseline flex-wrap gap-[2vw]"}>
           <Link href={"/"}>{t("footer.terms")}</Link>
           <Link href={"/"}>{t("footer.privacy")}</Link>
-          <Link href={"/"}>{t("footer.credits")}</Link>
+          <button
+            type={"button"}
+            onClick={() => openView("credits")}
+            className={"uppercase"}
+          >
+            {t("footer.credits")}
+          </button>
         </div>
       </div>
     </footer>

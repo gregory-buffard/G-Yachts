@@ -46,18 +46,12 @@ export const fetchArticle = async (id: string, locale: string) => {
 
 export const fetchArticles = async (
   locale: "en" | "fr",
-  options?: { limit?: number },
 ): Promise<IArticle[]> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Articles($locale: LocaleInputType!, $limit: Int) {
-        Articles(
-          locale: $locale
-          fallbackLocale: en
-          sort: "date"
-          limit: $limit
-        ) {
+      query Articles($locale: LocaleInputType!) {
+        Articles(locale: $locale, fallbackLocale: en, sort: "date") {
           docs {
             id
             title
@@ -88,7 +82,6 @@ export const fetchArticles = async (
     `,
     variables: {
       locale,
-      limit: options?.limit,
     },
   });
   return data.Articles.docs;

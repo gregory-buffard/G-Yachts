@@ -5,6 +5,7 @@ import { useViewContext } from "@/context/view";
 import Navigation from "@/components/nav/navigation";
 import Contact from "@/components/nav/contact";
 import Search from "@/components/nav/search";
+import Credits from "@/components/credits";
 
 const View = () => {
   const { view, openView } = useViewContext();
@@ -36,6 +37,7 @@ const View = () => {
       {view === "navigation" && <Navigation key={"navigation"} />}
       {view === "contact" && <Contact key={"contact"} />}
       {view === "search" && <Search key={"search"} />}
+      {view === "credits" && <Credits key={"credits"} />}
     </AnimatePresence>
   );
 };
