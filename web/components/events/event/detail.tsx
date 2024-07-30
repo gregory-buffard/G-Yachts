@@ -40,13 +40,13 @@ const Detail = () => {
         >
           <p>Date</p>
           <h3
-            className={"font-slick font-normal text-2xl"}
+            className={"font-slick font-light text-2xl"}
           >{`${formattedFromDate} – ${formattedToDate} ${month}, ${year}`}</h3>
         </div>
         <div className={"w-full flex flex-col justify-center items-start"}>
           <p className={"uppercase"}>Location</p>
           <h3
-            className={"font-slick font-normal text-2xl"}
+            className={"font-slick font-light text-2xl"}
           >{`${location.city}, ${location.country}`}</h3>
         </div>
       </aside>
