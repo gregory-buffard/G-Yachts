@@ -37,7 +37,8 @@ const Hero = async ({
           ))}
         </div>
       </div>
-      <section
+      <Link
+        href={{ pathname: "/news/[id]", params: { id: article.id } }}
         className={
           "w-full px-[4vw] md:px-[8vw] h-2/3 bg-cover bg-center flex flex-col justify-end items-start text-white uppercase py-[2vh] md:py-[6vh]"
         }
@@ -46,15 +47,8 @@ const Hero = async ({
         }}
       >
         <h4>{article.category.title}</h4>
-        <Link
-          href={{
-            pathname: "/news/[id]",
-            params: { id: article.id },
-          }}
-        >
-          <h1 className={"normal-case"}>{article.title}</h1>
-        </Link>
-      </section>
+        <h1 className={"normal-case"}>{article.title}</h1>
+      </Link>
     </div>
   );
 };
