@@ -72,11 +72,9 @@ const Articles = ({
           {filteredArticles.length === 0 && (
             <h2 className="mt-16 lg:mt-0">{t("noArticles")}</h2>
           )}
-          {filteredArticles
-            .slice(filteredArticles.length == 1 ? 0 : 1, articlesLimit + 1)
-            .map((article, index) => (
-              <ArticleCard key={index} article={article} locale={locale} />
-            ))}
+          {filteredArticles.map((article, index) => (
+            <ArticleCard key={index} article={article} locale={locale} />
+          ))}
         </div>
         {filteredArticles.length > articlesLimit + 1 && (
           <span

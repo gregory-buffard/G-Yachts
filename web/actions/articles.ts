@@ -84,5 +84,5 @@ export const fetchArticles = async (
       locale,
     },
   });
-  return data.Articles.docs;
+  return [...data.Articles.docs].reverse();
 };
