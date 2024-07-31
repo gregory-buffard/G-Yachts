@@ -25,24 +25,28 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
             <p className={"uppercase"}>{brokerino.position}</p>
           </div>
         </div>
-        <div
-          className={
-            "flex flex-col justify-end items-start h-max text-rock-500"
-          }
-        >
-          {brokerino.phones.map((phone) => {
-            const country = codes.find(
-              (code) => code.dial_code === phone.prefix.replace(/^./, "+"),
-            );
-            const code = country ? country.code : "";
-            return <p key={phone.number}>{`${code}: ${phone.number}`}</p>;
-          })}
-            <a href={"mailto:"}><p className={"break-words"}>{brokerino.email}</p></a>
-            <p>{brokerino.langs}</p>
-        </div>
+          <div
+              className={
+                  "flex flex-col justify-end items-start h-max text-rock-500"
+              }
+          >
+              {brokerino.phones.map((phone) => {
+                  const country = codes.find(
+                      (code) => code.dial_code === phone.prefix.replace(/^./, "+"),
+                  );
+                  const code = country ? country.code : "";
+                  return <p key={phone.number}>{`${code}: ${phone.number}`}</p>;
+              })}
+              <a href={"mailto:"}><p className={"break-words"}>{brokerino.email}</p></a>
+              <div className={"flex flex-wrap"}>
+                  {brokerino.langs.map((lang) => (
+                      <span key={lang.name} className={"m-1"}>{lang.flag}</span>
+                  ))}
+              </div>
+          </div>
       </div>
     </div>
-    <a></a>
+      <a></a>
   </div>
 );
 
