@@ -25,6 +25,7 @@
     "next-intl": "^3.11.3",
     "next-videos": "^1.4.1",
     "react": "^18",
+    "react-calendar": "^5.0.0",
     "react-dom": "^18",
     "react-simple-maps": "^3.0.0",
     "react-slider": "^2.0.6",

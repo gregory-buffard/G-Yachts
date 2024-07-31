@@ -251,6 +251,10 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
             sleeps
             yearBuilt
             etiquette
+            reservations {
+              from
+              to
+            }
             photos {
               featured {
                 sizes {

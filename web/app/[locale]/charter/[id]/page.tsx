@@ -5,6 +5,7 @@ import Hero from "@/components/charter/hero";
 import Details from "@/components/charter/details/details";
 import { fetchCharter } from "@/actions/yachts";
 import Similar from "@/components/similar/section";
+import Reservations from "@/components/charter/reservations";
 
 const View = dynamic(() => import("@/components/view"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
@@ -19,6 +20,7 @@ const Charter = async ({ params }: { params: { id: string } }) => {
         <View />
         <Hero />
         <Details />
+        <Reservations data={charter.reservations} />
         <Similar type="charters" length={charter.length} />
         <Newsletter />
         <Footer />
