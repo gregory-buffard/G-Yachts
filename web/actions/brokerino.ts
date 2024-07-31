@@ -9,7 +9,7 @@ export const fetchBrokerinos = async (): Promise<IBrokerino[]> => {
   const { data } = await client.query({
     query: gql`
       query Users {
-        Users {
+        Users(where: { displayOnWebsite: { equals: true } }) {
           docs {
             name
             picture {

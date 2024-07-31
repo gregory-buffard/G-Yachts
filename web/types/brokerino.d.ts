@@ -23,10 +23,7 @@ interface IBrokerino {
     platform: string;
     link: string;
   }[];
-  langs: {
-    name: string;
-    flag: string;
-  };
+  langs: string[];
 }
 
 export default IBrokerino;

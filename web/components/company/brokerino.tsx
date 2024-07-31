@@ -1,20 +1,19 @@
 import IBrokerino from "@/types/brokerino";
 import Image from "next/image";
-import { clsx } from "clsx";
 import codes from "@/data/CountryCodes.json";
+import flags from "@/data/langs.json";
 
 const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
   <div className={"w-full flex flex-col justify-between items-start"}>
-    <div className={"flex flex-col justify-start items-stretch gap-[1vh] w-full"}>
+    <div
+      className={"flex flex-col justify-start items-stretch gap-[1vh] w-full"}
+    >
       <Image
         src={brokerino.picture?.sizes.fhd.url || "/icons/user.svg"}
         width={brokerino.picture?.sizes.fhd.width || 128}
         height={brokerino.picture?.sizes.fhd.height || 128}
         alt={brokerino.picture?.alt || `${brokerino.name}'s picture`}
-        className={clsx("object-cover object-center", {
-          "md:min-size-[25vh] min-size-[25vh] size-[25vh] object-cover object-center": brokerino.picture,
-          "size-[25vh]": !brokerino.picture,
-        })}
+        className={`object-cover object-center w-full md:w-[32vh] h-[28vh] md:h-[20vh] ${!brokerino.picture && "animate-pulse"}`}
       />
       <div className={"w-full flex flex-col justify-between items-start"}>
         <div className={"w-full flex justify-between items-start"}>
@@ -25,28 +24,35 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
             <p className={"uppercase"}>{brokerino.position}</p>
           </div>
         </div>
-          <div
-              className={
-                  "flex flex-col justify-end items-start h-max text-rock-500"
-              }
-          >
-              {brokerino.phones.map((phone) => {
-                  const country = codes.find(
-                      (code) => code.dial_code === phone.prefix.replace(/^./, "+"),
-                  );
-                  const code = country ? country.code : "";
-                  return <p key={phone.number}>{`${code}: ${phone.number}`}</p>;
-              })}
-              <a href={"mailto:"}><p className={"break-words"}>{brokerino.email}</p></a>
-              <div className={"flex flex-wrap"}>
-                  {brokerino.langs.map((lang) => (
-                      <span key={lang.name} className={"m-1"}>{lang.flag}</span>
-                  ))}
-              </div>
+        <div
+          className={
+            "flex flex-col justify-end items-start h-max text-rock-500"
+          }
+        >
+          {brokerino.phones.map((phone) => {
+            const country = codes.find(
+              (code) => code.dial_code === phone.prefix.replace(/^./, "+"),
+            );
+            const code = country ? country.code : "";
+            return <p key={phone.number}>{`${code}: ${phone.number}`}</p>;
+          })}
+          <a href={"mailto:"}>
+            <p className={"break-words"}>{brokerino.email}</p>
+          </a>
+          <div className={"flex flex-wrap gap-[0.5vw]"}>
+            {brokerino.langs.map((lang, i) => {
+              const flag = flags.find((flag) => flag.name === lang);
+              return (
+                <label key={i} className={"text-xl"}>
+                  {flag?.flag}
+                </label>
+              );
+            })}
           </div>
+        </div>
       </div>
     </div>
-      <a></a>
+    <a></a>
   </div>
 );
 
