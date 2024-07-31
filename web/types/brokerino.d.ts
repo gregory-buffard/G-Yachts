@@ -1,8 +1,3 @@
-interface ILang {
-  name: string;
-  flag: string;
-}
-
 interface IBrokerino {
   _id?: string;
   picture?: {
@@ -28,7 +23,10 @@ interface IBrokerino {
     platform: string;
     link: string;
   }[];
-  langs: ILang[];
+  langs: {
+    name: string;
+    flag: string;
+  }[];
 }
 
 export default IBrokerino;
