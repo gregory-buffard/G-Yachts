@@ -26,7 +26,7 @@ interface IBrokerino {
   langs: {
     name: string;
     flag: string;
-  }[];
+  };
 }
 
 export default IBrokerino;
