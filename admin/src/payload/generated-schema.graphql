@@ -9147,7 +9147,7 @@ type Destination {
   region: String
   continent: String
   photos: Destination_Photos
-  description: String
+  description(depth: Int): JSON
   info: Destination_Info
   coordinates: [Float!]
   seo: [Destination_Seo!]
@@ -9939,10 +9939,10 @@ input Destination_photos__destinationPhoto_operator {
 }
 
 input Destination_description_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
 }
 
 input Destination_info__bestTimeToVisit_operator {
@@ -28614,7 +28614,7 @@ input mutationDestinationInput {
   region: String
   continent: String
   photos: mutationDestination_PhotosInput!
-  description: String
+  description: JSON
   info: mutationDestination_InfoInput!
   coordinates: [Float]
   seo: [mutationDestination_SeoInput]
@@ -28645,7 +28645,7 @@ input mutationDestinationUpdateInput {
   region: String
   continent: String
   photos: mutationDestinationUpdate_PhotosInput!
-  description: String
+  description: JSON
   info: mutationDestinationUpdate_InfoInput!
   coordinates: [Float]
   seo: [mutationDestinationUpdate_SeoInput]
