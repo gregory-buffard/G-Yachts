@@ -72,9 +72,9 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 text-base font-classic text-secondary-500 text-justify pr-12">
+              <p className="pb-4 font-classic text-secondary-500 text-justify pr-12">
                 {t("professionals.description")}
-              </div>
+              </p>
             </details>
             <details className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-3xl font-classic text-secondary-900 group-open:text-primary-500">
@@ -110,9 +110,9 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 font-classic text-base text-secondary-500 text-justify pr-12">
+              <p className="pb-4 font-classic  text-secondary-500 text-justify pr-12">
                 {t("needs.description")}
-              </div>
+              </p>
             </details>
             <details className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-3xl font-classic text-secondary-900 group-open:text-primary-500">
@@ -148,9 +148,9 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 text-base font-classic text-secondary-500 text-justify pr-12">
+              <p className="pb-4  font-classic text-secondary-500 text-justify pr-12">
                 {t("performance.description")}
-              </div>
+              </p>
             </details>
             <div />
           </div>

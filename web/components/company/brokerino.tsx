@@ -13,12 +13,12 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
         width={brokerino.picture?.sizes.fhd.width || 128}
         height={brokerino.picture?.sizes.fhd.height || 128}
         alt={brokerino.picture?.alt || `${brokerino.name}'s picture`}
-        className={`object-cover object-center w-full md:w-[32vh] h-[28vh] md:h-[20vh] ${!brokerino.picture && "animate-pulse"}`}
+        className={`object-cover object-center w-full md:w-[28vh] ${!brokerino.picture && "animate-pulse"}`}
       />
       <div className={"w-full flex flex-col justify-between items-start"}>
         <div className={"w-full flex justify-between items-start"}>
           <div className={"flex flex-col justify-start items-start h-max"}>
-            <h3 className={"font-medium whitespace-break-spaces"}>
+            <h3 className={"font-medium text-2xl whitespace-break-spaces"}>
               {brokerino.name}
             </h3>
             <p className={"uppercase"}>{brokerino.position}</p>
