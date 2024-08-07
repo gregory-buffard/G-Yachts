@@ -487,6 +487,7 @@
         }
     },
     "news": {
+        "title": "Dernières <classic>Actualités</classic>",
         "readArticle": "Lire l'article",
         "loadMore": "Charger plus",
         "noArticles": "Pas d'articles trouvés"

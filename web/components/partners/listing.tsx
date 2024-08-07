@@ -11,9 +11,9 @@ const Listing = ({ data }: { data: IPartner[] }) => {
   const t = useTranslations("partners.detail");
   return (
     <div className="flex flex-col w-full">
-      <h4 className="text-xl text-center text-sky-950 font-slick mt-14 normal-case">
+      <h3 className="text-3xl text-center text-sky-950 font-slick font-light mt-14 normal-case">
         {`"${t("quote")}"`}
-      </h4>
+      </h3>
       <div className="flex flex-row flex-wrap my-14">
         {data.map((partner, index) => (
           <div
@@ -57,9 +57,9 @@ const Listing = ({ data }: { data: IPartner[] }) => {
                     </svg>
                   </button>
                 </div>
-                <span className="text-white font-classic mt-10">
+                <p className="text-white font-classic mt-10">
                   {partner.comment}
-                </span>
+                </p>
                 {partner.website && (
                   <a
                     className="glass-button glass-button-light mt-10"

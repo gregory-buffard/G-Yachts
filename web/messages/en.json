@@ -487,6 +487,7 @@
         }
     },
     "news": {
+        "title": "Latest <classic>News</classic>",
         "readArticle": "Read article",
         "loadMore": "Load more",
         "noArticles": "No articles found"

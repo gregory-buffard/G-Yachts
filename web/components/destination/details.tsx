@@ -7,31 +7,31 @@ import Image from "next/image";
 import { ContentRenderer } from "@/components/article/content";
 
 const Details = () => {
-    const { destination } = useDestination();
-    const t = useTranslations("destination.details");
+  const { destination } = useDestination();
+  const t = useTranslations("destination.details");
 
-    const info = [
-        {
-            icon: "/icons/sun.svg",
-            title: t("bestTimeTiVisit"),
-            value: destination.info.bestTimeToVisit,
-        },
-        {
-            icon: "/icons/languages.svg",
-            title: t("languages"),
-            value: destination.info.languages,
-        },
-        {
-            icon: "/icons/gettingThere.svg",
-            title: t("gettingThere"),
-            value: destination.info.gettingThere,
-        },
-        {
-            icon: "/icons/currency.svg",
-            title: t("currency"),
-            value: destination.info.currency,
-        },
-    ];
+  const info = [
+    {
+      icon: "/icons/sun.svg",
+      title: t("bestTimeTiVisit"),
+      value: destination.info.bestTimeToVisit,
+    },
+    {
+      icon: "/icons/languages.svg",
+      title: t("languages"),
+      value: destination.info.languages,
+    },
+    {
+      icon: "/icons/gettingThere.svg",
+      title: t("gettingThere"),
+      value: destination.info.gettingThere,
+    },
+    {
+      icon: "/icons/currency.svg",
+      title: t("currency"),
+      value: destination.info.currency,
+    },
+  ];
 
     return (
         <section className="w-full md:w-5/6 my-32 grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -40,7 +40,7 @@ const Details = () => {
                 <h1 className="text-4xl">
                     {t("explore")} <span className="classic">{destination.destination}</span>
                 </h1>
-                <div className="mt-10 lg:mr-20 text-justify">
+                <div className="mt-10 lg:mr-20">
                   <ContentRenderer blocks={destination.description} />
                 </div>
                 <div className="mt-10 grid grid-cols-2 gap-4">

@@ -38,16 +38,16 @@ const Detail = () => {
             "w-full flex flex-col justify-center items-start uppercase"
           }
         >
-          <p>Date</p>
-          <h3
-            className={"font-slick font-light text-2xl"}
-          >{`${formattedFromDate} – ${formattedToDate} ${month}, ${year}`}</h3>
+          <h5 className={"text-xl"}>Date</h5>
+          <h5
+            className={"font-slick font-light text-xl"}
+          >{`${formattedFromDate} – ${formattedToDate} ${month}, ${year}`}</h5>
         </div>
         <div className={"w-full flex flex-col justify-center items-start"}>
-          <p className={"uppercase"}>Location</p>
-          <h3
-            className={"font-slick font-light text-2xl"}
-          >{`${location.city}, ${location.country}`}</h3>
+          <h5 className={"uppercase text-xl"}>Location</h5>
+          <h5
+            className={"font-slick font-light text-xl"}
+          >{`${location.city}, ${location.country}`}</h5>
         </div>
       </aside>
       <div

@@ -1,4 +1,4 @@
-import { ArticleContentBlock } from "./article";
+import { ArticleContentBlock } from "@/types/article";
 
 export interface IDestination {
   id: string;
