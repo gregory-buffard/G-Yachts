@@ -109,7 +109,7 @@ export const Destinations: CollectionConfig = {
         en: 'Description',
         fr: 'Description',
       },
-      type: 'textarea',
+      type: 'richText',
       required: true,
       localized: true,
     },

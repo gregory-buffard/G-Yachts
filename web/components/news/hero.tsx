@@ -1,6 +1,6 @@
 import { Link } from "@/navigation";
 import { IArticle } from "@/types/article";
-import { getLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 const Hero = async ({
   article,
@@ -9,6 +9,8 @@ const Hero = async ({
   article: IArticle;
   categories: string[];
 }) => {
+  const t = useTranslations("news");
+
   return (
     <div className="w-full h-[36dvh] md:h-screen mt-[24vh] md:mt-0">
       <div className="h-1/3 flex flex-col justify-end items-center">
@@ -17,9 +19,15 @@ const Hero = async ({
             pathname: "/news",
           }}
         >
-          <h1>
-            Latest <span className="classic">news</span>
-          </h1>
+          <h2 className={"font-slick font-light"}>
+            {t.rich("title", {
+              classic: (chunk) => (
+                <span className={"font-classic uppercase font-medium"}>
+                  {chunk}
+                </span>
+              ),
+            })}
+          </h2>
         </Link>
         <div className="flex flex-row flex-wrap justify-center gap-4 my-10 ">
           {categories.map((category, index) => (
@@ -47,7 +55,7 @@ const Hero = async ({
         }}
       >
         <h4>{article.category.title}</h4>
-        <h1 className={"normal-case"}>{article.title}</h1>
+        <h2 className={"normal-case font-slick"}>{article.title}</h2>
       </Link>
     </div>
   );

@@ -31,7 +31,7 @@ const Lifestyle = () => {
           ),
         })}
       </h1>
-      <p className={"md:w-[42vw] w-full text-sm md:text-base px-[3vw]"}>
+      <p className={"md:w-[42vw] w-full text-sm px-[3vw]"}>
         {t("description")}
       </p>
       <button

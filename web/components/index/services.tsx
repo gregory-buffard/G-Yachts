@@ -13,7 +13,7 @@ const Services = () => {
   return (
     <div className="bg-rock-100 w-full h-full">
       <div className="flex flex-col items-start md:px-24 xl:px-52 px-3 md:py-32 py-16">
-        <h2 className="text-6xl font-slick font-light text-left mb-8">
+        <h1 className="font-slick font-light text-left mb-8">
           {t.rich("title", {
             classic: (chunks) => (
               <span className={"font-classic font-normal uppercase"}>
@@ -22,7 +22,7 @@ const Services = () => {
               </span>
             ),
           })}
-        </h2>
+        </h1>
         <div className="grid grid-cols-2 lg:grid-cols-4 md:gap-6 gap-2">
           <div className="flex flex-col ">
             <Link href="/sales">

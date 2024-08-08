@@ -1,3 +1,5 @@
+import { ArticleContentBlock } from "@/types/article";
+
 export interface IDestination {
   id: string;
   destination: string;
@@ -18,7 +20,7 @@ export interface IDestination {
       alt: string;
     };
   };
-  description: string;
+  description: ArticleContentBlock[];
   info: {
     bestTimeToVisit: string;
     languages: string;

@@ -19,7 +19,7 @@ const Card = ({ card }: { card: IFeatured }) => {
     >
       <div
         className={
-          "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start bg-cover bg-center p-[2vh]"
+          "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start bg-cover bg-center p-[2vh] relative"
         }
         style={{
           backgroundImage: `url(${card.photos.featured.sizes.thumbnail.url})`,

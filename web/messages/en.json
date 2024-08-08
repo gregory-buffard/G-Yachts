@@ -350,7 +350,7 @@
         "services": {
             "subtitle": "CUSTOMIZED SERVICES",
             "title": "Your Dedicated Yacht <classic>Expert</classic>",
-            "paragraph1": "G-Yachts relies on 25 years’ experience in the Yachting industry.As we know each yacht is different, we elaborate an appropriated and personalized strategy in order to provide an optimal use.",
+            "paragraph1": "G-Yachts relies on 25 years’ experience in the Yachting industry. As we know each yacht is different, we elaborate an appropriated and personalized strategy in order to provide an optimal use.",
             "paragraph2": "Our strong knowledge of yachts enables us to have a global understanding of the management of each vessel. Our range of services follows the regulations in permanent evolution.",
             "paragraph3": "Our goal : reduce costs, optimize the use and enable the owner to enjoy his yacht in great serenity"
         },
@@ -487,6 +487,7 @@
         }
     },
     "news": {
+        "title": "Latest <classic>News</classic>",
         "readArticle": "Read article",
         "loadMore": "Load more",
         "noArticles": "No articles found"

@@ -791,7 +791,9 @@ export interface Destination {
     featured: string | Media;
     destinationPhoto: string | Media;
   };
-  description: string;
+  description: {
+    [k: string]: unknown;
+  }[];
   info: {
     bestTimeToVisit: string;
     languages: string;

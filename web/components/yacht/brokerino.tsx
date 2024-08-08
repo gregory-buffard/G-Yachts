@@ -12,7 +12,7 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
         height={brokerino.picture?.sizes.thumbnail.height || 128}
         alt={brokerino.picture?.alt || `${brokerino.name}'s picture`}
         className={clsx("object-cover object-center", {
-          "md:min-size-[16vh] min-size-[12vh]": brokerino.picture,
+          "size-[20vh]": brokerino.picture,
           "size-[6vh]": !brokerino.picture,
         })}
       />

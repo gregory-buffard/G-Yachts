@@ -73,20 +73,20 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 text-base font-classic text-secondary-500 text-justify pr-12">
+              <div className="pb-4  font-classic text-secondary-500 text-justify pr-12">
                 <p
                   className={
-                    "mb-5 text-justify text-base font-classic text-secondary-500"
+                    "mb-5 text-justify font-classic text-secondary-500"
                   }
                 >
                   {t("dropdown.services.description")}
                 </p>
-                <p className="text-justify text-base font-classic text-secondary-500">
+                <p className="text-justify  font-classic text-secondary-500">
                   {t("dropdown.services.description2")}
                 </p>
                 <p
                   className={
-                    "mt-5 text-justify text-base font-classic text-secondary-500"
+                    "mt-5 text-justify font-classic text-secondary-500"
                   }
                 >
                   {t("dropdown.services.description3")}
@@ -127,9 +127,9 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 font-classic text-base text-secondary-500 text-justify pr-12">
+              <p className="pb-4 font-classic text-secondary-500 text-justify pr-12">
                 {t("dropdown.presence.description")}
-              </div>
+              </p>
             </details>
             <details className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-3xl font-classic text-secondary-900 group-open:text-primary-500">
@@ -165,11 +165,11 @@ const Accordion = () => {
                   </svg>
                 </div>
               </summary>
-              <div className="pb-4 text-base font-classic text-secondary-500 text-justify pr-12">
-                <p className=" mb-5 text-justify text-base font-classic text-secondary-500">
+              <div className="pb-4 font-classic text-secondary-500 text-justify pr-12">
+                <p className=" mb-5 text-justify font-classic text-secondary-500">
                   {t("dropdown.partnership.description")}
                 </p>
-                <p className="text-justify text-base font-classic text-secondary-500">
+                <p className="text-justify font-classic text-secondary-500">
                   {t("dropdown.partnership.description2")}
                 </p>
               </div>

@@ -17,10 +17,10 @@ const ServiceList = () => {
             alt="Sales"
             className="shadow-lg lg:h-[50vh] h-[50vh] object-cover"
           />
-          <h3 className="text-2xl font-light font-slick text-left my-4">
+          <h3 className="text-xl font-light font-slick text-left my-4">
             {t("finance.title")}
           </h3>
-          <p className={"font-classic font-light text-base text-justify"}>
+          <p className={"font-classic font-light text-sm text-justify"}>
             {t("finance.description")}
           </p>
         </div>
@@ -31,10 +31,10 @@ const ServiceList = () => {
             alt="Charter"
             className="shadow-lg lg:h-[50vh] h-[50vh] object-cover"
           />
-          <h3 className="text-2xl font-light font-slick text-left my-4">
+          <h3 className="text-xl font-light font-slick text-left my-4">
             {t("support.title")}
           </h3>
-          <p className={"font-classic font-light text-base text-justify"}>
+          <p className={"font-classic font-light text-sm text-justify"}>
             {t("support.description")}
           </p>
         </div>
@@ -45,10 +45,10 @@ const ServiceList = () => {
             alt="Management"
             className="shadow-lg lg:h-[50vh] h-[50vh] object-cover"
           />
-          <h3 className="text-2xl font-light font-slick text-left my-4">
+          <h3 className="text-xl font-light font-slick text-left my-4">
             {t("administrative.title")}
           </h3>
-          <p className={"font-classic text-base text-justify"}>
+          <p className={"font-classic text-sm text-justify"}>
             {t("administrative.description")}
           </p>
         </div>
@@ -59,10 +59,10 @@ const ServiceList = () => {
             alt="New Construction"
             className="shadow-lg lg:h-[50vh] h-[50vh] object-cover"
           />
-          <h3 className="text-2xl font-light font-slick text-left my-4">
+          <h3 className="text-xl font-light font-slick text-left my-4">
             {t("crew.title")}
           </h3>
-          <p className={"font-classic font-light text-base text-justify"}>
+          <p className={"font-classic font-light text-sm text-justify"}>
             {t("crew.description")}
           </p>
         </div>

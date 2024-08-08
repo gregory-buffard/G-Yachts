@@ -20,7 +20,7 @@ const Destinations = async () => {
       <View />
       <Hero />
       <Map destinations={destinations} />
-      <div className="flex flex-col w-full lg:w-5/6 px-10">
+      <div className="flex flex-col w-full lg:w-5/6 px-10 -mt-[4vh] md:-mt-[6vh] lg:-mt-[12vh]">
         <Listing data={destinations} />
       </div>
       <Newsletter />

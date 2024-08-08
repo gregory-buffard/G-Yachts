@@ -19,12 +19,12 @@ const Card = ({ card }: { card: IArticle }) => {
           backgroundImage: `url(${encodeURI(card.image.sizes.thumbnail.url)})`,
         }}
       ></div>
-      <span className="w-full text-black uppercase text-xl">
+      <h5 className="w-full text-black uppercase text-base">
         {card.category.title}
-      </span>
-      <p className="uppercase text-rock-800 text-2xl font-slick font-light">
+      </h5>
+      <h5 className="text-rock-800 font-slick font-light text-xl">
         {card.title}
-      </p>
+      </h5>
     </Link>
   );
 };
