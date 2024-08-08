@@ -17,12 +17,10 @@ const News = async ({
     category?: string;
   };
 }) => {
-  const locale = await getLocale();
+  const locale = (await getLocale()) as "en" | "fr";
 
   const selectedCategory = searchParams.category;
-  const articles: IArticle[] = await fetchArticles(
-    locale == "fr" ? "fr" : "en",
-  );
+  const articles: IArticle[] = await fetchArticles(locale);
 
   var categories = articles.map((article) => article.category.title);
   categories = categories.filter(
