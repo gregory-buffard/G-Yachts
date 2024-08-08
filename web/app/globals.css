@@ -67,6 +67,20 @@
         font-style: normal;
         src: url('../public/typography/Beausite Slick/Beausite Slick Trial Regular.ttf') format('truetype');
     }
+
+    @font-face {
+        font-family: "Century Gothic";
+        font-weight: 900;
+        font-style: normal;
+        src: url('../public/typography/Century Gothic/CenturyGothicBlack.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: "Century Gothic";
+        font-weight: 300;
+        font-style: normal;
+        src: url('../public/typography/Century Gothic/CenturyGothicLight.ttf') format('truetype');
+    }
 }
 
 @layer utilities {

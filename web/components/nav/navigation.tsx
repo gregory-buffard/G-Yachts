@@ -51,7 +51,7 @@ const Language = ({ locale }: { locale: string }): JSX.Element => {
       onClick={() => changeLanguage(locale)}
     >
       <p
-        className={`${document.cookie.includes("NEXT_LOCALE=" + locale) ? "font-medium" : "font-normal"} uppercase`}
+        className={`${document.cookie.includes("NEXT_LOCALE=" + locale) ? "font-black" : "font-light"} uppercase font-gothic`}
       >
         {locale}
       </p>

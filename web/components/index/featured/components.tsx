@@ -150,11 +150,13 @@ const Section = ({ carouselData }: { carouselData: IFeatured[] }) => {
       }
     >
       <div className={"w-full flex justify-between items-center"}>
-        <h1>
+        <h2 className={"font-slick font-light"}>
           {t.rich("title", {
-            classic: (chunks) => <span className={"classic"}>{chunks}</span>,
+            classic: (chunks) => (
+              <span className={"font-classic uppercase"}>{chunks}</span>
+            ),
           })}
-        </h1>
+        </h2>
         <div className={"flex justify-center items-center gap-[2vw]"}>
           <div
             className={"hidden lg:flex justify-center items-center gap-[0.5vw]"}

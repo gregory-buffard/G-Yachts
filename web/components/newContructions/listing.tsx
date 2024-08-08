@@ -201,7 +201,7 @@ const ListView = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={
-        "w-full h-max md:grid-cols-2 lg:grid-cols-3 md:grid flex flex-col justify-start items-start gap-[4vh] md:gap-[4vw] lg:gap-[1vw]"
+        "w-full h-max md:grid-cols-2 lg:grid-cols-3 md:grid flex flex-col justify-start items-start gap-y-[8vh] lg:gap-y-[12vh] gap-x-[4vh] md:gap-x-[4vw] lg:gap-x-[1vw]"
       }
     >
       {children}
@@ -234,7 +234,7 @@ const Listing = ({ data }: { data: INewConstruction[] }) => {
   const [filteredData, setFilteredData] = useState<INewConstruction[]>(data);
 
   useEffect(() => {
-    const filtered = data.filter((yacht) => { 
+    const filtered = data.filter((yacht) => {
       if (filter.category && yacht.category !== filter.category) return false;
       if (filter.year && yacht.yearBuilt !== filter.year) return false;
       if (filter.length.min !== undefined && filter.length.max !== undefined) {

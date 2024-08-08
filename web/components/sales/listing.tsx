@@ -200,7 +200,7 @@ const ListView = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={
-        "w-full h-max md:grid-cols-2 lg:grid-cols-3 md:grid flex flex-col justify-start items-start gap-y-[4vh] md:gap-y-[4vh] md:gap-x-[4vw] lg:gap-x-[1vw] lg:gap-y-[4vh]"
+        "w-full h-max md:grid-cols-2 lg:grid-cols-3 md:grid flex flex-col justify-start items-start gap-y-[8vh] lg:gap-y-[12vh] md:gap-x-[4vw] lg:gap-x-[1vw]"
       }
     >
       {children}

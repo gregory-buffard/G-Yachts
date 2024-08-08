@@ -10,6 +10,7 @@ const config: Config = {
     fontFamily: {
       classic: ['"Beausite Classic"', "sans-serif"],
       slick: ['"Beausite Slick"', "serif"],
+      gothic: ['"Century Gothic"', "sans-serif"],
     },
     extend: {
       backgroundImage: {
