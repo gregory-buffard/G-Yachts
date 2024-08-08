@@ -276,6 +276,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     type: 'select',
     hasMany: true,
     required: true,
+    defaultValue: [],
     options: [
       'price',
       'LOA',

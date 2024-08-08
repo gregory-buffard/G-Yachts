@@ -40,7 +40,7 @@ const generateAndDontBlock = async <T extends Yacht | Charter | NewConstruction>
     `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/brochure/${doc.id}?type=${collection}`,
   )
   if (resp.status !== 200) {
-    console.error(
+    payload.logger.error(
       `Failed to generate brochure for ${doc.id}, status code: ${
         resp.status
       }, ${await resp.text()}`,

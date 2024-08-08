@@ -19,6 +19,10 @@ import { Shipyards } from './collections/Shipyards'
 import { NewConstructions } from './collections/NewConstructions'
 import { Messages } from './collections/Messages'
 import { ArchivedCustomers } from './collections/ArchivedCustomers'
+import ImportYachts from './views/importYachts'
+import { fetchYatcoYachts } from './helpers/yatcoFetch'
+import { importYatcoYacht } from './helpers/yatcoImport'
+import ImportYachtsLink from './components/importYatcoLink'
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -28,7 +32,15 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
-    components: {},
+    components: {
+      views: {
+        ImportYachts: {
+          Component: ImportYachts,
+          path: '/import-yachts',
+        },
+      },
+      afterNavLinks: [ImportYachtsLink],
+    },
     webpack: config => ({
       ...config,
       resolve: {
@@ -82,7 +94,18 @@ export default buildConfig({
   },
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
-  endpoints: [],
+  endpoints: [
+    {
+      method: 'get',
+      handler: fetchYatcoYachts,
+      path: '/yatco/yachts',
+    },
+    {
+      method: 'post',
+      handler: importYatcoYacht,
+      path: '/yatco/import',
+    },
+  ],
   plugins: [],
   upload: {
     limits: {

@@ -5,7 +5,6 @@ import { users } from '../../access/users'
 import { yachtsAndCharterCommonFields } from '../shared/YachtAndCharterFields'
 import { seoField } from '../shared/seo'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
-import { Yacht } from '../../payload-types'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 
 export const Yachts: CollectionConfig = {
