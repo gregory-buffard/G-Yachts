@@ -92,6 +92,7 @@ const Users: CollectionConfig = {
       name: 'position',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       label: {
