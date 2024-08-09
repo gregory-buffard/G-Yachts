@@ -2,7 +2,7 @@ import { Link } from "@/navigation";
 import { IArticle } from "@/types/article";
 import { useTranslations } from "next-intl";
 
-const Hero = async ({
+const Hero = ({
   article,
   categories,
 }: {

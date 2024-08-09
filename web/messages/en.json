@@ -329,7 +329,8 @@
     "recruitment": {
         "hero": {
             "title": "Discover the opportunities at <classic>G–Yachts</classic>",
-            "subtitle": "RECRUITMENT"
+            "subtitle": "RECRUITMENT",
+            "undertitle": "Current <classic>Opportunities</classic>"
         },
         "section": {
             "title": "Join our <classic>Team</classic>",
