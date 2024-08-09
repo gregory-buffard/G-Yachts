@@ -22,9 +22,7 @@ const Accordion = ({ data }: { data: IRecruitment }) => {
   }, []);
 
   return (
-    <section className={"w-full h-full bg-rock-100 overflow-hidden"}>
-      <div className={"grid md:grid-cols-2 px-[10vw]"}>
-        <div className="w-full mt-20">
+    <section className={"w-full h-full bg-rock-100"}>
           <div className="divide-y divide-gray-300">
             <details className="group" open>
               <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-3xl font-classic text-secondary-900 group-open:text-primary-500">
@@ -66,20 +64,26 @@ const Accordion = ({ data }: { data: IRecruitment }) => {
             </details>
             <div />
           </div>
-        </div>
-      </div>
     </section>
   );
 };
 
 const Listing = ({ data }: { data: IRecruitment[] }) => {
+  const t = useTranslations("recruitment.hero");
   return (
-    <section className={"flex justify-between items-start"}>
-      <aside className={"flex flex-col justify-center items-start"}>
-        <label></label>
-        <h1></h1>
+    <section className={"w-full h-full grid md:grid-cols-2 bg-rock-100 overflow-hidden px-[10vw] py-[5vh] md:py-[10vh]"}>
+      <aside className={""}>
+        <h4>{t("subtitle")}</h4>
+        <h1>{t.rich("undertitle", {
+          br: () => <br />,
+          classic: (chunks) => (
+              <span className={"font-classic font-normal uppercase"}>
+                  {chunks}
+                </span>
+          ),
+        })}</h1>
       </aside>
-      <article className={"flex flex-col justify-start items-center"}>
+      <article className={"flex flex-col justify-start items-center py-[3vh] md:py-[0vh]"}>
         {data.map((recruitement, i) => (
           <Accordion key={i} data={recruitement} />
         ))}
