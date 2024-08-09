@@ -105,7 +105,7 @@ type User {
   name: String!
   roles: [User_roles!]
   picture(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: User_Picture_where): Media
-  position: String!
+  position: String
   phones: [User_Phones!]
   langs: [User_langs!]
   socials: [User_Socials!]
@@ -27317,7 +27317,7 @@ input mutationUserInput {
   name: String!
   roles: [User_roles_MutationInput]
   picture: String
-  position: String!
+  position: String
   phones: [mutationUser_PhonesInput]
   langs: [User_langs_MutationInput]
   socials: [mutationUser_SocialsInput]
