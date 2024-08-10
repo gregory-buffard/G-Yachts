@@ -5,7 +5,7 @@ import { useViewContext } from "@/context/view";
 import Navigation from "@/components/nav/navigation";
 import Contact from "@/components/nav/contact";
 import Search from "@/components/nav/search";
-import Credits from "@/components/credits";
+import { Credits, Privacy, Terms } from "@/components/footer";
 
 const View = () => {
   const { view, openView } = useViewContext();
@@ -38,6 +38,8 @@ const View = () => {
       {view === "contact" && <Contact key={"contact"} />}
       {view === "search" && <Search key={"search"} />}
       {view === "credits" && <Credits key={"credits"} />}
+      {view === "privacy" && <Privacy key={"privacy"} />}
+      {view === "terms" && <Terms key={"terms"} />}
     </AnimatePresence>
   );
 };

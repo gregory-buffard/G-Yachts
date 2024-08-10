@@ -30,7 +30,14 @@ export interface IContext extends IActions {
     weight: string;
   };
   bookmarks: string[];
-  view: "navigation" | "contact" | "search" | "credits" | null;
+  view:
+    | "navigation"
+    | "contact"
+    | "search"
+    | "credits"
+    | "terms"
+    | "privacy"
+    | null;
 }
 
 const ViewContext = createContext<IContext | undefined>(undefined);
