@@ -28,9 +28,7 @@ const View = () => {
             backdropFilter: "blur(0)",
           }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className={
-            "fixed lg:block hidden w-screen h-screen inset-0 cursor-pointer z-20"
-          }
+          className={"fixed w-screen h-screen inset-0 cursor-pointer z-20"}
           onClick={() => openView(null)}
         />
       )}
