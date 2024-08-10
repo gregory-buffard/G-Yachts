@@ -96,7 +96,7 @@ const Modal = ({
     >
       <div
         className={
-          "bg-rock-100 w-[92vw] md:w-[32vw] md:h-max cursor-default drop-shadow-2xl flex flex-col justify-center md:justify-start items-center gap-[2vh] p-[2vh] overflow-y-auto"
+          "bg-rock-100 w-[92vw] md:w-[72vw] lg:w-[32vw] md:h-max cursor-default drop-shadow-2xl flex flex-col justify-center md:justify-start items-center gap-[2vh] p-[2vh] overflow-y-auto"
         }
         onClick={(e) => e.stopPropagation()}
       >
