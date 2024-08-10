@@ -96,7 +96,7 @@ const Modal = ({
     >
       <div
         className={
-          "bg-rock-100 w-[92vw] md:w-[72vw] lg:w-[32vw] md:h-max cursor-default drop-shadow-2xl flex flex-col justify-center md:justify-start items-center gap-[2vh] p-[2vh] overflow-y-auto"
+          "bg-rock-100 w-[92vw] md:w-[72vw] lg:w-[32vw] h-max max-h-[72vh] cursor-default drop-shadow-2xl flex flex-col justify-start md:justify-start items-center gap-[2vh] p-[2vh] overflow-y-auto"
         }
         onClick={(e) => e.stopPropagation()}
       >
@@ -127,7 +127,13 @@ export const Credits = () => {
     locale = useLocale();
 
   return (
-    <Modal title={t("title")}>
+    <Modal
+      title={t.rich("title", {
+        classic: (chunk) => (
+          <span className={"font-classic uppercase font-medium"}>{chunk}</span>
+        ),
+      })}
+    >
       <div
         className={"w-full flex flex-col justify-center items-center gap-[2vh]"}
       >
