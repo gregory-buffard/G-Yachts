@@ -17,7 +17,6 @@ export const subscribe = async (formData: FormData) => {
     firstName: checkField(formData.get("name")),
     lastName: checkField(formData.get("surname")),
     email: checkField(formData.get("email")),
-    tel: formData.get("tel"),
   };
 
   const addListMember = async () => {
@@ -27,7 +26,6 @@ export const subscribe = async (formData: FormData) => {
       merge_fields: {
         FNAME: subscribingUser.firstName,
         LNAME: subscribingUser.lastName,
-        PHONE: subscribingUser.tel,
       },
     });
   };
@@ -97,7 +95,6 @@ export const contact = async ({
 
   if (formData.get("tel") && params.prefix) {
     variables.data.tel = `${params.prefix} ${formData.get("tel")}`;
-    formData.set("tel", variables.data.tel);
   }
 
   const { data } = await client.mutate({
