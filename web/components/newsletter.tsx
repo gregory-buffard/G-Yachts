@@ -10,13 +10,15 @@ import { colorify } from "lottie-colorify";
 import submitted from "@/public/imagery/optimized/newsletter.json";
 import { useParams } from "next/navigation";
 import { usePath } from "@/utils/contact";
+import { useViewContext } from "@/context/view";
 
 const Newsletter = () => {
   const t = useTranslations("newsletter"),
     path = usePath(),
     [registred, setRegistred] = useState<boolean>(false),
     animationRef = useRef<LottieRefCurrentProps>(null),
-    params = useParams();
+    params = useParams(),
+    { openView } = useViewContext();
 
   return (
     <section
@@ -137,8 +139,24 @@ const Newsletter = () => {
                 />
                 <label htmlFor={"law"}>
                   {t.rich("law", {
-                    confidentiality: (chunks) => <a href={"#"}>{chunks}</a>,
-                    guidelines: (chunks) => <a href={"#"}>{chunks}</a>,
+                    confidentiality: (chunks) => (
+                      <button
+                        type={"button"}
+                        onClick={() => openView("privacy")}
+                        className={"uppercase underline"}
+                      >
+                        {chunks}
+                      </button>
+                    ),
+                    guidelines: (chunks) => (
+                      <button
+                        type={"button"}
+                        onClick={() => openView("terms")}
+                        className={"uppercase underline"}
+                      >
+                        {chunks}
+                      </button>
+                    ),
                   })}
                 </label>
               </div>
