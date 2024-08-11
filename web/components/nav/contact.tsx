@@ -16,6 +16,7 @@ import submitted from "@/public/imagery/optimized/contact/submitted.json";
 import { handleMouseMove } from "@/utils/mouseCoords";
 import { useParams } from "next/navigation";
 import { usePath } from "@/utils/contact";
+import { useViewContext } from "@/context/view";
 
 export const Input = ({
   props,
@@ -120,7 +121,7 @@ const Submit = () => {
           className={"h-[1.5rem]"}
         />
       ) : (
-        <p>{t("form.submit")}</p>
+        <p className={"uppercase"}>{t("form.submit")}</p>
       )}
     </button>
   );
@@ -135,7 +136,8 @@ const Contact = () => {
     animationRef = useRef<LottieRefCurrentProps>(null),
     { pending } = useFormStatus(),
     [sent, setSent] = useState<boolean>(false),
-    params = useParams();
+    params = useParams(),
+    { openView } = useViewContext();
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -389,8 +391,24 @@ const Contact = () => {
                 />
                 <label htmlFor={"law"}>
                   {t.rich("form.law", {
-                    confidentiality: (chunks) => <a href={"#"}>{chunks}</a>,
-                    guidelines: (chunks) => <a href={"#"}>{chunks}</a>,
+                    confidentiality: (chunks) => (
+                      <button
+                        type={"button"}
+                        onClick={() => openView("privacy")}
+                        className={"uppercase underline"}
+                      >
+                        {chunks}
+                      </button>
+                    ),
+                    guidelines: (chunks) => (
+                      <button
+                        type={"button"}
+                        onClick={() => openView("terms")}
+                        className={"uppercase underline"}
+                      >
+                        {chunks}
+                      </button>
+                    ),
                   })}
                 </label>
               </div>

@@ -76,6 +76,9 @@ jobs:
           echo "ADMIN_IP=${{secrets.ADMIN_IP}}" >> .env
           echo "PUBLIC_API_IP=${{secrets.PUBLIC_API_IP}}" >> .env
           echo "ADMIN_API_IP=${{secrets.ADMIN_API_IP}}" >> .env
+          echo "MAILCHIMP_API_KEY=${{secrets.MAILCHIMP_API_KEY}}" >> .env
+          echo "MAILCHIMP_LIST_ID=${{secrets.MAILCHIMP_LIST_ID}}" >> .env
+          echo "MAILCHIMP_SERVER=${{secrets.MAILCHIMP_SERVER}}" >> .env
 
           # WEB
           echo "NEXT_PUBLIC_ADMIN_BASE_URI=http://admin:3000" >> .env

@@ -3,60 +3,52 @@
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
 import { checkField } from "@/utils/contact";
+import mailchimp from "@mailchimp/mailchimp_marketing";
+const md5 = require("md5");
 
-export const legacy = async (
-  formData: FormData,
-  params: {
-    prefix?: string;
-    locale: string;
-    page?: string;
-  },
-) => {
-  if (formData.get("surname")) {
-    const rawFormData = {
-      name: formData.get("name"),
-      surname: formData.get("surname"),
-      email: formData.get("email"),
-    };
-  }
+export const subscribe = async (formData: FormData) => {
+  mailchimp.setConfig({
+    apiKey: process.env.MAILCHIMP_API_KEY,
+    server: process.env.MAILCHIMP_SERVER,
+  });
 
-  const rawFormData = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    tel: params.prefix! + formData.get("tel"),
-    message: formData.get("message"),
-    inquiry: {
-      buying: formData.get("buying") === "on",
-      selling: formData.get("selling") === "on",
-      chartering: formData.get("chartering") === "on",
-      other: formData.get("other") === "on",
-    },
-    newsletter: formData.get("newsletter") === "on",
-    status: "unclaimed",
+  const listId = checkField(process.env.MAILCHIMP_LIST_ID);
+  const subscribingUser = {
+    firstName: checkField(formData.get("name")),
+    lastName: checkField(formData.get("surname")),
+    email: checkField(formData.get("email")),
+    tel: formData.get("tel"),
   };
 
-  /*
-  const customer = await Customer.findOne({ email: rawFormData.email }).exec();
-  if (customer) {
-    customer.name = rawFormData.name;
-    customer.email = rawFormData.email;
-    customer.tel = rawFormData.tel;
-    customer.message = rawFormData.message;
-    customer.inquiry = rawFormData.inquiry;
-    customer.newsletter = rawFormData.newsletter;
-    customer.status = rawFormData.status;
-    customer.save();
-    return;
+  const addListMember = async () => {
+    await mailchimp.lists.addListMember(listId, {
+      email_address: subscribingUser.email,
+      status: "subscribed",
+      merge_fields: {
+        FNAME: subscribingUser.firstName,
+        LNAME: subscribingUser.lastName,
+        PHONE: subscribingUser.tel,
+      },
+    });
+  };
+
+  try {
+    const res = await mailchimp.lists.getListMember(
+      listId,
+      md5(subscribingUser.email),
+    );
+
+    if (res.status !== "subscribed" && res.status !== "pending") {
+      await addListMember();
+    }
+  } catch (e: any) {
+    if (e.status === 404) {
+      await addListMember();
+    } else {
+      console.error(e);
+      throw e;
+    }
   }
-
-  await Newsletter.findOneAndDelete({
-    email: rawFormData.email,
-  });
-  await Customer.create(rawFormData);*/
-};
-
-export const newsletter = async (formData: FormData) => {
-  // TODO: Need to connect MailChimp!
 };
 
 export const contact = async ({
@@ -90,6 +82,7 @@ export const contact = async ({
       page: string;
       status: "pending";
       tel?: string;
+      newsletter: boolean;
     };
   } = {
     data: {
@@ -98,11 +91,13 @@ export const contact = async ({
       message: checkField(formData.get("message")),
       page: params.page,
       status: "pending",
+      newsletter: formData.get("newsletter") === "on",
     },
   };
 
   if (formData.get("tel") && params.prefix) {
     variables.data.tel = `${params.prefix} ${formData.get("tel")}`;
+    formData.set("tel", variables.data.tel);
   }
 
   const { data } = await client.mutate({
@@ -111,7 +106,17 @@ export const contact = async ({
   });
 
   if (formData.get("newsletter") === "on") {
-    await newsletter(formData);
+    const splitName = (
+      name: string,
+    ): { firstName: string; lastName: string } => {
+      const [firstName, ...lastNameParts] = name.split(" ");
+      const lastName = lastNameParts.join(" ");
+      return { firstName, lastName };
+    };
+    const { firstName, lastName } = splitName(checkField(formData.get("name")));
+    formData.set("name", firstName);
+    formData.set("surname", lastName || "");
+    await subscribe(formData);
   }
 
   return data.createMessage;
