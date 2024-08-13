@@ -1,4 +1,4 @@
-import { Metadata, ResolvingMetadata } from "next";
+/*import { Metadata, ResolvingMetadata } from "next";
 
 const generateMetadata = async ({ params }) => {
   return {
@@ -9,4 +9,4 @@ const generateMetadata = async ({ params }) => {
   };
 };
 
-export default generateMetadata;
+export default generateMetadata;*/
