@@ -576,7 +576,7 @@ export interface Yacht {
   price: number;
   LOA: number;
   beam: number;
-  broker: string | User;
+  broker?: (string | null) | User;
   builder: string;
   category?: string | null;
   city?: string | null;
@@ -588,7 +588,7 @@ export interface Yacht {
   state?: string | null;
   material: string;
   maxDraft: number;
-  minDraft: number;
+  minDraft?: number | null;
   region?: string | null;
   rooms: number;
   sleeps: number;
@@ -651,7 +651,7 @@ export interface Charter {
   };
   LOA: number;
   beam: number;
-  broker: string | User;
+  broker?: (string | null) | User;
   builder: string;
   category?: string | null;
   city?: string | null;
@@ -663,7 +663,7 @@ export interface Charter {
   state?: string | null;
   material: string;
   maxDraft: number;
-  minDraft: number;
+  minDraft?: number | null;
   region?: string | null;
   rooms: number;
   sleeps: number;
@@ -902,7 +902,7 @@ export interface NewConstruction {
   price: number;
   LOA: number;
   beam: number;
-  broker: string | User;
+  broker?: (string | null) | User;
   builder: string;
   category?: string | null;
   city?: string | null;
@@ -914,7 +914,7 @@ export interface NewConstruction {
   state?: string | null;
   material: string;
   maxDraft: number;
-  minDraft: number;
+  minDraft?: number | null;
   region?: string | null;
   rooms: number;
   sleeps: number;

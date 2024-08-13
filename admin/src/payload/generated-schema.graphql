@@ -3946,7 +3946,7 @@ type Yacht {
   price: Float!
   LOA: Float!
   beam: Float!
-  broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User!
+  broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   builder: String!
   category: String
   city: String
@@ -3958,7 +3958,7 @@ type Yacht {
   state: String
   material: String
   maxDraft: Float!
-  minDraft: Float!
+  minDraft: Float
   region: String
   rooms: Float!
   sleeps: Float!
@@ -4810,6 +4810,7 @@ input Yacht_broker_operator {
   in: [JSON]
   not_in: [JSON]
   all: [JSON]
+  exists: Boolean
 }
 
 input Yacht_builder_operator {
@@ -4922,6 +4923,7 @@ input Yacht_minDraft_operator {
   greater_than: Float
   less_than_equal: Float
   less_than: Float
+  exists: Boolean
 }
 
 input Yacht_region_operator {
@@ -6267,7 +6269,7 @@ type Charter {
   price: Charter_Price
   LOA: Float!
   beam: Float!
-  broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User!
+  broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   builder: String!
   category: String
   city: String
@@ -6279,7 +6281,7 @@ type Charter {
   state: String
   material: String
   maxDraft: Float!
-  minDraft: Float!
+  minDraft: Float
   region: String
   rooms: Float!
   sleeps: Float!
@@ -7234,6 +7236,7 @@ input Charter_broker_operator {
   in: [JSON]
   not_in: [JSON]
   all: [JSON]
+  exists: Boolean
 }
 
 input Charter_builder_operator {
@@ -7346,6 +7349,7 @@ input Charter_minDraft_operator {
   greater_than: Float
   less_than_equal: Float
   less_than: Float
+  exists: Boolean
 }
 
 input Charter_region_operator {
@@ -13928,7 +13932,7 @@ type NewConstruction {
   price: Float!
   LOA: Float!
   beam: Float!
-  broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User!
+  broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   builder: String!
   category: String
   city: String
@@ -13940,7 +13944,7 @@ type NewConstruction {
   state: String
   material: String
   maxDraft: Float!
-  minDraft: Float!
+  minDraft: Float
   region: String
   rooms: Float!
   sleeps: Float!
@@ -14803,6 +14807,7 @@ input NewConstruction_broker_operator {
   in: [JSON]
   not_in: [JSON]
   all: [JSON]
+  exists: Boolean
 }
 
 input NewConstruction_builder_operator {
@@ -14915,6 +14920,7 @@ input NewConstruction_minDraft_operator {
   greater_than: Float
   less_than_equal: Float
   less_than: Float
+  exists: Boolean
 }
 
 input NewConstruction_region_operator {
@@ -28274,7 +28280,7 @@ input mutationYachtInput {
   state: String
   material: String
   maxDraft: Float!
-  minDraft: Float!
+  minDraft: Float
   region: String
   rooms: Float!
   sleeps: Float!
@@ -28430,7 +28436,7 @@ input mutationCharterInput {
   state: String
   material: String
   maxDraft: Float!
-  minDraft: Float!
+  minDraft: Float
   region: String
   rooms: Float!
   sleeps: Float!
@@ -28801,7 +28807,7 @@ input mutationNewConstructionInput {
   state: String
   material: String
   maxDraft: Float!
-  minDraft: Float!
+  minDraft: Float
   region: String
   rooms: Float!
   sleeps: Float!
