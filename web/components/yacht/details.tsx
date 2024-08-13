@@ -236,21 +236,23 @@ const Details = () => {
             </button>
           )}
         </div>
-        <div
-          className={
-            "w-full flex flex-col justify-center items-center gap-[2vh] border-rock-400 border-[0.25vh] p-[2vh]"
-          }
-        >
-          <Brokerino brokerino={yacht.broker} />
-          <a
-            href={`mailto:${yacht.broker.email}?subject=${encodeURIComponent(yacht.name)}`}
+        {yacht.broker && (
+          <div
             className={
-              "py-[1vh] w-full text-white bg-black hover:bg-teal active:bg-teal transition-colors duration-200 ease-in-out uppercase text-center"
+              "w-full flex flex-col justify-center items-center gap-[2vh] border-rock-400 border-[0.25vh] p-[2vh]"
             }
           >
-            {t("CTA")}
-          </a>
-        </div>
+            <Brokerino brokerino={yacht.broker} />
+            <a
+              href={`mailto:${yacht.broker.email}?subject=${encodeURIComponent(yacht.name)}`}
+              className={
+                "py-[1vh] w-full text-white bg-black hover:bg-teal active:bg-teal transition-colors duration-200 ease-in-out uppercase text-center"
+              }
+            >
+              {t("CTA")}
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -22,6 +22,7 @@ export interface IFeatured
     | "yearBuilt"
     | "sleeps"
     | "photos"
+    | "etiquette"
   > {}
 
 export interface ICFeatured
@@ -35,6 +36,7 @@ export interface ICFeatured
     | "yearBuilt"
     | "sleeps"
     | "photos"
+    | "etiquette"
   > {
   price: {
     low: number;

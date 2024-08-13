@@ -8,6 +8,7 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import { useCharter } from "@/context/charter";
 import Brokerino from "@/components/yacht/brokerino";
+import Reservations from "@/components/charter/reservations";
 
 const Gallery = dynamic(() => import("@/components/charter/gallery/gallery"));
 
@@ -58,8 +59,12 @@ const Details = () => {
       value: convertUnit(charter.beam, units.length),
     },
     {
-      label: t("characteristics.draft"),
-      value: (charter.maxDraft + charter.minDraft) / 2,
+      label: charter.minDraft
+        ? t("characteristics.draft")
+        : t("characteristics.maxDraft"),
+      value: charter.minDraft
+        ? (charter.maxDraft + charter.minDraft) / 2
+        : charter.maxDraft,
     },
     {
       label: t("characteristics.tonnage"),
@@ -192,21 +197,24 @@ const Details = () => {
             </button>
           )}
         </div>
-        <div
-          className={
-            "w-full flex flex-col justify-center items-center gap-[2vh] border-rock-400 border-[0.25vh] p-[2vh]"
-          }
-        >
-          <Brokerino brokerino={charter.broker} />
-          <a
-            href={`mailto:${charter.broker.email}`}
+        {charter.broker && (
+          <div
             className={
-              "py-[1vh] w-full text-white bg-black hover:bg-teal active:bg-teal transition-colors duration-200 ease-in-out uppercase text-center"
+              "w-full flex flex-col justify-center items-center gap-[2vh] border-rock-400 border-[0.25vh] p-[2vh]"
             }
           >
-            {t("CTA")}
-          </a>
-        </div>
+            <Brokerino brokerino={charter.broker} />
+            <a
+              href={`mailto:${charter.broker.email}`}
+              className={
+                "py-[1vh] w-full text-white bg-black hover:bg-teal active:bg-teal transition-colors duration-200 ease-in-out uppercase text-center"
+              }
+            >
+              {t("CTA")}
+            </a>
+          </div>
+        )}
+        <Reservations data={charter.reservations} />
       </div>
     </section>
   );

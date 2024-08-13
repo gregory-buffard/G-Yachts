@@ -87,19 +87,19 @@ const Card = ({ data }: { data: ICharter }) => {
           }
         >
           <Photo
-            url={`url(${data.photos.featured.sizes.thumbnail.url})`}
+            url={`url(${encodeURI(data.photos.featured.sizes.thumbnail.url)})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(${data.photos.gallery[0]?.image.sizes.thumbnail.url})`}
+            url={`url(${encodeURI(data.photos.gallery[0]?.image.sizes.thumbnail.url)})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(${data.photos.gallery[1]?.image.sizes.thumbnail.url})`}
+            url={`url(${encodeURI(data.photos.gallery[1]?.image.sizes.thumbnail.url)})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
@@ -170,8 +170,8 @@ const Card = ({ data }: { data: ICharter }) => {
         {data.price ? <p>{price}</p> : <p>{t("priceOnApplication")}</p>}
       </div>
       <p className={"uppercase text-rock-400"}>
-        {data.builder} | {convertUnit(data.length, units.length) + units.length}{" "}
-        | {data.yearBuilt} | {data.sleeps} {t("sleeps")}
+        {data.builder} | {convertUnit(data.length, units.length)} |{" "}
+        {data.yearBuilt} | {data.sleeps} {t("sleeps")}
       </p>
     </Link>
   );

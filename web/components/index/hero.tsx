@@ -7,14 +7,14 @@ const Hero = () => {
   const t = useTranslations("index.hero");
 
   return (
-    <div className="h-screen w-full overflow-hidden">
+    <div className="h-[90vh] md:h-screen w-full overflow-hidden">
       <video
         src="http://51.75.16.185/videos/hero.mp4"
         autoPlay
         loop
         muted
         preload={"none"}
-        className="absolute w-full h-screen object-cover object-center"
+        className="absolute w-full h-[90vh] md:h-screen object-cover object-center"
         playsInline
       />
       <Scrolldown />

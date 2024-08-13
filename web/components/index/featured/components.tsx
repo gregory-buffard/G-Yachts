@@ -49,8 +49,7 @@ const Card = ({ card }: { card: IFeatured }) => {
           )}
         </div>
         <p className={"uppercase text-rock-400"}>
-          {card.builder} |{" "}
-          {convertUnit(card.length, units.length) + units.length} |{" "}
+          {card.builder} | {convertUnit(card.length, units.length)} |{" "}
           {card.yearBuilt} | {card.sleeps} {t("sleeps")}
         </p>
       </div>

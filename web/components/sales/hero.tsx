@@ -34,8 +34,8 @@ const Card = ({ card }: { card: IFeatured }) => {
         />
       )}
       <h4>
-        {card.builder} | {convertUnit(card.length, units.length) + units.length}{" "}
-        | {card.yearBuilt} | {card.sleeps + " " + t("guests")}
+        {card.builder} | {convertUnit(card.length, units.length)} |{" "}
+        {card.yearBuilt} | {card.sleeps + " " + t("guests")}
       </h4>
     </Link>
   );
