@@ -82,7 +82,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     },
     name: 'broker',
     type: 'relationship',
-    required: true,
+    required: false,
     relationTo: 'users',
     hasMany: false,
   },
@@ -193,7 +193,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     },
     name: 'minDraft',
     type: 'number',
-    required: true,
+    required: false,
   },
   {
     label: {
