@@ -104,7 +104,9 @@ const Navigation = () => {
         <div className={"w-full flex justify-between items-center"}>
           <Close />
           <div
-            className={"flex justify-end items-baseline gap-[2vw] text-base"}
+            className={
+              "flex justify-end items-baseline gap-[8vw] md:gap-[2vw] text-base"
+            }
           >
             <Language locale={"en"} />
             <Language locale={"fr"} />

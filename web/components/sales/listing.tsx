@@ -166,8 +166,8 @@ const Card = ({ data }: { data: ISale }) => {
         {data.price ? <p>{price}</p> : <p>{t("priceOnApplication")}</p>}
       </div>
       <p className={"uppercase text-rock-400"}>
-        {data.builder} | {convertUnit(data.length, units.length) + units.length}{" "}
-        | {data.yearBuilt} | {data.sleeps} {t("sleeps")}
+        {data.builder} | {convertUnit(data.length, units.length)} |{" "}
+        {data.yearBuilt} | {data.sleeps} {t("sleeps")}
       </p>
     </Link>
   );

@@ -20,7 +20,6 @@ const Charter = async ({ params }: { params: { id: string } }) => {
         <View />
         <Hero />
         <Details />
-        <Reservations data={charter.reservations} />
         <Similar type="charters" length={charter.length} />
         <Newsletter />
         <Footer />

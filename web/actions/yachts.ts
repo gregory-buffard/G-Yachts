@@ -318,6 +318,10 @@ export const fetchCharter = async (id: string): Promise<ICharter> => {
           featured
           keyFeatures
           description
+          reservations {
+            from
+            to
+          }
           broker {
             id
             name
@@ -523,6 +527,7 @@ export const fetchSimilarYachts = async (
             sleeps
             yearBuilt
             clicks
+            etiquette
             photos {
               featured {
                 sizes {
@@ -555,6 +560,7 @@ export const fetchSimilarYachts = async (
             sleeps
             yearBuilt
             clicks
+            etiquette
             photos {
               featured {
                 sizes {
@@ -587,6 +593,7 @@ export const fetchSimilarYachts = async (
             sleeps
             yearBuilt
             clicks
+            etiquette
             photos {
               featured {
                 sizes {
@@ -629,6 +636,7 @@ export const fetchSimilarCharters = async (
             sleeps
             yearBuilt
             clicks
+            etiquette
             photos {
               featured {
                 sizes {
@@ -664,6 +672,7 @@ export const fetchSimilarCharters = async (
             sleeps
             yearBuilt
             clicks
+            etiquette
             photos {
               featured {
                 sizes {
@@ -699,6 +708,7 @@ export const fetchSimilarCharters = async (
             sleeps
             yearBuilt
             clicks
+            etiquette
             photos {
               featured {
                 sizes {

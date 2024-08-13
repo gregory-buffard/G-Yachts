@@ -183,7 +183,8 @@
             "views": {
                 "global": "Search results",
                 "bookmarks": "My shortlist",
-                "empty": "Your shortlist is empty..."
+                "empty": "Your shortlist is empty...",
+                "reserved": "RESERVED"
             },
             "guide": "Click on the icon to add yachts to your shortlist",
             "info": "Collect your favorite yachts – add more to your short list",
@@ -212,6 +213,7 @@
                 "sleeps": "Beds",
                 "rooms": "Rooms",
                 "draft": "Draft",
+                "maxDraft": "Max draft",
                 "tonnage": "Weight",
                 "yearBuilt": "Year built",
                 "yearModel": "Year model",
@@ -246,6 +248,7 @@
                 "sleeps": "Beds",
                 "rooms": "Rooms",
                 "draft": "Draft",
+                "maxDraft": "Max draft",
                 "tonnage": "Weight",
                 "yearBuilt": "Year built",
                 "yearModel": "Year model",

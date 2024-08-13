@@ -158,6 +158,7 @@
                 "sleeps": "Lits",
                 "rooms": "Cabines",
                 "draft": "Tirant d'eau",
+                "maxDraft": "Tirant d'eau maximum",
                 "tonnage": "Poids",
                 "yearBuilt": "Année de construction",
                 "yearModel": "Année du modèle",
@@ -218,7 +219,8 @@
             "views": {
                 "global": "Resultats de recherche",
                 "bookmarks": "Ma liste de favoris",
-                "empty": "Votre liste est vide..."
+                "empty": "Votre liste est vide...",
+                "reserved": "RÉSERVÉ"
             },
             "guide": "Cliquez sur l'icône pour ajouter des yachts à votre liste de favoris",
             "info": "Rassemblez vos yachts préférés – ajoutez-en plus à votre liste de favoris",
@@ -246,6 +248,7 @@
                 "sleeps": "Lits",
                 "rooms": "Cabines",
                 "draft": "Tirant d'eau",
+                "maxDraft": "Tirant d'eau maximum",
                 "tonnage": "Poids",
                 "yearBuilt": "Année de construction",
                 "yearModel": "Année du modèle",
