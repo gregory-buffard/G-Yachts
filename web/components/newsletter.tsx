@@ -27,7 +27,7 @@ const Newsletter = () => {
       }
     >
       <video
-        src={"http://51.75.16.185/videos/newsletter.mp4"}
+        src={"/videos/newsletter.mp4"}
         className={"absolute w-full h-full object-cover -z-10 brightness-75"}
         autoPlay
         muted
