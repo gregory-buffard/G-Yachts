@@ -18,7 +18,7 @@
 		file_server browse
 	}
 
-	handle_path /admin/* {
+	handle /admin/* {
 		reverse_proxy http://admin:3000 {
 			header_up Host {host}
 			header_up X-Real-IP {remote_host}
@@ -28,7 +28,7 @@
 		}
 	}
 
-	handle_path /api/* {
+	handle /api/* {
 		reverse_proxy http://admin:3000 {
 			header_up Host {host}
 			header_up X-Real-IP {remote_host}
@@ -38,7 +38,7 @@
 		}
 	}
 
-	handle_path /media/* {
+	handle /media/* {
 		reverse_proxy http://admin:3000 {
 			header_up Host {host}
 			header_up X-Real-IP {remote_host}
@@ -48,7 +48,7 @@
 		}
 	}
 
-	handle_path /brochure/* {
+	handle /brochure/* {
 		reverse_proxy http://admin:3000 {
 			header_up Host {host}
 			header_up X-Real-IP {remote_host}

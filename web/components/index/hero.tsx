@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <div className="h-screen w-full overflow-hidden">
       <video
-        src="http://51.75.16.185/videos/hero.mp4"
+        src="/videos/hero.mp4"
         autoPlay
         loop
         muted
