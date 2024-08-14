@@ -1,0 +1,70 @@
+{
+	email ${CADDY_EMAIL}
+}
+
+{$CADDY_BASE_DOMAIN} {
+	request_body {
+		max_size 20MB
+	}
+
+	handle /images/* {
+		root * /var/www
+		file_server browse
+		header Access-Control-Allow-Origin "*"
+	}
+
+	handle /videos/* {
+		root * /var/www
+		file_server browse
+	}
+
+	handle_path /admin/* {
+		reverse_proxy http://admin:3000 {
+			header_up Host {host}
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-Port {server_port}
+			header_up Connection {>Connection}
+			header_up Upgrade {>Upgrade}
+		}
+	}
+
+	handle_path /api/* {
+		reverse_proxy http://admin:3000 {
+			header_up Host {host}
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-Port {server_port}
+			header_up Connection {>Connection}
+			header_up Upgrade {>Upgrade}
+		}
+	}
+
+	handle_path /media/* {
+		reverse_proxy http://admin:3000 {
+			header_up Host {host}
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-Port {server_port}
+			header_up Connection {>Connection}
+			header_up Upgrade {>Upgrade}
+		}
+	}
+
+	handle_path /brochure/* {
+		reverse_proxy http://admin:3000 {
+			header_up Host {host}
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-Port {server_port}
+			header_up Connection {>Connection}
+			header_up Upgrade {>Upgrade}
+		}
+	}
+
+	handle {
+		reverse_proxy http://web:3000 {
+			header_up Host {host}
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-Port {server_port}
+			header_up Connection {>Connection}
+			header_up Upgrade {>Upgrade}
+		}
+	}
+}
