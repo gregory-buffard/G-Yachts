@@ -9,7 +9,7 @@ export const usePath = (): string => {
       return "Sales Page";
     case "/sales/[id]":
       return "Yacht Page";
-    case "/charter/[id]":
+    case "/charters/[id]":
       return "Yacht for Charter Page";
     case "/charters":
       return "Charters Page";

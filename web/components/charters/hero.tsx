@@ -17,7 +17,7 @@ const Card = ({ card }: { card: ICFeatured }) => {
 
   return (
     <Link
-      href={"/charters"}
+      href={{ pathname: "/charters/[id]", params: { id: card.id } }}
       key={`${card.id}`}
       className={
         "w-screen h-full bg-cover bg-right-bottom translate-x-[var(--translate-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out flex flex-col justify-end items-end py-[4vh] lg:py-[12vh] px-[4vw]"

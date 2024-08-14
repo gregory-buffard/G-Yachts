@@ -73,7 +73,7 @@ const Card = ({ data }: { data: ICharter }) => {
 
   return (
     <Link
-      href={{ pathname: "/charter/[id]", params: { id: data.id } }}
+      href={{ pathname: "/charters/[id]", params: { id: data.id } }}
       className={
         "w-full md:w-[44vw] lg:w-[30vw] h-max flex flex-col justify-start items-start overflow-x-clip"
       }

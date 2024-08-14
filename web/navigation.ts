@@ -15,11 +15,8 @@ export const pathnames = {
     en: "/sales/[id]",
     fr: "/ventes/[id]",
   },
-  "/charter/[id]": "/charter/[id]",
-  "/charters": {
-    en: "/charters",
-    fr: "/charters",
-  },
+  "/charters": "/charters",
+  "/charters/[id]": "/charters/[id]",
   "/new-constructions": {
     en: "/new-constructions",
     fr: "/nouvelles-constructions",
@@ -68,7 +65,7 @@ export const pathnames = {
     en: "/destinations",
     fr: "/destinations",
   },
-  "/destinations/[id]": "/destinations/[id]"
+  "/destinations/[id]": "/destinations/[id]",
 } satisfies Pathnames<typeof locales>;
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =

@@ -2,7 +2,7 @@
 
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
-import { IYacht as SYacht, IFeatured as SFeatured, ISale } from "@/types/sale";
+import { IFeatured as SFeatured, ISale, IYacht as SYacht } from "@/types/sale";
 import { ICFeatured, ICharter } from "@/types/charter";
 import { IDestination } from "@/types/destination";
 import axios from "axios";

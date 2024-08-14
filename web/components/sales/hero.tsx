@@ -20,7 +20,7 @@ const Card = ({ card }: { card: IFeatured }) => {
         "w-screen h-full bg-cover bg-right-bottom translate-x-[var(--translate-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out flex flex-col justify-end items-end py-[4vh] lg:py-[12vh] px-[4vw]"
       }
       style={{
-        backgroundImage: `url(${card.photos.featured.sizes.fhd.url})`,
+        backgroundImage: `url(${encodeURI(card.photos.featured.sizes.fhd.url)})`,
       }}
     >
       <h4>{card.name}</h4>

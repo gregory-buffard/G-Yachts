@@ -119,7 +119,7 @@ const ChartersResults = ({ charters }: { charters: ICharter[] }) => {
         <Link
           onClick={() => openView(null)}
           href={{
-            pathname: "/charter/[id]",
+            pathname: "/charters/[id]",
             params: { id: charter.id },
           }}
           key={charter.id}

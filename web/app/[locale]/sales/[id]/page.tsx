@@ -5,10 +5,24 @@ import { YachtProvider } from "@/context/yacht";
 import Hero from "@/components/yacht/hero";
 import Details from "@/components/yacht/details";
 import Similar from "@/components/similar/section";
+import { getLocale } from "next-intl/server";
+import { Metadata } from "next";
+import { fetchMetadata } from "@/actions/actions";
+
 const View = dynamic(() => import("@/components/view"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
-import { getLocale } from "next-intl/server";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> => {
+  const id = params.id,
+    locale = (await getLocale()) as "en" | "fr";
+
+  return await fetchMetadata({ id, type: "sale", locale });
+};
 
 const Sale = async ({ params }: { params: { id: string } }) => {
   const yacht = await fetchSale(params.id, (await getLocale()) as "en" | "fr");
