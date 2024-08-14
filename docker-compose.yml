@@ -1,20 +1,39 @@
 services:
-  nginx:
-    image: nginx:latest
-    container_name: nginx
+  # nginx:
+  #   image: nginx:latest
+  #   container_name: nginx
+  #   depends_on:
+  #     - web
+  #     - admin
+  #   restart: always
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - /etc/nginx/sites-available/web:/etc/nginx/sites-enabled/web
+  #     - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+  #     - /var/www/images:/var/www/images
+  #     - /var/www/videos:/var/www/videos
+  #   networks:
+  #     - gYachts
+  
+  caddy:
+    image: caddy:latest
+    container_name: caddy
     depends_on:
       - web
       - admin
     restart: always
     ports:
+      - "443:443"
       - "80:80"
     volumes:
-      - /etc/nginx/sites-available/web:/etc/nginx/sites-enabled/web
-      - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./Caddyfile:/etc/caddy/Caddyfile
       - /var/www/images:/var/www/images
       - /var/www/videos:/var/www/videos
     networks:
       - gYachts
+    env_file:
+      - .env
 
   web:
     image: ghcr.io/${GITHUB_OWNER}/g-yachts-web:${GITHUB_SHA}
