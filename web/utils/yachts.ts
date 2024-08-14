@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import { IContext } from "@/context/view";
 import { useTranslations } from "next-intl";
+import { ICharter, INewConstruction, ISale } from "@/types/yacht";
 
 export const currency = (): IContext["currency"] => {
   const currency = Cookies.get("currency") as IContext["currency"];
@@ -89,4 +90,25 @@ export const remapYachtPhotos = (yacht: any) => {
       langs: yacht.broker.langs.map((lang: any) => lang.lang),
     },
   };
+};
+
+export const isSale = (
+  data: ISale | ICharter | INewConstruction,
+): data is ISale => {
+  return (data as ISale).price !== undefined;
+};
+
+export const isCharter = (
+  data: ISale | ICharter | INewConstruction,
+): data is ICharter => {
+  return (
+    (data as ICharter).price !== undefined &&
+    typeof (data as ICharter).price === "object"
+  );
+};
+
+export const isNewConstruction = (
+  data: ISale | ICharter | INewConstruction,
+): data is INewConstruction => {
+  return (data as INewConstruction).delivery !== undefined;
 };

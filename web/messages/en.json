@@ -223,7 +223,8 @@
                     "label": "Cryptocurrency",
                     "true": "Accepted",
                     "false": "Not accepted"
-                }
+                },
+            "builder": "Builder"
             },
             "description": "Read more",
             "CTA": "Contact broker"

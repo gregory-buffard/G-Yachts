@@ -32,7 +32,7 @@ const SwitchView = ({
 };
 
 const Details = () => {
-  const { yacht, changeView, view } = useYacht(),
+  const { data, changeView, view } = useYacht(),
     { units } = useViewContext(),
     [photo, setPhoto] = useState<number | null>(null),
     [disabled, disable] = useState<boolean>(false),
@@ -43,56 +43,65 @@ const Details = () => {
     {
       label: t("characteristics.type.label"),
       value:
-        yacht.category === "motor"
+        data.category === "motor"
           ? t("characteristics.type.motor")
           : t("characteristics.type.sail"),
       key: "category",
     },
     {
+      label: t("characteristics.builder"),
+      value: data.builder,
+      key: "builder",
+    },
+    {
       label: t("characteristics.length"),
-      value: convertUnit(yacht.length, units.length),
+      value: convertUnit(data.length, units.length),
       key: "length",
     },
     {
       label: t("characteristics.beam"),
-      value: convertUnit(yacht.beam, units.length),
+      value: convertUnit(data.beam, units.length),
       key: "beam",
     },
     {
-      label: t("characteristics.draft"),
-      value: (yacht.maxDraft + yacht.minDraft) / 2,
+      label: data.minDraft
+        ? t("characteristics.draft")
+        : t("characteristics.maxDraft"),
+      value: data.minDraft
+        ? (data.maxDraft + data.minDraft) / 2
+        : data.maxDraft,
       key: "draft",
     },
     {
       label: t("characteristics.tonnage"),
-      value: convertUnit(yacht.tonnage, units.weight),
+      value: convertUnit(data.tonnage, units.weight),
       key: "tonnage",
     },
     {
       label: t("characteristics.hull"),
-      value: yacht.material,
+      value: data.material,
       key: "material",
     },
-    { label: t("characteristics.sleeps"), value: yacht.sleeps, key: "sleeps" },
-    { label: t("characteristics.rooms"), value: yacht.rooms, key: "rooms" },
+    { label: t("characteristics.sleeps"), value: data.sleeps, key: "sleeps" },
+    { label: t("characteristics.rooms"), value: data.rooms, key: "rooms" },
     {
       label: t("characteristics.yearBuilt"),
-      value: yacht.yearBuilt,
+      value: data.yearBuilt,
       key: "yearBuilt",
     },
     {
       label: t("characteristics.yearModel"),
-      value: yacht.yearModel,
+      value: data.yearModel,
       key: "yearModel",
     },
     {
       label: t("characteristics.location"),
-      value: `${yacht.city}, ${yacht.country}`,
+      value: `${data.city}, ${data.country}`,
       key: "location",
     },
     {
       label: t("characteristics.crypto.label"),
-      value: yacht.crypto
+      value: data.crypto
         ? t("characteristics.crypto.true")
         : t("characteristics.crypto.false"),
       key: "crypto",
@@ -110,7 +119,7 @@ const Details = () => {
           "flex flex-wrap gap-[1vw] md:gap-[0.25vw] justify-center items-center md:w-[38vw] w-full h-max"
         }
       >
-        {yacht.photos.gallery.slice(0, 5).map((photo, i) => (
+        {data.photos.gallery.slice(0, 5).map((photo, i) => (
           <button
             type={"button"}
             onClick={() => {
@@ -121,10 +130,10 @@ const Details = () => {
             key={i}
             className={`${i === 0 ? "w-full md:h-[28vw]" : "w-[45.5vw] md:w-[18.85vw] md:h-[14vw]"} bg-cover bg-center h-[28vh] ${!disabled && "active:scale-95"} transition-transform duration-300 ease-in-out flex justify-end items-end py-[1vh] md:py-[2vh] px-[2vw]`}
             style={{
-              backgroundImage: `url(${photo.image.sizes.fhd.url})`,
+              backgroundImage: `url(${encodeURI(photo.image.sizes.fhd.url)})`,
             }}
           >
-            {i === yacht.photos.gallery.slice(0, 5).length - 1 && (
+            {i === data.photos.gallery.slice(0, 5).length - 1 && (
               <button
                 onMouseEnter={() => disable(true)}
                 onMouseLeave={() => disable(false)}
@@ -153,7 +162,7 @@ const Details = () => {
           <SwitchView props={{ view: "features", label: t("features") }} />
           <a
             target={"_blank"}
-            href={`/media/brochure-yachts-${yacht.id}.pdf`}
+            href={`/media/brochure-yachts-${data.id}.pdf`}
             className={
               "uppercase py-[0.5vh] border-b-[0.25vh] hover:border-black border-transparent hover:text-black text-rock-300 hover:fill-black fill-rock-300 transition-colors duration-200 ease-in-out flex justify-center items-start"
             }
@@ -198,7 +207,7 @@ const Details = () => {
                 >
                   {characteristics
                     .filter((property) =>
-                      yacht.keyFeatures.includes(property.key),
+                      data.keyFeatures.includes(property.key),
                     )
                     .map((property, i) => (
                       <div
@@ -221,7 +230,7 @@ const Details = () => {
           <article
             className={`relative w-full overflow-y-clip ${expanded ? "h-max" : "h-[17vh]"} transition-[height] duration-500 ease-in-out`}
           >
-            <p className={"text-justify"}>{yacht.description}</p>
+            <p className={"text-justify"}>{data.description}</p>
             {!expanded && (
               <div
                 className={
@@ -236,15 +245,15 @@ const Details = () => {
             </button>
           )}
         </div>
-        {yacht.broker && (
+        {data.broker && (
           <div
             className={
               "w-full flex flex-col justify-center items-center gap-[2vh] border-rock-400 border-[0.25vh] p-[2vh]"
             }
           >
-            <Brokerino brokerino={yacht.broker} />
+            <Brokerino brokerino={data.broker} />
             <a
-              href={`mailto:${yacht.broker.email}?subject=${encodeURIComponent(yacht.name)}`}
+              href={`mailto:${data.broker.email}?subject=${encodeURIComponent(data.name)}`}
               className={
                 "py-[1vh] w-full text-white bg-black hover:bg-teal active:bg-teal transition-colors duration-200 ease-in-out uppercase text-center"
               }

@@ -2,7 +2,8 @@
 
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
-import { IFeatured as SFeatured, ISale, IYacht as SYacht } from "@/types/sale";
+import { IFeatured as SFeatured, IYacht as SYacht } from "@/types/sale";
+import { ISale } from "@/types/yacht";
 import { ICFeatured, ICharter } from "@/types/charter";
 import { IDestination } from "@/types/destination";
 import axios from "axios";
@@ -106,7 +107,7 @@ export const fetchSales = async (locale: "en" | "fr"): Promise<ISale[]> => {
 export const fetchSale = async (
   id: string,
   locale: "en" | "fr",
-): Promise<SYacht> => {
+): Promise<ISale> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`

@@ -27,7 +27,7 @@ export const generateMetadata = async ({
 const Sale = async ({ params }: { params: { id: string } }) => {
   const yacht = await fetchSale(params.id, (await getLocale()) as "en" | "fr");
   return (
-    <YachtProvider yacht={yacht}>
+    <YachtProvider data={yacht} type={"sale"}>
       <main className="w-full flex flex-col justify-start items-center">
         <Bar dynamicColor={100} />
         <View />
