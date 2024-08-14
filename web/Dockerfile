@@ -9,7 +9,7 @@ RUN npm install
 
 COPY . .
 
-ENV NEXT_PUBLIC_API=http://51.75.16.185
+ENV NEXT_PUBLIC_API=http://beta.g-yachts.com
 
 RUN npm run build
 
