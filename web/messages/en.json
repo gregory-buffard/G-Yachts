@@ -32,8 +32,7 @@
         "metadata": {
             "title": "G–Yachts",
             "description": "G–Yachts is a yacht brokerage company based in Monaco. We offer a wide range of services including yacht sales, yacht charters, yacht management and yacht construction.",
-            "keywords": "yacht, brokerage, sales, charters, management, construction, monaco",
-            "author": "G–Yachts"
+            "keywords": "yacht, brokerage, sales, charters, management, construction, monaco"
         },
         "hero": {
             "sales": "SALES",
@@ -88,8 +87,7 @@
         "metadata": {
             "title": "Sales",
             "description": "Discover our listing of the finest yachts in the market. G–Yachts offers a wide range of luxury yachts for sale.",
-            "keywords": "sales, yachts, luxury, brokerage, monaco, g-yachts",
-            "author": "G–Yachts"
+            "keywords": "sales, yachts, luxury, brokerage, monaco, g-yachts"
         },
         "hero": {
             "title": "Find the perfect Yacht for <classic>You</classic>",
@@ -408,8 +406,7 @@
         "metadata": {
             "title": "Partners",
             "description": "G–Yachts collaborates with a wide range of partners in the yachting industry. Discover our partners.",
-            "keywords": "partners, yachts, luxury, brokerage, monaco, g-yachts",
-            "author": "G–Yachts"
+            "keywords": "partners, yachts, luxury, brokerage, monaco, g-yachts"
         },
         "hero": {
             "title": "Together, we create unique <classic>Experiences</classic>",
@@ -470,6 +467,11 @@
         "credits": "Credits"
     },
     "destinations": {
+        "metadata": {
+            "title": "Destinations",
+            "description": "Escape to the endless allure of the world’s most exclusive destinations with G–Yachts.",
+            "keywords": "destinations, yachts, luxury, brokerage, monaco, g-yachts"
+        },
         "heroSubtitle": "Yachts for charter",
         "heroTitle": "Amazing <classic>destinations</classic>"
     },
@@ -502,6 +504,11 @@
         "moreArticles": "More <classic>articles</classic>"
     },
     "events": {
+        "metadata": {
+            "title": "Events",
+            "description": "Discover the most exclusive events in the yachting industry. G–Yachts offers a wide range of luxury events.",
+            "keywords": "events, yachts, luxury, brokerage, monaco, g-yachts"
+        },
         "hero": {
             "title": "Your invitation to the most exclusive <classic>events</classic>",
             "subtitle": "Events"
@@ -543,6 +550,11 @@
         "manufacture": "Made with <heart></heart> in Cannes"
     },
     "new-constructions": {
+        "metadata": {
+            "title": "New Constructions",
+            "description": "Turn your dream yacht into reality with tailored craftsmanship. G–Yachts offers a wide range of new construction services.",
+            "keywords": "new constructions, yachts, luxury, brokerage, monaco, g-yachts"
+        },
         "hero": {
             "title": "The Next Generation of Innovative Yacht <classic>Designs</classic>",
             "subtitle": "NEW CONSTRUCTION"

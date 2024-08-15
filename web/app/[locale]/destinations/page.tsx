@@ -3,6 +3,7 @@ import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
 import { fetchDestinations } from "@/actions/destinations";
 import { IDestination } from "@/types/destination";
+import { getTranslations } from "next-intl/server";
 
 const View = dynamic(() => import("@/components/view"));
 const Map = dynamic(() => import("@/components/destinations/map"), {
@@ -11,6 +12,39 @@ const Map = dynamic(() => import("@/components/destinations/map"), {
 const Listing = dynamic(() => import("@/components/destinations/listing"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
+
+export const generateMetadata = async ({
+  params: { locale },
+}: {
+  params: { locale: "en" | "fr" };
+}) => {
+  const t = await getTranslations({
+    locale,
+    namespace: "destinations.metadata",
+  });
+  return {
+    title: t("title"),
+    description: t("description"),
+    keywords: t("keywords"),
+    author: "G-Yachts",
+    openGraph: {
+      title: t("title"),
+      siteName: "G-Yachts",
+      url: `https://g-yachts.com/${locale}/destinations`,
+      description: t("description"),
+      type: "website",
+      locale: locale === "en" ? "en_US" : "fr_FR",
+      images: [
+        {
+          url: encodeURI("https://g-yachts.com/images/openGraph.png"),
+          width: 1200,
+          height: 630,
+          alt: "G-Yachts logo",
+        },
+      ],
+    },
+  };
+};
 
 const Destinations = async () => {
   const destinations: IDestination[] = await fetchDestinations();

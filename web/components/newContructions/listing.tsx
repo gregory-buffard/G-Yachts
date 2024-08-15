@@ -84,19 +84,19 @@ const Card = ({ data }: { data: INewConstruction }) => {
           }
         >
           <Photo
-            url={`url(${data.photos.featured.sizes.thumbnail.url})`}
+            url={`url(${encodeURI(data.photos.featured.sizes.thumbnail.url)})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(${data.photos.gallery[0]?.image.sizes.thumbnail.url})`}
+            url={`url(${encodeURI(data.photos.gallery[0]?.image.sizes.thumbnail.url)})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
           />
           <Photo
-            url={`url(${data.photos.gallery[1]?.image.sizes.thumbnail.url})`}
+            url={`url(${encodeURI(data.photos.gallery[1]?.image.sizes.thumbnail.url)})`}
             style={{
               transform: `translateX(${translate}%)`,
             }}
