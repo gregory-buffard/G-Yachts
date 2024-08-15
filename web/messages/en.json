@@ -139,7 +139,7 @@
     "charters": {
         "metadata": {
             "title": "Charters",
-            "description": "Discover our listing of the finest yachts in the market. G–Yachts offers a wide range of luxury yachts for sale.",
+            "description": "Experience the ultimate luxury with G-Yachts Charters, offering bespoke yacht experiences from Monaco to the Mediterranean's most stunning destinations. Our curated fleet and expert team ensure every voyage is tailored to perfection, delivering unforgettable moments at sea.",
             "keywords": "charters, yachts, luxury, brokerage, monaco, g-yachts",
             "author": "G–Yachts"
         },
@@ -259,7 +259,7 @@
     "company": {
         "metadata": {
             "title": "Company",
-            "description": "Learn more about G–Yachts, a yacht brokerage company based in Monaco. We offer a wide range of services including yacht sales, yacht charters, yacht management and yacht construction.",
+            "description": "G-Yachts, based in Monaco, is a leader in the luxury yachting industry, offering unparalleled expertise and personalized services. With a passion for excellence, our dedicated team delivers bespoke experiences, from yacht sales and charters to management, ensuring the highest standards of quality and satisfaction.",
             "keywords": "yachts, sales, charters, management, construction, Monaco, G–Yachts",
             "author": "G-Yachts"
         },
@@ -328,6 +328,12 @@
         "team": "Our <classic>Team</classic>"
     },
     "recruitment": {
+        "metadata": {
+            "title": "Recruitment",
+            "description": "Discover the opportunities at G–Yachts. We are always looking for talented individuals to join our team. Explore our current job openings and apply today.",
+            "keywords": "recruitment, jobs, careers, yachts, luxury, brokerage, monaco, g-yachts",
+            "author": "G–Yachts"
+        },
         "hero": {
             "title": "Discover the opportunities at <classic>G–Yachts</classic>",
             "subtitle": "RECRUITMENT",
@@ -341,7 +347,7 @@
     "management": {
         "metadata": {
             "title": "Management",
-            "description": "Sail with peace of mind as we navigate the complexities of yacht ownership. G–Yachts offers a wide range of yacht management services.",
+            "description": "G-Yachts Management offers comprehensive yacht management services, ensuring your vessel is maintained to the highest standards. Our expert team handles everything from crew management to maintenance and operations, allowing you to enjoy the pleasures of yacht ownership without the hassle.",
             "keywords": "management, yachts, luxury, brokerage, monaco, g-yachts",
             "author": "G–Yachts"
         },
@@ -493,6 +499,12 @@
         }
     },
     "news": {
+        "metadata": {
+            "title": "News",
+            "description": "Stay up to date with the latest news from G–Yachts. Discover the latest articles, events and announcements from the world of luxury yachting and not only.",
+            "keywords": "news, articles, events, luxury, yachting, brokerage, monaco, g-yachts",
+            "author": "G–Yachts"
+        },
         "title": "Latest <classic>News</classic>",
         "readArticle": "Read article",
         "loadMore": "Load more",
