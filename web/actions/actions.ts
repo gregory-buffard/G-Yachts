@@ -58,7 +58,10 @@ export const fetchMetadata = async ({
         openGraph: {
           title: saleData.Yacht.name,
           siteName: "G-Yachts",
-          url: `https://g-yachts.com/${locale}/charters/${id}`,
+          url:
+            locale === "en"
+              ? `https://www.g-yachts.com/${locale}/sales/${id}`
+              : `https://www.g-yachts.com/${locale}/ventes/${id}`,
           description: saleData.Yacht.description,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
@@ -104,7 +107,7 @@ export const fetchMetadata = async ({
         openGraph: {
           title: saleData.Yacht.name,
           siteName: "G-Yachts",
-          url: `https://g-yachts.com/${locale}/charters/${id}`,
+          url: `https://www.g-yachts.com/${locale}/charters/${id}`,
           description: saleData.Yacht.description,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
@@ -151,7 +154,7 @@ export const fetchMetadata = async ({
         openGraph: {
           title: charterData.Charter.name,
           siteName: "G-Yachts",
-          url: `https://g-yachts.com/${locale}/charters/${id}`,
+          url: `https://www.g-yachts.com/${locale}/charters/${id}`,
           description: charterData.Charter.description,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
@@ -198,7 +201,10 @@ export const fetchMetadata = async ({
         openGraph: {
           title: newConstructionData.NewConstruction.name,
           siteName: "G-Yachts",
-          url: `https://g-yachts.com/${locale}/charters/${id}`,
+          url:
+            locale === "en"
+              ? `https://www.g-yachts.com/${locale}/new-constructions/${id}`
+              : `https://www.g-yachts.com/${locale}/nouvelles-constructions/${id}`,
           description: newConstructionData.NewConstruction.description,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
@@ -253,8 +259,8 @@ export const fetchMetadata = async ({
           siteName: "G-Yachts",
           url:
             locale === "en"
-              ? `https://g-yachts.com/${locale}/events/${id}`
-              : `https://g-yachts.com/${locale}/evenements/${id}`,
+              ? `https://www.g-yachts.com/${locale}/events/${id}`
+              : `https://www.g-yachts.com/${locale}/evenements/${id}`,
           description: `${eventData.Event.fromDate} - ${eventData.Event.toDate} | ${eventData.Event.location.city}, ${eventData.Event.location.country}`,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
@@ -303,7 +309,7 @@ export const fetchMetadata = async ({
         openGraph: {
           title: destinationData.Destination.destination,
           siteName: "G-Yachts",
-          url: `https://g-yachts.com/${locale}/destinations/${id}`,
+          url: `https://www.g-yachts.com/${locale}/destinations/${id}`,
           description: `${destinationData.Destination.destination}, ${destinationData.Destination.country}, ${destinationData.Destination.region}, ${destinationData.Destination.continent}`,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
@@ -358,8 +364,8 @@ export const fetchMetadata = async ({
           siteName: "G-Yachts",
           url:
             locale === "en"
-              ? `https://g-yachts.com/${locale}/news/${id}`
-              : `https://g-yachts.com/${locale}/actualites/${id}`,
+              ? `https://www.g-yachts.com/${locale}/news/${id}`
+              : `https://www.g-yachts.com/${locale}/actualites/${id}`,
           description: articleData.Article.category.title,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
@@ -382,16 +388,16 @@ export const fetchMetadata = async ({
         openGraph: {
           title: "G-Yachts",
           siteName: "G-Yachts",
-          url: `https://g-yachts.com/${locale}/charters/${id}`,
+          url: `https://www.g-yachts.com/${locale}/charters/${id}`,
           description: "G-Yachts",
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
           images: [
             {
-              url: "https://g-yachts.com/images/logo.png",
+              url: "https://www.g-yachts.com/images/openGraph.png",
               width: 1200,
               height: 630,
-              alt: "G-Yachts",
+              alt: "G-Yachts logo",
             },
           ],
         },

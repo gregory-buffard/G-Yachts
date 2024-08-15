@@ -86,9 +86,9 @@ jobs:
           # ADMIN
           echo "PAYLOAD_DATABASE_URI=mongodb://${{secrets.MONGO_USER}}:${{secrets.MONGO_PASS}}@mongo:27017" >> .env
           echo "PAYLOAD_DATABASE_NAME=${{secrets.PAYLOAD_DATABASE_NAME}}" >> .env
-          echo "PAYLOAD_PUBLIC_FRONTEND_URL=http://${{secrets.SERVER_IP}}" >> .env
+          echo "PAYLOAD_PUBLIC_FRONTEND_URL=https://www.g-yachts.com" >> .env
           echo "PAYLOAD_SECRET=${{secrets.PAYLOAD_SECRET}}" >> .env
-          echo "PAYLOAD_PUBLIC_SERVER_URL=http://${{secrets.SERVER_IP}}" >> .env
+          echo "PAYLOAD_PUBLIC_SERVER_URL=https://www.g-yachts.com" >> .env
           echo "GOTENBERG_ENDPOINT=http://gotenberg:3000" >> .env
           echo "PAYLOAD_YATCO_API_KEY=${{secrets.PAYLOAD_YATCO_API_KEY}}" >> .env
           echo "CADDY_EMAIL=${{secrets.CADDY_EMAIL}}" >> .env

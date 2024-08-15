@@ -29,13 +29,13 @@ export const generateMetadata = async ({
     openGraph: {
       title: t("title"),
       siteName: "G-Yachts",
-      url: `https://g-yachts.com/${locale}`,
+      url: `https://www.g-yachts.com/${locale}`,
       description: t("description"),
       type: "website",
       locale: locale === "en" ? "en_US" : "fr_FR",
       images: [
         {
-          url: encodeURI("https://g-yachts.com/images/openGraph.png"),
+          url: encodeURI("https://www.g-yachts.com/images/openGraph.png"),
           width: 1200,
           height: 630,
           alt: "G-Yachts logo",

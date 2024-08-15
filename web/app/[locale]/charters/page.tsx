@@ -10,36 +10,36 @@ const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
-                                           params: { locale },
-                                       }: {
-    params: { locale: "en" | "fr" };
+  params: { locale },
+}: {
+  params: { locale: "en" | "fr" };
 }) => {
-    const t = await getTranslations({ locale, namespace: "charters.metadata" });
-    return {
-        title: t("title"),
-        description: t("description"),
-        keywords: t("keywords"),
-        author: "G-Yachts",
-        openGraph: {
-            title: t("title"),
-            siteName: "G-Yachts",
-            url:
-                locale === "en"
-                    ? `https://g-yachts.com/${locale}/charters`
-                    : `https://g-yachts.com/${locale}/charters`,
-            description: t("description"),
-            type: "website",
-            locale: locale === "en" ? "en_US" : "fr_FR",
-            images: [
-                {
-                    url: encodeURI("https://g-yachts.com/images/openGraph.png"),
-                    width: 1200,
-                    height: 630,
-                    alt: "G-Yachts logo",
-                },
-            ],
+  const t = await getTranslations({ locale, namespace: "charters.metadata" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    keywords: t("keywords"),
+    author: "G-Yachts",
+    openGraph: {
+      title: t("title"),
+      siteName: "G-Yachts",
+      url:
+        locale === "en"
+          ? `https://www.g-yachts.com/${locale}/charters`
+          : `https://www.g-yachts.com/${locale}/charters`,
+      description: t("description"),
+      type: "website",
+      locale: locale === "en" ? "en_US" : "fr_FR",
+      images: [
+        {
+          url: encodeURI("https://www.g-yachts.com/images/openGraph.png"),
+          width: 1200,
+          height: 630,
+          alt: "G-Yachts logo",
         },
-    };
+      ],
+    },
+  };
 };
 
 const Charters = async () => {

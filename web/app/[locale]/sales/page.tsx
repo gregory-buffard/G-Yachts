@@ -25,14 +25,14 @@ export const generateMetadata = async ({
       siteName: "G-Yachts",
       url:
         locale === "en"
-          ? `https://g-yachts.com/${locale}/sales`
-          : `https://g-yachts.com/${locale}/ventes`,
+          ? `https://www.g-yachts.com/${locale}/sales`
+          : `https://www.g-yachts.com/${locale}/ventes`,
       description: t("description"),
       type: "website",
       locale: locale === "en" ? "en_US" : "fr_FR",
       images: [
         {
-          url: encodeURI("https://g-yachts.com/images/openGraph.png"),
+          url: encodeURI("https://www.g-yachts.com/images/openGraph.png"),
           width: 1200,
           height: 630,
           alt: "G-Yachts logo",
