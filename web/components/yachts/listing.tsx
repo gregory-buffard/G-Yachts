@@ -8,6 +8,8 @@ import { Link } from "@/navigation";
 import { useViewContext } from "@/context/view";
 import Bookmark from "@/public/imagery/optimized/sales/bookmark";
 import { ListingModifier, Range, Select, Radio } from "@/components/filters";
+import { ICharter, INewConstruction } from "@/types/yacht";
+import { useYacht } from "@/context/yacht";
 
 interface IFilters {
   category: "sail" | "motor" | undefined;
@@ -33,7 +35,7 @@ const Photo = ({ url, style }: { url: string; style: React.CSSProperties }) => {
   );
 };
 
-const Card = ({ data }: { data: ISale }) => {
+const Card = ({ data }: { data: ISale | ICharter | INewConstruction }) => {
   const t = useTranslations("index.featured"),
     { currency, units, bookmarks, addBookmark, removeBookmark, rates } =
       useViewContext(),

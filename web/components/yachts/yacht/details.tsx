@@ -6,9 +6,9 @@ import { convertUnit } from "@/utils/yachts";
 import { useViewContext } from "@/context/view";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import Brokerino from "@/components/yacht/brokerino";
+import Brokerino from "@/components/yachts/yacht/brokerino";
 
-const Gallery = dynamic(() => import("@/components/yacht/gallery"));
+const Gallery = dynamic(() => import("@/components/yachts/yacht/gallery"));
 
 const SwitchView = ({
   props,

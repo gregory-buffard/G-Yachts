@@ -7,7 +7,7 @@ import { useViewContext } from "@/context/view";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { useCharter } from "@/context/charter";
-import Brokerino from "@/components/yacht/brokerino";
+import Brokerino from "@/components/yachts/yacht/brokerino";
 import Reservations from "@/components/charter/reservations";
 
 const Gallery = dynamic(() => import("@/components/charter/gallery/gallery"));
@@ -40,7 +40,7 @@ const Details = () => {
     [photo, setPhoto] = useState<number | null>(null),
     [disabled, disable] = useState<boolean>(false),
     [expanded, expand] = useState<boolean>(false),
-    t = useTranslations("yacht.details");
+    t = useTranslations("yachts.details");
 
   const characteristics = [
     {

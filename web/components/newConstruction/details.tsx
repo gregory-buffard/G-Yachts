@@ -5,7 +5,7 @@ import { convertUnit } from "@/utils/yachts";
 import { useViewContext } from "@/context/view";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import Brokerino from "@/components/yacht/brokerino";
+import Brokerino from "@/components/yachts/yacht/brokerino";
 import { useNewConstruction } from "@/context/newConstruction";
 
 const Gallery = dynamic(() => import("@/components/newConstruction/gallery"));
@@ -37,7 +37,7 @@ const Details = () => {
     [photo, setPhoto] = useState<number | null>(null),
     [disabled, disable] = useState<boolean>(false),
     [expanded, expand] = useState<boolean>(false),
-    t = useTranslations("yacht.details");
+    t = useTranslations("yachts.details");
 
   const characteristics = [
     {

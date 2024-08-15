@@ -2,11 +2,11 @@
 
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
-import { IFeatured as SFeatured, IYacht as SYacht } from "@/types/sale";
-import { ISale } from "@/types/yacht";
-import { ICFeatured, ICharter } from "@/types/charter";
+import { IFeatured as SFeatured } from "@/types/sale";
+import { ISale, ICharter, INewConstruction } from "@/types/yacht";
 import { IDestination } from "@/types/destination";
 import axios from "axios";
+import { ICFeatured } from "@/types/charter";
 
 export const fetchFeaturedSales = async (
   locale: "en" | "fr",

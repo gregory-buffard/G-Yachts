@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { fetchCharters, fetchFeaturedCharters } from "@/actions/yachts";
 
 const View = dynamic(() => import("@/components/view"));
-const Listing = dynamic(() => import("@/components/charters/listing"));
+const Listing = dynamic(() => import("@/components/yachts/listing"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 

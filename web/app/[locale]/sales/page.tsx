@@ -1,11 +1,11 @@
-import Hero from "@/components/sales/hero";
+import Hero from "@/components/yachts/hero";
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
 import { fetchFeaturedSales, fetchSales } from "@/actions/yachts";
 import { getLocale } from "next-intl/server";
 
 const View = dynamic(() => import("@/components/view"));
-const Listing = dynamic(() => import("@/components/sales/listing"));
+const Listing = dynamic(() => import("@/components/yachts/listing"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 
