@@ -320,6 +320,60 @@ export const fetchMetadata = async ({
         },
       };
 
+    case "article":
+      const { data: articleData } = await client.query({
+        query: gql`
+          query Article($locale: LocaleInputType!, $id: String!) {
+            Article(locale: $locale, id: $id) {
+              title
+              category(locale: $locale) {
+                title
+              }
+              author {
+                name
+              }
+              image {
+                alt
+                sizes {
+                  fhd {
+                    url
+                  }
+                }
+              }
+              seo {
+                value
+              }
+            }
+          }
+        `,
+        variables: { id, locale },
+      });
+      return {
+        title: articleData.Article.title,
+        description: articleData.Article.category.title,
+        keywords: joinSEO(articleData.Article.seo.value),
+        authors: articleData.Article.author.name,
+        openGraph: {
+          title: articleData.Article.title,
+          siteName: "G-Yachts",
+          url:
+            locale === "en"
+              ? `https://g-yachts.com/${locale}/news/${id}`
+              : `https://g-yachts.com/${locale}/actualites/${id}`,
+          description: articleData.Article.category.title,
+          type: "website",
+          locale: locale === "en" ? "en_US" : "fr_FR",
+          images: [
+            {
+              url: encodeURI(articleData.Article.image.sizes.fhd.url),
+              width: 1200,
+              height: 630,
+              alt: articleData.Article.image.alt,
+            },
+          ],
+        },
+      };
+
     default:
       return {
         title: "G-Yachts",

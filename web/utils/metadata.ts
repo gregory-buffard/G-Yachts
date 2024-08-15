@@ -11,6 +11,5 @@ const generateMetadata = async ({ params }) => {
 
 export default generateMetadata;*/
 
-export const joinSEO = (values: string[]): string => {
-  return values.join(", ");
-};
+export const joinSEO = (values: string[] | undefined): string =>
+  values ? values.join(", ") : "";
