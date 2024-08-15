@@ -10,6 +10,7 @@ export const fetchMetadata = async ({
   id: string;
   type:
     | "sale"
+    | "sales"
     | "charter"
     | "new-construction"
     | "destination"
@@ -21,6 +22,52 @@ export const fetchMetadata = async ({
 
   switch (type) {
     case "sale":
+      const { data: saleData } = await client.query({
+        query: gql`
+          query Yacht($locale: LocaleInputType!, $id: String!) {
+            Yacht(locale: $locale, id: $id) {
+              name
+              description
+              seo {
+                value
+              }
+              photos {
+                featured {
+                  sizes {
+                    fhd {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `,
+        variables: { id, locale },
+      });
+      return {
+        title: saleData.Yacht.name,
+        description: saleData.Yacht.description,
+        keywords: saleData.Yacht.seo.value,
+        openGraph: {
+          title: saleData.Yacht.name,
+          siteName: "G-Yachts",
+          url: `https://g-yachts.com/${locale}/charters/${id}`,
+          description: saleData.Yacht.description,
+          type: "website",
+          locale: locale === "en" ? "en_US" : "fr_FR",
+          images: [
+            {
+              url: encodeURI(saleData.Yacht.photos.featured.sizes.fhd.url),
+              width: 1200,
+              height: 630,
+              alt: saleData.Yacht.photos.featured.alt,
+            },
+          ],
+        },
+      };
+
+    case "sales":
       const { data: saleData } = await client.query({
         query: gql`
           query Yacht($locale: LocaleInputType!, $id: String!) {

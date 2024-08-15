@@ -4,20 +4,6 @@ import { getTranslations } from "next-intl/server";
 import { Viewport } from "next";
 import { ViewProvider } from "@/context/view";
 
-export const generateMetadata = async ({
-  params: { locale },
-}: {
-  params: { locale: "en" | "fr" };
-}) => {
-  const t = await getTranslations({ locale, namespace: "index.metadata" });
-  return {
-    title: t("title"),
-    description: t("description"),
-    keywords: t("keywords"),
-    author: t("author"),
-  };
-};
-
 export const viewport: Viewport = {
   themeColor: "#F9F5F2",
 };
