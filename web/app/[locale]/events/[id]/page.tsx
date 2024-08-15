@@ -6,11 +6,24 @@ import Hero from "@/components/events/event/hero";
 import Detail from "@/components/events/event/detail";
 import dynamic from "next/dynamic";
 import { fetchChartersForDestination } from "@/actions/yachts";
+import { Metadata } from "next";
+import { fetchMetadata } from "@/actions/actions";
 
 const View = dynamic(() => import("@/components/view")),
   Charter = dynamic(() => import("@/components/events/event/charter")),
   Newsletter = dynamic(() => import("@/components/newsletter")),
   Footer = dynamic(() => import("@/components/footer"));
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> => {
+  const id = params.id,
+    locale = (await getLocale()) as "en" | "fr";
+
+  return await fetchMetadata({ id, type: "event", locale });
+};
 
 const Event = async ({ params }: { params: { id: string } }) => {
   const event = await fetchEvent((await getLocale()) as "en" | "fr", params.id);

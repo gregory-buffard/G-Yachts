@@ -5,6 +5,9 @@ import { DestinationProvider } from "@/context/destination";
 import { fetchDestination } from "@/actions/destinations";
 import Details from "@/components/destination/details";
 import { IDestination } from "@/types/destination";
+import { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { fetchMetadata } from "@/actions/actions";
 
 const View = dynamic(() => import("@/components/view"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
@@ -12,6 +15,17 @@ const Footer = dynamic(() => import("@/components/footer"));
 const ChartersInDestination = dynamic(
   () => import("@/components/destination/featured/section"),
 );
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> => {
+  const id = params.id,
+    locale = (await getLocale()) as "en" | "fr";
+
+  return await fetchMetadata({ id, type: "destination", locale });
+};
 
 const Destinations = async ({
   params,
