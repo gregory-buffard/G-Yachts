@@ -15,8 +15,8 @@ const Sales = async () => {
     <main className="w-full flex flex-col justify-start items-center">
       <Bar dynamicColor={100} />
       <View />
-      <Hero data={await fetchFeaturedSales(locale)} />
-      <Listing data={await fetchSales(locale)} />
+      <Hero data={await fetchFeaturedSales(locale)} type={"sales"} />
+      <Listing data={await fetchSales(locale)} type={"sales"} />
       <Newsletter />
       <Footer />
     </main>

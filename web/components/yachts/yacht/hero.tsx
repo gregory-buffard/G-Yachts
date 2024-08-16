@@ -21,12 +21,23 @@ const Hero = () => {
         backgroundImage: `url(${encodeURI(data.photos.featured.sizes.fhd.url)})`,
       }}
     >
+      {type === "new-construction" && (
+        <p
+          className={
+            "bg-white px-[1.5vw] py-2 rounded-md text-black mb-3 md:mb-6 text-xs md:text-base"
+          }
+        >
+          {t("delivery")} {data.delivery}
+        </p>
+      )}
       <h1 className={"font-classic normal-case"}>{data.name}</h1>
       <p>
         {data.builder} | {convertUnit(data.length, units.length)} |{" "}
         {data.yearBuilt} | {data.sleeps + " " + t("sleeps")}
       </p>
-      {type === "sale" && (
+      {type === "charter" ? (
+        <p>{`${formatCurrency(data.price.low * rates[currency], currency)} – ${formatCurrency(data.price.high * rates[currency], currency)}`}</p>
+      ) : (
         <p>{formatCurrency(data.price * rates[currency], currency)}</p>
       )}
     </section>

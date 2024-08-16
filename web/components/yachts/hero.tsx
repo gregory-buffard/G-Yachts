@@ -1,17 +1,67 @@
 "use client";
 
-import { IFeatured } from "@/types/sale";
+import { ISale, ICharter, INewConstruction } from "@/types/yacht";
 import { useState, useEffect } from "react";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useViewContext } from "@/context/view";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
 
-const Card = ({ card }: { card: IFeatured }) => {
+interface ISalesHero
+  extends Pick<
+    ISale,
+    | "id"
+    | "name"
+    | "builder"
+    | "length"
+    | "yearBuilt"
+    | "sleeps"
+    | "photos"
+    | "etiquette"
+    | "price"
+  > {}
+
+interface IChartersHero
+  extends Pick<
+    ICharter,
+    | "id"
+    | "name"
+    | "builder"
+    | "length"
+    | "yearBuilt"
+    | "sleeps"
+    | "photos"
+    | "etiquette"
+    | "price"
+  > {}
+
+interface INewConstructionsHero
+  extends Pick<
+    INewConstruction,
+    | "id"
+    | "name"
+    | "builder"
+    | "length"
+    | "yearBuilt"
+    | "sleeps"
+    | "photos"
+    | "etiquette"
+    | "price"
+  > {}
+
+const Card = ({
+  card,
+  type,
+}:
+  | { card: ISalesHero; type: "sales" }
+  | { card: IChartersHero; type: "charters" }
+  | { card: INewConstructionsHero; type: "new-constructions" }) => {
   const t = useTranslations("sales.hero"),
     { currency, units, rates } = useViewContext(),
-    price = formatCurrency(card.price * rates[currency], currency);
-
+    price =
+      type === "charters"
+        ? `${formatCurrency(card.price.low * rates[currency], currency)} – ${formatCurrency(card.price.high * rates[currency], currency)}`
+        : formatCurrency(card.price * rates[currency], currency);
   return (
     <Link
       href={"/sales"}
@@ -41,7 +91,13 @@ const Card = ({ card }: { card: IFeatured }) => {
   );
 };
 
-const Hero = ({ data }: { data: IFeatured[] }) => {
+const Hero = ({
+  data,
+  type,
+}:
+  | { data: ISalesHero[]; type: "sales" }
+  | { data: IChartersHero[]; type: "charters" }
+  | { data: INewConstructionsHero[]; type: "new-constructions" }) => {
   const t = useTranslations("sales.hero"),
     carouselData = [...data, ...data],
     [selected, select] = useState<number>(0),
@@ -94,7 +150,8 @@ const Hero = ({ data }: { data: IFeatured[] }) => {
     <section className={"w-full h-[36vh] lg:h-screen overflow-x-hidden"}>
       <div className={"w-max h-full flex justify-start items-end text-white"}>
         {carouselData.map((yacht, i) => (
-          <Card key={i} card={yacht} />
+          // @ts-ignore
+          <Card key={i} card={yacht} type={type} />
         ))}
         <div
           className={

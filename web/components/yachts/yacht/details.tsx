@@ -9,6 +9,9 @@ import dynamic from "next/dynamic";
 import Brokerino from "@/components/yachts/yacht/brokerino";
 
 const Gallery = dynamic(() => import("@/components/yachts/yacht/gallery"));
+const Reservations = dynamic(
+  () => import("@/components/yachts/yacht/reservations"),
+);
 
 const SwitchView = ({
   props,
@@ -32,7 +35,7 @@ const SwitchView = ({
 };
 
 const Details = () => {
-  const { data, changeView, view } = useYacht(),
+  const { data, type, changeView, view } = useYacht(),
     { units } = useViewContext(),
     [photo, setPhoto] = useState<number | null>(null),
     [disabled, disable] = useState<boolean>(false),
@@ -262,6 +265,7 @@ const Details = () => {
             </a>
           </div>
         )}
+        {type === "charter" && <Reservations data={data.reservations} />}
       </div>
     </section>
   );

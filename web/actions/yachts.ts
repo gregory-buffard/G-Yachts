@@ -380,7 +380,7 @@ export const fetchCharter = async (id: string): Promise<ICharter> => {
         }
       }
     `,
-    variables: { id: id },
+    variables: { id },
   });
   return data.Charter;
 };

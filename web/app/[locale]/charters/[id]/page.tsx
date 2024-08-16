@@ -1,7 +1,7 @@
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
 import { YachtProvider } from "@/context/yacht";
-import Hero from "@/components/charter/hero";
+import Hero from "@/components/yachts/yacht/hero";
 import Details from "@/components/yachts/yacht/details";
 import { fetchCharter } from "@/actions/yachts";
 import Similar from "@/components/similar/section";

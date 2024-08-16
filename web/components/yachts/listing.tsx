@@ -1,6 +1,5 @@
 "use client";
 
-import { ISale } from "@/types/sale";
 import { useEffect, useState } from "react";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
 import { useTranslations } from "next-intl";
@@ -8,8 +7,7 @@ import { Link } from "@/navigation";
 import { useViewContext } from "@/context/view";
 import Bookmark from "@/public/imagery/optimized/sales/bookmark";
 import { ListingModifier, Range, Select, Radio } from "@/components/filters";
-import { ICharter, INewConstruction } from "@/types/yacht";
-import { useYacht } from "@/context/yacht";
+import { ISale, ICharter, INewConstruction } from "@/types/yacht";
 
 interface IFilters {
   category: "sail" | "motor" | undefined;
@@ -35,7 +33,13 @@ const Photo = ({ url, style }: { url: string; style: React.CSSProperties }) => {
   );
 };
 
-const Card = ({ data }: { data: ISale | ICharter | INewConstruction }) => {
+const Card = ({
+  data,
+  type,
+}:
+  | { data: ISale; type: "sales" }
+  | { data: ICharter; type: "charters" }
+  | { data: INewConstruction; type: "new-constructions" }) => {
   const t = useTranslations("index.featured"),
     { currency, units, bookmarks, addBookmark, removeBookmark, rates } =
       useViewContext(),
@@ -44,7 +48,13 @@ const Card = ({ data }: { data: ISale | ICharter | INewConstruction }) => {
     [translate, setTranslate] = useState<number>(0);
 
   useEffect(() => {
-    setPrice(formatCurrency(data.price * rates[currency], currency));
+    if (type === "charters") {
+      setPrice(
+        `${formatCurrency(data.price.low * rates[currency], currency)} – ${formatCurrency(data.price.high * rates[currency], currency)}`,
+      );
+    } else {
+      setPrice(formatCurrency(data.price * rates[currency], currency));
+    }
   }, [data, currency, rates]);
 
   useEffect(() => {
@@ -71,7 +81,7 @@ const Card = ({ data }: { data: ISale | ICharter | INewConstruction }) => {
 
   return (
     <Link
-      href={{ pathname: "/sales/[id]", params: { id: data.id } }}
+      href={{ pathname: `/${type}/[id]`, params: { id: data.id } }}
       className={
         "w-full md:w-[44vw] lg:w-[30vw] h-max flex flex-col justify-start items-start overflow-x-clip"
       }
@@ -210,7 +220,13 @@ const ListView = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const Listing = ({ data }: { data: ISale[] }) => {
+const Listing = ({
+  data,
+  type,
+}:
+  | { data: ISale[]; type: "sales" }
+  | { data: ICharter[]; type: "charters" }
+  | { data: INewConstruction[]; type: "new-constructions" }) => {
   const t = useTranslations("sales.listing"),
     { bookmarks } = useViewContext(),
     { currency, units, changeCurrency } = useViewContext(),
@@ -225,14 +241,22 @@ const Listing = ({ data }: { data: ISale[] }) => {
       max: Math.max(...data.map((yacht) => yacht.length)),
     },
     builder: undefined,
-    price: {
-      min: Math.min(...data.map((yacht) => yacht.price)),
-      max: Math.max(...data.map((yacht) => yacht.price)),
-    },
+    price:
+      type === "charters"
+        ? {
+            min: Math.min(...data.map((yacht) => yacht.price.low)),
+            max: Math.max(...data.map((yacht) => yacht.price.high)),
+          }
+        : {
+            min: Math.min(...data.map((yacht) => yacht.price)),
+            max: Math.max(...data.map((yacht) => yacht.price)),
+          },
     sleeps: undefined,
     name: undefined,
   });
-  const [filteredData, setFilteredData] = useState<ISale[]>(data);
+  const [filteredData, setFilteredData] = useState<
+    ISale[] | ICharter[] | INewConstruction[]
+  >(data);
 
   useEffect(() => {
     const filtered = data.filter((yacht) => {
@@ -247,7 +271,13 @@ const Listing = ({ data }: { data: ISale[] }) => {
       }
       if (filter.builder && yacht.builder !== filter.builder) return false;
       if (filter.price.min !== undefined && filter.price.max !== undefined) {
-        if (yacht.price < filter.price.min || yacht.price > filter.price.max)
+        if (
+          (typeof yacht.price === "object" &&
+            (yacht.price.low < filter.price.min ||
+              yacht.price.high > filter.price.max)) ||
+          (typeof yacht.price === "number" &&
+            (yacht.price < filter.price.min || yacht.price > filter.price.max))
+        )
           return false;
       }
       if (filter.sleeps !== undefined && yacht.sleeps !== filter.sleeps)
@@ -255,7 +285,7 @@ const Listing = ({ data }: { data: ISale[] }) => {
       if (filter.name && yacht.name !== filter.name) return false;
 
       return true;
-    });
+    }) as ISale[] | ICharter[] | INewConstruction[];
 
     setFilteredData(filtered);
   }, [filter, data]);
@@ -332,8 +362,16 @@ const Listing = ({ data }: { data: ISale[] }) => {
           <div className={"filter"}>
             <label>{t("filters.price")}</label>
             <Range
-              min={Math.min(...data.map((yacht) => yacht.price))}
-              max={Math.max(...data.map((yacht) => yacht.price))}
+              min={
+                type === "charters"
+                  ? Math.min(...data.map((yacht) => yacht.price.low))
+                  : Math.min(...data.map((yacht) => yacht.price))
+              }
+              max={
+                type === "charters"
+                  ? Math.max(...data.map((yacht) => yacht.price.high))
+                  : Math.max(...data.map((yacht) => yacht.price))
+              }
               step={10000}
               onChange={(value) => setFilter({ ...filter, price: value })}
               dataType={"price"}
@@ -383,10 +421,16 @@ const Listing = ({ data }: { data: ISale[] }) => {
                   max: Math.max(...data.map((yacht) => yacht.length)),
                 },
                 builder: undefined,
-                price: {
-                  min: Math.min(...data.map((yacht) => yacht.price)),
-                  max: Math.max(...data.map((yacht) => yacht.price)),
-                },
+                price:
+                  type === "charters"
+                    ? {
+                        min: Math.min(...data.map((yacht) => yacht.price.low)),
+                        max: Math.max(...data.map((yacht) => yacht.price.high)),
+                      }
+                    : {
+                        min: Math.min(...data.map((yacht) => yacht.price)),
+                        max: Math.max(...data.map((yacht) => yacht.price)),
+                      },
                 sleeps: undefined,
                 name: undefined,
               })
@@ -430,27 +474,55 @@ const Listing = ({ data }: { data: ISale[] }) => {
             onChange={(value) => {
               switch (value) {
                 case "priceAsc":
-                  setFilteredData([...data.sort((a, b) => a.price - b.price)]);
+                  if (type === "charters") {
+                    setFilteredData([
+                      ...data.sort(
+                        (a, b) =>
+                          (a.price.low + a.price.high) / 2 -
+                          (b.price.low + b.price.high) / 2,
+                      ),
+                    ]);
+                  } else {
+                    setFilteredData([
+                      ...data.sort((a, b) => a.price - b.price),
+                    ]);
+                  }
                   break;
                 case "priceDesc":
-                  setFilteredData([...data.sort((a, b) => b.price - a.price)]);
+                  if (type === "charters") {
+                    setFilteredData([
+                      ...data.sort(
+                        (a, b) =>
+                          (b.price.low + b.price.high) / 2 -
+                          (a.price.low + a.price.high) / 2,
+                      ),
+                    ]);
+                  } else {
+                    setFilteredData([
+                      ...data.sort((a, b) => b.price - a.price),
+                    ]);
+                  }
                   break;
                 case "lengthAsc":
+                  // @ts-ignore
                   setFilteredData([
                     ...data.sort((a, b) => a.length - b.length),
                   ]);
                   break;
                 case "lengthDesc":
+                  // @ts-ignore
                   setFilteredData([
                     ...data.sort((a, b) => b.length - a.length),
                   ]);
                   break;
                 case "yearAsc":
+                  // @ts-ignore
                   setFilteredData([
                     ...data.sort((a, b) => a.yearBuilt - b.yearBuilt),
                   ]);
                   break;
                 case "yearDesc":
+                  // @ts-ignore
                   setFilteredData([
                     ...data.sort((a, b) => b.yearBuilt - a.yearBuilt),
                   ]);
@@ -485,7 +557,8 @@ const Listing = ({ data }: { data: ISale[] }) => {
           <>
             <ListView>
               {filteredData.slice(0, maxListing).map((yacht, i) => (
-                <Card key={i} data={yacht} />
+                // @ts-ignore
+                <Card key={i} data={yacht} type={type} />
               ))}
             </ListView>
             <div
@@ -531,7 +604,8 @@ const Listing = ({ data }: { data: ISale[] }) => {
             <ListView>
               {bookmarks.map((bookmark) => {
                 const yacht = data.find((yacht) => yacht.id === bookmark);
-                return <Card key={yacht!.id} data={yacht!} />;
+                // @ts-ignore
+                return <Card key={yacht!.id} data={yacht!} type={type} />;
               })}
             </ListView>
             <div

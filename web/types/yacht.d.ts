@@ -75,8 +75,13 @@ export interface ICharter extends IYacht {
     low: number;
     high: number;
   };
+  reservations: {
+    from: Date;
+    to: Date;
+  }[];
 }
 
 export interface INewConstruction extends IYacht {
   delivery: string;
+  price: number;
 }

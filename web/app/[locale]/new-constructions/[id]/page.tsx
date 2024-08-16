@@ -1,13 +1,13 @@
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
-import Hero from "@/components/newConstruction/hero";
-import Details from "@/components/newConstruction/details";
-import { NewConstructionProvider } from "@/context/newConstruction";
+import Hero from "@/components/yachts/yacht/hero";
+import Details from "@/components/yachts/yacht/details";
 import { fetchNewConstruction } from "@/actions/newConstructions";
 import Similar from "@/components/similar/section";
 import { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { fetchMetadata } from "@/actions/actions";
+import { YachtProvider } from "@/context/yacht";
 
 const View = dynamic(() => import("@/components/view"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
@@ -26,8 +26,9 @@ export const generateMetadata = async ({
 
 const NewConstructions = async ({ params }: { params: { id: string } }) => {
   const yacht = await fetchNewConstruction(params.id);
+
   return (
-    <NewConstructionProvider yacht={yacht}>
+    <YachtProvider data={yacht} type={"new-construction"}>
       <main className="w-full flex flex-col justify-start items-center">
         <Bar dynamicColor={100} />
         <View />
@@ -37,7 +38,7 @@ const NewConstructions = async ({ params }: { params: { id: string } }) => {
         <Newsletter />
         <Footer />
       </main>
-    </NewConstructionProvider>
+    </YachtProvider>
   );
 };
 
