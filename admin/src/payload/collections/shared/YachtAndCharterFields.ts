@@ -102,7 +102,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     },
     name: 'category',
     type: 'select',
-    required: false,
+    required: true,
     options: [
       {
         label: {
