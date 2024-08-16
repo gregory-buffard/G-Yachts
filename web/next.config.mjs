@@ -20,13 +20,7 @@ const nextConfig = {
             },
             {
                 protocol: "https",
-                hostname: "beta.g-yachts.com",
-                port: "",
-                pathname: "/media/**"
-            },
-            {
-                protocol: "http",
-                hostname: "g-yachts.com",
+                hostname: "www.g-yachts.com",
                 port: "",
                 pathname: "/media/**"
             },

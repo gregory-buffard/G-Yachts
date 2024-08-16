@@ -2,8 +2,8 @@ import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
 import { fetchSale } from "@/actions/yachts";
 import { YachtProvider } from "@/context/yacht";
-import Hero from "@/components/yacht/hero";
-import Details from "@/components/yacht/details";
+import Hero from "@/components/yachts/yacht/hero";
+import Details from "@/components/yachts/yacht/details";
 import Similar from "@/components/similar/section";
 import { getLocale } from "next-intl/server";
 import { Metadata } from "next";
@@ -27,7 +27,7 @@ export const generateMetadata = async ({
 const Sale = async ({ params }: { params: { id: string } }) => {
   const yacht = await fetchSale(params.id, (await getLocale()) as "en" | "fr");
   return (
-    <YachtProvider yacht={yacht}>
+    <YachtProvider data={yacht} type={"sale"}>
       <main className="w-full flex flex-col justify-start items-center">
         <Bar dynamicColor={100} />
         <View />

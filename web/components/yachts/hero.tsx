@@ -1,23 +1,70 @@
 "use client";
 
-import { ICFeatured } from "@/types/charter";
+import { ISale, ICharter, INewConstruction } from "@/types/yacht";
 import { useState, useEffect } from "react";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useViewContext } from "@/context/view";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
 
-const Card = ({ card }: { card: ICFeatured }) => {
-  const t = useTranslations("charters.hero"),
-    { currency, units, rates } = useViewContext(),
-    price = `${formatCurrency(card.price.low * rates[currency], currency)} - ${formatCurrency(
-      card.price.high * rates[currency],
-      currency,
-    )}`;
+interface ISalesHero
+  extends Pick<
+    ISale,
+    | "id"
+    | "name"
+    | "builder"
+    | "length"
+    | "yearBuilt"
+    | "sleeps"
+    | "photos"
+    | "etiquette"
+    | "price"
+  > {}
 
+interface IChartersHero
+  extends Pick<
+    ICharter,
+    | "id"
+    | "name"
+    | "builder"
+    | "length"
+    | "yearBuilt"
+    | "sleeps"
+    | "photos"
+    | "etiquette"
+    | "price"
+  > {}
+
+interface INewConstructionsHero
+  extends Pick<
+    INewConstruction,
+    | "id"
+    | "name"
+    | "builder"
+    | "length"
+    | "yearBuilt"
+    | "sleeps"
+    | "photos"
+    | "etiquette"
+    | "price"
+  > {}
+
+const Card = ({
+  card,
+  type,
+}:
+  | { card: ISalesHero; type: "sales" }
+  | { card: IChartersHero; type: "charters" }
+  | { card: INewConstructionsHero; type: "new-constructions" }) => {
+  const t = useTranslations("sales.hero"),
+    { currency, units, rates } = useViewContext(),
+    price =
+      type === "charters"
+        ? `${formatCurrency(card.price.low * rates[currency], currency)} – ${formatCurrency(card.price.high * rates[currency], currency)}`
+        : formatCurrency(card.price * rates[currency], currency);
   return (
     <Link
-      href={{ pathname: "/charters/[id]", params: { id: card.id } }}
+      href={"/sales"}
       key={`${card.id}`}
       className={
         "w-screen h-full bg-cover bg-right-bottom translate-x-[var(--translate-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out flex flex-col justify-end items-end py-[4vh] lg:py-[12vh] px-[4vw]"
@@ -44,8 +91,14 @@ const Card = ({ card }: { card: ICFeatured }) => {
   );
 };
 
-const Hero = ({ data }: { data: ICFeatured[] }) => {
-  const t = useTranslations("charters.hero"),
+const Hero = ({
+  data,
+  type,
+}:
+  | { data: ISalesHero[]; type: "sales" }
+  | { data: IChartersHero[]; type: "charters" }
+  | { data: INewConstructionsHero[]; type: "new-constructions" }) => {
+  const t = useTranslations("sales.hero"),
     carouselData = [...data, ...data],
     [selected, select] = useState<number>(0),
     setTranslate = (amount: number) => {
@@ -96,8 +149,9 @@ const Hero = ({ data }: { data: ICFeatured[] }) => {
   return (
     <section className={"w-full h-[36vh] lg:h-screen overflow-x-hidden"}>
       <div className={"w-max h-full flex justify-start items-end text-white"}>
-        {carouselData.map((charter, i) => (
-          <Card key={i} card={charter} />
+        {carouselData.map((yacht, i) => (
+          // @ts-ignore
+          <Card key={i} card={yacht} type={type} />
         ))}
         <div
           className={
@@ -121,7 +175,7 @@ const Hero = ({ data }: { data: ICFeatured[] }) => {
               "flex justify-end items-end lg:gap-[0.5vw] gap-[1vw] py-[3vh] lg:py-[10vh]"
             }
           >
-            {data.map((charter, i) => (
+            {data.map((yacht, i) => (
               <button
                 key={i}
                 onClick={() => {

@@ -24,7 +24,7 @@ type TThumbnail = {
 
 const Thumb: React.FC<TThumbnail> = (props) => {
   const { selected, index, onClick } = props;
-  const { yacht } = useYacht();
+  const { data } = useYacht();
 
   return (
     <div className={"flex justify-center items-center"}>
@@ -33,7 +33,7 @@ const Thumb: React.FC<TThumbnail> = (props) => {
         type="button"
         className={`w-[24vw] md:w-[16vw] md:h-[16vh] h-[10vh] bg-cover bg-center mx-[0.5vw] ${selected ? "brightness-100 scale-100" : "brightness-50 scale-90"} hover:brightness-100 hover:scale-95 transition-[filter,_transform] duration-200 ease-in-out`}
         style={{
-          backgroundImage: `url(${yacht.photos.gallery[index].image.sizes.thumbnail.url})`,
+          backgroundImage: `url(${encodeURI(data.photos.gallery[index].image.sizes.thumbnail.url)})`,
         }}
       />
     </div>
@@ -85,7 +85,7 @@ const EmblaCarousel: React.FC<TCarousel> = (props) => {
               key={i}
               width={index.image.sizes.fhd.width}
               height={index.image.sizes.fhd.height}
-              src={`${index.image.sizes.fhd.url}`}
+              src={`${encodeURI(index.image.sizes.fhd.url)}`}
               alt={index.image.alt}
               className={"cursor-grab mx-[1vw] h-full w-auto"}
             />
@@ -116,7 +116,7 @@ const Gallery = ({
   current: number | null;
   setCurrent: (current: number | null) => void;
 }) => {
-  const { yacht, changeView, view } = useYacht(),
+  const { data, changeView, view } = useYacht(),
     params = useParams(),
     lottieRef = useRef<LottieRefCurrentProps>(null);
 
@@ -153,13 +153,13 @@ const Gallery = ({
               "w-full px-[1vw] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-[1vw] overflow-y-scroll"
             }
           >
-            {yacht.photos.gallery.map((photo, i) => (
+            {data.photos.gallery.map((photo, i) => (
               <Image
                 key={i}
                 onClick={() => setCurrent(i)}
                 width={photo.image.sizes.fhd.width}
                 height={photo.image.sizes.fhd.height}
-                src={`${photo.image.sizes.fhd.url}`}
+                src={`${encodeURI(photo.image.sizes.fhd.url)}`}
                 alt={photo.image.alt}
                 className={
                   "size-[49vw] md:size-[24vw] lg:size-[16vw] object-cover object-center hover:scale-95 transition-transform duration-200 ease-in-out hover:cursor-pointer"
@@ -219,7 +219,7 @@ const Gallery = ({
             </button>
           </div>
           <EmblaCarousel
-            slides={yacht.photos.gallery}
+            slides={data.photos.gallery}
             options={{ loop: true, startIndex: current }}
           />
         </motion.section>

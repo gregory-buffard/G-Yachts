@@ -16,12 +16,12 @@ const YachtImportView = () => {
         body: JSON.stringify(yacht),
         credentials: 'include',
       })
-      if (!result.ok) throw new Error('Failed to import yacht')
+      if (!result.ok) throw new Error('Failed to import yachts')
       const data = await result.json()
       window.location.href = `/admin/collections/yachts/${data.id}` as string
     } catch (err) {
       console.error(err)
-      alert('Failed to import yacht')
+      alert('Failed to import yachts')
     } finally {
       setLoading(false)
     }

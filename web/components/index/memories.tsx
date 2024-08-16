@@ -15,7 +15,7 @@ const Memories = () => {
       <Image
         className={"lg:w-1/2 lg:h-[90vh] object-cover object-bottom w-full"}
         src={memories}
-        alt={"Room in the yacht"}
+        alt={"Room in the yachts"}
       />
       <div
         className={
@@ -39,7 +39,9 @@ const Memories = () => {
           }
         >
           <div className={"flex flex-col justify-center items-start gap-[2vh]"}>
-            <p className={"text-justify md:max-w-[48vh] max-w-[50vh]"}>{t("description")}</p>
+            <p className={"text-justify md:max-w-[48vh] max-w-[50vh]"}>
+              {t("description")}
+            </p>
             <Link
               href={"/charters"}
               className={"glass-button glass-button-dark"}

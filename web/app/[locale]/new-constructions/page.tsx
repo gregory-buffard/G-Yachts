@@ -9,7 +9,7 @@ import Shipyards from "@/components/newContructions/shipyards";
 import { getTranslations } from "next-intl/server";
 
 const View = dynamic(() => import("@/components/view"));
-const Listing = dynamic(() => import("@/components/newContructions/listing"));
+const Listing = dynamic(() => import("@/components/yachts/listing"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 
@@ -56,8 +56,6 @@ const NewConstructions = async ({
   };
 }) => {
   let newConstructions = await fetchNewConstructions();
-  console.log(searchParams.builder);
-  console.log(newConstructions.map((construction) => construction.builder));
   if (searchParams.builder) {
     newConstructions = newConstructions.filter(
       (construction) => construction.builder === searchParams.builder,
@@ -71,7 +69,7 @@ const NewConstructions = async ({
       <div className="w-full md:px-40">
         <Shipyards data={await fetchShipyards()} />
       </div>
-      <Listing data={newConstructions} />
+      <Listing data={newConstructions} type={"new-constructions"} />
       <Newsletter />
       <Footer />
     </main>

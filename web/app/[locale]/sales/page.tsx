@@ -1,11 +1,11 @@
-import Hero from "@/components/sales/hero";
+import Hero from "@/components/yachts/hero";
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
 import { fetchFeaturedSales, fetchSales } from "@/actions/yachts";
 import { getLocale, getTranslations } from "next-intl/server";
 
 const View = dynamic(() => import("@/components/view"));
-const Listing = dynamic(() => import("@/components/sales/listing"));
+const Listing = dynamic(() => import("@/components/yachts/listing"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 
@@ -48,8 +48,8 @@ const Sales = async () => {
     <main className="w-full flex flex-col justify-start items-center">
       <Bar dynamicColor={100} />
       <View />
-      <Hero data={await fetchFeaturedSales(locale)} />
-      <Listing data={await fetchSales(locale)} />
+      <Hero data={await fetchFeaturedSales(locale)} type={"sales"} />
+      <Listing data={await fetchSales(locale)} type={"sales"} />
       <Newsletter />
       <Footer />
     </main>

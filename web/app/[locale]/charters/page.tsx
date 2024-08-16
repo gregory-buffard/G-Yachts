@@ -1,11 +1,11 @@
-import Hero from "@/components/charters/hero";
+import Hero from "@/components/yachts/hero";
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
 import { fetchCharters, fetchFeaturedCharters } from "@/actions/yachts";
 import { getLocale, getTranslations } from "next-intl/server";
 
 const View = dynamic(() => import("@/components/view"));
-const Listing = dynamic(() => import("@/components/charters/listing"));
+const Listing = dynamic(() => import("@/components/yachts/listing"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
 
@@ -47,8 +47,8 @@ const Charters = async () => {
     <main className="w-full flex flex-col justify-start items-center">
       <Bar dynamicColor={100} />
       <View />
-      <Hero data={await fetchFeaturedCharters()} />
-      <Listing data={await fetchCharters()} />
+      <Hero data={await fetchFeaturedCharters()} type={"charters"} />
+      <Listing data={await fetchCharters()} type={"charters"} />
       <Newsletter />
       <Footer />
     </main>

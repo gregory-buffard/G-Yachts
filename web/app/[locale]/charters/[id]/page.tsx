@@ -1,8 +1,8 @@
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
-import { CharterProvider } from "@/context/charter";
-import Hero from "@/components/charter/hero";
-import Details from "@/components/charter/details/details";
+import { YachtProvider } from "@/context/yacht";
+import Hero from "@/components/yachts/yacht/hero";
+import Details from "@/components/yachts/yacht/details";
 import { fetchCharter } from "@/actions/yachts";
 import Similar from "@/components/similar/section";
 import { Metadata } from "next";
@@ -25,20 +25,20 @@ export const generateMetadata = async ({
 };
 
 const Charter = async ({ params }: { params: { id: string } }) => {
-  const charter = await fetchCharter(params.id);
+  const yacht = await fetchCharter(params.id);
 
   return (
-    <CharterProvider charter={charter}>
+    <YachtProvider data={yacht} type={"charter"}>
       <main className="w-full flex flex-col justify-start items-center">
         <Bar dynamicColor={100} />
         <View />
         <Hero />
         <Details />
-        <Similar type="charters" length={charter.length} />
+        <Similar type="charters" length={yacht.length} />
         <Newsletter />
         <Footer />
       </main>
-    </CharterProvider>
+    </YachtProvider>
   );
 };
 
