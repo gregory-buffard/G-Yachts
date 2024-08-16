@@ -101,8 +101,24 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
       fr: 'Catégorie',
     },
     name: 'category',
-    type: 'text',
+    type: 'select',
     required: false,
+    options: [
+      {
+        label: {
+          en: 'Motor',
+          fr: 'Moteur',
+        },
+        value: 'motor',
+      },
+      {
+        label: {
+          en: 'Sail',
+          fr: 'Voile',
+        },
+        value: 'sail',
+      },
+    ],
   },
   {
     label: {
