@@ -17,25 +17,6 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:
       - gYachts
-  
-  # caddy:
-  #   image: caddy:latest
-  #   container_name: caddy
-  #   depends_on:
-  #     - web
-  #     - admin
-  #   restart: always
-  #   ports:
-  #     - "443:443"
-  #     - "80:80"
-  #   volumes:
-  #     - ./Caddyfile:/etc/caddy/Caddyfile
-  #     - /var/www/images:/var/www/images
-  #     - /var/www/videos:/var/www/videos
-  #   networks:
-  #     - gYachts
-  #   env_file:
-  #     - .env
 
   web:
     image: ghcr.io/${GITHUB_OWNER}/g-yachts-web:${GITHUB_SHA}
@@ -56,34 +37,6 @@ services:
       - gYachts
     env_file:
       - .env
-
-  api-public:
-    image: ghcr.io/${GITHUB_OWNER}/g-yachts-api:${GITHUB_SHA}
-    container_name: api-public
-    environment:
-      - NODE_ENV=public
-      - PORT=5000
-      - HOST=${WEB_IP}
-    ports:
-      - "5000:5000"
-    networks:
-      - gYachts
-    volumes:
-      - /var/www/images/yachts:/app/api/images/yachts
-
-  api-admin:
-    image: ghcr.io/${GITHUB_OWNER}/g-yachts-api:${GITHUB_SHA}
-    container_name: api-admin
-    environment:
-      - NODE_ENV=admin
-      - PORT=5000
-      - HOST=${ADMIN_IP}
-    ports:
-      - "8080:5000"
-    networks:
-      - gYachts
-    volumes:
-      - /var/www/images/yachts:/app/api/images/yachts
   
   admin:
     image: ghcr.io/${GITHUB_OWNER}/g-yachts-admin:${GITHUB_SHA}
@@ -99,19 +52,19 @@ services:
       - gYachts
     volumes:
       - /var/www/media:/home/node/app/media
+      
   mongo:
     image: mongo:latest
     container_name: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
-#    ports:
-#      - "27017:27017"
     networks:
       - gYachts
     volumes:
       - /var/www/mongo:/data/db
     command: mongod --auth --wiredTigerCacheSizeGB 1
+    
   gotenberg:
     image: gotenberg/gotenberg:8
     container_name: gotenberg
