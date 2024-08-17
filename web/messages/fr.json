@@ -83,6 +83,47 @@
             "CTA": "Voir tout"
         }
     },
+    "yachts": {
+        "filters": {
+            "any": "N'importe quel",
+            "type": {
+                "label": "Type de yacht",
+                "all": "Tous",
+                "motor": "Moteur",
+                "sail": "Voile"
+            },
+            "year": "Année",
+            "length": "Longueur du yacht ({unit, select, m {metres} ft {pieds} other {}})",
+            "builder": "Constructeur",
+            "price": "Prix",
+            "sleeps": "Invités",
+            "name": {
+                "label": "Nom du yacht",
+                "all": "Tous les yachts"
+            },
+            "clear": "Effacer les filtres",
+            "currency": "Devise",
+            "sort": {
+                "label": "Trier",
+                "price-asc": "Prix (du plus bas au plus élevé)",
+                "price-desc": "Prix (du plus élevé au plus bas)",
+                "length-asc": "Longueur (du plus bas au plus élevé)",
+                "length-desc": "Longueur (du plus élevé au plus bas)",
+                "year-asc": "Année (du plus récent au plus ancien)",
+                "year-desc": "Année (du plus ancien au plus récent)"
+            }
+        },
+        "views": {
+            "global": "Resultats de recherche",
+            "bookmarks": "Ma liste de favoris",
+            "empty": "Votre liste est vide..."
+        },
+        "guide": "Cliquez sur l'icône pour ajouter des yachts à votre liste de favoris",
+        "info": "Rassemblez vos yachts préférés – ajoutez-en plus à votre liste de favoris",
+        "listed": "Vous avez vu {count} sur {total}",
+        "expand": "Charger plus",
+        "end": "Vous avez atteint la fin de notre catalogue"
+    },
     "sales": {
         "metadata": {
             "title": "Ventes",
@@ -93,53 +134,14 @@
             "title": "Trouvez le Yacht parfait pour <classic>Vous</classic>",
             "subtitle": "Yachts à vendre",
             "guests": "invités"
-        },
-        "listing": {
-            "filters": {
-                "any": "N'importe quel",
-                "type": {
-                    "label": "Type de yacht",
-                    "all": "Tous",
-                    "motor": "Moteur",
-                    "sail": "Voile"
-                },
-                "year": "Année",
-                "length": "Longueur du yacht ({unit, select, m {metres} ft {pieds} other {}})",
-                "builder": "Constructeur",
-                "price": "Prix",
-                "sleeps": "Invités",
-                "name": {
-                    "label": "Nom du yacht",
-                    "all": "Tous les yachts"
-                },
-                "clear": "Effacer les filtres",
-                "currency": "Devise",
-                "sort": {
-                    "label": "Trier",
-                    "price-asc": "Prix (du plus bas au plus élevé)",
-                    "price-desc": "Prix (du plus élevé au plus bas)",
-                    "length-asc": "Longueur (du plus bas au plus élevé)",
-                    "length-desc": "Longueur (du plus élevé au plus bas)",
-                    "year-asc": "Année (du plus récent au plus ancien)",
-                    "year-desc": "Année (du plus ancien au plus récent)"
-                }
-            },
-            "views": {
-                "global": "Resultats de recherche",
-                "bookmarks": "Ma liste de favoris",
-                "empty": "Votre liste est vide..."
-            },
-            "guide": "Cliquez sur l'icône pour ajouter des yachts à votre liste de favoris",
-            "info": "Rassemblez vos yachts préférés – ajoutez-en plus à votre liste de favoris",
-            "listed": "Vous avez vu {count} sur {total}",
-            "expand": "Charger plus",
-            "end": "Vous avez atteint la fin de notre catalogue"
         }
     },
     "yacht": {
         "noPrice": "Prix sur demande",
         "sleeps": "invités",
         "delivery": "Livraison",
+        "availability": "Disponibilité",
+        "reserved": "RÉSERVÉ",
         "details": {
             "gallery": "Explorer plus d'images",
             "info": "Informations clés",
@@ -184,48 +186,6 @@
             "title": "Créer des moments <classic>inoubliables</classic>",
             "subtitle": "Yachts à location",
             "guests": "invités"
-        },
-        "listing": {
-            "filters": {
-                "any": "N'importe quel",
-                "type": {
-                    "label": "Type de yacht",
-                    "all": "Tous",
-                    "motor": "Moteur",
-                    "sail": "Voile"
-                },
-                "year": "Année",
-                "length": "Longueur du yacht ({unit, select, m {metres} ft {pieds} other {}})",
-                "builder": "Constructeur",
-                "price": "Prix",
-                "sleeps": "Invités",
-                "name": {
-                    "label": "Nom du yacht",
-                    "all": "Tous les yachts"
-                },
-                "clear": "Effacer les filtres",
-                "currency": "Devise",
-                "sort": {
-                    "label": "Trier",
-                    "price-asc": "Prix (du plus bas au plus élevé)",
-                    "price-desc": "Prix (du plus élevé au plus bas)",
-                    "length-asc": "Longueur (du plus bas au plus élevé)",
-                    "length-desc": "Longueur (du plus élevé au plus bas)",
-                    "year-asc": "Année (du plus récent au plus ancien)",
-                    "year-desc": "Année (du plus ancien au plus récent)"
-                }
-            },
-            "views": {
-                "global": "Resultats de recherche",
-                "bookmarks": "Ma liste de favoris",
-                "empty": "Votre liste est vide...",
-                "reserved": "RÉSERVÉ"
-            },
-            "guide": "Cliquez sur l'icône pour ajouter des yachts à votre liste de favoris",
-            "info": "Rassemblez vos yachts préférés – ajoutez-en plus à votre liste de favoris",
-            "listed": "Vous avez vu {count} sur {total}",
-            "expand": "Charger plus",
-            "end": "Vous avez atteint la fin de notre catalogue"
         }
     },
     "charter": {
