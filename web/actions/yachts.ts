@@ -248,6 +248,7 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
               high
             }
             builder
+            category
             length
             sleeps
             yearBuilt
