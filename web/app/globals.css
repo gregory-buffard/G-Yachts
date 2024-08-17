@@ -58,7 +58,7 @@
         font-family: 'Beausite Slick';
         font-weight: 300;
         font-style: normal;
-        src: url('../public/typography/Beausite Slick/Beausite Slick Trial Light.ttf') format('truetype');
+        src: url('../public/typography/Beausite Slick/BeausiteSlick-Light.otf') format('truetype');
     }
 
     @font-face {
