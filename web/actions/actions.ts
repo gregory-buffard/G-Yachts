@@ -404,3 +404,51 @@ export const fetchMetadata = async ({
       };
   }
 };
+
+export const fetchSitemap = async () => {
+  const client = getClient();
+
+  const { data } = await client.query({
+    query: gql`
+      query Sitemap {
+        Articles(limit: 0) {
+          docs {
+            id
+            updatedAt
+          }
+        }
+        Yachts(limit: 0) {
+          docs {
+            id
+            updatedAt
+          }
+        }
+        Charters(limit: 0) {
+          docs {
+            id
+            updatedAt
+          }
+        }
+        NewConstructions(limit: 0) {
+          docs {
+            id
+            updatedAt
+          }
+        }
+        Destinations(limit: 0) {
+          docs {
+            id
+            updatedAt
+          }
+        }
+        Events(limit: 0) {
+          docs {
+            id
+            updatedAt
+          }
+        }
+      }
+    `,
+  });
+  return data;
+};

@@ -196,7 +196,7 @@ const ViewButton = ({
   currentView: "global" | "bookmarks";
   onClick: () => void;
 }) => {
-  const t = useTranslations("sales.listing.views");
+  const t = useTranslations("yachts.views");
   return (
     <button
       type={"button"}
@@ -227,7 +227,7 @@ const Listing = ({
   | { data: ISale[]; type: "sales" }
   | { data: ICharter[]; type: "charters" }
   | { data: INewConstruction[]; type: "new-constructions" }) => {
-  const t = useTranslations("sales.listing"),
+  const t = useTranslations("yachts"),
     { bookmarks } = useViewContext(),
     { currency, units, changeCurrency } = useViewContext(),
     [maxListing, setMaxListing] = useState<number>(12);
