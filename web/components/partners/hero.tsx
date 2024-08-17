@@ -12,7 +12,7 @@ const Hero = () => {
             }}
         >
             <h4>{t("subtitle")}</h4>
-            <h1 className={"text-5xl font-regular"}>
+            <h1 className={"lg:text-6xl md:text-5xl text-xl font-regular"}>
                 {t.rich("title", {
                     classic: (chunk) => <span className={"classic drop-shadow-lg"}>{chunk}</span>,
                 })}

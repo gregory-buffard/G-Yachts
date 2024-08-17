@@ -55,7 +55,7 @@ const Hero = ({
         }}
       >
         <h4>{article.category.title}</h4>
-        <h2 className={"normal-case font-slick"}>{article.title}</h2>
+        <h2 className={"normal-case font-slick lg:text-5xl md:text-4xl text-xl"}>{article.title}</h2>
       </Link>
     </div>
   );

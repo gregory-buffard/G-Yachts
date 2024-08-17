@@ -22,7 +22,7 @@ const Lifestyle = () => {
         className="w-full absolute -z-10 h-full object-cover object-top"
         playsInline
       />
-      <h1 className={" py-[1vw] md:py-[2vw]"}>
+      <h1 className={" py-[2vw] md:py-[2vw]"}>
         {t.rich("title", {
           classic: (chunks) => (
             <span className={"font-classic font-normal uppercase"}>

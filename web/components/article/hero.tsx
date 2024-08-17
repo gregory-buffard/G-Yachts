@@ -19,7 +19,7 @@ const Hero = () => {
       }}
     >
       <h4>{article.category.title}</h4>
-      <h1 className={"normal-case"}>{article.title}</h1>
+      <h1 className={"normal-case lg:text-6xl md:text-5xl text-2xl"}>{article.title}</h1>
     </section>
   );
 };

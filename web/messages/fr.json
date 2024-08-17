@@ -323,7 +323,7 @@
         },
         "bottom": {
             "title": "Construisez votre <classic>Mode de vie</classic>",
-            "description": "Découvrez notre sélection exclusive de yachts à vendre, présentée par nos courtiers en yachts de luxe. Notre collection variée comprend les plus grands yachts à voile et à moteur du monde, depuis les bateaux d'entrée de gamme jusqu'aux opulents méga yachts. Notre flotte mondiale comprend à la fois des yachts neufs et des yachts appartenant à des particuliers. En s'appuyant sur notre expertise et nos relations avec les meilleurs chantiers navals et courtiers, nos spécialistes des yachts sont là pour vous guider dans la recherche et l'acquisition du yacht de vos rêves.",
+            "description": "Découvrez notre sélection exclusive de yachts à vendre, présentée par nos courtiers spécialisés en yachts de luxe.\nNotre collection variée comprend les plus grands yachts à voile et à moteur du monde, allant des bateaux d'entrée de gamme aux opulents méga-yachts. Nous proposons des yachts neufs ainsi que des yachts appartenant à des particuliers. Forts de notre expertise et de nos relations avec les meilleurs chantiers navals et courtiers, nos spécialistes sont là pour vous guider dans la recherche et l'acquisition du yacht de vos rêves.",
             "CTA": "CONTACTEZ-NOUS"
         },
         "team": "Our <classic>Team</classic>"
@@ -353,14 +353,14 @@
             "author": "G–Yachts"
         },
         "hero": {
-            "title": "Nous nous occupons de tout pour votre <classic>Paix d'esprit</classic>",
+            "title": "Nous nous occupons de tout pour vous offrir une totale <classic>tranquillité</classic>",
             "subtitle": "YACHT MANAGEMENT"
         },
         "services": {
             "subtitle": "SERVICES PERSONNALISÉS",
             "title": "Votre expert dédié aux <classic>Yachts</classic>",
-            "paragraph1": "G-Yachts s'appuie sur 25 ans d'expérience dans l'industrie du Yachting. Parce que nous savons que chaque yacht est différent, nous élaborons une stratégie adaptée et personnalisée afin d'en assurer une utilisation optimale.",
-            "paragraph2": "Notre forte connaissance des yachts nous permet d'avoir une compréhension globale de la gestion de chaque navire. Notre gamme de services suit les réglementations en évolution permanente.",
+            "paragraph1": "G-Yachts s'appuie sur 25 ans d'expérience dans l'industrie du Yachting. Parce que nous savons que chaque yacht est unique, nous élaborons une stratégie adaptée et personnalisée pour en assurer une utilisation optimale.",
+            "paragraph2": "Notre profonde connaissance des yachts nous permet d'avoir une compréhension globale de la gestion de chaque navire. Notre gamme de services respecte les réglementations en évolution permanente.",
             "paragraph3": "Notre objectif : réduire les coûts, optimiser l'utilisation et permettre au propriétaire de profiter de son yacht en toute sérénité."
         },
         "servicesList": {
@@ -370,7 +370,7 @@
             },
             "support": {
                 "title": "Assistance technique",
-                "description": "G-Yachts supervisera l'ensemble de la maintenance et des réparations des yachts, dans le respect des normes du fabricant et des réglementations en vigueur. Nous nous occupons de l'achat et de la livraison des pièces détachées et de l'équipement, nous sélectionnons les chantiers navals et nous organisons les audits et les visites."
+                "description": "G-Yachts supervisera l'ensemble de la maintenance et des réparations des yachts, dans le respect des normes du fabricant et des réglementations en vigueur. Nous nous occupons de l'achat et de la livraison des pièces détachées et de l'équipement, nous sélectionnons les chantiers navals, et organisons les audits et les visites."
             },
             "administrative": {
                 "title": "Administratif",
@@ -384,8 +384,8 @@
         "assets": {
             "title": "Nos <classic>Atouts</classic>",
             "paragraph1": "Notre équipe de gestion est composée d'experts qui fournissent des services hautement personnalisés, des solutions sur mesure, avec le souci du détail et de la discrétion.",
-            "paragraph2": "Alors que beaucoup de nos concurrents se concentrent sur la gestion d'une flotte plus importante, chez G-Yachts nous privilégions la qualité à la quantité, en accordant plus de temps à chacun de nos clients afin de travailler efficacement avec leur équipage.",
-            "paragraph3": "Un Yacht Manager assurera une assistance 24/7, les plus hauts standards de qualité et de sécurité, et aidera à éviter toute situation critique. Notre objectif est de vous offrir un service inégalé.",
+            "paragraph2": "Alors que beaucoup de nos concurrents se concentrent sur la gestion d'une flotte plus importante, chez G-Yachts nous privilégions la qualité à la quantité, en accordant plus de temps à chacun de nos clients pour travailler efficacement avec leur équipage.",
+            "paragraph3": "Un Yacht Manager assurera une assistance 24/7, respectera les plus hauts standards de qualité et de sécurité, et aidera à éviter toute situation critique. Notre objectif est de vous offrir un service inégalé.",
             "paragraph4": "Nous fournissons un soutien et une assistance dans le monde entier."
         },
         "experience": {
@@ -416,8 +416,8 @@
             "keywords": "partenaires, yachts, luxe, courtage, monaco, g-yachts"
         },
         "hero": {
-            "title": "Together, we create unique <classic>Experiences</classic>",
-            "subtitle": "OUR PARTNERS"
+            "title": "Ensemble, nous créons des <classic>expériences uniques</classic>",
+            "subtitle": "NOS PARTENAIRES"
         },
         "partners": {
             "title": "Our <classic>Partners</classic>",

@@ -74,7 +74,7 @@ const Listing = ({ data }: { data: IRecruitment[] }) => {
     <section className={"w-full h-full grid md:grid-cols-2 bg-rock-100 overflow-hidden px-[10vw] py-[5vh] md:py-[10vh]"}>
       <aside className={""}>
         <h4>{t("subtitle")}</h4>
-        <h1>{t.rich("undertitle", {
+        <h1 className={"lg:text-6xl md:text-5xl text-4xl"}>{t.rich("undertitle", {
           br: () => <br />,
           classic: (chunks) => (
               <span className={"font-classic font-normal uppercase"}>
