@@ -1,5 +1,5 @@
 import Image from "next/image";
-import working from "@/public/imagery/optimized/index/working.webp";
+import working from "@/public/images/index/working.webp";
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 

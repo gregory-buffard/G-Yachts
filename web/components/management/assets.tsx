@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import assets from "@/public/imagery/optimized/management/assets.webp";
+import assets from "@/public/images/management/assets.webp";
 import React from "react";
 
 const Assets = () => {

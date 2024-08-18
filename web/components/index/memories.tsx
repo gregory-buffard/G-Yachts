@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import memories from "@/public/imagery/optimized/index/memories.webp";
+import memories from "@/public/images/index/memories.webp";
 import { Link } from "@/navigation";
 
 const Memories = () => {
