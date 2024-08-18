@@ -21,15 +21,24 @@ export const fetchDestination = async (id: string): Promise<IDestination> => {
           createdAt
           photos {
             featured {
-              url
-              width
-              height
+              alt
+              sizes {
+                fhd {
+                  url
+                  width
+                  height
+                }
+              }
             }
             destinationPhoto {
-              url
-              width
-              height
               alt
+              sizes {
+                fhd {
+                  url
+                  width
+                  height
+                }
+              }
             }
           }
           info {
@@ -50,7 +59,7 @@ export const fetchDestination = async (id: string): Promise<IDestination> => {
 
 export const fetchDestinations = async (): Promise<IDestination[]> => {
   const client = getClient();
-  const destinationsResult = await client.query({
+  const { data } = await client.query({
     query: gql`
       query Destinations {
         Destinations {
@@ -66,10 +75,14 @@ export const fetchDestinations = async (): Promise<IDestination[]> => {
             createdAt
             photos {
               featured {
-                url
-              }
-              destinationPhoto {
-                url
+                alt
+                sizes {
+                  fhd {
+                    url
+                    width
+                    height
+                  }
+                }
               }
             }
             info {
@@ -83,17 +96,6 @@ export const fetchDestinations = async (): Promise<IDestination[]> => {
       }
     `,
   });
-  const destinations: IDestination[] =
-    destinationsResult.data.Destinations.docs.map(remapDestinationPhotos);
-  return destinations;
-};
 
-const remapDestinationPhotos = (destination: any) => {
-  return {
-    ...destination,
-    photos: {
-      featured: destination.photos.featured.url,
-      destinationPhoto: destination.photos.destinationPhoto.url,
-    },
-  };
+  return data.Destinations.docs;
 };

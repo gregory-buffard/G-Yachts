@@ -8,16 +8,34 @@ export interface IDestination {
   continent: string;
   photos: {
     featured: {
-      url: string;
-      width: number;
-      height: number;
       alt: string;
+      sizes: {
+        thumbnail: {
+          url: string;
+          width: number;
+          height: number;
+        };
+        fhd: {
+          url: string;
+          width: number;
+          height: number;
+        };
+      };
     };
     destinationPhoto: {
-      url: string;
-      width: number;
-      height: number;
       alt: string;
+      sizes: {
+        thumbnail: {
+          url: string;
+          width: number;
+          height: number;
+        };
+        fhd: {
+          url: string;
+          width: number;
+          height: number;
+        };
+      };
     };
   };
   description: ArticleContentBlock[];
