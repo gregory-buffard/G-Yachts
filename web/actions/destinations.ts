@@ -77,6 +77,11 @@ export const fetchDestinations = async (): Promise<IDestination[]> => {
               featured {
                 alt
                 sizes {
+                  thumbnail {
+                    url
+                    width
+                    height
+                  }
                   fhd {
                     url
                     width
