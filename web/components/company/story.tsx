@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import React from "react";
-import first from "@/public/imagery/optimized/company/first.webp";
-import second from "@/public/imagery/optimized/company/second.webp";
-import third from "@/public/imagery/optimized/company/third.webp";
-import fourth from "@/public/imagery/optimized/company/fourth.webp";
-import gaspard from "@/public/imagery/optimized/company/Gaspard.jpeg";
+import first from "@/public/images/company/first.webp";
+import second from "@/public/images/company/second.webp";
+import third from "@/public/images/company/third.webp";
+import fourth from "@/public/images/company/fourth.webp";
+import gaspard from "@/public/images/company/Gaspard.jpeg";
 
 const Story = () => {
   const t = useTranslations("company.story");

@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { colorify } from "lottie-colorify";
-import submitted from "@/public/imagery/optimized/newsletter.json";
+import submitted from "@/public/images/newsletter.json";
 import { useParams } from "next/navigation";
 import { usePath } from "@/utils/contact";
 import { useViewContext } from "@/context/view";

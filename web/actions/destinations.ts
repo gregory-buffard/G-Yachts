@@ -59,7 +59,7 @@ export const fetchDestination = async (id: string): Promise<IDestination> => {
 
 export const fetchDestinations = async (): Promise<IDestination[]> => {
   const client = getClient();
-  const { data } = await client.query({
+  const {data} = await client.query({
     query: gql`
       query Destinations {
         Destinations {
@@ -77,6 +77,11 @@ export const fetchDestinations = async (): Promise<IDestination[]> => {
               featured {
                 alt
                 sizes {
+                  thumbnail {
+                    url
+                    width
+                    height
+                  }
                   fhd {
                     url
                     width

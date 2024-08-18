@@ -8,7 +8,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { replaceColor } from "lottie-colorify";
-import galleryView from "@/public/imagery/optimized/yacht/gallery.json";
+import galleryView from "../../../public/images/yacht/gallery.json";
 import { IYacht } from "@/types/sale";
 
 type TCarousel = {

@@ -53,7 +53,7 @@ module.exports = {
           loc: `/${paths.locale}/${path}`,
           lastmod: new Date().toISOString(),
           priority: 0.7,
-          hrefLang: paths.locale,
+          hreflang: paths.locale,
         });
       });
     });
@@ -63,15 +63,15 @@ module.exports = {
   alternateRefs: [
     {
       href: "https://www.g-yachts.com/",
-      hrefLang: "x-default",
+      hreflang: "x-default",
     },
     {
       href: "https://www.g-yachts.com/en",
-      hrefLang: "en",
+      hreflang: "en",
     },
     {
       href: "https://www.g-yachts.com/fr",
-      hrefLang: "fr",
+      hreflang: "fr",
     },
   ],
   exclude: [

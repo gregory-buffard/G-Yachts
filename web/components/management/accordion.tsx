@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import monaco from "@/public/imagery/optimized/company/monaco.webp";
+import monaco from "@/public/images/company/monaco.webp";
 
 const Accordion = () => {
   const t = useTranslations("management.experience");

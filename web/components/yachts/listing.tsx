@@ -5,7 +5,7 @@ import { convertUnit, formatCurrency } from "@/utils/yachts";
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { useViewContext } from "@/context/view";
-import Bookmark from "@/public/imagery/optimized/sales/bookmark";
+import Bookmark from "@/public/images/sales/bookmark";
 import { ListingModifier, Range, Select, Radio } from "@/components/filters";
 import { ISale, ICharter, INewConstruction } from "@/types/yacht";
 

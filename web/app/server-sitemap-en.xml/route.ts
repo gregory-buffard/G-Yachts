@@ -7,7 +7,7 @@ export const GET = async (request: Request) => {
     URLs: {
       loc: string;
       lastmod: string;
-      hrefLang: string;
+      hreflang: string;
       priority: number;
     }[] = [];
 
@@ -16,7 +16,7 @@ export const GET = async (request: Request) => {
       URLs.push({
         loc: `https://www.g-yachts.com/en/${basePath}/${doc.id}`,
         lastmod: doc.updatedAt,
-        hrefLang: "en",
+        hreflang: "en",
         priority: 0.8,
       });
     });

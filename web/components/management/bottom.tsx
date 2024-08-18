@@ -12,7 +12,7 @@ const Bottom = () => {
     >
       <div className={"text-center"}>
         <video
-          src="/imagery/optimized/management/bottomVideo.mp4"
+          src="/videos/management.mp4"
           autoPlay
           loop
           muted
