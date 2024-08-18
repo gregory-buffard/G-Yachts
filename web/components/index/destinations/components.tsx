@@ -24,7 +24,7 @@ const Card = ({ card }: { card: IDestination }) => {
           "transition-[background-color]  bg-cover bg-center duration-200 ease-in-out md:w-[18.5vw] md:h-[55vh] w-[35vw] h-[25vh] flex justify-start items-start mb-[1vh]"
         }
         style={{
-          backgroundImage: `url(${card.photos.featured})`,
+          backgroundImage: `url(${encodeURI(card.photos.featured.sizes.fhd.url)})`,
         }}
       >
         <div className={"flex flex-col md:px-6 md:py-4 px-1 text-white"}>
