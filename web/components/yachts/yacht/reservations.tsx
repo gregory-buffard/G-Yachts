@@ -8,7 +8,7 @@ import { useLocale, useTranslations } from "next-intl";
 
 const Reservations = ({ data }: { data: ICharter["reservations"] }) => {
   const locale = useLocale() as "en" | "fr",
-    t = useTranslations("charters.listing.views");
+    t = useTranslations("yacht");
   const reserved = (date: Date) => {
     return data.some((reservation) => {
       const start = new Date(reservation.from);
@@ -19,7 +19,7 @@ const Reservations = ({ data }: { data: ICharter["reservations"] }) => {
 
   return (
     <section className={"flex flex-col justify-center items-start w-full"}>
-      <h2>Availability</h2>
+      <h2>{t("availability")}</h2>
       <FullCalendar
         locale={locale}
         height={"auto"}

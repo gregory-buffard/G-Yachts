@@ -56,7 +56,7 @@ const Card = ({
   | { card: ISalesHero; type: "sales" }
   | { card: IChartersHero; type: "charters" }
   | { card: INewConstructionsHero; type: "new-constructions" }) => {
-  const t = useTranslations("sales.hero"),
+  const t = useTranslations(`${type}.hero`),
     { currency, units, rates } = useViewContext(),
     price =
       type === "charters"
@@ -98,7 +98,7 @@ const Hero = ({
   | { data: ISalesHero[]; type: "sales" }
   | { data: IChartersHero[]; type: "charters" }
   | { data: INewConstructionsHero[]; type: "new-constructions" }) => {
-  const t = useTranslations("sales.hero"),
+  const t = useTranslations(`${type}.hero`),
     carouselData = [...data, ...data],
     [selected, select] = useState<number>(0),
     setTranslate = (amount: number) => {

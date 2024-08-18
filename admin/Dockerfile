@@ -34,7 +34,6 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 WORKDIR /home/node/app
 COPY package*.json  ./
-COPY yarn.lock ./
 
 RUN yarn install --production
 COPY --from=builder /home/node/app/dist ./dist

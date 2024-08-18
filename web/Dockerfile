@@ -10,6 +10,7 @@ RUN npm install
 COPY . .
 
 ENV NEXT_PUBLIC_API=http://beta.g-yachts.com
+ENV NEXT_PUBLIC_ADMIN_BASE_URI=https://www.g-yachts.com
 
 RUN npm run build
 
