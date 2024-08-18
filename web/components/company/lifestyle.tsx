@@ -14,7 +14,7 @@ const Lifestyle = () => {
       }
     >
       <video
-        src="/imagery/optimized/company/bottom.mp4"
+        src="/videos/company.mp4"
         autoPlay
         loop
         muted
