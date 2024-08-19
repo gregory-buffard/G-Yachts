@@ -97,7 +97,7 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
               (code) => code.dial_code === phone.prefix.replace(/^./, "+"),
             );
             const code = country ? country.code : "";
-            return <p key={phone.number}>{`${code}: ${phone.number}`}</p>;
+            return <p key={phone.number}>{`${phone.number}`}</p>;
           })}
           <p className={"break-words"}>{brokerino.email}</p>
         </div>

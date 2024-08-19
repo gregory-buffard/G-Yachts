@@ -8,7 +8,7 @@ const Hero = () => {
         "w-full px-[4vw] md:px-[8vw] h-[36dvh] md:h-screen bg-cover bg-center flex flex-col justify-end items-start text-white py-[2vh] md:py-[6vh]"
       }
       style={{
-        backgroundImage: `url(../images/new-constructions.webp)`,
+        backgroundImage: `url(/pictures/new-constructions.webp)`,
       }}
     >
       <h4>{t("subtitle")}</h4>

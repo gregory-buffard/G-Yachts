@@ -12,7 +12,7 @@ services:
     volumes:
       - /etc/nginx/sites-available/web:/etc/nginx/sites-enabled/web
       - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - /var/www/images:/var/www/images
+      - /var/www/pictures:/var/www/pictures
       - /var/www/videos:/var/www/videos
       - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:

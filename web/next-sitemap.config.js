@@ -53,7 +53,6 @@ module.exports = {
           loc: `/${paths.locale}/${path}`,
           lastmod: new Date().toISOString(),
           priority: 0.7,
-          hreflang: paths.locale,
         });
       });
     });

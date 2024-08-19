@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslations } from "next-intl";
-import hero from "@/public/images/company/hero.webp";
+import hero from "@/public/pictures/company/hero.webp";
 import Image from "next/image";
 
 const Hero = () => {

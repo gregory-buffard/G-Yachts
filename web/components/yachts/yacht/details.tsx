@@ -92,23 +92,23 @@ const Details = () => {
       value: data.yearBuilt,
       key: "yearBuilt",
     },
-    {
+    /*{
       label: t("characteristics.yearModel"),
       value: data.yearModel,
       key: "yearModel",
-    },
+    },*/
     {
       label: t("characteristics.location"),
-      value: `${data.city}, ${data.country}`,
+      value: `${data.region}`,
       key: "location",
     },
-    {
+    /*{
       label: t("characteristics.crypto.label"),
       value: data.crypto
         ? t("characteristics.crypto.true")
         : t("characteristics.crypto.false"),
       key: "crypto",
-    },
+    },*/
   ];
 
   return (

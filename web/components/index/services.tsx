@@ -2,10 +2,10 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/navigation";
-import sales from "@/public/images/index/services/sales.webp";
-import charter from "@/public/images/index/services/charter.webp";
-import management from "@/public/images/index/services/management.webp";
-import construction from "@/public/images/index/services/construction.webp";
+import sales from "@/public/pictures/index/services/sales.webp";
+import charter from "@/public/pictures/index/services/charter.webp";
+import management from "@/public/pictures/index/services/management.webp";
+import construction from "@/public/pictures/index/services/construction.webp";
 
 const Services = () => {
   const t = useTranslations("index.services");

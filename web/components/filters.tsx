@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { useViewContext } from "@/context/view";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
 import ReactSlider from "react-slider";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const Radio = ({
   options,
@@ -59,7 +60,7 @@ export const Select = ({
 }) => {
   const [opened, open] = useState<boolean>(false),
     menuRef = useRef<HTMLDivElement>(null),
-    t = useTranslations("sales.listing.filters");
+    t = useTranslations("yachts.filters");
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -205,7 +206,7 @@ export const ListingModifier = ({
 }) => {
   const [opened, open] = useState<boolean>(false),
     menuRef = useRef<HTMLDivElement>(null),
-    t = useTranslations("sales.listing.filters");
+    t = useTranslations("yachts.filters");
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -249,32 +250,111 @@ export const ListingModifier = ({
           <path d="M35.98,50.002c-1.046,0-2.093-0.395-2.863-1.185L13.595,28.809c-1.542-1.581-1.512-4.114,0.069-5.656	c1.582-1.542,4.113-1.512,5.657,0.069L35.98,40.296l16.698-17.113c1.544-1.582,4.076-1.612,5.657-0.069s1.611,4.075,0.069,5.656	L38.844,48.817C38.073,49.607,37.026,50.002,35.98,50.002z"></path>
         </svg>
       </button>
-      {opened && (
-        <div
-          className={
-            "absolute flex right-0 flex-col justify-start items-start bg-white w-max h-max overflow-y-auto drop-shadow-2xl gap-[1vh] px-[0.5vw] py-[0.5vw] rounded-[1vh]"
-          }
-          ref={menuRef}
-        >
-          {options.map((option) => (
-            <button
-              key={option.value}
-              type={"button"}
-              onClick={() => {
-                onChange(option.value);
-                open(false);
-              }}
+      <AnimatePresence mode={"popLayout"}>
+        {opened && (
+          <>
+            <div
               className={
-                "w-full flex justify-start items-baseline lg:gap-[0.5vw] gap-[1vh] hover:bg-rock-100 transition-[background-color] duration-100 ease-in-out rounded-[0.5vh] lg:px-[1vw] px-[2vw] lg:py-[0.5vh] py-[2vw]"
+                "absolute md:flex right-0 flex-col justify-start items-start bg-white w-max h-max overflow-y-auto drop-shadow-2xl gap-[1vh] px-[0.5vw] py-[0.5vw] rounded-[1vh] hidden"
               }
+              ref={menuRef}
             >
-              <label className={"text-wrap text-left cursor-pointer"}>
-                {option.label}
-              </label>
-            </button>
-          ))}
-        </div>
-      )}
+              {options.map((option) => (
+                <button
+                  key={option.value}
+                  type={"button"}
+                  onClick={() => {
+                    onChange(option.value);
+                    open(false);
+                  }}
+                  className={
+                    "w-full flex justify-start items-baseline lg:gap-[0.5vw] gap-[1vh] hover:bg-rock-100 transition-[background-color] duration-100 ease-in-out rounded-[0.5vh] lg:px-[1vw] px-[2vw] lg:py-[0.5vh] py-[2vw]"
+                  }
+                >
+                  <label className={"text-wrap text-left cursor-pointer"}>
+                    {option.label}
+                  </label>
+                </button>
+              ))}
+            </div>
+            <motion.div
+              key={"blur"}
+              initial={{
+                backgroundColor: "rgba(255, 255, 255, 0)",
+                backdropFilter: "blur(0)",
+              }}
+              animate={{
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                backdropFilter: "blur(10px)",
+              }}
+              exit={{
+                backgroundColor: "rgba(255, 255, 255, 0)",
+                backdropFilter: "blur(0)",
+              }}
+              transition={{ duration: 0.1, ease: "easeInOut" }}
+              className={
+                "md:hidden fixed inset-0 w-full h-full z-20 flex justify-center items-end cursor-pointer"
+              }
+              onClick={() => open(false)}
+            >
+              <motion.div
+                key={"menu"}
+                initial={{ y: "100%" }}
+                animate={{ y: "0%" }}
+                exit={{ y: "100%" }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className={
+                  "flex flex-col justify-center items-center w-full mx-[4vw] my-[4vw] px-[1vw] py-[1vw] bg-rock-100 rounded-[2vh] cursor-default drop-shadow-2xl"
+                }
+                ref={menuRef}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div
+                  className={
+                    "w-full px-[2vw] py-[2vw] flex justify-between items-center"
+                  }
+                >
+                  <h3>{label}</h3>
+                  <button type={"button"} onClick={() => open(false)}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      viewBox="0 0 64 64"
+                      className={
+                        "lg:size-[1.5vw] size-[3vh] hover:rotate-90 transition-transform duration-200 ease-in-out"
+                      }
+                    >
+                      <path d="M 16 14 C 15.488 14 14.976938 14.194937 14.585938 14.585938 C 13.804937 15.366937 13.804937 16.633063 14.585938 17.414062 L 29.171875 32 L 14.585938 46.585938 C 13.804938 47.366938 13.804937 48.633063 14.585938 49.414062 C 14.976937 49.805062 15.488 50 16 50 C 16.512 50 17.023062 49.805062 17.414062 49.414062 L 32 34.828125 L 46.585938 49.414062 C 47.366938 50.195063 48.633063 50.195062 49.414062 49.414062 C 50.195063 48.633062 50.195062 47.366937 49.414062 46.585938 L 34.828125 32 L 49.414062 17.414062 C 50.195063 16.633063 50.195062 15.366938 49.414062 14.585938 C 48.633062 13.804938 47.366937 13.804938 46.585938 14.585938 L 32 29.171875 L 17.414062 14.585938 C 17.023062 14.194938 16.512 14 16 14 z"></path>
+                    </svg>
+                  </button>
+                </div>
+                <div
+                  className={"w-full flex flex-col justify-center items-center"}
+                >
+                  {options.map((option) => (
+                    <button
+                      key={option.value}
+                      type={"button"}
+                      onClick={() => {
+                        onChange(option.value);
+                        open(false);
+                      }}
+                      className={
+                        "w-full flex justify-start items-baseline lg:gap-[0.5vw] gap-[1vh] hover:bg-rock-200 transition-[background-color] duration-100 ease-in-out rounded-[1.5vh] lg:px-[1vw] px-[2vw] lg:py-[0.5vh] py-[2vw]"
+                      }
+                    >
+                      <label className={"text-wrap text-left cursor-pointer"}>
+                        {option.label}
+                      </label>
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

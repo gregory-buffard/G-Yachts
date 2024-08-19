@@ -1,10 +1,10 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
-import finance from "@/public/images/management/finance.webp";
-import support from "@/public/images/management/support.webp";
-import administrative from "@/public/images/management/administrative.webp";
-import management from "@/public/images/management/management.webp";
+import finance from "@/public/pictures/management/finance.webp";
+import support from "@/public/pictures/management/support.webp";
+import administrative from "@/public/pictures/management/administrative.webp";
+import management from "@/public/pictures/management/management.webp";
 
 const ServiceList = () => {
   const t = useTranslations("management.servicesList");
