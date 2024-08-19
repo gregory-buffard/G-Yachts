@@ -6,6 +6,25 @@ module.exports = {
   sitemapSize: 5000,
   robotsTxtOptions: {
     additionalSitemaps: ["https://www.g-yachts.com/server-sitemap.xml"],
+    policies: [
+      {
+        disallow: [
+          "/admin",
+          "/admin/*",
+          "/api",
+          "/api/*",
+          "/media",
+          "/media/*",
+          "/images",
+          "/images/*",
+          "/videos",
+          "/videos/*",
+          "/pictures",
+          "/pictures/*",
+        ],
+        userAgent: "*",
+      },
+    ],
   },
   additionalPaths: async (config) => {
     const result = [],
