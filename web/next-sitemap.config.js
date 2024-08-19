@@ -5,10 +5,7 @@ module.exports = {
   generateRobotsTxt: true,
   sitemapSize: 5000,
   robotsTxtOptions: {
-    additionalSitemaps: [
-      "https://www.g-yachts.com/server-sitemap-en.xml",
-      "https://www.g-yachts.com/server-sitemap-fr.xml",
-    ],
+    additionalSitemaps: ["https://www.g-yachts.com/server-sitemap.xml"],
   },
   additionalPaths: async (config) => {
     const result = [],
@@ -47,36 +44,29 @@ module.exports = {
         },
       ];
 
-    staticPaths.map((paths) => {
-      paths.paths.forEach((path) => {
-        result.push({
-          loc: `/${paths.locale}/${path}`,
-          lastmod: new Date().toISOString(),
-          priority: 0.7,
-        });
+    for (let i = 0; i < staticPaths[0].paths.length; i++) {
+      result.push({
+        loc: `/${staticPaths[0].paths[i]}`,
+        lastmod: new Date().toISOString(),
+        priority: 0.7,
+        alternateRefs: [
+          {
+            href: `${config.siteUrl}/${staticPaths[1].paths[i]}`,
+            hreflang: staticPaths[1].locale,
+          },
+          {
+            href: `${config.siteUrl}/${staticPaths[0].locale}/${staticPaths[0].paths[i]}`,
+            hreflang: staticPaths[0].locale,
+          },
+          {
+            href: `${config.siteUrl}/${staticPaths[1].locale}/${staticPaths[1].paths[i]}`,
+            hreflang: staticPaths[1].locale,
+          },
+        ],
       });
-    });
+    }
 
     return result;
   },
-  alternateRefs: [
-    {
-      href: "https://www.g-yachts.com/",
-      hreflang: "x-default",
-    },
-    {
-      href: "https://www.g-yachts.com/en",
-      hreflang: "en",
-    },
-    {
-      href: "https://www.g-yachts.com/fr",
-      hreflang: "fr",
-    },
-  ],
-  exclude: [
-    "/admin",
-    "/admin/*",
-    "/server-sitemap-en.xml",
-    "/server-sitemap-fr.xml",
-  ],
+  exclude: ["/admin", "/admin/*", "/server-sitemap.xml"],
 };
