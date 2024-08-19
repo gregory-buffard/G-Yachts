@@ -4,12 +4,15 @@ import { getClient } from "@/apollo";
 import { IDestination } from "@/types/destination";
 import { gql } from "@apollo/client";
 
-export const fetchDestination = async (id: string): Promise<IDestination> => {
+export const fetchDestination = async (
+  id: string,
+  locale: "en" | "fr",
+): Promise<IDestination> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Destination($id: String!) {
-        Destination(id: $id) {
+      query Destination($id: String!, $locale: LocaleInputType!) {
+        Destination(id: $id, locale: $locale) {
           id
           destination
           country
@@ -52,17 +55,20 @@ export const fetchDestination = async (id: string): Promise<IDestination> => {
     `,
     variables: {
       id,
+      locale,
     },
   });
   return data.Destination;
 };
 
-export const fetchDestinations = async (): Promise<IDestination[]> => {
+export const fetchDestinations = async (
+  locale: "en" | "fr",
+): Promise<IDestination[]> => {
   const client = getClient();
-  const {data} = await client.query({
+  const { data } = await client.query({
     query: gql`
-      query Destinations {
-        Destinations {
+      query Destinations($locale: LocaleInputType!) {
+        Destinations(locale: $locale) {
           docs {
             id
             destination
@@ -100,6 +106,9 @@ export const fetchDestinations = async (): Promise<IDestination[]> => {
         }
       }
     `,
+    variables: {
+      locale,
+    },
   });
 
   return data.Destinations.docs;

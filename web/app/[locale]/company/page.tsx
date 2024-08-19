@@ -3,6 +3,7 @@ import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
 import { fetchBrokerinos } from "@/actions/brokerino";
 import { getTranslations } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 
 const View = dynamic(() => import("@/components/view"));
 const Footer = dynamic(() => import("@/components/footer"));
@@ -41,19 +42,19 @@ export const generateMetadata = async ({
   };
 };
 
-const Company = async () => {
-  return (
-    <main className="w-full flex flex-col justify-start items-center">
-      <Bar dynamicColor={-1} />
-      <View />
-      <Hero />
-      <Story />
-      <Accordion />
-      <Team brokerinos={await fetchBrokerinos()} />
-      <Lifestyle />
-      <Footer />
-    </main>
-  );
-};
+const Company = async () => (
+  <main className="w-full flex flex-col justify-start items-center">
+    <Bar dynamicColor={-1} />
+    <View />
+    <Hero />
+    <Story />
+    <Accordion />
+    <Team
+      brokerinos={await fetchBrokerinos((await getLocale()) as "en" | "fr")}
+    />
+    <Lifestyle />
+    <Footer />
+  </main>
+);
 
 export default Company;

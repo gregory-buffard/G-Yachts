@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { fetchDestinations } from "@/actions/destinations";
 import { IDestination } from "@/types/destination";
 import { getTranslations } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 
 const View = dynamic(() => import("@/components/view"));
 const Map = dynamic(() => import("@/components/destinations/map"), {
@@ -22,6 +23,7 @@ export const generateMetadata = async ({
     locale,
     namespace: "destinations.metadata",
   });
+
   return {
     title: t("title"),
     description: t("description"),
@@ -47,7 +49,10 @@ export const generateMetadata = async ({
 };
 
 const Destinations = async () => {
-  const destinations: IDestination[] = await fetchDestinations();
+  const destinations: IDestination[] = await fetchDestinations(
+    (await getLocale()) as "en" | "fr",
+  );
+
   return (
     <main className="w-full flex flex-col justify-start items-center">
       <Bar dynamicColor={100} />

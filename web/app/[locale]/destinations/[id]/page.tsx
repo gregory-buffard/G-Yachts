@@ -19,12 +19,15 @@ const ChartersInDestination = dynamic(
 export const generateMetadata = async ({
   params,
 }: {
-  params: { id: string };
+  params: { id: string; locale: "en" | "fr" };
 }): Promise<Metadata> => {
-  const id = params.id,
-    locale = (await getLocale()) as "en" | "fr";
+  const id = params.id;
 
-  return await fetchMetadata({ id, type: "destination", locale });
+  return await fetchMetadata({
+    id,
+    type: "destination",
+    locale: params.locale,
+  });
 };
 
 const Destinations = async ({
@@ -34,7 +37,10 @@ const Destinations = async ({
     id: string;
   };
 }) => {
-  const destination: IDestination = await fetchDestination(params.id);
+  const destination: IDestination = await fetchDestination(
+    params.id,
+    (await getLocale()) as "en" | "fr",
+  );
   return (
     <DestinationProvider destination={destination}>
       <main className="w-full flex flex-col justify-start items-center">

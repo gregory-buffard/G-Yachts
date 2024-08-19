@@ -4,12 +4,18 @@ import IBrokerino from "@/types/brokerino";
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
 
-export const fetchBrokerinos = async (): Promise<IBrokerino[]> => {
+export const fetchBrokerinos = async (
+  locale: "en" | "fr",
+): Promise<IBrokerino[]> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Users {
-        Users(where: { displayOnWebsite: { equals: true } }, limit: 0) {
+      query Users($locale: LocaleInputType!) {
+        Users(
+          locale: $locale
+          where: { displayOnWebsite: { equals: true } }
+          limit: 0
+        ) {
           docs {
             name
             picture {
@@ -33,6 +39,9 @@ export const fetchBrokerinos = async (): Promise<IBrokerino[]> => {
         }
       }
     `,
+    variables: {
+      locale,
+    },
   });
-  return data.Users.docs;
+  return [...data.Users.docs].reverse(); // Temporary fix for the order of the brokers
 };
