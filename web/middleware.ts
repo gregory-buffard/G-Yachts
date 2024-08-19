@@ -15,5 +15,8 @@ export default function (req: NextRequest): NextResponse {
 }
 
 export const config = {
-  matcher: ["/", "/(fr|en)/:path*"],
+  matcher: [
+    "/([\\w-]+)?/((?!api|_next|_vercel|admin|images|pictures|videos|media|.*\\..*).*)",
+    "/(fr|en)/:path*",
+  ],
 };

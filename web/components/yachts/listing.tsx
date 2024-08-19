@@ -6,7 +6,12 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { useViewContext } from "@/context/view";
 import Bookmark from "@/public/pictures/sales/bookmark";
-import { ListingModifier, Range, Select, Radio } from "@/components/filters";
+import {
+  ListingModifier,
+  Range,
+  Select,
+  Radio,
+} from "@/components/yachts/filters";
 import { ISale, ICharter, INewConstruction } from "@/types/yacht";
 
 interface IFilters {

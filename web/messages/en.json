@@ -90,7 +90,7 @@
                 "label": "Yacht type",
                 "all": "All",
                 "motor": "Motor",
-                "sail": "Sail"
+                "sail": "Sailing"
             },
             "year": "Year",
             "length": "Yacht length ({unit, select, m {meters} ft {feet} other {}})",
