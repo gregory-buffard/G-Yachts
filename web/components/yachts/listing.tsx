@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { useViewContext } from "@/context/view";
 import Bookmark from "@/public/pictures/sales/bookmark";
-import {
+import Overlay, {
   ListingModifier,
   Range,
   Select,
@@ -236,7 +236,8 @@ const Listing = ({
     { bookmarks } = useViewContext(),
     { currency, units, changeCurrency } = useViewContext(),
     [maxListing, setMaxListing] = useState<number>(12);
-  const [view, setView] = useState<"global" | "bookmarks">("global");
+  const [view, setView] = useState<"global" | "bookmarks">("global"),
+    [filtering, setFiltering] = useState<boolean>(false);
 
   const [filter, setFilter] = useState<IFilters>({
     category: undefined,
@@ -303,7 +304,7 @@ const Listing = ({
     >
       <div
         className={
-          "w-full md:px-0 px-[2vw] h-max flex md:flex-row flex-col justify-between md:justify-evenly items-center md:items-start gap-[2vh]"
+          "w-full md:px-0 px-[2vw] h-max flex justify-between md:justify-evenly items-center md:items-start gap-[2vh]"
         }
       >
         <div className={"filter-column"}>
@@ -455,86 +456,307 @@ const Listing = ({
             <label className={"cursor-pointer"}>{t("filters.clear")}</label>
           </button>
         </div>
-        <div className={"w-full md:w-[20vw] flex justify-between items-center"}>
-          <ListingModifier
-            label={t("filters.currency")}
-            options={[
-              { value: "EUR", label: "€ eur" },
-              { value: "USD", label: "$ usd" },
-              { value: "GBP", label: "£ gbp" },
-              { value: "JPY", label: "¥ jpy" },
-            ]}
-            onChange={(value) => changeCurrency(value)}
-          />
-          <ListingModifier
-            label={t("filters.sort.label")}
-            options={[
-              { value: "priceAsc", label: t("filters.sort.price-asc") },
-              { value: "priceDesc", label: t("filters.sort.price-desc") },
-              { value: "lengthAsc", label: t("filters.sort.length-asc") },
-              { value: "lengthDesc", label: t("filters.sort.length-desc") },
-              { value: "yearAsc", label: t("filters.sort.year-asc") },
-              { value: "yearDesc", label: t("filters.sort.year-desc") },
-            ]}
-            onChange={(value) => {
-              switch (value) {
-                case "priceAsc":
-                  if (type === "charters") {
-                    setFilteredData([
-                      ...data.sort(
-                        (a, b) =>
-                          (a.price.low + a.price.high) / 2 -
-                          (b.price.low + b.price.high) / 2,
-                      ),
-                    ]);
-                  } else {
-                    setFilteredData([
-                      ...data.sort((a, b) => a.price - b.price),
-                    ]);
-                  }
-                  break;
-                case "priceDesc":
-                  if (type === "charters") {
-                    setFilteredData([
-                      ...data.sort(
-                        (a, b) =>
-                          (b.price.low + b.price.high) / 2 -
-                          (a.price.low + a.price.high) / 2,
-                      ),
-                    ]);
-                  } else {
-                    setFilteredData([
-                      ...data.sort((a, b) => b.price - a.price),
-                    ]);
-                  }
-                  break;
-                case "lengthAsc":
-                  // @ts-ignore
-                  setFilteredData([
-                    ...data.sort((a, b) => a.length - b.length),
-                  ]);
-                  break;
-                case "lengthDesc":
-                  // @ts-ignore
-                  setFilteredData([
-                    ...data.sort((a, b) => b.length - a.length),
-                  ]);
-                  break;
-                case "yearAsc":
-                  // @ts-ignore
-                  setFilteredData([
-                    ...data.sort((a, b) => a.yearBuilt - b.yearBuilt),
-                  ]);
-                  break;
-                case "yearDesc":
-                  // @ts-ignore
-                  setFilteredData([
-                    ...data.sort((a, b) => b.yearBuilt - a.yearBuilt),
-                  ]);
-                  break;
+        <div className={"w-1/3 md:hidden flex justify-start items-center"}>
+          <Overlay
+            label={t("filters.label")}
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                viewBox="0 0 24 24"
+                className={"w-full h-full fill-black"}
+              >
+                <path d="M 9 2 L 9 4 L 2 4 L 2 6 L 9 6 L 9 8 L 12 8 L 12 2 L 9 2 z M 14 4 L 14 6 L 22 6 L 22 4 L 14 4 z M 14 9 L 14 11 L 2 11 L 2 13 L 14 13 L 14 15 L 17 15 L 17 9 L 14 9 z M 19 11 L 19 13 L 22 13 L 22 11 L 19 11 z M 4 16 L 4 18 L 2 18 L 2 20 L 4 20 L 4 22 L 7 22 L 7 16 L 4 16 z M 9 18 L 9 20 L 22 20 L 22 18 L 9 18 z"></path>
+              </svg>
+            }
+          >
+            <div
+              className={
+                "w-full flex flex-col justify-center items-center gap-[4vh] px-[2vw] pb-[2vw]"
               }
-            }}
-          />
+            >
+              <div className={"filter-row"}>
+                <div className={"filter"}>
+                  <label>{t("filters.type.label")}</label>
+                  <Radio
+                    options={[
+                      { value: undefined, label: t("filters.type.all") },
+                      { value: "sail", label: t("filters.type.sail") },
+                      { value: "motor", label: t("filters.type.motor") },
+                    ]}
+                    currentOption={filter.category}
+                    onClick={(value) => {
+                      setFilter({ ...filter, category: value });
+                      setMaxListing(12);
+                    }}
+                  />
+                </div>
+                <Select
+                  label={t("filters.year")}
+                  options={[
+                    { value: undefined, label: t("filters.any") },
+                    ...Array.from(
+                      new Set(data.map((yacht) => yacht.yearBuilt)),
+                    ).map((year) => ({ value: year, label: year.toString() })),
+                  ]}
+                  currentOption={filter.year}
+                  onChange={(value) => {
+                    setFilter({ ...filter, year: value });
+                    setMaxListing(12);
+                  }}
+                />
+              </div>
+              <div className={"filter-row"}>
+                <div className={"filter"}>
+                  <label>{t("filters.length", { unit: units.length })}</label>
+                  <Range
+                    min={Math.min(...data.map((yacht) => yacht.length))}
+                    max={Math.max(...data.map((yacht) => yacht.length))}
+                    step={0.5}
+                    onChange={(value) =>
+                      setFilter({ ...filter, length: value })
+                    }
+                    dataType={"length"}
+                  />
+                </div>
+                <Select
+                  label={t("filters.builder")}
+                  options={[
+                    { value: undefined, label: t("filters.any") },
+                    ...Array.from(
+                      new Set(data.map((yacht) => yacht.builder)),
+                    ).map((builder) => ({ value: builder, label: builder })),
+                  ]}
+                  currentOption={filter.builder}
+                  onChange={(value) => {
+                    setFilter({ ...filter, builder: value });
+                    setMaxListing(12);
+                  }}
+                />
+              </div>
+              <div className={"filter-row"}>
+                <div className={"filter"}>
+                  <label>{t("filters.price")}</label>
+                  <Range
+                    min={
+                      type === "charters"
+                        ? Math.min(...data.map((yacht) => yacht.price.low))
+                        : Math.min(...data.map((yacht) => yacht.price))
+                    }
+                    max={
+                      type === "charters"
+                        ? Math.max(...data.map((yacht) => yacht.price.high))
+                        : Math.max(...data.map((yacht) => yacht.price))
+                    }
+                    step={10000}
+                    onChange={(value) => setFilter({ ...filter, price: value })}
+                    dataType={"price"}
+                  />
+                </div>
+                <Select
+                  label={t("filters.sleeps")}
+                  options={[
+                    { value: undefined, label: t("filters.any") },
+                    ...Array.from(
+                      new Set(data.map((yacht) => yacht.sleeps)),
+                    ).map((sleeps) => ({
+                      value: sleeps,
+                      label: sleeps.toString(),
+                    })),
+                  ]}
+                  currentOption={filter.sleeps}
+                  onChange={(value) => {
+                    setFilter({ ...filter, sleeps: value });
+                  }}
+                />
+              </div>
+              <div className={"filter-row"}>
+                <Select
+                  label={t("filters.name.label")}
+                  options={[
+                    { value: undefined, label: t("filters.name.all") },
+                    ...Array.from(new Set(data.map((yacht) => yacht.name))).map(
+                      (name) => ({
+                        value: name,
+                        label: name,
+                      }),
+                    ),
+                  ]}
+                  currentOption={filter.name}
+                  onChange={(value) => {
+                    setFilter({ ...filter, name: value });
+                  }}
+                />
+                <button
+                  className={
+                    "w-full h-[3vh] glass-button glass-button-dark flex justify-center items-center z-0 group"
+                  }
+                  onClick={() =>
+                    setFilter({
+                      category: undefined,
+                      year: undefined,
+                      length: {
+                        min: Math.min(...data.map((yacht) => yacht.length)),
+                        max: Math.max(...data.map((yacht) => yacht.length)),
+                      },
+                      builder: undefined,
+                      price:
+                        type === "charters"
+                          ? {
+                              min: Math.min(
+                                ...data.map((yacht) => yacht.price.low),
+                              ),
+                              max: Math.max(
+                                ...data.map((yacht) => yacht.price.high),
+                              ),
+                            }
+                          : {
+                              min: Math.min(
+                                ...data.map((yacht) => yacht.price),
+                              ),
+                              max: Math.max(
+                                ...data.map((yacht) => yacht.price),
+                              ),
+                            },
+                      sleeps: undefined,
+                      name: undefined,
+                    })
+                  }
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 64 64"
+                    className={
+                      "lg:size-[1.5vw] size-[1.5rem] lg:group-hover:rotate-90 transition-transform duration-200 ease-in-out"
+                    }
+                  >
+                    <path d="M 16 14 C 15.488 14 14.976938 14.194937 14.585938 14.585938 C 13.804937 15.366937 13.804937 16.633063 14.585938 17.414062 L 29.171875 32 L 14.585938 46.585938 C 13.804938 47.366938 13.804937 48.633063 14.585938 49.414062 C 14.976937 49.805062 15.488 50 16 50 C 16.512 50 17.023062 49.805062 17.414062 49.414062 L 32 34.828125 L 46.585938 49.414062 C 47.366938 50.195063 48.633063 50.195062 49.414062 49.414062 C 50.195063 48.633062 50.195062 47.366937 49.414062 46.585938 L 34.828125 32 L 49.414062 17.414062 C 50.195063 16.633063 50.195062 15.366938 49.414062 14.585938 C 48.633062 13.804938 47.366937 13.804938 46.585938 14.585938 L 32 29.171875 L 17.414062 14.585938 C 17.023062 14.194938 16.512 14 16 14 z"></path>
+                  </svg>
+                  <label className={"cursor-pointer"}>
+                    {t("filters.clear")}
+                  </label>
+                </button>
+              </div>
+            </div>
+          </Overlay>
+        </div>
+        <div
+          className={
+            "w-max md:w-[20vw] flex justify-between items-center gap-[4vw] md:gap-0"
+          }
+        >
+          <Overlay
+            label={t("filters.currency")}
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                viewBox="0 0 24 24"
+                className={"w-full h-full fill-black"}
+              >
+                <path d="M 12 2 C 9.247419 2 6.7443969 3.123319 4.9335938 4.9335938 L 3 3 L 3 8 L 8 8 L 6.3457031 6.3457031 C 7.7940327 4.8959697 9.790268 4 12 4 C 16.419477 4 20 7.5805232 20 12 L 22 12 C 22 6.4954768 17.504523 2 12 2 z M 13.119141 7 C 10.35993 7.0007549 9.4468263 8.7931726 9.1445312 10 L 8 10 L 8 11 L 9 11 L 9 13 L 8 13 L 8 14 L 9.1074219 14 C 9.4009594 15.424798 10.417502 17 12.958984 17 C 13.761984 16.999 14.456375 16.854156 14.734375 16.785156 L 14.445312 14.990234 C 14.258313 15.068234 13.830219 15.21875 13.199219 15.21875 C 12.092146 15.21875 11.532485 14.590209 11.253906 14 L 13 14 L 13 13 L 11 13 L 11 11 L 13 11 L 13 10 L 11.269531 10 C 11.584776 9.3850015 12.197006 8.796875 13.246094 8.796875 C 13.773094 8.796875 14.271359 8.9642031 14.443359 9.0332031 L 14.734375 7.2285156 C 14.465375 7.1585156 13.789141 7 13.119141 7 z M 2 12 C 2 17.504523 6.4954768 22 12 22 C 14.752581 22 17.255603 20.876681 19.066406 19.066406 L 21 21 L 21 16 L 16 16 L 17.654297 17.654297 C 16.205967 19.104031 14.209732 20 12 20 C 7.5805232 20 4 16.419477 4 12 L 2 12 z"></path>
+              </svg>
+            }
+          >
+            <ListingModifier
+              label={t("filters.currency")}
+              options={[
+                { value: "EUR", label: "€ eur" },
+                { value: "USD", label: "$ usd" },
+                { value: "GBP", label: "£ gbp" },
+                { value: "JPY", label: "¥ jpy" },
+              ]}
+              onChange={(value) => changeCurrency(value)}
+            />
+          </Overlay>
+          <Overlay
+            label={t("filters.sort.label")}
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                viewBox="0 0 24 24"
+                className={"w-full h-full fill-black"}
+              >
+                <path d="M 4 2 L 4 4 L 8 4 L 4 8.5625 L 4 10 L 11 10 L 11 8 L 7 8 L 11 3.4199219 L 11 2 L 4 2 z M 16 2 L 16 18 L 13 18 L 17 22 L 21 18 L 18 18 L 18 2 L 16 2 z M 6.8007812 13 L 4 21 L 6 21 L 6.3652344 20 L 8.6308594 20 L 9 21 L 11 21 L 8.1992188 13 L 6.8007812 13 z M 7.546875 16.263672 L 8.0664062 18 L 6.9335938 18 L 7.546875 16.263672 z"></path>
+              </svg>
+            }
+          >
+            <ListingModifier
+              label={t("filters.sort.label")}
+              options={[
+                { value: "priceAsc", label: t("filters.sort.price-asc") },
+                { value: "priceDesc", label: t("filters.sort.price-desc") },
+                { value: "lengthAsc", label: t("filters.sort.length-asc") },
+                { value: "lengthDesc", label: t("filters.sort.length-desc") },
+                { value: "yearAsc", label: t("filters.sort.year-asc") },
+                { value: "yearDesc", label: t("filters.sort.year-desc") },
+              ]}
+              onChange={(value) => {
+                switch (value) {
+                  case "priceAsc":
+                    if (type === "charters") {
+                      setFilteredData([
+                        ...data.sort(
+                          (a, b) =>
+                            (a.price.low + a.price.high) / 2 -
+                            (b.price.low + b.price.high) / 2,
+                        ),
+                      ]);
+                    } else {
+                      setFilteredData([
+                        ...data.sort((a, b) => a.price - b.price),
+                      ]);
+                    }
+                    break;
+                  case "priceDesc":
+                    if (type === "charters") {
+                      setFilteredData([
+                        ...data.sort(
+                          (a, b) =>
+                            (b.price.low + b.price.high) / 2 -
+                            (a.price.low + a.price.high) / 2,
+                        ),
+                      ]);
+                    } else {
+                      setFilteredData([
+                        ...data.sort((a, b) => b.price - a.price),
+                      ]);
+                    }
+                    break;
+                  case "lengthAsc":
+                    // @ts-ignore
+                    setFilteredData([
+                      ...data.sort((a, b) => a.length - b.length),
+                    ]);
+                    break;
+                  case "lengthDesc":
+                    // @ts-ignore
+                    setFilteredData([
+                      ...data.sort((a, b) => b.length - a.length),
+                    ]);
+                    break;
+                  case "yearAsc":
+                    // @ts-ignore
+                    setFilteredData([
+                      ...data.sort((a, b) => a.yearBuilt - b.yearBuilt),
+                    ]);
+                    break;
+                  case "yearDesc":
+                    // @ts-ignore
+                    setFilteredData([
+                      ...data.sort((a, b) => b.yearBuilt - a.yearBuilt),
+                    ]);
+                    break;
+                }
+              }}
+            />
+          </Overlay>
         </div>
       </div>
       <div

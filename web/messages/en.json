@@ -85,6 +85,7 @@
     },
     "yachts": {
         "filters": {
+            "label": "Filters",
             "any": "Any",
             "type": {
                 "label": "Yacht type",

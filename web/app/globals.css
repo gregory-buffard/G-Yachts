@@ -136,7 +136,11 @@
     }
 
     .filter-column {
-        @apply flex flex-col justify-between items-start md:w-[20vw] w-full h-[14vh] gap-[2vh];
+        @apply hidden md:flex flex-col justify-between items-start md:w-[20vw] w-full h-[14vh] gap-[2vh];
+    }
+
+    .filter-row {
+        @apply w-full flex flex-col justify-center items-center gap-[2vh] relative;
     }
 
     .filter {
