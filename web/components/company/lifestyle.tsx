@@ -10,7 +10,7 @@ const Lifestyle = () => {
   return (
     <section
       className={
-        "h-[56dvh] w-full relative overflow-hidden items-center flex flex-col justify-center text-center text-white"
+        "h-[65vh] md:h-[56dvh] w-full relative overflow-hidden items-center flex flex-col justify-center text-center text-white"
       }
     >
       <video

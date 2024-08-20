@@ -23,9 +23,9 @@ const Hero = () => {
           <h2 className="font-classic text-white md:text-sm lg:text-xl text-sm py-2">
             {t("subtitle")}
           </h2>
-          <div className="font-slick font-light text-3xl md:text-4xl lg:text-6xl text-white [text-wrap:balance] bg-clip-text">
+          <div className="font-slick font-light text-[3.5vh] md:text-4xl lg:text-6xl text-white [text-wrap:balance] bg-clip-text">
             Superyachts{" "}
-            <span className="font-classic font-medium inline-flex flex-col h-[calc(theme(fontSize.3xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.6xl)*theme(lineHeight.tight))] overflow-hidden">
+            <span className="font-classic font-medium inline-flex flex-col h-[calc(3vh*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.6xl)*theme(lineHeight.tight))] overflow-hidden">
               <ul className="block animate-text-slide-4 text-left leading-tight [&_li]:block">
                 <li>{t("sales")}</li>
                 <li>CHARTER</li>
