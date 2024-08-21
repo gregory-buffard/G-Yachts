@@ -11,20 +11,6 @@ export interface ICharter extends IYacht {
   }[];
 }
 
-export interface IFeatured
-  extends Pick<
-    IYacht,
-    | "id"
-    | "price"
-    | "name"
-    | "builder"
-    | "length"
-    | "yearBuilt"
-    | "sleeps"
-    | "photos"
-    | "etiquette"
-  > {}
-
 export interface ICFeatured
   extends Pick<
     IYacht,

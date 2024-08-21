@@ -3,15 +3,13 @@ import Bar from "@/components/nav/bar";
 import Hero from "@/components/management/hero";
 import { getTranslations } from "next-intl/server";
 
-const View = dynamic(() => import("@/components/view"));
-const Footer = dynamic(() => import("@/components/footer"));
-const Services = dynamic(() => import("@/components/management/services"));
-const ServiceList = dynamic(
-  () => import("@/components/management/serviceList"),
-);
-const Assets = dynamic(() => import("@/components/management/assets"));
-const Accordion = dynamic(() => import("@/components/management/accordion"));
-const Bottom = dynamic(() => import("@/components/management/bottom"));
+const View = dynamic(() => import("@/components/view")),
+  Services = dynamic(() => import("@/components/management/services")),
+  ServiceList = dynamic(() => import("@/components/management/serviceList")),
+  Assets = dynamic(() => import("@/components/management/assets")),
+  Accordion = dynamic(() => import("@/components/management/accordion")),
+  Bottom = dynamic(() => import("@/components/management/bottom")),
+  Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
   params: { locale },

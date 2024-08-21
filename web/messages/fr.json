@@ -62,15 +62,6 @@
             "description": "Grâce à une connaissance approfondie du marché et une compréhension ouverte de vos exigences, nous offrons un accès à une flotte de yachts à vendre, la sélection de yachts de luxe à vendre la plus variée et sophistiquée sur le marché aujourd'hui.",
             "CTA": "Achetez un yacht"
         },
-        "featured": {
-            "exclusive": "Exclusif",
-            "new": "Nouveauté",
-            "sold": "Vendu",
-            "title": "<classic>Ventes</classic> en vedette",
-            "all": "Explorer",
-            "sleeps": "invités",
-            "priceOnApplication": "Prix sur demande"
-        },
         "memories": {
             "title": "Créer des moments <classic>inoubliables</classic>",
             "subtitle": "CHARTER AVEC NOUS",
@@ -84,6 +75,15 @@
         }
     },
     "yachts": {
+        "carousel": {
+            "exclusive": "Exclusif",
+            "new": "Nouveauté",
+            "sold": "Vendu",
+            "title": "<classic>Ventes</classic> en vedette",
+            "all": "Explorer",
+            "sleeps": "invités",
+            "priceOnApplication": "Prix sur demande"
+        },
         "filters": {
             "label": "Filtres",
             "any": "N'importe quel",
@@ -125,18 +125,6 @@
         "expand": "Charger plus",
         "end": "Vous avez atteint la fin de notre catalogue"
     },
-    "sales": {
-        "metadata": {
-            "title": "Ventes",
-            "description": "Découvrez notre liste des meilleurs yachts du marché.",
-            "keywords": "yachts, vente, marché, liste, monaco, g-yachts"
-        },
-        "hero": {
-            "title": "Trouvez le Yacht parfait pour <classic>Vous</classic>",
-            "subtitle": "Yachts à vendre",
-            "guests": "invités"
-        }
-    },
     "yacht": {
         "noPrice": "Prix sur demande",
         "sleeps": "invités",
@@ -176,6 +164,20 @@
             "CTA": "Contactez un courtier"
         }
     },
+    "sales": {
+        "metadata": {
+            "title": "Ventes",
+            "description": "Découvrez notre liste des meilleurs yachts du marché.",
+            "keywords": "yachts, vente, marché, liste, monaco, g-yachts"
+        },
+        "hero": {
+            "title": "Trouvez le Yacht parfait pour <classic>Vous</classic>",
+            "subtitle": "Yachts à vendre",
+            "guests": "invités"
+        },
+        "featured": "<classic>Ventes</classic> en vedette",
+        "similar": "<classic>Ventes</classic> similaires"
+    },
     "charters": {
         "metadata": {
             "title": "Charters",
@@ -187,36 +189,20 @@
             "title": "Créer des moments <classic>inoubliables</classic>",
             "subtitle": "Yachts à location",
             "guests": "invités"
-        }
+        },
+        "similar": "<classic>Charters</classic> similaires"
     },
-    "charter": {
-        "noPrice": "Prix sur demande",
-        "sleeps": "invités",
-        "details": {
-            "gallery": "Explorer plus d'images",
-            "info": "Informations clés",
-            "features": "Caractéristiques clés",
-            "brochure": "Brochure",
-            "characteristics": {
-                "type": {
-                    "label": "Type",
-                    "motor": "Moteur",
-                    "sail": "Voile"
-                },
-                "length": "Longueur",
-                "beam": "Largeur",
-                "sleeps": "Lits",
-                "rooms": "Cabines",
-                "draft": "Tirant d'eau",
-                "maxDraft": "Tirant d'eau maximum",
-                "tonnage": "Poids",
-                "yearBuilt": "Année de construction",
-                "yearModel": "Année du modèle",
-                "hull": "Type de coque",
-                "location": "Emplacement"
-            },
-            "CTA": "Contactez un courtier"
-        }
+    "new-constructions": {
+        "metadata": {
+            "title": "Nouvelles constructions",
+            "description": "Découvrez notre liste des meilleurs yachts du marché.",
+            "keywords": "yachts, vente, marché, liste, monaco, g-yachts"
+        },
+        "hero": {
+            "title": "La prochaine génération de conceptions de yachts <classic>innovantes</classic>",
+            "subtitle": "NOUVELLE CONSTRUCTION"
+        },
+        "similar": "<classic>Nouvelles constructions</classic> similaires"
     },
     "company": {
         "metadata": {
@@ -453,12 +439,7 @@
             "gettingThere": "Getting there",
             "button": "Charter a yacht"
         },
-        "charters": {
-            "exclusive": "Exclusive",
-            "title": "Charters in <classic>{destination}</classic>",
-            "all": "View all",
-            "sleeps": "guests"
-        }
+        "charters": "Charters <classic>{destination}</classic>"
     },
     "news": {
         "metadata": {
@@ -493,7 +474,7 @@
         "listed": "Vous avez vu {count} sur {total}",
         "expand": "Charger plus",
         "end": "Vous avez atteint la fin de nos événements",
-        "charter": "Affréter un <classic>yacht</classic>"
+        "charters": "Affréter un <classic>yacht</classic>"
     },
     "search": {
         "search": "Recherche",
@@ -522,17 +503,6 @@
         "title": "<classic>Accréditations</classic>",
         "description": "Ingénieur Full Stack <classic><greg>Grégory Buffard</greg></classic><br></br>Ingénieur Full Stack <classic><maks>Maksym Petriv</maks></classic><br></br>Design par <classic><malo>Agence Malo</malo></classic>",
         "manufacture": "Developpé avec de l<heart></heart> à Cannes"
-    },
-    "new-constructions": {
-        "metadata": {
-            "title": "Nouvelles constructions",
-            "description": "Découvrez notre liste des meilleurs yachts du marché.",
-            "keywords": "yachts, vente, marché, liste, monaco, g-yachts"
-        },
-        "hero": {
-            "title": "La prochaine génération de conceptions de yachts <classic>innovantes</classic>",
-            "subtitle": "NOUVELLE CONSTRUCTION"
-        }
     },
     "similar": {
         "yachts": "<classic>Yachts</classic> similaires",

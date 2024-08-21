@@ -6,9 +6,9 @@ import { fetchPartners } from "@/actions/partners";
 import { getLocale, getTranslations } from "next-intl/server";
 import { IPartner } from "@/types/partner";
 
-const View = dynamic(() => import("@/components/view"));
-const Newsletter = dynamic(() => import("@/components/newsletter"));
-const Footer = dynamic(() => import("@/components/footer"));
+const View = dynamic(() => import("@/components/view")),
+  Newsletter = dynamic(() => import("@/components/newsletter")),
+  Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
   params: { locale },

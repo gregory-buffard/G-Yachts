@@ -2,11 +2,12 @@
 
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
-import { IFeatured as SFeatured } from "@/types/sale";
-import { ISale, ICharter, INewConstruction } from "@/types/yacht";
+import { IFeatured, IFeatured as SFeatured } from "@/types/sale";
+import { ICharter, INewConstruction, ISale } from "@/types/yacht";
 import { IDestination } from "@/types/destination";
 import axios from "axios";
 import { ICFeatured } from "@/types/charter";
+import { IShipyard } from "@/types/shipyard";
 
 export const fetchFeaturedSales = async (
   locale: "en" | "fr",
@@ -512,9 +513,22 @@ export const getRate = async (currency: string) => {
   }
 };
 
-export const fetchSimilarYachts = async (
+export const fetchSimilarSales = async (
   length: number,
-): Promise<SFeatured[]> => {
+): Promise<
+  Pick<
+    ISale,
+    | "id"
+    | "length"
+    | "price"
+    | "name"
+    | "builder"
+    | "yearBuilt"
+    | "sleeps"
+    | "photos"
+    | "etiquette"
+  >[]
+> => {
   const client = getClient();
   const { data: highestClicks } = await client.query({
     query: gql`
@@ -533,7 +547,7 @@ export const fetchSimilarYachts = async (
             photos {
               featured {
                 sizes {
-                  fhd {
+                  thumbnail {
                     url
                   }
                 }
@@ -545,6 +559,7 @@ export const fetchSimilarYachts = async (
     `,
     variables: { length },
   });
+
   const { data: biggerLength } = await client.query({
     query: gql`
       query Yachts($length: Float!) {
@@ -566,7 +581,7 @@ export const fetchSimilarYachts = async (
             photos {
               featured {
                 sizes {
-                  fhd {
+                  thumbnail {
                     url
                   }
                 }
@@ -578,6 +593,7 @@ export const fetchSimilarYachts = async (
     `,
     variables: { length },
   });
+
   const { data: smallerLength } = await client.query({
     query: gql`
       query Yachts($length: Float!) {
@@ -599,7 +615,7 @@ export const fetchSimilarYachts = async (
             photos {
               featured {
                 sizes {
-                  fhd {
+                  thumbnail {
                     url
                   }
                 }
@@ -620,7 +636,20 @@ export const fetchSimilarYachts = async (
 
 export const fetchSimilarCharters = async (
   length: number,
-): Promise<SFeatured[]> => {
+): Promise<
+  Pick<
+    ICharter,
+    | "id"
+    | "length"
+    | "price"
+    | "name"
+    | "builder"
+    | "yearBuilt"
+    | "sleeps"
+    | "photos"
+    | "etiquette"
+  >[]
+> => {
   const client = getClient();
   const { data: highestClicks } = await client.query({
     query: gql`
@@ -642,7 +671,7 @@ export const fetchSimilarCharters = async (
             photos {
               featured {
                 sizes {
-                  fhd {
+                  thumbnail {
                     url
                   }
                 }
@@ -654,6 +683,7 @@ export const fetchSimilarCharters = async (
     `,
     variables: { length },
   });
+
   const { data: biggerLength } = await client.query({
     query: gql`
       query Charters($length: Float!) {
@@ -678,7 +708,7 @@ export const fetchSimilarCharters = async (
             photos {
               featured {
                 sizes {
-                  fhd {
+                  thumbnail {
                     url
                   }
                 }
@@ -690,6 +720,7 @@ export const fetchSimilarCharters = async (
     `,
     variables: { length },
   });
+
   const { data: smallerLength } = await client.query({
     query: gql`
       query Charters($length: Float!) {
@@ -714,7 +745,7 @@ export const fetchSimilarCharters = async (
             photos {
               featured {
                 sizes {
-                  fhd {
+                  thumbnail {
                     url
                   }
                 }
@@ -726,9 +757,310 @@ export const fetchSimilarCharters = async (
     `,
     variables: { length },
   });
+
   return [
     ...highestClicks.Charters.docs,
     ...biggerLength.Charters.docs,
     ...smallerLength.Charters.docs,
+  ];
+};
+
+export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
+  const client = getClient();
+  const { data } = await client.query({
+    query: gql`
+      query NewConstructions {
+        NewConstructions(limit: 0) {
+          docs {
+            id
+            delivery
+            name
+            price
+            builder
+            category
+            length
+            sleeps
+            yearBuilt
+            featured
+            etiquette
+            photos {
+              featured {
+                alt
+                sizes {
+                  thumbnail {
+                    url
+                    width
+                    height
+                  }
+                }
+              }
+              gallery {
+                image {
+                  alt
+                  sizes {
+                    thumbnail {
+                      url
+                      width
+                      height
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+  });
+  return data.NewConstructions.docs;
+};
+export const fetchNewConstruction = async (
+  id: string,
+): Promise<INewConstruction> => {
+  const client = getClient();
+  const { data } = await client.query({
+    query: gql`
+      query NewConstruction($id: String!) {
+        NewConstruction(id: $id) {
+          id
+          delivery
+          name
+          model
+          price
+          LOA
+          beam
+          builder
+          category
+          city
+          continent
+          country
+          cruising
+          crypto
+          length
+          state
+          material
+          maxDraft
+          minDraft
+          region
+          rooms
+          sleeps
+          subcategory
+          tonnage
+          yearBuilt
+          yearModel
+          keyFeatures
+          description
+          broker {
+            name
+            email
+            picture {
+              alt
+              sizes {
+                thumbnail {
+                  url
+                  width
+                  height
+                }
+              }
+            }
+            position
+            phones {
+              prefix
+              number
+            }
+            socials {
+              platform
+              link
+            }
+          }
+          photos {
+            featured {
+              alt
+              sizes {
+                fhd {
+                  url
+                  width
+                  height
+                }
+              }
+            }
+            gallery {
+              image {
+                alt
+                sizes {
+                  thumbnail {
+                    url
+                    width
+                    height
+                  }
+                  fhd {
+                    url
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    variables: { id },
+  });
+  return data.NewConstruction;
+};
+export const fetchShipyards = async (): Promise<IShipyard[]> => {
+  const client = getClient();
+  const { data } = await client.query({
+    query: gql`
+      query Shipyards {
+        Shipyards {
+          docs {
+            id
+            name
+            quote
+            website
+            updatedAt
+            createdAt
+            logo {
+              alt
+              sizes {
+                thumbnail {
+                  url
+                  width
+                  height
+                }
+                fhd {
+                  url
+                  width
+                  height
+                }
+              }
+            }
+            banner {
+              alt
+              sizes {
+                thumbnail {
+                  url
+                  width
+                  height
+                }
+                fhd {
+                  url
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+  });
+  return data.Shipyards.docs;
+};
+export const fetchSimilarNewConstructions = async (
+  length: number,
+): Promise<IFeatured[]> => {
+  const client = getClient();
+  const { data: highestClicks } = await client.query({
+    query: gql`
+      query NewConstructions {
+        NewConstructions(sort: "clicks", limit: 4) {
+          docs {
+            id
+            name
+            price
+            builder
+            length
+            sleeps
+            yearBuilt
+            clicks
+            photos {
+              featured {
+                sizes {
+                  thumbnail {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    variables: { length },
+  });
+
+  const { data: biggerLength } = await client.query({
+    query: gql`
+      query NewConstructions($length: Float!) {
+        NewConstructions(
+          sort: "length"
+          limit: 2
+          where: { length: { greater_than: $length } }
+        ) {
+          docs {
+            id
+            name
+            price
+            builder
+            length
+            sleeps
+            yearBuilt
+            clicks
+            photos {
+              featured {
+                sizes {
+                  thumbnail {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    variables: { length },
+  });
+
+  const { data: smallerLength } = await client.query({
+    query: gql`
+      query NewConstructions($length: Float!) {
+        NewConstructions(
+          sort: "length"
+          limit: 2
+          where: { length: { less_than: $length } }
+        ) {
+          docs {
+            id
+            name
+            price
+            builder
+            length
+            sleeps
+            yearBuilt
+            clicks
+            photos {
+              featured {
+                sizes {
+                  thumbnail {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    variables: { length },
+  });
+
+  return [
+    ...highestClicks.NewConstructions.docs,
+    ...biggerLength.NewConstructions.docs,
+    ...smallerLength.NewConstructions.docs,
   ];
 };

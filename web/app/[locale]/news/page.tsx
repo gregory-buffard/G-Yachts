@@ -5,10 +5,10 @@ import { fetchArticles } from "@/actions/articles";
 import { IArticle } from "@/types/article";
 import { getLocale, getTranslations } from "next-intl/server";
 
-const Articles = dynamic(() => import("@/components/news/articles"));
-const View = dynamic(() => import("@/components/view"));
-const Newsletter = dynamic(() => import("@/components/newsletter"));
-const Footer = dynamic(() => import("@/components/footer"));
+const View = dynamic(() => import("@/components/view")),
+  Articles = dynamic(() => import("@/components/news/articles")),
+  Newsletter = dynamic(() => import("@/components/newsletter")),
+  Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
   params: { locale },

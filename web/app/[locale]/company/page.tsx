@@ -5,12 +5,12 @@ import { fetchBrokerinos } from "@/actions/brokerino";
 import { getTranslations } from "next-intl/server";
 import { getLocale } from "next-intl/server";
 
-const View = dynamic(() => import("@/components/view"));
-const Footer = dynamic(() => import("@/components/footer"));
-const Story = dynamic(() => import("@/components/company/story"));
-const Accordion = dynamic(() => import("@/components/company/accordion"));
-const Team = dynamic(() => import("@/components/company/team"));
-const Lifestyle = dynamic(() => import("@/components/company/lifestyle"));
+const View = dynamic(() => import("@/components/view")),
+  Story = dynamic(() => import("@/components/company/story")),
+  Accordion = dynamic(() => import("@/components/company/accordion")),
+  Team = dynamic(() => import("@/components/company/team")),
+  Lifestyle = dynamic(() => import("@/components/company/lifestyle")),
+  Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
   params: { locale },

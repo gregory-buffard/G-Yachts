@@ -1,16 +1,16 @@
 import Bar from "@/components/nav/bar";
 import Hero from "@/components/index/hero";
 import dynamic from "next/dynamic";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { fetchFeaturedSales } from "@/actions/yachts";
+import { fetchDestinations } from "@/actions/destinations";
 
 const View = dynamic(() => import("@/components/view"));
 const Services = dynamic(() => import("@/components/index/services"));
 const WorkingTogether = dynamic(() => import("@/components/index/working"));
-const Featured = dynamic(() => import("@/components/index/featured/section"));
+const Carousel = dynamic(() => import("@/components/yachts/carousel"));
 const Memories = dynamic(() => import("@/components/index/memories"));
-const Destinations = dynamic(
-  () => import("@/components/index/destinations/section"),
-);
+const Destinations = dynamic(() => import("@/components/index/destinations"));
 const Learn = dynamic(() => import("@/components/index/learn"));
 const Newsletter = dynamic(() => import("@/components/newsletter"));
 const Footer = dynamic(() => import("@/components/footer"));
@@ -45,7 +45,9 @@ export const generateMetadata = async ({
   };
 };
 
-const Home = () => {
+const Home = async () => {
+  const locale = (await getLocale()) as "en" | "fr";
+
   return (
     <main className="w-full flex flex-col justify-start items-center">
       <Bar dynamicColor={100} />
@@ -54,9 +56,17 @@ const Home = () => {
       <Learn />
       <Services />
       <WorkingTogether />
-      <Featured />
+      <Carousel
+        title={(await getTranslations("sales")).rich("featured", {
+          classic: (chunks) => (
+            <span className={"font-classic uppercase"}>{chunks}</span>
+          ),
+        })}
+        type={"sales"}
+        data={await fetchFeaturedSales(locale)}
+      />
       <Memories />
-      <Destinations />
+      <Destinations data={await fetchDestinations(locale)} />
       <Newsletter />
       <Footer />
     </main>

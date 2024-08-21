@@ -62,15 +62,6 @@
             "description": "Through an extensive knowledge of the market and an open understanding of your requirements, we provide access to a fleet of yachts for sale, the most varied and sophisticated selection of luxury yachts for sale on the market today.",
             "CTA": "Buy a yacht"
         },
-        "featured": {
-            "exclusive": "Exclusive",
-            "new": "New",
-            "sold": "Sold",
-            "title": "Featured <classic>sales</classic>",
-            "all": "View all",
-            "sleeps": "guests",
-            "priceOnApplication": "Price on application"
-        },
         "memories": {
             "title": "Create unforgettable <classic>Memory</classic>",
             "subtitle": "CHARTER WITH US",
@@ -84,6 +75,14 @@
         }
     },
     "yachts": {
+        "carousel": {
+            "exclusive": "Exclusive",
+            "new": "New",
+            "sold": "Sold",
+            "all": "View all",
+            "sleeps": "guests",
+            "priceOnApplication": "Price on application"
+        },
         "filters": {
             "label": "Filters",
             "any": "Any",
@@ -125,31 +124,6 @@
         "expand": "Load more",
         "end": "You've reached the end of our catalogue"
     },
-    "sales": {
-        "metadata": {
-            "title": "Sales",
-            "description": "Discover our listing of the finest yachts in the market. G–Yachts offers a wide range of luxury yachts for sale.",
-            "keywords": "sales, yachts, luxury, brokerage, monaco, g-yachts"
-        },
-        "hero": {
-            "title": "Find the perfect Yacht for <classic>You</classic>",
-            "subtitle": "Yachts for sale",
-            "guests": "guests"
-        }
-    },
-    "charters": {
-        "metadata": {
-            "title": "Charters",
-            "description": "Experience the ultimate luxury with G-Yachts Charters, offering bespoke yacht experiences from Monaco to the Mediterranean's most stunning destinations. Our curated fleet and expert team ensure every voyage is tailored to perfection, delivering unforgettable moments at sea.",
-            "keywords": "charters, yachts, luxury, brokerage, monaco, g-yachts",
-            "author": "G–Yachts"
-        },
-        "hero": {
-            "title": "Create unforgettable <classic>Memories</classic>",
-            "subtitle": "Yachts for charters",
-            "guests": "guests"
-        }
-    },
     "yacht": {
         "noPrice": "Price on application",
         "sleeps": "guests",
@@ -183,40 +157,51 @@
                     "true": "Accepted",
                     "false": "Not accepted"
                 },
-            "builder": "Builder"
+                "builder": "Builder"
             },
             "description": "Read more",
             "CTA": "Contact broker"
         }
     },
-    "charter": {
-        "noPrice": "Price on application",
-        "sleeps": "guests",
-        "details": {
-            "gallery": "View more images",
-            "info": "Key information",
-            "features": "Key features",
-            "brochure": "Brochure",
-            "characteristics": {
-                "type": {
-                    "label": "Type",
-                    "motor": "Motor",
-                    "sail": "Sail"
-                },
-                "length": "Length",
-                "beam": "Beam",
-                "sleeps": "Beds",
-                "rooms": "Rooms",
-                "draft": "Draft",
-                "maxDraft": "Max draft",
-                "tonnage": "Weight",
-                "yearBuilt": "Year built",
-                "yearModel": "Year model",
-                "hull": "Hull type",
-                "location": "Location"
-            },
-            "CTA": "Contact broker"
-        }
+    "sales": {
+        "metadata": {
+            "title": "Sales",
+            "description": "Discover our listing of the finest yachts in the market. G–Yachts offers a wide range of luxury yachts for sale.",
+            "keywords": "sales, yachts, luxury, brokerage, monaco, g-yachts"
+        },
+        "hero": {
+            "title": "Find the perfect Yacht for <classic>You</classic>",
+            "subtitle": "Yachts for sale",
+            "guests": "guests"
+        },
+        "featured": "Featured <classic>Sales</classic>",
+        "similar": "Similar <classic>sales</classic>"
+    },
+    "charters": {
+        "metadata": {
+            "title": "Charters",
+            "description": "Experience the ultimate luxury with G-Yachts Charters, offering bespoke yacht experiences from Monaco to the Mediterranean's most stunning destinations. Our curated fleet and expert team ensure every voyage is tailored to perfection, delivering unforgettable moments at sea.",
+            "keywords": "charters, yachts, luxury, brokerage, monaco, g-yachts",
+            "author": "G–Yachts"
+        },
+        "hero": {
+            "title": "Create unforgettable <classic>Memories</classic>",
+            "subtitle": "Yachts for charters",
+            "guests": "guests"
+        },
+        "similar": "Similar <classic>charters</classic>"
+    },
+    "new-constructions": {
+        "metadata": {
+            "title": "New Constructions",
+            "description": "Turn your dream yacht into reality with tailored craftsmanship. G–Yachts offers a wide range of new construction services.",
+            "keywords": "new constructions, yachts, luxury, brokerage, monaco, g-yachts"
+        },
+        "hero": {
+            "title": "The Next Generation of Innovative Yacht <classic>Designs</classic>",
+            "subtitle": "NEW CONSTRUCTION"
+        },
+        "similar": "Similar <classic>new constructions</classic>"
     },
     "company": {
         "metadata": {
@@ -453,12 +438,7 @@
             "gettingThere": "Getting there",
             "button": "Charter a yacht"
         },
-        "charters": {
-            "exclusive": "Exclusive",
-            "title": "Charters in <classic>{destination}</classic>",
-            "all": "View all",
-            "sleeps": "guests"
-        }
+        "charters": "<classic>{destination}</classic> charters"
     },
     "news": {
         "metadata": {
@@ -493,7 +473,7 @@
         "listed": "You've viewed {count} of {total}",
         "expand": "Load more",
         "end": "You've reached the end of our events",
-        "charter": "Charter a <classic>yacht</classic>"
+        "charters": "Charter a <classic>yacht</classic>"
     },
     "search": {
         "search": "Search",
@@ -522,17 +502,6 @@
         "title": "<classic>Credits</classic>",
         "description": "Full Stack Engineer <classic><greg>Gregory Buffard</greg></classic><br></br>Full Stack Engineer <classic><maks>Maksym Petriv</maks></classic><br></br>Design by <classic><malo>Agence Malo</malo></classic>",
         "manufacture": "Made with <heart></heart> in Cannes"
-    },
-    "new-constructions": {
-        "metadata": {
-            "title": "New Constructions",
-            "description": "Turn your dream yacht into reality with tailored craftsmanship. G–Yachts offers a wide range of new construction services.",
-            "keywords": "new constructions, yachts, luxury, brokerage, monaco, g-yachts"
-        },
-        "hero": {
-            "title": "The Next Generation of Innovative Yacht <classic>Designs</classic>",
-            "subtitle": "NEW CONSTRUCTION"
-        }
     },
     "similar": {
         "yachts": "Similar <classic>yachts</classic>",

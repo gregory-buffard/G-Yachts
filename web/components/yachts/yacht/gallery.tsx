@@ -53,7 +53,6 @@ const EmblaCarousel: React.FC<TCarousel> = (props) => {
     },
     [WheelGesturesPlugin()],
   );
-  const params = useParams();
 
   const onThumbClick = useCallback(
     (index: number) => {

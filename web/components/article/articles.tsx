@@ -3,21 +3,12 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { useEffect, useState } from "react";
-import { useViewContext } from "@/context/view";
-import { convertUnit, formatCurrency } from "@/utils/yachts";
-import { ICFeatured } from "@/types/charter";
+import { IArticle } from "@/types/article";
 
-const Card = ({ card }: { card: ICFeatured }) => {
-  const t = useTranslations("index.featured"),
-    { currency, units, rates } = useViewContext(),
-    price = `${formatCurrency(card.price.low * rates[currency], currency)} - ${formatCurrency(
-      card.price.high * rates[currency],
-      currency,
-    )}`;
-
+const Card = ({ card }: { card: IArticle }) => {
   return (
     <Link
-      href={{ pathname: "/charters/[id]", params: { id: card.id } }}
+      href={{ pathname: "/news/[id]", params: { id: card.id } }}
       className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw]`}
     >
       <div
@@ -25,29 +16,15 @@ const Card = ({ card }: { card: ICFeatured }) => {
           "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start mb-[1vh] bg-cover bg-center"
         }
         style={{
-          backgroundImage: `url(${encodeURI(card.photos.featured.sizes.thumbnail.url)})`,
+          backgroundImage: `url(${encodeURI(card.image.sizes.thumbnail.url)})`,
         }}
-      >
-        <p className={"bg-white px-[1.5vw] py-[0.5vh] rounded-sm m-[1vh]"}>
-          {t("exclusive")}
-        </p>
-      </div>
-      <div
-        className={`w-full flex justify-between ${price ? "items-baseline" : "items-center"} text-black uppercase`}
-      >
-        <p>{card.name}</p>
-        {price ? (
-          <p>{price}</p>
-        ) : (
-          <div
-            className={"bg-rock-200 lg:w-[10vw] h-[1rem] rounded-full"}
-          ></div>
-        )}
-      </div>
-      <p className={"uppercase text-rock-400"}>
-        {card.builder} | {convertUnit(card.length, units.length) + units.length}{" "}
-        | {card.yearBuilt} | {card.sleeps} {t("sleeps")}
-      </p>
+      ></div>
+      <h5 className="w-full text-black uppercase text-base">
+        {card.category.title}
+      </h5>
+      <h5 className="text-rock-800 font-slick font-light text-xl">
+        {card.title}
+      </h5>
     </Link>
   );
 };
@@ -92,10 +69,10 @@ const CarouselButton = ({
   );
 };
 
-const Charter = ({ carouselData }: { carouselData: ICFeatured[] }) => {
-  const t = useTranslations(),
-    carouselExtended = [...carouselData, ...carouselData, ...carouselData],
-    defaultTranslate = carouselData.length * -100,
+const Articles = ({ data }: { data: IArticle[] }) => {
+  const t = useTranslations("article");
+  const carouselExtended = [...data, ...data, ...data],
+    defaultTranslate = data.length * -100,
     setTranslate = (amount: number) => {
       document.documentElement.style.setProperty(
         "--translate-featured",
@@ -145,13 +122,11 @@ const Charter = ({ carouselData }: { carouselData: ICFeatured[] }) => {
       }
     >
       <div className={"w-full flex justify-between items-center"}>
-        <h2 className={"font-slick font-light"}>
-          {t.rich("events.charter", {
-            classic: (chunks) => (
-              <span className={"font-classic uppercase"}>{chunks}</span>
-            ),
+        <h1>
+          {t.rich("moreArticles", {
+            classic: (chunks) => <span className={"classic"}>{chunks}</span>,
           })}
-        </h2>
+        </h1>
         <div className={"flex justify-center items-center gap-[2vw]"}>
           <div
             className={"hidden lg:flex justify-center items-center gap-[0.5vw]"}
@@ -173,12 +148,6 @@ const Charter = ({ carouselData }: { carouselData: ICFeatured[] }) => {
               }}
             />
           </div>
-          <Link
-            href={"/sales"}
-            className={"glass-button glass-button-dark whitespace-nowrap"}
-          >
-            {t("index.featured.all")}
-          </Link>
         </div>
       </div>
       <div
@@ -186,7 +155,7 @@ const Charter = ({ carouselData }: { carouselData: ICFeatured[] }) => {
           "lg:hidden h-max w-full flex justify-start items-baseline overflow-x-scroll py-[2vh] gap-[4vw]"
         }
       >
-        {carouselData.map((card, i) => (
+        {data.map((card, i) => (
           <Card key={i} card={card} />
         ))}
       </div>
@@ -203,4 +172,4 @@ const Charter = ({ carouselData }: { carouselData: ICFeatured[] }) => {
   );
 };
 
-export default Charter;
+export default Articles;

@@ -1,6 +1,6 @@
 import { EventProvider } from "@/context/event";
 import { fetchEvent } from "@/actions/event";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Bar from "@/components/nav/bar";
 import Hero from "@/components/events/event/hero";
 import Detail from "@/components/events/event/detail";
@@ -10,7 +10,7 @@ import { Metadata } from "next";
 import { fetchMetadata } from "@/actions/actions";
 
 const View = dynamic(() => import("@/components/view")),
-  Charter = dynamic(() => import("@/components/events/event/charter")),
+  Carousel = dynamic(() => import("@/components/yachts/carousel")),
   Newsletter = dynamic(() => import("@/components/newsletter")),
   Footer = dynamic(() => import("@/components/footer"));
 
@@ -27,6 +27,7 @@ export const generateMetadata = async ({
 
 const Event = async ({ params }: { params: { id: string } }) => {
   const event = await fetchEvent((await getLocale()) as "en" | "fr", params.id);
+
   return (
     <main className={"w-full flex flex-col justify-start items-center"}>
       <Bar dynamicColor={100} />
@@ -35,10 +36,14 @@ const Event = async ({ params }: { params: { id: string } }) => {
         <Hero />
         <Detail />
       </EventProvider>
-      <Charter
-        carouselData={await fetchChartersForDestination(
-          event.location.destination,
-        )}
+      <Carousel
+        title={(await getTranslations("events")).rich("charters", {
+          classic: (chunks) => (
+            <span className={"font-classic uppercase"}>{chunks}</span>
+          ),
+        })}
+        type={"charters"}
+        data={await fetchChartersForDestination(event.location.destination)}
       />
       <Newsletter />
       <Footer />

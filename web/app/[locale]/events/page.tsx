@@ -5,9 +5,9 @@ import dynamic from "next/dynamic";
 import { fetchEvents } from "@/actions/event";
 import { getLocale, getTranslations } from "next-intl/server";
 
-const View = dynamic(() => import("@/components/view"));
-const Newsletter = dynamic(() => import("@/components/newsletter"));
-const Footer = dynamic(() => import("@/components/footer"));
+const View = dynamic(() => import("@/components/view")),
+  Newsletter = dynamic(() => import("@/components/newsletter")),
+  Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
   params: { locale },

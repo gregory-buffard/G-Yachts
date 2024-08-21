@@ -6,15 +6,14 @@ import { fetchDestination } from "@/actions/destinations";
 import Details from "@/components/destination/details";
 import { IDestination } from "@/types/destination";
 import { Metadata } from "next";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { fetchMetadata } from "@/actions/actions";
+import { fetchChartersForDestination } from "@/actions/yachts";
 
-const View = dynamic(() => import("@/components/view"));
-const Newsletter = dynamic(() => import("@/components/newsletter"));
-const Footer = dynamic(() => import("@/components/footer"));
-const ChartersInDestination = dynamic(
-  () => import("@/components/destination/featured/section"),
-);
+const View = dynamic(() => import("@/components/view")),
+  Carousel = dynamic(() => import("@/components/yachts/carousel")),
+  Newsletter = dynamic(() => import("@/components/newsletter")),
+  Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
   params,
@@ -48,7 +47,16 @@ const Destinations = async ({
         <View />
         <Hero />
         <Details />
-        <ChartersInDestination destination={destination} />
+        <Carousel
+          title={(await getTranslations("destination")).rich("charters", {
+            classic: (chunks) => (
+              <span className={"font-classic uppercase"}>{chunks}</span>
+            ),
+            destination: destination.destination,
+          })}
+          type={"charters"}
+          data={await fetchChartersForDestination(destination)}
+        />
         <Newsletter />
         <Footer />
       </main>

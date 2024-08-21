@@ -1,17 +1,14 @@
 import Hero from "@/components/newContructions/hero";
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
-import {
-  fetchNewConstructions,
-  fetchShipyards,
-} from "@/actions/newConstructions";
 import Shipyards from "@/components/newContructions/shipyards";
 import { getTranslations } from "next-intl/server";
+import { fetchNewConstructions, fetchShipyards } from "@/actions/yachts";
 
-const View = dynamic(() => import("@/components/view"));
-const Listing = dynamic(() => import("@/components/yachts/listing"));
-const Newsletter = dynamic(() => import("@/components/newsletter"));
-const Footer = dynamic(() => import("@/components/footer"));
+const View = dynamic(() => import("@/components/view")),
+  Listing = dynamic(() => import("@/components/yachts/listing")),
+  Newsletter = dynamic(() => import("@/components/newsletter")),
+  Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
   params: { locale },

@@ -1,4 +1,4 @@
-import IBRokerino from "./brokerino";
+import IBrokerino from "@/types/brokerino";
 
 export interface IYacht {
   id: string;
@@ -66,22 +66,6 @@ export interface IYacht {
     }[];
   };
 }
-
-export interface ISale
-  extends Pick<
-    IYacht,
-    | "id"
-    | "name"
-    | "price"
-    | "builder"
-    | "category"
-    | "length"
-    | "sleeps"
-    | "yearBuilt"
-    | "featured"
-    | "photos"
-    | "etiquette"
-  > {}
 
 export interface IFeatured
   extends Pick<

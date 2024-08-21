@@ -2,17 +2,17 @@ import dynamic from "next/dynamic";
 import Bar from "@/components/nav/bar";
 import Hero from "@/components/article/hero";
 import { ArticleProvider } from "@/context/article";
-import { fetchArticle } from "@/actions/articles";
+import { fetchArticle, fetchArticles } from "@/actions/articles";
 import Detail from "@/components/article/detail";
 import { IArticle } from "@/types/article";
 import { getLocale } from "next-intl/server";
-import MoreArticles from "@/components/article/moreArticles/section";
 import { Metadata } from "next";
 import { fetchMetadata } from "@/actions/actions";
 
-const View = dynamic(() => import("@/components/view"));
-const Newsletter = dynamic(() => import("@/components/newsletter"));
-const Footer = dynamic(() => import("@/components/footer"));
+const View = dynamic(() => import("@/components/view")),
+  Articles = dynamic(() => import("@/components/article/articles")),
+  Newsletter = dynamic(() => import("@/components/newsletter")),
+  Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
   params,
@@ -32,8 +32,8 @@ const Destinations = async ({
     id: string;
   };
 }) => {
-  const locale = await getLocale();
-  const article: IArticle = await fetchArticle(params.id, locale);
+  const locale = (await getLocale()) as "en" | "fr",
+    article = await fetchArticle(params.id, locale);
 
   return (
     <ArticleProvider article={article} locale={locale}>
@@ -44,7 +44,11 @@ const Destinations = async ({
         <main className="flex flex-col w-full lg:px-[12vw] px-[4vw]">
           <Detail />
         </main>
-        <MoreArticles currentArticle={params.id} />
+        <Articles
+          data={(await fetchArticles(locale)).filter(
+            (listedArticle) => listedArticle.id !== article.id,
+          )}
+        />
         <Newsletter />
         <Footer />
       </main>

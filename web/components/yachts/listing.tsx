@@ -45,7 +45,7 @@ const Card = ({
   | { data: ISale; type: "sales" }
   | { data: ICharter; type: "charters" }
   | { data: INewConstruction; type: "new-constructions" }) => {
-  const t = useTranslations("index.featured"),
+  const t = useTranslations("yacht"),
     { currency, units, bookmarks, addBookmark, removeBookmark, rates } =
       useViewContext(),
     [price, setPrice] = useState<string | undefined>(undefined),

@@ -3,44 +3,47 @@ import dynamic from "next/dynamic";
 import Hero from "@/components/recruitment/hero";
 import Join from "@/components/recruitment/join";
 import { fetchRecruitments } from "@/actions/recruitment";
-import {getLocale, getTranslations} from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
-const View = dynamic(() => import("@/components/view"));
-const Footer = dynamic(() => import("@/components/footer"));
-const Newsletter = dynamic(() => import("@/components/newsletter"));
-const Listing = dynamic(() => import("@/components/recruitment/listing"));
+const View = dynamic(() => import("@/components/view")),
+  Listing = dynamic(() => import("@/components/recruitment/listing")),
+  Newsletter = dynamic(() => import("@/components/newsletter")),
+  Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
-                                           params: { locale },
-                                       }: {
-    params: { locale: "en" | "fr" };
+  params: { locale },
+}: {
+  params: { locale: "en" | "fr" };
 }) => {
-    const t = await getTranslations({ locale, namespace: "recruitment.metadata" });
-    return {
-        title: t("title"),
-        description: t("description"),
-        keywords: t("keywords"),
-        author: "G-Yachts",
-        openGraph: {
-            title: t("title"),
-            siteName: "G-Yachts",
-            url:
-                locale === "en"
-                    ? `https://g-yachts.com/${locale}/rectuitment`
-                    : `https://g-yachts.com/${locale}/recrutement`,
-            description: t("description"),
-            type: "website",
-            locale: locale === "en" ? "en_US" : "fr_FR",
-            images: [
-                {
-                    url: encodeURI("https://g-yachts.com/images/openGraph.png"),
-                    width: 1200,
-                    height: 630,
-                    alt: "G-Yachts logo",
-                },
-            ],
+  const t = await getTranslations({
+    locale,
+    namespace: "recruitment.metadata",
+  });
+  return {
+    title: t("title"),
+    description: t("description"),
+    keywords: t("keywords"),
+    author: "G-Yachts",
+    openGraph: {
+      title: t("title"),
+      siteName: "G-Yachts",
+      url:
+        locale === "en"
+          ? `https://g-yachts.com/${locale}/rectuitment`
+          : `https://g-yachts.com/${locale}/recrutement`,
+      description: t("description"),
+      type: "website",
+      locale: locale === "en" ? "en_US" : "fr_FR",
+      images: [
+        {
+          url: encodeURI("https://g-yachts.com/images/openGraph.png"),
+          width: 1200,
+          height: 630,
+          alt: "G-Yachts logo",
         },
-    };
+      ],
+    },
+  };
 };
 
 const Recruitment = async () => (

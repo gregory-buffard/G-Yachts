@@ -6,13 +6,11 @@ import { IDestination } from "@/types/destination";
 import { getTranslations } from "next-intl/server";
 import { getLocale } from "next-intl/server";
 
-const View = dynamic(() => import("@/components/view"));
-const Map = dynamic(() => import("@/components/destinations/map"), {
-  ssr: false,
-});
-const Listing = dynamic(() => import("@/components/destinations/listing"));
-const Newsletter = dynamic(() => import("@/components/newsletter"));
-const Footer = dynamic(() => import("@/components/footer"));
+const View = dynamic(() => import("@/components/view")),
+  Map = dynamic(() => import("@/components/destinations/map")),
+  Listing = dynamic(() => import("@/components/destinations/listing")),
+  Newsletter = dynamic(() => import("@/components/newsletter")),
+  Footer = dynamic(() => import("@/components/footer"));
 
 export const generateMetadata = async ({
   params: { locale },
