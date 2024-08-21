@@ -98,11 +98,6 @@ const Details = () => {
         value: data.yearRefit,
         key: "yearRefit",
       },
-    /*{
-      label: t("characteristics.yearModel"),
-      value: data.yearModel,
-      key: "yearModel",
-    },*/
     {
       label: t("characteristics.location"),
       value: `${data.region}`,

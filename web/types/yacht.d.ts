@@ -25,7 +25,6 @@ export default interface IYacht {
   subcategory: string;
   tonnage: number;
   yearBuilt: number;
-  yearModel: number;
   featured: boolean;
   promotion: boolean;
   keyFeatures: string[];
