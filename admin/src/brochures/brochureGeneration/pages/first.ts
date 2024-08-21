@@ -115,18 +115,22 @@ export const generateBrochureFirstPage = (doc: Yacht | Charter | NewConstruction
     font-family: 'Beausite Slick';
     font-weight: 400;
     font-style: normal;
-    src: url('${process.env.PAYLOAD_PUBLIC_SERVER_URL}/images/Beausite Slick Trial Regular.ttf') format('truetype');
+    src: url('${
+      process.env.PAYLOAD_PUBLIC_SERVER_URL
+    }/images/Beausite Slick Trial Regular.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Beausite Classic';
     font-weight: 400;
     font-style: normal;
-    src: url('${process.env.PAYLOAD_PUBLIC_SERVER_URL}/images/Beausite Classic Regular.ttf') format('truetype');
+    src: url('${
+      process.env.PAYLOAD_PUBLIC_SERVER_URL
+    }/images/Beausite Classic Regular.ttf') format('truetype');
 }
 
 body {
-    background-image: url("${(doc.photos.featured as any).url}");
+    background-image: url("${encodeURI((doc.photos.featured as any).url)}");
 }
 
 .font-slick {

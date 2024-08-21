@@ -36,13 +36,13 @@ export const sharedYachtAndCharterFields = (type: 'charter' | 'yacht'): Field[] 
         },
         name: 'price',
         type: 'group',
-        fields: [ 
+        fields: [
           {
-            name: "low",
-            type: "number",
+            name: 'low',
+            type: 'number',
             label: {
-              en: "Low season",
-              fr: "Basse saison"
+              en: 'Low season',
+              fr: 'Basse saison',
             },
             admin: {
               components: {
@@ -51,11 +51,11 @@ export const sharedYachtAndCharterFields = (type: 'charter' | 'yacht'): Field[] 
             },
           },
           {
-            name: "high",
-            type: "number",
+            name: 'high',
+            type: 'number',
             label: {
-              en: "High season",
-              fr: "Haute saison"
+              en: 'High season',
+              fr: 'Haute saison',
             },
             admin: {
               components: {
@@ -181,11 +181,12 @@ export const sharedYachtAndCharterFields = (type: 'charter' | 'yacht'): Field[] 
   },
   {
     label: {
-      en: 'Year Model',
-      fr: "Modèle de l'année",
+      en: 'Refit Year',
+      fr: 'Année de refonte',
     },
-    name: 'yearModel',
+    name: 'yearRefit',
     type: 'number',
+    required: false,
     admin: {
       components: {
         Field: Label,

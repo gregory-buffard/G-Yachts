@@ -245,7 +245,7 @@ export const ArchivedCustomers: CollectionConfig = {
         en: 'Yacht',
         fr: 'Yacht',
       },
-      fields: sharedYachtAndCharterFields("yacht"),
+      fields: sharedYachtAndCharterFields('yacht'),
       defaultValue: {},
       admin: {
         readOnly: true,
@@ -259,7 +259,7 @@ export const ArchivedCustomers: CollectionConfig = {
         en: 'Charter',
         fr: 'Charter',
       },
-      fields: sharedYachtAndCharterFields("charter"),
+      fields: sharedYachtAndCharterFields('charter'),
       defaultValue: {},
       admin: {
         readOnly: true,

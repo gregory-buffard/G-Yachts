@@ -614,7 +614,7 @@ export interface Yacht {
     | 'subcategory'
     | 'tonnage'
     | 'yearBuilt'
-    | 'yearModel'
+    | 'yearRefit'
   )[];
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos: {
@@ -690,7 +690,7 @@ export interface Charter {
     | 'subcategory'
     | 'tonnage'
     | 'yearBuilt'
-    | 'yearModel'
+    | 'yearRefit'
   )[];
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos: {
@@ -753,7 +753,7 @@ export interface ArchivedCustomer {
     state?: string | null;
     region?: string | null;
     yearBuilt?: number | null;
-    yearModel?: number | null;
+    yearRefit?: number | null;
   };
   charter?: {
     name?: string | null;
@@ -770,7 +770,7 @@ export interface ArchivedCustomer {
     state?: string | null;
     region?: string | null;
     yearBuilt?: number | null;
-    yearModel?: number | null;
+    yearRefit?: number | null;
   };
   charterDates?: {
     from?: string | null;
@@ -942,7 +942,7 @@ export interface NewConstruction {
     | 'subcategory'
     | 'tonnage'
     | 'yearBuilt'
-    | 'yearModel'
+    | 'yearRefit'
   )[];
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos: {

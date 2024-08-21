@@ -4,7 +4,7 @@ export const generateBrochureDetailsPage = (doc: Yacht | Charter | NewConstructi
   var details = [
     { label: 'Builder', value: doc.builder },
     { label: 'Year built', value: doc.yearBuilt },
-    { label: 'Year model', value: doc.yearModel },
+    doc.yearRefit && { label: 'Year Refit', value: doc.yearRefit },
     { label: 'Length', value: doc.length },
     { label: 'LOA', value: doc.LOA },
     { label: 'Beam', value: doc.beam },
@@ -55,7 +55,7 @@ export const generateBrochureDetailsPage = (doc: Yacht | Charter | NewConstructi
                     Asking Price: €${
                       typeof doc.price === 'object'
                         ? (doc.price as any).low + ' - ' + (doc.price as any).high
-                        : doc.price || "On application"
+                        : doc.price || 'On application'
                     }
                 </span>
             </div>
@@ -163,7 +163,7 @@ export const generateBrochureDetailsPage = (doc: Yacht | Charter | NewConstructi
     }
 
     body {
-        background-image: url("${(doc.photos.featured as any).url}");
+        background-image: url("${encodeURI((doc.photos.featured as any).url)}");
     }
 
     .font-slick {

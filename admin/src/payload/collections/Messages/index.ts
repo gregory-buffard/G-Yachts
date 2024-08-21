@@ -57,8 +57,6 @@ export const Messages: CollectionConfig = {
               depth: 1,
             })
           }
-          console.log('data', data)
-          console.log('yacht', yacht)
           const { id } = await req.payload.create({
             collection: 'archived-customers',
             data: {
@@ -86,7 +84,7 @@ export const Messages: CollectionConfig = {
                     region: yacht.region,
                     state: yacht.state,
                     yearBuilt: yacht.yearBuilt,
-                    yearModel: yacht.yearModel,
+                    yearRefit: yacht.yearRefit,
                   }
                 : {},
               charter: charter
@@ -102,7 +100,7 @@ export const Messages: CollectionConfig = {
                     region: charter.region,
                     state: charter.state,
                     yearBuilt: charter.yearBuilt,
-                    yearModel: charter.yearModel,
+                    yearRefit: charter.yearRefit,
                   }
                 : {},
               closed: data.closed,

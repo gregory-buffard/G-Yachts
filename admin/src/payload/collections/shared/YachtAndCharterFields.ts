@@ -265,15 +265,6 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     type: 'number',
     required: true,
   },
-  /*{
-    label: {
-      en: 'Year Model',
-      fr: "Modèle de l'année",
-    },
-    name: 'yearModel',
-    type: 'number',
-    required: true,
-  },*/
   {
     label: {
       en: 'Refit Year',
@@ -327,7 +318,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
       'subcategory',
       'tonnage',
       'yearBuilt',
-      'yearModel',
+      'yearRefit',
     ],
   },
   {

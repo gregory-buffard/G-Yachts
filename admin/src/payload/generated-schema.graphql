@@ -3999,7 +3999,7 @@ enum Yacht_keyFeatures {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum Yacht_etiquette {
@@ -5036,7 +5036,7 @@ enum Yacht_keyFeatures_Input {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 input Yacht_etiquette_operator {
@@ -6369,7 +6369,7 @@ enum Charter_keyFeatures {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum Charter_etiquette {
@@ -7125,7 +7125,7 @@ type ArchivedCustomer_Yacht {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 type ArchivedCustomer_Charter {
@@ -7140,7 +7140,7 @@ type ArchivedCustomer_Charter {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 type ArchivedCustomer_Charter_Price {
@@ -7503,7 +7503,7 @@ enum Charter_keyFeatures_Input {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 input Charter_etiquette_operator {
@@ -14067,7 +14067,7 @@ enum NewConstruction_keyFeatures {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum NewConstruction_etiquette {
@@ -15115,7 +15115,7 @@ enum NewConstruction_keyFeatures_Input {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 input NewConstruction_etiquette_operator {
@@ -17216,7 +17216,7 @@ input ArchivedCustomer_where {
   yacht__state: ArchivedCustomer_yacht__state_operator
   yacht__region: ArchivedCustomer_yacht__region_operator
   yacht__yearBuilt: ArchivedCustomer_yacht__yearBuilt_operator
-  yacht__yearModel: ArchivedCustomer_yacht__yearModel_operator
+  yacht__yearRefit: ArchivedCustomer_yacht__yearRefit_operator
   charter__name: ArchivedCustomer_charter__name_operator
   charter__model: ArchivedCustomer_charter__model_operator
   charter__price__low: ArchivedCustomer_charter__price__low_operator
@@ -17229,7 +17229,7 @@ input ArchivedCustomer_where {
   charter__state: ArchivedCustomer_charter__state_operator
   charter__region: ArchivedCustomer_charter__region_operator
   charter__yearBuilt: ArchivedCustomer_charter__yearBuilt_operator
-  charter__yearModel: ArchivedCustomer_charter__yearModel_operator
+  charter__yearRefit: ArchivedCustomer_charter__yearRefit_operator
   charterDates__from: ArchivedCustomer_charterDates__from_operator
   charterDates__to: ArchivedCustomer_charterDates__to_operator
   updatedAt: ArchivedCustomer_updatedAt_operator
@@ -17474,7 +17474,7 @@ input ArchivedCustomer_yacht__yearBuilt_operator {
   exists: Boolean
 }
 
-input ArchivedCustomer_yacht__yearModel_operator {
+input ArchivedCustomer_yacht__yearRefit_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -17611,7 +17611,7 @@ input ArchivedCustomer_charter__yearBuilt_operator {
   exists: Boolean
 }
 
-input ArchivedCustomer_charter__yearModel_operator {
+input ArchivedCustomer_charter__yearRefit_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -17700,7 +17700,7 @@ input ArchivedCustomer_where_and {
   yacht__state: ArchivedCustomer_yacht__state_operator
   yacht__region: ArchivedCustomer_yacht__region_operator
   yacht__yearBuilt: ArchivedCustomer_yacht__yearBuilt_operator
-  yacht__yearModel: ArchivedCustomer_yacht__yearModel_operator
+  yacht__yearRefit: ArchivedCustomer_yacht__yearRefit_operator
   charter__name: ArchivedCustomer_charter__name_operator
   charter__model: ArchivedCustomer_charter__model_operator
   charter__price__low: ArchivedCustomer_charter__price__low_operator
@@ -17713,7 +17713,7 @@ input ArchivedCustomer_where_and {
   charter__state: ArchivedCustomer_charter__state_operator
   charter__region: ArchivedCustomer_charter__region_operator
   charter__yearBuilt: ArchivedCustomer_charter__yearBuilt_operator
-  charter__yearModel: ArchivedCustomer_charter__yearModel_operator
+  charter__yearRefit: ArchivedCustomer_charter__yearRefit_operator
   charterDates__from: ArchivedCustomer_charterDates__from_operator
   charterDates__to: ArchivedCustomer_charterDates__to_operator
   updatedAt: ArchivedCustomer_updatedAt_operator
@@ -17747,7 +17747,7 @@ input ArchivedCustomer_where_or {
   yacht__state: ArchivedCustomer_yacht__state_operator
   yacht__region: ArchivedCustomer_yacht__region_operator
   yacht__yearBuilt: ArchivedCustomer_yacht__yearBuilt_operator
-  yacht__yearModel: ArchivedCustomer_yacht__yearModel_operator
+  yacht__yearRefit: ArchivedCustomer_yacht__yearRefit_operator
   charter__name: ArchivedCustomer_charter__name_operator
   charter__model: ArchivedCustomer_charter__model_operator
   charter__price__low: ArchivedCustomer_charter__price__low_operator
@@ -17760,7 +17760,7 @@ input ArchivedCustomer_where_or {
   charter__state: ArchivedCustomer_charter__state_operator
   charter__region: ArchivedCustomer_charter__region_operator
   charter__yearBuilt: ArchivedCustomer_charter__yearBuilt_operator
-  charter__yearModel: ArchivedCustomer_charter__yearModel_operator
+  charter__yearRefit: ArchivedCustomer_charter__yearRefit_operator
   charterDates__from: ArchivedCustomer_charterDates__from_operator
   charterDates__to: ArchivedCustomer_charterDates__to_operator
   updatedAt: ArchivedCustomer_updatedAt_operator
@@ -18114,7 +18114,7 @@ type ArchivedCustomersDocAccessFields_yacht_Fields {
   state: ArchivedCustomersDocAccessFields_yacht_state
   region: ArchivedCustomersDocAccessFields_yacht_region
   yearBuilt: ArchivedCustomersDocAccessFields_yacht_yearBuilt
-  yearModel: ArchivedCustomersDocAccessFields_yacht_yearModel
+  yearRefit: ArchivedCustomersDocAccessFields_yacht_yearRefit
 }
 
 type ArchivedCustomersDocAccessFields_yacht_name {
@@ -18370,26 +18370,26 @@ type ArchivedCustomersDocAccessFields_yacht_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_yacht_yearModel {
-  create: ArchivedCustomersDocAccessFields_yacht_yearModel_Create
-  read: ArchivedCustomersDocAccessFields_yacht_yearModel_Read
-  update: ArchivedCustomersDocAccessFields_yacht_yearModel_Update
-  delete: ArchivedCustomersDocAccessFields_yacht_yearModel_Delete
+type ArchivedCustomersDocAccessFields_yacht_yearRefit {
+  create: ArchivedCustomersDocAccessFields_yacht_yearRefit_Create
+  read: ArchivedCustomersDocAccessFields_yacht_yearRefit_Read
+  update: ArchivedCustomersDocAccessFields_yacht_yearRefit_Update
+  delete: ArchivedCustomersDocAccessFields_yacht_yearRefit_Delete
 }
 
-type ArchivedCustomersDocAccessFields_yacht_yearModel_Create {
+type ArchivedCustomersDocAccessFields_yacht_yearRefit_Create {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_yacht_yearModel_Read {
+type ArchivedCustomersDocAccessFields_yacht_yearRefit_Read {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_yacht_yearModel_Update {
+type ArchivedCustomersDocAccessFields_yacht_yearRefit_Update {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_yacht_yearModel_Delete {
+type ArchivedCustomersDocAccessFields_yacht_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -18429,7 +18429,7 @@ type ArchivedCustomersDocAccessFields_charter_Fields {
   state: ArchivedCustomersDocAccessFields_charter_state
   region: ArchivedCustomersDocAccessFields_charter_region
   yearBuilt: ArchivedCustomersDocAccessFields_charter_yearBuilt
-  yearModel: ArchivedCustomersDocAccessFields_charter_yearModel
+  yearRefit: ArchivedCustomersDocAccessFields_charter_yearRefit
 }
 
 type ArchivedCustomersDocAccessFields_charter_name {
@@ -18737,26 +18737,26 @@ type ArchivedCustomersDocAccessFields_charter_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_charter_yearModel {
-  create: ArchivedCustomersDocAccessFields_charter_yearModel_Create
-  read: ArchivedCustomersDocAccessFields_charter_yearModel_Read
-  update: ArchivedCustomersDocAccessFields_charter_yearModel_Update
-  delete: ArchivedCustomersDocAccessFields_charter_yearModel_Delete
+type ArchivedCustomersDocAccessFields_charter_yearRefit {
+  create: ArchivedCustomersDocAccessFields_charter_yearRefit_Create
+  read: ArchivedCustomersDocAccessFields_charter_yearRefit_Read
+  update: ArchivedCustomersDocAccessFields_charter_yearRefit_Update
+  delete: ArchivedCustomersDocAccessFields_charter_yearRefit_Delete
 }
 
-type ArchivedCustomersDocAccessFields_charter_yearModel_Create {
+type ArchivedCustomersDocAccessFields_charter_yearRefit_Create {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_charter_yearModel_Read {
+type ArchivedCustomersDocAccessFields_charter_yearRefit_Read {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_charter_yearModel_Update {
+type ArchivedCustomersDocAccessFields_charter_yearRefit_Update {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_charter_yearModel_Delete {
+type ArchivedCustomersDocAccessFields_charter_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -26410,7 +26410,7 @@ type ArchivedCustomersFields_yacht_Fields {
   state: ArchivedCustomersFields_yacht_state
   region: ArchivedCustomersFields_yacht_region
   yearBuilt: ArchivedCustomersFields_yacht_yearBuilt
-  yearModel: ArchivedCustomersFields_yacht_yearModel
+  yearRefit: ArchivedCustomersFields_yacht_yearRefit
 }
 
 type ArchivedCustomersFields_yacht_name {
@@ -26666,26 +26666,26 @@ type ArchivedCustomersFields_yacht_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_yacht_yearModel {
-  create: ArchivedCustomersFields_yacht_yearModel_Create
-  read: ArchivedCustomersFields_yacht_yearModel_Read
-  update: ArchivedCustomersFields_yacht_yearModel_Update
-  delete: ArchivedCustomersFields_yacht_yearModel_Delete
+type ArchivedCustomersFields_yacht_yearRefit {
+  create: ArchivedCustomersFields_yacht_yearRefit_Create
+  read: ArchivedCustomersFields_yacht_yearRefit_Read
+  update: ArchivedCustomersFields_yacht_yearRefit_Update
+  delete: ArchivedCustomersFields_yacht_yearRefit_Delete
 }
 
-type ArchivedCustomersFields_yacht_yearModel_Create {
+type ArchivedCustomersFields_yacht_yearRefit_Create {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_yacht_yearModel_Read {
+type ArchivedCustomersFields_yacht_yearRefit_Read {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_yacht_yearModel_Update {
+type ArchivedCustomersFields_yacht_yearRefit_Update {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_yacht_yearModel_Delete {
+type ArchivedCustomersFields_yacht_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -26725,7 +26725,7 @@ type ArchivedCustomersFields_charter_Fields {
   state: ArchivedCustomersFields_charter_state
   region: ArchivedCustomersFields_charter_region
   yearBuilt: ArchivedCustomersFields_charter_yearBuilt
-  yearModel: ArchivedCustomersFields_charter_yearModel
+  yearRefit: ArchivedCustomersFields_charter_yearRefit
 }
 
 type ArchivedCustomersFields_charter_name {
@@ -27033,26 +27033,26 @@ type ArchivedCustomersFields_charter_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_charter_yearModel {
-  create: ArchivedCustomersFields_charter_yearModel_Create
-  read: ArchivedCustomersFields_charter_yearModel_Read
-  update: ArchivedCustomersFields_charter_yearModel_Update
-  delete: ArchivedCustomersFields_charter_yearModel_Delete
+type ArchivedCustomersFields_charter_yearRefit {
+  create: ArchivedCustomersFields_charter_yearRefit_Create
+  read: ArchivedCustomersFields_charter_yearRefit_Read
+  update: ArchivedCustomersFields_charter_yearRefit_Update
+  delete: ArchivedCustomersFields_charter_yearRefit_Delete
 }
 
-type ArchivedCustomersFields_charter_yearModel_Create {
+type ArchivedCustomersFields_charter_yearRefit_Create {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_charter_yearModel_Read {
+type ArchivedCustomersFields_charter_yearRefit_Read {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_charter_yearModel_Update {
+type ArchivedCustomersFields_charter_yearRefit_Update {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_charter_yearModel_Delete {
+type ArchivedCustomersFields_charter_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -28515,7 +28515,7 @@ enum Yacht_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum Yacht_etiquette_MutationInput {
@@ -28599,7 +28599,7 @@ enum YachtUpdate_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum YachtUpdate_etiquette_MutationInput {
@@ -28689,7 +28689,7 @@ enum Charter_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum Charter_etiquette_MutationInput {
@@ -28787,7 +28787,7 @@ enum CharterUpdate_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum CharterUpdate_etiquette_MutationInput {
@@ -29066,7 +29066,7 @@ enum NewConstruction_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum NewConstruction_etiquette_MutationInput {
@@ -29151,7 +29151,7 @@ enum NewConstructionUpdate_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum NewConstructionUpdate_etiquette_MutationInput {
@@ -29273,7 +29273,7 @@ input mutationArchivedCustomer_YachtInput {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 input mutationArchivedCustomer_CharterInput {
@@ -29288,7 +29288,7 @@ input mutationArchivedCustomer_CharterInput {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 input mutationArchivedCustomer_Charter_PriceInput {
@@ -29339,7 +29339,7 @@ input mutationArchivedCustomerUpdate_YachtInput {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 input mutationArchivedCustomerUpdate_CharterInput {
@@ -29354,7 +29354,7 @@ input mutationArchivedCustomerUpdate_CharterInput {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 input mutationArchivedCustomerUpdate_Charter_PriceInput {
