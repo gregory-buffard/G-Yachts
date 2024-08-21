@@ -578,7 +578,7 @@ export interface Yacht {
   beam: number;
   broker?: (string | null) | User;
   builder: string;
-  category?: string | null;
+  category: 'motor' | 'sail';
   city?: string | null;
   continent?: string | null;
   country?: string | null;
@@ -595,8 +595,9 @@ export interface Yacht {
   subcategory?: string | null;
   tonnage: number;
   yearBuilt: number;
-  yearModel: number;
+  yearRefit?: number | null;
   featured: boolean;
+  promotion: boolean;
   keyFeatures: (
     | 'price'
     | 'LOA'
@@ -653,7 +654,7 @@ export interface Charter {
   beam: number;
   broker?: (string | null) | User;
   builder: string;
-  category?: string | null;
+  category: 'motor' | 'sail';
   city?: string | null;
   continent?: string | null;
   country?: string | null;
@@ -670,8 +671,9 @@ export interface Charter {
   subcategory?: string | null;
   tonnage: number;
   yearBuilt: number;
-  yearModel: number;
+  yearRefit?: number | null;
   featured: boolean;
+  promotion: boolean;
   keyFeatures: (
     | 'price'
     | 'LOA'
@@ -904,7 +906,7 @@ export interface NewConstruction {
   beam: number;
   broker?: (string | null) | User;
   builder: string;
-  category?: string | null;
+  category: 'motor' | 'sail';
   city?: string | null;
   continent?: string | null;
   country?: string | null;
@@ -921,8 +923,9 @@ export interface NewConstruction {
   subcategory?: string | null;
   tonnage: number;
   yearBuilt: number;
-  yearModel: number;
+  yearRefit?: number | null;
   featured: boolean;
+  promotion: boolean;
   keyFeatures: (
     | 'price'
     | 'LOA'

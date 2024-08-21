@@ -3934,7 +3934,6 @@ type UsersUnlockDocAccess {
 type usersMe {
   collection: String
   exp: Int
-  strategy: String
   token: String
   user: User
 }
@@ -3948,7 +3947,7 @@ type Yacht {
   beam: Float!
   broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   builder: String!
-  category: String
+  category: Yacht_category!
   city: String
   continent: String
   country: String
@@ -3965,8 +3964,9 @@ type Yacht {
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
-  yearModel: Float!
+  yearRefit: Float
   featured: Boolean!
+  promotion: Boolean!
   keyFeatures: [Yacht_keyFeatures!]!
   etiquette: Yacht_etiquette
   photos: Yacht_Photos
@@ -3976,6 +3976,11 @@ type Yacht {
   seo: [Yacht_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
+}
+
+enum Yacht_category {
+  motor
+  sail
 }
 
 enum Yacht_keyFeatures {
@@ -4737,8 +4742,9 @@ input Yacht_where {
   subcategory: Yacht_subcategory_operator
   tonnage: Yacht_tonnage_operator
   yearBuilt: Yacht_yearBuilt_operator
-  yearModel: Yacht_yearModel_operator
+  yearRefit: Yacht_yearRefit_operator
   featured: Yacht_featured_operator
+  promotion: Yacht_promotion_operator
   keyFeatures: Yacht_keyFeatures_operator
   etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
@@ -4824,14 +4830,16 @@ input Yacht_builder_operator {
 }
 
 input Yacht_category_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
+  equals: Yacht_category_Input
+  not_equals: Yacht_category_Input
+  in: [Yacht_category_Input]
+  not_in: [Yacht_category_Input]
+  all: [Yacht_category_Input]
+}
+
+enum Yacht_category_Input {
+  motor
+  sail
 }
 
 input Yacht_city_operator {
@@ -4984,16 +4992,22 @@ input Yacht_yearBuilt_operator {
   less_than: Float
 }
 
-input Yacht_yearModel_operator {
+input Yacht_yearRefit_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
   greater_than: Float
   less_than_equal: Float
   less_than: Float
+  exists: Boolean
 }
 
 input Yacht_featured_operator {
+  equals: Boolean
+  not_equals: Boolean
+}
+
+input Yacht_promotion_operator {
   equals: Boolean
   not_equals: Boolean
 }
@@ -5168,8 +5182,9 @@ input Yacht_where_and {
   subcategory: Yacht_subcategory_operator
   tonnage: Yacht_tonnage_operator
   yearBuilt: Yacht_yearBuilt_operator
-  yearModel: Yacht_yearModel_operator
+  yearRefit: Yacht_yearRefit_operator
   featured: Yacht_featured_operator
+  promotion: Yacht_promotion_operator
   keyFeatures: Yacht_keyFeatures_operator
   etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
@@ -5212,8 +5227,9 @@ input Yacht_where_or {
   subcategory: Yacht_subcategory_operator
   tonnage: Yacht_tonnage_operator
   yearBuilt: Yacht_yearBuilt_operator
-  yearModel: Yacht_yearModel_operator
+  yearRefit: Yacht_yearRefit_operator
   featured: Yacht_featured_operator
+  promotion: Yacht_promotion_operator
   keyFeatures: Yacht_keyFeatures_operator
   etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
@@ -5268,8 +5284,9 @@ type YachtsDocAccessFields {
   subcategory: YachtsDocAccessFields_subcategory
   tonnage: YachtsDocAccessFields_tonnage
   yearBuilt: YachtsDocAccessFields_yearBuilt
-  yearModel: YachtsDocAccessFields_yearModel
+  yearRefit: YachtsDocAccessFields_yearRefit
   featured: YachtsDocAccessFields_featured
+  promotion: YachtsDocAccessFields_promotion
   keyFeatures: YachtsDocAccessFields_keyFeatures
   etiquette: YachtsDocAccessFields_etiquette
   photos: YachtsDocAccessFields_photos
@@ -5833,26 +5850,26 @@ type YachtsDocAccessFields_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type YachtsDocAccessFields_yearModel {
-  create: YachtsDocAccessFields_yearModel_Create
-  read: YachtsDocAccessFields_yearModel_Read
-  update: YachtsDocAccessFields_yearModel_Update
-  delete: YachtsDocAccessFields_yearModel_Delete
+type YachtsDocAccessFields_yearRefit {
+  create: YachtsDocAccessFields_yearRefit_Create
+  read: YachtsDocAccessFields_yearRefit_Read
+  update: YachtsDocAccessFields_yearRefit_Update
+  delete: YachtsDocAccessFields_yearRefit_Delete
 }
 
-type YachtsDocAccessFields_yearModel_Create {
+type YachtsDocAccessFields_yearRefit_Create {
   permission: Boolean!
 }
 
-type YachtsDocAccessFields_yearModel_Read {
+type YachtsDocAccessFields_yearRefit_Read {
   permission: Boolean!
 }
 
-type YachtsDocAccessFields_yearModel_Update {
+type YachtsDocAccessFields_yearRefit_Update {
   permission: Boolean!
 }
 
-type YachtsDocAccessFields_yearModel_Delete {
+type YachtsDocAccessFields_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -5876,6 +5893,29 @@ type YachtsDocAccessFields_featured_Update {
 }
 
 type YachtsDocAccessFields_featured_Delete {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_promotion {
+  create: YachtsDocAccessFields_promotion_Create
+  read: YachtsDocAccessFields_promotion_Read
+  update: YachtsDocAccessFields_promotion_Update
+  delete: YachtsDocAccessFields_promotion_Delete
+}
+
+type YachtsDocAccessFields_promotion_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_promotion_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_promotion_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_promotion_Delete {
   permission: Boolean!
 }
 
@@ -6271,7 +6311,7 @@ type Charter {
   beam: Float!
   broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   builder: String!
-  category: String
+  category: Charter_category!
   city: String
   continent: String
   country: String
@@ -6288,8 +6328,9 @@ type Charter {
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
-  yearModel: Float!
+  yearRefit: Float
   featured: Boolean!
+  promotion: Boolean!
   keyFeatures: [Charter_keyFeatures!]!
   etiquette: Charter_etiquette
   photos: Charter_Photos
@@ -6305,6 +6346,11 @@ type Charter {
 type Charter_Price {
   low: Float
   high: Float
+}
+
+enum Charter_category {
+  motor
+  sail
 }
 
 enum Charter_keyFeatures {
@@ -7147,8 +7193,9 @@ input Charter_where {
   subcategory: Charter_subcategory_operator
   tonnage: Charter_tonnage_operator
   yearBuilt: Charter_yearBuilt_operator
-  yearModel: Charter_yearModel_operator
+  yearRefit: Charter_yearRefit_operator
   featured: Charter_featured_operator
+  promotion: Charter_promotion_operator
   keyFeatures: Charter_keyFeatures_operator
   etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
@@ -7250,14 +7297,16 @@ input Charter_builder_operator {
 }
 
 input Charter_category_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
+  equals: Charter_category_Input
+  not_equals: Charter_category_Input
+  in: [Charter_category_Input]
+  not_in: [Charter_category_Input]
+  all: [Charter_category_Input]
+}
+
+enum Charter_category_Input {
+  motor
+  sail
 }
 
 input Charter_city_operator {
@@ -7410,16 +7459,22 @@ input Charter_yearBuilt_operator {
   less_than: Float
 }
 
-input Charter_yearModel_operator {
+input Charter_yearRefit_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
   greater_than: Float
   less_than_equal: Float
   less_than: Float
+  exists: Boolean
 }
 
 input Charter_featured_operator {
+  equals: Boolean
+  not_equals: Boolean
+}
+
+input Charter_promotion_operator {
   equals: Boolean
   not_equals: Boolean
 }
@@ -7647,8 +7702,9 @@ input Charter_where_and {
   subcategory: Charter_subcategory_operator
   tonnage: Charter_tonnage_operator
   yearBuilt: Charter_yearBuilt_operator
-  yearModel: Charter_yearModel_operator
+  yearRefit: Charter_yearRefit_operator
   featured: Charter_featured_operator
+  promotion: Charter_promotion_operator
   keyFeatures: Charter_keyFeatures_operator
   etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
@@ -7697,8 +7753,9 @@ input Charter_where_or {
   subcategory: Charter_subcategory_operator
   tonnage: Charter_tonnage_operator
   yearBuilt: Charter_yearBuilt_operator
-  yearModel: Charter_yearModel_operator
+  yearRefit: Charter_yearRefit_operator
   featured: Charter_featured_operator
+  promotion: Charter_promotion_operator
   keyFeatures: Charter_keyFeatures_operator
   etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
@@ -7758,8 +7815,9 @@ type ChartersDocAccessFields {
   subcategory: ChartersDocAccessFields_subcategory
   tonnage: ChartersDocAccessFields_tonnage
   yearBuilt: ChartersDocAccessFields_yearBuilt
-  yearModel: ChartersDocAccessFields_yearModel
+  yearRefit: ChartersDocAccessFields_yearRefit
   featured: ChartersDocAccessFields_featured
+  promotion: ChartersDocAccessFields_promotion
   keyFeatures: ChartersDocAccessFields_keyFeatures
   etiquette: ChartersDocAccessFields_etiquette
   photos: ChartersDocAccessFields_photos
@@ -8376,26 +8434,26 @@ type ChartersDocAccessFields_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type ChartersDocAccessFields_yearModel {
-  create: ChartersDocAccessFields_yearModel_Create
-  read: ChartersDocAccessFields_yearModel_Read
-  update: ChartersDocAccessFields_yearModel_Update
-  delete: ChartersDocAccessFields_yearModel_Delete
+type ChartersDocAccessFields_yearRefit {
+  create: ChartersDocAccessFields_yearRefit_Create
+  read: ChartersDocAccessFields_yearRefit_Read
+  update: ChartersDocAccessFields_yearRefit_Update
+  delete: ChartersDocAccessFields_yearRefit_Delete
 }
 
-type ChartersDocAccessFields_yearModel_Create {
+type ChartersDocAccessFields_yearRefit_Create {
   permission: Boolean!
 }
 
-type ChartersDocAccessFields_yearModel_Read {
+type ChartersDocAccessFields_yearRefit_Read {
   permission: Boolean!
 }
 
-type ChartersDocAccessFields_yearModel_Update {
+type ChartersDocAccessFields_yearRefit_Update {
   permission: Boolean!
 }
 
-type ChartersDocAccessFields_yearModel_Delete {
+type ChartersDocAccessFields_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -8419,6 +8477,29 @@ type ChartersDocAccessFields_featured_Update {
 }
 
 type ChartersDocAccessFields_featured_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_promotion {
+  create: ChartersDocAccessFields_promotion_Create
+  read: ChartersDocAccessFields_promotion_Read
+  update: ChartersDocAccessFields_promotion_Update
+  delete: ChartersDocAccessFields_promotion_Delete
+}
+
+type ChartersDocAccessFields_promotion_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_promotion_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_promotion_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_promotion_Delete {
   permission: Boolean!
 }
 
@@ -13934,7 +14015,7 @@ type NewConstruction {
   beam: Float!
   broker(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   builder: String!
-  category: String
+  category: NewConstruction_category!
   city: String
   continent: String
   country: String
@@ -13951,8 +14032,9 @@ type NewConstruction {
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
-  yearModel: Float!
+  yearRefit: Float
   featured: Boolean!
+  promotion: Boolean!
   keyFeatures: [NewConstruction_keyFeatures!]!
   etiquette: NewConstruction_etiquette
   photos: NewConstruction_Photos
@@ -13962,6 +14044,11 @@ type NewConstruction {
   seo: [NewConstruction_Seo!]
   updatedAt: DateTime
   createdAt: DateTime
+}
+
+enum NewConstruction_category {
+  motor
+  sail
 }
 
 enum NewConstruction_keyFeatures {
@@ -14724,8 +14811,9 @@ input NewConstruction_where {
   subcategory: NewConstruction_subcategory_operator
   tonnage: NewConstruction_tonnage_operator
   yearBuilt: NewConstruction_yearBuilt_operator
-  yearModel: NewConstruction_yearModel_operator
+  yearRefit: NewConstruction_yearRefit_operator
   featured: NewConstruction_featured_operator
+  promotion: NewConstruction_promotion_operator
   keyFeatures: NewConstruction_keyFeatures_operator
   etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
@@ -14821,14 +14909,16 @@ input NewConstruction_builder_operator {
 }
 
 input NewConstruction_category_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
+  equals: NewConstruction_category_Input
+  not_equals: NewConstruction_category_Input
+  in: [NewConstruction_category_Input]
+  not_in: [NewConstruction_category_Input]
+  all: [NewConstruction_category_Input]
+}
+
+enum NewConstruction_category_Input {
+  motor
+  sail
 }
 
 input NewConstruction_city_operator {
@@ -14981,16 +15071,22 @@ input NewConstruction_yearBuilt_operator {
   less_than: Float
 }
 
-input NewConstruction_yearModel_operator {
+input NewConstruction_yearRefit_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
   greater_than: Float
   less_than_equal: Float
   less_than: Float
+  exists: Boolean
 }
 
 input NewConstruction_featured_operator {
+  equals: Boolean
+  not_equals: Boolean
+}
+
+input NewConstruction_promotion_operator {
   equals: Boolean
   not_equals: Boolean
 }
@@ -15166,8 +15262,9 @@ input NewConstruction_where_and {
   subcategory: NewConstruction_subcategory_operator
   tonnage: NewConstruction_tonnage_operator
   yearBuilt: NewConstruction_yearBuilt_operator
-  yearModel: NewConstruction_yearModel_operator
+  yearRefit: NewConstruction_yearRefit_operator
   featured: NewConstruction_featured_operator
+  promotion: NewConstruction_promotion_operator
   keyFeatures: NewConstruction_keyFeatures_operator
   etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
@@ -15211,8 +15308,9 @@ input NewConstruction_where_or {
   subcategory: NewConstruction_subcategory_operator
   tonnage: NewConstruction_tonnage_operator
   yearBuilt: NewConstruction_yearBuilt_operator
-  yearModel: NewConstruction_yearModel_operator
+  yearRefit: NewConstruction_yearRefit_operator
   featured: NewConstruction_featured_operator
+  promotion: NewConstruction_promotion_operator
   keyFeatures: NewConstruction_keyFeatures_operator
   etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
@@ -15268,8 +15366,9 @@ type NewConstructionsDocAccessFields {
   subcategory: NewConstructionsDocAccessFields_subcategory
   tonnage: NewConstructionsDocAccessFields_tonnage
   yearBuilt: NewConstructionsDocAccessFields_yearBuilt
-  yearModel: NewConstructionsDocAccessFields_yearModel
+  yearRefit: NewConstructionsDocAccessFields_yearRefit
   featured: NewConstructionsDocAccessFields_featured
+  promotion: NewConstructionsDocAccessFields_promotion
   keyFeatures: NewConstructionsDocAccessFields_keyFeatures
   etiquette: NewConstructionsDocAccessFields_etiquette
   photos: NewConstructionsDocAccessFields_photos
@@ -15856,26 +15955,26 @@ type NewConstructionsDocAccessFields_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type NewConstructionsDocAccessFields_yearModel {
-  create: NewConstructionsDocAccessFields_yearModel_Create
-  read: NewConstructionsDocAccessFields_yearModel_Read
-  update: NewConstructionsDocAccessFields_yearModel_Update
-  delete: NewConstructionsDocAccessFields_yearModel_Delete
+type NewConstructionsDocAccessFields_yearRefit {
+  create: NewConstructionsDocAccessFields_yearRefit_Create
+  read: NewConstructionsDocAccessFields_yearRefit_Read
+  update: NewConstructionsDocAccessFields_yearRefit_Update
+  delete: NewConstructionsDocAccessFields_yearRefit_Delete
 }
 
-type NewConstructionsDocAccessFields_yearModel_Create {
+type NewConstructionsDocAccessFields_yearRefit_Create {
   permission: Boolean!
 }
 
-type NewConstructionsDocAccessFields_yearModel_Read {
+type NewConstructionsDocAccessFields_yearRefit_Read {
   permission: Boolean!
 }
 
-type NewConstructionsDocAccessFields_yearModel_Update {
+type NewConstructionsDocAccessFields_yearRefit_Update {
   permission: Boolean!
 }
 
-type NewConstructionsDocAccessFields_yearModel_Delete {
+type NewConstructionsDocAccessFields_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -15899,6 +15998,29 @@ type NewConstructionsDocAccessFields_featured_Update {
 }
 
 type NewConstructionsDocAccessFields_featured_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_promotion {
+  create: NewConstructionsDocAccessFields_promotion_Create
+  read: NewConstructionsDocAccessFields_promotion_Read
+  update: NewConstructionsDocAccessFields_promotion_Update
+  delete: NewConstructionsDocAccessFields_promotion_Delete
+}
+
+type NewConstructionsDocAccessFields_promotion_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_promotion_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_promotion_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_promotion_Delete {
   permission: Boolean!
 }
 
@@ -20559,8 +20681,9 @@ type YachtsFields {
   subcategory: YachtsFields_subcategory
   tonnage: YachtsFields_tonnage
   yearBuilt: YachtsFields_yearBuilt
-  yearModel: YachtsFields_yearModel
+  yearRefit: YachtsFields_yearRefit
   featured: YachtsFields_featured
+  promotion: YachtsFields_promotion
   keyFeatures: YachtsFields_keyFeatures
   etiquette: YachtsFields_etiquette
   photos: YachtsFields_photos
@@ -21124,26 +21247,26 @@ type YachtsFields_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type YachtsFields_yearModel {
-  create: YachtsFields_yearModel_Create
-  read: YachtsFields_yearModel_Read
-  update: YachtsFields_yearModel_Update
-  delete: YachtsFields_yearModel_Delete
+type YachtsFields_yearRefit {
+  create: YachtsFields_yearRefit_Create
+  read: YachtsFields_yearRefit_Read
+  update: YachtsFields_yearRefit_Update
+  delete: YachtsFields_yearRefit_Delete
 }
 
-type YachtsFields_yearModel_Create {
+type YachtsFields_yearRefit_Create {
   permission: Boolean!
 }
 
-type YachtsFields_yearModel_Read {
+type YachtsFields_yearRefit_Read {
   permission: Boolean!
 }
 
-type YachtsFields_yearModel_Update {
+type YachtsFields_yearRefit_Update {
   permission: Boolean!
 }
 
-type YachtsFields_yearModel_Delete {
+type YachtsFields_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -21167,6 +21290,29 @@ type YachtsFields_featured_Update {
 }
 
 type YachtsFields_featured_Delete {
+  permission: Boolean!
+}
+
+type YachtsFields_promotion {
+  create: YachtsFields_promotion_Create
+  read: YachtsFields_promotion_Read
+  update: YachtsFields_promotion_Update
+  delete: YachtsFields_promotion_Delete
+}
+
+type YachtsFields_promotion_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_promotion_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_promotion_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_promotion_Delete {
   permission: Boolean!
 }
 
@@ -21586,8 +21732,9 @@ type ChartersFields {
   subcategory: ChartersFields_subcategory
   tonnage: ChartersFields_tonnage
   yearBuilt: ChartersFields_yearBuilt
-  yearModel: ChartersFields_yearModel
+  yearRefit: ChartersFields_yearRefit
   featured: ChartersFields_featured
+  promotion: ChartersFields_promotion
   keyFeatures: ChartersFields_keyFeatures
   etiquette: ChartersFields_etiquette
   photos: ChartersFields_photos
@@ -22204,26 +22351,26 @@ type ChartersFields_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type ChartersFields_yearModel {
-  create: ChartersFields_yearModel_Create
-  read: ChartersFields_yearModel_Read
-  update: ChartersFields_yearModel_Update
-  delete: ChartersFields_yearModel_Delete
+type ChartersFields_yearRefit {
+  create: ChartersFields_yearRefit_Create
+  read: ChartersFields_yearRefit_Read
+  update: ChartersFields_yearRefit_Update
+  delete: ChartersFields_yearRefit_Delete
 }
 
-type ChartersFields_yearModel_Create {
+type ChartersFields_yearRefit_Create {
   permission: Boolean!
 }
 
-type ChartersFields_yearModel_Read {
+type ChartersFields_yearRefit_Read {
   permission: Boolean!
 }
 
-type ChartersFields_yearModel_Update {
+type ChartersFields_yearRefit_Update {
   permission: Boolean!
 }
 
-type ChartersFields_yearModel_Delete {
+type ChartersFields_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -22247,6 +22394,29 @@ type ChartersFields_featured_Update {
 }
 
 type ChartersFields_featured_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_promotion {
+  create: ChartersFields_promotion_Create
+  read: ChartersFields_promotion_Read
+  update: ChartersFields_promotion_Update
+  delete: ChartersFields_promotion_Delete
+}
+
+type ChartersFields_promotion_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_promotion_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_promotion_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_promotion_Delete {
   permission: Boolean!
 }
 
@@ -24392,8 +24562,9 @@ type NewConstructionsFields {
   subcategory: NewConstructionsFields_subcategory
   tonnage: NewConstructionsFields_tonnage
   yearBuilt: NewConstructionsFields_yearBuilt
-  yearModel: NewConstructionsFields_yearModel
+  yearRefit: NewConstructionsFields_yearRefit
   featured: NewConstructionsFields_featured
+  promotion: NewConstructionsFields_promotion
   keyFeatures: NewConstructionsFields_keyFeatures
   etiquette: NewConstructionsFields_etiquette
   photos: NewConstructionsFields_photos
@@ -24980,26 +25151,26 @@ type NewConstructionsFields_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type NewConstructionsFields_yearModel {
-  create: NewConstructionsFields_yearModel_Create
-  read: NewConstructionsFields_yearModel_Read
-  update: NewConstructionsFields_yearModel_Update
-  delete: NewConstructionsFields_yearModel_Delete
+type NewConstructionsFields_yearRefit {
+  create: NewConstructionsFields_yearRefit_Create
+  read: NewConstructionsFields_yearRefit_Read
+  update: NewConstructionsFields_yearRefit_Update
+  delete: NewConstructionsFields_yearRefit_Delete
 }
 
-type NewConstructionsFields_yearModel_Create {
+type NewConstructionsFields_yearRefit_Create {
   permission: Boolean!
 }
 
-type NewConstructionsFields_yearModel_Read {
+type NewConstructionsFields_yearRefit_Read {
   permission: Boolean!
 }
 
-type NewConstructionsFields_yearModel_Update {
+type NewConstructionsFields_yearRefit_Update {
   permission: Boolean!
 }
 
-type NewConstructionsFields_yearModel_Delete {
+type NewConstructionsFields_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -25023,6 +25194,29 @@ type NewConstructionsFields_featured_Update {
 }
 
 type NewConstructionsFields_featured_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_promotion {
+  create: NewConstructionsFields_promotion_Create
+  read: NewConstructionsFields_promotion_Read
+  update: NewConstructionsFields_promotion_Update
+  delete: NewConstructionsFields_promotion_Delete
+}
+
+type NewConstructionsFields_promotion_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_promotion_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_promotion_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_promotion_Delete {
   permission: Boolean!
 }
 
@@ -27164,7 +27358,7 @@ type Mutation {
   createUser(data: mutationUserInput!, locale: LocaleInputType): User
   updateUser(id: String!, autosave: Boolean, data: mutationUserUpdateInput!, locale: LocaleInputType): User
   deleteUser(id: String!): User
-  refreshTokenUser: usersRefreshedUser
+  refreshTokenUser(token: String): usersRefreshedUser
   logoutUser: String
   unlockUser(email: String!): Boolean!
   loginUser(email: String, password: String): usersLoginResult
@@ -28242,7 +28436,6 @@ enum UserUpdate_Socials_platform_MutationInput {
 type usersRefreshedUser {
   exp: Int
   refreshedToken: String
-  strategy: String
   user: usersJWT
 }
 
@@ -28270,7 +28463,7 @@ input mutationYachtInput {
   beam: Float!
   broker: String
   builder: String!
-  category: String
+  category: Yacht_category_MutationInput!
   city: String
   continent: String
   country: String
@@ -28287,8 +28480,9 @@ input mutationYachtInput {
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
-  yearModel: Float!
+  yearRefit: Float
   featured: Boolean
+  promotion: Boolean
   keyFeatures: [Yacht_keyFeatures_MutationInput]!
   etiquette: Yacht_etiquette_MutationInput
   photos: mutationYacht_PhotosInput!
@@ -28298,6 +28492,11 @@ input mutationYachtInput {
   seo: [mutationYacht_SeoInput]
   updatedAt: String
   createdAt: String
+}
+
+enum Yacht_category_MutationInput {
+  motor
+  sail
 }
 
 enum Yacht_keyFeatures_MutationInput {
@@ -28348,7 +28547,7 @@ input mutationYachtUpdateInput {
   beam: Float
   broker: String
   builder: String
-  category: String
+  category: YachtUpdate_category_MutationInput
   city: String
   continent: String
   country: String
@@ -28365,8 +28564,9 @@ input mutationYachtUpdateInput {
   subcategory: String
   tonnage: Float
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
   featured: Boolean
+  promotion: Boolean
   keyFeatures: [YachtUpdate_keyFeatures_MutationInput]
   etiquette: YachtUpdate_etiquette_MutationInput
   photos: mutationYachtUpdate_PhotosInput!
@@ -28376,6 +28576,11 @@ input mutationYachtUpdateInput {
   seo: [mutationYachtUpdate_SeoInput]
   updatedAt: String
   createdAt: String
+}
+
+enum YachtUpdate_category_MutationInput {
+  motor
+  sail
 }
 
 enum YachtUpdate_keyFeatures_MutationInput {
@@ -28426,7 +28631,7 @@ input mutationCharterInput {
   beam: Float!
   broker: String
   builder: String!
-  category: String
+  category: Charter_category_MutationInput!
   city: String
   continent: String
   country: String
@@ -28443,8 +28648,9 @@ input mutationCharterInput {
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
-  yearModel: Float!
+  yearRefit: Float
   featured: Boolean
+  promotion: Boolean
   keyFeatures: [Charter_keyFeatures_MutationInput]!
   etiquette: Charter_etiquette_MutationInput
   photos: mutationCharter_PhotosInput!
@@ -28460,6 +28666,11 @@ input mutationCharterInput {
 input mutationCharter_PriceInput {
   low: Float
   high: Float
+}
+
+enum Charter_category_MutationInput {
+  motor
+  sail
 }
 
 enum Charter_keyFeatures_MutationInput {
@@ -28518,7 +28729,7 @@ input mutationCharterUpdateInput {
   beam: Float
   broker: String
   builder: String
-  category: String
+  category: CharterUpdate_category_MutationInput
   city: String
   continent: String
   country: String
@@ -28535,8 +28746,9 @@ input mutationCharterUpdateInput {
   subcategory: String
   tonnage: Float
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
   featured: Boolean
+  promotion: Boolean
   keyFeatures: [CharterUpdate_keyFeatures_MutationInput]
   etiquette: CharterUpdate_etiquette_MutationInput
   photos: mutationCharterUpdate_PhotosInput!
@@ -28552,6 +28764,11 @@ input mutationCharterUpdateInput {
 input mutationCharterUpdate_PriceInput {
   low: Float
   high: Float
+}
+
+enum CharterUpdate_category_MutationInput {
+  motor
+  sail
 }
 
 enum CharterUpdate_keyFeatures_MutationInput {
@@ -28797,7 +29014,7 @@ input mutationNewConstructionInput {
   beam: Float!
   broker: String
   builder: String!
-  category: String
+  category: NewConstruction_category_MutationInput!
   city: String
   continent: String
   country: String
@@ -28814,8 +29031,9 @@ input mutationNewConstructionInput {
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
-  yearModel: Float!
+  yearRefit: Float
   featured: Boolean
+  promotion: Boolean
   keyFeatures: [NewConstruction_keyFeatures_MutationInput]!
   etiquette: NewConstruction_etiquette_MutationInput
   photos: mutationNewConstruction_PhotosInput!
@@ -28825,6 +29043,11 @@ input mutationNewConstructionInput {
   seo: [mutationNewConstruction_SeoInput]
   updatedAt: String
   createdAt: String
+}
+
+enum NewConstruction_category_MutationInput {
+  motor
+  sail
 }
 
 enum NewConstruction_keyFeatures_MutationInput {
@@ -28876,7 +29099,7 @@ input mutationNewConstructionUpdateInput {
   beam: Float
   broker: String
   builder: String
-  category: String
+  category: NewConstructionUpdate_category_MutationInput
   city: String
   continent: String
   country: String
@@ -28893,8 +29116,9 @@ input mutationNewConstructionUpdateInput {
   subcategory: String
   tonnage: Float
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
   featured: Boolean
+  promotion: Boolean
   keyFeatures: [NewConstructionUpdate_keyFeatures_MutationInput]
   etiquette: NewConstructionUpdate_etiquette_MutationInput
   photos: mutationNewConstructionUpdate_PhotosInput!
@@ -28904,6 +29128,11 @@ input mutationNewConstructionUpdateInput {
   seo: [mutationNewConstructionUpdate_SeoInput]
   updatedAt: String
   createdAt: String
+}
+
+enum NewConstructionUpdate_category_MutationInput {
+  motor
+  sail
 }
 
 enum NewConstructionUpdate_keyFeatures_MutationInput {
