@@ -26,7 +26,11 @@ export interface IArticle {
 
 export interface ArticleContentBlock {
   type: string;
-  children: ArticleContentBlock[];
+  children: {
+    text: string;
+    type: ArticleContentBlock["type"];
+    children: ArticleContentBlock["children"];
+  }[];
 }
 
 export interface ArticleContentLink extends ArticleContentBlock {
