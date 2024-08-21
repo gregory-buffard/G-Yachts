@@ -20,7 +20,7 @@ const ContactLinks = () => {
       }
     >
       <a
-        href={"https://wa.me/37797770543"}
+        href={"https://wa.me/0041754080808"}
         target={"_blank"}
         rel={"noopener noreferrer"}
         className={
@@ -50,9 +50,9 @@ const ContactLinks = () => {
         type={"button"}
         onClick={() => {
           if (isMobile()) {
-            window.location.href = "tel:+37797770543";
+            window.location.href = "tel:+41754080808";
           } else {
-            navigator.clipboard.writeText("+37797770543").then(() => {
+            navigator.clipboard.writeText("+41754080808").then(() => {
               copy(true);
               setTimeout(() => copy(false), 3000);
             });
@@ -61,7 +61,7 @@ const ContactLinks = () => {
         className={"navigation-contact group"}
       >
         <Whisper type={"copy"} label={copied ? t("copied") : t("copy")} />
-        +377 977 705 43
+        +41 75 408 08 08
       </button>
     </div>
   );
