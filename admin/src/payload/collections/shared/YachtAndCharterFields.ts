@@ -294,6 +294,15 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
   },
   {
     label: {
+      en: 'Promote',
+      fr: 'Promouvoir',
+    },
+    name: 'promotion',
+    type: 'checkbox',
+    required: true,
+  },
+  {
+    label: {
       en: 'Key Features',
       fr: 'Caractéristiques clés',
     },

@@ -50,6 +50,7 @@ export const fetchFeaturedSales = async (
       locale,
     },
   });
+
   return data.Yachts.docs;
 };
 
@@ -68,7 +69,7 @@ export const fetchSales = async (locale: "en" | "fr"): Promise<ISale[]> => {
             length
             sleeps
             yearBuilt
-            featured
+            promotion
             etiquette
             photos {
               featured {
@@ -102,7 +103,11 @@ export const fetchSales = async (locale: "en" | "fr"): Promise<ISale[]> => {
       locale,
     },
   });
-  return data.Yachts.docs;
+
+  const promoted = data.Yachts.docs.filter((doc: ISale) => doc.promotion),
+    rest = data.Yachts.docs.filter((doc: ISale) => !doc.promotion);
+
+  return [...promoted, ...rest];
 };
 
 export const fetchSale = async (
@@ -199,6 +204,7 @@ export const fetchSale = async (
     `,
     variables: { id, locale },
   });
+
   return data.Yacht;
 };
 
@@ -254,6 +260,7 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
             length
             sleeps
             yearBuilt
+            promotion
             etiquette
             reservations {
               from
@@ -282,7 +289,11 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
       }
     `,
   });
-  return data.Charters.docs;
+
+  const promoted = data.Charters.docs.filter((doc: ICharter) => doc.promotion),
+    rest = data.Charters.docs.filter((doc: ICharter) => !doc.promotion);
+
+  return [...promoted, ...rest];
 };
 
 export const fetchCharter = async (id: string): Promise<ICharter> => {
@@ -386,6 +397,7 @@ export const fetchCharter = async (id: string): Promise<ICharter> => {
     `,
     variables: { id },
   });
+
   return data.Charter;
 };
 
@@ -783,7 +795,7 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
             length
             sleeps
             yearBuilt
-            featured
+            promotion
             etiquette
             photos {
               featured {
@@ -814,7 +826,15 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
       }
     `,
   });
-  return data.NewConstructions.docs;
+
+  const promoted = data.NewConstructions.docs.filter(
+      (doc: INewConstruction) => doc.promotion,
+    ),
+    rest = data.NewConstructions.docs.filter(
+      (doc: INewConstruction) => !doc.promotion,
+    );
+
+  return [...promoted, ...rest];
 };
 export const fetchNewConstruction = async (
   id: string,

@@ -27,6 +27,7 @@ export default interface IYacht {
   yearBuilt: number;
   yearModel: number;
   featured: boolean;
+  promotion: boolean;
   keyFeatures: string[];
   description: string;
   etiquette?: string;
