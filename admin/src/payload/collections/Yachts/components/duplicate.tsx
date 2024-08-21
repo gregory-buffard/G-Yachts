@@ -6,7 +6,6 @@ import { toast } from 'react-toastify'
 export default function DuplicateToCharter() {
   const [fields, dispatchFields] = useAllFormFields()
   const formData = reduceFieldsToValues(fields, true)
-  console.log(formData)
 
   const duplicateToCharter = async () => {
     try {
