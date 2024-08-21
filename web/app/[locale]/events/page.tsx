@@ -2,7 +2,7 @@ import Hero from "@/components/events/hero";
 import Bar from "@/components/nav/bar";
 import Listing from "@/components/events/listing";
 import dynamic from "next/dynamic";
-import { fetchEvents } from "@/actions/event";
+import { fetchEvents } from "@/actions/events";
 import { getLocale, getTranslations } from "next-intl/server";
 
 const View = dynamic(() => import("@/components/view")),

@@ -38,7 +38,10 @@ export const fetchEvents = async (locale: "en" | "fr"): Promise<IEvent[]> => {
       locale,
     },
   });
-  return data.Events.docs;
+  return [...data.Events.docs].sort(
+    (a: IEvent, b: IEvent) =>
+      new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime(),
+  );
 };
 
 export const fetchEvent = async (

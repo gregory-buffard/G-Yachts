@@ -11,8 +11,6 @@ const Grid = ({ data }: { data: IEvent[] }) => {
   const t = useTranslations("events");
   const format = useFormatter();
 
-  console.log(data);
-
   return (
     <div
       className={
@@ -56,7 +54,9 @@ const Grid = ({ data }: { data: IEvent[] }) => {
               <h3 className={"font-slick normal-case font-light"}>
                 {event.title}
               </h3>
-              <Link href={{ pathname: "/events/[id]", params: { id: event.id } }}>
+              <Link
+                href={{ pathname: "/events/[id]", params: { id: event.id } }}
+              >
                 <p
                   className={
                     "uppercase text-rock-500 underline underline-offset-2"
@@ -76,10 +76,6 @@ const Grid = ({ data }: { data: IEvent[] }) => {
 const Listing = ({ data }: { data: IEvent[] }) => {
   const t = useTranslations("events"),
     [maxListing, setMaxListing] = useState<number>(6);
-
-  data.sort(
-    (a, b) => new Date(b.toDate).getTime() - new Date(a.toDate).getTime(),
-  );
 
   const upcoming = data.filter((event) => new Date(event.toDate) >= new Date()),
     past = data.filter((event) => new Date(event.toDate) < new Date());

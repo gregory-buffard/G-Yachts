@@ -1,5 +1,5 @@
 import { EventProvider } from "@/context/event";
-import { fetchEvent } from "@/actions/event";
+import { fetchEvent } from "@/actions/events";
 import { getLocale, getTranslations } from "next-intl/server";
 import Bar from "@/components/nav/bar";
 import Hero from "@/components/events/event/hero";
