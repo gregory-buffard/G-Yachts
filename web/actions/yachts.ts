@@ -139,6 +139,7 @@ export const fetchSale = async (
           tonnage
           yearBuilt
           yearModel
+          yearRefit
           keyFeatures
           description
           broker {
@@ -318,6 +319,7 @@ export const fetchCharter = async (id: string): Promise<ICharter> => {
           tonnage
           yearBuilt
           yearModel
+          yearRefit
           featured
           keyFeatures
           description

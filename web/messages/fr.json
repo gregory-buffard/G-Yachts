@@ -151,6 +151,7 @@
                 "tonnage": "Poids",
                 "yearBuilt": "Année de construction",
                 "yearModel": "Année du modèle",
+                "yearRefit": "Année de refonte",
                 "hull": "Type de coque",
                 "location": "Emplacement",
                 "crypto": {

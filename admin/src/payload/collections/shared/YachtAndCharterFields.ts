@@ -276,6 +276,15 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
   },
   {
     label: {
+      en: 'Refit Year',
+      fr: 'Année de refonte',
+    },
+    name: 'yearRefit',
+    type: 'number',
+    required: false,
+  },
+  {
+    label: {
       en: 'Featured',
       fr: 'En vedette',
     },

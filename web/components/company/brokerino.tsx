@@ -30,11 +30,12 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
           }
         >
           {brokerino.phones.map((phone) => {
-            const country = codes.find(
-              (code) => code.dial_code === phone.prefix.replace(/^./, "+"),
-            );
+            const prefix = phone.prefix.replace(/^./, "+");
+            const country = codes.find((code) => code.dial_code === prefix);
             const code = country ? country.code : "";
-            return <p key={phone.number}>{`${code}: ${phone.number}`}</p>;
+            return (
+              <p key={phone.number}>{`${code}: ${prefix} ${phone.number}`}</p>
+            );
           })}
           <a href={"mailto:"}>
             <p className={"break-words"}>{brokerino.email}</p>
