@@ -36,8 +36,10 @@ export const convertUnit = (amount: number, unit: string) => {
       return amount + "m";
     case "ft":
       return (amount * 3.28084).toFixed(0) + "ft";
+    case "t":
+      return amount + "t";
     default:
-      return amount + "m";
+      return amount;
   }
 };
 

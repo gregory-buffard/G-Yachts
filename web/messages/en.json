@@ -150,6 +150,7 @@
                 "tonnage": "Weight",
                 "yearBuilt": "Year built",
                 "yearModel": "Year model",
+                "yearRefit": "Refit year",
                 "hull": "Hull type",
                 "location": "Location",
                 "crypto": {

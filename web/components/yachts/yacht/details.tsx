@@ -92,6 +92,12 @@ const Details = () => {
       value: data.yearBuilt,
       key: "yearBuilt",
     },
+    type !== "new-construction" &&
+      data.yearRefit && {
+        label: t("characteristics.yearRefit"),
+        value: data.yearRefit,
+        key: "yearRefit",
+      },
     /*{
       label: t("characteristics.yearModel"),
       value: data.yearModel,
@@ -184,43 +190,52 @@ const Details = () => {
         </div>
         <div className={"w-full flex-col justify-center items-center"}>
           {view === "info"
-            ? characteristics.map((property, i) => (
-                <>
-                  <div
-                    key={i}
-                    className={
-                      "w-full flex flex-row justify-between items-baseline py-[0.5vh]"
-                    }
-                  >
-                    <div className={"w-1/2 text-rock-300"}>
-                      <p>{property.label}</p>
-                    </div>
-                    <div className={"w-1/2 text-black"}>
-                      <p>{property.value}</p>
-                    </div>
-                  </div>
-                  {i !== characteristics.length - 1 && (
-                    <div className={"w-full h-[0.25vh] bg-rock-200"} />
-                  )}
-                </>
-              ))
+            ? characteristics.map(
+                (property, i) =>
+                  property && (
+                    <>
+                      <div
+                        key={i}
+                        className={
+                          "w-full flex flex-row justify-between items-baseline py-[0.5vh]"
+                        }
+                      >
+                        <div className={"w-1/2 text-rock-300"}>
+                          <p>{property.label}</p>
+                        </div>
+                        <div className={"w-1/2 text-black"}>
+                          <p>{property.value}</p>
+                        </div>
+                      </div>
+                      {i !== characteristics.length - 1 && (
+                        <div className={"w-full h-[0.25vh] bg-rock-200"} />
+                      )}
+                    </>
+                  ),
+              )
             : view === "features" && (
                 <div
                   className={"w-full grid grid-cols-2 md:grid-cols-3 gap-[2vh]"}
                 >
                   {characteristics
-                    .filter((property) =>
-                      data.keyFeatures.includes(property.key),
+                    .filter(
+                      (property) =>
+                        property && data.keyFeatures.includes(property.key),
                     )
-                    .map((property, i) => (
-                      <div
-                        key={i}
-                        className={"flex flex-col justify-center items-start"}
-                      >
-                        <h3>{property.value}</h3>
-                        <p className={"text-rock-300"}>{property.label}</p>
-                      </div>
-                    ))}
+                    .map(
+                      (property, i) =>
+                        property && (
+                          <div
+                            key={i}
+                            className={
+                              "flex flex-col justify-center items-start"
+                            }
+                          >
+                            <h3>{property.value}</h3>
+                            <p className={"text-rock-300"}>{property.label}</p>
+                          </div>
+                        ),
+                    )}
                 </div>
               )}
           <Gallery current={photo} setCurrent={setPhoto} />

@@ -68,6 +68,7 @@ export default interface IYacht {
 
 export interface ISale extends IYacht {
   price: number;
+  yearRefit?: number;
 }
 
 export interface ICharter extends IYacht {
@@ -79,6 +80,7 @@ export interface ICharter extends IYacht {
     from: Date;
     to: Date;
   }[];
+  yearRefit?: number;
 }
 
 export interface INewConstruction extends IYacht {
