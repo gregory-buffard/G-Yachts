@@ -56,7 +56,7 @@ const Grid = ({ data }: { data: IEvent[] }) => {
               <h3 className={"font-slick normal-case font-light"}>
                 {event.title}
               </h3>
-              <Link href={"/"}>
+              <Link href={{ pathname: "/events/[id]", params: { id: event.id } }}>
                 <p
                   className={
                     "uppercase text-rock-500 underline underline-offset-2"
