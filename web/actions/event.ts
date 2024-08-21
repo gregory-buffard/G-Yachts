@@ -23,6 +23,11 @@ export const fetchEvents = async (locale: "en" | "fr"): Promise<IEvent[]> => {
                   width
                   height
                 }
+                fhd {
+                  url
+                  width
+                  height
+                }
               }
             }
           }

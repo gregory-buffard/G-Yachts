@@ -39,9 +39,9 @@ const Grid = ({ data }: { data: IEvent[] }) => {
             className={"flex flex-col justify-center items-start gap-[2vh]"}
           >
             <Image
-              src={encodeURI(event.image.sizes.thumbnail.url)}
-              width={event.image.sizes.thumbnail.width}
-              height={event.image.sizes.thumbnail.height}
+              src={encodeURI(event.image.sizes.fhd.url)}
+              width={event.image.sizes.fhd.width}
+              height={event.image.sizes.fhd.height}
               alt={event.image.alt}
               className={"w-full h-[56vh] object-cover object-center"}
             />
