@@ -5,7 +5,7 @@ import { useFormatter } from "next-intl";
 import { ContentRenderer } from "@/components/article/content";
 
 const Detail = () => {
-  const { location } = useEvent(),
+  const { location, content } = useEvent(),
     format = useFormatter(),
     fromDate = new Date(useEvent().fromDate),
     toDate = new Date(useEvent().toDate),
@@ -56,7 +56,7 @@ const Detail = () => {
         }
       />
       <article className={"md:w-3/5 w-full flex justify-start items-start"}>
-        <ContentRenderer blocks={useEvent().content} />
+        <ContentRenderer blocks={content} />
       </article>
     </section>
   );
