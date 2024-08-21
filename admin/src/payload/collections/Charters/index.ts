@@ -7,6 +7,7 @@ import { seoField } from '../shared/seo'
 import LinkToCustomer from './components/linkToCustomer'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
+import DuplicateToSales from './components/duplicate'
 
 export const Charters: CollectionConfig = {
   slug: 'charters',
@@ -51,7 +52,24 @@ export const Charters: CollectionConfig = {
             en: 'Details',
             fr: 'Détails',
           },
-          fields: [...yachtsAndCharterCommonFields("charter"), seoField],
+          fields: [
+            ...yachtsAndCharterCommonFields('charter'),
+            seoField,
+            {
+              type: 'ui',
+              name: 'duplicateToSales',
+              label: {
+                en: 'Duplicate to Sales',
+                fr: 'Dupliquer en vente',
+              },
+              admin: {
+                components: {
+                  Field: () => DuplicateToSales(),
+                },
+                position: 'sidebar' 
+              },
+            },
+          ],
         },
         {
           label: {

@@ -50,7 +50,7 @@ export const Yachts: CollectionConfig = {
       name: 'duplicateToCharter',
       label: {
         en: 'Duplicate to Charter',
-        fr: 'Dupliquer en location',
+        fr: 'Dupliquer en Charter',
       },
       admin: {
         components: {
