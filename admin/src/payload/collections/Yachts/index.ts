@@ -6,6 +6,7 @@ import { yachtsAndCharterCommonFields } from '../shared/YachtAndCharterFields'
 import { seoField } from '../shared/seo'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
+import DuplicateToCharter from './components/duplicate'
 
 export const Yachts: CollectionConfig = {
   slug: 'yachts',
@@ -41,5 +42,22 @@ export const Yachts: CollectionConfig = {
     update: users,
     delete: users,
   },
-  fields: [...yachtsAndCharterCommonFields("yacht"), seoField],
+  fields: [
+    ...yachtsAndCharterCommonFields('yacht'),
+    seoField,
+    {
+      type: 'ui',
+      name: 'duplicateToCharter',
+      label: {
+        en: 'Duplicate to Charter',
+        fr: 'Dupliquer en Charter',
+      },
+      admin: {
+        components: {
+          Field: () => DuplicateToCharter(),
+        },
+        position: 'sidebar',
+      }
+    },
+  ],
 }
