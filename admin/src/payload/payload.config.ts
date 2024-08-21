@@ -112,4 +112,8 @@ export default buildConfig({
       fileSize: 20000000, // 20MB
     },
   },
+  rateLimit: {
+    trustProxy: true,
+    max: 5000,
+  },
 })
