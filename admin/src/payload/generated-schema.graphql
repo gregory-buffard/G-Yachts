@@ -2874,7 +2874,6 @@ input User_phones__prefix_operator {
   in: [User_phones__prefix_Input]
   not_in: [User_phones__prefix_Input]
   all: [User_phones__prefix_Input]
-  exists: Boolean
 }
 
 enum User_phones__prefix_Input {
@@ -3116,7 +3115,6 @@ input User_phones__number_operator {
   in: [String]
   not_in: [String]
   all: [String]
-  exists: Boolean
 }
 
 input User_phones__id_operator {
@@ -27540,8 +27538,8 @@ enum User_roles_MutationInput {
 }
 
 input mutationUser_PhonesInput {
-  prefix: User_Phones_prefix_MutationInput
-  number: String
+  prefix: User_Phones_prefix_MutationInput!
+  number: String!
   id: String
 }
 
@@ -28000,8 +27998,8 @@ enum UserUpdate_roles_MutationInput {
 }
 
 input mutationUserUpdate_PhonesInput {
-  prefix: UserUpdate_Phones_prefix_MutationInput
-  number: String
+  prefix: UserUpdate_Phones_prefix_MutationInput!
+  number: String!
   id: String
 }
 

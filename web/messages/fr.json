@@ -79,7 +79,6 @@
             "exclusive": "Exclusif",
             "new": "Nouveauté",
             "sold": "Vendu",
-            "title": "<classic>Ventes</classic> en vedette",
             "all": "Explorer",
             "sleeps": "invités",
             "priceOnApplication": "Prix sur demande"
@@ -131,6 +130,9 @@
         "delivery": "Livraison",
         "availability": "Disponibilité",
         "reserved": "RÉSERVÉ",
+        "exclusive": "Exclusif",
+        "new": "Nouveauté",
+        "sold": "Vendu",
         "details": {
             "gallery": "Explorer plus d'images",
             "info": "Informations clés",

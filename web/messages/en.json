@@ -130,6 +130,9 @@
         "delivery": "Delivery",
         "availability": "Availability",
         "reserved": "RESERVED",
+        "exclusive": "Exclusive",
+        "new": "New",
+        "sold": "Sold",
         "details": {
             "gallery": "View more images",
             "info": "Key information",

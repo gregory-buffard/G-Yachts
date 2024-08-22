@@ -43,5 +43,6 @@ export const fetchBrokerinos = async (
       locale,
     },
   });
+
   return [...data.Users.docs].reverse(); // Temporary fix for the order of the brokers
 };
