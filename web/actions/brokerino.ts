@@ -28,9 +28,9 @@ export const fetchBrokerinos = async (
                 }
               }
             }
-            phones {
-              prefix
-              number
+            socials {
+              link
+              platform
             }
             langs
             email
@@ -44,5 +44,12 @@ export const fetchBrokerinos = async (
     },
   });
 
-  return [...data.Users.docs].reverse(); // Temporary fix for the order of the brokers
+  const Gaspard = data.Users.docs.find(
+      (doc: IBrokerino) => doc.name === "Gaspard Milazzo",
+    ),
+    rest = data.Users.docs
+      .filter((doc: IBrokerino) => doc.name !== "Gaspard Milazzo")
+      .reverse();
+
+  return Gaspard ? [Gaspard, ...rest] : rest;
 };
