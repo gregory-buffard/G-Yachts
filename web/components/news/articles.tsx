@@ -154,9 +154,9 @@ const ArticleCard = ({
       className="flex justify-start items-start flex-col gap-[2vh]"
     >
       <Image
-        src={article.image.sizes.thumbnail.url}
-        width={article.image.sizes.thumbnail.width}
-        height={article.image.sizes.thumbnail.height}
+        src={encodeURI(article.image.sizes.fhd.url)}
+        width={article.image.sizes.fhd.width}
+        height={article.image.sizes.fhd.height}
         alt={article.image.alt}
         className={"w-full h-[56vh] object-cover object-center"}
       />

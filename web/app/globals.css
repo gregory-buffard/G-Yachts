@@ -100,6 +100,12 @@
     .glass-button-dark {
         @apply text-black border-black/25;
     }
+
+    .opacity-sheet {
+        background-size: 100% 100%;
+        background-position: 0% 0%;
+        background-image: radial-gradient(100% 100% at 50% -50%, #FFFFFF00 100%, #000000FF 175%);
+    }
 }
 
 @layer components {

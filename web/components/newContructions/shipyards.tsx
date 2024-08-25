@@ -31,16 +31,18 @@ const Shipyards = ({ data }: { data: IShipyard[] }) => {
               },
             )}
             style={{
-              backgroundImage: `url(${shipyard.banner.sizes.fhd.url ?? shipyard.banner.url}), linear-gradient(to bottom right, #74ebd5, #acb6e5)`,
+              backgroundImage: `url(${encodeURI(shipyard.banner.sizes.fhd.url)}), linear-gradient(to bottom right, #74ebd5, #acb6e5)`,
             }}
           >
             {current === shipyard.id ? (
               <div className="w-full bg-black/50 flex flex-col items-start px-20 py-20">
                 <div className="flex flex-row justify-between w-full">
-                  <img
-                    src={shipyard.logo.sizes.thumbnail.url ?? shipyard.logo.url}
-                    alt={shipyard.logo.alt ?? shipyard.name}
-                    className="object-contain w-60"
+                  <Image
+                    src={encodeURI(shipyard.logo.sizes.thumbnail.url)}
+                    alt={shipyard.logo.alt}
+                    width={shipyard.logo.sizes.thumbnail.width}
+                    height={shipyard.logo.sizes.thumbnail.height}
+                    className={"object-contain w-[16vh]"}
                   />
                   <button type={"button"}>
                     <svg
@@ -87,10 +89,11 @@ const Shipyards = ({ data }: { data: IShipyard[] }) => {
             ) : (
               <div className="w-full h-full bg-black/50 p-4 grid place-items-center hover:bg-black/25 transition-colors">
                 <Image
-                  src={shipyard.logo.sizes.thumbnail.url ?? shipyard.logo.url}
-                  alt={shipyard.logo.alt ?? shipyard.name}
-                  width={150}
-                  height={150}
+                  src={encodeURI(shipyard.logo.sizes.thumbnail.url)}
+                  alt={shipyard.logo.alt}
+                  width={shipyard.logo.sizes.thumbnail.width}
+                  height={shipyard.logo.sizes.thumbnail.height}
+                  className={"object-contain w-[16vh]"}
                 />
               </div>
             )}
