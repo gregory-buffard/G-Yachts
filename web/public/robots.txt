@@ -1,0 +1,21 @@
+# *
+User-agent: *
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /api
+Disallow: /api/*
+Disallow: /media
+Disallow: /media/*
+Disallow: /images
+Disallow: /images/*
+Disallow: /videos
+Disallow: /videos/*
+Disallow: /pictures
+Disallow: /pictures/*
+
+# Host
+Host: https://www.g-yachts.com
+
+# Sitemaps
+Sitemap: https://www.g-yachts.com/sitemap.xml
+Sitemap: https://www.g-yachts.com/server-sitemap.xml
