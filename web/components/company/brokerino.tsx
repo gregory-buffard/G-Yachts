@@ -1,6 +1,7 @@
 import IBrokerino from "@/types/brokerino";
 import Image from "next/image";
 import flags from "@/data/langs.json";
+import codes from "@/data/CountryCodes.json";
 
 const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
   <div
@@ -34,6 +35,17 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
               {brokerino.name}
             </h3>
             <p className={"uppercase"}>{brokerino.position}</p>
+            {brokerino.phones.map((phone) => {
+              const prefix = phone.prefix.replace(/^./, "+");
+              const country = codes.find((code) => code.dial_code === prefix);
+              const code = country ? country.code : "";
+              return (
+                <p
+                  key={phone.number}
+                  className={"text-rock-500"}
+                >{`${code}: ${prefix} ${phone.number}`}</p>
+              );
+            })}
             <a href={`mailto:${brokerino.email}`} className={"text-rock-500"}>
               <p className={"break-words"}>{brokerino.email}</p>
             </a>
@@ -41,9 +53,15 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
               {brokerino.langs.map((lang, i) => {
                 const flag = flags.find((flag) => flag.name === lang);
                 return (
-                  <label key={i} className={"text-xl"}>
-                    {flag?.flag}
-                  </label>
+                  flag && (
+                    <Image
+                      src={flag.path}
+                      alt={flag.name}
+                      width={48}
+                      height={48}
+                      className={"size-[1.75rem]"}
+                    />
+                  )
                 );
               })}
             </div>
@@ -118,6 +136,12 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
             "md:flex flex-col justify-end items-start h-max text-rock-500 hidden"
           }
         >
+          {brokerino.phones.map((phone) => {
+            const prefix = phone.prefix.replace(/^./, "+");
+            const country = codes.find((code) => code.dial_code === prefix);
+            const code = country ? country.code : "";
+            return <p key={phone.number}>{`${prefix} ${phone.number}`}</p>;
+          })}
           <a href={`mailto:${brokerino.email}`}>
             <p className={"break-words"}>{brokerino.email}</p>
           </a>
@@ -125,9 +149,15 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
             {brokerino.langs.map((lang, i) => {
               const flag = flags.find((flag) => flag.name === lang);
               return (
-                <label key={i} className={"text-xl"}>
-                  {flag?.flag}
-                </label>
+                flag && (
+                  <Image
+                    src={flag.path}
+                    alt={flag.name}
+                    width={48}
+                    height={48}
+                    className={"size-[1.5rem]"}
+                  />
+                )
               );
             })}
           </div>

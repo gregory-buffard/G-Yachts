@@ -32,6 +32,10 @@ export const fetchBrokerinos = async (
               link
               platform
             }
+            phones {
+              number
+              prefix
+            }
             langs
             email
             position
