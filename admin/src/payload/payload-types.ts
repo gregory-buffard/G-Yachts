@@ -632,6 +632,7 @@ export interface Yacht {
         id?: string | null;
       }[]
     | null;
+  similar?: (string | Yacht)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -708,6 +709,7 @@ export interface Charter {
         id?: string | null;
       }[]
     | null;
+  similar?: (string | Charter)[] | null;
   reservations?:
     | {
         from: string;
@@ -960,6 +962,7 @@ export interface NewConstruction {
         id?: string | null;
       }[]
     | null;
+  similar?: (string | NewConstruction)[] | null;
   updatedAt: string;
   createdAt: string;
 }

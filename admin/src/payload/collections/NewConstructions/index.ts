@@ -6,6 +6,7 @@ import { yachtsAndCharterCommonFields } from '../shared/YachtAndCharterFields'
 import { seoField } from '../shared/seo'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
+import ExcludeCurrentDocRelationship from '../../components/excludeCurrentDocRelationship'
 
 export const NewConstructions: CollectionConfig = {
   slug: 'new-constructions',
@@ -49,5 +50,21 @@ export const NewConstructions: CollectionConfig = {
     },
     ...yachtsAndCharterCommonFields('yacht'),
     seoField,
+    {
+      label: {
+        en: 'Similar New Constructions',
+        fr: 'Nouvelles Constructions similaires',
+      },
+      name: 'similar',
+      type: 'relationship',
+      required: false,
+      relationTo: 'new-constructions',
+      hasMany: true,
+      admin: {
+        components: {
+          Field: ExcludeCurrentDocRelationship,
+        },
+      },
+    },
   ],
 }
