@@ -11,6 +11,7 @@ export async function importYatcoYacht(req: PayloadRequest, res: Response) {
 }
 
 const importYacht = async (yacht: any, userId: string) => {
+  const containsSail = yacht.subcategory.toLowerCase().includes('sail')
   const photo = await fetch(yacht.photos.featured)
   const contentType = photo.headers.get('Content-Type').toLowerCase()
   const blob = await photo.blob()
@@ -35,6 +36,7 @@ const importYacht = async (yacht: any, userId: string) => {
   }
   yacht.broker = userId
   yacht.keyFeatures = ['price']
+  yacht.category = containsSail ? 'sail' : 'motor'
   try {
     const result = await payload.create({
       collection: 'yachts',
