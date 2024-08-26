@@ -8,6 +8,7 @@ import LinkToCustomer from './components/linkToCustomer'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import DuplicateToSales from './components/duplicate'
+import ExcludeCurrentDocRelationship from '../../components/excludeCurrentDocRelationship'
 
 export const Charters: CollectionConfig = {
   slug: 'charters',
@@ -56,6 +57,22 @@ export const Charters: CollectionConfig = {
             ...yachtsAndCharterCommonFields('charter'),
             seoField,
             {
+              label: {
+                en: 'Similar Charters',
+                fr: 'Charters similaires',
+              },
+              name: 'similar',
+              type: 'relationship',
+              required: false,
+              relationTo: 'charters',
+              hasMany: true,
+              admin: {
+                components: {
+                  Field: ExcludeCurrentDocRelationship,
+                },
+              },
+            },
+            {
               type: 'ui',
               name: 'duplicateToSales',
               label: {
@@ -66,7 +83,7 @@ export const Charters: CollectionConfig = {
                 components: {
                   Field: () => DuplicateToSales(),
                 },
-                position: 'sidebar' 
+                position: 'sidebar',
               },
             },
           ],

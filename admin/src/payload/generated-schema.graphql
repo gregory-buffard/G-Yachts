@@ -3972,6 +3972,7 @@ type Yacht {
   brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   clicks: Float
   seo: [Yacht_Seo!]
+  similar(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Yacht!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -4753,6 +4754,7 @@ input Yacht_where {
   clicks: Yacht_clicks_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
+  similar: Yacht_similar_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -5122,6 +5124,15 @@ input Yacht_seo__id_operator {
   exists: Boolean
 }
 
+input Yacht_similar_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input Yacht_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -5193,6 +5204,7 @@ input Yacht_where_and {
   clicks: Yacht_clicks_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
+  similar: Yacht_similar_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -5238,6 +5250,7 @@ input Yacht_where_or {
   clicks: Yacht_clicks_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
+  similar: Yacht_similar_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -5292,6 +5305,7 @@ type YachtsDocAccessFields {
   brochure: YachtsDocAccessFields_brochure
   clicks: YachtsDocAccessFields_clicks
   seo: YachtsDocAccessFields_seo
+  similar: YachtsDocAccessFields_similar
   updatedAt: YachtsDocAccessFields_updatedAt
   createdAt: YachtsDocAccessFields_createdAt
 }
@@ -6234,6 +6248,29 @@ type YachtsDocAccessFields_seo_id_Delete {
   permission: Boolean!
 }
 
+type YachtsDocAccessFields_similar {
+  create: YachtsDocAccessFields_similar_Create
+  read: YachtsDocAccessFields_similar_Read
+  update: YachtsDocAccessFields_similar_Update
+  delete: YachtsDocAccessFields_similar_Delete
+}
+
+type YachtsDocAccessFields_similar_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_similar_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_similar_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_similar_Delete {
+  permission: Boolean!
+}
+
 type YachtsDocAccessFields_updatedAt {
   create: YachtsDocAccessFields_updatedAt_Create
   read: YachtsDocAccessFields_updatedAt_Read
@@ -6336,6 +6373,7 @@ type Charter {
   brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   clicks: Float
   seo: [Charter_Seo!]
+  similar(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Charter!]
   reservations: [Charter_Reservations!]
   updatedAt: DateTime
   createdAt: DateTime
@@ -7204,6 +7242,7 @@ input Charter_where {
   clicks: Charter_clicks_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
+  similar: Charter_similar_operator
   reservations__from: Charter_reservations__from_operator
   reservations__to: Charter_reservations__to_operator
   reservations__customerName: Charter_reservations__customerName_operator
@@ -7589,6 +7628,15 @@ input Charter_seo__id_operator {
   exists: Boolean
 }
 
+input Charter_similar_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input Charter_reservations__from_operator {
   equals: DateTime
   not_equals: DateTime
@@ -7713,6 +7761,7 @@ input Charter_where_and {
   clicks: Charter_clicks_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
+  similar: Charter_similar_operator
   reservations__from: Charter_reservations__from_operator
   reservations__to: Charter_reservations__to_operator
   reservations__customerName: Charter_reservations__customerName_operator
@@ -7764,6 +7813,7 @@ input Charter_where_or {
   clicks: Charter_clicks_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
+  similar: Charter_similar_operator
   reservations__from: Charter_reservations__from_operator
   reservations__to: Charter_reservations__to_operator
   reservations__customerName: Charter_reservations__customerName_operator
@@ -7823,6 +7873,7 @@ type ChartersDocAccessFields {
   brochure: ChartersDocAccessFields_brochure
   clicks: ChartersDocAccessFields_clicks
   seo: ChartersDocAccessFields_seo
+  similar: ChartersDocAccessFields_similar
   reservations: ChartersDocAccessFields_reservations
   updatedAt: ChartersDocAccessFields_updatedAt
   createdAt: ChartersDocAccessFields_createdAt
@@ -8815,6 +8866,29 @@ type ChartersDocAccessFields_seo_id_Update {
 }
 
 type ChartersDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_similar {
+  create: ChartersDocAccessFields_similar_Create
+  read: ChartersDocAccessFields_similar_Read
+  update: ChartersDocAccessFields_similar_Update
+  delete: ChartersDocAccessFields_similar_Delete
+}
+
+type ChartersDocAccessFields_similar_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_similar_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_similar_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_similar_Delete {
   permission: Boolean!
 }
 
@@ -14040,6 +14114,7 @@ type NewConstruction {
   brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   clicks: Float
   seo: [NewConstruction_Seo!]
+  similar(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [NewConstruction!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -14822,6 +14897,7 @@ input NewConstruction_where {
   clicks: NewConstruction_clicks_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
+  similar: NewConstruction_similar_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -15201,6 +15277,15 @@ input NewConstruction_seo__id_operator {
   exists: Boolean
 }
 
+input NewConstruction_similar_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input NewConstruction_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -15273,6 +15358,7 @@ input NewConstruction_where_and {
   clicks: NewConstruction_clicks_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
+  similar: NewConstruction_similar_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -15319,6 +15405,7 @@ input NewConstruction_where_or {
   clicks: NewConstruction_clicks_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
+  similar: NewConstruction_similar_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -15374,6 +15461,7 @@ type NewConstructionsDocAccessFields {
   brochure: NewConstructionsDocAccessFields_brochure
   clicks: NewConstructionsDocAccessFields_clicks
   seo: NewConstructionsDocAccessFields_seo
+  similar: NewConstructionsDocAccessFields_similar
   updatedAt: NewConstructionsDocAccessFields_updatedAt
   createdAt: NewConstructionsDocAccessFields_createdAt
 }
@@ -16336,6 +16424,29 @@ type NewConstructionsDocAccessFields_seo_id_Update {
 }
 
 type NewConstructionsDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_similar {
+  create: NewConstructionsDocAccessFields_similar_Create
+  read: NewConstructionsDocAccessFields_similar_Read
+  update: NewConstructionsDocAccessFields_similar_Update
+  delete: NewConstructionsDocAccessFields_similar_Delete
+}
+
+type NewConstructionsDocAccessFields_similar_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_similar_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_similar_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_similar_Delete {
   permission: Boolean!
 }
 
@@ -20689,6 +20800,7 @@ type YachtsFields {
   brochure: YachtsFields_brochure
   clicks: YachtsFields_clicks
   seo: YachtsFields_seo
+  similar: YachtsFields_similar
   updatedAt: YachtsFields_updatedAt
   createdAt: YachtsFields_createdAt
 }
@@ -21631,6 +21743,29 @@ type YachtsFields_seo_id_Delete {
   permission: Boolean!
 }
 
+type YachtsFields_similar {
+  create: YachtsFields_similar_Create
+  read: YachtsFields_similar_Read
+  update: YachtsFields_similar_Update
+  delete: YachtsFields_similar_Delete
+}
+
+type YachtsFields_similar_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_similar_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_similar_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_similar_Delete {
+  permission: Boolean!
+}
+
 type YachtsFields_updatedAt {
   create: YachtsFields_updatedAt_Create
   read: YachtsFields_updatedAt_Read
@@ -21740,6 +21875,7 @@ type ChartersFields {
   brochure: ChartersFields_brochure
   clicks: ChartersFields_clicks
   seo: ChartersFields_seo
+  similar: ChartersFields_similar
   reservations: ChartersFields_reservations
   updatedAt: ChartersFields_updatedAt
   createdAt: ChartersFields_createdAt
@@ -22732,6 +22868,29 @@ type ChartersFields_seo_id_Update {
 }
 
 type ChartersFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_similar {
+  create: ChartersFields_similar_Create
+  read: ChartersFields_similar_Read
+  update: ChartersFields_similar_Update
+  delete: ChartersFields_similar_Delete
+}
+
+type ChartersFields_similar_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_similar_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_similar_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_similar_Delete {
   permission: Boolean!
 }
 
@@ -24570,6 +24729,7 @@ type NewConstructionsFields {
   brochure: NewConstructionsFields_brochure
   clicks: NewConstructionsFields_clicks
   seo: NewConstructionsFields_seo
+  similar: NewConstructionsFields_similar
   updatedAt: NewConstructionsFields_updatedAt
   createdAt: NewConstructionsFields_createdAt
 }
@@ -25532,6 +25692,29 @@ type NewConstructionsFields_seo_id_Update {
 }
 
 type NewConstructionsFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_similar {
+  create: NewConstructionsFields_similar_Create
+  read: NewConstructionsFields_similar_Read
+  update: NewConstructionsFields_similar_Update
+  delete: NewConstructionsFields_similar_Delete
+}
+
+type NewConstructionsFields_similar_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_similar_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_similar_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_similar_Delete {
   permission: Boolean!
 }
 
@@ -28488,6 +28671,7 @@ input mutationYachtInput {
   brochure: String
   clicks: Float
   seo: [mutationYacht_SeoInput]
+  similar: [String]
   updatedAt: String
   createdAt: String
 }
@@ -28572,6 +28756,7 @@ input mutationYachtUpdateInput {
   brochure: String
   clicks: Float
   seo: [mutationYachtUpdate_SeoInput]
+  similar: [String]
   updatedAt: String
   createdAt: String
 }
@@ -28656,6 +28841,7 @@ input mutationCharterInput {
   brochure: String
   clicks: Float
   seo: [mutationCharter_SeoInput]
+  similar: [String]
   reservations: [mutationCharter_ReservationsInput]
   updatedAt: String
   createdAt: String
@@ -28754,6 +28940,7 @@ input mutationCharterUpdateInput {
   brochure: String
   clicks: Float
   seo: [mutationCharterUpdate_SeoInput]
+  similar: [String]
   reservations: [mutationCharterUpdate_ReservationsInput]
   updatedAt: String
   createdAt: String
@@ -29039,6 +29226,7 @@ input mutationNewConstructionInput {
   brochure: String
   clicks: Float
   seo: [mutationNewConstruction_SeoInput]
+  similar: [String]
   updatedAt: String
   createdAt: String
 }
@@ -29124,6 +29312,7 @@ input mutationNewConstructionUpdateInput {
   brochure: String
   clicks: Float
   seo: [mutationNewConstructionUpdate_SeoInput]
+  similar: [String]
   updatedAt: String
   createdAt: String
 }
