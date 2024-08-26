@@ -8,7 +8,6 @@ import LinkToCustomer from './components/linkToCustomer'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import DuplicateToSales from './components/duplicate'
-import ExcludeCurrentDocRelationship from '../../components/excludeCurrentDocRelationship'
 
 export const Charters: CollectionConfig = {
   slug: 'charters',
@@ -66,11 +65,6 @@ export const Charters: CollectionConfig = {
               required: false,
               relationTo: 'charters',
               hasMany: true,
-              admin: {
-                components: {
-                  Field: ExcludeCurrentDocRelationship,
-                },
-              },
             },
             {
               type: 'ui',

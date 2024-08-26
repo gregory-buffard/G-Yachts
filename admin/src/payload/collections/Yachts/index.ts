@@ -7,7 +7,6 @@ import { seoField } from '../shared/seo'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import DuplicateToCharter from './components/duplicate'
-import ExcludeCurrentDocRelationship from '../../components/excludeCurrentDocRelationship'
 
 export const Yachts: CollectionConfig = {
   slug: 'yachts',
@@ -56,11 +55,6 @@ export const Yachts: CollectionConfig = {
       required: false,
       relationTo: 'yachts',
       hasMany: true,
-      admin: {
-        components: {
-          Field: ExcludeCurrentDocRelationship,
-        },
-      },
     },
     {
       type: 'ui',
