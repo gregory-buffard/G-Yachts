@@ -933,7 +933,7 @@ export const fetchShipyards = async (): Promise<IShipyard[]> => {
   const { data } = await client.query({
     query: gql`
       query Shipyards {
-        Shipyards {
+        Shipyards(limit: 50) {
           docs {
             id
             name

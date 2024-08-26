@@ -60,7 +60,7 @@ const Listing = ({ data }: { data: IDestination[] }) => {
             <span className="text-3xl font-bold drop-shadow-md">
               {destination.destination}
             </span>
-            <span className="text-lg drop-shadow-sm">{destination.region}</span>
+            <span className="text-lg drop-shadow-sm">{destination.country}</span>
           </Link>
         ))}
       </div>
