@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <div className="h-[90vh] md:h-screen w-full overflow-hidden">
       <video
-        src="/videos/hero.mp4"
+        src="/videos/hero.webm"
         autoPlay
         loop
         muted
