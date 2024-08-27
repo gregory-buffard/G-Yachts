@@ -117,8 +117,6 @@ export interface User {
           | '+235'
           | '+56'
           | '+86'
-          | '+61'
-          | '+61'
           | '+57'
           | '+269'
           | '+242'
@@ -144,7 +142,6 @@ export interface User {
           | '+500'
           | '+298'
           | '+679'
-          | '+358'
           | '+33'
           | '+594'
           | '+689'
@@ -175,12 +172,10 @@ export interface User {
           | '+98'
           | '+964'
           | '+353'
-          | '+44'
           | '+972'
           | '+39'
           | '+1876'
           | '+81'
-          | '+44'
           | '+962'
           | '+77'
           | '+254'
@@ -232,7 +227,6 @@ export interface User {
           | '+227'
           | '+234'
           | '+683'
-          | '+672'
           | '+1670'
           | '+47'
           | '+968'
@@ -241,7 +235,6 @@ export interface User {
           | '+970'
           | '+507'
           | '+675'
-          | '+595'
           | '+51'
           | '+63'
           | '+872'
@@ -252,12 +245,9 @@ export interface User {
           | '+40'
           | '+7'
           | '+250'
-          | '+262'
-          | '+590'
           | '+290'
           | '+1869'
           | '+1758'
-          | '+590'
           | '+508'
           | '+1784'
           | '+685'
@@ -275,12 +265,10 @@ export interface User {
           | '+252'
           | '+27'
           | '+211'
-          | '+500'
           | '+34'
           | '+94'
           | '+249'
           | '+597'
-          | '+47'
           | '+268'
           | '+46'
           | '+41'
@@ -302,8 +290,6 @@ export interface User {
           | '+256'
           | '+380'
           | '+971'
-          | '+44'
-          | '+1'
           | '+598'
           | '+998'
           | '+678'
@@ -437,8 +423,6 @@ export interface User {
         | 'Nepali'
         | 'Ndonga'
         | 'Dutch'
-        | 'Norwegian'
-        | 'Norwegian'
         | 'South Ndebele'
         | 'Navajo'
         | 'Chichewa'
@@ -589,6 +573,7 @@ export interface Yacht {
   region?: string | null;
   rooms: number;
   sleeps: number;
+  cruisingGuests?: number | null;
   subcategory?: string | null;
   tonnage: number;
   yearBuilt: number;
@@ -666,6 +651,7 @@ export interface Charter {
   region?: string | null;
   rooms: number;
   sleeps: number;
+  cruisingGuests?: number | null;
   subcategory?: string | null;
   tonnage: number;
   yearBuilt: number;
@@ -919,6 +905,7 @@ export interface NewConstruction {
   region?: string | null;
   rooms: number;
   sleeps: number;
+  cruisingGuests?: number | null;
   subcategory?: string | null;
   tonnage: number;
   yearBuilt: number;

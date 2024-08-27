@@ -35,7 +35,7 @@ const Hero = () => {
             {t("delivery")} {data.delivery}
           </p>
         )}
-        <h1 className={"font-classic normal-case"}>{data.name}</h1>
+        <h1 className={"font-classic normal-case my-[1vh]"}>{data.name}</h1>
         <p>
           {data.builder} | {convertUnit(data.length, units.length)} |{" "}
           {data.yearBuilt} | {data.sleeps + " " + t("sleeps")}

@@ -22,6 +22,7 @@ export default interface IYacht {
   region: string;
   rooms: number;
   sleeps: number;
+  cruisingGuests?: number;
   subcategory: string;
   tonnage: number;
   yearBuilt: number;

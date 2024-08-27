@@ -140,6 +140,7 @@ export const fetchSale = async (
           region
           rooms
           sleeps
+          cruisingGuests
           subcategory
           tonnage
           yearBuilt
@@ -325,6 +326,7 @@ export const fetchCharter = async (id: string): Promise<ICharter> => {
           region
           rooms
           sleeps
+          cruisingGuests
           subcategory
           tonnage
           yearBuilt
@@ -864,6 +866,7 @@ export const fetchNewConstruction = async (
           region
           rooms
           sleeps
+          cruisingGuests
           subcategory
           tonnage
           yearBuilt

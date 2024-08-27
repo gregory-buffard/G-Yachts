@@ -1,515 +1,516 @@
 {
-    "whisper": {
-        "whatsapp": "Ouvrir WhatsApp",
-        "googleMaps": "Ouvrir Google Maps",
-        "instagram": "Notre Instagram",
-        "facebook": "Notre Facebook",
-        "linkedin": "Notre LinkedIn",
-        "email": "Nouveau brouillon de email",
-        "copy": "Copier",
-        "copied": "Copié!"
+  "whisper": {
+    "whatsapp": "Ouvrir WhatsApp",
+    "googleMaps": "Ouvrir Google Maps",
+    "instagram": "Notre Instagram",
+    "facebook": "Notre Facebook",
+    "linkedin": "Notre LinkedIn",
+    "email": "Nouveau brouillon de email",
+    "copy": "Copier",
+    "copied": "Copié!"
+  },
+  "bar": {
+    "CTA": "Contactez-nous"
+  },
+  "navigation": {
+    "links": {
+      "sales": "Ventes",
+      "charters": "Charters",
+      "new-constructions": "Nouvelles Constructions",
+      "management": "Management",
+      "company": "Compagnie",
+      "partners": "Partenaires",
+      "news": "Actualités",
+      "recruitment": "Recrutement",
+      "contact": "Contact",
+      "destinations": "Destinations",
+      "events": "Événements"
     },
-    "bar": {
-        "CTA": "Contactez-nous"
+    "hq": "Siège social"
+  },
+  "index": {
+    "metadata": {
+      "title": "G-Yachts",
+      "description": "G-Yachts est une société de courtage, vente, location, gestion et construction de yachts basée à Monaco.",
+      "keywords": "yachts, vente, location, gestion, construction, Monaco"
     },
-    "navigation": {
-        "links": {
-            "sales": "Ventes",
-            "charters": "Charters",
-            "new-constructions": "Nouvelles Constructions",
-            "management": "Management",
-            "company": "Compagnie",
-            "partners": "Partenaires",
-            "news": "Actualités",
-            "recruitment": "Recrutement",
-            "contact": "Contact",
-            "destinations": "Destinations",
-            "events": "Événements"
-        },
-        "hq": "Siège social"
+    "hero": {
+      "sales": "VENTES",
+      "subtitle": "Deux décennies d’expertise inégalée dans le yachting",
+      "undertitle": "Nous travaillons avec vous pour trouver le yacht parfait pour votre style de vie, créant des expériences uniques dans chaque port.",
+      "CTA": "Louer un yacht",
+      "CTA2": "Acheter un yacht"
     },
-    "index": {
-        "metadata": {
-            "title": "G-Yachts",
-            "description": "G-Yachts est une société de courtage, vente, location, gestion et construction de yachts basée à Monaco.",
-            "keywords": "yachts, vente, location, gestion, construction, Monaco"
-        },
-        "hero": {
-            "sales": "VENTES",
-            "subtitle": "Deux décennies d’expertise inégalée dans le yachting",
-            "undertitle": "Nous travaillons avec vous pour trouver le yacht parfait pour votre style de vie, créant des expériences uniques dans chaque port.",
-            "CTA": "Louer un yacht",
-            "CTA2": "Acheter un yacht"
-        },
-        "learn": {
-            "title": "Nous sommes des experts mondiaux de la vente,<br></br>de la location et de la gestion de tous les yachts<br></br>de 25 mètres et plus.",
-            "CTA": "En Savoir plus"
-        },
-        "services": {
-            "title": "Nos <classic>Services</classic>",
-            "sales": "VENTES",
-            "charter": "CHARTERS",
-            "management": "GESTION",
-            "construction": "NOUVELLE CONSTRUCTION",
-            "sales-p": "Découvrez notre liste des meilleurs yachts du marché.",
-            "charter-p": "Faites l'expérience d'une liberté inégalée et d'un luxe sur mesure grâce à nos locations de yachts sélectionnées avec soin.",
-            "management-p": "Naviguez en toute tranquillité d'esprit grâce à nos conseils sur les complexités de la propriété d'un yacht.",
-            "construction-p": "Transformez votre yacht de rêve en réalité avec un savoir-faire sur mesure."
-        },
-        "working": {
-            "title": "Travailler <classic>ensemble</classic>",
-            "subtitle": "Achetez avec nous",
-            "description": "Grâce à une connaissance approfondie du marché et une compréhension ouverte de vos exigences, nous offrons un accès à une flotte de yachts à vendre, la sélection de yachts de luxe à vendre la plus variée et sophistiquée sur le marché aujourd'hui.",
-            "CTA": "Acheter un yacht"
-        },
-        "memories": {
-            "title": "Créer des moments <classic>inoubliables</classic>",
-            "subtitle": "CHARTER AVEC NOUS",
-            "description": "Chez G-Yachts, nous sommes convaincus que les vacances à bord d'un superyacht n'ont pas d'équivalent sur terre, et nous nous efforçons de créer des expériences de yachting inégalées qui restent gravées dans les mémoires. Notre sélection de yachts d'élite, soutenue par une équipe internationale passionnée, promet de dépasser toutes les attentes. Laissez-nous vous concocter un voyage qui incarne l'essence même de l'extraordinaire.",
-            "CTA": "Charter un yacht"
-        },
-        "destinations": {
-            "title": "Yacht de luxe à <classic>LOUER</classic>",
-            "description": "Évadez-vous dans les destinations les plus exclusives du monde en louant un superyacht avec G-Yachts, où l'océan sans limites devient votre terrain de jeu.",
-            "CTA": "Voir tout"
-        }
+    "learn": {
+      "title": "Nous sommes des experts mondiaux de la vente,<br></br>de la location et de la gestion de tous les yachts<br></br>de 25 mètres et plus.",
+      "CTA": "En Savoir plus"
     },
-    "yachts": {
-        "carousel": {
-            "exclusive": "Exclusif",
-            "new": "Nouveauté",
-            "sold": "Vendu",
-            "all": "Explorer",
-            "sleeps": "invités",
-            "priceOnApplication": "Prix sur demande"
-        },
-        "filters": {
-            "label": "Filtres",
-            "any": "N'importe quel",
-            "type": {
-                "label": "Type de yacht",
-                "all": "Tous",
-                "motor": "Moteur",
-                "sail": "Voile"
-            },
-            "year": "Année",
-            "length": "Longueur du yacht ({unit, select, m {metres} ft {pieds} other {}})",
-            "builder": "Constructeur",
-            "price": "Prix",
-            "sleeps": "Invités",
-            "name": {
-                "label": "Nom du yacht",
-                "all": "Tous les yachts"
-            },
-            "clear": "Effacer les filtres",
-            "currency": "Devise",
-            "sort": {
-                "label": "Trier",
-                "price-asc": "Prix (du plus bas au plus élevé)",
-                "price-desc": "Prix (du plus élevé au plus bas)",
-                "length-asc": "Longueur (du plus bas au plus élevé)",
-                "length-desc": "Longueur (du plus élevé au plus bas)",
-                "year-asc": "Année (du plus récent au plus ancien)",
-                "year-desc": "Année (du plus ancien au plus récent)"
-            }
-        },
-        "views": {
-            "global": "Resultats de recherche",
-            "bookmarks": "Ma liste de favoris",
-            "empty": "Votre liste est vide..."
-        },
-        "guide": "Cliquez sur l'icône pour ajouter des yachts à votre liste de favoris",
-        "info": "Rassemblez vos yachts préférés – ajoutez-en plus à votre liste de favoris",
-        "listed": "Vous avez vu {count} sur {total}",
-        "expand": "Charger plus",
-        "end": "Vous avez atteint la fin de notre catalogue"
+    "services": {
+      "title": "Nos <classic>Services</classic>",
+      "sales": "VENTES",
+      "charter": "CHARTERS",
+      "management": "GESTION",
+      "construction": "NOUVELLE CONSTRUCTION",
+      "sales-p": "Découvrez notre liste des meilleurs yachts du marché.",
+      "charter-p": "Faites l'expérience d'une liberté inégalée et d'un luxe sur mesure grâce à nos locations de yachts sélectionnées avec soin.",
+      "management-p": "Naviguez en toute tranquillité d'esprit grâce à nos conseils sur les complexités de la propriété d'un yacht.",
+      "construction-p": "Transformez votre yacht de rêve en réalité avec un savoir-faire sur mesure."
     },
-    "yacht": {
-        "noPrice": "Prix sur demande",
-        "sleeps": "invités",
-        "delivery": "Livraison",
-        "availability": "Disponibilité",
-        "reserved": "RÉSERVÉ",
-        "exclusive": "Exclusif",
-        "new": "Nouveauté",
-        "sold": "Vendu",
-        "details": {
-            "gallery": "Explorer plus d'images",
-            "info": "Informations clés",
-            "features": "Caractéristiques clés",
-            "brochure": "Brochure",
-            "characteristics": {
-                "type": {
-                    "label": "Type",
-                    "motor": "Moteur",
-                    "sail": "Voile"
-                },
-                "length": "Longueur",
-                "beam": "Largeur",
-                "sleeps": "Lits",
-                "rooms": "Cabines",
-                "draft": "Tirant d'eau",
-                "maxDraft": "Tirant d'eau maximum",
-                "tonnage": "Poids",
-                "yearBuilt": "Année de construction",
-                "yearModel": "Année du modèle",
-                "yearRefit": "Année de refonte",
-                "hull": "Type de coque",
-                "location": "Emplacement",
-                "crypto": {
-                    "label": "Cryptomonnaie",
-                    "true": "Accepté",
-                    "false": "Non accepté"
-                },
-                "builder": "Constructeur"
-            },
-            "description": "Lire plus",
-            "CTA": "Contactez un courtier"
-        }
+    "working": {
+      "title": "Travailler <classic>ensemble</classic>",
+      "subtitle": "Achetez avec nous",
+      "description": "Grâce à une connaissance approfondie du marché et une compréhension ouverte de vos exigences, nous offrons un accès à une flotte de yachts à vendre, la sélection de yachts de luxe à vendre la plus variée et sophistiquée sur le marché aujourd'hui.",
+      "CTA": "Acheter un yacht"
     },
-    "sales": {
-        "metadata": {
-            "title": "Ventes",
-            "description": "Découvrez notre liste des meilleurs yachts du marché.",
-            "keywords": "yachts, vente, marché, liste, monaco, g-yachts"
-        },
-        "hero": {
-            "title": "Trouvez le Yacht parfait pour <classic>Vous</classic>",
-            "subtitle": "Yachts à vendre",
-            "guests": "invités"
-        },
-        "featured": "<classic>Ventes</classic> en vedette",
-        "similar": "<classic>Ventes</classic> similaires"
-    },
-    "charters": {
-        "metadata": {
-            "title": "Charters",
-            "description": "Vivez le summum du luxe avec G-Yachts Charters, offrant des expériences de yacht sur mesure depuis Monaco vers les plus belles destinations de la Méditerranée. Notre flotte sélectionnée et notre équipe d'experts garantissent que chaque voyage est parfaitement adapté, pour des moments inoubliables en mer.",
-            "keywords": "yachts, location, marché, liste, monaco, g-yachts, charters, charter, monaco, luxury, mer, voyage, cruise.",
-            "author": "G–Yachts"
-        },
-        "hero": {
-            "title": "Créer des moments <classic>inoubliables</classic>",
-            "subtitle": "Yachts à location",
-            "guests": "invités"
-        },
-        "similar": "<classic>Charters</classic> similaires"
-    },
-    "new-constructions": {
-        "metadata": {
-            "title": "Nouvelles constructions",
-            "description": "Découvrez notre liste des meilleurs yachts du marché.",
-            "keywords": "yachts, vente, marché, liste, monaco, g-yachts"
-        },
-        "hero": {
-            "title": "La prochaine génération de conceptions de yachts <classic>innovantes</classic>",
-            "subtitle": "NOUVELLE CONSTRUCTION"
-        },
-        "similar": "<classic>Nouvelles constructions</classic> similaires"
-    },
-    "company": {
-        "metadata": {
-            "title": "Company",
-            "description": "G-Yachts, basé à Monaco, est un leader dans l'industrie du yachting de luxe, offrant une expertise inégalée et des services personnalisés. Avec une passion pour l'excellence, notre équipe dévouée propose des expériences sur mesure, de la vente et la location de yachts à la gestion, garantissant les plus hauts standards de qualité et de satisfaction.",
-            "keywords": "yachts, sales, charters, ventes, location, management, construction, Monaco, G–Yachts",
-            "author": "G-Yachts"
-        },
-        "hero": {
-            "subtitle": "UN HÉRITAGE FAMILIAL",
-            "title": "Une confiance de <classic>25 ANS</classic>",
-            "description": "G-Yachts incarne la détermination, l'éthique des affaires et l'expérience. Au fil du temps, la famille Milazzo a mené avec succès la vente, l'affrètement et la gestion de nombreux yachts de renom, grâce à un réseau remarquable et à des homologues de qualité dans le monde entier.",
-            "description2": "Gaspard Milazzo, ancien capitaine et ingénieur en mécanique, a formé de nombreux capitaines au début de sa carrière. Issu d'une famille de pionniers de la vente de bateaux et de l'affrètement sur la Côte d'Azur, il a connu toutes les facettes de l'industrie du yachting dès son plus jeune âge. En 1999, il a fondé G-Yachts, motivé par ses connaissances approfondies et son engagement pour l'excellence. Connu pour son honnêteté et ses relations à long terme avec ses clients, Gaspard s'assure que chaque client reçoive des conseils d'experts et des solutions sur mesure, reflétant son dévouement au monde du yachting et sa capacité à répondre à toutes les demandes."
-        },
-        "story": {
-            "header": {
-                "title": "Notre <classic>Histoire</classic>"
-            },
-            "content": {
-                "first": {
-                    "title": "DÉBUT D'UNE NOUVELLE SOCIÉTÉ CANNES NAUTIC",
-                    "text": "Ancienne navigatrice, la famille Milazzo crée « Cannes Nautic ». La société s'est spécialisée dans la vente, l'entretien et la réparation en baie de Cannes."
-                },
-                "second": {
-                    "title": "ACQUISITION DE S.A GLEMOT",
-                    "text": "Après le succès de Cannes Nautic, les Milazzo ont décidé de s'agrandir en rachetant la S. A Glemot. Cette dernière disposait d'une flotte conséquente de yachts à vendre, à louer et à gérer, dans le port de Mandelieu la Napoule."
-                },
-                "third": {
-                    "title": "GASPARD YACHTS",
-                    "text": "Suivant la voie tracée par son père, Gaspard Milazzo a pris de l'avance et a décidé de fonder sa propre entreprise à Cannes : Gaspard Yachts. Fort de sa fiabilité et de ses connaissances approfondies de l'industrie du yachting, il a rapidement acquis une réputation mondiale. Les services de haut niveau fournis à sa clientèle internationale sont depuis lors salués par de nombreux propriétaires de yachts, capitaines et l'ensemble de l'industrie : Gaspard Yachts est une référence."
-                },
-                "fourth": {
-                    "title": "JETCRAFT SUPPORT & G-YACHTS CREATION À MONACO",
-                    "text": "Suite au partenariat avec le leader mondial de l'aviation privée et commerciale, Jetcraft, Gaspard Milazzo a créé G-Yachts et l'a installé à Monaco sur le long terme afin de fournir un service personnalisé de la plus haute qualité."
-                },
-                "citation": "« Depuis plus de 25 ans, G-YACHTS a établi des relations solides avec ses clients, basées sur la confiance, le dévouement et un service impeccable. Nous sommes fiers de notre travail et de notre position dans l'industrie. En collaborant avec des chantiers navals et des architectes de renom, nous avons constamment amélioré nos services et renforcé nos relations avec nos clients. En tant qu'experts passionnés de yachting, nous nous engageons à être votre premier partenaire de yachting et à vous offrir une expérience de yachting exceptionnelle ».",
-                "signature": "FONDATEUR ET CEO"
-            }
-        },
-        "philosophy": {
-            "header": {
-                "title": "La navigation de plaisance est une affaire de <classic>Passion</classic>",
-                "subtitle": "NOTRE PHILOSOPHIE",
-                "undertitle": "Deux décennies <classic>d'expérience</classic>",
-                "description": "Grâce à notre longue expérience avec les nombreuses unités que nous avons gérées, nous sommes devenus une référence en termes d'engagement, de compréhension et d'exploitation de tout type de yacht.",
-                "description2": "Nous comprenons les besoins, les réglementations et les exigences de cette industrie. Notre force est d'être toujours un pas en avant."
-            },
-            "dropdown": {
-                "services": {
-                    "title": "Services personnalisés",
-                    "description": "Les principes de notre entreprise ont toujours été de fournir à nos clients un service personnalisé.",
-                    "description2": "Aujourd'hui, G-Yachts est à l'origine d'un grand nombre de ventes, de nouvelles constructions et de charters pour des yachts extrêmement renommés.",
-                    "description3": "Notre équipe spécialisée et expérimentée a permis à cette société privée d'évoluer au fil des années. Leader dans cette industrie, G-Yachts a toujours été financièrement indépendante et fidèle à ses principes."
-                },
-                "presence": {
-                    "title": "Une présence dans le monde entier",
-                    "description": "G-Yachts situé au cœur de Monaco, bénéficie du soutien de contreparties de choix dans plus de 20 pays grâce à notre partenariat avec Jetcraft."
-                },
-                "partnership": {
-                    "title": "Partenariat et recommandations",
-                    "description": "G-Yachts est membre « Gold » de la société internationale MYBA (Mediterranean Yacht Broker Association), également ECPY, Riviera Yachting Network et enfin PYA (Professional Yachtsmen's Association).",
-                    "description2": "Le fondateur Gaspard Milazzo fait de l'excellence son propre leitmotiv professionnel. La société est assurée par la Lloyd's à Londres. Toute l'équipe, formée par Gaspard Milazzo, est à l'aise avec les conditions et réglementations du Lloyd's et du Bureau Veritas afin de répondre efficacement aux normes ISM (International Safety Management) et ISPS (International Ship and Port Facility Security)."
-                }
-            }
-        },
-        "bottom": {
-            "title": "Construisez votre <classic>Mode de vie</classic>",
-            "description": "Découvrez notre sélection exclusive de yachts à vendre, présentée par nos courtiers spécialisés en yachts de luxe.\nNotre collection variée comprend les plus grands yachts à voile et à moteur du monde, allant des bateaux d'entrée de gamme aux opulents méga-yachts. Nous proposons des yachts neufs ainsi que des yachts appartenant à des particuliers. Forts de notre expertise et de nos relations avec les meilleurs chantiers navals et courtiers, nos spécialistes sont là pour vous guider dans la recherche et l'acquisition du yacht de vos rêves.",
-            "CTA": "CONTACTEZ-NOUS"
-        },
-        "team": "Our <classic>Team</classic>"
-    },
-    "recruitment": {
-        "metadata": {
-            "title": "Recrutement",
-            "description": "Découvrez les opportunités offertes par G-Yachts. Nous sommes toujours à la recherche de personnes talentueuses pour rejoindre notre équipe. Consultez nos offres d'emploi et postulez dès aujourd'hui.",
-            "keywords": "recruitment, recrutement, career, job, opportunities, yachting, luxury, brokerage, monaco, g-yachts",
-            "author": "G–Yachts"
-        },
-        "hero": {
-            "title": "Découvrez les opportunités offertes par <classic>G-Yachts</classic>.",
-            "subtitle": "RECRUTEMENT",
-            "undertitle": "Opportunités <classic>Actuelles</classic>"
-        },
-        "section": {
-            "title": "Rejoignez notre <classic>équipe</classic>",
-            "subtitle": "Si vous êtes intéressé par l'un de nos postes vacants, n'hésitez pas à nous contacter en envoyant votre CV et votre lettre de motivation à <classic>recruitment@g-yachts.com</classic>"
-        }
-    },
-    "management": {
-        "metadata": {
-            "title": "Management",
-            "description": "G-Yachts Management propose des services de gestion de yachts complets, assurant que votre navire soit maintenu aux plus hauts standards. Notre équipe d'experts s'occupe de tout, de la gestion de l'équipage à l'entretien et aux opérations, vous permettant de profiter des plaisirs de la propriété d'un yacht sans tracas.",
-            "keywords": "management, yachts, luxury, brokerage, monaco, g-yachts",
-            "author": "G–Yachts"
-        },
-        "hero": {
-            "title": "Nous nous occupons de tout pour vous offrir une totale <classic>tranquillité</classic>",
-            "subtitle": "YACHT MANAGEMENT"
-        },
-        "services": {
-            "subtitle": "SERVICES PERSONNALISÉS",
-            "title": "Votre expert dédié aux <classic>Yachts</classic>",
-            "paragraph1": "G-Yachts s'appuie sur 25 ans d'expérience dans l'industrie du Yachting. Parce que nous savons que chaque yacht est unique, nous élaborons une stratégie adaptée et personnalisée pour en assurer une utilisation optimale.",
-            "paragraph2": "Notre profonde connaissance des yachts nous permet d'avoir une compréhension globale de la gestion de chaque navire. Notre gamme de services respecte les réglementations en évolution permanente.",
-            "paragraph3": "Notre objectif : réduire les coûts, optimiser l'utilisation et permettre au propriétaire de profiter de son yacht en toute sérénité."
-        },
-        "servicesList": {
-            "finance": {
-                "title": "Gestion financière",
-                "description": "G-Yachts développera des budgets annuels basés sur les besoins du propriétaire, gérera les finances du yacht, sélectionnera des fournisseurs de haute qualité et fournira des rapports financiers mensuels. Pour une organisation efficace, nous recommandons l'utilisation du logiciel Deepblue, dont le yacht sera propriétaire."
-            },
-            "support": {
-                "title": "Assistance technique",
-                "description": "G-Yachts supervisera l'ensemble de la maintenance et des réparations des yachts, dans le respect des normes du fabricant et des réglementations en vigueur. Nous nous occupons de l'achat et de la livraison des pièces détachées et de l'équipement, nous sélectionnons les chantiers navals, et organisons les audits et les visites."
-            },
-            "administrative": {
-                "title": "Administratif",
-                "description": "G-Yachts s'occupera de toutes les tâches juridiques et administratives, y compris les enregistrements et les communications avec les autorités compétentes, et négociera également l'assurance pour le yacht et son équipage."
-            },
-            "crew": {
-                "title": "Gestion d'équipage",
-                "description": "G-Yachts recrutera et gérera un équipage qualifié pour le yacht selon les besoins du propriétaire et les normes réglementaires, y compris Safe Manning et STCW 2010. Nous superviserons la formation nécessaire de l'équipage conformément aux codes ISM/ISPS et veillerons à la discrétion de l'équipage afin de l'aligner sur la philosophie de l'armateur."
-            }
-        },
-        "assets": {
-            "title": "Nos <classic>Atouts</classic>",
-            "paragraph1": "Notre équipe de gestion est composée d'experts qui fournissent des services hautement personnalisés, des solutions sur mesure, avec le souci du détail et de la discrétion.",
-            "paragraph2": "Alors que beaucoup de nos concurrents se concentrent sur la gestion d'une flotte plus importante, chez G-Yachts nous privilégions la qualité à la quantité, en accordant plus de temps à chacun de nos clients pour travailler efficacement avec leur équipage.",
-            "paragraph3": "Un Yacht Manager assurera une assistance 24/7, respectera les plus hauts standards de qualité et de sécurité, et aidera à éviter toute situation critique. Notre objectif est de vous offrir un service inégalé.",
-            "paragraph4": "Nous fournissons un soutien et une assistance dans le monde entier."
-        },
-        "experience": {
-            "title": "Notre <classic>Expérience</classic>",
-            "subtitle": "MANAGEMENT",
-            "professionals": {
-                "title": "Une équipe de professionnels",
-                "description": "Gage de qualité, Gaspard Milazzo s'est entouré d'une équipe de professionnels passionnés, compétents et reconnus."
-            },
-            "needs": {
-                "title": "Nous anticipons vos besoins",
-                "description": "Le fait d'être un acteur actif de l'industrie du yachting nous permet de garantir un service efficace. Nous assistons à de nombreux salons nautiques et conférences afin de nous familiariser avec la réglementation en évolution permanente."
-            },
-            "performance": {
-                "title": "Performance en service",
-                "description": "Notre équipe d'experts et nos partenaires de qualité assurent l'analyse, les programmes d'entretien et la logistique. Nous apprécions le dialogue approfondi et la coopération avec les capitaines et les équipages qui, nous le croyons, augmentent et intensifient un service de haute qualité."
-            }
-        },
-        "bottom": {
-            "title": "Pour la Gestion des <classic>Yachts</classic>",
-            "CTA": "CONTACTEZ-NOUS"
-        }
-    },
-    "partners": {
-        "metadata": {
-            "title": "Partenaires",
-            "description": "G–Yachts collabore avec un large éventail de partenaires dans l'industrie du yachting. Découvrez nos partenaires.",
-            "keywords": "partenaires, yachts, luxe, courtage, monaco, g-yachts"
-        },
-        "hero": {
-            "title": "Ensemble, nous créons des <classic>expériences uniques</classic>",
-            "subtitle": "NOS PARTENAIRES"
-        },
-        "partners": {
-            "title": "Our <classic>Partners</classic>",
-            "description": "G-Yachts collaborates with a wide range of partners in the yachting industry. Discover our partners."
-        },
-        "detail": {
-            "website": "Site web",
-            "quote": "Au fil des années, G-Yachts a développé une stratégie axée sur la complémentarité et une synergie intelligente.",
-            "allProjects": "Voir tous les projets"
-        }
-    },
-    "contact": {
-        "metadata": {
-            "title": "Contact",
-            "description": "Contactez G–Yachts pour toute question ou demande de renseignements.",
-            "keywords": "contact, G–Yachts, question, demande, renseignements",
-            "author": "G–Yachts"
-        },
-        "CTA": "Contactez-<classic>nous</classic>",
-        "subheading": "Envoyez-nous une demande de renseignements ou parlez à l'un des membres de notre équipe par WhatsApp, par email ou par téléphone.",
-        "form": {
-            "name": "Nom*",
-            "email": "Email*",
-            "tel": "Téléphone",
-            "message": "Message*",
-            "inquiry": {
-                "title": "Je suis intéressé par",
-                "buying": "Achat",
-                "selling": "Vente",
-                "chartering": "Location",
-                "other": "Autre"
-            },
-            "newsletter": "M'abonner aux alertes et actualités de la société",
-            "law": "J'accèpte la <confidentiality>politique de confidentialité</confidentiality> & les <guidelines>conditions d'utilisation</guidelines>",
-            "submit": "Envoyer",
-            "sent": "Demande <classic>Envoyée</classic>!",
-            "feedback": "Nous vous répondrons dès que possible."
-        }
-    },
-    "newsletter": {
-        "title": "Inscrivez-Vous à notre <classic>Newsletter</classic>",
-        "subtitle": "Des destinations de charter de yachts les plus chaudes aux offres imbattables et aux<br></br>dernières nouvelles du monde du yachting, restez en contact et vous ne manquerez rien.",
-        "name": "Prénom*",
-        "surname": "Nom*",
-        "email": "Adresse e-mail*",
-        "send": "Envoyer",
-        "law": "J'accèpte la <confidentiality>politique de confidentialité</confidentiality> & les <guidelines>conditions d'utilisation</guidelines>",
-        "registered": "Inscrit!",
-        "feedback": "Vous êtes sur notre liste de nos newsletters."
-    },
-    "footer": {
-        "terms": "Conditions",
-        "privacy": "Confidentialité",
-        "credits": "Accréditations"
+    "memories": {
+      "title": "Créer des moments <classic>inoubliables</classic>",
+      "subtitle": "CHARTER AVEC NOUS",
+      "description": "Chez G-Yachts, nous sommes convaincus que les vacances à bord d'un superyacht n'ont pas d'équivalent sur terre, et nous nous efforçons de créer des expériences de yachting inégalées qui restent gravées dans les mémoires. Notre sélection de yachts d'élite, soutenue par une équipe internationale passionnée, promet de dépasser toutes les attentes. Laissez-nous vous concocter un voyage qui incarne l'essence même de l'extraordinaire.",
+      "CTA": "Charter un yacht"
     },
     "destinations": {
-        "metadata": {
-            "title": "Destinations",
-            "description": "Découvrez les destinations les plus exclusives du monde avec G-Yachts, où l'océan sans limites devient votre terrain de jeu.",
-            "keywords": "destinations, yachts, luxe, location, monaco, g-yachts"
-        },
-        "heroSubtitle": "Yachts à louer",
-        "heroTitle": "<classic>Destinations</classic> Incroyables"
-    },
-    "destination": {
-        "heroSubtitle": "Charter un yacht",
-        "details": {
-            "explore": "Explore",
-            "bestTimeTiVisit": "Best time to visit",
-            "currency": "Currency",
-            "languages": "Languages",
-            "gettingThere": "Getting there",
-            "button": "Charter un yacht"
-        },
-        "charters": "Charters <classic>{destination}</classic>"
-    },
-    "news": {
-        "metadata": {
-            "title": "News",
-            "description": "Restez au courant des dernières nouvelles de G-Yachts. Découvrez les derniers articles, événements et annonces du monde du yachting de luxe et pas seulement.",
-            "keywords": "news, articles, events, luxury, yachting, brokerage, monaco, g-yachts",
-            "author": "G–Yachts"
-        },
-        "title": "Dernières <classic>Actualités</classic>",
-        "readArticle": "Lire l'article",
-        "loadMore": "Charger plus",
-        "noArticles": "Pas d'articles trouvés"
-    },
-    "article": {
-        "postedOn": "Publié le",
-        "category": "Catégorie",
-        "moreArticles": "Plus <classic>d'articles</classic>"
-    },
-    "events": {
-        "metadata": {
-            "title": "Événements",
-            "description": "Découvrez les événements les plus exclusifs organisés par G–Yachts.",
-            "keywords": "événements, exclusif, G–Yachts, Monaco"
-        },
-        "hero": {
-            "title": "Votre invitation aux <classic>événements</classic> les plus exclusifs",
-            "subtitle": "Événements"
-        },
-        "upcoming": "Événements <classic>à venir</classic>",
-        "past": "Événements <classic>passés</classic>",
-        "more": "Lire plus",
-        "listed": "Vous avez vu {count} sur {total}",
-        "expand": "Charger plus",
-        "end": "Vous avez atteint la fin de nos événements",
-        "charters": "Affréter un <classic>yacht</classic>"
-    },
-    "search": {
-        "search": "Recherche",
-        "placeholder": "Rechercher un yacht, une destination, un article...",
-        "noResults": "Aucun résultat trouvé",
-        "yacht": "Yacht",
-        "yachts": "Yachts",
-        "charter": "Charte",
-        "charters": "Chartes",
-        "destination": "Destination",
-        "destinations": "Destinations",
-        "article": "Article",
-        "articles": "Articles",
-        "page": "Page",
-        "pages": "Pages"
-    },
-    "privacy": {
-        "title": "Politique de <classic>Confidentialité</classic>",
-        "description": "À G-Yachts Monaco, nous nous engageons à protéger la confidentialité de nos clients et visiteurs. Toutes les informations personnelles recueillies via notre site web, nos canaux de communication ou lors de la fourniture de nos services sont traitées avec la plus grande confidentialité. Nous recueillons et utilisons les données personnelles uniquement dans le but de fournir nos services de yachts de luxe, d'améliorer l'expérience des clients et de respecter les obligations légales. Nous ne partageons ni ne vendons des informations personnelles à des tiers, sauf lorsque cela est nécessaire pour répondre à vos demandes, fournir nos services ou se conformer aux lois applicables. Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre l'accès non autorisé, la modification ou la divulgation. En utilisant nos services ou en accédant à notre site web, vous consentez à la collecte, à l'utilisation et au stockage de vos informations personnelles telles que décrites dans cette politique de confidentialité. Si vous avez des préoccupations ou des demandes concernant vos données personnelles, veuillez nous contacter à <a>info@g-yachts.com</a>."
-    },
-    "terms": {
-        "title": "Conditions d<classic>Utilisation</classic>",
-        "description": "Politique de Confidentialité Chez G-Yachts Monaco, nous nous engageons à protéger la confidentialité de nos clients et visiteurs. Toutes les informations personnelles collectées via notre site web, nos canaux de communication ou lors de la prestation de nos services sont traitées avec la plus grande confidentialité. Nous recueillons et utilisons les données personnelles uniquement pour fournir nos services de yachts de luxe, améliorer l'expérience des clients et nous conformer aux obligations légales. Nous ne partageons ni ne vendons des informations personnelles à des tiers, sauf lorsque cela est nécessaire pour répondre à vos demandes, fournir nos services ou respecter les lois applicables. Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre l'accès non autorisé, la modification ou la divulgation. En utilisant nos services ou en accédant à notre site web, vous consentez à la collecte, à l'utilisation et au stockage de vos informations personnelles telles que décrites dans cette politique de confidentialité. Si vous avez des préoccupations ou des demandes concernant vos données personnelles, veuillez nous contacter à info@g-yachts.com. Conditions Générales En accédant et en utilisant les services fournis par G-Yachts Monaco, vous acceptez de respecter les conditions générales suivantes. Nos services sont fournis 'tel quel', et bien que nous nous efforcions d'offrir des expériences de la plus haute qualité, nous ne garantissons pas la disponibilité ininterrompue de nos services ni l'exactitude des informations fournies sur notre site web. La réservation et l'utilisation de nos services de yacht sont soumises à disponibilité et à des conditions spécifiques qui seront communiquées au moment de la réservation. Les clients sont responsables de s'assurer que toutes les informations fournies à G-Yachts Monaco sont précises et à jour. Nous nous réservons le droit de modifier ces conditions générales à tout moment, et l'utilisation continue de nos services après de telles modifications constitue votre acceptation des termes révisés. Tout litige découlant de l'utilisation de nos services sera régi par les lois de Monaco. Pour toute demande de renseignements ou clarifications concernant ces termes, veuillez nous contacter à <a>info@g-yachts.com</a>."
-    },
-    "credits": {
-        "title": "<classic>Accréditations</classic>",
-        "description": "Ingénieur Full Stack <classic><greg>Grégory Buffard</greg></classic><br></br>Ingénieur Full Stack <classic><maks>Maksym Petriv</maks></classic><br></br>Design par <classic><malo>Agence Malo</malo></classic>",
-        "manufacture": "Developpé avec de l<heart></heart> à Cannes"
-    },
-    "similar": {
-        "yachts": "<classic>Yachts</classic> similaires",
-        "charters": "<classic>Charters</classic> similaires",
-        "new-constructions": "<classic>Nouvelles constructions</classic> similaires"
+      "title": "Yacht de luxe à <classic>LOUER</classic>",
+      "description": "Évadez-vous dans les destinations les plus exclusives du monde en louant un superyacht avec G-Yachts, où l'océan sans limites devient votre terrain de jeu.",
+      "CTA": "Voir tout"
     }
+  },
+  "yachts": {
+    "carousel": {
+      "exclusive": "Exclusif",
+      "new": "Nouveauté",
+      "sold": "Vendu",
+      "all": "Explorer",
+      "sleeps": "invités",
+      "priceOnApplication": "Prix sur demande"
+    },
+    "filters": {
+      "label": "Filtres",
+      "any": "N'importe quel",
+      "type": {
+        "label": "Type de yacht",
+        "all": "Tous",
+        "motor": "Moteur",
+        "sail": "Voile"
+      },
+      "year": "Année",
+      "length": "Longueur du yacht ({unit, select, m {metres} ft {pieds} other {}})",
+      "builder": "Constructeur",
+      "price": "Prix",
+      "sleeps": "Invités",
+      "name": {
+        "label": "Nom du yacht",
+        "all": "Tous les yachts"
+      },
+      "clear": "Effacer les filtres",
+      "currency": "Devise",
+      "sort": {
+        "label": "Trier",
+        "price-asc": "Prix (du plus bas au plus élevé)",
+        "price-desc": "Prix (du plus élevé au plus bas)",
+        "length-asc": "Longueur (du plus bas au plus élevé)",
+        "length-desc": "Longueur (du plus élevé au plus bas)",
+        "year-asc": "Année (du plus récent au plus ancien)",
+        "year-desc": "Année (du plus ancien au plus récent)"
+      }
+    },
+    "views": {
+      "global": "Resultats de recherche",
+      "bookmarks": "Ma liste de favoris",
+      "empty": "Votre liste est vide..."
+    },
+    "guide": "Cliquez sur l'icône pour ajouter des yachts à votre liste de favoris",
+    "info": "Rassemblez vos yachts préférés – ajoutez-en plus à votre liste de favoris",
+    "listed": "Vous avez vu {count} sur {total}",
+    "expand": "Charger plus",
+    "end": "Vous avez atteint la fin de notre catalogue"
+  },
+  "yacht": {
+    "noPrice": "Prix sur demande",
+    "sleeps": "invités",
+    "delivery": "Livraison",
+    "availability": "Disponibilité",
+    "reserved": "RÉSERVÉ",
+    "exclusive": "Exclusif",
+    "new": "Nouveauté",
+    "sold": "Vendu",
+    "details": {
+      "gallery": "Explorer plus d'images",
+      "info": "Informations clés",
+      "features": "Caractéristiques clés",
+      "brochure": "Brochure",
+      "characteristics": {
+        "type": {
+          "label": "Type",
+          "motor": "Moteur",
+          "sail": "Voile"
+        },
+        "length": "Longueur",
+        "beam": "Largeur",
+        "sleeps": "Couchages",
+        "cruisingGuests": "Invités en croisière",
+        "rooms": "Cabines",
+        "draft": "Tirant d'eau",
+        "maxDraft": "Tirant d'eau maximum",
+        "tonnage": "Poids",
+        "yearBuilt": "Année de construction",
+        "yearModel": "Année du modèle",
+        "yearRefit": "Année de refonte",
+        "hull": "Type de coque",
+        "location": "Emplacement",
+        "crypto": {
+          "label": "Cryptomonnaie",
+          "true": "Accepté",
+          "false": "Non accepté"
+        },
+        "builder": "Constructeur"
+      },
+      "description": "Lire plus",
+      "CTA": "Contactez un courtier"
+    }
+  },
+  "sales": {
+    "metadata": {
+      "title": "Ventes",
+      "description": "Découvrez notre liste des meilleurs yachts du marché.",
+      "keywords": "yachts, vente, marché, liste, monaco, g-yachts"
+    },
+    "hero": {
+      "title": "Trouvez le Yacht parfait pour <classic>Vous</classic>",
+      "subtitle": "Yachts à vendre",
+      "guests": "invités"
+    },
+    "featured": "<classic>Ventes</classic> en vedette",
+    "similar": "<classic>Ventes</classic> similaires"
+  },
+  "charters": {
+    "metadata": {
+      "title": "Charters",
+      "description": "Vivez le summum du luxe avec G-Yachts Charters, offrant des expériences de yacht sur mesure depuis Monaco vers les plus belles destinations de la Méditerranée. Notre flotte sélectionnée et notre équipe d'experts garantissent que chaque voyage est parfaitement adapté, pour des moments inoubliables en mer.",
+      "keywords": "yachts, location, marché, liste, monaco, g-yachts, charters, charter, monaco, luxury, mer, voyage, cruise.",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Créer des moments <classic>inoubliables</classic>",
+      "subtitle": "Yachts à location",
+      "guests": "invités"
+    },
+    "similar": "<classic>Charters</classic> similaires"
+  },
+  "new-constructions": {
+    "metadata": {
+      "title": "Nouvelles constructions",
+      "description": "Découvrez notre liste des meilleurs yachts du marché.",
+      "keywords": "yachts, vente, marché, liste, monaco, g-yachts"
+    },
+    "hero": {
+      "title": "La prochaine génération de conceptions de yachts <classic>innovantes</classic>",
+      "subtitle": "NOUVELLE CONSTRUCTION"
+    },
+    "similar": "<classic>Nouvelles constructions</classic> similaires"
+  },
+  "company": {
+    "metadata": {
+      "title": "Company",
+      "description": "G-Yachts, basé à Monaco, est un leader dans l'industrie du yachting de luxe, offrant une expertise inégalée et des services personnalisés. Avec une passion pour l'excellence, notre équipe dévouée propose des expériences sur mesure, de la vente et la location de yachts à la gestion, garantissant les plus hauts standards de qualité et de satisfaction.",
+      "keywords": "yachts, sales, charters, ventes, location, management, construction, Monaco, G–Yachts",
+      "author": "G-Yachts"
+    },
+    "hero": {
+      "subtitle": "UN HÉRITAGE FAMILIAL",
+      "title": "Une confiance de <classic>25 ANS</classic>",
+      "description": "G-Yachts incarne la détermination, l'éthique des affaires et l'expérience. Au fil du temps, la famille Milazzo a mené avec succès la vente, l'affrètement et la gestion de nombreux yachts de renom, grâce à un réseau remarquable et à des homologues de qualité dans le monde entier.",
+      "description2": "Gaspard Milazzo, ancien capitaine et ingénieur en mécanique, a formé de nombreux capitaines au début de sa carrière. Issu d'une famille de pionniers de la vente de bateaux et de l'affrètement sur la Côte d'Azur, il a connu toutes les facettes de l'industrie du yachting dès son plus jeune âge. En 1999, il a fondé G-Yachts, motivé par ses connaissances approfondies et son engagement pour l'excellence. Connu pour son honnêteté et ses relations à long terme avec ses clients, Gaspard s'assure que chaque client reçoive des conseils d'experts et des solutions sur mesure, reflétant son dévouement au monde du yachting et sa capacité à répondre à toutes les demandes."
+    },
+    "story": {
+      "header": {
+        "title": "Notre <classic>Histoire</classic>"
+      },
+      "content": {
+        "first": {
+          "title": "DÉBUT D'UNE NOUVELLE SOCIÉTÉ CANNES NAUTIC",
+          "text": "Ancienne navigatrice, la famille Milazzo crée « Cannes Nautic ». La société s'est spécialisée dans la vente, l'entretien et la réparation en baie de Cannes."
+        },
+        "second": {
+          "title": "ACQUISITION DE S.A GLEMOT",
+          "text": "Après le succès de Cannes Nautic, les Milazzo ont décidé de s'agrandir en rachetant la S. A Glemot. Cette dernière disposait d'une flotte conséquente de yachts à vendre, à louer et à gérer, dans le port de Mandelieu la Napoule."
+        },
+        "third": {
+          "title": "GASPARD YACHTS",
+          "text": "Suivant la voie tracée par son père, Gaspard Milazzo a pris de l'avance et a décidé de fonder sa propre entreprise à Cannes : Gaspard Yachts. Fort de sa fiabilité et de ses connaissances approfondies de l'industrie du yachting, il a rapidement acquis une réputation mondiale. Les services de haut niveau fournis à sa clientèle internationale sont depuis lors salués par de nombreux propriétaires de yachts, capitaines et l'ensemble de l'industrie : Gaspard Yachts est une référence."
+        },
+        "fourth": {
+          "title": "JETCRAFT SUPPORT & G-YACHTS CREATION À MONACO",
+          "text": "Suite au partenariat avec le leader mondial de l'aviation privée et commerciale, Jetcraft, Gaspard Milazzo a créé G-Yachts et l'a installé à Monaco sur le long terme afin de fournir un service personnalisé de la plus haute qualité."
+        },
+        "citation": "« Depuis plus de 25 ans, G-YACHTS a établi des relations solides avec ses clients, basées sur la confiance, le dévouement et un service impeccable. Nous sommes fiers de notre travail et de notre position dans l'industrie. En collaborant avec des chantiers navals et des architectes de renom, nous avons constamment amélioré nos services et renforcé nos relations avec nos clients. En tant qu'experts passionnés de yachting, nous nous engageons à être votre premier partenaire de yachting et à vous offrir une expérience de yachting exceptionnelle ».",
+        "signature": "FONDATEUR ET CEO"
+      }
+    },
+    "philosophy": {
+      "header": {
+        "title": "La navigation de plaisance est une affaire de <classic>Passion</classic>",
+        "subtitle": "NOTRE PHILOSOPHIE",
+        "undertitle": "Deux décennies <classic>d'expérience</classic>",
+        "description": "Grâce à notre longue expérience avec les nombreuses unités que nous avons gérées, nous sommes devenus une référence en termes d'engagement, de compréhension et d'exploitation de tout type de yacht.",
+        "description2": "Nous comprenons les besoins, les réglementations et les exigences de cette industrie. Notre force est d'être toujours un pas en avant."
+      },
+      "dropdown": {
+        "services": {
+          "title": "Services personnalisés",
+          "description": "Les principes de notre entreprise ont toujours été de fournir à nos clients un service personnalisé.",
+          "description2": "Aujourd'hui, G-Yachts est à l'origine d'un grand nombre de ventes, de nouvelles constructions et de charters pour des yachts extrêmement renommés.",
+          "description3": "Notre équipe spécialisée et expérimentée a permis à cette société privée d'évoluer au fil des années. Leader dans cette industrie, G-Yachts a toujours été financièrement indépendante et fidèle à ses principes."
+        },
+        "presence": {
+          "title": "Une présence dans le monde entier",
+          "description": "G-Yachts situé au cœur de Monaco, bénéficie du soutien de contreparties de choix dans plus de 20 pays grâce à notre partenariat avec Jetcraft."
+        },
+        "partnership": {
+          "title": "Partenariat et recommandations",
+          "description": "G-Yachts est membre « Gold » de la société internationale MYBA (Mediterranean Yacht Broker Association), également ECPY, Riviera Yachting Network et enfin PYA (Professional Yachtsmen's Association).",
+          "description2": "Le fondateur Gaspard Milazzo fait de l'excellence son propre leitmotiv professionnel. La société est assurée par la Lloyd's à Londres. Toute l'équipe, formée par Gaspard Milazzo, est à l'aise avec les conditions et réglementations du Lloyd's et du Bureau Veritas afin de répondre efficacement aux normes ISM (International Safety Management) et ISPS (International Ship and Port Facility Security)."
+        }
+      }
+    },
+    "bottom": {
+      "title": "Construisez votre <classic>Mode de vie</classic>",
+      "description": "Découvrez notre sélection exclusive de yachts à vendre, présentée par nos courtiers spécialisés en yachts de luxe.\nNotre collection variée comprend les plus grands yachts à voile et à moteur du monde, allant des bateaux d'entrée de gamme aux opulents méga-yachts. Nous proposons des yachts neufs ainsi que des yachts appartenant à des particuliers. Forts de notre expertise et de nos relations avec les meilleurs chantiers navals et courtiers, nos spécialistes sont là pour vous guider dans la recherche et l'acquisition du yacht de vos rêves.",
+      "CTA": "CONTACTEZ-NOUS"
+    },
+    "team": "Our <classic>Team</classic>"
+  },
+  "recruitment": {
+    "metadata": {
+      "title": "Recrutement",
+      "description": "Découvrez les opportunités offertes par G-Yachts. Nous sommes toujours à la recherche de personnes talentueuses pour rejoindre notre équipe. Consultez nos offres d'emploi et postulez dès aujourd'hui.",
+      "keywords": "recruitment, recrutement, career, job, opportunities, yachting, luxury, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Découvrez les opportunités offertes par <classic>G-Yachts</classic>.",
+      "subtitle": "RECRUTEMENT",
+      "undertitle": "Opportunités <classic>Actuelles</classic>"
+    },
+    "section": {
+      "title": "Rejoignez notre <classic>équipe</classic>",
+      "subtitle": "Si vous êtes intéressé par l'un de nos postes vacants, n'hésitez pas à nous contacter en envoyant votre CV et votre lettre de motivation à <classic>recruitment@g-yachts.com</classic>"
+    }
+  },
+  "management": {
+    "metadata": {
+      "title": "Management",
+      "description": "G-Yachts Management propose des services de gestion de yachts complets, assurant que votre navire soit maintenu aux plus hauts standards. Notre équipe d'experts s'occupe de tout, de la gestion de l'équipage à l'entretien et aux opérations, vous permettant de profiter des plaisirs de la propriété d'un yacht sans tracas.",
+      "keywords": "management, yachts, luxury, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Nous nous occupons de tout pour vous offrir une totale <classic>tranquillité</classic>",
+      "subtitle": "YACHT MANAGEMENT"
+    },
+    "services": {
+      "subtitle": "SERVICES PERSONNALISÉS",
+      "title": "Votre expert dédié aux <classic>Yachts</classic>",
+      "paragraph1": "G-Yachts s'appuie sur 25 ans d'expérience dans l'industrie du Yachting. Parce que nous savons que chaque yacht est unique, nous élaborons une stratégie adaptée et personnalisée pour en assurer une utilisation optimale.",
+      "paragraph2": "Notre profonde connaissance des yachts nous permet d'avoir une compréhension globale de la gestion de chaque navire. Notre gamme de services respecte les réglementations en évolution permanente.",
+      "paragraph3": "Notre objectif : réduire les coûts, optimiser l'utilisation et permettre au propriétaire de profiter de son yacht en toute sérénité."
+    },
+    "servicesList": {
+      "finance": {
+        "title": "Gestion financière",
+        "description": "G-Yachts développera des budgets annuels basés sur les besoins du propriétaire, gérera les finances du yacht, sélectionnera des fournisseurs de haute qualité et fournira des rapports financiers mensuels. Pour une organisation efficace, nous recommandons l'utilisation du logiciel Deepblue, dont le yacht sera propriétaire."
+      },
+      "support": {
+        "title": "Assistance technique",
+        "description": "G-Yachts supervisera l'ensemble de la maintenance et des réparations des yachts, dans le respect des normes du fabricant et des réglementations en vigueur. Nous nous occupons de l'achat et de la livraison des pièces détachées et de l'équipement, nous sélectionnons les chantiers navals, et organisons les audits et les visites."
+      },
+      "administrative": {
+        "title": "Administratif",
+        "description": "G-Yachts s'occupera de toutes les tâches juridiques et administratives, y compris les enregistrements et les communications avec les autorités compétentes, et négociera également l'assurance pour le yacht et son équipage."
+      },
+      "crew": {
+        "title": "Gestion d'équipage",
+        "description": "G-Yachts recrutera et gérera un équipage qualifié pour le yacht selon les besoins du propriétaire et les normes réglementaires, y compris Safe Manning et STCW 2010. Nous superviserons la formation nécessaire de l'équipage conformément aux codes ISM/ISPS et veillerons à la discrétion de l'équipage afin de l'aligner sur la philosophie de l'armateur."
+      }
+    },
+    "assets": {
+      "title": "Nos <classic>Atouts</classic>",
+      "paragraph1": "Notre équipe de gestion est composée d'experts qui fournissent des services hautement personnalisés, des solutions sur mesure, avec le souci du détail et de la discrétion.",
+      "paragraph2": "Alors que beaucoup de nos concurrents se concentrent sur la gestion d'une flotte plus importante, chez G-Yachts nous privilégions la qualité à la quantité, en accordant plus de temps à chacun de nos clients pour travailler efficacement avec leur équipage.",
+      "paragraph3": "Un Yacht Manager assurera une assistance 24/7, respectera les plus hauts standards de qualité et de sécurité, et aidera à éviter toute situation critique. Notre objectif est de vous offrir un service inégalé.",
+      "paragraph4": "Nous fournissons un soutien et une assistance dans le monde entier."
+    },
+    "experience": {
+      "title": "Notre <classic>Expérience</classic>",
+      "subtitle": "MANAGEMENT",
+      "professionals": {
+        "title": "Une équipe de professionnels",
+        "description": "Gage de qualité, Gaspard Milazzo s'est entouré d'une équipe de professionnels passionnés, compétents et reconnus."
+      },
+      "needs": {
+        "title": "Nous anticipons vos besoins",
+        "description": "Le fait d'être un acteur actif de l'industrie du yachting nous permet de garantir un service efficace. Nous assistons à de nombreux salons nautiques et conférences afin de nous familiariser avec la réglementation en évolution permanente."
+      },
+      "performance": {
+        "title": "Performance en service",
+        "description": "Notre équipe d'experts et nos partenaires de qualité assurent l'analyse, les programmes d'entretien et la logistique. Nous apprécions le dialogue approfondi et la coopération avec les capitaines et les équipages qui, nous le croyons, augmentent et intensifient un service de haute qualité."
+      }
+    },
+    "bottom": {
+      "title": "Pour la Gestion des <classic>Yachts</classic>",
+      "CTA": "CONTACTEZ-NOUS"
+    }
+  },
+  "partners": {
+    "metadata": {
+      "title": "Partenaires",
+      "description": "G–Yachts collabore avec un large éventail de partenaires dans l'industrie du yachting. Découvrez nos partenaires.",
+      "keywords": "partenaires, yachts, luxe, courtage, monaco, g-yachts"
+    },
+    "hero": {
+      "title": "Ensemble, nous créons des <classic>expériences uniques</classic>",
+      "subtitle": "NOS PARTENAIRES"
+    },
+    "partners": {
+      "title": "Our <classic>Partners</classic>",
+      "description": "G-Yachts collaborates with a wide range of partners in the yachting industry. Discover our partners."
+    },
+    "detail": {
+      "website": "Site web",
+      "quote": "Au fil des années, G-Yachts a développé une stratégie axée sur la complémentarité et une synergie intelligente.",
+      "allProjects": "Voir tous les projets"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Contact",
+      "description": "Contactez G–Yachts pour toute question ou demande de renseignements.",
+      "keywords": "contact, G–Yachts, question, demande, renseignements",
+      "author": "G–Yachts"
+    },
+    "CTA": "Contactez-<classic>nous</classic>",
+    "subheading": "Envoyez-nous une demande de renseignements ou parlez à l'un des membres de notre équipe par WhatsApp, par email ou par téléphone.",
+    "form": {
+      "name": "Nom*",
+      "email": "Email*",
+      "tel": "Téléphone",
+      "message": "Message*",
+      "inquiry": {
+        "title": "Je suis intéressé par",
+        "buying": "Achat",
+        "selling": "Vente",
+        "chartering": "Location",
+        "other": "Autre"
+      },
+      "newsletter": "M'abonner aux alertes et actualités de la société",
+      "law": "J'accèpte la <confidentiality>politique de confidentialité</confidentiality> & les <guidelines>conditions d'utilisation</guidelines>",
+      "submit": "Envoyer",
+      "sent": "Demande <classic>Envoyée</classic>!",
+      "feedback": "Nous vous répondrons dès que possible."
+    }
+  },
+  "newsletter": {
+    "title": "Inscrivez-Vous à notre <classic>Newsletter</classic>",
+    "subtitle": "Des destinations de charter de yachts les plus chaudes aux offres imbattables et aux<br></br>dernières nouvelles du monde du yachting, restez en contact et vous ne manquerez rien.",
+    "name": "Prénom*",
+    "surname": "Nom*",
+    "email": "Adresse e-mail*",
+    "send": "Envoyer",
+    "law": "J'accèpte la <confidentiality>politique de confidentialité</confidentiality> & les <guidelines>conditions d'utilisation</guidelines>",
+    "registered": "Inscrit!",
+    "feedback": "Vous êtes sur notre liste de nos newsletters."
+  },
+  "footer": {
+    "terms": "Conditions",
+    "privacy": "Confidentialité",
+    "credits": "Accréditations"
+  },
+  "destinations": {
+    "metadata": {
+      "title": "Destinations",
+      "description": "Découvrez les destinations les plus exclusives du monde avec G-Yachts, où l'océan sans limites devient votre terrain de jeu.",
+      "keywords": "destinations, yachts, luxe, location, monaco, g-yachts"
+    },
+    "heroSubtitle": "Yachts à louer",
+    "heroTitle": "<classic>Destinations</classic> Incroyables"
+  },
+  "destination": {
+    "heroSubtitle": "Charter un yacht",
+    "details": {
+      "explore": "Explore",
+      "bestTimeTiVisit": "Best time to visit",
+      "currency": "Currency",
+      "languages": "Languages",
+      "gettingThere": "Getting there",
+      "button": "Charter un yacht"
+    },
+    "charters": "Charters <classic>{destination}</classic>"
+  },
+  "news": {
+    "metadata": {
+      "title": "News",
+      "description": "Restez au courant des dernières nouvelles de G-Yachts. Découvrez les derniers articles, événements et annonces du monde du yachting de luxe et pas seulement.",
+      "keywords": "news, articles, events, luxury, yachting, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "title": "Dernières <classic>Actualités</classic>",
+    "readArticle": "Lire l'article",
+    "loadMore": "Charger plus",
+    "noArticles": "Pas d'articles trouvés"
+  },
+  "article": {
+    "postedOn": "Publié le",
+    "category": "Catégorie",
+    "moreArticles": "Plus <classic>d'articles</classic>"
+  },
+  "events": {
+    "metadata": {
+      "title": "Événements",
+      "description": "Découvrez les événements les plus exclusifs organisés par G–Yachts.",
+      "keywords": "événements, exclusif, G–Yachts, Monaco"
+    },
+    "hero": {
+      "title": "Votre invitation aux <classic>événements</classic> les plus exclusifs",
+      "subtitle": "Événements"
+    },
+    "upcoming": "Événements <classic>à venir</classic>",
+    "past": "Événements <classic>passés</classic>",
+    "more": "Lire plus",
+    "listed": "Vous avez vu {count} sur {total}",
+    "expand": "Charger plus",
+    "end": "Vous avez atteint la fin de nos événements",
+    "charters": "Affréter un <classic>yacht</classic>"
+  },
+  "search": {
+    "search": "Recherche",
+    "placeholder": "Rechercher un yacht, une destination, un article...",
+    "noResults": "Aucun résultat trouvé",
+    "yacht": "Yacht",
+    "yachts": "Yachts",
+    "charter": "Charte",
+    "charters": "Chartes",
+    "destination": "Destination",
+    "destinations": "Destinations",
+    "article": "Article",
+    "articles": "Articles",
+    "page": "Page",
+    "pages": "Pages"
+  },
+  "privacy": {
+    "title": "Politique de <classic>Confidentialité</classic>",
+    "description": "À G-Yachts Monaco, nous nous engageons à protéger la confidentialité de nos clients et visiteurs. Toutes les informations personnelles recueillies via notre site web, nos canaux de communication ou lors de la fourniture de nos services sont traitées avec la plus grande confidentialité. Nous recueillons et utilisons les données personnelles uniquement dans le but de fournir nos services de yachts de luxe, d'améliorer l'expérience des clients et de respecter les obligations légales. Nous ne partageons ni ne vendons des informations personnelles à des tiers, sauf lorsque cela est nécessaire pour répondre à vos demandes, fournir nos services ou se conformer aux lois applicables. Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre l'accès non autorisé, la modification ou la divulgation. En utilisant nos services ou en accédant à notre site web, vous consentez à la collecte, à l'utilisation et au stockage de vos informations personnelles telles que décrites dans cette politique de confidentialité. Si vous avez des préoccupations ou des demandes concernant vos données personnelles, veuillez nous contacter à <a>info@g-yachts.com</a>."
+  },
+  "terms": {
+    "title": "Conditions d<classic>Utilisation</classic>",
+    "description": "Politique de Confidentialité Chez G-Yachts Monaco, nous nous engageons à protéger la confidentialité de nos clients et visiteurs. Toutes les informations personnelles collectées via notre site web, nos canaux de communication ou lors de la prestation de nos services sont traitées avec la plus grande confidentialité. Nous recueillons et utilisons les données personnelles uniquement pour fournir nos services de yachts de luxe, améliorer l'expérience des clients et nous conformer aux obligations légales. Nous ne partageons ni ne vendons des informations personnelles à des tiers, sauf lorsque cela est nécessaire pour répondre à vos demandes, fournir nos services ou respecter les lois applicables. Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre l'accès non autorisé, la modification ou la divulgation. En utilisant nos services ou en accédant à notre site web, vous consentez à la collecte, à l'utilisation et au stockage de vos informations personnelles telles que décrites dans cette politique de confidentialité. Si vous avez des préoccupations ou des demandes concernant vos données personnelles, veuillez nous contacter à info@g-yachts.com. Conditions Générales En accédant et en utilisant les services fournis par G-Yachts Monaco, vous acceptez de respecter les conditions générales suivantes. Nos services sont fournis 'tel quel', et bien que nous nous efforcions d'offrir des expériences de la plus haute qualité, nous ne garantissons pas la disponibilité ininterrompue de nos services ni l'exactitude des informations fournies sur notre site web. La réservation et l'utilisation de nos services de yacht sont soumises à disponibilité et à des conditions spécifiques qui seront communiquées au moment de la réservation. Les clients sont responsables de s'assurer que toutes les informations fournies à G-Yachts Monaco sont précises et à jour. Nous nous réservons le droit de modifier ces conditions générales à tout moment, et l'utilisation continue de nos services après de telles modifications constitue votre acceptation des termes révisés. Tout litige découlant de l'utilisation de nos services sera régi par les lois de Monaco. Pour toute demande de renseignements ou clarifications concernant ces termes, veuillez nous contacter à <a>info@g-yachts.com</a>."
+  },
+  "credits": {
+    "title": "<classic>Accréditations</classic>",
+    "description": "Ingénieur Full Stack <classic><greg>Grégory Buffard</greg></classic><br></br>Ingénieur Full Stack <classic><maks>Maksym Petriv</maks></classic><br></br>Design par <classic><malo>Agence Malo</malo></classic>",
+    "manufacture": "Developpé avec de l<heart></heart> à Cannes"
+  },
+  "similar": {
+    "yachts": "<classic>Yachts</classic> similaires",
+    "charters": "<classic>Charters</classic> similaires",
+    "new-constructions": "<classic>Nouvelles constructions</classic> similaires"
+  }
 }

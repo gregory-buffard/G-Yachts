@@ -3932,6 +3932,7 @@ type UsersUnlockDocAccess {
 type usersMe {
   collection: String
   exp: Int
+  strategy: String
   token: String
   user: User
 }
@@ -3959,6 +3960,7 @@ type Yacht {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -4738,6 +4740,7 @@ input Yacht_where {
   region: Yacht_region_operator
   rooms: Yacht_rooms_operator
   sleeps: Yacht_sleeps_operator
+  cruisingGuests: Yacht_cruisingGuests_operator
   subcategory: Yacht_subcategory_operator
   tonnage: Yacht_tonnage_operator
   yearBuilt: Yacht_yearBuilt_operator
@@ -4961,6 +4964,16 @@ input Yacht_sleeps_operator {
   greater_than: Float
   less_than_equal: Float
   less_than: Float
+}
+
+input Yacht_cruisingGuests_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
 }
 
 input Yacht_subcategory_operator {
@@ -5188,6 +5201,7 @@ input Yacht_where_and {
   region: Yacht_region_operator
   rooms: Yacht_rooms_operator
   sleeps: Yacht_sleeps_operator
+  cruisingGuests: Yacht_cruisingGuests_operator
   subcategory: Yacht_subcategory_operator
   tonnage: Yacht_tonnage_operator
   yearBuilt: Yacht_yearBuilt_operator
@@ -5234,6 +5248,7 @@ input Yacht_where_or {
   region: Yacht_region_operator
   rooms: Yacht_rooms_operator
   sleeps: Yacht_sleeps_operator
+  cruisingGuests: Yacht_cruisingGuests_operator
   subcategory: Yacht_subcategory_operator
   tonnage: Yacht_tonnage_operator
   yearBuilt: Yacht_yearBuilt_operator
@@ -5292,6 +5307,7 @@ type YachtsDocAccessFields {
   region: YachtsDocAccessFields_region
   rooms: YachtsDocAccessFields_rooms
   sleeps: YachtsDocAccessFields_sleeps
+  cruisingGuests: YachtsDocAccessFields_cruisingGuests
   subcategory: YachtsDocAccessFields_subcategory
   tonnage: YachtsDocAccessFields_tonnage
   yearBuilt: YachtsDocAccessFields_yearBuilt
@@ -5790,6 +5806,29 @@ type YachtsDocAccessFields_sleeps_Update {
 }
 
 type YachtsDocAccessFields_sleeps_Delete {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_cruisingGuests {
+  create: YachtsDocAccessFields_cruisingGuests_Create
+  read: YachtsDocAccessFields_cruisingGuests_Read
+  update: YachtsDocAccessFields_cruisingGuests_Update
+  delete: YachtsDocAccessFields_cruisingGuests_Delete
+}
+
+type YachtsDocAccessFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_cruisingGuests_Delete {
   permission: Boolean!
 }
 
@@ -6360,6 +6399,7 @@ type Charter {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -7226,6 +7266,7 @@ input Charter_where {
   region: Charter_region_operator
   rooms: Charter_rooms_operator
   sleeps: Charter_sleeps_operator
+  cruisingGuests: Charter_cruisingGuests_operator
   subcategory: Charter_subcategory_operator
   tonnage: Charter_tonnage_operator
   yearBuilt: Charter_yearBuilt_operator
@@ -7465,6 +7506,16 @@ input Charter_sleeps_operator {
   greater_than: Float
   less_than_equal: Float
   less_than: Float
+}
+
+input Charter_cruisingGuests_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
 }
 
 input Charter_subcategory_operator {
@@ -7745,6 +7796,7 @@ input Charter_where_and {
   region: Charter_region_operator
   rooms: Charter_rooms_operator
   sleeps: Charter_sleeps_operator
+  cruisingGuests: Charter_cruisingGuests_operator
   subcategory: Charter_subcategory_operator
   tonnage: Charter_tonnage_operator
   yearBuilt: Charter_yearBuilt_operator
@@ -7797,6 +7849,7 @@ input Charter_where_or {
   region: Charter_region_operator
   rooms: Charter_rooms_operator
   sleeps: Charter_sleeps_operator
+  cruisingGuests: Charter_cruisingGuests_operator
   subcategory: Charter_subcategory_operator
   tonnage: Charter_tonnage_operator
   yearBuilt: Charter_yearBuilt_operator
@@ -7860,6 +7913,7 @@ type ChartersDocAccessFields {
   region: ChartersDocAccessFields_region
   rooms: ChartersDocAccessFields_rooms
   sleeps: ChartersDocAccessFields_sleeps
+  cruisingGuests: ChartersDocAccessFields_cruisingGuests
   subcategory: ChartersDocAccessFields_subcategory
   tonnage: ChartersDocAccessFields_tonnage
   yearBuilt: ChartersDocAccessFields_yearBuilt
@@ -8411,6 +8465,29 @@ type ChartersDocAccessFields_sleeps_Update {
 }
 
 type ChartersDocAccessFields_sleeps_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_cruisingGuests {
+  create: ChartersDocAccessFields_cruisingGuests_Create
+  read: ChartersDocAccessFields_cruisingGuests_Read
+  update: ChartersDocAccessFields_cruisingGuests_Update
+  delete: ChartersDocAccessFields_cruisingGuests_Delete
+}
+
+type ChartersDocAccessFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_cruisingGuests_Delete {
   permission: Boolean!
 }
 
@@ -14101,6 +14178,7 @@ type NewConstruction {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -14881,6 +14959,7 @@ input NewConstruction_where {
   region: NewConstruction_region_operator
   rooms: NewConstruction_rooms_operator
   sleeps: NewConstruction_sleeps_operator
+  cruisingGuests: NewConstruction_cruisingGuests_operator
   subcategory: NewConstruction_subcategory_operator
   tonnage: NewConstruction_tonnage_operator
   yearBuilt: NewConstruction_yearBuilt_operator
@@ -15116,6 +15195,16 @@ input NewConstruction_sleeps_operator {
   less_than: Float
 }
 
+input NewConstruction_cruisingGuests_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input NewConstruction_subcategory_operator {
   equals: String
   not_equals: String
@@ -15342,6 +15431,7 @@ input NewConstruction_where_and {
   region: NewConstruction_region_operator
   rooms: NewConstruction_rooms_operator
   sleeps: NewConstruction_sleeps_operator
+  cruisingGuests: NewConstruction_cruisingGuests_operator
   subcategory: NewConstruction_subcategory_operator
   tonnage: NewConstruction_tonnage_operator
   yearBuilt: NewConstruction_yearBuilt_operator
@@ -15389,6 +15479,7 @@ input NewConstruction_where_or {
   region: NewConstruction_region_operator
   rooms: NewConstruction_rooms_operator
   sleeps: NewConstruction_sleeps_operator
+  cruisingGuests: NewConstruction_cruisingGuests_operator
   subcategory: NewConstruction_subcategory_operator
   tonnage: NewConstruction_tonnage_operator
   yearBuilt: NewConstruction_yearBuilt_operator
@@ -15448,6 +15539,7 @@ type NewConstructionsDocAccessFields {
   region: NewConstructionsDocAccessFields_region
   rooms: NewConstructionsDocAccessFields_rooms
   sleeps: NewConstructionsDocAccessFields_sleeps
+  cruisingGuests: NewConstructionsDocAccessFields_cruisingGuests
   subcategory: NewConstructionsDocAccessFields_subcategory
   tonnage: NewConstructionsDocAccessFields_tonnage
   yearBuilt: NewConstructionsDocAccessFields_yearBuilt
@@ -15969,6 +16061,29 @@ type NewConstructionsDocAccessFields_sleeps_Update {
 }
 
 type NewConstructionsDocAccessFields_sleeps_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruisingGuests {
+  create: NewConstructionsDocAccessFields_cruisingGuests_Create
+  read: NewConstructionsDocAccessFields_cruisingGuests_Read
+  update: NewConstructionsDocAccessFields_cruisingGuests_Update
+  delete: NewConstructionsDocAccessFields_cruisingGuests_Delete
+}
+
+type NewConstructionsDocAccessFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruisingGuests_Delete {
   permission: Boolean!
 }
 
@@ -20787,6 +20902,7 @@ type YachtsFields {
   region: YachtsFields_region
   rooms: YachtsFields_rooms
   sleeps: YachtsFields_sleeps
+  cruisingGuests: YachtsFields_cruisingGuests
   subcategory: YachtsFields_subcategory
   tonnage: YachtsFields_tonnage
   yearBuilt: YachtsFields_yearBuilt
@@ -21285,6 +21401,29 @@ type YachtsFields_sleeps_Update {
 }
 
 type YachtsFields_sleeps_Delete {
+  permission: Boolean!
+}
+
+type YachtsFields_cruisingGuests {
+  create: YachtsFields_cruisingGuests_Create
+  read: YachtsFields_cruisingGuests_Read
+  update: YachtsFields_cruisingGuests_Update
+  delete: YachtsFields_cruisingGuests_Delete
+}
+
+type YachtsFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_cruisingGuests_Delete {
   permission: Boolean!
 }
 
@@ -21862,6 +22001,7 @@ type ChartersFields {
   region: ChartersFields_region
   rooms: ChartersFields_rooms
   sleeps: ChartersFields_sleeps
+  cruisingGuests: ChartersFields_cruisingGuests
   subcategory: ChartersFields_subcategory
   tonnage: ChartersFields_tonnage
   yearBuilt: ChartersFields_yearBuilt
@@ -22413,6 +22553,29 @@ type ChartersFields_sleeps_Update {
 }
 
 type ChartersFields_sleeps_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_cruisingGuests {
+  create: ChartersFields_cruisingGuests_Create
+  read: ChartersFields_cruisingGuests_Read
+  update: ChartersFields_cruisingGuests_Update
+  delete: ChartersFields_cruisingGuests_Delete
+}
+
+type ChartersFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_cruisingGuests_Delete {
   permission: Boolean!
 }
 
@@ -24716,6 +24879,7 @@ type NewConstructionsFields {
   region: NewConstructionsFields_region
   rooms: NewConstructionsFields_rooms
   sleeps: NewConstructionsFields_sleeps
+  cruisingGuests: NewConstructionsFields_cruisingGuests
   subcategory: NewConstructionsFields_subcategory
   tonnage: NewConstructionsFields_tonnage
   yearBuilt: NewConstructionsFields_yearBuilt
@@ -25237,6 +25401,29 @@ type NewConstructionsFields_sleeps_Update {
 }
 
 type NewConstructionsFields_sleeps_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruisingGuests {
+  create: NewConstructionsFields_cruisingGuests_Create
+  read: NewConstructionsFields_cruisingGuests_Read
+  update: NewConstructionsFields_cruisingGuests_Update
+  delete: NewConstructionsFields_cruisingGuests_Delete
+}
+
+type NewConstructionsFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruisingGuests_Delete {
   permission: Boolean!
 }
 
@@ -27539,7 +27726,7 @@ type Mutation {
   createUser(data: mutationUserInput!, locale: LocaleInputType): User
   updateUser(id: String!, autosave: Boolean, data: mutationUserUpdateInput!, locale: LocaleInputType): User
   deleteUser(id: String!): User
-  refreshTokenUser(token: String): usersRefreshedUser
+  refreshTokenUser: usersRefreshedUser
   logoutUser: String
   unlockUser(email: String!): Boolean!
   loginUser(email: String, password: String): usersLoginResult
@@ -28617,6 +28804,7 @@ enum UserUpdate_Socials_platform_MutationInput {
 type usersRefreshedUser {
   exp: Int
   refreshedToken: String
+  strategy: String
   user: usersJWT
 }
 
@@ -28658,6 +28846,7 @@ input mutationYachtInput {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -28743,6 +28932,7 @@ input mutationYachtUpdateInput {
   region: String
   rooms: Float
   sleeps: Float
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float
   yearBuilt: Float
@@ -28828,6 +29018,7 @@ input mutationCharterInput {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -28927,6 +29118,7 @@ input mutationCharterUpdateInput {
   region: String
   rooms: Float
   sleeps: Float
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float
   yearBuilt: Float
@@ -29213,6 +29405,7 @@ input mutationNewConstructionInput {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -29299,6 +29492,7 @@ input mutationNewConstructionUpdateInput {
   region: String
   rooms: Float
   sleeps: Float
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float
   yearBuilt: Float

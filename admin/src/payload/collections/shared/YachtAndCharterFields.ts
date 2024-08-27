@@ -240,6 +240,15 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
   },
   {
     label: {
+      en: 'Cruising Guests',
+      fr: 'Invités en Croisière',
+    },
+    name: 'cruisingGuests',
+    type: 'number',
+    required: false,
+  },
+  {
+    label: {
       en: 'Subcategory',
       fr: 'Sous-catégorie',
     },
