@@ -2874,7 +2874,6 @@ input User_phones__prefix_operator {
   in: [User_phones__prefix_Input]
   not_in: [User_phones__prefix_Input]
   all: [User_phones__prefix_Input]
-  exists: Boolean
 }
 
 enum User_phones__prefix_Input {
@@ -3116,7 +3115,6 @@ input User_phones__number_operator {
   in: [String]
   not_in: [String]
   all: [String]
-  exists: Boolean
 }
 
 input User_phones__id_operator {
@@ -3961,6 +3959,7 @@ type Yacht {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -3974,6 +3973,7 @@ type Yacht {
   brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   clicks: Float
   seo: [Yacht_Seo!]
+  similar(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Yacht!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -3999,7 +3999,7 @@ enum Yacht_keyFeatures {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum Yacht_etiquette {
@@ -4739,6 +4739,7 @@ input Yacht_where {
   region: Yacht_region_operator
   rooms: Yacht_rooms_operator
   sleeps: Yacht_sleeps_operator
+  cruisingGuests: Yacht_cruisingGuests_operator
   subcategory: Yacht_subcategory_operator
   tonnage: Yacht_tonnage_operator
   yearBuilt: Yacht_yearBuilt_operator
@@ -4755,6 +4756,7 @@ input Yacht_where {
   clicks: Yacht_clicks_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
+  similar: Yacht_similar_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -4963,6 +4965,16 @@ input Yacht_sleeps_operator {
   less_than: Float
 }
 
+input Yacht_cruisingGuests_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input Yacht_subcategory_operator {
   equals: String
   not_equals: String
@@ -5036,7 +5048,7 @@ enum Yacht_keyFeatures_Input {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 input Yacht_etiquette_operator {
@@ -5124,6 +5136,15 @@ input Yacht_seo__id_operator {
   exists: Boolean
 }
 
+input Yacht_similar_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input Yacht_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -5179,6 +5200,7 @@ input Yacht_where_and {
   region: Yacht_region_operator
   rooms: Yacht_rooms_operator
   sleeps: Yacht_sleeps_operator
+  cruisingGuests: Yacht_cruisingGuests_operator
   subcategory: Yacht_subcategory_operator
   tonnage: Yacht_tonnage_operator
   yearBuilt: Yacht_yearBuilt_operator
@@ -5195,6 +5217,7 @@ input Yacht_where_and {
   clicks: Yacht_clicks_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
+  similar: Yacht_similar_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -5224,6 +5247,7 @@ input Yacht_where_or {
   region: Yacht_region_operator
   rooms: Yacht_rooms_operator
   sleeps: Yacht_sleeps_operator
+  cruisingGuests: Yacht_cruisingGuests_operator
   subcategory: Yacht_subcategory_operator
   tonnage: Yacht_tonnage_operator
   yearBuilt: Yacht_yearBuilt_operator
@@ -5240,6 +5264,7 @@ input Yacht_where_or {
   clicks: Yacht_clicks_operator
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
+  similar: Yacht_similar_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -5281,6 +5306,7 @@ type YachtsDocAccessFields {
   region: YachtsDocAccessFields_region
   rooms: YachtsDocAccessFields_rooms
   sleeps: YachtsDocAccessFields_sleeps
+  cruisingGuests: YachtsDocAccessFields_cruisingGuests
   subcategory: YachtsDocAccessFields_subcategory
   tonnage: YachtsDocAccessFields_tonnage
   yearBuilt: YachtsDocAccessFields_yearBuilt
@@ -5294,6 +5320,7 @@ type YachtsDocAccessFields {
   brochure: YachtsDocAccessFields_brochure
   clicks: YachtsDocAccessFields_clicks
   seo: YachtsDocAccessFields_seo
+  similar: YachtsDocAccessFields_similar
   updatedAt: YachtsDocAccessFields_updatedAt
   createdAt: YachtsDocAccessFields_createdAt
 }
@@ -5781,6 +5808,29 @@ type YachtsDocAccessFields_sleeps_Delete {
   permission: Boolean!
 }
 
+type YachtsDocAccessFields_cruisingGuests {
+  create: YachtsDocAccessFields_cruisingGuests_Create
+  read: YachtsDocAccessFields_cruisingGuests_Read
+  update: YachtsDocAccessFields_cruisingGuests_Update
+  delete: YachtsDocAccessFields_cruisingGuests_Delete
+}
+
+type YachtsDocAccessFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_cruisingGuests_Delete {
+  permission: Boolean!
+}
+
 type YachtsDocAccessFields_subcategory {
   create: YachtsDocAccessFields_subcategory_Create
   read: YachtsDocAccessFields_subcategory_Read
@@ -6236,6 +6286,29 @@ type YachtsDocAccessFields_seo_id_Delete {
   permission: Boolean!
 }
 
+type YachtsDocAccessFields_similar {
+  create: YachtsDocAccessFields_similar_Create
+  read: YachtsDocAccessFields_similar_Read
+  update: YachtsDocAccessFields_similar_Update
+  delete: YachtsDocAccessFields_similar_Delete
+}
+
+type YachtsDocAccessFields_similar_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_similar_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_similar_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_similar_Delete {
+  permission: Boolean!
+}
+
 type YachtsDocAccessFields_updatedAt {
   create: YachtsDocAccessFields_updatedAt_Create
   read: YachtsDocAccessFields_updatedAt_Read
@@ -6325,6 +6398,7 @@ type Charter {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -6338,6 +6412,7 @@ type Charter {
   brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   clicks: Float
   seo: [Charter_Seo!]
+  similar(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Charter!]
   reservations: [Charter_Reservations!]
   updatedAt: DateTime
   createdAt: DateTime
@@ -6369,7 +6444,7 @@ enum Charter_keyFeatures {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum Charter_etiquette {
@@ -7125,7 +7200,7 @@ type ArchivedCustomer_Yacht {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 type ArchivedCustomer_Charter {
@@ -7140,7 +7215,7 @@ type ArchivedCustomer_Charter {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 type ArchivedCustomer_Charter_Price {
@@ -7190,6 +7265,7 @@ input Charter_where {
   region: Charter_region_operator
   rooms: Charter_rooms_operator
   sleeps: Charter_sleeps_operator
+  cruisingGuests: Charter_cruisingGuests_operator
   subcategory: Charter_subcategory_operator
   tonnage: Charter_tonnage_operator
   yearBuilt: Charter_yearBuilt_operator
@@ -7206,6 +7282,7 @@ input Charter_where {
   clicks: Charter_clicks_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
+  similar: Charter_similar_operator
   reservations__from: Charter_reservations__from_operator
   reservations__to: Charter_reservations__to_operator
   reservations__customerName: Charter_reservations__customerName_operator
@@ -7430,6 +7507,16 @@ input Charter_sleeps_operator {
   less_than: Float
 }
 
+input Charter_cruisingGuests_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input Charter_subcategory_operator {
   equals: String
   not_equals: String
@@ -7503,7 +7590,7 @@ enum Charter_keyFeatures_Input {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 input Charter_etiquette_operator {
@@ -7588,6 +7675,15 @@ input Charter_seo__id_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
+}
+
+input Charter_similar_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
   exists: Boolean
 }
 
@@ -7699,6 +7795,7 @@ input Charter_where_and {
   region: Charter_region_operator
   rooms: Charter_rooms_operator
   sleeps: Charter_sleeps_operator
+  cruisingGuests: Charter_cruisingGuests_operator
   subcategory: Charter_subcategory_operator
   tonnage: Charter_tonnage_operator
   yearBuilt: Charter_yearBuilt_operator
@@ -7715,6 +7812,7 @@ input Charter_where_and {
   clicks: Charter_clicks_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
+  similar: Charter_similar_operator
   reservations__from: Charter_reservations__from_operator
   reservations__to: Charter_reservations__to_operator
   reservations__customerName: Charter_reservations__customerName_operator
@@ -7750,6 +7848,7 @@ input Charter_where_or {
   region: Charter_region_operator
   rooms: Charter_rooms_operator
   sleeps: Charter_sleeps_operator
+  cruisingGuests: Charter_cruisingGuests_operator
   subcategory: Charter_subcategory_operator
   tonnage: Charter_tonnage_operator
   yearBuilt: Charter_yearBuilt_operator
@@ -7766,6 +7865,7 @@ input Charter_where_or {
   clicks: Charter_clicks_operator
   seo__value: Charter_seo__value_operator
   seo__id: Charter_seo__id_operator
+  similar: Charter_similar_operator
   reservations__from: Charter_reservations__from_operator
   reservations__to: Charter_reservations__to_operator
   reservations__customerName: Charter_reservations__customerName_operator
@@ -7812,6 +7912,7 @@ type ChartersDocAccessFields {
   region: ChartersDocAccessFields_region
   rooms: ChartersDocAccessFields_rooms
   sleeps: ChartersDocAccessFields_sleeps
+  cruisingGuests: ChartersDocAccessFields_cruisingGuests
   subcategory: ChartersDocAccessFields_subcategory
   tonnage: ChartersDocAccessFields_tonnage
   yearBuilt: ChartersDocAccessFields_yearBuilt
@@ -7825,6 +7926,7 @@ type ChartersDocAccessFields {
   brochure: ChartersDocAccessFields_brochure
   clicks: ChartersDocAccessFields_clicks
   seo: ChartersDocAccessFields_seo
+  similar: ChartersDocAccessFields_similar
   reservations: ChartersDocAccessFields_reservations
   updatedAt: ChartersDocAccessFields_updatedAt
   createdAt: ChartersDocAccessFields_createdAt
@@ -8365,6 +8467,29 @@ type ChartersDocAccessFields_sleeps_Delete {
   permission: Boolean!
 }
 
+type ChartersDocAccessFields_cruisingGuests {
+  create: ChartersDocAccessFields_cruisingGuests_Create
+  read: ChartersDocAccessFields_cruisingGuests_Read
+  update: ChartersDocAccessFields_cruisingGuests_Update
+  delete: ChartersDocAccessFields_cruisingGuests_Delete
+}
+
+type ChartersDocAccessFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_cruisingGuests_Delete {
+  permission: Boolean!
+}
+
 type ChartersDocAccessFields_subcategory {
   create: ChartersDocAccessFields_subcategory_Create
   read: ChartersDocAccessFields_subcategory_Read
@@ -8817,6 +8942,29 @@ type ChartersDocAccessFields_seo_id_Update {
 }
 
 type ChartersDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_similar {
+  create: ChartersDocAccessFields_similar_Create
+  read: ChartersDocAccessFields_similar_Read
+  update: ChartersDocAccessFields_similar_Update
+  delete: ChartersDocAccessFields_similar_Delete
+}
+
+type ChartersDocAccessFields_similar_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_similar_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_similar_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_similar_Delete {
   permission: Boolean!
 }
 
@@ -14029,6 +14177,7 @@ type NewConstruction {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -14042,6 +14191,7 @@ type NewConstruction {
   brochure(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   clicks: Float
   seo: [NewConstruction_Seo!]
+  similar(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [NewConstruction!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -14067,7 +14217,7 @@ enum NewConstruction_keyFeatures {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum NewConstruction_etiquette {
@@ -14808,6 +14958,7 @@ input NewConstruction_where {
   region: NewConstruction_region_operator
   rooms: NewConstruction_rooms_operator
   sleeps: NewConstruction_sleeps_operator
+  cruisingGuests: NewConstruction_cruisingGuests_operator
   subcategory: NewConstruction_subcategory_operator
   tonnage: NewConstruction_tonnage_operator
   yearBuilt: NewConstruction_yearBuilt_operator
@@ -14824,6 +14975,7 @@ input NewConstruction_where {
   clicks: NewConstruction_clicks_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
+  similar: NewConstruction_similar_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -15042,6 +15194,16 @@ input NewConstruction_sleeps_operator {
   less_than: Float
 }
 
+input NewConstruction_cruisingGuests_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input NewConstruction_subcategory_operator {
   equals: String
   not_equals: String
@@ -15115,7 +15277,7 @@ enum NewConstruction_keyFeatures_Input {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 input NewConstruction_etiquette_operator {
@@ -15203,6 +15365,15 @@ input NewConstruction_seo__id_operator {
   exists: Boolean
 }
 
+input NewConstruction_similar_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input NewConstruction_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -15259,6 +15430,7 @@ input NewConstruction_where_and {
   region: NewConstruction_region_operator
   rooms: NewConstruction_rooms_operator
   sleeps: NewConstruction_sleeps_operator
+  cruisingGuests: NewConstruction_cruisingGuests_operator
   subcategory: NewConstruction_subcategory_operator
   tonnage: NewConstruction_tonnage_operator
   yearBuilt: NewConstruction_yearBuilt_operator
@@ -15275,6 +15447,7 @@ input NewConstruction_where_and {
   clicks: NewConstruction_clicks_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
+  similar: NewConstruction_similar_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -15305,6 +15478,7 @@ input NewConstruction_where_or {
   region: NewConstruction_region_operator
   rooms: NewConstruction_rooms_operator
   sleeps: NewConstruction_sleeps_operator
+  cruisingGuests: NewConstruction_cruisingGuests_operator
   subcategory: NewConstruction_subcategory_operator
   tonnage: NewConstruction_tonnage_operator
   yearBuilt: NewConstruction_yearBuilt_operator
@@ -15321,6 +15495,7 @@ input NewConstruction_where_or {
   clicks: NewConstruction_clicks_operator
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
+  similar: NewConstruction_similar_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -15363,6 +15538,7 @@ type NewConstructionsDocAccessFields {
   region: NewConstructionsDocAccessFields_region
   rooms: NewConstructionsDocAccessFields_rooms
   sleeps: NewConstructionsDocAccessFields_sleeps
+  cruisingGuests: NewConstructionsDocAccessFields_cruisingGuests
   subcategory: NewConstructionsDocAccessFields_subcategory
   tonnage: NewConstructionsDocAccessFields_tonnage
   yearBuilt: NewConstructionsDocAccessFields_yearBuilt
@@ -15376,6 +15552,7 @@ type NewConstructionsDocAccessFields {
   brochure: NewConstructionsDocAccessFields_brochure
   clicks: NewConstructionsDocAccessFields_clicks
   seo: NewConstructionsDocAccessFields_seo
+  similar: NewConstructionsDocAccessFields_similar
   updatedAt: NewConstructionsDocAccessFields_updatedAt
   createdAt: NewConstructionsDocAccessFields_createdAt
 }
@@ -15886,6 +16063,29 @@ type NewConstructionsDocAccessFields_sleeps_Delete {
   permission: Boolean!
 }
 
+type NewConstructionsDocAccessFields_cruisingGuests {
+  create: NewConstructionsDocAccessFields_cruisingGuests_Create
+  read: NewConstructionsDocAccessFields_cruisingGuests_Read
+  update: NewConstructionsDocAccessFields_cruisingGuests_Update
+  delete: NewConstructionsDocAccessFields_cruisingGuests_Delete
+}
+
+type NewConstructionsDocAccessFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_cruisingGuests_Delete {
+  permission: Boolean!
+}
+
 type NewConstructionsDocAccessFields_subcategory {
   create: NewConstructionsDocAccessFields_subcategory_Create
   read: NewConstructionsDocAccessFields_subcategory_Read
@@ -16338,6 +16538,29 @@ type NewConstructionsDocAccessFields_seo_id_Update {
 }
 
 type NewConstructionsDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_similar {
+  create: NewConstructionsDocAccessFields_similar_Create
+  read: NewConstructionsDocAccessFields_similar_Read
+  update: NewConstructionsDocAccessFields_similar_Update
+  delete: NewConstructionsDocAccessFields_similar_Delete
+}
+
+type NewConstructionsDocAccessFields_similar_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_similar_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_similar_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_similar_Delete {
   permission: Boolean!
 }
 
@@ -17216,7 +17439,7 @@ input ArchivedCustomer_where {
   yacht__state: ArchivedCustomer_yacht__state_operator
   yacht__region: ArchivedCustomer_yacht__region_operator
   yacht__yearBuilt: ArchivedCustomer_yacht__yearBuilt_operator
-  yacht__yearModel: ArchivedCustomer_yacht__yearModel_operator
+  yacht__yearRefit: ArchivedCustomer_yacht__yearRefit_operator
   charter__name: ArchivedCustomer_charter__name_operator
   charter__model: ArchivedCustomer_charter__model_operator
   charter__price__low: ArchivedCustomer_charter__price__low_operator
@@ -17229,7 +17452,7 @@ input ArchivedCustomer_where {
   charter__state: ArchivedCustomer_charter__state_operator
   charter__region: ArchivedCustomer_charter__region_operator
   charter__yearBuilt: ArchivedCustomer_charter__yearBuilt_operator
-  charter__yearModel: ArchivedCustomer_charter__yearModel_operator
+  charter__yearRefit: ArchivedCustomer_charter__yearRefit_operator
   charterDates__from: ArchivedCustomer_charterDates__from_operator
   charterDates__to: ArchivedCustomer_charterDates__to_operator
   updatedAt: ArchivedCustomer_updatedAt_operator
@@ -17474,7 +17697,7 @@ input ArchivedCustomer_yacht__yearBuilt_operator {
   exists: Boolean
 }
 
-input ArchivedCustomer_yacht__yearModel_operator {
+input ArchivedCustomer_yacht__yearRefit_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -17611,7 +17834,7 @@ input ArchivedCustomer_charter__yearBuilt_operator {
   exists: Boolean
 }
 
-input ArchivedCustomer_charter__yearModel_operator {
+input ArchivedCustomer_charter__yearRefit_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -17700,7 +17923,7 @@ input ArchivedCustomer_where_and {
   yacht__state: ArchivedCustomer_yacht__state_operator
   yacht__region: ArchivedCustomer_yacht__region_operator
   yacht__yearBuilt: ArchivedCustomer_yacht__yearBuilt_operator
-  yacht__yearModel: ArchivedCustomer_yacht__yearModel_operator
+  yacht__yearRefit: ArchivedCustomer_yacht__yearRefit_operator
   charter__name: ArchivedCustomer_charter__name_operator
   charter__model: ArchivedCustomer_charter__model_operator
   charter__price__low: ArchivedCustomer_charter__price__low_operator
@@ -17713,7 +17936,7 @@ input ArchivedCustomer_where_and {
   charter__state: ArchivedCustomer_charter__state_operator
   charter__region: ArchivedCustomer_charter__region_operator
   charter__yearBuilt: ArchivedCustomer_charter__yearBuilt_operator
-  charter__yearModel: ArchivedCustomer_charter__yearModel_operator
+  charter__yearRefit: ArchivedCustomer_charter__yearRefit_operator
   charterDates__from: ArchivedCustomer_charterDates__from_operator
   charterDates__to: ArchivedCustomer_charterDates__to_operator
   updatedAt: ArchivedCustomer_updatedAt_operator
@@ -17747,7 +17970,7 @@ input ArchivedCustomer_where_or {
   yacht__state: ArchivedCustomer_yacht__state_operator
   yacht__region: ArchivedCustomer_yacht__region_operator
   yacht__yearBuilt: ArchivedCustomer_yacht__yearBuilt_operator
-  yacht__yearModel: ArchivedCustomer_yacht__yearModel_operator
+  yacht__yearRefit: ArchivedCustomer_yacht__yearRefit_operator
   charter__name: ArchivedCustomer_charter__name_operator
   charter__model: ArchivedCustomer_charter__model_operator
   charter__price__low: ArchivedCustomer_charter__price__low_operator
@@ -17760,7 +17983,7 @@ input ArchivedCustomer_where_or {
   charter__state: ArchivedCustomer_charter__state_operator
   charter__region: ArchivedCustomer_charter__region_operator
   charter__yearBuilt: ArchivedCustomer_charter__yearBuilt_operator
-  charter__yearModel: ArchivedCustomer_charter__yearModel_operator
+  charter__yearRefit: ArchivedCustomer_charter__yearRefit_operator
   charterDates__from: ArchivedCustomer_charterDates__from_operator
   charterDates__to: ArchivedCustomer_charterDates__to_operator
   updatedAt: ArchivedCustomer_updatedAt_operator
@@ -18114,7 +18337,7 @@ type ArchivedCustomersDocAccessFields_yacht_Fields {
   state: ArchivedCustomersDocAccessFields_yacht_state
   region: ArchivedCustomersDocAccessFields_yacht_region
   yearBuilt: ArchivedCustomersDocAccessFields_yacht_yearBuilt
-  yearModel: ArchivedCustomersDocAccessFields_yacht_yearModel
+  yearRefit: ArchivedCustomersDocAccessFields_yacht_yearRefit
 }
 
 type ArchivedCustomersDocAccessFields_yacht_name {
@@ -18370,26 +18593,26 @@ type ArchivedCustomersDocAccessFields_yacht_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_yacht_yearModel {
-  create: ArchivedCustomersDocAccessFields_yacht_yearModel_Create
-  read: ArchivedCustomersDocAccessFields_yacht_yearModel_Read
-  update: ArchivedCustomersDocAccessFields_yacht_yearModel_Update
-  delete: ArchivedCustomersDocAccessFields_yacht_yearModel_Delete
+type ArchivedCustomersDocAccessFields_yacht_yearRefit {
+  create: ArchivedCustomersDocAccessFields_yacht_yearRefit_Create
+  read: ArchivedCustomersDocAccessFields_yacht_yearRefit_Read
+  update: ArchivedCustomersDocAccessFields_yacht_yearRefit_Update
+  delete: ArchivedCustomersDocAccessFields_yacht_yearRefit_Delete
 }
 
-type ArchivedCustomersDocAccessFields_yacht_yearModel_Create {
+type ArchivedCustomersDocAccessFields_yacht_yearRefit_Create {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_yacht_yearModel_Read {
+type ArchivedCustomersDocAccessFields_yacht_yearRefit_Read {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_yacht_yearModel_Update {
+type ArchivedCustomersDocAccessFields_yacht_yearRefit_Update {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_yacht_yearModel_Delete {
+type ArchivedCustomersDocAccessFields_yacht_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -18429,7 +18652,7 @@ type ArchivedCustomersDocAccessFields_charter_Fields {
   state: ArchivedCustomersDocAccessFields_charter_state
   region: ArchivedCustomersDocAccessFields_charter_region
   yearBuilt: ArchivedCustomersDocAccessFields_charter_yearBuilt
-  yearModel: ArchivedCustomersDocAccessFields_charter_yearModel
+  yearRefit: ArchivedCustomersDocAccessFields_charter_yearRefit
 }
 
 type ArchivedCustomersDocAccessFields_charter_name {
@@ -18737,26 +18960,26 @@ type ArchivedCustomersDocAccessFields_charter_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_charter_yearModel {
-  create: ArchivedCustomersDocAccessFields_charter_yearModel_Create
-  read: ArchivedCustomersDocAccessFields_charter_yearModel_Read
-  update: ArchivedCustomersDocAccessFields_charter_yearModel_Update
-  delete: ArchivedCustomersDocAccessFields_charter_yearModel_Delete
+type ArchivedCustomersDocAccessFields_charter_yearRefit {
+  create: ArchivedCustomersDocAccessFields_charter_yearRefit_Create
+  read: ArchivedCustomersDocAccessFields_charter_yearRefit_Read
+  update: ArchivedCustomersDocAccessFields_charter_yearRefit_Update
+  delete: ArchivedCustomersDocAccessFields_charter_yearRefit_Delete
 }
 
-type ArchivedCustomersDocAccessFields_charter_yearModel_Create {
+type ArchivedCustomersDocAccessFields_charter_yearRefit_Create {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_charter_yearModel_Read {
+type ArchivedCustomersDocAccessFields_charter_yearRefit_Read {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_charter_yearModel_Update {
+type ArchivedCustomersDocAccessFields_charter_yearRefit_Update {
   permission: Boolean!
 }
 
-type ArchivedCustomersDocAccessFields_charter_yearModel_Delete {
+type ArchivedCustomersDocAccessFields_charter_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -20678,6 +20901,7 @@ type YachtsFields {
   region: YachtsFields_region
   rooms: YachtsFields_rooms
   sleeps: YachtsFields_sleeps
+  cruisingGuests: YachtsFields_cruisingGuests
   subcategory: YachtsFields_subcategory
   tonnage: YachtsFields_tonnage
   yearBuilt: YachtsFields_yearBuilt
@@ -20691,6 +20915,7 @@ type YachtsFields {
   brochure: YachtsFields_brochure
   clicks: YachtsFields_clicks
   seo: YachtsFields_seo
+  similar: YachtsFields_similar
   updatedAt: YachtsFields_updatedAt
   createdAt: YachtsFields_createdAt
 }
@@ -21178,6 +21403,29 @@ type YachtsFields_sleeps_Delete {
   permission: Boolean!
 }
 
+type YachtsFields_cruisingGuests {
+  create: YachtsFields_cruisingGuests_Create
+  read: YachtsFields_cruisingGuests_Read
+  update: YachtsFields_cruisingGuests_Update
+  delete: YachtsFields_cruisingGuests_Delete
+}
+
+type YachtsFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_cruisingGuests_Delete {
+  permission: Boolean!
+}
+
 type YachtsFields_subcategory {
   create: YachtsFields_subcategory_Create
   read: YachtsFields_subcategory_Read
@@ -21633,6 +21881,29 @@ type YachtsFields_seo_id_Delete {
   permission: Boolean!
 }
 
+type YachtsFields_similar {
+  create: YachtsFields_similar_Create
+  read: YachtsFields_similar_Read
+  update: YachtsFields_similar_Update
+  delete: YachtsFields_similar_Delete
+}
+
+type YachtsFields_similar_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_similar_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_similar_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_similar_Delete {
+  permission: Boolean!
+}
+
 type YachtsFields_updatedAt {
   create: YachtsFields_updatedAt_Create
   read: YachtsFields_updatedAt_Read
@@ -21729,6 +22000,7 @@ type ChartersFields {
   region: ChartersFields_region
   rooms: ChartersFields_rooms
   sleeps: ChartersFields_sleeps
+  cruisingGuests: ChartersFields_cruisingGuests
   subcategory: ChartersFields_subcategory
   tonnage: ChartersFields_tonnage
   yearBuilt: ChartersFields_yearBuilt
@@ -21742,6 +22014,7 @@ type ChartersFields {
   brochure: ChartersFields_brochure
   clicks: ChartersFields_clicks
   seo: ChartersFields_seo
+  similar: ChartersFields_similar
   reservations: ChartersFields_reservations
   updatedAt: ChartersFields_updatedAt
   createdAt: ChartersFields_createdAt
@@ -22282,6 +22555,29 @@ type ChartersFields_sleeps_Delete {
   permission: Boolean!
 }
 
+type ChartersFields_cruisingGuests {
+  create: ChartersFields_cruisingGuests_Create
+  read: ChartersFields_cruisingGuests_Read
+  update: ChartersFields_cruisingGuests_Update
+  delete: ChartersFields_cruisingGuests_Delete
+}
+
+type ChartersFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_cruisingGuests_Delete {
+  permission: Boolean!
+}
+
 type ChartersFields_subcategory {
   create: ChartersFields_subcategory_Create
   read: ChartersFields_subcategory_Read
@@ -22734,6 +23030,29 @@ type ChartersFields_seo_id_Update {
 }
 
 type ChartersFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_similar {
+  create: ChartersFields_similar_Create
+  read: ChartersFields_similar_Read
+  update: ChartersFields_similar_Update
+  delete: ChartersFields_similar_Delete
+}
+
+type ChartersFields_similar_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_similar_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_similar_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_similar_Delete {
   permission: Boolean!
 }
 
@@ -24559,6 +24878,7 @@ type NewConstructionsFields {
   region: NewConstructionsFields_region
   rooms: NewConstructionsFields_rooms
   sleeps: NewConstructionsFields_sleeps
+  cruisingGuests: NewConstructionsFields_cruisingGuests
   subcategory: NewConstructionsFields_subcategory
   tonnage: NewConstructionsFields_tonnage
   yearBuilt: NewConstructionsFields_yearBuilt
@@ -24572,6 +24892,7 @@ type NewConstructionsFields {
   brochure: NewConstructionsFields_brochure
   clicks: NewConstructionsFields_clicks
   seo: NewConstructionsFields_seo
+  similar: NewConstructionsFields_similar
   updatedAt: NewConstructionsFields_updatedAt
   createdAt: NewConstructionsFields_createdAt
 }
@@ -25082,6 +25403,29 @@ type NewConstructionsFields_sleeps_Delete {
   permission: Boolean!
 }
 
+type NewConstructionsFields_cruisingGuests {
+  create: NewConstructionsFields_cruisingGuests_Create
+  read: NewConstructionsFields_cruisingGuests_Read
+  update: NewConstructionsFields_cruisingGuests_Update
+  delete: NewConstructionsFields_cruisingGuests_Delete
+}
+
+type NewConstructionsFields_cruisingGuests_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruisingGuests_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruisingGuests_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_cruisingGuests_Delete {
+  permission: Boolean!
+}
+
 type NewConstructionsFields_subcategory {
   create: NewConstructionsFields_subcategory_Create
   read: NewConstructionsFields_subcategory_Read
@@ -25534,6 +25878,29 @@ type NewConstructionsFields_seo_id_Update {
 }
 
 type NewConstructionsFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_similar {
+  create: NewConstructionsFields_similar_Create
+  read: NewConstructionsFields_similar_Read
+  update: NewConstructionsFields_similar_Update
+  delete: NewConstructionsFields_similar_Delete
+}
+
+type NewConstructionsFields_similar_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_similar_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_similar_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_similar_Delete {
   permission: Boolean!
 }
 
@@ -26410,7 +26777,7 @@ type ArchivedCustomersFields_yacht_Fields {
   state: ArchivedCustomersFields_yacht_state
   region: ArchivedCustomersFields_yacht_region
   yearBuilt: ArchivedCustomersFields_yacht_yearBuilt
-  yearModel: ArchivedCustomersFields_yacht_yearModel
+  yearRefit: ArchivedCustomersFields_yacht_yearRefit
 }
 
 type ArchivedCustomersFields_yacht_name {
@@ -26666,26 +27033,26 @@ type ArchivedCustomersFields_yacht_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_yacht_yearModel {
-  create: ArchivedCustomersFields_yacht_yearModel_Create
-  read: ArchivedCustomersFields_yacht_yearModel_Read
-  update: ArchivedCustomersFields_yacht_yearModel_Update
-  delete: ArchivedCustomersFields_yacht_yearModel_Delete
+type ArchivedCustomersFields_yacht_yearRefit {
+  create: ArchivedCustomersFields_yacht_yearRefit_Create
+  read: ArchivedCustomersFields_yacht_yearRefit_Read
+  update: ArchivedCustomersFields_yacht_yearRefit_Update
+  delete: ArchivedCustomersFields_yacht_yearRefit_Delete
 }
 
-type ArchivedCustomersFields_yacht_yearModel_Create {
+type ArchivedCustomersFields_yacht_yearRefit_Create {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_yacht_yearModel_Read {
+type ArchivedCustomersFields_yacht_yearRefit_Read {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_yacht_yearModel_Update {
+type ArchivedCustomersFields_yacht_yearRefit_Update {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_yacht_yearModel_Delete {
+type ArchivedCustomersFields_yacht_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -26725,7 +27092,7 @@ type ArchivedCustomersFields_charter_Fields {
   state: ArchivedCustomersFields_charter_state
   region: ArchivedCustomersFields_charter_region
   yearBuilt: ArchivedCustomersFields_charter_yearBuilt
-  yearModel: ArchivedCustomersFields_charter_yearModel
+  yearRefit: ArchivedCustomersFields_charter_yearRefit
 }
 
 type ArchivedCustomersFields_charter_name {
@@ -27033,26 +27400,26 @@ type ArchivedCustomersFields_charter_yearBuilt_Delete {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_charter_yearModel {
-  create: ArchivedCustomersFields_charter_yearModel_Create
-  read: ArchivedCustomersFields_charter_yearModel_Read
-  update: ArchivedCustomersFields_charter_yearModel_Update
-  delete: ArchivedCustomersFields_charter_yearModel_Delete
+type ArchivedCustomersFields_charter_yearRefit {
+  create: ArchivedCustomersFields_charter_yearRefit_Create
+  read: ArchivedCustomersFields_charter_yearRefit_Read
+  update: ArchivedCustomersFields_charter_yearRefit_Update
+  delete: ArchivedCustomersFields_charter_yearRefit_Delete
 }
 
-type ArchivedCustomersFields_charter_yearModel_Create {
+type ArchivedCustomersFields_charter_yearRefit_Create {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_charter_yearModel_Read {
+type ArchivedCustomersFields_charter_yearRefit_Read {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_charter_yearModel_Update {
+type ArchivedCustomersFields_charter_yearRefit_Update {
   permission: Boolean!
 }
 
-type ArchivedCustomersFields_charter_yearModel_Delete {
+type ArchivedCustomersFields_charter_yearRefit_Delete {
   permission: Boolean!
 }
 
@@ -27540,8 +27907,8 @@ enum User_roles_MutationInput {
 }
 
 input mutationUser_PhonesInput {
-  prefix: User_Phones_prefix_MutationInput
-  number: String
+  prefix: User_Phones_prefix_MutationInput!
+  number: String!
   id: String
 }
 
@@ -28000,8 +28367,8 @@ enum UserUpdate_roles_MutationInput {
 }
 
 input mutationUserUpdate_PhonesInput {
-  prefix: UserUpdate_Phones_prefix_MutationInput
-  number: String
+  prefix: UserUpdate_Phones_prefix_MutationInput!
+  number: String!
   id: String
 }
 
@@ -28477,6 +28844,7 @@ input mutationYachtInput {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -28490,6 +28858,7 @@ input mutationYachtInput {
   brochure: String
   clicks: Float
   seo: [mutationYacht_SeoInput]
+  similar: [String]
   updatedAt: String
   createdAt: String
 }
@@ -28515,7 +28884,7 @@ enum Yacht_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum Yacht_etiquette_MutationInput {
@@ -28561,6 +28930,7 @@ input mutationYachtUpdateInput {
   region: String
   rooms: Float
   sleeps: Float
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float
   yearBuilt: Float
@@ -28574,6 +28944,7 @@ input mutationYachtUpdateInput {
   brochure: String
   clicks: Float
   seo: [mutationYachtUpdate_SeoInput]
+  similar: [String]
   updatedAt: String
   createdAt: String
 }
@@ -28599,7 +28970,7 @@ enum YachtUpdate_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum YachtUpdate_etiquette_MutationInput {
@@ -28645,6 +29016,7 @@ input mutationCharterInput {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -28658,6 +29030,7 @@ input mutationCharterInput {
   brochure: String
   clicks: Float
   seo: [mutationCharter_SeoInput]
+  similar: [String]
   reservations: [mutationCharter_ReservationsInput]
   updatedAt: String
   createdAt: String
@@ -28689,7 +29062,7 @@ enum Charter_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum Charter_etiquette_MutationInput {
@@ -28743,6 +29116,7 @@ input mutationCharterUpdateInput {
   region: String
   rooms: Float
   sleeps: Float
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float
   yearBuilt: Float
@@ -28756,6 +29130,7 @@ input mutationCharterUpdateInput {
   brochure: String
   clicks: Float
   seo: [mutationCharterUpdate_SeoInput]
+  similar: [String]
   reservations: [mutationCharterUpdate_ReservationsInput]
   updatedAt: String
   createdAt: String
@@ -28787,7 +29162,7 @@ enum CharterUpdate_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum CharterUpdate_etiquette_MutationInput {
@@ -29028,6 +29403,7 @@ input mutationNewConstructionInput {
   region: String
   rooms: Float!
   sleeps: Float!
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float!
   yearBuilt: Float!
@@ -29041,6 +29417,7 @@ input mutationNewConstructionInput {
   brochure: String
   clicks: Float
   seo: [mutationNewConstruction_SeoInput]
+  similar: [String]
   updatedAt: String
   createdAt: String
 }
@@ -29066,7 +29443,7 @@ enum NewConstruction_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum NewConstruction_etiquette_MutationInput {
@@ -29113,6 +29490,7 @@ input mutationNewConstructionUpdateInput {
   region: String
   rooms: Float
   sleeps: Float
+  cruisingGuests: Float
   subcategory: String
   tonnage: Float
   yearBuilt: Float
@@ -29126,6 +29504,7 @@ input mutationNewConstructionUpdateInput {
   brochure: String
   clicks: Float
   seo: [mutationNewConstructionUpdate_SeoInput]
+  similar: [String]
   updatedAt: String
   createdAt: String
 }
@@ -29151,7 +29530,7 @@ enum NewConstructionUpdate_keyFeatures_MutationInput {
   subcategory
   tonnage
   yearBuilt
-  yearModel
+  yearRefit
 }
 
 enum NewConstructionUpdate_etiquette_MutationInput {
@@ -29273,7 +29652,7 @@ input mutationArchivedCustomer_YachtInput {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 input mutationArchivedCustomer_CharterInput {
@@ -29288,7 +29667,7 @@ input mutationArchivedCustomer_CharterInput {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 input mutationArchivedCustomer_Charter_PriceInput {
@@ -29339,7 +29718,7 @@ input mutationArchivedCustomerUpdate_YachtInput {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 input mutationArchivedCustomerUpdate_CharterInput {
@@ -29354,7 +29733,7 @@ input mutationArchivedCustomerUpdate_CharterInput {
   state: String
   region: String
   yearBuilt: Float
-  yearModel: Float
+  yearRefit: Float
 }
 
 input mutationArchivedCustomerUpdate_Charter_PriceInput {

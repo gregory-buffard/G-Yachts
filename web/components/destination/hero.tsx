@@ -11,14 +11,22 @@ const Hero = () => {
   return (
     <section
       className={
-        "w-full px-[4vw] md:px-[8vw] h-[36dvh] md:h-screen bg-cover bg-center flex flex-col justify-end items-start text-white uppercase py-[2vh] md:py-[6vh]"
+        "w-full h-[36dvh] md:h-screen bg-cover bg-center text-white uppercase"
       }
       style={{
         backgroundImage: `url(${encodeURI(destination.photos.featured.sizes.fhd.url)})`,
       }}
     >
-      <h4>{t("heroSubtitle")}</h4>
-      <h1 className={"font-classic normal-case"}>{destination.destination}</h1>
+      <div
+        className={
+          "w-full h-full opacity-sheet px-[4vw] md:px-[8vw] py-[2vh] md:py-[6vh] flex flex-col justify-end items-start gap-[1vh]"
+        }
+      >
+        <h4>{t("heroSubtitle")}</h4>
+        <h1 className={"font-classic normal-case"}>
+          {destination.destination}
+        </h1>
+      </div>
     </section>
   );
 };

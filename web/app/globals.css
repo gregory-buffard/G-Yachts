@@ -13,7 +13,7 @@
 
 @layer base {
     h1 {
-        @apply lg:text-6xl text-5xl font-slick font-light;
+        @apply lg:text-6xl text-4xl font-slick font-light;
     }
 
     h1 .classic {
@@ -21,11 +21,11 @@
     }
 
     h2 {
-        @apply lg:text-5xl text-4xl;
+        @apply lg:text-5xl text-3xl;
     }
 
     h3 {
-        @apply lg:text-4xl text-3xl font-medium font-classic;
+        @apply lg:text-4xl text-2xl font-medium font-classic;
     }
 
     h4 {
@@ -99,6 +99,12 @@
 
     .glass-button-dark {
         @apply text-black border-black/25;
+    }
+
+    .opacity-sheet {
+        background-size: 100% 100%;
+        background-position: 0% 0%;
+        background-image: radial-gradient(100% 100% at 50% -50%, #FFFFFF00 100%, #000000FF 175%);
     }
 }
 

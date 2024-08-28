@@ -86,6 +86,11 @@ const Details = () => {
       key: "material",
     },
     { label: t("characteristics.sleeps"), value: data.sleeps, key: "sleeps" },
+    data.cruisingGuests && {
+      label: t("characteristics.cruisingGuests"),
+      value: data.cruisingGuests,
+      key: "cruisingGuests",
+    },
     { label: t("characteristics.rooms"), value: data.rooms, key: "rooms" },
     {
       label: t("characteristics.yearBuilt"),
@@ -104,12 +109,12 @@ const Details = () => {
       key: "location",
     },
     /*{
-      label: t("characteristics.crypto.label"),
-      value: data.crypto
-        ? t("characteristics.crypto.true")
-        : t("characteristics.crypto.false"),
-      key: "crypto",
-    },*/
+          label: t("characteristics.crypto.label"),
+          value: data.crypto
+            ? t("characteristics.crypto.true")
+            : t("characteristics.crypto.false"),
+          key: "crypto",
+        },*/
   ];
 
   return (

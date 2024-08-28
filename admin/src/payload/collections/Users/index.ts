@@ -115,6 +115,7 @@ const Users: CollectionConfig = {
           name: 'prefix',
           type: 'select',
           hasMany: false,
+          required: true,
           label: {
             en: 'Prefix',
             fr: 'Préfixe',
@@ -124,6 +125,7 @@ const Users: CollectionConfig = {
         {
           name: 'number',
           type: 'text',
+          required: true,
           label: {
             en: 'Number',
             fr: 'Numéro',
@@ -172,14 +174,14 @@ const Users: CollectionConfig = {
       ],
     },
     {
-      type: "checkbox",
-      name: "displayOnWebsite",
+      type: 'checkbox',
+      name: 'displayOnWebsite',
       label: {
-        en: "Display on website",
-        fr: "Afficher sur le site web"
+        en: 'Display on website',
+        fr: 'Afficher sur le site web',
       },
       defaultValue: false,
-    }
+    },
   ],
   timestamps: true,
 }

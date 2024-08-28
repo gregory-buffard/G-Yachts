@@ -22,6 +22,7 @@ export default interface IYacht {
   region: string;
   rooms: number;
   sleeps: number;
+  cruisingGuests?: number;
   subcategory: string;
   tonnage: number;
   yearBuilt: number;
@@ -69,6 +70,7 @@ export default interface IYacht {
 export interface ISale extends IYacht {
   price: number;
   yearRefit?: number;
+  similar?: ISale[];
 }
 
 export interface ICharter extends IYacht {
@@ -81,9 +83,11 @@ export interface ICharter extends IYacht {
     to: Date;
   }[];
   yearRefit?: number;
+  similar?: ICharter[];
 }
 
 export interface INewConstruction extends IYacht {
   delivery: string;
   price: number;
+  similar?: INewConstruction[];
 }

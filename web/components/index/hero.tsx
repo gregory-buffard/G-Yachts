@@ -9,13 +9,22 @@ const Hero = () => {
   return (
     <div className="h-[90vh] md:h-screen w-full overflow-hidden">
       <video
-        src="/videos/hero.mp4"
+        src="/videos/hero.webm"
         autoPlay
         loop
         muted
         preload={"none"}
-        className="absolute w-full h-[90vh] md:h-screen object-cover object-center"
+        className="absolute w-full h-[90vh] md:h-screen object-cover object-center -z-10"
         playsInline
+      />
+      <div
+        className={"absolute w-full h-[90vh] md:h-screen z-0"}
+        style={{
+          backgroundSize: "100% 100%",
+          backgroundPosition: "0px 0px",
+          backgroundImage:
+            "radial-gradient(250% 250% at 100% 0%, #FFFFFF00 0%, #000000FF 100%)",
+        }}
       />
       <Scrolldown />
       <div className="grid grid-rows-6 h-full relative">

@@ -85,6 +85,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     required: false,
     relationTo: 'users',
     hasMany: false,
+    localized: true,
   },
   {
     label: {
@@ -137,6 +138,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     name: 'continent',
     type: 'text',
     required: false,
+    localized: true,
   },
   {
     label: {
@@ -146,6 +148,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     name: 'country',
     type: 'text',
     required: false,
+    localized: true,
   },
   {
     label: {
@@ -182,6 +185,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     name: 'state',
     type: 'text',
     required: false,
+    localized: true,
   },
   {
     label: {
@@ -219,6 +223,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     name: 'region',
     type: 'text',
     required: false,
+    localized: true,
   },
   {
     label: {
@@ -237,6 +242,15 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     name: 'sleeps',
     type: 'number',
     required: true,
+  },
+  {
+    label: {
+      en: 'Cruising Guests',
+      fr: 'Invités en Croisière',
+    },
+    name: 'cruisingGuests',
+    type: 'number',
+    required: false,
   },
   {
     label: {
@@ -265,15 +279,6 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     type: 'number',
     required: true,
   },
-  /*{
-    label: {
-      en: 'Year Model',
-      fr: "Modèle de l'année",
-    },
-    name: 'yearModel',
-    type: 'number',
-    required: true,
-  },*/
   {
     label: {
       en: 'Refit Year',
@@ -327,7 +332,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
       'subcategory',
       'tonnage',
       'yearBuilt',
-      'yearModel',
+      'yearRefit',
     ],
   },
   {
@@ -437,7 +442,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     defaultValue: 0,
     label: {
       en: 'Clicks',
-      fr: 'Clics',
+      fr: 'Cliques',
     },
   },
 ]

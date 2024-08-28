@@ -56,6 +56,17 @@ export const Charters: CollectionConfig = {
             ...yachtsAndCharterCommonFields('charter'),
             seoField,
             {
+              label: {
+                en: 'Similar Charters',
+                fr: 'Charters similaires',
+              },
+              name: 'similar',
+              type: 'relationship',
+              required: false,
+              relationTo: 'charters',
+              hasMany: true,
+            },
+            {
               type: 'ui',
               name: 'duplicateToSales',
               label: {
@@ -66,7 +77,7 @@ export const Charters: CollectionConfig = {
                 components: {
                   Field: () => DuplicateToSales(),
                 },
-                position: 'sidebar' 
+                position: 'sidebar',
               },
             },
           ],

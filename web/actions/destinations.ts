@@ -68,7 +68,10 @@ export const fetchDestinations = async (
   const { data } = await client.query({
     query: gql`
       query Destinations($locale: LocaleInputType!) {
-        Destinations(locale: $locale) {
+        Destinations(
+          locale: $locale
+          limit: 0
+        ) {
           docs {
             id
             destination

@@ -20,7 +20,7 @@ const ContactLinks = () => {
       }
     >
       <a
-        href={"https://wa.me/0041754080808"}
+        href={"https://wa.me/41754080808"}
         target={"_blank"}
         rel={"noopener noreferrer"}
         className={

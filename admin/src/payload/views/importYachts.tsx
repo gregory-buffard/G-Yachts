@@ -84,7 +84,6 @@ const YachtImportView = () => {
             <th style={rowCss}>LOA</th>
             <th style={rowCss}>Beam</th>
             <th style={rowCss}>Builder</th>
-            <th style={rowCss}>Category</th>
             <th style={rowCss}>City</th>
             <th style={rowCss}>Continent</th>
             <th style={rowCss}>Country</th>
@@ -101,7 +100,7 @@ const YachtImportView = () => {
             <th style={rowCss}>Subcategory</th>
             <th style={rowCss}>Tonnage</th>
             <th style={rowCss}>Year Built</th>
-            <th style={rowCss}>Year Model</th>
+            <th style={rowCss}>Year Refit</th>
             <th style={rowCss}>Photos</th>
             <th style={rowCss}>Description</th>
           </tr>
@@ -119,7 +118,6 @@ const YachtImportView = () => {
               <td style={rowCss}>{yacht.LOA}</td>
               <td style={rowCss}>{yacht.beam}</td>
               <td style={rowCss}>{yacht.builder}</td>
-              <td style={rowCss}>{yacht.category}</td>
               <td style={rowCss}>{yacht.city}</td>
               <td style={rowCss}>{yacht.continent}</td>
               <td style={rowCss}>{yacht.country}</td>
@@ -136,7 +134,7 @@ const YachtImportView = () => {
               <td style={rowCss}>{yacht.subcategory}</td>
               <td style={rowCss}>{yacht.tonnage}</td>
               <td style={rowCss}>{yacht.yearBuilt}</td>
-              <td style={rowCss}>{yacht.yearModel}</td>
+              <td style={rowCss}>{yacht.yearRefit}</td>
               <td style={rowCss}>{yacht.photos.toString()}</td>
               <td style={rowCss}>
                 {`${yacht.description?.substring(0, 50) ?? 'Unknown'}  ${

@@ -18,7 +18,7 @@ export const Destinations: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'destination',
-    defaultColumns: ['name', 'region', 'country'],
+    defaultColumns: ['destination', 'region', 'country'],
     preview: doc => {
       return `${process.env.PAYLOAD_PUBLIC_FRONTEND_URL}/destinations/${doc?.id}`
     },

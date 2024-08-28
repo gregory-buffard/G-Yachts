@@ -67,26 +67,32 @@ const Card = ({
       href={"/sales"}
       key={`${card.id}`}
       className={
-        "w-screen h-full bg-cover bg-right-bottom translate-x-[var(--translate-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out flex flex-col justify-end items-end py-[4vh] lg:py-[12vh] px-[4vw]"
+        "w-screen h-full bg-cover bg-center translate-x-[var(--translate-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out"
       }
       style={{
         backgroundImage: `url(${encodeURI(card.photos.featured.sizes.fhd.url)})`,
       }}
     >
-      <h4>{card.name}</h4>
-      {price ? (
-        <h4>{price}</h4>
-      ) : (
-        <div
-          className={
-            "h-[0.875rem] my-[0.1875rem] w-[16vw] bg-white rounded-full animate-pulse"
-          }
-        />
-      )}
-      <h4>
-        {card.builder} | {convertUnit(card.length, units.length)} |{" "}
-        {card.yearBuilt} | {card.sleeps + " " + t("guests")}
-      </h4>
+      <div
+        className={
+          "opacity-sheet w-full h-full flex flex-col justify-end items-end py-[4vh] lg:py-[12vh] px-[4vw]"
+        }
+      >
+        <h4>{card.name}</h4>
+        {price ? (
+          <h4>{price}</h4>
+        ) : (
+          <div
+            className={
+              "h-[0.875rem] my-[0.1875rem] w-[16vw] bg-white rounded-full animate-pulse"
+            }
+          />
+        )}
+        <h4>
+          {card.builder} | {convertUnit(card.length, units.length)} |{" "}
+          {card.yearBuilt} | {card.sleeps + " " + t("guests")}
+        </h4>
+      </div>
     </Link>
   );
 };
@@ -160,7 +166,7 @@ const Hero = ({
         >
           <div
             className={
-              "lg:flex flex-col justify-center items-start hidden py-[12vh]"
+              "lg:flex flex-col justify-center items-start hidden py-[12vh] w-2/3"
             }
           >
             <h4>{t("subtitle")}</h4>

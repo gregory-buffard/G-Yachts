@@ -49,5 +49,16 @@ export const NewConstructions: CollectionConfig = {
     },
     ...yachtsAndCharterCommonFields('yacht'),
     seoField,
+    {
+      label: {
+        en: 'Similar New Constructions',
+        fr: 'Nouvelles Constructions similaires',
+      },
+      name: 'similar',
+      type: 'relationship',
+      required: false,
+      relationTo: 'new-constructions',
+      hasMany: true,
+    },
   ],
 }

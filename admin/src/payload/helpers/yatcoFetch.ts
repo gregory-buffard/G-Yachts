@@ -46,7 +46,6 @@ function convertApiResponseToYacht(apiResponse: any): Yacht {
     beam: apiResponse.BeamMeters,
     broker: null as string,
     builder: apiResponse.BuilderName,
-    category: apiResponse.MainCategoryText || null,
     city: apiResponse.City || null,
     continent: apiResponse.LocationSubRegion || null,
     country: apiResponse.Country || null,
@@ -63,7 +62,7 @@ function convertApiResponseToYacht(apiResponse: any): Yacht {
     subcategory: apiResponse.MainCategoryText || null,
     tonnage: apiResponse.GrossTonnage,
     yearBuilt: apiResponse.YearBuilt,
-    yearModel: apiResponse.ModelYear,
+    yearRefit: apiResponse.YearFit || null,
     photos: {
       featured: apiResponse.MainPhotoMedURL as string,
       gallery: [{ image: apiResponse.MainPhotoMedURL as string }],

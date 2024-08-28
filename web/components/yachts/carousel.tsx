@@ -254,7 +254,7 @@ const Carousel = ({
       }
     >
       <div className={"w-full flex justify-between items-center"}>
-        <h2 className={"font-slick font-light"}>{title}</h2>
+        <h2 className={"font-slick font-light py-[0.1vh]"}>{title}</h2>
         <div className={"flex justify-center items-center gap-[2vw]"}>
           <div
             className={"hidden lg:flex justify-center items-center gap-[0.5vw]"}

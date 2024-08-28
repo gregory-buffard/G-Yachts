@@ -21,9 +21,15 @@ const Card = ({ card }: { card: IDestination }) => {
           backgroundImage: `url(${encodeURI(card.photos.featured.sizes.fhd.url)})`,
         }}
       >
-        <div className={"flex flex-col md:px-6 md:py-4 px-1 text-white"}>
-          <h3 className={"md:text-2xl text-lg font-slick"}>{card.country}</h3>
-          <h3 className={"md:text-base text-sm font-classic"}>{card.region}</h3>
+        <div
+          className={"flex flex-col p-[1vh] md:px-6 md:py-4 px-1 text-white"}
+        >
+          <h3 className={"md:text-2xl text-lg font-slick px-[1vw] md:p-0"}>
+            {card.destination}
+          </h3>
+          <h3 className={"md:text-base text-sm font-classic px-[1vw] md:p-0"}>
+            {card.country}
+          </h3>
         </div>
       </div>
     </Link>
