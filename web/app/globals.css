@@ -13,7 +13,7 @@
 
 @layer base {
     h1 {
-        @apply lg:text-6xl text-5xl font-slick font-light;
+        @apply lg:text-6xl text-4xl font-slick font-light;
     }
 
     h1 .classic {
@@ -21,11 +21,11 @@
     }
 
     h2 {
-        @apply lg:text-5xl text-4xl;
+        @apply lg:text-5xl text-3xl;
     }
 
     h3 {
-        @apply lg:text-4xl text-3xl font-medium font-classic;
+        @apply lg:text-4xl text-2xl font-medium font-classic;
     }
 
     h4 {

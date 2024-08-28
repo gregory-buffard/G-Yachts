@@ -28,7 +28,10 @@ export const generateMetadata = async ({
 };
 
 const NewConstructions = async ({ params }: { params: { id: string } }) => {
-  const yacht = await fetchNewConstruction(params.id);
+  const yacht = await fetchNewConstruction(
+    params.id,
+    (await getLocale()) as "en" | "fr",
+  );
 
   return (
     <YachtProvider data={yacht} type={"new-construction"}>
@@ -44,7 +47,11 @@ const NewConstructions = async ({ params }: { params: { id: string } }) => {
             ),
           })}
           type={"new-constructions"}
-          data={await fetchSimilarNewConstructions(yacht.length)}
+          data={
+            yacht.similar && yacht.similar.length >= 4
+              ? yacht.similar
+              : await fetchSimilarNewConstructions(yacht.length)
+          }
         />
         <Newsletter />
         <Footer />

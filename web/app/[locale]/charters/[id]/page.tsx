@@ -25,7 +25,10 @@ export const generateMetadata = async ({
 };
 
 const Charter = async ({ params }: { params: { id: string } }) => {
-  const yacht = await fetchCharter(params.id);
+  const yacht = await fetchCharter(
+    params.id,
+    (await getLocale()) as "en" | "fr",
+  );
 
   return (
     <YachtProvider data={yacht} type={"charter"}>
@@ -36,7 +39,11 @@ const Charter = async ({ params }: { params: { id: string } }) => {
         <Details />
         <Carousel
           type={"charters"}
-          data={await fetchSimilarCharters(yacht.length)}
+          data={
+            yacht.similar && yacht.similar.length >= 4
+              ? yacht.similar
+              : await fetchSimilarCharters(yacht.length)
+          }
           title={(await getTranslations("charters")).rich("similar", {
             classic: (chunks) => (
               <span className={"font-classic uppercase"}>{chunks}</span>

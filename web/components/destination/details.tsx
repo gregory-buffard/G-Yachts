@@ -34,22 +34,26 @@ const Details = () => {
   ];
 
   return (
-    <section className="w-full md:w-5/6 my-32 grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="flex flex-col justify-start items-start">
-        <h3 className="text-2xl font-light">{destination.country}</h3>
-        <h1 className="text-4xl">
-          {t("explore")}{" "}
-          <span className="classic">{destination.destination}</span>
-        </h1>
-        <div className="mt-10 lg:mr-20">
+    <section className="w-full md:w-5/6 my-[4vh] md:my-[8vh] px-[4vw] md:px-[2vw] flex justify-center items-start flex-col lg:flex-row gap-[8vh] lg:gap-[4vw]">
+      <div className="flex flex-col justify-start items-start gap-[4vh]">
+        <div className={"flex flex-col justify-start items-start"}>
+          <h4 className={"font-normal"}>{destination.country}</h4>
+          <h2 className={"font-slick font-light py-[1vh]"}>
+            {t("explore")}{" "}
+            <span className="font-classic uppercase font-medium">
+              {destination.destination}
+            </span>
+          </h2>
+        </div>
+        <div className="lg:mr-20">
           <ContentRenderer blocks={destination.description} />
         </div>
-        <div className="mt-10 grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           {info.map((item, index) => (
             <InfoRow key={index} {...item} />
           ))}
         </div>
-        <Link className="glass-button mt-10" href={"/charters"}>
+        <Link className="glass-button" href={"/charters"}>
           {t("button")}
         </Link>
       </div>
@@ -58,7 +62,7 @@ const Details = () => {
         alt={destination.photos.destinationPhoto.alt}
         width={destination.photos.destinationPhoto.sizes.fhd.width}
         height={destination.photos.destinationPhoto.sizes.fhd.height}
-        className="h-96 md:h-auto object-cover object-center bg-sky-400"
+        className="w-full lg:w-1/2 object-cover object-center bg-sky-400"
       />
     </section>
   );
@@ -75,10 +79,16 @@ const InfoRow = ({
 }) => {
   return (
     <div className="flex flex-row">
-      <img src={icon} alt={title} className="w-8 h-8 mr-4" />
+      <Image
+        src={icon}
+        alt={title}
+        width={32}
+        height={32}
+        className="size-8 mr-4"
+      />
       <div className="flex flex-col">
-        <h4 className="text-lg">{title}</h4>
-        <p className="uppercase text-gray-400">{value}</p>
+        <h4>{title}</h4>
+        <p className="text-rock-300">{value}</p>
       </div>
     </div>
   );

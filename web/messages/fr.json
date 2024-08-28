@@ -434,16 +434,16 @@
     "heroTitle": "<classic>Destinations</classic> Incroyables"
   },
   "destination": {
-    "heroSubtitle": "Charter un yacht",
+    "heroSubtitle": "Affrétez un yacht",
     "details": {
-      "explore": "Explore",
-      "bestTimeTiVisit": "Best time to visit",
-      "currency": "Currency",
-      "languages": "Languages",
-      "gettingThere": "Getting there",
-      "button": "Charter un yacht"
+      "explore": "Explorez :",
+      "bestTimeTiVisit": "Meilleure période de visite",
+      "currency": "Devise",
+      "languages": "Langues",
+      "gettingThere": "Comment s'y rendre",
+      "button": "Affrétez un yacht"
     },
-    "charters": "Charters <classic>{destination}</classic>"
+    "charters": "Charters : <classic>{destination}</classic>"
   },
   "news": {
     "metadata": {

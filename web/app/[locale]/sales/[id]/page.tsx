@@ -41,7 +41,11 @@ const Sale = async ({ params }: { params: { id: string } }) => {
             ),
           })}
           type={"sales"}
-          data={await fetchSimilarSales(yacht.length)}
+          data={
+            yacht.similar && yacht.similar.length >= 4
+              ? yacht.similar
+              : await fetchSimilarSales(yacht.length)
+          }
         />
         <Newsletter />
         <Footer />

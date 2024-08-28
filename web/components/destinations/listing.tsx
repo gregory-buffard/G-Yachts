@@ -52,15 +52,27 @@ const Listing = ({ data }: { data: IDestination[] }) => {
               pathname: "/destinations/[id]",
               params: { id: destination.id },
             }}
-            className="rounded-lg p-4 flex flex-col bg-center bg-cover h-64 text-white uppercase cursor-pointer hover:shadow-xl transition-shadow duration-300"
+            className="bg-center bg-cover h-64"
             style={{
               backgroundImage: `url(${encodeURI(destination.photos.featured.sizes.thumbnail.url)}), linear-gradient(to bottom right, #74ebd5, #acb6e5)`,
             }}
           >
-            <span className="text-3xl font-bold drop-shadow-md">
-              {destination.destination}
-            </span>
-            <span className="text-lg drop-shadow-sm">{destination.country}</span>
+            <div
+              className={
+                "w-full h-full p-4 flex flex-col text-white uppercase cursor-pointer"
+              }
+              style={{
+                backgroundSize: "100% 100%",
+                backgroundPosition: "0px 0px",
+                backgroundImage:
+                  "radial-gradient(200% 200% at 100% 100%, #FFFFFF00 0%, #000000FF 100%)",
+              }}
+            >
+              <span className="text-3xl font-bold">
+                {destination.destination}
+              </span>
+              <span className="text-lg">{destination.country}</span>
+            </div>
           </Link>
         ))}
       </div>

@@ -19,7 +19,7 @@ const Hero = () => {
     >
       <div
         className={
-          "w-full h-full opacity-sheet px-[4vw] md:px-[8vw] py-[2vh] md:py-[6vh] flex flex-col justify-end items-start"
+          "w-full h-full opacity-sheet px-[4vw] md:px-[8vw] py-[2vh] md:py-[6vh] flex flex-col justify-end items-start gap-[1vh]"
         }
       >
         <h4>{t("heroSubtitle")}</h4>

@@ -105,7 +105,9 @@ export const fetchSales = async (locale: "en" | "fr"): Promise<ISale[]> => {
   });
 
   const promoted = data.Yachts.docs.filter((doc: ISale) => doc.promotion),
-    rest = data.Yachts.docs.filter((doc: ISale) => !doc.promotion);
+    rest = data.Yachts.docs
+      .filter((doc: ISale) => !doc.promotion)
+      .sort((a: ISale, b: ISale) => b.length - a.length);
 
   return [...promoted, ...rest];
 };
@@ -118,7 +120,7 @@ export const fetchSale = async (
   const { data } = await client.query({
     query: gql`
       query Yacht($locale: LocaleInputType!, $id: String!) {
-        Yacht(locale: $locale, id: $id) {
+        Yacht(locale: $locale, id: $id, fallbackLocale: en) {
           id
           name
           model
@@ -147,6 +149,26 @@ export const fetchSale = async (
           yearRefit
           keyFeatures
           description
+          similar {
+            id
+            name
+            price
+            builder
+            length
+            sleeps
+            yearBuilt
+            etiquette
+            photos {
+              featured {
+                sizes {
+                  thumbnail {
+                    url
+                  }
+                }
+                alt
+              }
+            }
+          }
           broker {
             name
             email
@@ -291,17 +313,22 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
   });
 
   const promoted = data.Charters.docs.filter((doc: ICharter) => doc.promotion),
-    rest = data.Charters.docs.filter((doc: ICharter) => !doc.promotion);
+    rest = data.Charters.docs
+      .filter((doc: ICharter) => !doc.promotion)
+      .sort((a: ICharter, b: ICharter) => b.length - a.length);
 
   return [...promoted, ...rest];
 };
 
-export const fetchCharter = async (id: string): Promise<ICharter> => {
+export const fetchCharter = async (
+  id: string,
+  locale: "en" | "fr",
+): Promise<ICharter> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Charter($id: String!) {
-        Charter(id: $id) {
+      query Charter($id: String!, $locale: LocaleInputType!) {
+        Charter(id: $id, locale: $locale, fallbackLocale: en) {
           id
           name
           model
@@ -334,6 +361,29 @@ export const fetchCharter = async (id: string): Promise<ICharter> => {
           featured
           keyFeatures
           description
+          similar {
+            id
+            name
+            price {
+              low
+              high
+            }
+            builder
+            length
+            sleeps
+            yearBuilt
+            etiquette
+            photos {
+              featured {
+                sizes {
+                  thumbnail {
+                    url
+                  }
+                }
+                alt
+              }
+            }
+          }
           reservations {
             from
             to
@@ -395,7 +445,7 @@ export const fetchCharter = async (id: string): Promise<ICharter> => {
         }
       }
     `,
-    variables: { id },
+    variables: { id, locale },
   });
 
   return data.Charter;
@@ -758,6 +808,7 @@ export const fetchSimilarCharters = async (
             etiquette
             photos {
               featured {
+                alt
                 sizes {
                   thumbnail {
                     url
@@ -830,20 +881,21 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
   const promoted = data.NewConstructions.docs.filter(
       (doc: INewConstruction) => doc.promotion,
     ),
-    rest = data.NewConstructions.docs.filter(
-      (doc: INewConstruction) => !doc.promotion,
-    );
+    rest = data.NewConstructions.docs
+      .filter((doc: INewConstruction) => !doc.promotion)
+      .sort((a: INewConstruction, b: INewConstruction) => b.length - a.length);
 
   return [...promoted, ...rest];
 };
 export const fetchNewConstruction = async (
   id: string,
+  locale: "en" | "fr",
 ): Promise<INewConstruction> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query NewConstruction($id: String!) {
-        NewConstruction(id: $id) {
+      query NewConstruction($id: String!, $locale: LocaleInputType!) {
+        NewConstruction(id: $id, locale: $locale, fallbackLocale: en) {
           id
           delivery
           name
@@ -872,6 +924,26 @@ export const fetchNewConstruction = async (
           yearBuilt
           keyFeatures
           description
+          similar {
+            id
+            name
+            price
+            builder
+            length
+            sleeps
+            yearBuilt
+            etiquette
+            photos {
+              featured {
+                sizes {
+                  thumbnail {
+                    url
+                  }
+                }
+                alt
+              }
+            }
+          }
           broker {
             name
             email
@@ -927,8 +999,9 @@ export const fetchNewConstruction = async (
         }
       }
     `,
-    variables: { id },
+    variables: { id, locale },
   });
+
   return data.NewConstruction;
 };
 export const fetchShipyards = async (): Promise<IShipyard[]> => {

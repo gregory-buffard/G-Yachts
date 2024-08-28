@@ -180,7 +180,7 @@ const Card = ({
         className={`w-full flex justify-between ${data.price ? "items-baseline" : "items-center"} text-black uppercase`}
       >
         <p>{data.name}</p>
-        {data.price ? <p>{price}</p> : <p>{t("priceOnApplication")}</p>}
+        {data.price ? <p>{price}</p> : <p>{t("noPrice")}</p>}
       </div>
       <p className={"uppercase text-rock-400"}>
         {data.builder} | {convertUnit(data.length, units.length)} |{" "}

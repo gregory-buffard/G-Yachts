@@ -85,6 +85,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     required: false,
     relationTo: 'users',
     hasMany: false,
+    localized: true,
   },
   {
     label: {
@@ -137,6 +138,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     name: 'continent',
     type: 'text',
     required: false,
+    localized: true,
   },
   {
     label: {
@@ -146,6 +148,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     name: 'country',
     type: 'text',
     required: false,
+    localized: true,
   },
   {
     label: {
@@ -182,6 +185,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     name: 'state',
     type: 'text',
     required: false,
+    localized: true,
   },
   {
     label: {
@@ -219,6 +223,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     name: 'region',
     type: 'text',
     required: false,
+    localized: true,
   },
   {
     label: {
@@ -437,7 +442,7 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     defaultValue: 0,
     label: {
       en: 'Clicks',
-      fr: 'Clics',
+      fr: 'Cliques',
     },
   },
 ]
