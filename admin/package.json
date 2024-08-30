@@ -24,6 +24,7 @@
     "@payloadcms/db-mongodb": "^1.5.1",
     "@payloadcms/richtext-slate": "^1.0.0",
     "chromiumly": "^3.3.4",
+    "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "escape-html": "^1.0.3",

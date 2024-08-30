@@ -7,6 +7,7 @@ import { seoField } from '../shared/seo'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import DuplicateToCharter from './components/duplicate'
+import { CustomCollectionList } from '../../components/CustomOrder/list'
 
 export const Yachts: CollectionConfig = {
   slug: 'yachts',
@@ -22,11 +23,19 @@ export const Yachts: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'model', 'price', 'region'],
+    defaultColumns: ['model', 'price', 'region'], // Title column is always shown
     preview: doc => {
       return `${process.env.PAYLOAD_PUBLIC_FRONTEND_URL}/yacht/${doc?.id}`
     },
     hideAPIURL: true,
+    components: {
+      views: {
+        List: {
+          Component: props =>
+            CustomCollectionList({ ...props, columns: props.collection.admin.defaultColumns } as any),
+        },
+      },
+    },
   },
   hooks: {
     afterChange: [

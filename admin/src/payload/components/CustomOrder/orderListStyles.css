@@ -1,0 +1,42 @@
+.list-item {
+    cursor: pointer;
+}
+
+.list-item.drop-zone{
+    background-color: transparent;
+    transition-property: height padding;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    overflow: hidden;
+    height: 60px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.floating {
+    position: absolute;
+    
+}
+  
+.list-item.drop-zone.hidden {
+    height: 0px;
+    padding: 0px;
+}
+
+.drag-cell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.drag-cell .drag-handle {
+    opacity: 0.5;
+    cursor: grab;
+}
+
+/* Disable drag'n'drop on touch screeen devices */
+@media (hover: none) {
+    .drag-cell .drag-handle {
+        display: none;
+    }
+}
