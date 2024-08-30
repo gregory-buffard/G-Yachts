@@ -16,6 +16,7 @@ import { clsx } from 'clsx'
 import './orderListStyles.css'
 import { MoveArrows } from './MoveArrows'
 import { DragHandle } from './DragHandle'
+import { queryCollection } from './queryCollection'
 
 export const CustomCollectionList = <
   T extends Yacht | Charter | User | Shipyard | Destination | Partner | NewConstruction,
@@ -62,6 +63,20 @@ export const CustomCollectionList = <
     [i18n.language],
   )
   const [data, setData] = useState<T[]>([])
+  const [query, setQuery] = useState<string>('')
+
+  // Search
+  useEffect(() => {
+    if (query.length > 0) {
+      const timeout = setTimeout(async () => {
+        const results = await queryCollection<T>(query, props.collection.slug as any, language)
+        setData(results)
+      }, 1000)
+      return () => clearTimeout(timeout)
+    } else {
+      fetchData()
+    }
+  }, [query])
 
   // Data fetching
   useEffect(() => {
@@ -181,8 +196,13 @@ export const CustomCollectionList = <
     return (
       <tr>
         <td className={`cell-${props.titleField.name} drag-cell`}>
-          <MoveArrows onUp={() => move('up', index)} onDown={() => move('down', index)} />
-          <DragHandle onMouseDown={onMouseDown} />
+          {/* Only show move buttons when there is no serach going on */}
+          {query.length == 0 && (
+            <>
+              <MoveArrows onUp={() => move('up', index)} onDown={() => move('down', index)} />
+              <DragHandle onMouseDown={onMouseDown} />
+            </>
+          )}
           <a href={url} onClick={navigateToItem} style={{ marginLeft: '10px' }}>
             {item[props.titleField.name]}
           </a>
@@ -214,9 +234,9 @@ export const CustomCollectionList = <
             <div className="search-filter">
               <input
                 className="search-filter__input"
-                placeholder="Search by Name"
+                placeholder={`Search by ${props.titleField.label[language]}`}
                 type="text"
-                value=""
+                onChange={e => setQuery(e.target.value)}
               />
               <svg
                 className="icon icon--search"
