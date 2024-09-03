@@ -5,7 +5,6 @@ import { gql } from "@apollo/client";
 import { IFeatured, IFeatured as SFeatured } from "@/types/sale";
 import { ICharter, INewConstruction, ISale } from "@/types/yacht";
 import { IDestination } from "@/types/destination";
-import axios from "axios";
 import { ICFeatured } from "@/types/charter";
 import { IShipyard } from "@/types/shipyard";
 
@@ -561,20 +560,6 @@ export const fetchChartersForDestination = async (
   });
   if (randomData) charters.push(...randomData.Charters.docs);
   return charters;
-};
-
-export const getRate = async (currency: string) => {
-  "use server";
-  if (currency === "EUR") return 1;
-  try {
-    const res = await axios.get(
-      `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.CURRENCY_API_KEY}&currencies=${currency}&base_currency=EUR`,
-    );
-    return 1 * res.data.data[currency];
-  } catch (e) {
-    console.error("Error fetching currency");
-    return 1;
-  }
 };
 
 export const fetchSimilarSales = async (

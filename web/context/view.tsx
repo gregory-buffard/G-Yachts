@@ -7,7 +7,8 @@ import {
   bookmarks as useBookmarks,
 } from "@/utils/yachts";
 import Cookies from "js-cookie";
-import { getRate } from "@/actions/yachts";
+
+import { getRate } from "@/actions/actions";
 
 interface IActions {
   changeCurrency: (currency: IContext["currency"]) => void;
