@@ -8,6 +8,7 @@ import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import DuplicateToCharter from './components/duplicate'
 import { CustomCollectionList } from '../../components/CustomOrder/list'
+import { indexField } from '../shared/indexField'
 
 export const Yachts: CollectionConfig = {
   slug: 'yachts',
@@ -32,7 +33,10 @@ export const Yachts: CollectionConfig = {
       views: {
         List: {
           Component: props =>
-            CustomCollectionList({ ...props, columns: props.collection.admin.defaultColumns } as any),
+            CustomCollectionList({
+              ...props,
+              columns: props.collection.admin.defaultColumns,
+            } as any),
         },
       },
     },
@@ -79,5 +83,6 @@ export const Yachts: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    indexField,
   ],
 }

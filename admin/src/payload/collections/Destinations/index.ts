@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload/types'
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 import { seoField } from '../shared/seo'
+import { indexField } from '../shared/indexField'
 
 export const Destinations: CollectionConfig = {
   slug: 'destinations',
@@ -193,5 +194,6 @@ export const Destinations: CollectionConfig = {
       }
     },
     seoField,
+    indexField
   ],
 }

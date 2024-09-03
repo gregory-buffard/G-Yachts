@@ -80,7 +80,7 @@ export const CustomCollectionList = <
 
   // Data fetching
   useEffect(() => {
-    fetchData()
+    if (props.data?.limit) fetchData()
   }, [props.data])
 
   const fetchData = async () => {
@@ -89,6 +89,7 @@ export const CustomCollectionList = <
         credentials: 'include',
       })
       const responseData = (await response.json()) as { docs: T[] }
+      const sortedData = responseData.docs.sort((a, b) => a.indexField - b.indexField)
       setData(responseData.docs)
     } catch (err) {
       console.error(err)
@@ -148,6 +149,33 @@ export const CustomCollectionList = <
     }
   }
 
+  const saveOrder = async () => {
+    const mappedList = data.map((item, index) => ({ id: item.id, indexField: index }))
+    try {
+      const resp = await fetch('/api/reorder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          collection: props.collection.slug,
+          items: mappedList,
+        }),
+        credentials: 'include',
+      })
+      if (!resp.ok) {
+        throw new Error('Failed to save order')
+      }
+      toast.success('Order saved')
+      setData([])
+    } catch (err) {
+      console.error(err)
+      toast.error('Failed to save order')
+      setData([])
+    }
+    await fetchData()
+  }
+
   const Row = ({ item, index }) => {
     return (
       <>
@@ -199,6 +227,14 @@ export const CustomCollectionList = <
           {/* Only show move buttons when there is no serach going on */}
           {query.length == 0 && (
             <>
+              <span
+                style={{
+                  marginRight: '10px',
+                  color: 'grey',
+                }}
+              >
+                {item.indexField + 1}
+              </span>
               <MoveArrows onUp={() => move('up', index)} onDown={() => move('down', index)} />
               <DragHandle onMouseDown={onMouseDown} />
             </>
@@ -221,13 +257,21 @@ export const CustomCollectionList = <
           <h1>{props.collection.labels.plural[language]}</h1>
           {props.hasCreatePermission && (
             <a
-              aria-label="Create new Yacht"
               className="pill pill--style-light pill--has-link pill--has-action"
               href={props.newDocumentURL}
             >
               <span className="pill__label">Create New</span>
             </a>
           )}
+          <a
+            className="pill pill--style-light pill--has-link pill--has-action"
+            onClick={() => saveOrder()}
+            style={{
+              float: 'right',
+            }}
+          >
+            <span className="pill__label">Save Order</span>
+          </a>
         </header>
         <div className="list-controls">
           <div className="list-controls__wrap">
