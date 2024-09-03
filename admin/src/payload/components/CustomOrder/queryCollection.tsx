@@ -27,6 +27,14 @@ export const queryCollection = async <
     `/api/${collection}?locale=${locale}&depth=0&where[and][1][or][0][name][like]=${encodeURIComponent(
       query,
     )}&limit=${limit || 10}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      credentials: 'include',
+    },
   )
   const data = await response.json()
   console.log(data)
