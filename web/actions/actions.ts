@@ -1,7 +1,10 @@
+"use server";
+
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
 import { Metadata } from "next";
 import { joinSEO } from "@/utils/metadata";
+import puppeteer from "puppeteer";
 
 export const fetchMetadata = async ({
   id,
@@ -451,4 +454,34 @@ export const fetchSitemap = async () => {
     `,
   });
   return data;
+};
+
+export const getRate = async (currency: string) => {
+  if (currency === "EUR") return 1;
+
+  try {
+    const url = `https://finance.yahoo.com/quote/EUR${currency}=X/`,
+      browser = await puppeteer.launch(),
+      page = await browser.newPage();
+
+    await page.goto(url, { waitUntil: "networkidle2" });
+
+    const consentSel = 'button[name="agree"]';
+    await page.click(consentSel);
+    await page.waitForNavigation();
+
+    const rate = await page.evaluate(() => {
+      const element = document.querySelector(
+        'fin-streamer[data-testid="qsp-price"]',
+      );
+      return element ? element.textContent : null;
+    });
+
+    await browser.close();
+
+    return rate ? parseFloat(rate) : 1;
+  } catch (e) {
+    console.error("Error fetching currency: ", e);
+    return 1;
+  }
 };
