@@ -68,8 +68,8 @@ export const fetchSales = async (locale: "en" | "fr"): Promise<ISale[]> => {
             length
             sleeps
             yearBuilt
-            promotion
             etiquette
+            indexField
             photos {
               featured {
                 alt
@@ -103,12 +103,9 @@ export const fetchSales = async (locale: "en" | "fr"): Promise<ISale[]> => {
     },
   });
 
-  const promoted = data.Yachts.docs.filter((doc: ISale) => doc.promotion),
-    rest = data.Yachts.docs
-      .filter((doc: ISale) => !doc.promotion)
-      .sort((a: ISale, b: ISale) => b.length - a.length);
-
-  return [...promoted, ...rest];
+  return [...data.Yachts.docs].sort(
+    (a: ISale, b: ISale) => a.indexField - b.indexField,
+  );
 };
 
 export const fetchSale = async (
@@ -281,7 +278,6 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
             length
             sleeps
             yearBuilt
-            promotion
             etiquette
             reservations {
               from
@@ -311,12 +307,7 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
     `,
   });
 
-  const promoted = data.Charters.docs.filter((doc: ICharter) => doc.promotion),
-    rest = data.Charters.docs
-      .filter((doc: ICharter) => !doc.promotion)
-      .sort((a: ICharter, b: ICharter) => b.length - a.length);
-
-  return [...promoted, ...rest];
+  return data.Charters.docs;
 };
 
 export const fetchCharter = async (
@@ -831,7 +822,6 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
             length
             sleeps
             yearBuilt
-            promotion
             etiquette
             photos {
               featured {
@@ -863,14 +853,7 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
     `,
   });
 
-  const promoted = data.NewConstructions.docs.filter(
-      (doc: INewConstruction) => doc.promotion,
-    ),
-    rest = data.NewConstructions.docs
-      .filter((doc: INewConstruction) => !doc.promotion)
-      .sort((a: INewConstruction, b: INewConstruction) => b.length - a.length);
-
-  return [...promoted, ...rest];
+  return data.NewConstructions.docs;
 };
 export const fetchNewConstruction = async (
   id: string,

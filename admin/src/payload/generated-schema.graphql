@@ -3970,7 +3970,6 @@ type UsersUnlockDocAccess {
 type usersMe {
   collection: String
   exp: Int
-  strategy: String
   token: String
   user: User
 }
@@ -4004,7 +4003,6 @@ type Yacht {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean!
-  promotion: Boolean!
   keyFeatures: [Yacht_keyFeatures!]!
   etiquette: Yacht_etiquette
   photos: Yacht_Photos
@@ -4785,7 +4783,6 @@ input Yacht_where {
   yearBuilt: Yacht_yearBuilt_operator
   yearRefit: Yacht_yearRefit_operator
   featured: Yacht_featured_operator
-  promotion: Yacht_promotion_operator
   keyFeatures: Yacht_keyFeatures_operator
   etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
@@ -5060,11 +5057,6 @@ input Yacht_featured_operator {
   not_equals: Boolean
 }
 
-input Yacht_promotion_operator {
-  equals: Boolean
-  not_equals: Boolean
-}
-
 input Yacht_keyFeatures_operator {
   equals: Yacht_keyFeatures_Input
   not_equals: Yacht_keyFeatures_Input
@@ -5257,7 +5249,6 @@ input Yacht_where_and {
   yearBuilt: Yacht_yearBuilt_operator
   yearRefit: Yacht_yearRefit_operator
   featured: Yacht_featured_operator
-  promotion: Yacht_promotion_operator
   keyFeatures: Yacht_keyFeatures_operator
   etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
@@ -5305,7 +5296,6 @@ input Yacht_where_or {
   yearBuilt: Yacht_yearBuilt_operator
   yearRefit: Yacht_yearRefit_operator
   featured: Yacht_featured_operator
-  promotion: Yacht_promotion_operator
   keyFeatures: Yacht_keyFeatures_operator
   etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
@@ -5365,7 +5355,6 @@ type YachtsDocAccessFields {
   yearBuilt: YachtsDocAccessFields_yearBuilt
   yearRefit: YachtsDocAccessFields_yearRefit
   featured: YachtsDocAccessFields_featured
-  promotion: YachtsDocAccessFields_promotion
   keyFeatures: YachtsDocAccessFields_keyFeatures
   etiquette: YachtsDocAccessFields_etiquette
   photos: YachtsDocAccessFields_photos
@@ -6000,29 +5989,6 @@ type YachtsDocAccessFields_featured_Delete {
   permission: Boolean!
 }
 
-type YachtsDocAccessFields_promotion {
-  create: YachtsDocAccessFields_promotion_Create
-  read: YachtsDocAccessFields_promotion_Read
-  update: YachtsDocAccessFields_promotion_Update
-  delete: YachtsDocAccessFields_promotion_Delete
-}
-
-type YachtsDocAccessFields_promotion_Create {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_promotion_Read {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_promotion_Update {
-  permission: Boolean!
-}
-
-type YachtsDocAccessFields_promotion_Delete {
-  permission: Boolean!
-}
-
 type YachtsDocAccessFields_keyFeatures {
   create: YachtsDocAccessFields_keyFeatures_Create
   read: YachtsDocAccessFields_keyFeatures_Read
@@ -6481,7 +6447,6 @@ type Charter {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean!
-  promotion: Boolean!
   keyFeatures: [Charter_keyFeatures!]!
   etiquette: Charter_etiquette
   photos: Charter_Photos
@@ -7349,7 +7314,6 @@ input Charter_where {
   yearBuilt: Charter_yearBuilt_operator
   yearRefit: Charter_yearRefit_operator
   featured: Charter_featured_operator
-  promotion: Charter_promotion_operator
   keyFeatures: Charter_keyFeatures_operator
   etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
@@ -7640,11 +7604,6 @@ input Charter_featured_operator {
   not_equals: Boolean
 }
 
-input Charter_promotion_operator {
-  equals: Boolean
-  not_equals: Boolean
-}
-
 input Charter_keyFeatures_operator {
   equals: Charter_keyFeatures_Input
   not_equals: Charter_keyFeatures_Input
@@ -7890,7 +7849,6 @@ input Charter_where_and {
   yearBuilt: Charter_yearBuilt_operator
   yearRefit: Charter_yearRefit_operator
   featured: Charter_featured_operator
-  promotion: Charter_promotion_operator
   keyFeatures: Charter_keyFeatures_operator
   etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
@@ -7944,7 +7902,6 @@ input Charter_where_or {
   yearBuilt: Charter_yearBuilt_operator
   yearRefit: Charter_yearRefit_operator
   featured: Charter_featured_operator
-  promotion: Charter_promotion_operator
   keyFeatures: Charter_keyFeatures_operator
   etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
@@ -8009,7 +7966,6 @@ type ChartersDocAccessFields {
   yearBuilt: ChartersDocAccessFields_yearBuilt
   yearRefit: ChartersDocAccessFields_yearRefit
   featured: ChartersDocAccessFields_featured
-  promotion: ChartersDocAccessFields_promotion
   keyFeatures: ChartersDocAccessFields_keyFeatures
   etiquette: ChartersDocAccessFields_etiquette
   photos: ChartersDocAccessFields_photos
@@ -8694,29 +8650,6 @@ type ChartersDocAccessFields_featured_Update {
 }
 
 type ChartersDocAccessFields_featured_Delete {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_promotion {
-  create: ChartersDocAccessFields_promotion_Create
-  read: ChartersDocAccessFields_promotion_Read
-  update: ChartersDocAccessFields_promotion_Update
-  delete: ChartersDocAccessFields_promotion_Delete
-}
-
-type ChartersDocAccessFields_promotion_Create {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_promotion_Read {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_promotion_Update {
-  permission: Boolean!
-}
-
-type ChartersDocAccessFields_promotion_Delete {
   permission: Boolean!
 }
 
@@ -14412,7 +14345,6 @@ type NewConstruction {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean!
-  promotion: Boolean!
   keyFeatures: [NewConstruction_keyFeatures!]!
   etiquette: NewConstruction_etiquette
   photos: NewConstruction_Photos
@@ -15194,7 +15126,6 @@ input NewConstruction_where {
   yearBuilt: NewConstruction_yearBuilt_operator
   yearRefit: NewConstruction_yearRefit_operator
   featured: NewConstruction_featured_operator
-  promotion: NewConstruction_promotion_operator
   keyFeatures: NewConstruction_keyFeatures_operator
   etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
@@ -15479,11 +15410,6 @@ input NewConstruction_featured_operator {
   not_equals: Boolean
 }
 
-input NewConstruction_promotion_operator {
-  equals: Boolean
-  not_equals: Boolean
-}
-
 input NewConstruction_keyFeatures_operator {
   equals: NewConstruction_keyFeatures_Input
   not_equals: NewConstruction_keyFeatures_Input
@@ -15677,7 +15603,6 @@ input NewConstruction_where_and {
   yearBuilt: NewConstruction_yearBuilt_operator
   yearRefit: NewConstruction_yearRefit_operator
   featured: NewConstruction_featured_operator
-  promotion: NewConstruction_promotion_operator
   keyFeatures: NewConstruction_keyFeatures_operator
   etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
@@ -15726,7 +15651,6 @@ input NewConstruction_where_or {
   yearBuilt: NewConstruction_yearBuilt_operator
   yearRefit: NewConstruction_yearRefit_operator
   featured: NewConstruction_featured_operator
-  promotion: NewConstruction_promotion_operator
   keyFeatures: NewConstruction_keyFeatures_operator
   etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
@@ -15787,7 +15711,6 @@ type NewConstructionsDocAccessFields {
   yearBuilt: NewConstructionsDocAccessFields_yearBuilt
   yearRefit: NewConstructionsDocAccessFields_yearRefit
   featured: NewConstructionsDocAccessFields_featured
-  promotion: NewConstructionsDocAccessFields_promotion
   keyFeatures: NewConstructionsDocAccessFields_keyFeatures
   etiquette: NewConstructionsDocAccessFields_etiquette
   photos: NewConstructionsDocAccessFields_photos
@@ -16442,29 +16365,6 @@ type NewConstructionsDocAccessFields_featured_Update {
 }
 
 type NewConstructionsDocAccessFields_featured_Delete {
-  permission: Boolean!
-}
-
-type NewConstructionsDocAccessFields_promotion {
-  create: NewConstructionsDocAccessFields_promotion_Create
-  read: NewConstructionsDocAccessFields_promotion_Read
-  update: NewConstructionsDocAccessFields_promotion_Update
-  delete: NewConstructionsDocAccessFields_promotion_Delete
-}
-
-type NewConstructionsDocAccessFields_promotion_Create {
-  permission: Boolean!
-}
-
-type NewConstructionsDocAccessFields_promotion_Read {
-  permission: Boolean!
-}
-
-type NewConstructionsDocAccessFields_promotion_Update {
-  permission: Boolean!
-}
-
-type NewConstructionsDocAccessFields_promotion_Delete {
   permission: Boolean!
 }
 
@@ -21198,7 +21098,6 @@ type YachtsFields {
   yearBuilt: YachtsFields_yearBuilt
   yearRefit: YachtsFields_yearRefit
   featured: YachtsFields_featured
-  promotion: YachtsFields_promotion
   keyFeatures: YachtsFields_keyFeatures
   etiquette: YachtsFields_etiquette
   photos: YachtsFields_photos
@@ -21833,29 +21732,6 @@ type YachtsFields_featured_Delete {
   permission: Boolean!
 }
 
-type YachtsFields_promotion {
-  create: YachtsFields_promotion_Create
-  read: YachtsFields_promotion_Read
-  update: YachtsFields_promotion_Update
-  delete: YachtsFields_promotion_Delete
-}
-
-type YachtsFields_promotion_Create {
-  permission: Boolean!
-}
-
-type YachtsFields_promotion_Read {
-  permission: Boolean!
-}
-
-type YachtsFields_promotion_Update {
-  permission: Boolean!
-}
-
-type YachtsFields_promotion_Delete {
-  permission: Boolean!
-}
-
 type YachtsFields_keyFeatures {
   create: YachtsFields_keyFeatures_Create
   read: YachtsFields_keyFeatures_Read
@@ -22321,7 +22197,6 @@ type ChartersFields {
   yearBuilt: ChartersFields_yearBuilt
   yearRefit: ChartersFields_yearRefit
   featured: ChartersFields_featured
-  promotion: ChartersFields_promotion
   keyFeatures: ChartersFields_keyFeatures
   etiquette: ChartersFields_etiquette
   photos: ChartersFields_photos
@@ -23006,29 +22881,6 @@ type ChartersFields_featured_Update {
 }
 
 type ChartersFields_featured_Delete {
-  permission: Boolean!
-}
-
-type ChartersFields_promotion {
-  create: ChartersFields_promotion_Create
-  read: ChartersFields_promotion_Read
-  update: ChartersFields_promotion_Update
-  delete: ChartersFields_promotion_Delete
-}
-
-type ChartersFields_promotion_Create {
-  permission: Boolean!
-}
-
-type ChartersFields_promotion_Read {
-  permission: Boolean!
-}
-
-type ChartersFields_promotion_Update {
-  permission: Boolean!
-}
-
-type ChartersFields_promotion_Delete {
   permission: Boolean!
 }
 
@@ -25295,7 +25147,6 @@ type NewConstructionsFields {
   yearBuilt: NewConstructionsFields_yearBuilt
   yearRefit: NewConstructionsFields_yearRefit
   featured: NewConstructionsFields_featured
-  promotion: NewConstructionsFields_promotion
   keyFeatures: NewConstructionsFields_keyFeatures
   etiquette: NewConstructionsFields_etiquette
   photos: NewConstructionsFields_photos
@@ -25950,29 +25801,6 @@ type NewConstructionsFields_featured_Update {
 }
 
 type NewConstructionsFields_featured_Delete {
-  permission: Boolean!
-}
-
-type NewConstructionsFields_promotion {
-  create: NewConstructionsFields_promotion_Create
-  read: NewConstructionsFields_promotion_Read
-  update: NewConstructionsFields_promotion_Update
-  delete: NewConstructionsFields_promotion_Delete
-}
-
-type NewConstructionsFields_promotion_Create {
-  permission: Boolean!
-}
-
-type NewConstructionsFields_promotion_Read {
-  permission: Boolean!
-}
-
-type NewConstructionsFields_promotion_Update {
-  permission: Boolean!
-}
-
-type NewConstructionsFields_promotion_Delete {
   permission: Boolean!
 }
 
@@ -28160,7 +27988,7 @@ type Mutation {
   createUser(data: mutationUserInput!, locale: LocaleInputType): User
   updateUser(id: String!, autosave: Boolean, data: mutationUserUpdateInput!, locale: LocaleInputType): User
   deleteUser(id: String!): User
-  refreshTokenUser: usersRefreshedUser
+  refreshTokenUser(token: String): usersRefreshedUser
   logoutUser: String
   unlockUser(email: String!): Boolean!
   loginUser(email: String, password: String): usersLoginResult
@@ -29240,7 +29068,6 @@ enum UserUpdate_Socials_platform_MutationInput {
 type usersRefreshedUser {
   exp: Int
   refreshedToken: String
-  strategy: String
   user: usersJWT
 }
 
@@ -29288,7 +29115,6 @@ input mutationYachtInput {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean
-  promotion: Boolean
   keyFeatures: [Yacht_keyFeatures_MutationInput]!
   etiquette: Yacht_etiquette_MutationInput
   photos: mutationYacht_PhotosInput!
@@ -29375,7 +29201,6 @@ input mutationYachtUpdateInput {
   yearBuilt: Float
   yearRefit: Float
   featured: Boolean
-  promotion: Boolean
   keyFeatures: [YachtUpdate_keyFeatures_MutationInput]
   etiquette: YachtUpdate_etiquette_MutationInput
   photos: mutationYachtUpdate_PhotosInput!
@@ -29462,7 +29287,6 @@ input mutationCharterInput {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean
-  promotion: Boolean
   keyFeatures: [Charter_keyFeatures_MutationInput]!
   etiquette: Charter_etiquette_MutationInput
   photos: mutationCharter_PhotosInput!
@@ -29563,7 +29387,6 @@ input mutationCharterUpdateInput {
   yearBuilt: Float
   yearRefit: Float
   featured: Boolean
-  promotion: Boolean
   keyFeatures: [CharterUpdate_keyFeatures_MutationInput]
   etiquette: CharterUpdate_etiquette_MutationInput
   photos: mutationCharterUpdate_PhotosInput!
@@ -29857,7 +29680,6 @@ input mutationNewConstructionInput {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean
-  promotion: Boolean
   keyFeatures: [NewConstruction_keyFeatures_MutationInput]!
   etiquette: NewConstruction_etiquette_MutationInput
   photos: mutationNewConstruction_PhotosInput!
@@ -29945,7 +29767,6 @@ input mutationNewConstructionUpdateInput {
   yearBuilt: Float
   yearRefit: Float
   featured: Boolean
-  promotion: Boolean
   keyFeatures: [NewConstructionUpdate_keyFeatures_MutationInput]
   etiquette: NewConstructionUpdate_etiquette_MutationInput
   photos: mutationNewConstructionUpdate_PhotosInput!
