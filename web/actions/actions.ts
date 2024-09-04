@@ -462,7 +462,12 @@ export const getRate = async (currency: string) => {
 
   try {
     const url = `https://finance.yahoo.com/quote/EUR${currency}=X/`,
-      browser = await puppeteer.launch(),
+      browser = await puppeteer.launch({
+        headless: true,
+        defaultViewport: null,
+        executablePath: "/usr/bin/google-chrome",
+        args: ["--no-sandbox"],
+      }),
       page = await browser.newPage();
 
     await page.goto(url, { waitUntil: "networkidle2" });
