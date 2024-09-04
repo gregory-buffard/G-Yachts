@@ -5,6 +5,7 @@ import { gql } from "@apollo/client";
 import { Metadata } from "next";
 import { joinSEO } from "@/utils/metadata";
 import puppeteer from "puppeteer";
+import Cookies from "js-cookie";
 
 export const fetchMetadata = async ({
   id,
@@ -467,19 +468,23 @@ export const getRate = async (currency: string) => {
     await page.goto(url, { waitUntil: "networkidle2" });
 
     const consentSel = 'button[name="agree"]';
-    await page.click(consentSel);
-    await page.waitForNavigation();
+    await page
+      .locator(consentSel)
+      .click()
+      .then(
+        async () => await page.waitForNavigation({ waitUntil: "networkidle2" }),
+      );
 
     const rate = await page.evaluate(() => {
       const element = document.querySelector(
         'fin-streamer[data-testid="qsp-price"]',
       );
-      return element ? element.textContent : null;
+
+      return element && element.textContent && parseFloat(element.textContent);
     });
 
     await browser.close();
-
-    return rate ? parseFloat(rate) : 1;
+    return rate;
   } catch (e) {
     console.error("Error fetching currency: ", e);
     return 1;

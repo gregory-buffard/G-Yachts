@@ -79,11 +79,34 @@ export const ViewProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const assignRates = async () => {
+      const cached = {
+        USD: Cookies.get("rate_USD"),
+        GBP: Cookies.get("rate_GBP"),
+        JPY: Cookies.get("rate_JPY"),
+      };
+
+      const cookiefy = (key: string, value: number) => {
+        Cookies.set(`rate_${key}`, value.toString(), { expires: 1 });
+        return value;
+      };
+
       setRates({
         ...rates,
-        USD: await getRate("USD"),
-        GBP: await getRate("GBP"),
-        JPY: await getRate("JPY"),
+        USD: cached.USD
+          ? parseFloat(cached.USD)
+          : (await getRate("USD").then(
+              (rate) => rate && cookiefy("USD", rate),
+            )) || 1,
+        GBP: cached.GBP
+          ? parseFloat(cached.GBP)
+          : (await getRate("GBP").then(
+              (rate) => rate && cookiefy("GBP", rate),
+            )) || 1,
+        JPY: cached.JPY
+          ? parseFloat(cached.JPY)
+          : (await getRate("JPY").then(
+              (rate) => rate && cookiefy("JPY", rate),
+            )) || 1,
       });
     };
     assignRates();
