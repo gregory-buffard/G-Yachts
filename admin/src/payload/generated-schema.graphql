@@ -110,6 +110,7 @@ type User {
   langs: [User_langs!]
   socials: [User_Socials!]
   displayOnWebsite: Boolean
+  indexField: Float
   updatedAt: DateTime
   createdAt: DateTime
   email: EmailAddress!
@@ -2820,6 +2821,7 @@ input User_where {
   socials__link: User_socials__link_operator
   socials__id: User_socials__id_operator
   displayOnWebsite: User_displayOnWebsite_operator
+  indexField: User_indexField_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3363,6 +3365,16 @@ input User_displayOnWebsite_operator {
   exists: Boolean
 }
 
+input User_indexField_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input User_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -3419,6 +3431,7 @@ input User_where_and {
   socials__link: User_socials__link_operator
   socials__id: User_socials__id_operator
   displayOnWebsite: User_displayOnWebsite_operator
+  indexField: User_indexField_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3440,6 +3453,7 @@ input User_where_or {
   socials__link: User_socials__link_operator
   socials__id: User_socials__id_operator
   displayOnWebsite: User_displayOnWebsite_operator
+  indexField: User_indexField_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3470,6 +3484,7 @@ type UsersDocAccessFields {
   langs: UsersDocAccessFields_langs
   socials: UsersDocAccessFields_socials
   displayOnWebsite: UsersDocAccessFields_displayOnWebsite
+  indexField: UsersDocAccessFields_indexField
   updatedAt: UsersDocAccessFields_updatedAt
   createdAt: UsersDocAccessFields_createdAt
   email: UsersDocAccessFields_email
@@ -3812,6 +3827,29 @@ type UsersDocAccessFields_displayOnWebsite_Delete {
   permission: Boolean!
 }
 
+type UsersDocAccessFields_indexField {
+  create: UsersDocAccessFields_indexField_Create
+  read: UsersDocAccessFields_indexField_Read
+  update: UsersDocAccessFields_indexField_Update
+  delete: UsersDocAccessFields_indexField_Delete
+}
+
+type UsersDocAccessFields_indexField_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_indexField_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_indexField_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_indexField_Delete {
+  permission: Boolean!
+}
+
 type UsersDocAccessFields_updatedAt {
   create: UsersDocAccessFields_updatedAt_Create
   read: UsersDocAccessFields_updatedAt_Read
@@ -3932,6 +3970,7 @@ type UsersUnlockDocAccess {
 type usersMe {
   collection: String
   exp: Int
+  strategy: String
   token: String
   user: User
 }
@@ -3974,6 +4013,7 @@ type Yacht {
   clicks: Float
   seo: [Yacht_Seo!]
   similar(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Yacht!]
+  indexField: Float
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -4757,6 +4797,7 @@ input Yacht_where {
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
   similar: Yacht_similar_operator
+  indexField: Yacht_indexField_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -5145,6 +5186,16 @@ input Yacht_similar_operator {
   exists: Boolean
 }
 
+input Yacht_indexField_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input Yacht_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -5218,6 +5269,7 @@ input Yacht_where_and {
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
   similar: Yacht_similar_operator
+  indexField: Yacht_indexField_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -5265,6 +5317,7 @@ input Yacht_where_or {
   seo__value: Yacht_seo__value_operator
   seo__id: Yacht_seo__id_operator
   similar: Yacht_similar_operator
+  indexField: Yacht_indexField_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
   id: Yacht_id_operator
@@ -5321,6 +5374,7 @@ type YachtsDocAccessFields {
   clicks: YachtsDocAccessFields_clicks
   seo: YachtsDocAccessFields_seo
   similar: YachtsDocAccessFields_similar
+  indexField: YachtsDocAccessFields_indexField
   updatedAt: YachtsDocAccessFields_updatedAt
   createdAt: YachtsDocAccessFields_createdAt
 }
@@ -6309,6 +6363,29 @@ type YachtsDocAccessFields_similar_Delete {
   permission: Boolean!
 }
 
+type YachtsDocAccessFields_indexField {
+  create: YachtsDocAccessFields_indexField_Create
+  read: YachtsDocAccessFields_indexField_Read
+  update: YachtsDocAccessFields_indexField_Update
+  delete: YachtsDocAccessFields_indexField_Delete
+}
+
+type YachtsDocAccessFields_indexField_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_indexField_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_indexField_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_indexField_Delete {
+  permission: Boolean!
+}
+
 type YachtsDocAccessFields_updatedAt {
   create: YachtsDocAccessFields_updatedAt_Create
   read: YachtsDocAccessFields_updatedAt_Read
@@ -6414,6 +6491,7 @@ type Charter {
   seo: [Charter_Seo!]
   similar(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Charter!]
   reservations: [Charter_Reservations!]
+  indexField: Float
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -7288,6 +7366,7 @@ input Charter_where {
   reservations__customerName: Charter_reservations__customerName_operator
   reservations__customer: Charter_reservations__customer_operator
   reservations__id: Charter_reservations__id_operator
+  indexField: Charter_indexField_operator
   updatedAt: Charter_updatedAt_operator
   createdAt: Charter_createdAt_operator
   id: Charter_id_operator
@@ -7739,6 +7818,16 @@ input Charter_reservations__id_operator {
   exists: Boolean
 }
 
+input Charter_indexField_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input Charter_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -7818,6 +7907,7 @@ input Charter_where_and {
   reservations__customerName: Charter_reservations__customerName_operator
   reservations__customer: Charter_reservations__customer_operator
   reservations__id: Charter_reservations__id_operator
+  indexField: Charter_indexField_operator
   updatedAt: Charter_updatedAt_operator
   createdAt: Charter_createdAt_operator
   id: Charter_id_operator
@@ -7871,6 +7961,7 @@ input Charter_where_or {
   reservations__customerName: Charter_reservations__customerName_operator
   reservations__customer: Charter_reservations__customer_operator
   reservations__id: Charter_reservations__id_operator
+  indexField: Charter_indexField_operator
   updatedAt: Charter_updatedAt_operator
   createdAt: Charter_createdAt_operator
   id: Charter_id_operator
@@ -7928,6 +8019,7 @@ type ChartersDocAccessFields {
   seo: ChartersDocAccessFields_seo
   similar: ChartersDocAccessFields_similar
   reservations: ChartersDocAccessFields_reservations
+  indexField: ChartersDocAccessFields_indexField
   updatedAt: ChartersDocAccessFields_updatedAt
   createdAt: ChartersDocAccessFields_createdAt
 }
@@ -9115,6 +9207,29 @@ type ChartersDocAccessFields_reservations_id_Delete {
   permission: Boolean!
 }
 
+type ChartersDocAccessFields_indexField {
+  create: ChartersDocAccessFields_indexField_Create
+  read: ChartersDocAccessFields_indexField_Read
+  update: ChartersDocAccessFields_indexField_Update
+  delete: ChartersDocAccessFields_indexField_Delete
+}
+
+type ChartersDocAccessFields_indexField_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_indexField_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_indexField_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_indexField_Delete {
+  permission: Boolean!
+}
+
 type ChartersDocAccessFields_updatedAt {
   create: ChartersDocAccessFields_updatedAt_Create
   read: ChartersDocAccessFields_updatedAt_Read
@@ -9384,6 +9499,7 @@ type Destination {
   info: Destination_Info
   coordinates: [Float!]
   seo: [Destination_Seo!]
+  indexField: Float
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -10114,6 +10230,7 @@ input Destination_where {
   coordinates: Destination_coordinates_operator
   seo__value: Destination_seo__value_operator
   seo__id: Destination_seo__id_operator
+  indexField: Destination_indexField_operator
   updatedAt: Destination_updatedAt_operator
   createdAt: Destination_createdAt_operator
   id: Destination_id_operator
@@ -10255,6 +10372,16 @@ input Destination_seo__id_operator {
   exists: Boolean
 }
 
+input Destination_indexField_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input Destination_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -10303,6 +10430,7 @@ input Destination_where_and {
   coordinates: Destination_coordinates_operator
   seo__value: Destination_seo__value_operator
   seo__id: Destination_seo__id_operator
+  indexField: Destination_indexField_operator
   updatedAt: Destination_updatedAt_operator
   createdAt: Destination_createdAt_operator
   id: Destination_id_operator
@@ -10325,6 +10453,7 @@ input Destination_where_or {
   coordinates: Destination_coordinates_operator
   seo__value: Destination_seo__value_operator
   seo__id: Destination_seo__id_operator
+  indexField: Destination_indexField_operator
   updatedAt: Destination_updatedAt_operator
   createdAt: Destination_createdAt_operator
   id: Destination_id_operator
@@ -10354,6 +10483,7 @@ type DestinationsDocAccessFields {
   info: DestinationsDocAccessFields_info
   coordinates: DestinationsDocAccessFields_coordinates
   seo: DestinationsDocAccessFields_seo
+  indexField: DestinationsDocAccessFields_indexField
   updatedAt: DestinationsDocAccessFields_updatedAt
   createdAt: DestinationsDocAccessFields_createdAt
 }
@@ -10766,6 +10896,29 @@ type DestinationsDocAccessFields_seo_id_Update {
 }
 
 type DestinationsDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_indexField {
+  create: DestinationsDocAccessFields_indexField_Create
+  read: DestinationsDocAccessFields_indexField_Read
+  update: DestinationsDocAccessFields_indexField_Update
+  delete: DestinationsDocAccessFields_indexField_Delete
+}
+
+type DestinationsDocAccessFields_indexField_Create {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_indexField_Read {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_indexField_Update {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_indexField_Delete {
   permission: Boolean!
 }
 
@@ -11783,6 +11936,7 @@ type Partner {
   logo(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Partner_Logo_where): Media!
   banner(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Partner_Banner_where): Media!
   seo: [Partner_Seo!]
+  indexField: Float
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -12494,6 +12648,7 @@ input Partner_where {
   banner: Partner_banner_operator
   seo__value: Partner_seo__value_operator
   seo__id: Partner_seo__id_operator
+  indexField: Partner_indexField_operator
   updatedAt: Partner_updatedAt_operator
   createdAt: Partner_createdAt_operator
   id: Partner_id_operator
@@ -12561,6 +12716,16 @@ input Partner_seo__id_operator {
   exists: Boolean
 }
 
+input Partner_indexField_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input Partner_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -12602,6 +12767,7 @@ input Partner_where_and {
   banner: Partner_banner_operator
   seo__value: Partner_seo__value_operator
   seo__id: Partner_seo__id_operator
+  indexField: Partner_indexField_operator
   updatedAt: Partner_updatedAt_operator
   createdAt: Partner_createdAt_operator
   id: Partner_id_operator
@@ -12617,6 +12783,7 @@ input Partner_where_or {
   banner: Partner_banner_operator
   seo__value: Partner_seo__value_operator
   seo__id: Partner_seo__id_operator
+  indexField: Partner_indexField_operator
   updatedAt: Partner_updatedAt_operator
   createdAt: Partner_createdAt_operator
   id: Partner_id_operator
@@ -12643,6 +12810,7 @@ type PartnersDocAccessFields {
   logo: PartnersDocAccessFields_logo
   banner: PartnersDocAccessFields_banner
   seo: PartnersDocAccessFields_seo
+  indexField: PartnersDocAccessFields_indexField
   updatedAt: PartnersDocAccessFields_updatedAt
   createdAt: PartnersDocAccessFields_createdAt
 }
@@ -12837,6 +13005,29 @@ type PartnersDocAccessFields_seo_id_Delete {
   permission: Boolean!
 }
 
+type PartnersDocAccessFields_indexField {
+  create: PartnersDocAccessFields_indexField_Create
+  read: PartnersDocAccessFields_indexField_Read
+  update: PartnersDocAccessFields_indexField_Update
+  delete: PartnersDocAccessFields_indexField_Delete
+}
+
+type PartnersDocAccessFields_indexField_Create {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_indexField_Read {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_indexField_Update {
+  permission: Boolean!
+}
+
+type PartnersDocAccessFields_indexField_Delete {
+  permission: Boolean!
+}
+
 type PartnersDocAccessFields_updatedAt {
   create: PartnersDocAccessFields_updatedAt_Create
   read: PartnersDocAccessFields_updatedAt_Read
@@ -12910,6 +13101,7 @@ type Shipyard {
   website: String!
   logo(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Shipyard_Logo_where): Media!
   banner(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Shipyard_Banner_where): Media!
+  indexField: Float
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -13614,6 +13806,7 @@ input Shipyard_where {
   website: Shipyard_website_operator
   logo: Shipyard_logo_operator
   banner: Shipyard_banner_operator
+  indexField: Shipyard_indexField_operator
   updatedAt: Shipyard_updatedAt_operator
   createdAt: Shipyard_createdAt_operator
   id: Shipyard_id_operator
@@ -13658,6 +13851,16 @@ input Shipyard_banner_operator {
   not_equals: String
 }
 
+input Shipyard_indexField_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input Shipyard_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -13697,6 +13900,7 @@ input Shipyard_where_and {
   website: Shipyard_website_operator
   logo: Shipyard_logo_operator
   banner: Shipyard_banner_operator
+  indexField: Shipyard_indexField_operator
   updatedAt: Shipyard_updatedAt_operator
   createdAt: Shipyard_createdAt_operator
   id: Shipyard_id_operator
@@ -13710,6 +13914,7 @@ input Shipyard_where_or {
   website: Shipyard_website_operator
   logo: Shipyard_logo_operator
   banner: Shipyard_banner_operator
+  indexField: Shipyard_indexField_operator
   updatedAt: Shipyard_updatedAt_operator
   createdAt: Shipyard_createdAt_operator
   id: Shipyard_id_operator
@@ -13735,6 +13940,7 @@ type ShipyardsDocAccessFields {
   website: ShipyardsDocAccessFields_website
   logo: ShipyardsDocAccessFields_logo
   banner: ShipyardsDocAccessFields_banner
+  indexField: ShipyardsDocAccessFields_indexField
   updatedAt: ShipyardsDocAccessFields_updatedAt
   createdAt: ShipyardsDocAccessFields_createdAt
 }
@@ -13851,6 +14057,29 @@ type ShipyardsDocAccessFields_banner_Update {
 }
 
 type ShipyardsDocAccessFields_banner_Delete {
+  permission: Boolean!
+}
+
+type ShipyardsDocAccessFields_indexField {
+  create: ShipyardsDocAccessFields_indexField_Create
+  read: ShipyardsDocAccessFields_indexField_Read
+  update: ShipyardsDocAccessFields_indexField_Update
+  delete: ShipyardsDocAccessFields_indexField_Delete
+}
+
+type ShipyardsDocAccessFields_indexField_Create {
+  permission: Boolean!
+}
+
+type ShipyardsDocAccessFields_indexField_Read {
+  permission: Boolean!
+}
+
+type ShipyardsDocAccessFields_indexField_Update {
+  permission: Boolean!
+}
+
+type ShipyardsDocAccessFields_indexField_Delete {
   permission: Boolean!
 }
 
@@ -14192,6 +14421,7 @@ type NewConstruction {
   clicks: Float
   seo: [NewConstruction_Seo!]
   similar(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [NewConstruction!]
+  indexField: Float
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -14976,6 +15206,7 @@ input NewConstruction_where {
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
   similar: NewConstruction_similar_operator
+  indexField: NewConstruction_indexField_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -15374,6 +15605,16 @@ input NewConstruction_similar_operator {
   exists: Boolean
 }
 
+input NewConstruction_indexField_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
 input NewConstruction_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -15448,6 +15689,7 @@ input NewConstruction_where_and {
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
   similar: NewConstruction_similar_operator
+  indexField: NewConstruction_indexField_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -15496,6 +15738,7 @@ input NewConstruction_where_or {
   seo__value: NewConstruction_seo__value_operator
   seo__id: NewConstruction_seo__id_operator
   similar: NewConstruction_similar_operator
+  indexField: NewConstruction_indexField_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
   id: NewConstruction_id_operator
@@ -15553,6 +15796,7 @@ type NewConstructionsDocAccessFields {
   clicks: NewConstructionsDocAccessFields_clicks
   seo: NewConstructionsDocAccessFields_seo
   similar: NewConstructionsDocAccessFields_similar
+  indexField: NewConstructionsDocAccessFields_indexField
   updatedAt: NewConstructionsDocAccessFields_updatedAt
   createdAt: NewConstructionsDocAccessFields_createdAt
 }
@@ -16561,6 +16805,29 @@ type NewConstructionsDocAccessFields_similar_Update {
 }
 
 type NewConstructionsDocAccessFields_similar_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_indexField {
+  create: NewConstructionsDocAccessFields_indexField_Create
+  read: NewConstructionsDocAccessFields_indexField_Read
+  update: NewConstructionsDocAccessFields_indexField_Update
+  delete: NewConstructionsDocAccessFields_indexField_Delete
+}
+
+type NewConstructionsDocAccessFields_indexField_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_indexField_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_indexField_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_indexField_Delete {
   permission: Boolean!
 }
 
@@ -20412,6 +20679,7 @@ type UsersFields {
   langs: UsersFields_langs
   socials: UsersFields_socials
   displayOnWebsite: UsersFields_displayOnWebsite
+  indexField: UsersFields_indexField
   updatedAt: UsersFields_updatedAt
   createdAt: UsersFields_createdAt
   email: UsersFields_email
@@ -20754,6 +21022,29 @@ type UsersFields_displayOnWebsite_Delete {
   permission: Boolean!
 }
 
+type UsersFields_indexField {
+  create: UsersFields_indexField_Create
+  read: UsersFields_indexField_Read
+  update: UsersFields_indexField_Update
+  delete: UsersFields_indexField_Delete
+}
+
+type UsersFields_indexField_Create {
+  permission: Boolean!
+}
+
+type UsersFields_indexField_Read {
+  permission: Boolean!
+}
+
+type UsersFields_indexField_Update {
+  permission: Boolean!
+}
+
+type UsersFields_indexField_Delete {
+  permission: Boolean!
+}
+
 type UsersFields_updatedAt {
   create: UsersFields_updatedAt_Create
   read: UsersFields_updatedAt_Read
@@ -20916,6 +21207,7 @@ type YachtsFields {
   clicks: YachtsFields_clicks
   seo: YachtsFields_seo
   similar: YachtsFields_similar
+  indexField: YachtsFields_indexField
   updatedAt: YachtsFields_updatedAt
   createdAt: YachtsFields_createdAt
 }
@@ -21904,6 +22196,29 @@ type YachtsFields_similar_Delete {
   permission: Boolean!
 }
 
+type YachtsFields_indexField {
+  create: YachtsFields_indexField_Create
+  read: YachtsFields_indexField_Read
+  update: YachtsFields_indexField_Update
+  delete: YachtsFields_indexField_Delete
+}
+
+type YachtsFields_indexField_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_indexField_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_indexField_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_indexField_Delete {
+  permission: Boolean!
+}
+
 type YachtsFields_updatedAt {
   create: YachtsFields_updatedAt_Create
   read: YachtsFields_updatedAt_Read
@@ -22016,6 +22331,7 @@ type ChartersFields {
   seo: ChartersFields_seo
   similar: ChartersFields_similar
   reservations: ChartersFields_reservations
+  indexField: ChartersFields_indexField
   updatedAt: ChartersFields_updatedAt
   createdAt: ChartersFields_createdAt
 }
@@ -23203,6 +23519,29 @@ type ChartersFields_reservations_id_Delete {
   permission: Boolean!
 }
 
+type ChartersFields_indexField {
+  create: ChartersFields_indexField_Create
+  read: ChartersFields_indexField_Read
+  update: ChartersFields_indexField_Update
+  delete: ChartersFields_indexField_Delete
+}
+
+type ChartersFields_indexField_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_indexField_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_indexField_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_indexField_Delete {
+  permission: Boolean!
+}
+
 type ChartersFields_updatedAt {
   create: ChartersFields_updatedAt_Create
   read: ChartersFields_updatedAt_Read
@@ -23390,6 +23729,7 @@ type DestinationsFields {
   info: DestinationsFields_info
   coordinates: DestinationsFields_coordinates
   seo: DestinationsFields_seo
+  indexField: DestinationsFields_indexField
   updatedAt: DestinationsFields_updatedAt
   createdAt: DestinationsFields_createdAt
 }
@@ -23802,6 +24142,29 @@ type DestinationsFields_seo_id_Update {
 }
 
 type DestinationsFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type DestinationsFields_indexField {
+  create: DestinationsFields_indexField_Create
+  read: DestinationsFields_indexField_Read
+  update: DestinationsFields_indexField_Update
+  delete: DestinationsFields_indexField_Delete
+}
+
+type DestinationsFields_indexField_Create {
+  permission: Boolean!
+}
+
+type DestinationsFields_indexField_Read {
+  permission: Boolean!
+}
+
+type DestinationsFields_indexField_Update {
+  permission: Boolean!
+}
+
+type DestinationsFields_indexField_Delete {
   permission: Boolean!
 }
 
@@ -24261,6 +24624,7 @@ type PartnersFields {
   logo: PartnersFields_logo
   banner: PartnersFields_banner
   seo: PartnersFields_seo
+  indexField: PartnersFields_indexField
   updatedAt: PartnersFields_updatedAt
   createdAt: PartnersFields_createdAt
 }
@@ -24455,6 +24819,29 @@ type PartnersFields_seo_id_Delete {
   permission: Boolean!
 }
 
+type PartnersFields_indexField {
+  create: PartnersFields_indexField_Create
+  read: PartnersFields_indexField_Read
+  update: PartnersFields_indexField_Update
+  delete: PartnersFields_indexField_Delete
+}
+
+type PartnersFields_indexField_Create {
+  permission: Boolean!
+}
+
+type PartnersFields_indexField_Read {
+  permission: Boolean!
+}
+
+type PartnersFields_indexField_Update {
+  permission: Boolean!
+}
+
+type PartnersFields_indexField_Delete {
+  permission: Boolean!
+}
+
 type PartnersFields_updatedAt {
   create: PartnersFields_updatedAt_Create
   read: PartnersFields_updatedAt_Read
@@ -24535,6 +24922,7 @@ type ShipyardsFields {
   website: ShipyardsFields_website
   logo: ShipyardsFields_logo
   banner: ShipyardsFields_banner
+  indexField: ShipyardsFields_indexField
   updatedAt: ShipyardsFields_updatedAt
   createdAt: ShipyardsFields_createdAt
 }
@@ -24651,6 +25039,29 @@ type ShipyardsFields_banner_Update {
 }
 
 type ShipyardsFields_banner_Delete {
+  permission: Boolean!
+}
+
+type ShipyardsFields_indexField {
+  create: ShipyardsFields_indexField_Create
+  read: ShipyardsFields_indexField_Read
+  update: ShipyardsFields_indexField_Update
+  delete: ShipyardsFields_indexField_Delete
+}
+
+type ShipyardsFields_indexField_Create {
+  permission: Boolean!
+}
+
+type ShipyardsFields_indexField_Read {
+  permission: Boolean!
+}
+
+type ShipyardsFields_indexField_Update {
+  permission: Boolean!
+}
+
+type ShipyardsFields_indexField_Delete {
   permission: Boolean!
 }
 
@@ -24893,6 +25304,7 @@ type NewConstructionsFields {
   clicks: NewConstructionsFields_clicks
   seo: NewConstructionsFields_seo
   similar: NewConstructionsFields_similar
+  indexField: NewConstructionsFields_indexField
   updatedAt: NewConstructionsFields_updatedAt
   createdAt: NewConstructionsFields_createdAt
 }
@@ -25901,6 +26313,29 @@ type NewConstructionsFields_similar_Update {
 }
 
 type NewConstructionsFields_similar_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_indexField {
+  create: NewConstructionsFields_indexField_Create
+  read: NewConstructionsFields_indexField_Read
+  update: NewConstructionsFields_indexField_Update
+  delete: NewConstructionsFields_indexField_Delete
+}
+
+type NewConstructionsFields_indexField_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_indexField_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_indexField_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_indexField_Delete {
   permission: Boolean!
 }
 
@@ -27725,7 +28160,7 @@ type Mutation {
   createUser(data: mutationUserInput!, locale: LocaleInputType): User
   updateUser(id: String!, autosave: Boolean, data: mutationUserUpdateInput!, locale: LocaleInputType): User
   deleteUser(id: String!): User
-  refreshTokenUser(token: String): usersRefreshedUser
+  refreshTokenUser: usersRefreshedUser
   logoutUser: String
   unlockUser(email: String!): Boolean!
   loginUser(email: String, password: String): usersLoginResult
@@ -27889,6 +28324,7 @@ input mutationUserInput {
   langs: [User_langs_MutationInput]
   socials: [mutationUser_SocialsInput]
   displayOnWebsite: Boolean
+  indexField: Float
   updatedAt: String
   createdAt: String
   email: String!
@@ -28349,6 +28785,7 @@ input mutationUserUpdateInput {
   langs: [UserUpdate_langs_MutationInput]
   socials: [mutationUserUpdate_SocialsInput]
   displayOnWebsite: Boolean
+  indexField: Float
   updatedAt: String
   createdAt: String
   email: String
@@ -28803,6 +29240,7 @@ enum UserUpdate_Socials_platform_MutationInput {
 type usersRefreshedUser {
   exp: Int
   refreshedToken: String
+  strategy: String
   user: usersJWT
 }
 
@@ -28859,6 +29297,7 @@ input mutationYachtInput {
   clicks: Float
   seo: [mutationYacht_SeoInput]
   similar: [String]
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -28945,6 +29384,7 @@ input mutationYachtUpdateInput {
   clicks: Float
   seo: [mutationYachtUpdate_SeoInput]
   similar: [String]
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -29032,6 +29472,7 @@ input mutationCharterInput {
   seo: [mutationCharter_SeoInput]
   similar: [String]
   reservations: [mutationCharter_ReservationsInput]
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -29132,6 +29573,7 @@ input mutationCharterUpdateInput {
   seo: [mutationCharterUpdate_SeoInput]
   similar: [String]
   reservations: [mutationCharterUpdate_ReservationsInput]
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -29216,6 +29658,7 @@ input mutationDestinationInput {
   info: mutationDestination_InfoInput!
   coordinates: [Float]
   seo: [mutationDestination_SeoInput]
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -29247,6 +29690,7 @@ input mutationDestinationUpdateInput {
   info: mutationDestinationUpdate_InfoInput!
   coordinates: [Float]
   seo: [mutationDestinationUpdate_SeoInput]
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -29321,6 +29765,7 @@ input mutationPartnerInput {
   logo: String!
   banner: String!
   seo: [mutationPartner_SeoInput]
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -29337,6 +29782,7 @@ input mutationPartnerUpdateInput {
   logo: String
   banner: String
   seo: [mutationPartnerUpdate_SeoInput]
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -29352,6 +29798,7 @@ input mutationShipyardInput {
   website: String!
   logo: String!
   banner: String!
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -29362,6 +29809,7 @@ input mutationShipyardUpdateInput {
   website: String
   logo: String
   banner: String
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -29418,6 +29866,7 @@ input mutationNewConstructionInput {
   clicks: Float
   seo: [mutationNewConstruction_SeoInput]
   similar: [String]
+  indexField: Float
   updatedAt: String
   createdAt: String
 }
@@ -29505,6 +29954,7 @@ input mutationNewConstructionUpdateInput {
   clicks: Float
   seo: [mutationNewConstructionUpdate_SeoInput]
   similar: [String]
+  indexField: Float
   updatedAt: String
   createdAt: String
 }

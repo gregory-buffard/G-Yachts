@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload/types'
 
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
+import { indexField } from '../shared/indexField'
 
 export const Shipyards: CollectionConfig = {
   slug: 'shipyards',
@@ -76,5 +77,6 @@ export const Shipyards: CollectionConfig = {
       relationTo: 'media',
       required: true,
     },
+    indexField,
   ],
 }

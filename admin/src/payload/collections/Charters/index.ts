@@ -8,6 +8,7 @@ import LinkToCustomer from './components/linkToCustomer'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import DuplicateToSales from './components/duplicate'
+import { indexField } from '../shared/indexField'
 
 export const Charters: CollectionConfig = {
   slug: 'charters',
@@ -169,5 +170,6 @@ export const Charters: CollectionConfig = {
         },
       ],
     },
+    indexField,
   ],
 }
