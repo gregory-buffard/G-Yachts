@@ -6,6 +6,7 @@ import { yachtsAndCharterCommonFields } from '../shared/YachtAndCharterFields'
 import { seoField } from '../shared/seo'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
+import { indexField } from '../shared/indexField'
 
 export const NewConstructions: CollectionConfig = {
   slug: 'new-constructions',
@@ -60,5 +61,6 @@ export const NewConstructions: CollectionConfig = {
       relationTo: 'new-constructions',
       hasMany: true,
     },
+    indexField
   ],
 }

@@ -7,6 +7,7 @@ import { checkRole } from './checkRole'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
 import values from './values'
+import { indexField } from '../shared/indexField'
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -182,6 +183,7 @@ const Users: CollectionConfig = {
       },
       defaultValue: false,
     },
+    indexField
   ],
   timestamps: true,
 }
