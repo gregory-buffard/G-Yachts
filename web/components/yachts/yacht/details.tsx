@@ -168,7 +168,7 @@ const Details = () => {
           }
         >
           <SwitchView props={{ view: "info", label: t("info") }} />
-          {data.keyFeatures && (
+          {data.keyFeatures && data.keyFeatures.length > 0 && (
             <SwitchView props={{ view: "features", label: t("features") }} />
           )}
           <a

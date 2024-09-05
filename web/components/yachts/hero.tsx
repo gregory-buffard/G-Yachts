@@ -64,7 +64,7 @@ const Card = ({
         : formatCurrency(card.price * rates[currency], currency);
   return (
     <Link
-      href={"/sales"}
+      href={{ pathname: `/${type}/[id]`, params: { id: card.id } }}
       key={`${card.id}`}
       className={
         "w-screen h-full bg-cover bg-center translate-x-[var(--translate-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out"
