@@ -279,6 +279,7 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
             sleeps
             yearBuilt
             etiquette
+            indexField
             reservations {
               from
               to
@@ -307,7 +308,9 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
     `,
   });
 
-  return data.Charters.docs;
+  return [...data.Charters.docs].sort(
+    (a: ICharter, b: ICharter) => a.indexField - b.indexField,
+  );
 };
 
 export const fetchCharter = async (
@@ -823,6 +826,7 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
             sleeps
             yearBuilt
             etiquette
+            indexField
             photos {
               featured {
                 alt
@@ -853,7 +857,9 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
     `,
   });
 
-  return data.NewConstructions.docs;
+  return [...data.NewConstructions.docs].sort(
+    (a: INewConstruction, b: INewConstruction) => a.indexField - b.indexField,
+  );
 };
 export const fetchNewConstruction = async (
   id: string,
@@ -985,6 +991,7 @@ export const fetchShipyards = async (): Promise<IShipyard[]> => {
             website
             updatedAt
             createdAt
+            indexField
             logo {
               alt
               sizes {
@@ -1020,7 +1027,9 @@ export const fetchShipyards = async (): Promise<IShipyard[]> => {
       }
     `,
   });
-  return data.Shipyards.docs;
+  return [...data.Shipyards.docs].sort(
+    (a: IShipyard, b: IShipyard) => a.indexField - b.indexField,
+  );
 };
 export const fetchSimilarNewConstructions = async (
   length: number,

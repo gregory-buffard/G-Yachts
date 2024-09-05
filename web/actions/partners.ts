@@ -15,6 +15,7 @@ export const fetchPartners = async (
             name
             comment
             website
+            indexField
             logo {
               url
               alt
@@ -50,7 +51,10 @@ export const fetchPartners = async (
       locale,
     },
   });
-  return data.Partners.docs;
+
+  return [...data.Partners.docs].sort(
+    (a: IPartner, b: IPartner) => a.indexField - b.indexField,
+  );
 };
 
 export const fetchPartner = async (

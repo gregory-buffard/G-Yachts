@@ -18,6 +18,7 @@ export const fetchBrokerinos = async (
         ) {
           docs {
             name
+            indexField
             picture {
               alt
               sizes {
@@ -48,12 +49,7 @@ export const fetchBrokerinos = async (
     },
   });
 
-  const Gaspard = data.Users.docs.find(
-      (doc: IBrokerino) => doc.name === "Gaspard Milazzo",
-    ),
-    rest = data.Users.docs
-      .filter((doc: IBrokerino) => doc.name !== "Gaspard Milazzo")
-      .reverse();
-
-  return Gaspard ? [Gaspard, ...rest] : rest;
+  return [...data.Users.docs].sort(
+    (a: IBrokerino, b: IBrokerino) => a.indexField - b.indexField,
+  );
 };

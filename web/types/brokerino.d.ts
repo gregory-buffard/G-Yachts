@@ -1,5 +1,6 @@
 interface IBrokerino {
   _id?: string;
+  indexField: number;
   picture?: {
     alt: string;
     sizes: {
