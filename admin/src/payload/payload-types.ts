@@ -596,24 +596,25 @@ export interface Yacht {
   yearBuilt: number;
   yearRefit?: number | null;
   featured: boolean;
-  keyFeatures: (
-    | 'price'
-    | 'LOA'
-    | 'beam'
-    | 'builder'
-    | 'category'
-    | 'crusing'
-    | 'crypto'
-    | 'length'
-    | 'maxDraft'
-    | 'minDraft'
-    | 'rooms'
-    | 'sleeps'
-    | 'subcategory'
-    | 'tonnage'
-    | 'yearBuilt'
-    | 'yearRefit'
-  )[];
+  keyFeatures?:
+    | (
+        | 'price'
+        | 'beam'
+        | 'builder'
+        | 'category'
+        | 'crusing'
+        | 'crypto'
+        | 'length'
+        | 'maxDraft'
+        | 'minDraft'
+        | 'rooms'
+        | 'sleeps'
+        | 'subcategory'
+        | 'tonnage'
+        | 'yearBuilt'
+        | 'yearRefit'
+      )[]
+    | null;
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos: {
     featured: string | Media;
@@ -674,24 +675,25 @@ export interface Charter {
   yearBuilt: number;
   yearRefit?: number | null;
   featured: boolean;
-  keyFeatures: (
-    | 'price'
-    | 'LOA'
-    | 'beam'
-    | 'builder'
-    | 'category'
-    | 'crusing'
-    | 'crypto'
-    | 'length'
-    | 'maxDraft'
-    | 'minDraft'
-    | 'rooms'
-    | 'sleeps'
-    | 'subcategory'
-    | 'tonnage'
-    | 'yearBuilt'
-    | 'yearRefit'
-  )[];
+  keyFeatures?:
+    | (
+        | 'price'
+        | 'beam'
+        | 'builder'
+        | 'category'
+        | 'crusing'
+        | 'crypto'
+        | 'length'
+        | 'maxDraft'
+        | 'minDraft'
+        | 'rooms'
+        | 'sleeps'
+        | 'subcategory'
+        | 'tonnage'
+        | 'yearBuilt'
+        | 'yearRefit'
+      )[]
+    | null;
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos: {
     featured: string | Media;
@@ -931,24 +933,25 @@ export interface NewConstruction {
   yearBuilt: number;
   yearRefit?: number | null;
   featured: boolean;
-  keyFeatures: (
-    | 'price'
-    | 'LOA'
-    | 'beam'
-    | 'builder'
-    | 'category'
-    | 'crusing'
-    | 'crypto'
-    | 'length'
-    | 'maxDraft'
-    | 'minDraft'
-    | 'rooms'
-    | 'sleeps'
-    | 'subcategory'
-    | 'tonnage'
-    | 'yearBuilt'
-    | 'yearRefit'
-  )[];
+  keyFeatures?:
+    | (
+        | 'price'
+        | 'beam'
+        | 'builder'
+        | 'category'
+        | 'crusing'
+        | 'crypto'
+        | 'length'
+        | 'maxDraft'
+        | 'minDraft'
+        | 'rooms'
+        | 'sleeps'
+        | 'subcategory'
+        | 'tonnage'
+        | 'yearBuilt'
+        | 'yearRefit'
+      )[]
+    | null;
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos: {
     featured: string | Media;

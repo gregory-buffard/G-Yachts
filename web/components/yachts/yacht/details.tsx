@@ -77,7 +77,7 @@ const Details = () => {
     },
     {
       label: t("characteristics.tonnage"),
-      value: convertUnit(data.tonnage, units.weight),
+      value: data.tonnage,
       key: "tonnage",
     },
     {
@@ -168,7 +168,9 @@ const Details = () => {
           }
         >
           <SwitchView props={{ view: "info", label: t("info") }} />
-          <SwitchView props={{ view: "features", label: t("features") }} />
+          {data.keyFeatures && data.keyFeatures.length > 0 && (
+            <SwitchView props={{ view: "features", label: t("features") }} />
+          )}
           <a
             target={"_blank"}
             href={`/media/brochure-yachts-${data.id}.pdf`}
@@ -220,7 +222,9 @@ const Details = () => {
                   {characteristics
                     .filter(
                       (property) =>
-                        property && data.keyFeatures.includes(property.key),
+                        property &&
+                        data.keyFeatures &&
+                        data.keyFeatures.includes(property.key),
                     )
                     .map(
                       (property, i) =>
@@ -240,29 +244,31 @@ const Details = () => {
               )}
           <Gallery current={photo} setCurrent={setPhoto} />
         </div>
-        <div
-          className={
-            "w-full flex flex-col justify-center items-start gap-[2vh]"
-          }
-        >
-          <article
-            className={`relative w-full overflow-y-clip ${expanded ? "h-max" : "h-[17vh]"} transition-[height] duration-500 ease-in-out`}
+        {data.description && (
+          <div
+            className={
+              "w-full flex flex-col justify-center items-start gap-[2vh]"
+            }
           >
-            <p className={"text-justify"}>{data.description}</p>
+            <article
+              className={`relative w-full overflow-y-clip ${expanded ? "h-max" : "h-[17vh]"} transition-[height] duration-500 ease-in-out`}
+            >
+              <p className={"text-justify"}>{data.description}</p>
+              {!expanded && (
+                <div
+                  className={
+                    "absolute w-full h-full bg-gradient-to-t from-white to-50% inset-0"
+                  }
+                />
+              )}
+            </article>
             {!expanded && (
-              <div
-                className={
-                  "absolute w-full h-full bg-gradient-to-t from-white to-50% inset-0"
-                }
-              />
+              <button type={"button"} onClick={() => expand(true)}>
+                <p className={"uppercase text-rock-400"}>{t("description")}</p>
+              </button>
             )}
-          </article>
-          {!expanded && (
-            <button type={"button"} onClick={() => expand(true)}>
-              <p className={"uppercase text-rock-400"}>{t("description")}</p>
-            </button>
-          )}
-        </div>
+          </div>
+        )}
         {data.broker && (
           <div
             className={

@@ -4003,7 +4003,7 @@ type Yacht {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean!
-  keyFeatures: [Yacht_keyFeatures!]!
+  keyFeatures: [Yacht_keyFeatures!]
   etiquette: Yacht_etiquette
   photos: Yacht_Photos
   description: String
@@ -4023,7 +4023,6 @@ enum Yacht_category {
 
 enum Yacht_keyFeatures {
   price
-  LOA
   beam
   builder
   category
@@ -5063,11 +5062,11 @@ input Yacht_keyFeatures_operator {
   in: [Yacht_keyFeatures_Input]
   not_in: [Yacht_keyFeatures_Input]
   all: [Yacht_keyFeatures_Input]
+  exists: Boolean
 }
 
 enum Yacht_keyFeatures_Input {
   price
-  LOA
   beam
   builder
   category
@@ -6447,7 +6446,7 @@ type Charter {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean!
-  keyFeatures: [Charter_keyFeatures!]!
+  keyFeatures: [Charter_keyFeatures!]
   etiquette: Charter_etiquette
   photos: Charter_Photos
   description: String
@@ -6473,7 +6472,6 @@ enum Charter_category {
 
 enum Charter_keyFeatures {
   price
-  LOA
   beam
   builder
   category
@@ -7610,11 +7608,11 @@ input Charter_keyFeatures_operator {
   in: [Charter_keyFeatures_Input]
   not_in: [Charter_keyFeatures_Input]
   all: [Charter_keyFeatures_Input]
+  exists: Boolean
 }
 
 enum Charter_keyFeatures_Input {
   price
-  LOA
   beam
   builder
   category
@@ -14345,7 +14343,7 @@ type NewConstruction {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean!
-  keyFeatures: [NewConstruction_keyFeatures!]!
+  keyFeatures: [NewConstruction_keyFeatures!]
   etiquette: NewConstruction_etiquette
   photos: NewConstruction_Photos
   description: String
@@ -14365,7 +14363,6 @@ enum NewConstruction_category {
 
 enum NewConstruction_keyFeatures {
   price
-  LOA
   beam
   builder
   category
@@ -15416,11 +15413,11 @@ input NewConstruction_keyFeatures_operator {
   in: [NewConstruction_keyFeatures_Input]
   not_in: [NewConstruction_keyFeatures_Input]
   all: [NewConstruction_keyFeatures_Input]
+  exists: Boolean
 }
 
 enum NewConstruction_keyFeatures_Input {
   price
-  LOA
   beam
   builder
   category
@@ -29115,7 +29112,7 @@ input mutationYachtInput {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean
-  keyFeatures: [Yacht_keyFeatures_MutationInput]!
+  keyFeatures: [Yacht_keyFeatures_MutationInput]
   etiquette: Yacht_etiquette_MutationInput
   photos: mutationYacht_PhotosInput!
   description: String
@@ -29135,7 +29132,6 @@ enum Yacht_category_MutationInput {
 
 enum Yacht_keyFeatures_MutationInput {
   price
-  LOA
   beam
   builder
   category
@@ -29221,7 +29217,6 @@ enum YachtUpdate_category_MutationInput {
 
 enum YachtUpdate_keyFeatures_MutationInput {
   price
-  LOA
   beam
   builder
   category
@@ -29287,7 +29282,7 @@ input mutationCharterInput {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean
-  keyFeatures: [Charter_keyFeatures_MutationInput]!
+  keyFeatures: [Charter_keyFeatures_MutationInput]
   etiquette: Charter_etiquette_MutationInput
   photos: mutationCharter_PhotosInput!
   description: String
@@ -29313,7 +29308,6 @@ enum Charter_category_MutationInput {
 
 enum Charter_keyFeatures_MutationInput {
   price
-  LOA
   beam
   builder
   category
@@ -29413,7 +29407,6 @@ enum CharterUpdate_category_MutationInput {
 
 enum CharterUpdate_keyFeatures_MutationInput {
   price
-  LOA
   beam
   builder
   category
@@ -29680,7 +29673,7 @@ input mutationNewConstructionInput {
   yearBuilt: Float!
   yearRefit: Float
   featured: Boolean
-  keyFeatures: [NewConstruction_keyFeatures_MutationInput]!
+  keyFeatures: [NewConstruction_keyFeatures_MutationInput]
   etiquette: NewConstruction_etiquette_MutationInput
   photos: mutationNewConstruction_PhotosInput!
   description: String
@@ -29700,7 +29693,6 @@ enum NewConstruction_category_MutationInput {
 
 enum NewConstruction_keyFeatures_MutationInput {
   price
-  LOA
   beam
   builder
   category
@@ -29787,7 +29779,6 @@ enum NewConstructionUpdate_category_MutationInput {
 
 enum NewConstructionUpdate_keyFeatures_MutationInput {
   price
-  LOA
   beam
   builder
   category
