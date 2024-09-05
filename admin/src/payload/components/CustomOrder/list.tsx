@@ -231,6 +231,7 @@ export const CustomCollectionList = <
                 style={{
                   marginRight: '10px',
                   color: 'grey',
+                  width: '8px',
                 }}
               >
                 {item.indexField + 1}
