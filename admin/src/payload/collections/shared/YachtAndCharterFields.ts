@@ -305,11 +305,10 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     name: 'keyFeatures',
     type: 'select',
     hasMany: true,
-    required: true,
+    required: false,
     defaultValue: [],
     options: [
       'price',
-      'LOA',
       'beam',
       'builder',
       'category',
