@@ -64,6 +64,10 @@ export const CustomCollectionList = <
   )
   const [data, setData] = useState<T[]>([])
   const [query, setQuery] = useState<string>('')
+  const fields =
+    props.collection.slug === 'charters'
+      ? (props.collection.fields[1] as any).tabs[0].fields
+      : props.collection.fields
 
   // Search
   useEffect(() => {
@@ -90,7 +94,7 @@ export const CustomCollectionList = <
       })
       const responseData = (await response.json()) as { docs: T[] }
       const sortedData = responseData.docs.sort((a, b) => a.indexField - b.indexField)
-      setData(responseData.docs)
+      setData(sortedData)
     } catch (err) {
       console.error(err)
       toast.error('Failed to fetch data')
@@ -231,7 +235,7 @@ export const CustomCollectionList = <
                 style={{
                   marginRight: '10px',
                   color: 'grey',
-                  width: '8px',
+                  width: '12x',
                 }}
               >
                 {item.indexField + 1}
@@ -245,7 +249,13 @@ export const CustomCollectionList = <
           </a>
         </td>
         {props.columns.map(column => (
-          <td>{item[column]}</td>
+          <td>
+            {typeof item[column] == 'object' && props.collection.slug === 'charters'
+              ? `${item[column].low} - ${item[column].high}`
+              : item[column] !== undefined && item[column].length > 50
+              ? item[column].substring(0, 50) + '...'
+              : item[column]}
+          </td>
         ))}
       </tr>
     )
@@ -356,7 +366,7 @@ export const CustomCollectionList = <
                   <th>
                     <div className="sort-column">
                       <span className="sort-column__label">
-                        {props.collection.fields.find(e => e.name === column).label[language]}
+                        {fields.find(e => e.name === column).label[language]}
                       </span>
                     </div>
                   </th>
