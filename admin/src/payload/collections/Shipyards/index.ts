@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload/types'
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 import { indexField } from '../shared/indexField'
+import { CustomCollectionList } from '../../components/CustomOrder/list'
 
 export const Shipyards: CollectionConfig = {
   slug: 'shipyards',
@@ -18,8 +19,19 @@ export const Shipyards: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'quote', 'comment'],
+    defaultColumns: ['quote', 'website'],
     hideAPIURL: true,
+    components: {
+      views: {
+        List: {
+          Component: props =>
+            CustomCollectionList({
+              ...props,
+              columns: props.collection.admin.defaultColumns,
+            } as any),
+        },
+      },
+    },
   },
   versions: false,
   access: {

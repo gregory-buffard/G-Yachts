@@ -8,6 +8,7 @@ import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
 import values from './values'
 import { indexField } from '../shared/indexField'
+import { CustomCollectionList } from '../../components/CustomOrder/list'
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -25,6 +26,17 @@ const Users: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'email'],
     hideAPIURL: true,
+    components: {
+      views: {
+        List: {
+          Component: props =>
+            CustomCollectionList({
+              ...props,
+              columns: props.collection.admin.defaultColumns,
+            } as any),
+        },
+      },
+    },
   },
   access: {
     read: anyone,
@@ -183,7 +195,7 @@ const Users: CollectionConfig = {
       },
       defaultValue: false,
     },
-    indexField
+    indexField,
   ],
   timestamps: true,
 }
