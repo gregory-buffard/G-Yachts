@@ -7,6 +7,7 @@ import { seoField } from '../shared/seo'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { indexField } from '../shared/indexField'
+import { CustomCollectionList } from '../../components/CustomOrder/list'
 
 export const NewConstructions: CollectionConfig = {
   slug: 'new-constructions',
@@ -23,6 +24,18 @@ export const NewConstructions: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     hideAPIURL: true,
+    defaultColumns: ['model', 'price', 'delivery'],
+    components: {
+      views: {
+        List: {
+          Component: props =>
+            CustomCollectionList({
+              ...props,
+              columns: props.collection.admin.defaultColumns,
+            } as any),
+        },
+      },
+    },
   },
   hooks: {
     afterChange: [
@@ -61,6 +74,6 @@ export const NewConstructions: CollectionConfig = {
       relationTo: 'new-constructions',
       hasMany: true,
     },
-    indexField
+    indexField,
   ],
 }

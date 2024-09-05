@@ -4,6 +4,7 @@ import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 import { seoField } from '../shared/seo'
 import { indexField } from '../shared/indexField'
+import { CustomCollectionList } from '../../components/CustomOrder/list'
 
 export const Destinations: CollectionConfig = {
   slug: 'destinations',
@@ -24,6 +25,17 @@ export const Destinations: CollectionConfig = {
       return `${process.env.PAYLOAD_PUBLIC_FRONTEND_URL}/destinations/${doc?.id}`
     },
     hideAPIURL: true,
+    components: {
+      views: {
+        List: {
+          Component: props =>
+            CustomCollectionList({
+              ...props,
+              columns: props.collection.admin.defaultColumns,
+            } as any),
+        },
+      },
+    },
   },
   hooks: {},
   versions: false,
@@ -175,25 +187,29 @@ export const Destinations: CollectionConfig = {
       validate: val => {
         if (!val) return true
         if (val && val.length !== 2) return 'Invalid coordinates, must be an array of 2 numbers'
-        if((val[0] == "" || val[0] == null) && (val[1] == "" || val[1] == null)) {
+        if ((val[0] == '' || val[0] == null) && (val[1] == '' || val[1] == null)) {
           val = [0, 0]
           return val
         }
-        if (!Number.isFinite(val[0]) || !Number.isFinite(val[1])) return 'Invalid coordinates, must be numbers'
-        if (Math.abs(val[0]) > 90 && Math.abs(val[1]) > 180) return 'Invalid coordinates, must be within range'
+        if (!Number.isFinite(val[0]) || !Number.isFinite(val[1]))
+          return 'Invalid coordinates, must be numbers'
+        if (Math.abs(val[0]) > 90 && Math.abs(val[1]) > 180)
+          return 'Invalid coordinates, must be within range'
         return true
       },
       hooks: {
-        beforeChange:[ ({ value }) => {
-          if((value[0] == "" || value[0] == null) && (value[1] == "" || value[1] == null)) {
-            value = null
+        beforeChange: [
+          ({ value }) => {
+            if ((value[0] == '' || value[0] == null) && (value[1] == '' || value[1] == null)) {
+              value = null
+              return value
+            }
             return value
-          }
-          return value
-        }]
-      }
+          },
+        ],
+      },
     },
     seoField,
-    indexField
+    indexField,
   ],
 }
