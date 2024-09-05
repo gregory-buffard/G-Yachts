@@ -5,6 +5,7 @@ export interface IShipyard {
   website: string;
   updatedAt: string;
   createdAt: string;
+  indexField: number;
   logo: {
     alt: string;
     sizes: {

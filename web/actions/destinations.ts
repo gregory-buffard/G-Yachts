@@ -68,10 +68,7 @@ export const fetchDestinations = async (
   const { data } = await client.query({
     query: gql`
       query Destinations($locale: LocaleInputType!) {
-        Destinations(
-          locale: $locale
-          limit: 0
-        ) {
+        Destinations(locale: $locale, limit: 0) {
           docs {
             id
             destination
@@ -82,6 +79,7 @@ export const fetchDestinations = async (
             coordinates
             updatedAt
             createdAt
+            indexField
             photos {
               featured {
                 alt
@@ -114,5 +112,7 @@ export const fetchDestinations = async (
     },
   });
 
-  return data.Destinations.docs;
+  return [...data.Destinations.docs].sort(
+    (a: IDestination, b: IDestination) => a.indexField - b.indexField,
+  );
 };

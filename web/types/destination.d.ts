@@ -6,6 +6,7 @@ export interface IDestination {
   country: string;
   region: string;
   continent: string;
+  indexField: number;
   photos: {
     featured: {
       alt: string;
