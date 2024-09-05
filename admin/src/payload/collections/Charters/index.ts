@@ -9,6 +9,7 @@ import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import DuplicateToSales from './components/duplicate'
 import { indexField } from '../shared/indexField'
+import { CustomCollectionList } from '../../components/CustomOrder/list'
 
 export const Charters: CollectionConfig = {
   slug: 'charters',
@@ -24,11 +25,22 @@ export const Charters: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'model', 'price', 'region'],
+    defaultColumns: ['model', 'price', 'region'],
     preview: doc => {
       return `${process.env.PAYLOAD_PUBLIC_FRONTEND_URL}/charters/${doc?.id}`
     },
     hideAPIURL: true,
+    components: {
+      views: {
+        List: {
+          Component: props =>
+            CustomCollectionList({
+              ...props,
+              columns: props.collection.admin.defaultColumns,
+            } as any),
+        },
+      },
+    },
   },
   hooks: {
     afterChange: [

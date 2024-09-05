@@ -4,6 +4,7 @@ import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 import { seoField } from '../shared/seo'
 import { indexField } from '../shared/indexField'
+import { CustomCollectionList } from '../../components/CustomOrder/list'
 
 export const Partners: CollectionConfig = {
   slug: 'partners',
@@ -19,8 +20,19 @@ export const Partners: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'quote', 'comment'],
+    defaultColumns: ['comment', 'website'],
     hideAPIURL: true,
+    components: {
+      views: {
+        List: {
+          Component: props =>
+            CustomCollectionList({
+              ...props,
+              columns: props.collection.admin.defaultColumns,
+            } as any),
+        },
+      },
+    },
   },
   versions: false,
   access: {
@@ -78,6 +90,6 @@ export const Partners: CollectionConfig = {
       required: true,
     },
     seoField,
-    indexField
+    indexField,
   ],
 }
