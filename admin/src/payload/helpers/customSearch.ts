@@ -24,11 +24,13 @@ export const customSearchHandler = async (req: PayloadRequest, res: Response) =>
   }
 
   const cleanedQuery = cleanString(query)
+  // REplace everything that is not a letter or a number with a space
+  const superCleanedQuery = cleanedQuery.replace(/[^a-zA-Z0-9]/g, '')
 
-  const yachts = await searchCollection(cleanedQuery, 'yachts')
-  const charters = await searchCollection(cleanedQuery, 'charters')
-  const articles = await searchCollection(cleanedQuery, 'articles')
-  const destinations = await searchCollection(cleanedQuery, 'destinations')
+  const yachts = await searchCollection(superCleanedQuery, 'yachts')
+  const charters = await searchCollection(superCleanedQuery, 'charters')
+  const articles = await searchCollection(superCleanedQuery, 'articles')
+  const destinations = await searchCollection(superCleanedQuery, 'destinations')
 
   res.status(200).json({
     yachts,
@@ -69,8 +71,7 @@ const searchCollection = async (
   const result = await payload.db.collections[collection].find(
     {
       [queryField]: {
-        $regex: query,
-        $options: 'i',
+        $regex: RegExp(cleanedQuery, 'i'),
       },
     },
     {
