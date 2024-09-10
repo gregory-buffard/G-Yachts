@@ -480,6 +480,17 @@
     "end": "You've reached the end of our events",
     "charters": "Charter a <classic>yacht</classic>"
   },
+  "sell-your-yacht":{
+    "metadata": {
+      "title": "Sell your yacht",
+      "description": "Sell your yacht with G–Yachts. Our expert team will guide you through the process of selling your yacht, ensuring a smooth and successful transaction.",
+      "keywords": "sell, yacht, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Sell your yacht"
+    }
+  },
   "search": {
     "search": "Search",
     "placeholder": "Search for a yacht, charter or destination",

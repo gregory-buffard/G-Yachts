@@ -480,6 +480,17 @@
     "end": "Vous avez atteint la fin de nos événements",
     "charters": "Affréter un <classic>yacht</classic>"
   },
+  "sell-your-yacht":{
+    "metadata": {
+      "title": "Vendez votre yacht",
+      "description": "Vendez votre yacht avec G-Yachts. Notre équipe d'experts vous guidera tout au long du processus de vente de votre yacht, garantissant une transaction fluide et réussie.",
+      "keywords": "sell, yacht, brokerage, monaco, g-yachts, vendre",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Vendez votre yacht"
+    }
+  },
   "search": {
     "search": "Recherche",
     "placeholder": "Rechercher un yacht, une destination, un article...",
