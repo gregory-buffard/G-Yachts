@@ -25,6 +25,10 @@ export const pathnames = {
     en: "/new-constructions/[id]",
     fr: "/nouvelles-constructions/[id]",
   },
+  "/sell-your-yacht": {
+    en: "/sell-your-yacht",
+    fr: "/vendre-votre-yacht",
+  },
   "/management": {
     en: "/management",
     fr: "/management",
