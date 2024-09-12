@@ -68,20 +68,46 @@ const searchCollection = async (
       subQueryField = locale
   }
   const cleanedQuery = removeDiacritics(query)
-  const result = await payload.db.collections[collection].find(
-    {
-      [queryField]: {
-        $regex: RegExp(cleanedQuery, 'i'),
+  let result: any[]
+  try {
+    // Try to find the query in the database with diacritics ignored
+    result = await payload.db.collections[collection].find(
+      {
+        [queryField]: {
+          $regex: RegExp(cleanedQuery, 'i'),
+        },
       },
-    },
-    {
-      _id: 1,
-      [queryField]: 1,
-    },
-    {
-      limit: 3,
-    },
-  )
+      {
+        _id: 1,
+        [queryField]: 1,
+      },
+      {
+        limit: 3,
+      },
+    )
+  } catch (e) {
+    console.log(`Error in search query with diacritics: ${cleanedQuery}, collection: ${collection}`)
+    console.log(e)
+    console.log('Trying again with cleaned query')
+  }
+  if (!result) {
+    try {
+      result = await payload.db.collections[collection].find(
+        {
+          [queryField]: {
+            $regex: query,
+          },
+        },
+        {
+          _id: 1,
+          [queryField]: 1,
+        },
+      )
+    } catch (e) {
+      console.log('Error in searchCollection', e)
+      return []
+    }
+  }
   const sortedResult = result.sort((a, b) => {
     if (subQueryField) {
       a = a[topQueryField][subQueryField].toLowerCase()
@@ -93,8 +119,8 @@ const searchCollection = async (
     } else {
       b = b[topQueryField].toLowerCase()
     }
-    const aIndex = a.indexOf(cleanedQuery)
-    const bIndex = b.indexOf(cleanedQuery)
+    const aIndex = a.search(cleanedQuery)
+    const bIndex = b.search(cleanedQuery)
     return aIndex - bIndex
   })
 
