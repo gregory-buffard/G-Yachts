@@ -24,6 +24,7 @@ import { fetchYatcoYachts } from './helpers/yatcoFetch'
 import { importYatcoYacht } from './helpers/yatcoImport'
 import ImportYachtsLink from './components/importYatcoLink'
 import { reorderCollection } from './helpers/reorderCollection'
+import { customSearchHandler } from './helpers/customSearch'
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -107,10 +108,15 @@ export default buildConfig({
       path: '/yatco/import',
     },
     {
-      method: "post",
+      method: 'post',
       handler: reorderCollection,
-      path: "/reorder",
-    }
+      path: '/reorder',
+    },
+    {
+      method: 'get',
+      handler: customSearchHandler,
+      path: '/search',
+    },
   ],
   plugins: [],
   upload: {
