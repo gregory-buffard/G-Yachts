@@ -1,12 +1,15 @@
 import Hero from "@/components/sell-your-yacht/hero";
 import Bar from "@/components/nav/bar";
-import QualityBanner from "@/components/sellYourYacht/qualityBanner";
-import CenturyBanner from "@/components/sellYourYacht/centuryBanner";
 import dynamic from "next/dynamic";
-import React from "react";
 import { getTranslations } from "next-intl/server";
 
 const View = dynamic(() => import("@/components/view")),
+  QualityBanner = dynamic(
+    () => import("@/components/sellYourYacht/qualityBanner"),
+  ),
+  CenturyBanner = dynamic(
+    () => import("@/components/sellYourYacht/centuryBanner"),
+  ),
   Footer = dynamic(() => import("@/components/footer")),
   Newsletter = dynamic(() => import("@/components/newsletter"));
 
