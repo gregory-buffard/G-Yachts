@@ -1,5 +1,7 @@
 import Hero from "@/components/sell-your-yacht/hero";
 import Bar from "@/components/nav/bar";
+import QualityBanner from "@/components/sellYourYacht/qualityBanner";
+import CenturyBanner from "@/components/sellYourYacht/centuryBanner";
 import dynamic from "next/dynamic";
 import React from "react";
 import { getTranslations } from "next-intl/server";
@@ -47,6 +49,8 @@ const SellYourYacht = async () => {
       <Bar dynamicColor={100} />
       <View />
       <Hero />
+      <QualityBanner />
+      <CenturyBanner />
       <Newsletter />
       <Footer />
     </main>
