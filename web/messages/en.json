@@ -183,6 +183,25 @@
     "featured": "Featured <classic>Sales</classic>",
     "similar": "Similar <classic>sales</classic>"
   },
+  "sell-your-yacht":{
+    "metadata": {
+      "title": "Sell your yacht",
+      "description": "Sell your yacht with G–Yachts. Our expert team will guide you through the process of selling your yacht, ensuring a smooth and successful transaction.",
+      "keywords": "sell, yacht, brokerage, monaco, g-yachts",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Sell your yacht"
+    },
+    "quality": {
+      "title": "Quality Over Quantity",
+      "description": "G-Yachts prides itself on maintaining the highest quality and most customized experience for our exclusive clientele. What makes us stand apart is that with us you are truly valued and tailored to, not just a number."
+    },
+    "expertise": {
+      "title": "A Quarter Century of Expertise",
+      "description": "G-Yacht's passion for yachting is exceeded only by our pride in the relationships we've built over 25 years. Our history relies on strong connections, each built on a foundation of expertise, integrity and strategic thinking. Headquartered in the heart of Monaco, we benefit from a network of our associates located in more than 20 countries across 4 continents. G-Yachts is a “gold” member of many international companies organizations including MYBA (Mediterranean Yacht Broker Association), showing our commitment to professional yachting."
+    }
+  },
   "charters": {
     "metadata": {
       "title": "Charters",
@@ -480,17 +499,6 @@
     "expand": "Load more",
     "end": "You've reached the end of our events",
     "charters": "Charter a <classic>yacht</classic>"
-  },
-  "sell-your-yacht":{
-    "metadata": {
-      "title": "Sell your yacht",
-      "description": "Sell your yacht with G–Yachts. Our expert team will guide you through the process of selling your yacht, ensuring a smooth and successful transaction.",
-      "keywords": "sell, yacht, brokerage, monaco, g-yachts",
-      "author": "G–Yachts"
-    },
-    "hero": {
-      "title": "Sell your yacht"
-    }
   },
   "search": {
     "search": "Search",

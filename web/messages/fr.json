@@ -183,6 +183,25 @@
     "featured": "<classic>Ventes</classic> en vedette",
     "similar": "<classic>Ventes</classic> similaires"
   },
+  "sell-your-yacht":{
+    "metadata": {
+      "title": "Vendez votre yacht",
+      "description": "Vendez votre yacht avec G-Yachts. Notre équipe d'experts vous guidera tout au long du processus de vente de votre yacht, garantissant une transaction fluide et réussie.",
+      "keywords": "sell, yacht, brokerage, monaco, g-yachts, vendre",
+      "author": "G–Yachts"
+    },
+    "hero": {
+      "title": "Vendez votre yacht"
+    },
+    "quality": {
+      "title": "La qualité plutôt que la quantité",
+      "description": "G-Yachts est fier de maintenir la plus haute qualité et de proposer une expérience des plus personnalisées pour notre clientèle exclusive. Ce qui nous distingue, c'est que chez nous, vous êtes véritablement valorisé et personnalisé, vous n'êtes pas qu'un simple numéro."
+    },
+    "expertise": {
+      "title": "Un Quart de Siècle d'Expertise",
+      "description": "La passion de G-Yachts pour le yachting n'est surpassée que par notre fierté dans les relations que nous avons bâties au cours de ces 25 dernières années. Notre histoire repose sur des liens solides, chacun fondé sur l'expertise, l'intégrité et la réflexion stratégique. Basés au cœur de Monaco, nous bénéficions d'un réseau de partenaires situés dans plus de 20 pays sur 4 continents. G-Yachts est un membre 'or' de nombreuses organisations internationales, dont la MYBA (Mediterranean Yacht Broker Association), témoignant de notre engagement envers le yachting professionnel."
+    }
+  },
   "charters": {
     "metadata": {
       "title": "Charters",
@@ -480,17 +499,6 @@
     "expand": "Charger plus",
     "end": "Vous avez atteint la fin de nos événements",
     "charters": "Affréter un <classic>yacht</classic>"
-  },
-  "sell-your-yacht":{
-    "metadata": {
-      "title": "Vendez votre yacht",
-      "description": "Vendez votre yacht avec G-Yachts. Notre équipe d'experts vous guidera tout au long du processus de vente de votre yacht, garantissant une transaction fluide et réussie.",
-      "keywords": "sell, yacht, brokerage, monaco, g-yachts, vendre",
-      "author": "G–Yachts"
-    },
-    "hero": {
-      "title": "Vendez votre yacht"
-    }
   },
   "search": {
     "search": "Recherche",

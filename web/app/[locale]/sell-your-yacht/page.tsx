@@ -5,10 +5,10 @@ import { getTranslations } from "next-intl/server";
 
 const View = dynamic(() => import("@/components/view")),
   QualityBanner = dynamic(
-    () => import("@/components/sellYourYacht/qualityBanner"),
+    () => import("@/components/sell-your-yacht/qualityBanner"),
   ),
   CenturyBanner = dynamic(
-    () => import("@/components/sellYourYacht/centuryBanner"),
+    () => import("@/components/sell-your-yacht/centuryBanner"),
   ),
   Footer = dynamic(() => import("@/components/footer")),
   Newsletter = dynamic(() => import("@/components/newsletter"));
