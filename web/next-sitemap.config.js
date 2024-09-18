@@ -43,7 +43,6 @@ module.exports = {
             "partners",
             "recruitment",
             "sales",
-            "sell-your-yacht",
           ],
         },
         {
@@ -60,7 +59,6 @@ module.exports = {
             "partenaires",
             "recrutement",
             "ventes",
-            "vendre-votre-yacht",
           ],
         },
       ];

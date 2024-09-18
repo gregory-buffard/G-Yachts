@@ -116,7 +116,6 @@ const Navigation = () => {
           className={"w-full flex flex-col justify-start items-start gap-[0vh]"}
         >
           <Page href={"/sales"} />
-          <Page href={"/sell-your-yacht"} />
           <Page href={"/charters"} />
           <Page href={"/new-constructions"} />
           <Page href={"/destinations"} />

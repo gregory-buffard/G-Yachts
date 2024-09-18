@@ -5,7 +5,6 @@ import { gql } from "@apollo/client";
 import { Metadata } from "next";
 import { joinSEO } from "@/utils/metadata";
 import puppeteer from "puppeteer";
-import Cookies from "js-cookie";
 
 export const fetchMetadata = async ({
   id,
