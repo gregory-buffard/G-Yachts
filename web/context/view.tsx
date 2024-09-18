@@ -16,6 +16,7 @@ interface IActions {
   addBookmark: (id: string) => void;
   removeBookmark: (id: string) => void;
   openView: (view: IContext["view"]) => void;
+  setCookiesAgreement: (agreed: IContext["cookiesAgreed"]) => void;
 }
 
 export interface IContext extends IActions {
@@ -39,6 +40,7 @@ export interface IContext extends IActions {
     | "terms"
     | "privacy"
     | null;
+  cookiesAgreed: boolean;
 }
 
 const ViewContext = createContext<IContext | undefined>(undefined);
@@ -54,6 +56,8 @@ export const ViewProvider = ({ children }: { children: React.ReactNode }) => {
     [units, setUnits] = useState<IContext["units"]>(useUnits()),
     [view, openView] = useState<IContext["view"]>(null),
     [bookmarks, setBookmarks] = useState<IContext["bookmarks"]>(useBookmarks()),
+    [cookiesAgreed, setCookiesAgreement] =
+      useState<IContext["cookiesAgreed"]>(true),
     changeCurrency = (code: IContext["currency"]) => {
       Cookies.set("currency", code);
       setCurrency(code);
@@ -76,6 +80,8 @@ export const ViewProvider = ({ children }: { children: React.ReactNode }) => {
       );
       setBookmarks(bookmarks.filter((bookmark) => bookmark !== id));
     };
+
+  console.log(`COOKIES AGREEMENT HERE ===> ${Cookies.get("cookiesAgreed")}`);
 
   useEffect(() => {
     const assignRates = async () => {
@@ -110,6 +116,7 @@ export const ViewProvider = ({ children }: { children: React.ReactNode }) => {
       });
     };
     assignRates();
+    setCookiesAgreement(Cookies.get("cookiesAgreed") === "true");
   }, []);
 
   const value = {
@@ -118,6 +125,8 @@ export const ViewProvider = ({ children }: { children: React.ReactNode }) => {
     units,
     view,
     bookmarks,
+    cookiesAgreed,
+    setCookiesAgreement,
     changeCurrency,
     changeUnits,
     openView,

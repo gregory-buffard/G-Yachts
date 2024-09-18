@@ -1,4 +1,8 @@
 {
+  "cookies": {
+    "description": "This website uses cookies to ensure you get the best experience on our website.",
+    "button": "Got it!"
+  },
   "whisper": {
     "whatsapp": "Open WhatsApp",
     "googleMaps": "Open Google Maps",

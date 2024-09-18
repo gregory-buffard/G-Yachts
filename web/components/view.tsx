@@ -6,9 +6,10 @@ import Navigation from "@/components/nav/navigation";
 import Contact from "@/components/nav/contact";
 import Search from "@/components/nav/search";
 import { Credits, Privacy, Terms } from "@/components/footer";
+import Cookies from "@/components/cookies";
 
 const View = () => {
-  const { view, openView } = useViewContext();
+  const { view, openView, cookiesAgreed } = useViewContext();
 
   return (
     <AnimatePresence mode={"popLayout"}>
@@ -38,6 +39,7 @@ const View = () => {
       {view === "credits" && <Credits key={"credits"} />}
       {view === "privacy" && <Privacy key={"privacy"} />}
       {view === "terms" && <Terms key={"terms"} />}
+      {!cookiesAgreed && <Cookies key={"cookies"} />}
     </AnimatePresence>
   );
 };
