@@ -8,6 +8,8 @@ import { buildConfig } from 'payload/config'
 import { Media } from './collections/Media'
 import { Articles } from './collections/Articles'
 import Users from './collections/Users'
+import { Brokers } from './collections/Brokers'
+import { Sold } from './collections/Sold'
 import { Yachts } from './collections/Yachts'
 import { Charters } from './collections/Charters'
 import Categories from './collections/Categories'
@@ -74,6 +76,7 @@ export default buildConfig({
     Articles,
     Media,
     Users,
+    Brokers,
     Yachts,
     Charters,
     Categories,
@@ -82,6 +85,7 @@ export default buildConfig({
     Partners,
     Shipyards,
     Recruitment,
+    Sold,
     NewConstructions,
     Messages,
     ArchivedCustomers,

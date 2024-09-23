@@ -1,7 +1,12 @@
 import Hero from "@/components/sell-your-yacht/hero";
+import Team from "@/components/sell-your-yacht/team";
+import Solds from "@/components/sell-your-yacht/solds";
+import { fetchBrokerinos } from "@/actions/brokers";
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
+import { getLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
+import {fetchSolds} from "@/actions/solds";
 
 const View = dynamic(() => import("@/components/view")),
   QualityBanner = dynamic(
@@ -10,6 +15,7 @@ const View = dynamic(() => import("@/components/view")),
   CenturyBanner = dynamic(
     () => import("@/components/sell-your-yacht/centuryBanner"),
   ),
+  Subtitle = dynamic(() => import("@/components/sell-your-yacht/subtitle")),
   Footer = dynamic(() => import("@/components/footer")),
   Newsletter = dynamic(() => import("@/components/newsletter"));
 
@@ -52,8 +58,13 @@ const SellYourYacht = async () => {
       <Bar dynamicColor={100} />
       <View />
       <Hero />
+      <Subtitle />
       <QualityBanner />
       <CenturyBanner />
+      <Solds data={await fetchSolds()} />
+      <Team
+          brokerinos={await fetchBrokerinos((await getLocale()) as "en" | "fr")}
+      />
       <Newsletter />
       <Footer />
     </main>
