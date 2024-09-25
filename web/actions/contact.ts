@@ -4,6 +4,9 @@ import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
 import { checkField } from "@/utils/contact";
 import mailchimp from "@mailchimp/mailchimp_marketing";
+import IContact from "@/types/contact";
+import { Resend } from "resend";
+import Email from "@/components/contact/notification";
 const md5 = require("md5");
 
 export const subscribe = async (formData: FormData) => {
@@ -56,33 +59,24 @@ export const contact = async ({
   formData: FormData;
   params: { locale: string; page: string; prefix?: string };
 }) => {
-  const client = getClient();
-  const mutation = gql`
-    mutation CreateMessage($data: mutationMessageInput!) {
-      createMessage(data: $data) {
-        id
-        name
-        email
-        tel
-        message
-        page
-        newsletter
-        status
+  const client = getClient(),
+    mutation = gql`
+      mutation CreateMessage($data: mutationMessageInput!) {
+        createMessage(data: $data) {
+          id
+          name
+          email
+          tel
+          message
+          page
+          newsletter
+          status
+        }
       }
-    }
-  `;
+    `,
+    resend = new Resend(process.env.RESEND_API_KEY);
 
-  const variables: {
-    data: {
-      name: string;
-      email: string;
-      message: string;
-      page: string;
-      status: "pending";
-      tel?: string;
-      newsletter: boolean;
-    };
-  } = {
+  const variables: IContact = {
     data: {
       name: checkField(formData.get("name")),
       email: checkField(formData.get("email")),
@@ -91,6 +85,7 @@ export const contact = async ({
       status: "pending",
       newsletter: formData.get("newsletter") === "on",
     },
+    received: new Date(),
   };
 
   if (formData.get("tel") && params.prefix) {
@@ -115,6 +110,14 @@ export const contact = async ({
     formData.set("surname", lastName || "");
     await subscribe(formData);
   }
+
+  await resend.emails.send({
+    from: `Notification <notification@g-yachts.com>`,
+    to: ["info@g-yachts.com", "alban@g-yachts.com"],
+    reply_to: variables.data.email,
+    subject: "New Message received",
+    react: Email(variables),
+  });
 
   return data.createMessage;
 };

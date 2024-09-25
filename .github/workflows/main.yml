@@ -72,6 +72,7 @@ jobs:
           echo "MAILCHIMP_LIST_ID=${{secrets.MAILCHIMP_LIST_ID}}" >> .env
           echo "MAILCHIMP_SERVER=${{secrets.MAILCHIMP_SERVER}}" >> .env
           echo "GOOGLE_ANALYTICS_ID=${{secrets.GOOGLE_ANALYTICS_ID}}" >> .env
+          echo "RESEND_API_KEY=${{secrets.RESEND_API_KEY}}" >> .env
 
           # WEB
           echo "NEXT_PUBLIC_ADMIN_BASE_URI=http://admin:3000" >> .env
