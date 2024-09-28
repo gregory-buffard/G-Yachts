@@ -19,7 +19,7 @@ const Hero = () => {
             "radial-gradient(100% 100% at 50% 50%, #0000008A 0%, #FFFFFF00 100%)",
         }}
       >
-        <h1 className={"font-medium text-9xl text-white"}>{t("title")}</h1>
+        <h1 className={"font-medium text-4xl md:text-9xl text-white"}>{t("title")}</h1>
       </div>
     </section>
   );

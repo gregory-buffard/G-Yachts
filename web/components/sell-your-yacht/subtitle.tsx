@@ -5,7 +5,7 @@ const Subtitle = () => {
 
     return (
         <section className={"flex w-full h-[40dvh] place-items-center justify-center"}>
-            <h1 className={"text-7xl font-medium text-black text-center"}>
+            <h1 className={"md:text-7xl text-4xl font-medium text-black text-center"}>
                 {t.rich("subtitle", { br: () => <br /> })}
             </h1>
         </section>
