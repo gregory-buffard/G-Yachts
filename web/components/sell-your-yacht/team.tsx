@@ -8,7 +8,7 @@ const Team = ({ brokerinos }: { brokerinos: IBrokers[] }) => {
 
     return (
         <section className={"w-full overflow-hidden place-items-center  flex flex-col"}>
-            <h1 className={"py-[10vh] md:text-7xl text-4xl font-medium text-center"}>
+            <h1 className={"py-[10vh] md:text-7xl text-6xl font-medium text-center"}>
                 {t.rich("title", { br: () => <br /> })}
             </h1>
             <div

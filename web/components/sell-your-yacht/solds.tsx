@@ -119,7 +119,7 @@ const Solds = ({ data }: { data: ISolds[] }) => {
     };
 
     return (
-        <section className="w-full flex flex-col justify-center items-center gap-[2vh] py-[8vh] lg:px-[12vw] px-[4vw]">
+        <section className="w-full flex flex-col justify-center items-center gap-[2vh] lg:py-[8vh] lg:px-[12vw] px-[4vw]">
             <div className="w-full flex justify-between items-center">
                 <div className="flex justify-center items-center gap-[2vw]">
                     <div className="hidden lg:flex justify-center items-center mt-36 mr-10 gap-[0.5vw]">
