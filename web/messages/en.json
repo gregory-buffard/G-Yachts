@@ -19,7 +19,7 @@
   "navigation": {
     "links": {
       "sales": "Sales",
-      "sell-your-yacht": "Sell your yacht",
+      "sell-your-yacht": "Sell Your Yacht",
       "charters": "Charters",
       "new-constructions": "New Constructions",
       "management": "Management",
@@ -195,7 +195,8 @@
       "author": "G–Yachts"
     },
     "hero": {
-      "title": "Sell your yacht"
+      "title": "Sell Your Yacht",
+      "subtitle": "Over 25 Years of<br></br>Trusted Experience"
     },
     "quality": {
       "title": "Quality Over Quantity",
@@ -204,6 +205,9 @@
     "expertise": {
       "title": "A Quarter Century of Expertise",
       "description": "G-Yacht's passion for yachting is exceeded only by our pride in the relationships we've built over 25 years. Our history relies on strong connections, each built on a foundation of expertise, integrity and strategic thinking. Headquartered in the heart of Monaco, we benefit from a network of our associates located in more than 20 countries across 4 continents. G-Yachts is a “gold” member of many international companies organizations including MYBA (Mediterranean Yacht Broker Association), showing our commitment to professional yachting."
+    },
+    "team": {
+      "title": "Contact Our Yachting <br></br> Experts"
     }
   },
   "charters": {

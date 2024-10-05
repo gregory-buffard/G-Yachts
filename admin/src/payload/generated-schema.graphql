@@ -13,6 +13,10 @@ type Query {
   docAccessUser(id: String!): usersDocAccess
   meUser: usersMe
   initializedUser: Boolean
+  SellBroker(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): SellBroker
+  SellBrokers(where: SellBroker_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): SellBrokers
+  countSellBrokers(where: SellBroker_where, locale: LocaleInputType): countSellBrokers
+  docAccessSellBroker(id: String!): sell_brokersDocAccess
   Yacht(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Yacht
   Yachts(where: Yacht_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Yachts
   countYachts(where: Yacht_where, locale: LocaleInputType): countYachts
@@ -45,6 +49,10 @@ type Query {
   Recruitments(where: Recruitment_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Recruitments
   countRecruitments(where: Recruitment_where, locale: LocaleInputType): countRecruitments
   docAccessRecruitment(id: String!): recruitmentDocAccess
+  Sold(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Sold
+  Solds(where: Sold_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Solds
+  countSolds(where: Sold_where, locale: LocaleInputType): countSolds
+  docAccessSold(id: String!): soldsDocAccess
   NewConstruction(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): NewConstruction
   NewConstructions(where: NewConstruction_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): NewConstructions
   countNewConstructions(where: NewConstruction_where, locale: LocaleInputType): countNewConstructions
@@ -3970,8 +3978,1943 @@ type UsersUnlockDocAccess {
 type usersMe {
   collection: String
   exp: Int
+  strategy: String
   token: String
   user: User
+}
+
+type SellBroker {
+  id: String
+  name: String!
+  position: String
+  email: EmailAddress
+  picture(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: SellBroker_Picture_where): Media
+  phones: [SellBroker_Phones!]
+  langs: [SellBroker_langs!]
+  socials: [SellBroker_Socials!]
+  seo: [SellBroker_Seo!]
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+input SellBroker_Picture_where {
+  alt: SellBroker_Picture_alt_operator
+  updatedAt: SellBroker_Picture_updatedAt_operator
+  createdAt: SellBroker_Picture_createdAt_operator
+  url: SellBroker_Picture_url_operator
+  filename: SellBroker_Picture_filename_operator
+  mimeType: SellBroker_Picture_mimeType_operator
+  filesize: SellBroker_Picture_filesize_operator
+  width: SellBroker_Picture_width_operator
+  height: SellBroker_Picture_height_operator
+  focalX: SellBroker_Picture_focalX_operator
+  focalY: SellBroker_Picture_focalY_operator
+  sizes__thumbnail__url: SellBroker_Picture_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: SellBroker_Picture_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: SellBroker_Picture_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: SellBroker_Picture_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: SellBroker_Picture_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: SellBroker_Picture_sizes__thumbnail__filename_operator
+  sizes__fhd__url: SellBroker_Picture_sizes__fhd__url_operator
+  sizes__fhd__width: SellBroker_Picture_sizes__fhd__width_operator
+  sizes__fhd__height: SellBroker_Picture_sizes__fhd__height_operator
+  sizes__fhd__mimeType: SellBroker_Picture_sizes__fhd__mimeType_operator
+  sizes__fhd__filesize: SellBroker_Picture_sizes__fhd__filesize_operator
+  sizes__fhd__filename: SellBroker_Picture_sizes__fhd__filename_operator
+  id: SellBroker_Picture_id_operator
+  AND: [SellBroker_Picture_where_and]
+  OR: [SellBroker_Picture_where_or]
+}
+
+input SellBroker_Picture_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input SellBroker_Picture_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input SellBroker_Picture_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__thumbnail__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__thumbnail__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__thumbnail__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__thumbnail__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__thumbnail__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__thumbnail__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__fhd__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__fhd__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__fhd__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__fhd__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__fhd__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input SellBroker_Picture_sizes__fhd__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_Picture_where_and {
+  alt: SellBroker_Picture_alt_operator
+  updatedAt: SellBroker_Picture_updatedAt_operator
+  createdAt: SellBroker_Picture_createdAt_operator
+  url: SellBroker_Picture_url_operator
+  filename: SellBroker_Picture_filename_operator
+  mimeType: SellBroker_Picture_mimeType_operator
+  filesize: SellBroker_Picture_filesize_operator
+  width: SellBroker_Picture_width_operator
+  height: SellBroker_Picture_height_operator
+  focalX: SellBroker_Picture_focalX_operator
+  focalY: SellBroker_Picture_focalY_operator
+  sizes__thumbnail__url: SellBroker_Picture_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: SellBroker_Picture_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: SellBroker_Picture_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: SellBroker_Picture_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: SellBroker_Picture_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: SellBroker_Picture_sizes__thumbnail__filename_operator
+  sizes__fhd__url: SellBroker_Picture_sizes__fhd__url_operator
+  sizes__fhd__width: SellBroker_Picture_sizes__fhd__width_operator
+  sizes__fhd__height: SellBroker_Picture_sizes__fhd__height_operator
+  sizes__fhd__mimeType: SellBroker_Picture_sizes__fhd__mimeType_operator
+  sizes__fhd__filesize: SellBroker_Picture_sizes__fhd__filesize_operator
+  sizes__fhd__filename: SellBroker_Picture_sizes__fhd__filename_operator
+  id: SellBroker_Picture_id_operator
+  AND: [SellBroker_Picture_where_and]
+  OR: [SellBroker_Picture_where_or]
+}
+
+input SellBroker_Picture_where_or {
+  alt: SellBroker_Picture_alt_operator
+  updatedAt: SellBroker_Picture_updatedAt_operator
+  createdAt: SellBroker_Picture_createdAt_operator
+  url: SellBroker_Picture_url_operator
+  filename: SellBroker_Picture_filename_operator
+  mimeType: SellBroker_Picture_mimeType_operator
+  filesize: SellBroker_Picture_filesize_operator
+  width: SellBroker_Picture_width_operator
+  height: SellBroker_Picture_height_operator
+  focalX: SellBroker_Picture_focalX_operator
+  focalY: SellBroker_Picture_focalY_operator
+  sizes__thumbnail__url: SellBroker_Picture_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: SellBroker_Picture_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: SellBroker_Picture_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: SellBroker_Picture_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: SellBroker_Picture_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: SellBroker_Picture_sizes__thumbnail__filename_operator
+  sizes__fhd__url: SellBroker_Picture_sizes__fhd__url_operator
+  sizes__fhd__width: SellBroker_Picture_sizes__fhd__width_operator
+  sizes__fhd__height: SellBroker_Picture_sizes__fhd__height_operator
+  sizes__fhd__mimeType: SellBroker_Picture_sizes__fhd__mimeType_operator
+  sizes__fhd__filesize: SellBroker_Picture_sizes__fhd__filesize_operator
+  sizes__fhd__filename: SellBroker_Picture_sizes__fhd__filename_operator
+  id: SellBroker_Picture_id_operator
+  AND: [SellBroker_Picture_where_and]
+  OR: [SellBroker_Picture_where_or]
+}
+
+type SellBroker_Phones {
+  prefix: SellBroker_Phones_prefix
+  number: String
+  id: String
+}
+
+enum SellBroker_Phones_prefix {
+  _93
+  _358
+  _355
+  _213
+  _1684
+  _376
+  _244
+  _1264
+  _672
+  _1268
+  _54
+  _374
+  _297
+  _61
+  _43
+  _994
+  _1242
+  _973
+  _880
+  _1246
+  _375
+  _32
+  _501
+  _229
+  _1441
+  _975
+  _591
+  _387
+  _267
+  _55
+  _246
+  _673
+  _359
+  _226
+  _257
+  _855
+  _237
+  _1
+  _238
+  _345
+  _236
+  _235
+  _56
+  _86
+  _57
+  _269
+  _242
+  _243
+  _682
+  _506
+  _225
+  _385
+  _53
+  _357
+  _420
+  _45
+  _253
+  _1767
+  _1849
+  _593
+  _20
+  _503
+  _240
+  _291
+  _372
+  _251
+  _500
+  _298
+  _679
+  _33
+  _594
+  _689
+  _241
+  _220
+  _995
+  _49
+  _233
+  _350
+  _30
+  _299
+  _1473
+  _590
+  _1671
+  _502
+  _44
+  _224
+  _245
+  _595
+  _509
+  _379
+  _504
+  _852
+  _36
+  _354
+  _91
+  _62
+  _98
+  _964
+  _353
+  _972
+  _39
+  _1876
+  _81
+  _962
+  _77
+  _254
+  _686
+  _850
+  _82
+  _965
+  _996
+  _856
+  _371
+  _961
+  _266
+  _231
+  _218
+  _423
+  _370
+  _352
+  _853
+  _389
+  _261
+  _265
+  _60
+  _960
+  _223
+  _356
+  _692
+  _596
+  _222
+  _230
+  _262
+  _52
+  _691
+  _373
+  _377
+  _976
+  _382
+  _1664
+  _212
+  _258
+  _95
+  _264
+  _674
+  _977
+  _31
+  _599
+  _687
+  _64
+  _505
+  _227
+  _234
+  _683
+  _1670
+  _47
+  _968
+  _92
+  _680
+  _970
+  _507
+  _675
+  _51
+  _63
+  _872
+  _48
+  _351
+  _1939
+  _974
+  _40
+  _7
+  _250
+  _290
+  _1869
+  _1758
+  _508
+  _1784
+  _685
+  _378
+  _239
+  _966
+  _221
+  _381
+  _248
+  _232
+  _65
+  _421
+  _386
+  _677
+  _252
+  _27
+  _211
+  _34
+  _94
+  _249
+  _597
+  _268
+  _46
+  _41
+  _963
+  _886
+  _992
+  _255
+  _66
+  _670
+  _228
+  _690
+  _676
+  _1868
+  _216
+  _90
+  _993
+  _1649
+  _688
+  _256
+  _380
+  _971
+  _598
+  _998
+  _678
+  _58
+  _84
+  _1284
+  _1340
+  _681
+  _967
+  _260
+  _263
+}
+
+enum SellBroker_langs {
+  Afar
+  Abkhazian
+  Avestan
+  Afrikaans
+  Akan
+  Amharic
+  Aragonese
+  Arabic
+  Assamese
+  Avaric
+  Aymara
+  Azerbaijani
+  Bashkir
+  Belarusian
+  Bulgarian
+  Biharilanguages
+  Bislama
+  Bambara
+  Bengali
+  Tibetan
+  Breton
+  Bosnian
+  Catalan
+  Chechen
+  Chamorro
+  Corsican
+  Cree
+  Czech
+  ChurchSlavic
+  Chuvash
+  Welsh
+  Danish
+  German
+  Maldivian
+  Dzongkha
+  Ewe
+  Greek
+  English
+  Esperanto
+  Spanish
+  Estonian
+  Basque
+  Persian
+  Fulah
+  Finnish
+  Fijian
+  Faroese
+  French
+  WesternFrisian
+  Irish
+  Gaelic
+  Galician
+  Guarani
+  Gujarati
+  Manx
+  Hausa
+  Hebrew
+  Hindi
+  HiriMotu
+  Croatian
+  Haitian
+  Hungarian
+  Armenian
+  Herero
+  Interlingua
+  Indonesian
+  Interlingue
+  Igbo
+  SichuanYi
+  Inupiaq
+  Ido
+  Icelandic
+  Italian
+  Inuktitut
+  Japanese
+  Javanese
+  Georgian
+  Kongo
+  Kikuyu
+  Kuanyama
+  Kazakh
+  Kalaallisut
+  CentralKhmer
+  Kannada
+  Korean
+  Kanuri
+  Kashmiri
+  Kurdish
+  Komi
+  Cornish
+  Kirghiz
+  Latin
+  Luxembourgish
+  Ganda
+  Limburgan
+  Lingala
+  Lao
+  Lithuanian
+  Luba_Katanga
+  Latvian
+  Malagasy
+  Marshallese
+  Maori
+  Macedonian
+  Malayalam
+  Mongolian
+  Marathi
+  Malay
+  Maltese
+  Burmese
+  Nauru
+  Norwegian
+  NorthNdebele
+  Nepali
+  Ndonga
+  Dutch
+  SouthNdebele
+  Navajo
+  Chichewa
+  Occitan
+  Ojibwa
+  Oromo
+  Oriya
+  Ossetic
+  Panjabi
+  Pali
+  Polish
+  Pushto
+  Portuguese
+  Quechua
+  Romansh
+  Rundi
+  Romanian
+  Russian
+  Kinyarwanda
+  Sanskrit
+  Sardinian
+  Sindhi
+  NorthernSami
+  Sango
+  Sinhala
+  Slovak
+  Slovenian
+  Samoan
+  Shona
+  Somali
+  Albanian
+  Serbian
+  Swati
+  Sotho_Southern
+  Sundanese
+  Swedish
+  Swahili
+  Tamil
+  Telugu
+  Tajik
+  Thai
+  Tigrinya
+  Turkmen
+  Tagalog
+  Tswana
+  Tonga
+  Turkish
+  Tsonga
+  Tatar
+  Twi
+  Tahitian
+  Uighur
+  Ukrainian
+  Urdu
+  Uzbek
+  Venda
+  Vietnamese
+  Volapuk
+  Walloon
+  Wolof
+  Xhosa
+  Yiddish
+  Yoruba
+  Zhuang
+  Chinese
+  Zulu
+}
+
+type SellBroker_Socials {
+  platform: SellBroker_Socials_platform
+  link: String
+  id: String
+}
+
+enum SellBroker_Socials_platform {
+  WhatsApp
+  Facebook
+  LinkedIn
+}
+
+type SellBroker_Seo {
+  value: String
+  id: String
+}
+
+type SellBrokers {
+  docs: [SellBroker]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input SellBroker_where {
+  name: SellBroker_name_operator
+  position: SellBroker_position_operator
+  email: SellBroker_email_operator
+  picture: SellBroker_picture_operator
+  phones__prefix: SellBroker_phones__prefix_operator
+  phones__number: SellBroker_phones__number_operator
+  phones__id: SellBroker_phones__id_operator
+  langs: SellBroker_langs_operator
+  socials__platform: SellBroker_socials__platform_operator
+  socials__link: SellBroker_socials__link_operator
+  socials__id: SellBroker_socials__id_operator
+  seo__value: SellBroker_seo__value_operator
+  seo__id: SellBroker_seo__id_operator
+  updatedAt: SellBroker_updatedAt_operator
+  createdAt: SellBroker_createdAt_operator
+  id: SellBroker_id_operator
+  AND: [SellBroker_where_and]
+  OR: [SellBroker_where_or]
+}
+
+input SellBroker_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input SellBroker_position_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input SellBroker_email_operator {
+  equals: EmailAddress
+  not_equals: EmailAddress
+  like: EmailAddress
+  contains: EmailAddress
+  in: [EmailAddress]
+  not_in: [EmailAddress]
+  all: [EmailAddress]
+  exists: Boolean
+}
+
+input SellBroker_picture_operator {
+  equals: String
+  not_equals: String
+  exists: Boolean
+}
+
+input SellBroker_phones__prefix_operator {
+  equals: SellBroker_phones__prefix_Input
+  not_equals: SellBroker_phones__prefix_Input
+  in: [SellBroker_phones__prefix_Input]
+  not_in: [SellBroker_phones__prefix_Input]
+  all: [SellBroker_phones__prefix_Input]
+  exists: Boolean
+}
+
+enum SellBroker_phones__prefix_Input {
+  _93
+  _358
+  _355
+  _213
+  _1684
+  _376
+  _244
+  _1264
+  _672
+  _1268
+  _54
+  _374
+  _297
+  _61
+  _43
+  _994
+  _1242
+  _973
+  _880
+  _1246
+  _375
+  _32
+  _501
+  _229
+  _1441
+  _975
+  _591
+  _387
+  _267
+  _55
+  _246
+  _673
+  _359
+  _226
+  _257
+  _855
+  _237
+  _1
+  _238
+  _345
+  _236
+  _235
+  _56
+  _86
+  _57
+  _269
+  _242
+  _243
+  _682
+  _506
+  _225
+  _385
+  _53
+  _357
+  _420
+  _45
+  _253
+  _1767
+  _1849
+  _593
+  _20
+  _503
+  _240
+  _291
+  _372
+  _251
+  _500
+  _298
+  _679
+  _33
+  _594
+  _689
+  _241
+  _220
+  _995
+  _49
+  _233
+  _350
+  _30
+  _299
+  _1473
+  _590
+  _1671
+  _502
+  _44
+  _224
+  _245
+  _595
+  _509
+  _379
+  _504
+  _852
+  _36
+  _354
+  _91
+  _62
+  _98
+  _964
+  _353
+  _972
+  _39
+  _1876
+  _81
+  _962
+  _77
+  _254
+  _686
+  _850
+  _82
+  _965
+  _996
+  _856
+  _371
+  _961
+  _266
+  _231
+  _218
+  _423
+  _370
+  _352
+  _853
+  _389
+  _261
+  _265
+  _60
+  _960
+  _223
+  _356
+  _692
+  _596
+  _222
+  _230
+  _262
+  _52
+  _691
+  _373
+  _377
+  _976
+  _382
+  _1664
+  _212
+  _258
+  _95
+  _264
+  _674
+  _977
+  _31
+  _599
+  _687
+  _64
+  _505
+  _227
+  _234
+  _683
+  _1670
+  _47
+  _968
+  _92
+  _680
+  _970
+  _507
+  _675
+  _51
+  _63
+  _872
+  _48
+  _351
+  _1939
+  _974
+  _40
+  _7
+  _250
+  _290
+  _1869
+  _1758
+  _508
+  _1784
+  _685
+  _378
+  _239
+  _966
+  _221
+  _381
+  _248
+  _232
+  _65
+  _421
+  _386
+  _677
+  _252
+  _27
+  _211
+  _34
+  _94
+  _249
+  _597
+  _268
+  _46
+  _41
+  _963
+  _886
+  _992
+  _255
+  _66
+  _670
+  _228
+  _690
+  _676
+  _1868
+  _216
+  _90
+  _993
+  _1649
+  _688
+  _256
+  _380
+  _971
+  _598
+  _998
+  _678
+  _58
+  _84
+  _1284
+  _1340
+  _681
+  _967
+  _260
+  _263
+}
+
+input SellBroker_phones__number_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_phones__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_langs_operator {
+  equals: SellBroker_langs_Input
+  not_equals: SellBroker_langs_Input
+  in: [SellBroker_langs_Input]
+  not_in: [SellBroker_langs_Input]
+  all: [SellBroker_langs_Input]
+  exists: Boolean
+}
+
+enum SellBroker_langs_Input {
+  Afar
+  Abkhazian
+  Avestan
+  Afrikaans
+  Akan
+  Amharic
+  Aragonese
+  Arabic
+  Assamese
+  Avaric
+  Aymara
+  Azerbaijani
+  Bashkir
+  Belarusian
+  Bulgarian
+  Biharilanguages
+  Bislama
+  Bambara
+  Bengali
+  Tibetan
+  Breton
+  Bosnian
+  Catalan
+  Chechen
+  Chamorro
+  Corsican
+  Cree
+  Czech
+  ChurchSlavic
+  Chuvash
+  Welsh
+  Danish
+  German
+  Maldivian
+  Dzongkha
+  Ewe
+  Greek
+  English
+  Esperanto
+  Spanish
+  Estonian
+  Basque
+  Persian
+  Fulah
+  Finnish
+  Fijian
+  Faroese
+  French
+  WesternFrisian
+  Irish
+  Gaelic
+  Galician
+  Guarani
+  Gujarati
+  Manx
+  Hausa
+  Hebrew
+  Hindi
+  HiriMotu
+  Croatian
+  Haitian
+  Hungarian
+  Armenian
+  Herero
+  Interlingua
+  Indonesian
+  Interlingue
+  Igbo
+  SichuanYi
+  Inupiaq
+  Ido
+  Icelandic
+  Italian
+  Inuktitut
+  Japanese
+  Javanese
+  Georgian
+  Kongo
+  Kikuyu
+  Kuanyama
+  Kazakh
+  Kalaallisut
+  CentralKhmer
+  Kannada
+  Korean
+  Kanuri
+  Kashmiri
+  Kurdish
+  Komi
+  Cornish
+  Kirghiz
+  Latin
+  Luxembourgish
+  Ganda
+  Limburgan
+  Lingala
+  Lao
+  Lithuanian
+  Luba_Katanga
+  Latvian
+  Malagasy
+  Marshallese
+  Maori
+  Macedonian
+  Malayalam
+  Mongolian
+  Marathi
+  Malay
+  Maltese
+  Burmese
+  Nauru
+  Norwegian
+  NorthNdebele
+  Nepali
+  Ndonga
+  Dutch
+  SouthNdebele
+  Navajo
+  Chichewa
+  Occitan
+  Ojibwa
+  Oromo
+  Oriya
+  Ossetic
+  Panjabi
+  Pali
+  Polish
+  Pushto
+  Portuguese
+  Quechua
+  Romansh
+  Rundi
+  Romanian
+  Russian
+  Kinyarwanda
+  Sanskrit
+  Sardinian
+  Sindhi
+  NorthernSami
+  Sango
+  Sinhala
+  Slovak
+  Slovenian
+  Samoan
+  Shona
+  Somali
+  Albanian
+  Serbian
+  Swati
+  Sotho_Southern
+  Sundanese
+  Swedish
+  Swahili
+  Tamil
+  Telugu
+  Tajik
+  Thai
+  Tigrinya
+  Turkmen
+  Tagalog
+  Tswana
+  Tonga
+  Turkish
+  Tsonga
+  Tatar
+  Twi
+  Tahitian
+  Uighur
+  Ukrainian
+  Urdu
+  Uzbek
+  Venda
+  Vietnamese
+  Volapuk
+  Walloon
+  Wolof
+  Xhosa
+  Yiddish
+  Yoruba
+  Zhuang
+  Chinese
+  Zulu
+}
+
+input SellBroker_socials__platform_operator {
+  equals: SellBroker_socials__platform_Input
+  not_equals: SellBroker_socials__platform_Input
+  in: [SellBroker_socials__platform_Input]
+  not_in: [SellBroker_socials__platform_Input]
+  all: [SellBroker_socials__platform_Input]
+  exists: Boolean
+}
+
+enum SellBroker_socials__platform_Input {
+  WhatsApp
+  Facebook
+  LinkedIn
+}
+
+input SellBroker_socials__link_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_socials__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_seo__value_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_seo__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input SellBroker_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input SellBroker_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input SellBroker_where_and {
+  name: SellBroker_name_operator
+  position: SellBroker_position_operator
+  email: SellBroker_email_operator
+  picture: SellBroker_picture_operator
+  phones__prefix: SellBroker_phones__prefix_operator
+  phones__number: SellBroker_phones__number_operator
+  phones__id: SellBroker_phones__id_operator
+  langs: SellBroker_langs_operator
+  socials__platform: SellBroker_socials__platform_operator
+  socials__link: SellBroker_socials__link_operator
+  socials__id: SellBroker_socials__id_operator
+  seo__value: SellBroker_seo__value_operator
+  seo__id: SellBroker_seo__id_operator
+  updatedAt: SellBroker_updatedAt_operator
+  createdAt: SellBroker_createdAt_operator
+  id: SellBroker_id_operator
+  AND: [SellBroker_where_and]
+  OR: [SellBroker_where_or]
+}
+
+input SellBroker_where_or {
+  name: SellBroker_name_operator
+  position: SellBroker_position_operator
+  email: SellBroker_email_operator
+  picture: SellBroker_picture_operator
+  phones__prefix: SellBroker_phones__prefix_operator
+  phones__number: SellBroker_phones__number_operator
+  phones__id: SellBroker_phones__id_operator
+  langs: SellBroker_langs_operator
+  socials__platform: SellBroker_socials__platform_operator
+  socials__link: SellBroker_socials__link_operator
+  socials__id: SellBroker_socials__id_operator
+  seo__value: SellBroker_seo__value_operator
+  seo__id: SellBroker_seo__id_operator
+  updatedAt: SellBroker_updatedAt_operator
+  createdAt: SellBroker_createdAt_operator
+  id: SellBroker_id_operator
+  AND: [SellBroker_where_and]
+  OR: [SellBroker_where_or]
+}
+
+type countSellBrokers {
+  totalDocs: Int
+}
+
+type sell_brokersDocAccess {
+  fields: SellBrokersDocAccessFields
+  create: SellBrokersCreateDocAccess
+  read: SellBrokersReadDocAccess
+  update: SellBrokersUpdateDocAccess
+  delete: SellBrokersDeleteDocAccess
+}
+
+type SellBrokersDocAccessFields {
+  name: SellBrokersDocAccessFields_name
+  position: SellBrokersDocAccessFields_position
+  email: SellBrokersDocAccessFields_email
+  picture: SellBrokersDocAccessFields_picture
+  phones: SellBrokersDocAccessFields_phones
+  langs: SellBrokersDocAccessFields_langs
+  socials: SellBrokersDocAccessFields_socials
+  seo: SellBrokersDocAccessFields_seo
+  updatedAt: SellBrokersDocAccessFields_updatedAt
+  createdAt: SellBrokersDocAccessFields_createdAt
+}
+
+type SellBrokersDocAccessFields_name {
+  create: SellBrokersDocAccessFields_name_Create
+  read: SellBrokersDocAccessFields_name_Read
+  update: SellBrokersDocAccessFields_name_Update
+  delete: SellBrokersDocAccessFields_name_Delete
+}
+
+type SellBrokersDocAccessFields_name_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_name_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_name_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_position {
+  create: SellBrokersDocAccessFields_position_Create
+  read: SellBrokersDocAccessFields_position_Read
+  update: SellBrokersDocAccessFields_position_Update
+  delete: SellBrokersDocAccessFields_position_Delete
+}
+
+type SellBrokersDocAccessFields_position_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_position_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_position_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_position_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_email {
+  create: SellBrokersDocAccessFields_email_Create
+  read: SellBrokersDocAccessFields_email_Read
+  update: SellBrokersDocAccessFields_email_Update
+  delete: SellBrokersDocAccessFields_email_Delete
+}
+
+type SellBrokersDocAccessFields_email_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_email_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_email_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_email_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_picture {
+  create: SellBrokersDocAccessFields_picture_Create
+  read: SellBrokersDocAccessFields_picture_Read
+  update: SellBrokersDocAccessFields_picture_Update
+  delete: SellBrokersDocAccessFields_picture_Delete
+}
+
+type SellBrokersDocAccessFields_picture_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_picture_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_picture_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_picture_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones {
+  create: SellBrokersDocAccessFields_phones_Create
+  read: SellBrokersDocAccessFields_phones_Read
+  update: SellBrokersDocAccessFields_phones_Update
+  delete: SellBrokersDocAccessFields_phones_Delete
+  fields: SellBrokersDocAccessFields_phones_Fields
+}
+
+type SellBrokersDocAccessFields_phones_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_Fields {
+  prefix: SellBrokersDocAccessFields_phones_prefix
+  number: SellBrokersDocAccessFields_phones_number
+  id: SellBrokersDocAccessFields_phones_id
+}
+
+type SellBrokersDocAccessFields_phones_prefix {
+  create: SellBrokersDocAccessFields_phones_prefix_Create
+  read: SellBrokersDocAccessFields_phones_prefix_Read
+  update: SellBrokersDocAccessFields_phones_prefix_Update
+  delete: SellBrokersDocAccessFields_phones_prefix_Delete
+}
+
+type SellBrokersDocAccessFields_phones_prefix_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_prefix_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_prefix_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_prefix_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_number {
+  create: SellBrokersDocAccessFields_phones_number_Create
+  read: SellBrokersDocAccessFields_phones_number_Read
+  update: SellBrokersDocAccessFields_phones_number_Update
+  delete: SellBrokersDocAccessFields_phones_number_Delete
+}
+
+type SellBrokersDocAccessFields_phones_number_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_number_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_number_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_number_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_id {
+  create: SellBrokersDocAccessFields_phones_id_Create
+  read: SellBrokersDocAccessFields_phones_id_Read
+  update: SellBrokersDocAccessFields_phones_id_Update
+  delete: SellBrokersDocAccessFields_phones_id_Delete
+}
+
+type SellBrokersDocAccessFields_phones_id_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_id_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_id_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_phones_id_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_langs {
+  create: SellBrokersDocAccessFields_langs_Create
+  read: SellBrokersDocAccessFields_langs_Read
+  update: SellBrokersDocAccessFields_langs_Update
+  delete: SellBrokersDocAccessFields_langs_Delete
+}
+
+type SellBrokersDocAccessFields_langs_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_langs_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_langs_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_langs_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials {
+  create: SellBrokersDocAccessFields_socials_Create
+  read: SellBrokersDocAccessFields_socials_Read
+  update: SellBrokersDocAccessFields_socials_Update
+  delete: SellBrokersDocAccessFields_socials_Delete
+  fields: SellBrokersDocAccessFields_socials_Fields
+}
+
+type SellBrokersDocAccessFields_socials_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_Fields {
+  platform: SellBrokersDocAccessFields_socials_platform
+  link: SellBrokersDocAccessFields_socials_link
+  id: SellBrokersDocAccessFields_socials_id
+}
+
+type SellBrokersDocAccessFields_socials_platform {
+  create: SellBrokersDocAccessFields_socials_platform_Create
+  read: SellBrokersDocAccessFields_socials_platform_Read
+  update: SellBrokersDocAccessFields_socials_platform_Update
+  delete: SellBrokersDocAccessFields_socials_platform_Delete
+}
+
+type SellBrokersDocAccessFields_socials_platform_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_platform_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_platform_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_platform_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_link {
+  create: SellBrokersDocAccessFields_socials_link_Create
+  read: SellBrokersDocAccessFields_socials_link_Read
+  update: SellBrokersDocAccessFields_socials_link_Update
+  delete: SellBrokersDocAccessFields_socials_link_Delete
+}
+
+type SellBrokersDocAccessFields_socials_link_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_link_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_link_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_link_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_id {
+  create: SellBrokersDocAccessFields_socials_id_Create
+  read: SellBrokersDocAccessFields_socials_id_Read
+  update: SellBrokersDocAccessFields_socials_id_Update
+  delete: SellBrokersDocAccessFields_socials_id_Delete
+}
+
+type SellBrokersDocAccessFields_socials_id_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_id_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_id_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_socials_id_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo {
+  create: SellBrokersDocAccessFields_seo_Create
+  read: SellBrokersDocAccessFields_seo_Read
+  update: SellBrokersDocAccessFields_seo_Update
+  delete: SellBrokersDocAccessFields_seo_Delete
+  fields: SellBrokersDocAccessFields_seo_Fields
+}
+
+type SellBrokersDocAccessFields_seo_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_Fields {
+  value: SellBrokersDocAccessFields_seo_value
+  id: SellBrokersDocAccessFields_seo_id
+}
+
+type SellBrokersDocAccessFields_seo_value {
+  create: SellBrokersDocAccessFields_seo_value_Create
+  read: SellBrokersDocAccessFields_seo_value_Read
+  update: SellBrokersDocAccessFields_seo_value_Update
+  delete: SellBrokersDocAccessFields_seo_value_Delete
+}
+
+type SellBrokersDocAccessFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_id {
+  create: SellBrokersDocAccessFields_seo_id_Create
+  read: SellBrokersDocAccessFields_seo_id_Read
+  update: SellBrokersDocAccessFields_seo_id_Update
+  delete: SellBrokersDocAccessFields_seo_id_Delete
+}
+
+type SellBrokersDocAccessFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_updatedAt {
+  create: SellBrokersDocAccessFields_updatedAt_Create
+  read: SellBrokersDocAccessFields_updatedAt_Read
+  update: SellBrokersDocAccessFields_updatedAt_Update
+  delete: SellBrokersDocAccessFields_updatedAt_Delete
+}
+
+type SellBrokersDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_createdAt {
+  create: SellBrokersDocAccessFields_createdAt_Create
+  read: SellBrokersDocAccessFields_createdAt_Read
+  update: SellBrokersDocAccessFields_createdAt_Update
+  delete: SellBrokersDocAccessFields_createdAt_Delete
+}
+
+type SellBrokersDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type SellBrokersDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SellBrokersReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SellBrokersUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SellBrokersDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
 }
 
 type Yacht {
@@ -14313,6 +16256,874 @@ type RecruitmentDeleteDocAccess {
   where: JSONObject
 }
 
+type Sold {
+  id: String
+  name: String!
+  price: Float!
+  yearBuilt: Float!
+  length: Float!
+  sleeps: Float!
+  builder: String!
+  picture(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Sold_Picture_where): Media
+  seo: [Sold_Seo!]
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+input Sold_Picture_where {
+  alt: Sold_Picture_alt_operator
+  updatedAt: Sold_Picture_updatedAt_operator
+  createdAt: Sold_Picture_createdAt_operator
+  url: Sold_Picture_url_operator
+  filename: Sold_Picture_filename_operator
+  mimeType: Sold_Picture_mimeType_operator
+  filesize: Sold_Picture_filesize_operator
+  width: Sold_Picture_width_operator
+  height: Sold_Picture_height_operator
+  focalX: Sold_Picture_focalX_operator
+  focalY: Sold_Picture_focalY_operator
+  sizes__thumbnail__url: Sold_Picture_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: Sold_Picture_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: Sold_Picture_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: Sold_Picture_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: Sold_Picture_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: Sold_Picture_sizes__thumbnail__filename_operator
+  sizes__fhd__url: Sold_Picture_sizes__fhd__url_operator
+  sizes__fhd__width: Sold_Picture_sizes__fhd__width_operator
+  sizes__fhd__height: Sold_Picture_sizes__fhd__height_operator
+  sizes__fhd__mimeType: Sold_Picture_sizes__fhd__mimeType_operator
+  sizes__fhd__filesize: Sold_Picture_sizes__fhd__filesize_operator
+  sizes__fhd__filename: Sold_Picture_sizes__fhd__filename_operator
+  id: Sold_Picture_id_operator
+  AND: [Sold_Picture_where_and]
+  OR: [Sold_Picture_where_or]
+}
+
+input Sold_Picture_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Sold_Picture_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Sold_Picture_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__thumbnail__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__thumbnail__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__thumbnail__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__thumbnail__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__thumbnail__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__thumbnail__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__fhd__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__fhd__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__fhd__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__fhd__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__fhd__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Sold_Picture_sizes__fhd__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_Picture_where_and {
+  alt: Sold_Picture_alt_operator
+  updatedAt: Sold_Picture_updatedAt_operator
+  createdAt: Sold_Picture_createdAt_operator
+  url: Sold_Picture_url_operator
+  filename: Sold_Picture_filename_operator
+  mimeType: Sold_Picture_mimeType_operator
+  filesize: Sold_Picture_filesize_operator
+  width: Sold_Picture_width_operator
+  height: Sold_Picture_height_operator
+  focalX: Sold_Picture_focalX_operator
+  focalY: Sold_Picture_focalY_operator
+  sizes__thumbnail__url: Sold_Picture_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: Sold_Picture_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: Sold_Picture_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: Sold_Picture_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: Sold_Picture_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: Sold_Picture_sizes__thumbnail__filename_operator
+  sizes__fhd__url: Sold_Picture_sizes__fhd__url_operator
+  sizes__fhd__width: Sold_Picture_sizes__fhd__width_operator
+  sizes__fhd__height: Sold_Picture_sizes__fhd__height_operator
+  sizes__fhd__mimeType: Sold_Picture_sizes__fhd__mimeType_operator
+  sizes__fhd__filesize: Sold_Picture_sizes__fhd__filesize_operator
+  sizes__fhd__filename: Sold_Picture_sizes__fhd__filename_operator
+  id: Sold_Picture_id_operator
+  AND: [Sold_Picture_where_and]
+  OR: [Sold_Picture_where_or]
+}
+
+input Sold_Picture_where_or {
+  alt: Sold_Picture_alt_operator
+  updatedAt: Sold_Picture_updatedAt_operator
+  createdAt: Sold_Picture_createdAt_operator
+  url: Sold_Picture_url_operator
+  filename: Sold_Picture_filename_operator
+  mimeType: Sold_Picture_mimeType_operator
+  filesize: Sold_Picture_filesize_operator
+  width: Sold_Picture_width_operator
+  height: Sold_Picture_height_operator
+  focalX: Sold_Picture_focalX_operator
+  focalY: Sold_Picture_focalY_operator
+  sizes__thumbnail__url: Sold_Picture_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: Sold_Picture_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: Sold_Picture_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: Sold_Picture_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: Sold_Picture_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: Sold_Picture_sizes__thumbnail__filename_operator
+  sizes__fhd__url: Sold_Picture_sizes__fhd__url_operator
+  sizes__fhd__width: Sold_Picture_sizes__fhd__width_operator
+  sizes__fhd__height: Sold_Picture_sizes__fhd__height_operator
+  sizes__fhd__mimeType: Sold_Picture_sizes__fhd__mimeType_operator
+  sizes__fhd__filesize: Sold_Picture_sizes__fhd__filesize_operator
+  sizes__fhd__filename: Sold_Picture_sizes__fhd__filename_operator
+  id: Sold_Picture_id_operator
+  AND: [Sold_Picture_where_and]
+  OR: [Sold_Picture_where_or]
+}
+
+type Sold_Seo {
+  value: String
+  id: String
+}
+
+type Solds {
+  docs: [Sold]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input Sold_where {
+  name: Sold_name_operator
+  price: Sold_price_operator
+  yearBuilt: Sold_yearBuilt_operator
+  length: Sold_length_operator
+  sleeps: Sold_sleeps_operator
+  builder: Sold_builder_operator
+  picture: Sold_picture_operator
+  seo__value: Sold_seo__value_operator
+  seo__id: Sold_seo__id_operator
+  updatedAt: Sold_updatedAt_operator
+  createdAt: Sold_createdAt_operator
+  id: Sold_id_operator
+  AND: [Sold_where_and]
+  OR: [Sold_where_or]
+}
+
+input Sold_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Sold_price_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input Sold_yearBuilt_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input Sold_length_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input Sold_sleeps_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+}
+
+input Sold_builder_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Sold_picture_operator {
+  equals: String
+  not_equals: String
+  exists: Boolean
+}
+
+input Sold_seo__value_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_seo__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Sold_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Sold_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Sold_where_and {
+  name: Sold_name_operator
+  price: Sold_price_operator
+  yearBuilt: Sold_yearBuilt_operator
+  length: Sold_length_operator
+  sleeps: Sold_sleeps_operator
+  builder: Sold_builder_operator
+  picture: Sold_picture_operator
+  seo__value: Sold_seo__value_operator
+  seo__id: Sold_seo__id_operator
+  updatedAt: Sold_updatedAt_operator
+  createdAt: Sold_createdAt_operator
+  id: Sold_id_operator
+  AND: [Sold_where_and]
+  OR: [Sold_where_or]
+}
+
+input Sold_where_or {
+  name: Sold_name_operator
+  price: Sold_price_operator
+  yearBuilt: Sold_yearBuilt_operator
+  length: Sold_length_operator
+  sleeps: Sold_sleeps_operator
+  builder: Sold_builder_operator
+  picture: Sold_picture_operator
+  seo__value: Sold_seo__value_operator
+  seo__id: Sold_seo__id_operator
+  updatedAt: Sold_updatedAt_operator
+  createdAt: Sold_createdAt_operator
+  id: Sold_id_operator
+  AND: [Sold_where_and]
+  OR: [Sold_where_or]
+}
+
+type countSolds {
+  totalDocs: Int
+}
+
+type soldsDocAccess {
+  fields: SoldsDocAccessFields
+  create: SoldsCreateDocAccess
+  read: SoldsReadDocAccess
+  update: SoldsUpdateDocAccess
+  delete: SoldsDeleteDocAccess
+}
+
+type SoldsDocAccessFields {
+  name: SoldsDocAccessFields_name
+  price: SoldsDocAccessFields_price
+  yearBuilt: SoldsDocAccessFields_yearBuilt
+  length: SoldsDocAccessFields_length
+  sleeps: SoldsDocAccessFields_sleeps
+  builder: SoldsDocAccessFields_builder
+  picture: SoldsDocAccessFields_picture
+  seo: SoldsDocAccessFields_seo
+  updatedAt: SoldsDocAccessFields_updatedAt
+  createdAt: SoldsDocAccessFields_createdAt
+}
+
+type SoldsDocAccessFields_name {
+  create: SoldsDocAccessFields_name_Create
+  read: SoldsDocAccessFields_name_Read
+  update: SoldsDocAccessFields_name_Update
+  delete: SoldsDocAccessFields_name_Delete
+}
+
+type SoldsDocAccessFields_name_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_name_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_name_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_price {
+  create: SoldsDocAccessFields_price_Create
+  read: SoldsDocAccessFields_price_Read
+  update: SoldsDocAccessFields_price_Update
+  delete: SoldsDocAccessFields_price_Delete
+}
+
+type SoldsDocAccessFields_price_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_price_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_price_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_price_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_yearBuilt {
+  create: SoldsDocAccessFields_yearBuilt_Create
+  read: SoldsDocAccessFields_yearBuilt_Read
+  update: SoldsDocAccessFields_yearBuilt_Update
+  delete: SoldsDocAccessFields_yearBuilt_Delete
+}
+
+type SoldsDocAccessFields_yearBuilt_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_yearBuilt_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_yearBuilt_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_yearBuilt_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_length {
+  create: SoldsDocAccessFields_length_Create
+  read: SoldsDocAccessFields_length_Read
+  update: SoldsDocAccessFields_length_Update
+  delete: SoldsDocAccessFields_length_Delete
+}
+
+type SoldsDocAccessFields_length_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_length_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_length_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_length_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_sleeps {
+  create: SoldsDocAccessFields_sleeps_Create
+  read: SoldsDocAccessFields_sleeps_Read
+  update: SoldsDocAccessFields_sleeps_Update
+  delete: SoldsDocAccessFields_sleeps_Delete
+}
+
+type SoldsDocAccessFields_sleeps_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_sleeps_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_sleeps_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_sleeps_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_builder {
+  create: SoldsDocAccessFields_builder_Create
+  read: SoldsDocAccessFields_builder_Read
+  update: SoldsDocAccessFields_builder_Update
+  delete: SoldsDocAccessFields_builder_Delete
+}
+
+type SoldsDocAccessFields_builder_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_builder_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_builder_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_builder_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_picture {
+  create: SoldsDocAccessFields_picture_Create
+  read: SoldsDocAccessFields_picture_Read
+  update: SoldsDocAccessFields_picture_Update
+  delete: SoldsDocAccessFields_picture_Delete
+}
+
+type SoldsDocAccessFields_picture_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_picture_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_picture_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_picture_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo {
+  create: SoldsDocAccessFields_seo_Create
+  read: SoldsDocAccessFields_seo_Read
+  update: SoldsDocAccessFields_seo_Update
+  delete: SoldsDocAccessFields_seo_Delete
+  fields: SoldsDocAccessFields_seo_Fields
+}
+
+type SoldsDocAccessFields_seo_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_Fields {
+  value: SoldsDocAccessFields_seo_value
+  id: SoldsDocAccessFields_seo_id
+}
+
+type SoldsDocAccessFields_seo_value {
+  create: SoldsDocAccessFields_seo_value_Create
+  read: SoldsDocAccessFields_seo_value_Read
+  update: SoldsDocAccessFields_seo_value_Update
+  delete: SoldsDocAccessFields_seo_value_Delete
+}
+
+type SoldsDocAccessFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_id {
+  create: SoldsDocAccessFields_seo_id_Create
+  read: SoldsDocAccessFields_seo_id_Read
+  update: SoldsDocAccessFields_seo_id_Update
+  delete: SoldsDocAccessFields_seo_id_Delete
+}
+
+type SoldsDocAccessFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_updatedAt {
+  create: SoldsDocAccessFields_updatedAt_Create
+  read: SoldsDocAccessFields_updatedAt_Read
+  update: SoldsDocAccessFields_updatedAt_Update
+  delete: SoldsDocAccessFields_updatedAt_Delete
+}
+
+type SoldsDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_createdAt {
+  create: SoldsDocAccessFields_createdAt_Create
+  read: SoldsDocAccessFields_createdAt_Read
+  update: SoldsDocAccessFields_createdAt_Update
+  delete: SoldsDocAccessFields_createdAt_Delete
+}
+
+type SoldsDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type SoldsDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type SoldsCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SoldsReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SoldsUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SoldsDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type NewConstruction {
   id: String
   delivery: String!
@@ -19578,6 +22389,7 @@ type Access {
   articles: articlesAccess
   media: mediaAccess
   users: usersAccess
+  sell_brokers: sell_brokersAccess
   yachts: yachtsAccess
   charters: chartersAccess
   categories: categoriesAccess
@@ -19586,6 +22398,7 @@ type Access {
   partners: partnersAccess
   shipyards: shipyardsAccess
   recruitment: recruitmentAccess
+  solds: soldsAccess
   new_constructions: new_constructionsAccess
   messages: messagesAccess
   archived_customers: archived_customersAccess
@@ -21055,6 +23868,481 @@ type UsersDeleteAccess {
 }
 
 type UsersUnlockAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type sell_brokersAccess {
+  fields: SellBrokersFields
+  create: SellBrokersCreateAccess
+  read: SellBrokersReadAccess
+  update: SellBrokersUpdateAccess
+  delete: SellBrokersDeleteAccess
+}
+
+type SellBrokersFields {
+  name: SellBrokersFields_name
+  position: SellBrokersFields_position
+  email: SellBrokersFields_email
+  picture: SellBrokersFields_picture
+  phones: SellBrokersFields_phones
+  langs: SellBrokersFields_langs
+  socials: SellBrokersFields_socials
+  seo: SellBrokersFields_seo
+  updatedAt: SellBrokersFields_updatedAt
+  createdAt: SellBrokersFields_createdAt
+}
+
+type SellBrokersFields_name {
+  create: SellBrokersFields_name_Create
+  read: SellBrokersFields_name_Read
+  update: SellBrokersFields_name_Update
+  delete: SellBrokersFields_name_Delete
+}
+
+type SellBrokersFields_name_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_name_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_name_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_name_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_position {
+  create: SellBrokersFields_position_Create
+  read: SellBrokersFields_position_Read
+  update: SellBrokersFields_position_Update
+  delete: SellBrokersFields_position_Delete
+}
+
+type SellBrokersFields_position_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_position_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_position_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_position_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_email {
+  create: SellBrokersFields_email_Create
+  read: SellBrokersFields_email_Read
+  update: SellBrokersFields_email_Update
+  delete: SellBrokersFields_email_Delete
+}
+
+type SellBrokersFields_email_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_email_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_email_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_email_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_picture {
+  create: SellBrokersFields_picture_Create
+  read: SellBrokersFields_picture_Read
+  update: SellBrokersFields_picture_Update
+  delete: SellBrokersFields_picture_Delete
+}
+
+type SellBrokersFields_picture_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_picture_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_picture_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_picture_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones {
+  create: SellBrokersFields_phones_Create
+  read: SellBrokersFields_phones_Read
+  update: SellBrokersFields_phones_Update
+  delete: SellBrokersFields_phones_Delete
+  fields: SellBrokersFields_phones_Fields
+}
+
+type SellBrokersFields_phones_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_Fields {
+  prefix: SellBrokersFields_phones_prefix
+  number: SellBrokersFields_phones_number
+  id: SellBrokersFields_phones_id
+}
+
+type SellBrokersFields_phones_prefix {
+  create: SellBrokersFields_phones_prefix_Create
+  read: SellBrokersFields_phones_prefix_Read
+  update: SellBrokersFields_phones_prefix_Update
+  delete: SellBrokersFields_phones_prefix_Delete
+}
+
+type SellBrokersFields_phones_prefix_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_prefix_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_prefix_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_prefix_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_number {
+  create: SellBrokersFields_phones_number_Create
+  read: SellBrokersFields_phones_number_Read
+  update: SellBrokersFields_phones_number_Update
+  delete: SellBrokersFields_phones_number_Delete
+}
+
+type SellBrokersFields_phones_number_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_number_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_number_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_number_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_id {
+  create: SellBrokersFields_phones_id_Create
+  read: SellBrokersFields_phones_id_Read
+  update: SellBrokersFields_phones_id_Update
+  delete: SellBrokersFields_phones_id_Delete
+}
+
+type SellBrokersFields_phones_id_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_id_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_id_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_phones_id_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_langs {
+  create: SellBrokersFields_langs_Create
+  read: SellBrokersFields_langs_Read
+  update: SellBrokersFields_langs_Update
+  delete: SellBrokersFields_langs_Delete
+}
+
+type SellBrokersFields_langs_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_langs_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_langs_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_langs_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials {
+  create: SellBrokersFields_socials_Create
+  read: SellBrokersFields_socials_Read
+  update: SellBrokersFields_socials_Update
+  delete: SellBrokersFields_socials_Delete
+  fields: SellBrokersFields_socials_Fields
+}
+
+type SellBrokersFields_socials_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_Fields {
+  platform: SellBrokersFields_socials_platform
+  link: SellBrokersFields_socials_link
+  id: SellBrokersFields_socials_id
+}
+
+type SellBrokersFields_socials_platform {
+  create: SellBrokersFields_socials_platform_Create
+  read: SellBrokersFields_socials_platform_Read
+  update: SellBrokersFields_socials_platform_Update
+  delete: SellBrokersFields_socials_platform_Delete
+}
+
+type SellBrokersFields_socials_platform_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_platform_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_platform_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_platform_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_link {
+  create: SellBrokersFields_socials_link_Create
+  read: SellBrokersFields_socials_link_Read
+  update: SellBrokersFields_socials_link_Update
+  delete: SellBrokersFields_socials_link_Delete
+}
+
+type SellBrokersFields_socials_link_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_link_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_link_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_link_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_id {
+  create: SellBrokersFields_socials_id_Create
+  read: SellBrokersFields_socials_id_Read
+  update: SellBrokersFields_socials_id_Update
+  delete: SellBrokersFields_socials_id_Delete
+}
+
+type SellBrokersFields_socials_id_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_id_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_id_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_socials_id_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo {
+  create: SellBrokersFields_seo_Create
+  read: SellBrokersFields_seo_Read
+  update: SellBrokersFields_seo_Update
+  delete: SellBrokersFields_seo_Delete
+  fields: SellBrokersFields_seo_Fields
+}
+
+type SellBrokersFields_seo_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_Fields {
+  value: SellBrokersFields_seo_value
+  id: SellBrokersFields_seo_id
+}
+
+type SellBrokersFields_seo_value {
+  create: SellBrokersFields_seo_value_Create
+  read: SellBrokersFields_seo_value_Read
+  update: SellBrokersFields_seo_value_Update
+  delete: SellBrokersFields_seo_value_Delete
+}
+
+type SellBrokersFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_id {
+  create: SellBrokersFields_seo_id_Create
+  read: SellBrokersFields_seo_id_Read
+  update: SellBrokersFields_seo_id_Update
+  delete: SellBrokersFields_seo_id_Delete
+}
+
+type SellBrokersFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_updatedAt {
+  create: SellBrokersFields_updatedAt_Create
+  read: SellBrokersFields_updatedAt_Read
+  update: SellBrokersFields_updatedAt_Update
+  delete: SellBrokersFields_updatedAt_Delete
+}
+
+type SellBrokersFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersFields_createdAt {
+  create: SellBrokersFields_createdAt_Create
+  read: SellBrokersFields_createdAt_Read
+  update: SellBrokersFields_createdAt_Update
+  delete: SellBrokersFields_createdAt_Delete
+}
+
+type SellBrokersFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type SellBrokersFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type SellBrokersFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type SellBrokersFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type SellBrokersCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SellBrokersReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SellBrokersUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SellBrokersDeleteAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -25107,6 +28395,329 @@ type RecruitmentDeleteAccess {
   where: JSONObject
 }
 
+type soldsAccess {
+  fields: SoldsFields
+  create: SoldsCreateAccess
+  read: SoldsReadAccess
+  update: SoldsUpdateAccess
+  delete: SoldsDeleteAccess
+}
+
+type SoldsFields {
+  name: SoldsFields_name
+  price: SoldsFields_price
+  yearBuilt: SoldsFields_yearBuilt
+  length: SoldsFields_length
+  sleeps: SoldsFields_sleeps
+  builder: SoldsFields_builder
+  picture: SoldsFields_picture
+  seo: SoldsFields_seo
+  updatedAt: SoldsFields_updatedAt
+  createdAt: SoldsFields_createdAt
+}
+
+type SoldsFields_name {
+  create: SoldsFields_name_Create
+  read: SoldsFields_name_Read
+  update: SoldsFields_name_Update
+  delete: SoldsFields_name_Delete
+}
+
+type SoldsFields_name_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_name_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_name_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_name_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_price {
+  create: SoldsFields_price_Create
+  read: SoldsFields_price_Read
+  update: SoldsFields_price_Update
+  delete: SoldsFields_price_Delete
+}
+
+type SoldsFields_price_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_price_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_price_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_price_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_yearBuilt {
+  create: SoldsFields_yearBuilt_Create
+  read: SoldsFields_yearBuilt_Read
+  update: SoldsFields_yearBuilt_Update
+  delete: SoldsFields_yearBuilt_Delete
+}
+
+type SoldsFields_yearBuilt_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_yearBuilt_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_yearBuilt_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_yearBuilt_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_length {
+  create: SoldsFields_length_Create
+  read: SoldsFields_length_Read
+  update: SoldsFields_length_Update
+  delete: SoldsFields_length_Delete
+}
+
+type SoldsFields_length_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_length_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_length_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_length_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_sleeps {
+  create: SoldsFields_sleeps_Create
+  read: SoldsFields_sleeps_Read
+  update: SoldsFields_sleeps_Update
+  delete: SoldsFields_sleeps_Delete
+}
+
+type SoldsFields_sleeps_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_sleeps_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_sleeps_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_sleeps_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_builder {
+  create: SoldsFields_builder_Create
+  read: SoldsFields_builder_Read
+  update: SoldsFields_builder_Update
+  delete: SoldsFields_builder_Delete
+}
+
+type SoldsFields_builder_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_builder_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_builder_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_builder_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_picture {
+  create: SoldsFields_picture_Create
+  read: SoldsFields_picture_Read
+  update: SoldsFields_picture_Update
+  delete: SoldsFields_picture_Delete
+}
+
+type SoldsFields_picture_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_picture_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_picture_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_picture_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_seo {
+  create: SoldsFields_seo_Create
+  read: SoldsFields_seo_Read
+  update: SoldsFields_seo_Update
+  delete: SoldsFields_seo_Delete
+  fields: SoldsFields_seo_Fields
+}
+
+type SoldsFields_seo_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_Fields {
+  value: SoldsFields_seo_value
+  id: SoldsFields_seo_id
+}
+
+type SoldsFields_seo_value {
+  create: SoldsFields_seo_value_Create
+  read: SoldsFields_seo_value_Read
+  update: SoldsFields_seo_value_Update
+  delete: SoldsFields_seo_value_Delete
+}
+
+type SoldsFields_seo_value_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_value_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_value_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_value_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_id {
+  create: SoldsFields_seo_id_Create
+  read: SoldsFields_seo_id_Read
+  update: SoldsFields_seo_id_Update
+  delete: SoldsFields_seo_id_Delete
+}
+
+type SoldsFields_seo_id_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_id_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_id_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_seo_id_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_updatedAt {
+  create: SoldsFields_updatedAt_Create
+  read: SoldsFields_updatedAt_Read
+  update: SoldsFields_updatedAt_Update
+  delete: SoldsFields_updatedAt_Delete
+}
+
+type SoldsFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type SoldsFields_createdAt {
+  create: SoldsFields_createdAt_Create
+  read: SoldsFields_createdAt_Read
+  update: SoldsFields_createdAt_Update
+  delete: SoldsFields_createdAt_Delete
+}
+
+type SoldsFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type SoldsFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type SoldsFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type SoldsFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type SoldsCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SoldsReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SoldsUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SoldsDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type new_constructionsAccess {
   fields: NewConstructionsFields
   create: NewConstructionsCreateAccess
@@ -27985,13 +31596,16 @@ type Mutation {
   createUser(data: mutationUserInput!, locale: LocaleInputType): User
   updateUser(id: String!, autosave: Boolean, data: mutationUserUpdateInput!, locale: LocaleInputType): User
   deleteUser(id: String!): User
-  refreshTokenUser(token: String): usersRefreshedUser
+  refreshTokenUser: usersRefreshedUser
   logoutUser: String
   unlockUser(email: String!): Boolean!
   loginUser(email: String, password: String): usersLoginResult
   forgotPasswordUser(disableEmail: Boolean, email: String!, expiration: Int): Boolean!
   resetPasswordUser(password: String, token: String): usersResetPassword
   verifyEmailUser(token: String): Boolean
+  createSellBroker(data: mutationSellBrokerInput!, locale: LocaleInputType): SellBroker
+  updateSellBroker(id: String!, autosave: Boolean, data: mutationSellBrokerUpdateInput!, locale: LocaleInputType): SellBroker
+  deleteSellBroker(id: String!): SellBroker
   createYacht(data: mutationYachtInput!, locale: LocaleInputType): Yacht
   updateYacht(id: String!, autosave: Boolean, data: mutationYachtUpdateInput!, locale: LocaleInputType): Yacht
   deleteYacht(id: String!): Yacht
@@ -28016,6 +31630,9 @@ type Mutation {
   createRecruitment(data: mutationRecruitmentInput!, locale: LocaleInputType): Recruitment
   updateRecruitment(id: String!, autosave: Boolean, data: mutationRecruitmentUpdateInput!, locale: LocaleInputType): Recruitment
   deleteRecruitment(id: String!): Recruitment
+  createSold(data: mutationSoldInput!, locale: LocaleInputType): Sold
+  updateSold(id: String!, autosave: Boolean, data: mutationSoldUpdateInput!, locale: LocaleInputType): Sold
+  deleteSold(id: String!): Sold
   createNewConstruction(data: mutationNewConstructionInput!, locale: LocaleInputType): NewConstruction
   updateNewConstruction(id: String!, autosave: Boolean, data: mutationNewConstructionUpdateInput!, locale: LocaleInputType): NewConstruction
   deleteNewConstruction(id: String!): NewConstruction
@@ -29065,6 +32682,7 @@ enum UserUpdate_Socials_platform_MutationInput {
 type usersRefreshedUser {
   exp: Int
   refreshedToken: String
+  strategy: String
   user: usersJWT
 }
 
@@ -29082,6 +32700,910 @@ type usersLoginResult {
 type usersResetPassword {
   token: String
   user: User
+}
+
+input mutationSellBrokerInput {
+  name: String!
+  position: String
+  email: String
+  picture: String
+  phones: [mutationSellBroker_PhonesInput]
+  langs: [SellBroker_langs_MutationInput]
+  socials: [mutationSellBroker_SocialsInput]
+  seo: [mutationSellBroker_SeoInput]
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationSellBroker_PhonesInput {
+  prefix: SellBroker_Phones_prefix_MutationInput
+  number: String
+  id: String
+}
+
+enum SellBroker_Phones_prefix_MutationInput {
+  _93
+  _358
+  _355
+  _213
+  _1684
+  _376
+  _244
+  _1264
+  _672
+  _1268
+  _54
+  _374
+  _297
+  _61
+  _43
+  _994
+  _1242
+  _973
+  _880
+  _1246
+  _375
+  _32
+  _501
+  _229
+  _1441
+  _975
+  _591
+  _387
+  _267
+  _55
+  _246
+  _673
+  _359
+  _226
+  _257
+  _855
+  _237
+  _1
+  _238
+  _345
+  _236
+  _235
+  _56
+  _86
+  _57
+  _269
+  _242
+  _243
+  _682
+  _506
+  _225
+  _385
+  _53
+  _357
+  _420
+  _45
+  _253
+  _1767
+  _1849
+  _593
+  _20
+  _503
+  _240
+  _291
+  _372
+  _251
+  _500
+  _298
+  _679
+  _33
+  _594
+  _689
+  _241
+  _220
+  _995
+  _49
+  _233
+  _350
+  _30
+  _299
+  _1473
+  _590
+  _1671
+  _502
+  _44
+  _224
+  _245
+  _595
+  _509
+  _379
+  _504
+  _852
+  _36
+  _354
+  _91
+  _62
+  _98
+  _964
+  _353
+  _972
+  _39
+  _1876
+  _81
+  _962
+  _77
+  _254
+  _686
+  _850
+  _82
+  _965
+  _996
+  _856
+  _371
+  _961
+  _266
+  _231
+  _218
+  _423
+  _370
+  _352
+  _853
+  _389
+  _261
+  _265
+  _60
+  _960
+  _223
+  _356
+  _692
+  _596
+  _222
+  _230
+  _262
+  _52
+  _691
+  _373
+  _377
+  _976
+  _382
+  _1664
+  _212
+  _258
+  _95
+  _264
+  _674
+  _977
+  _31
+  _599
+  _687
+  _64
+  _505
+  _227
+  _234
+  _683
+  _1670
+  _47
+  _968
+  _92
+  _680
+  _970
+  _507
+  _675
+  _51
+  _63
+  _872
+  _48
+  _351
+  _1939
+  _974
+  _40
+  _7
+  _250
+  _290
+  _1869
+  _1758
+  _508
+  _1784
+  _685
+  _378
+  _239
+  _966
+  _221
+  _381
+  _248
+  _232
+  _65
+  _421
+  _386
+  _677
+  _252
+  _27
+  _211
+  _34
+  _94
+  _249
+  _597
+  _268
+  _46
+  _41
+  _963
+  _886
+  _992
+  _255
+  _66
+  _670
+  _228
+  _690
+  _676
+  _1868
+  _216
+  _90
+  _993
+  _1649
+  _688
+  _256
+  _380
+  _971
+  _598
+  _998
+  _678
+  _58
+  _84
+  _1284
+  _1340
+  _681
+  _967
+  _260
+  _263
+}
+
+enum SellBroker_langs_MutationInput {
+  Afar
+  Abkhazian
+  Avestan
+  Afrikaans
+  Akan
+  Amharic
+  Aragonese
+  Arabic
+  Assamese
+  Avaric
+  Aymara
+  Azerbaijani
+  Bashkir
+  Belarusian
+  Bulgarian
+  Biharilanguages
+  Bislama
+  Bambara
+  Bengali
+  Tibetan
+  Breton
+  Bosnian
+  Catalan
+  Chechen
+  Chamorro
+  Corsican
+  Cree
+  Czech
+  ChurchSlavic
+  Chuvash
+  Welsh
+  Danish
+  German
+  Maldivian
+  Dzongkha
+  Ewe
+  Greek
+  English
+  Esperanto
+  Spanish
+  Estonian
+  Basque
+  Persian
+  Fulah
+  Finnish
+  Fijian
+  Faroese
+  French
+  WesternFrisian
+  Irish
+  Gaelic
+  Galician
+  Guarani
+  Gujarati
+  Manx
+  Hausa
+  Hebrew
+  Hindi
+  HiriMotu
+  Croatian
+  Haitian
+  Hungarian
+  Armenian
+  Herero
+  Interlingua
+  Indonesian
+  Interlingue
+  Igbo
+  SichuanYi
+  Inupiaq
+  Ido
+  Icelandic
+  Italian
+  Inuktitut
+  Japanese
+  Javanese
+  Georgian
+  Kongo
+  Kikuyu
+  Kuanyama
+  Kazakh
+  Kalaallisut
+  CentralKhmer
+  Kannada
+  Korean
+  Kanuri
+  Kashmiri
+  Kurdish
+  Komi
+  Cornish
+  Kirghiz
+  Latin
+  Luxembourgish
+  Ganda
+  Limburgan
+  Lingala
+  Lao
+  Lithuanian
+  Luba_Katanga
+  Latvian
+  Malagasy
+  Marshallese
+  Maori
+  Macedonian
+  Malayalam
+  Mongolian
+  Marathi
+  Malay
+  Maltese
+  Burmese
+  Nauru
+  Norwegian
+  NorthNdebele
+  Nepali
+  Ndonga
+  Dutch
+  SouthNdebele
+  Navajo
+  Chichewa
+  Occitan
+  Ojibwa
+  Oromo
+  Oriya
+  Ossetic
+  Panjabi
+  Pali
+  Polish
+  Pushto
+  Portuguese
+  Quechua
+  Romansh
+  Rundi
+  Romanian
+  Russian
+  Kinyarwanda
+  Sanskrit
+  Sardinian
+  Sindhi
+  NorthernSami
+  Sango
+  Sinhala
+  Slovak
+  Slovenian
+  Samoan
+  Shona
+  Somali
+  Albanian
+  Serbian
+  Swati
+  Sotho_Southern
+  Sundanese
+  Swedish
+  Swahili
+  Tamil
+  Telugu
+  Tajik
+  Thai
+  Tigrinya
+  Turkmen
+  Tagalog
+  Tswana
+  Tonga
+  Turkish
+  Tsonga
+  Tatar
+  Twi
+  Tahitian
+  Uighur
+  Ukrainian
+  Urdu
+  Uzbek
+  Venda
+  Vietnamese
+  Volapuk
+  Walloon
+  Wolof
+  Xhosa
+  Yiddish
+  Yoruba
+  Zhuang
+  Chinese
+  Zulu
+}
+
+input mutationSellBroker_SocialsInput {
+  platform: SellBroker_Socials_platform_MutationInput
+  link: String
+  id: String
+}
+
+enum SellBroker_Socials_platform_MutationInput {
+  WhatsApp
+  Facebook
+  LinkedIn
+}
+
+input mutationSellBroker_SeoInput {
+  value: String
+  id: String
+}
+
+input mutationSellBrokerUpdateInput {
+  name: String
+  position: String
+  email: String
+  picture: String
+  phones: [mutationSellBrokerUpdate_PhonesInput]
+  langs: [SellBrokerUpdate_langs_MutationInput]
+  socials: [mutationSellBrokerUpdate_SocialsInput]
+  seo: [mutationSellBrokerUpdate_SeoInput]
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationSellBrokerUpdate_PhonesInput {
+  prefix: SellBrokerUpdate_Phones_prefix_MutationInput
+  number: String
+  id: String
+}
+
+enum SellBrokerUpdate_Phones_prefix_MutationInput {
+  _93
+  _358
+  _355
+  _213
+  _1684
+  _376
+  _244
+  _1264
+  _672
+  _1268
+  _54
+  _374
+  _297
+  _61
+  _43
+  _994
+  _1242
+  _973
+  _880
+  _1246
+  _375
+  _32
+  _501
+  _229
+  _1441
+  _975
+  _591
+  _387
+  _267
+  _55
+  _246
+  _673
+  _359
+  _226
+  _257
+  _855
+  _237
+  _1
+  _238
+  _345
+  _236
+  _235
+  _56
+  _86
+  _57
+  _269
+  _242
+  _243
+  _682
+  _506
+  _225
+  _385
+  _53
+  _357
+  _420
+  _45
+  _253
+  _1767
+  _1849
+  _593
+  _20
+  _503
+  _240
+  _291
+  _372
+  _251
+  _500
+  _298
+  _679
+  _33
+  _594
+  _689
+  _241
+  _220
+  _995
+  _49
+  _233
+  _350
+  _30
+  _299
+  _1473
+  _590
+  _1671
+  _502
+  _44
+  _224
+  _245
+  _595
+  _509
+  _379
+  _504
+  _852
+  _36
+  _354
+  _91
+  _62
+  _98
+  _964
+  _353
+  _972
+  _39
+  _1876
+  _81
+  _962
+  _77
+  _254
+  _686
+  _850
+  _82
+  _965
+  _996
+  _856
+  _371
+  _961
+  _266
+  _231
+  _218
+  _423
+  _370
+  _352
+  _853
+  _389
+  _261
+  _265
+  _60
+  _960
+  _223
+  _356
+  _692
+  _596
+  _222
+  _230
+  _262
+  _52
+  _691
+  _373
+  _377
+  _976
+  _382
+  _1664
+  _212
+  _258
+  _95
+  _264
+  _674
+  _977
+  _31
+  _599
+  _687
+  _64
+  _505
+  _227
+  _234
+  _683
+  _1670
+  _47
+  _968
+  _92
+  _680
+  _970
+  _507
+  _675
+  _51
+  _63
+  _872
+  _48
+  _351
+  _1939
+  _974
+  _40
+  _7
+  _250
+  _290
+  _1869
+  _1758
+  _508
+  _1784
+  _685
+  _378
+  _239
+  _966
+  _221
+  _381
+  _248
+  _232
+  _65
+  _421
+  _386
+  _677
+  _252
+  _27
+  _211
+  _34
+  _94
+  _249
+  _597
+  _268
+  _46
+  _41
+  _963
+  _886
+  _992
+  _255
+  _66
+  _670
+  _228
+  _690
+  _676
+  _1868
+  _216
+  _90
+  _993
+  _1649
+  _688
+  _256
+  _380
+  _971
+  _598
+  _998
+  _678
+  _58
+  _84
+  _1284
+  _1340
+  _681
+  _967
+  _260
+  _263
+}
+
+enum SellBrokerUpdate_langs_MutationInput {
+  Afar
+  Abkhazian
+  Avestan
+  Afrikaans
+  Akan
+  Amharic
+  Aragonese
+  Arabic
+  Assamese
+  Avaric
+  Aymara
+  Azerbaijani
+  Bashkir
+  Belarusian
+  Bulgarian
+  Biharilanguages
+  Bislama
+  Bambara
+  Bengali
+  Tibetan
+  Breton
+  Bosnian
+  Catalan
+  Chechen
+  Chamorro
+  Corsican
+  Cree
+  Czech
+  ChurchSlavic
+  Chuvash
+  Welsh
+  Danish
+  German
+  Maldivian
+  Dzongkha
+  Ewe
+  Greek
+  English
+  Esperanto
+  Spanish
+  Estonian
+  Basque
+  Persian
+  Fulah
+  Finnish
+  Fijian
+  Faroese
+  French
+  WesternFrisian
+  Irish
+  Gaelic
+  Galician
+  Guarani
+  Gujarati
+  Manx
+  Hausa
+  Hebrew
+  Hindi
+  HiriMotu
+  Croatian
+  Haitian
+  Hungarian
+  Armenian
+  Herero
+  Interlingua
+  Indonesian
+  Interlingue
+  Igbo
+  SichuanYi
+  Inupiaq
+  Ido
+  Icelandic
+  Italian
+  Inuktitut
+  Japanese
+  Javanese
+  Georgian
+  Kongo
+  Kikuyu
+  Kuanyama
+  Kazakh
+  Kalaallisut
+  CentralKhmer
+  Kannada
+  Korean
+  Kanuri
+  Kashmiri
+  Kurdish
+  Komi
+  Cornish
+  Kirghiz
+  Latin
+  Luxembourgish
+  Ganda
+  Limburgan
+  Lingala
+  Lao
+  Lithuanian
+  Luba_Katanga
+  Latvian
+  Malagasy
+  Marshallese
+  Maori
+  Macedonian
+  Malayalam
+  Mongolian
+  Marathi
+  Malay
+  Maltese
+  Burmese
+  Nauru
+  Norwegian
+  NorthNdebele
+  Nepali
+  Ndonga
+  Dutch
+  SouthNdebele
+  Navajo
+  Chichewa
+  Occitan
+  Ojibwa
+  Oromo
+  Oriya
+  Ossetic
+  Panjabi
+  Pali
+  Polish
+  Pushto
+  Portuguese
+  Quechua
+  Romansh
+  Rundi
+  Romanian
+  Russian
+  Kinyarwanda
+  Sanskrit
+  Sardinian
+  Sindhi
+  NorthernSami
+  Sango
+  Sinhala
+  Slovak
+  Slovenian
+  Samoan
+  Shona
+  Somali
+  Albanian
+  Serbian
+  Swati
+  Sotho_Southern
+  Sundanese
+  Swedish
+  Swahili
+  Tamil
+  Telugu
+  Tajik
+  Thai
+  Tigrinya
+  Turkmen
+  Tagalog
+  Tswana
+  Tonga
+  Turkish
+  Tsonga
+  Tatar
+  Twi
+  Tahitian
+  Uighur
+  Ukrainian
+  Urdu
+  Uzbek
+  Venda
+  Vietnamese
+  Volapuk
+  Walloon
+  Wolof
+  Xhosa
+  Yiddish
+  Yoruba
+  Zhuang
+  Chinese
+  Zulu
+}
+
+input mutationSellBrokerUpdate_SocialsInput {
+  platform: SellBrokerUpdate_Socials_platform_MutationInput
+  link: String
+  id: String
+}
+
+enum SellBrokerUpdate_Socials_platform_MutationInput {
+  WhatsApp
+  Facebook
+  LinkedIn
+}
+
+input mutationSellBrokerUpdate_SeoInput {
+  value: String
+  id: String
 }
 
 input mutationYachtInput {
@@ -29642,6 +34164,42 @@ input mutationRecruitmentUpdateInput {
   description: JSON
   updatedAt: String
   createdAt: String
+}
+
+input mutationSoldInput {
+  name: String!
+  price: Float!
+  yearBuilt: Float!
+  length: Float!
+  sleeps: Float!
+  builder: String!
+  picture: String
+  seo: [mutationSold_SeoInput]
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationSold_SeoInput {
+  value: String
+  id: String
+}
+
+input mutationSoldUpdateInput {
+  name: String
+  price: Float
+  yearBuilt: Float
+  length: Float
+  sleeps: Float
+  builder: String
+  picture: String
+  seo: [mutationSoldUpdate_SeoInput]
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationSoldUpdate_SeoInput {
+  value: String
+  id: String
 }
 
 input mutationNewConstructionInput {

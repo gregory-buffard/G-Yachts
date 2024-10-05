@@ -19,7 +19,7 @@
   "navigation": {
     "links": {
       "sales": "Ventes",
-      "sell-your-yacht": "Vendez votre yacht",
+      "sell-your-yacht": "Vendez Votre Yacht",
       "charters": "Charters",
       "new-constructions": "Nouvelles Constructions",
       "management": "Management",
@@ -189,13 +189,14 @@
   },
   "sell-your-yacht":{
     "metadata": {
-      "title": "Vendez votre yacht",
+      "title": "Vendez Votre Yacht",
       "description": "Vendez votre yacht avec G-Yachts. Notre équipe d'experts vous guidera tout au long du processus de vente de votre yacht, garantissant une transaction fluide et réussie.",
       "keywords": "sell, yacht, brokerage, monaco, g-yachts, vendre",
       "author": "G–Yachts"
     },
     "hero": {
-      "title": "Vendez votre yacht"
+      "title": "Vendez votre yacht",
+      "subtitle": "Plus de 25 Ans d'Expérience de Confiance"
     },
     "quality": {
       "title": "La qualité plutôt que la quantité",
@@ -204,6 +205,9 @@
     "expertise": {
       "title": "Un Quart de Siècle d'Expertise",
       "description": "La passion de G-Yachts pour le yachting n'est surpassée que par notre fierté dans les relations que nous avons bâties au cours de ces 25 dernières années. Notre histoire repose sur des liens solides, chacun fondé sur l'expertise, l'intégrité et la réflexion stratégique. Basés au cœur de Monaco, nous bénéficions d'un réseau de partenaires situés dans plus de 20 pays sur 4 continents. G-Yachts est un membre 'or' de nombreuses organisations internationales, dont la MYBA (Mediterranean Yacht Broker Association), témoignant de notre engagement envers le yachting professionnel."
+    },
+    "team": {
+      "title": "Contactez nos experts en yachting"
     }
   },
   "charters": {
