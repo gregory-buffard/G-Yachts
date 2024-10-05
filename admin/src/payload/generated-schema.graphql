@@ -16262,7 +16262,7 @@ type Sold {
   price: Float!
   yearBuilt: Float!
   length: Float!
-  model: String
+  sleeps: Float
   builder: String!
   picture(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Sold_Picture_where): Media
   seo: [Sold_Seo!]
@@ -16634,7 +16634,7 @@ input Sold_where {
   price: Sold_price_operator
   yearBuilt: Sold_yearBuilt_operator
   length: Sold_length_operator
-  model: Sold_model_operator
+  sleeps: Sold_sleeps_operator
   builder: Sold_builder_operator
   picture: Sold_picture_operator
   seo__value: Sold_seo__value_operator
@@ -16683,14 +16683,13 @@ input Sold_length_operator {
   less_than: Float
 }
 
-input Sold_model_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+input Sold_sleeps_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
   exists: Boolean
 }
 
@@ -16770,7 +16769,7 @@ input Sold_where_and {
   price: Sold_price_operator
   yearBuilt: Sold_yearBuilt_operator
   length: Sold_length_operator
-  model: Sold_model_operator
+  sleeps: Sold_sleeps_operator
   builder: Sold_builder_operator
   picture: Sold_picture_operator
   seo__value: Sold_seo__value_operator
@@ -16787,7 +16786,7 @@ input Sold_where_or {
   price: Sold_price_operator
   yearBuilt: Sold_yearBuilt_operator
   length: Sold_length_operator
-  model: Sold_model_operator
+  sleeps: Sold_sleeps_operator
   builder: Sold_builder_operator
   picture: Sold_picture_operator
   seo__value: Sold_seo__value_operator
@@ -16816,7 +16815,7 @@ type SoldsDocAccessFields {
   price: SoldsDocAccessFields_price
   yearBuilt: SoldsDocAccessFields_yearBuilt
   length: SoldsDocAccessFields_length
-  model: SoldsDocAccessFields_model
+  sleeps: SoldsDocAccessFields_sleeps
   builder: SoldsDocAccessFields_builder
   picture: SoldsDocAccessFields_picture
   seo: SoldsDocAccessFields_seo
@@ -16916,26 +16915,26 @@ type SoldsDocAccessFields_length_Delete {
   permission: Boolean!
 }
 
-type SoldsDocAccessFields_model {
-  create: SoldsDocAccessFields_model_Create
-  read: SoldsDocAccessFields_model_Read
-  update: SoldsDocAccessFields_model_Update
-  delete: SoldsDocAccessFields_model_Delete
+type SoldsDocAccessFields_sleeps {
+  create: SoldsDocAccessFields_sleeps_Create
+  read: SoldsDocAccessFields_sleeps_Read
+  update: SoldsDocAccessFields_sleeps_Update
+  delete: SoldsDocAccessFields_sleeps_Delete
 }
 
-type SoldsDocAccessFields_model_Create {
+type SoldsDocAccessFields_sleeps_Create {
   permission: Boolean!
 }
 
-type SoldsDocAccessFields_model_Read {
+type SoldsDocAccessFields_sleeps_Read {
   permission: Boolean!
 }
 
-type SoldsDocAccessFields_model_Update {
+type SoldsDocAccessFields_sleeps_Update {
   permission: Boolean!
 }
 
-type SoldsDocAccessFields_model_Delete {
+type SoldsDocAccessFields_sleeps_Delete {
   permission: Boolean!
 }
 
@@ -28410,7 +28409,7 @@ type SoldsFields {
   price: SoldsFields_price
   yearBuilt: SoldsFields_yearBuilt
   length: SoldsFields_length
-  model: SoldsFields_model
+  sleeps: SoldsFields_sleeps
   builder: SoldsFields_builder
   picture: SoldsFields_picture
   seo: SoldsFields_seo
@@ -28510,26 +28509,26 @@ type SoldsFields_length_Delete {
   permission: Boolean!
 }
 
-type SoldsFields_model {
-  create: SoldsFields_model_Create
-  read: SoldsFields_model_Read
-  update: SoldsFields_model_Update
-  delete: SoldsFields_model_Delete
+type SoldsFields_sleeps {
+  create: SoldsFields_sleeps_Create
+  read: SoldsFields_sleeps_Read
+  update: SoldsFields_sleeps_Update
+  delete: SoldsFields_sleeps_Delete
 }
 
-type SoldsFields_model_Create {
+type SoldsFields_sleeps_Create {
   permission: Boolean!
 }
 
-type SoldsFields_model_Read {
+type SoldsFields_sleeps_Read {
   permission: Boolean!
 }
 
-type SoldsFields_model_Update {
+type SoldsFields_sleeps_Update {
   permission: Boolean!
 }
 
-type SoldsFields_model_Delete {
+type SoldsFields_sleeps_Delete {
   permission: Boolean!
 }
 
@@ -34173,7 +34172,7 @@ input mutationSoldInput {
   price: Float!
   yearBuilt: Float!
   length: Float!
-  model: String
+  sleeps: Float
   builder: String!
   picture: String
   seo: [mutationSold_SeoInput]
@@ -34191,7 +34190,7 @@ input mutationSoldUpdateInput {
   price: Float
   yearBuilt: Float
   length: Float
-  model: String
+  sleeps: Float
   builder: String
   picture: String
   seo: [mutationSoldUpdate_SeoInput]

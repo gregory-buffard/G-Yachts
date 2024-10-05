@@ -66,12 +66,12 @@ export const Sold: CollectionConfig = {
     },
     {
       label: {
-        en: 'Model',
-        fr: 'Modèle',
+        en: 'Sleeps',
+        fr: 'Dort',
       },
-      name: 'model',
-      type: 'text',
-      required: false,
+      name: 'sleeps',
+      type: 'number',
+      required: true,
     },
     {
       label: {

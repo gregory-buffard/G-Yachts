@@ -7,11 +7,11 @@ export default function QualityOverQuantity() {
 
   return (
     <div className="w-full flex flex-col lg:flex-row h-full mt-20">
-      <div className="lg:w-1/2 flex flex-col justify-center py-20 lg:py-48 px-16">
+      <div className="lg:w-1/2 flex flex-col justify-center">
         <Image
           src={world}
           alt={"Globe with a logo"}
-          className="object-cover w-full h-auto"
+          className="object-cover w-full h-full"
         />
       </div>
       <div className="lg:w-1/2 flex flex-col justify-center bg-navy py-48 px-16 order-first lg:order-last">

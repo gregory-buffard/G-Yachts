@@ -11,6 +11,19 @@
     --mouse-y: 0px;
 }
 
+.hero-background {
+    background-image: url('../public/pictures/sell-your-yacht/hero-mobile.webp');
+    background-size: cover;
+    background-position: bottom;
+}
+
+@media (min-width: 768px) {
+    .hero-background {
+        background-image: url('../public/pictures/sell-your-yacht/hero.webp');
+    }
+}
+
+
 @layer base {
     h1 {
         @apply lg:text-6xl text-4xl font-slick font-light;

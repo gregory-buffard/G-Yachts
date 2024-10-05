@@ -1377,7 +1377,7 @@ export interface Sold {
   price: number;
   yearBuilt: number;
   length: number;
-  model?: string | null;
+  sleeps?: number | null;
   builder: string;
   picture?: string | Media | null;
   seo?:

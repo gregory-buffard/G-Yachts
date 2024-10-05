@@ -1,3 +1,5 @@
+"use server";
+
 import IBrokers from "@/types/brokers";
 import Image from "next/image";
 import flags from "@/data/langs.json";
@@ -15,7 +17,7 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokers }) => (
                 width={brokerino.picture?.sizes.fhd.width || 128}
                 height={brokerino.picture?.sizes.fhd.height || 128}
                 alt={brokerino.picture?.alt || `${brokerino.name}'s picture`}
-                className={`object-cover object-center w-[80vw] md:w-[38vw] h-[40vw] md:h-[20vw] ${!brokerino.picture && "animate-pulse"}`}
+                className={`object-cover object-center w-[80vw] md:w-[38vw] h-[60vw] md:h-[20vw] ${!brokerino.picture && "animate-pulse"}`}
             />
             <div className={"w-full flex flex-col justify-between items-start"}>
                 <div className={"w-full flex justify-between items-start"}>

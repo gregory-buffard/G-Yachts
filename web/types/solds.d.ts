@@ -3,9 +3,9 @@ interface ISolds {
     price: number;
     yearBuilt: number;
     length: number;
-    model: string;
+    sleeps: number;
     builder: string;
-    picture?: {
+    picture: {
         alt: string;
         sizes: {
             fhd: {

@@ -14,7 +14,7 @@ const Card = ({ card }: { card: ISolds }) => {
                     "w-[64vw] lg:w-[24vw] lg:h-[28vh] h-[24vh] flex justify-start items-start bg-cover bg-center p-[2vh] relative"
                 }
                 style={{
-                    backgroundImage: `url(${encodeURI(card.picture?.sizes.fhd.url || '')})`,
+                    backgroundImage: `url(${encodeURI(card.picture.sizes.thumbnail.url)})`,
                 }}
             >
             </div>
@@ -26,7 +26,7 @@ const Card = ({ card }: { card: ISolds }) => {
                     <p>{card.price} €</p>
                 </div>
                 <p className={"uppercase text-rock-400"}>
-                    {card.builder} | {card.length} m | {card.model} | {card.yearBuilt}
+                    {card.builder} | {card.length} m | {card.sleeps} | {card.yearBuilt}
                 </p>
             </div>
         </div>
@@ -119,7 +119,7 @@ const Solds = ({ data }: { data: ISolds[] }) => {
     };
 
     return (
-        <section className="w-full flex flex-col justify-center items-center gap-[2vh] lg:py-[8vh] lg:px-[12vw] px-[4vw]">
+        <section className="w-full flex flex-col justify-center items-center gap-[2vh] pt-[8vh] lg:py-[8vh] lg:px-[12vw] px-[4vw]">
             <div className="w-full flex justify-between items-center">
                 <div className="flex justify-center items-center gap-[2vw]">
                     <div className="hidden lg:flex justify-center items-center mt-36 mr-10 gap-[0.5vw]">

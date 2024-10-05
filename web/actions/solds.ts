@@ -15,7 +15,7 @@ export const fetchSolds = async (): Promise<ISolds[]> => {
                         price
                         yearBuilt
                         length
-                        model
+                        sleeps
                         builder
                         picture {
                             alt
