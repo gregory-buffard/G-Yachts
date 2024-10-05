@@ -16262,7 +16262,7 @@ type Sold {
   price: Float!
   yearBuilt: Float!
   length: Float!
-  sleeps: Float
+  sleeps: Float!
   builder: String!
   picture(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Sold_Picture_where): Media
   seo: [Sold_Seo!]
@@ -16690,7 +16690,6 @@ input Sold_sleeps_operator {
   greater_than: Float
   less_than_equal: Float
   less_than: Float
-  exists: Boolean
 }
 
 input Sold_builder_operator {
@@ -34172,7 +34171,7 @@ input mutationSoldInput {
   price: Float!
   yearBuilt: Float!
   length: Float!
-  sleeps: Float
+  sleeps: Float!
   builder: String!
   picture: String
   seo: [mutationSold_SeoInput]
