@@ -7,7 +7,7 @@ import codes from "@/data/CountryCodes.json";
 
 const Brokerino = ({ brokerino }: { brokerino: IBrokers }) => (
     <div
-        className={"w-full md:w-[38vw] flex flex-col justify-between items-start"}
+        className={"w-full md:w-[28vh] flex flex-col justify-between items-start"}
     >
         <div
             className={"flex flex-col justify-start items-stretch gap-[1vh] w-full"}
@@ -17,7 +17,7 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokers }) => (
                 width={brokerino.picture?.sizes.fhd.width || 128}
                 height={brokerino.picture?.sizes.fhd.height || 128}
                 alt={brokerino.picture?.alt || `${brokerino.name}'s picture`}
-                className={`object-cover object-center w-[80vw] md:w-[38vw] h-[60vw] md:h-[20vw] ${!brokerino.picture && "animate-pulse"}`}
+                className={`object-cover object-center w-[80vw] md:h-[28vh] md:w-[28vh] ${!brokerino.picture && "animate-pulse"}`}
             />
             <div className={"w-full flex flex-col justify-between items-start"}>
                 <div className={"w-full flex justify-between items-start"}>

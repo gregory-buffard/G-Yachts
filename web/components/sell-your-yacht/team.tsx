@@ -13,7 +13,7 @@ const Team = ({ brokerinos }: { brokerinos: IBrokers[] }) => {
             </h1>
             <div
                 className={
-                    "md:grid grid-cols-2 gap-[3vw] justify-center place-items-center w-full h-full px-[10vw]"
+                    "md:grid lg:grid-cols-3 flex flex-col gap-[3vh] justify-center place-items-center w-full h-full px-[10vw]"
                 }
             >
                 {brokerinos.map((brokerino, i) => (

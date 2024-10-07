@@ -13,7 +13,7 @@ export const fetchBrokerinos = async (
             query SellBrokers($locale: LocaleInputType!) {
                 SellBrokers(
                     locale: $locale
-                    limit: 2
+                    limit: 0
                 ) {
                     docs {
                         name
