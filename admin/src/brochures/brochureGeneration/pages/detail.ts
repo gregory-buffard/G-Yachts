@@ -16,7 +16,7 @@ export const generateBrochureDetailsPage = (doc: Yacht | Charter | NewConstructi
     { label: 'Tonnage', value: doc.tonnage ?? "" },
   ]
 
-  details = details.filter(detail => detail.value)
+  details = details.filter(detail => detail.value !== "")
 
   const sixDetails = details.slice(0, 6)
   const remainingDetails = details.slice(6, 12)
