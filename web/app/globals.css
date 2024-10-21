@@ -20,6 +20,8 @@
 @media (min-width: 768px) {
     .hero-background {
         background-image: url('../public/pictures/sell-your-yacht/hero.webp');
+        background-size: cover;
+        background-position: center;
     }
 }
 
