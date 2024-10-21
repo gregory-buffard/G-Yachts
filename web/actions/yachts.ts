@@ -3,10 +3,13 @@
 import { getClient } from "@/apollo";
 import { gql } from "@apollo/client";
 import { IFeatured, IFeatured as SFeatured } from "@/types/sale";
-import { ICharter, INewConstruction, ISale } from "@/types/yacht";
+import IYacht, { ICharter, INewConstruction, ISale } from "@/types/yacht";
 import { IDestination } from "@/types/destination";
 import { ICFeatured } from "@/types/charter";
 import { IShipyard } from "@/types/shipyard";
+import puppeteer from "puppeteer";
+import { PDFDocument, PDFPage } from "pdf-lib";
+import { IContext } from "@/context/view";
 
 export const fetchFeaturedSales = async (
   locale: "en" | "fr",
@@ -1135,4 +1138,66 @@ export const fetchSimilarNewConstructions = async (
     ...biggerLength.NewConstructions.docs,
     ...smallerLength.NewConstructions.docs,
   ];
+};
+
+export const brochurize = async ({
+  type,
+  photos,
+  locale,
+  id,
+  currency,
+  units,
+}: {
+  type: "sale" | "charter" | "new-construction";
+  photos: IYacht["photos"];
+  locale: "en" | "fr";
+  id: string;
+  currency: IContext["currency"];
+  units: IContext["units"];
+}) => {
+  const baseUrl = (
+      brochure: "hero" | "details" | "key-features" | number | "footer",
+    ) => {
+      return `https://g-yachts.com/${locale}/brochure/${id}?type=${type}&brochure=${brochure}&currency=${currency}&length=${units.length}&weight=${units.weight}`;
+    },
+    urls = [
+      baseUrl("hero"),
+      baseUrl("details"),
+      /*`http://localhost:3000/${locale}/${type}/${id}/key-features`,*/ // key-features page will be available once new key-features component is implemented
+      ...photos.gallery.map((_, i) => baseUrl(i)),
+      baseUrl("footer"),
+    ],
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    }),
+    pdfBuffers: Uint8Array[] = [];
+
+  for (const url of urls) {
+    const page = await browser.newPage();
+    await page.goto(url, { waitUntil: "networkidle0", timeout: 0 });
+
+    const pdfBuffer = await page.pdf({
+      width: "2048px",
+      height: "1536px",
+      printBackground: true,
+      timeout: 0,
+    });
+
+    pdfBuffers.push(pdfBuffer);
+    await page.close();
+  }
+
+  await browser.close();
+
+  const mergedPdf = await PDFDocument.create();
+
+  for (const pdfBuffer of pdfBuffers) {
+    const pdf = await PDFDocument.load(pdfBuffer),
+      copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+
+    copiedPages.forEach((page: PDFPage) => mergedPdf.addPage(page));
+  }
+
+  return Buffer.from(await mergedPdf.save()).toString("base64");
 };
