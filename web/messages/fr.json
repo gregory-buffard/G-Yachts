@@ -143,6 +143,9 @@
       "info": "Informations clés",
       "features": "Caractéristiques clés",
       "brochure": "Brochure",
+      "generating": "S'il vous plaît, veuillez patienter pendant que nous générons la brochure...",
+      "generated": "Brochure générée avec succès!",
+      "dismiss": "Fermer",
       "characteristics": {
         "type": {
           "label": "Type",
@@ -540,5 +543,23 @@
     "yachts": "<classic>Yachts</classic> similaires",
     "charters": "<classic>Charters</classic> similaires",
     "new-constructions": "<classic>Nouvelles constructions</classic> similaires"
+  },
+  "brochure": {
+    "general": "Spécifications<br></br>générales",
+    "builder": "Chantier naval",
+    "yearBuilt": "Année de construction",
+    "length": "Longueur",
+    "beam": "Largeur",
+    "location": "Emplacement",
+    "cabins": "Cabines",
+    "guests": "Invités",
+    "maxDraft": "Tirant d'eau max",
+    "price": "Prix : {price}",
+    "priceOnApplication": "Prix sur demande",
+    "charter": "Basse saison : {low} / semaine + tout<br></br>Haute saison : {high} / semaine + tout",
+    "about": "À propos de<br></br>{name}",
+    "keyFeatures": "Caractéristiques<br></br>clés",
+    "expert": "Votre <classic>Expert</classic> dédié en yachts !",
+    "disclaimer": "Les détails sont supposés corrects mais ne sont pas garantis et ne peuvent pas être utilisés à des fins contractuelles. Spécifications fournies à titre d'information uniquement."
   }
 }

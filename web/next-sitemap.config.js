@@ -21,6 +21,8 @@ module.exports = {
           "/videos/*",
           "/pictures",
           "/pictures/*",
+          "/brochure",
+          "/brochure/*",
         ],
         userAgent: "*",
       },

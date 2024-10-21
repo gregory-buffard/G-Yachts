@@ -143,6 +143,9 @@
       "info": "Key information",
       "features": "Key features",
       "brochure": "Brochure",
+      "generating": "Please stand by while we generate the brochure...",
+      "generated": "Brochure generated!",
+      "dismiss": "Dismiss",
       "characteristics": {
         "type": {
           "label": "Type",
@@ -540,5 +543,23 @@
     "yachts": "Similar <classic>yachts</classic>",
     "charters": "Similar <classic>charters</classic>",
     "new-constructions": "Similar new <classic>constructions</classic>"
+  },
+  "brochure": {
+    "general": "General<br></br>Specifications",
+    "builder": "Shipyard",
+    "yearBuilt": "Year built",
+    "length": "Length",
+    "beam": "Beam",
+    "location": "Location",
+    "cabins": "Cabins",
+    "guests": "Guests",
+    "maxDraft": "Max draft",
+    "price": "Price : {price}",
+    "priceOnApplication": "Price on application",
+    "charter": "Low season : {low} / week + all<br></br>High season : {high} / week + all",
+    "about": "About<br></br>{name}",
+    "keyFeatures": "Key<br></br>features",
+    "expert": "Your Dedicated Yacht <classic>Expert !</classic>",
+    "disclaimer": "The particulars are believed to be correct but are not guaranteed and may not be used for\ncontractual purposes. Specification provided for information only."
   }
 }
