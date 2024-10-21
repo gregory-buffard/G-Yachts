@@ -45,7 +45,7 @@ const Charter = async ({ params }: { params: { id: string } }) => {
               : await fetchSimilarCharters(yacht.length)
           }
           title={(await getTranslations("charters")).rich("similar", {
-            classic: (chunks) => (
+            classic: (chunks: React.ReactNode) => (
               <span className={"font-classic uppercase"}>{chunks}</span>
             ),
           })}
