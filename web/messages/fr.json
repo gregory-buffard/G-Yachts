@@ -163,7 +163,7 @@
         "yearBuilt": "Année de construction",
         "yearModel": "Année du modèle",
         "yearRefit": "Année de refonte",
-        "hull": "Type de coque",
+        "hull": "Matériau de coque",
         "location": "Emplacement",
         "crypto": {
           "label": "Cryptomonnaie",

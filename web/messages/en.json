@@ -163,7 +163,7 @@
         "yearBuilt": "Year built",
         "yearModel": "Year model",
         "yearRefit": "Refit year",
-        "hull": "Hull type",
+        "hull": "Hull material",
         "location": "Location",
         "crypto": {
           "label": "Cryptocurrency",

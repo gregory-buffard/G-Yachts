@@ -13,7 +13,7 @@ const WorkingTogether = () => {
       }
     >
       <Image
-        className={"lg:w-1/2 lg:h-[80vh] object-cover object-bottom w-full"}
+        className={"lg:w-1/2 lg:h-[80vh] w-full"}
         src={working}
         alt={"Two yachts sailing in the sea next to an island"}
       />

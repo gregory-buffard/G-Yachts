@@ -1167,17 +1167,21 @@ export const brochurize = async ({
       ...photos.gallery.map((_, i) => baseUrl(i)),
       baseUrl("footer"),
     ],
-    browser = await puppeteer.launch(),
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    }),
     pdfBuffers: Uint8Array[] = [];
 
   for (const url of urls) {
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "networkidle0" });
+    await page.goto(url, { waitUntil: "networkidle0", timeout: 0 });
 
     const pdfBuffer = await page.pdf({
       width: "2048px",
       height: "1536px",
       printBackground: true,
+      timeout: 0,
     });
 
     pdfBuffers.push(pdfBuffer);
