@@ -81,8 +81,6 @@ export const ViewProvider = ({ children }: { children: React.ReactNode }) => {
       setBookmarks(bookmarks.filter((bookmark) => bookmark !== id));
     };
 
-  console.log(`COOKIES AGREEMENT HERE ===> ${Cookies.get("cookiesAgreed")}`);
-
   useEffect(() => {
     const assignRates = async () => {
       const cached = {

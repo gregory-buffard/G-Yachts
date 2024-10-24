@@ -46,7 +46,9 @@ const Details = () => {
     { currency, units } = useViewContext(),
     [photo, setPhoto] = useState<number | null>(null),
     [disabled, disable] = useState<boolean>(false),
-    [expanded, expand] = useState<boolean>(false),
+    [expanded, expand] = useState<boolean>(
+      data.description ? data.description.length <= 1229 : false,
+    ),
     t = useTranslations("yacht.details"),
     locale = useLocale() as "en" | "fr",
     [generating, generate] = useState<{ popup: boolean; state: boolean }>({
@@ -170,13 +172,21 @@ const Details = () => {
                 </>
               )}
             </div>
-            <button
-              type={"button"}
-              onClick={() => generate((prev) => ({ ...prev, popup: false }))}
-              className={`glass-button glass-button-dark ${generating.state && "hidden"}`}
-            >
-              {t("dismiss")}
-            </button>
+            {generating.state ? (
+              <p className={"text-rock-300"}>
+                &#x2248;{" "}
+                {((17.54 + 3.42 * data.photos.gallery.length) / 60).toFixed(0)}
+                <label className={"text-rock-300"}>min</label>
+              </p>
+            ) : (
+              <button
+                type={"button"}
+                onClick={() => generate((prev) => ({ ...prev, popup: false }))}
+                className={`glass-button glass-button-dark`}
+              >
+                {t("dismiss")}
+              </button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -229,6 +239,7 @@ const Details = () => {
             <SwitchView props={{ view: "features", label: t("features") }} />
           )}
           <button
+            type={"button"}
             onClick={async () => {
               generate({ popup: true, state: true });
               brochurize({
