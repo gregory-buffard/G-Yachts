@@ -26,7 +26,6 @@ const Brokerino = ({ brokerino }: { brokerino: IBrokerino }) => (
           </div>
           <div className={"flex justify-end items-center gap-[1vh] flex-wrap"}>
             {brokerino.socials.map((network) => {
-              console.log(network);
               const Icon = ({
                 platform,
               }: {
