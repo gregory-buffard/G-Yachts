@@ -256,8 +256,9 @@ const Details = () => {
                         .split("")
                         .map((char) => char.charCodeAt(0)),
                     ),
-                    pdfBlob = new Blob([pdfBytes], { type: "application/pdf" });
-                  saveAs(pdfBlob, `${data.name} brochure.pdf`);
+                    pdfBlob = new Blob([pdfBytes], { type: "application/pdf" }),
+                    blobUrl = URL.createObjectURL(pdfBlob);
+                  window.open(blobUrl, "_blank");
                 })
                 .catch((e) => console.error("Error generating PDF : ", e))
                 .finally(() => generate((prev) => ({ ...prev, state: false })));
