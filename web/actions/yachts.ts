@@ -1171,10 +1171,10 @@ export const brochurize = async ({
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     }),
-    pdfBuffers: Uint8Array[] = [];
+    pdfBuffers: Uint8Array[] = [],
+    page = await browser.newPage();
 
   for (const url of urls) {
-    const page = await browser.newPage();
     await page.goto(url, { waitUntil: "networkidle0", timeout: 0 });
 
     const pdfBuffer = await page.pdf({
@@ -1185,9 +1185,10 @@ export const brochurize = async ({
     });
 
     pdfBuffers.push(pdfBuffer);
-    await page.close();
+    await page.evaluate(() => window.gc && window.gc());
   }
 
+  await page.close();
   await browser.close();
 
   const mergedPdf = await PDFDocument.create();
