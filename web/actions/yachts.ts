@@ -147,6 +147,7 @@ export const fetchSale = async (
           yearBuilt
           yearRefit
           keyFeatures
+          customKeyFeatures
           description
           similar {
             id
@@ -356,6 +357,7 @@ export const fetchCharter = async (
           yearRefit
           featured
           keyFeatures
+          customKeyFeatures
           description
           similar {
             id
@@ -900,6 +902,7 @@ export const fetchNewConstruction = async (
           tonnage
           yearBuilt
           keyFeatures
+          customKeyFeatures
           description
           similar {
             id

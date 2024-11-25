@@ -235,8 +235,11 @@ const Details = () => {
           }
         >
           <SwitchView props={{ view: "info", label: t("info") }} />
-          {data.keyFeatures && data.keyFeatures.length > 0 && (
+          {(data.keyFeatures && data.keyFeatures.length > 0) ||
+          (data.customKeyFeatures && data.customKeyFeatures.length > 0) ? (
             <SwitchView props={{ view: "features", label: t("features") }} />
+          ) : (
+            <></>
           )}
           <button
             type={"button"}
@@ -337,6 +340,10 @@ const Details = () => {
                           </div>
                         ),
                     )}
+                  {data.customKeyFeatures &&
+                    data.customKeyFeatures.map((customFeature, i) => (
+                      <h3 key={i}>{customFeature}</h3>
+                    ))}
                 </div>
               )}
           <Gallery current={photo} setCurrent={setPhoto} />

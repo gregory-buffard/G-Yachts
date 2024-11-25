@@ -326,6 +326,17 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     ],
   },
   {
+    label: {
+      en: 'Custom Key Features',
+      fr: 'Caractéristiques clés personnalisées',
+    },
+    name: 'customKeyFeatures',
+    type: 'text',
+    hasMany: true,
+    required: false,
+    localized: true,
+  },
+  {
     type: 'select',
     hasMany: false,
     name: 'etiquette',

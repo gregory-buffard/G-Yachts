@@ -5947,6 +5947,7 @@ type Yacht {
   yearRefit: Float
   featured: Boolean!
   keyFeatures: [Yacht_keyFeatures!]
+  customKeyFeatures: [String]
   etiquette: Yacht_etiquette
   photos: Yacht_Photos
   description: String
@@ -6726,6 +6727,7 @@ input Yacht_where {
   yearRefit: Yacht_yearRefit_operator
   featured: Yacht_featured_operator
   keyFeatures: Yacht_keyFeatures_operator
+  customKeyFeatures: Yacht_customKeyFeatures_operator
   etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
@@ -7026,6 +7028,17 @@ enum Yacht_keyFeatures_Input {
   yearRefit
 }
 
+input Yacht_customKeyFeatures_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Yacht_etiquette_operator {
   equals: Yacht_etiquette_Input
   not_equals: Yacht_etiquette_Input
@@ -7192,6 +7205,7 @@ input Yacht_where_and {
   yearRefit: Yacht_yearRefit_operator
   featured: Yacht_featured_operator
   keyFeatures: Yacht_keyFeatures_operator
+  customKeyFeatures: Yacht_customKeyFeatures_operator
   etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
@@ -7239,6 +7253,7 @@ input Yacht_where_or {
   yearRefit: Yacht_yearRefit_operator
   featured: Yacht_featured_operator
   keyFeatures: Yacht_keyFeatures_operator
+  customKeyFeatures: Yacht_customKeyFeatures_operator
   etiquette: Yacht_etiquette_operator
   photos__featured: Yacht_photos__featured_operator
   photos__gallery__image: Yacht_photos__gallery__image_operator
@@ -7298,6 +7313,7 @@ type YachtsDocAccessFields {
   yearRefit: YachtsDocAccessFields_yearRefit
   featured: YachtsDocAccessFields_featured
   keyFeatures: YachtsDocAccessFields_keyFeatures
+  customKeyFeatures: YachtsDocAccessFields_customKeyFeatures
   etiquette: YachtsDocAccessFields_etiquette
   photos: YachtsDocAccessFields_photos
   description: YachtsDocAccessFields_description
@@ -7954,6 +7970,29 @@ type YachtsDocAccessFields_keyFeatures_Delete {
   permission: Boolean!
 }
 
+type YachtsDocAccessFields_customKeyFeatures {
+  create: YachtsDocAccessFields_customKeyFeatures_Create
+  read: YachtsDocAccessFields_customKeyFeatures_Read
+  update: YachtsDocAccessFields_customKeyFeatures_Update
+  delete: YachtsDocAccessFields_customKeyFeatures_Delete
+}
+
+type YachtsDocAccessFields_customKeyFeatures_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_customKeyFeatures_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_customKeyFeatures_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_customKeyFeatures_Delete {
+  permission: Boolean!
+}
+
 type YachtsDocAccessFields_etiquette {
   create: YachtsDocAccessFields_etiquette_Create
   read: YachtsDocAccessFields_etiquette_Read
@@ -8390,6 +8429,7 @@ type Charter {
   yearRefit: Float
   featured: Boolean!
   keyFeatures: [Charter_keyFeatures!]
+  customKeyFeatures: [String]
   etiquette: Charter_etiquette
   photos: Charter_Photos
   description: String
@@ -9256,6 +9296,7 @@ input Charter_where {
   yearRefit: Charter_yearRefit_operator
   featured: Charter_featured_operator
   keyFeatures: Charter_keyFeatures_operator
+  customKeyFeatures: Charter_customKeyFeatures_operator
   etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
@@ -9572,6 +9613,17 @@ enum Charter_keyFeatures_Input {
   yearRefit
 }
 
+input Charter_customKeyFeatures_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Charter_etiquette_operator {
   equals: Charter_etiquette_Input
   not_equals: Charter_etiquette_Input
@@ -9791,6 +9843,7 @@ input Charter_where_and {
   yearRefit: Charter_yearRefit_operator
   featured: Charter_featured_operator
   keyFeatures: Charter_keyFeatures_operator
+  customKeyFeatures: Charter_customKeyFeatures_operator
   etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
@@ -9844,6 +9897,7 @@ input Charter_where_or {
   yearRefit: Charter_yearRefit_operator
   featured: Charter_featured_operator
   keyFeatures: Charter_keyFeatures_operator
+  customKeyFeatures: Charter_customKeyFeatures_operator
   etiquette: Charter_etiquette_operator
   photos__featured: Charter_photos__featured_operator
   photos__gallery__image: Charter_photos__gallery__image_operator
@@ -9908,6 +9962,7 @@ type ChartersDocAccessFields {
   yearRefit: ChartersDocAccessFields_yearRefit
   featured: ChartersDocAccessFields_featured
   keyFeatures: ChartersDocAccessFields_keyFeatures
+  customKeyFeatures: ChartersDocAccessFields_customKeyFeatures
   etiquette: ChartersDocAccessFields_etiquette
   photos: ChartersDocAccessFields_photos
   description: ChartersDocAccessFields_description
@@ -10614,6 +10669,29 @@ type ChartersDocAccessFields_keyFeatures_Update {
 }
 
 type ChartersDocAccessFields_keyFeatures_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_customKeyFeatures {
+  create: ChartersDocAccessFields_customKeyFeatures_Create
+  read: ChartersDocAccessFields_customKeyFeatures_Read
+  update: ChartersDocAccessFields_customKeyFeatures_Update
+  delete: ChartersDocAccessFields_customKeyFeatures_Delete
+}
+
+type ChartersDocAccessFields_customKeyFeatures_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_customKeyFeatures_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_customKeyFeatures_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_customKeyFeatures_Delete {
   permission: Boolean!
 }
 
@@ -17155,6 +17233,7 @@ type NewConstruction {
   yearRefit: Float
   featured: Boolean!
   keyFeatures: [NewConstruction_keyFeatures!]
+  customKeyFeatures: [String]
   etiquette: NewConstruction_etiquette
   photos: NewConstruction_Photos
   description: String
@@ -17935,6 +18014,7 @@ input NewConstruction_where {
   yearRefit: NewConstruction_yearRefit_operator
   featured: NewConstruction_featured_operator
   keyFeatures: NewConstruction_keyFeatures_operator
+  customKeyFeatures: NewConstruction_customKeyFeatures_operator
   etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
@@ -18245,6 +18325,17 @@ enum NewConstruction_keyFeatures_Input {
   yearRefit
 }
 
+input NewConstruction_customKeyFeatures_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input NewConstruction_etiquette_operator {
   equals: NewConstruction_etiquette_Input
   not_equals: NewConstruction_etiquette_Input
@@ -18412,6 +18503,7 @@ input NewConstruction_where_and {
   yearRefit: NewConstruction_yearRefit_operator
   featured: NewConstruction_featured_operator
   keyFeatures: NewConstruction_keyFeatures_operator
+  customKeyFeatures: NewConstruction_customKeyFeatures_operator
   etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
@@ -18460,6 +18552,7 @@ input NewConstruction_where_or {
   yearRefit: NewConstruction_yearRefit_operator
   featured: NewConstruction_featured_operator
   keyFeatures: NewConstruction_keyFeatures_operator
+  customKeyFeatures: NewConstruction_customKeyFeatures_operator
   etiquette: NewConstruction_etiquette_operator
   photos__featured: NewConstruction_photos__featured_operator
   photos__gallery__image: NewConstruction_photos__gallery__image_operator
@@ -18520,6 +18613,7 @@ type NewConstructionsDocAccessFields {
   yearRefit: NewConstructionsDocAccessFields_yearRefit
   featured: NewConstructionsDocAccessFields_featured
   keyFeatures: NewConstructionsDocAccessFields_keyFeatures
+  customKeyFeatures: NewConstructionsDocAccessFields_customKeyFeatures
   etiquette: NewConstructionsDocAccessFields_etiquette
   photos: NewConstructionsDocAccessFields_photos
   description: NewConstructionsDocAccessFields_description
@@ -19196,6 +19290,29 @@ type NewConstructionsDocAccessFields_keyFeatures_Update {
 }
 
 type NewConstructionsDocAccessFields_keyFeatures_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_customKeyFeatures {
+  create: NewConstructionsDocAccessFields_customKeyFeatures_Create
+  read: NewConstructionsDocAccessFields_customKeyFeatures_Read
+  update: NewConstructionsDocAccessFields_customKeyFeatures_Update
+  delete: NewConstructionsDocAccessFields_customKeyFeatures_Delete
+}
+
+type NewConstructionsDocAccessFields_customKeyFeatures_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_customKeyFeatures_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_customKeyFeatures_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_customKeyFeatures_Delete {
   permission: Boolean!
 }
 
@@ -24384,6 +24501,7 @@ type YachtsFields {
   yearRefit: YachtsFields_yearRefit
   featured: YachtsFields_featured
   keyFeatures: YachtsFields_keyFeatures
+  customKeyFeatures: YachtsFields_customKeyFeatures
   etiquette: YachtsFields_etiquette
   photos: YachtsFields_photos
   description: YachtsFields_description
@@ -25040,6 +25158,29 @@ type YachtsFields_keyFeatures_Delete {
   permission: Boolean!
 }
 
+type YachtsFields_customKeyFeatures {
+  create: YachtsFields_customKeyFeatures_Create
+  read: YachtsFields_customKeyFeatures_Read
+  update: YachtsFields_customKeyFeatures_Update
+  delete: YachtsFields_customKeyFeatures_Delete
+}
+
+type YachtsFields_customKeyFeatures_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_customKeyFeatures_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_customKeyFeatures_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_customKeyFeatures_Delete {
+  permission: Boolean!
+}
+
 type YachtsFields_etiquette {
   create: YachtsFields_etiquette_Create
   read: YachtsFields_etiquette_Read
@@ -25483,6 +25624,7 @@ type ChartersFields {
   yearRefit: ChartersFields_yearRefit
   featured: ChartersFields_featured
   keyFeatures: ChartersFields_keyFeatures
+  customKeyFeatures: ChartersFields_customKeyFeatures
   etiquette: ChartersFields_etiquette
   photos: ChartersFields_photos
   description: ChartersFields_description
@@ -26189,6 +26331,29 @@ type ChartersFields_keyFeatures_Update {
 }
 
 type ChartersFields_keyFeatures_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_customKeyFeatures {
+  create: ChartersFields_customKeyFeatures_Create
+  read: ChartersFields_customKeyFeatures_Read
+  update: ChartersFields_customKeyFeatures_Update
+  delete: ChartersFields_customKeyFeatures_Delete
+}
+
+type ChartersFields_customKeyFeatures_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_customKeyFeatures_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_customKeyFeatures_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_customKeyFeatures_Delete {
   permission: Boolean!
 }
 
@@ -28756,6 +28921,7 @@ type NewConstructionsFields {
   yearRefit: NewConstructionsFields_yearRefit
   featured: NewConstructionsFields_featured
   keyFeatures: NewConstructionsFields_keyFeatures
+  customKeyFeatures: NewConstructionsFields_customKeyFeatures
   etiquette: NewConstructionsFields_etiquette
   photos: NewConstructionsFields_photos
   description: NewConstructionsFields_description
@@ -29432,6 +29598,29 @@ type NewConstructionsFields_keyFeatures_Update {
 }
 
 type NewConstructionsFields_keyFeatures_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_customKeyFeatures {
+  create: NewConstructionsFields_customKeyFeatures_Create
+  read: NewConstructionsFields_customKeyFeatures_Read
+  update: NewConstructionsFields_customKeyFeatures_Update
+  delete: NewConstructionsFields_customKeyFeatures_Delete
+}
+
+type NewConstructionsFields_customKeyFeatures_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_customKeyFeatures_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_customKeyFeatures_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_customKeyFeatures_Delete {
   permission: Boolean!
 }
 
@@ -33635,6 +33824,7 @@ input mutationYachtInput {
   yearRefit: Float
   featured: Boolean
   keyFeatures: [Yacht_keyFeatures_MutationInput]
+  customKeyFeatures: [String]
   etiquette: Yacht_etiquette_MutationInput
   photos: mutationYacht_PhotosInput!
   description: String
@@ -33720,6 +33910,7 @@ input mutationYachtUpdateInput {
   yearRefit: Float
   featured: Boolean
   keyFeatures: [YachtUpdate_keyFeatures_MutationInput]
+  customKeyFeatures: [String]
   etiquette: YachtUpdate_etiquette_MutationInput
   photos: mutationYachtUpdate_PhotosInput!
   description: String
@@ -33805,6 +33996,7 @@ input mutationCharterInput {
   yearRefit: Float
   featured: Boolean
   keyFeatures: [Charter_keyFeatures_MutationInput]
+  customKeyFeatures: [String]
   etiquette: Charter_etiquette_MutationInput
   photos: mutationCharter_PhotosInput!
   description: String
@@ -33904,6 +34096,7 @@ input mutationCharterUpdateInput {
   yearRefit: Float
   featured: Boolean
   keyFeatures: [CharterUpdate_keyFeatures_MutationInput]
+  customKeyFeatures: [String]
   etiquette: CharterUpdate_etiquette_MutationInput
   photos: mutationCharterUpdate_PhotosInput!
   description: String
@@ -34232,6 +34425,7 @@ input mutationNewConstructionInput {
   yearRefit: Float
   featured: Boolean
   keyFeatures: [NewConstruction_keyFeatures_MutationInput]
+  customKeyFeatures: [String]
   etiquette: NewConstruction_etiquette_MutationInput
   photos: mutationNewConstruction_PhotosInput!
   description: String
@@ -34318,6 +34512,7 @@ input mutationNewConstructionUpdateInput {
   yearRefit: Float
   featured: Boolean
   keyFeatures: [NewConstructionUpdate_keyFeatures_MutationInput]
+  customKeyFeatures: [String]
   etiquette: NewConstructionUpdate_etiquette_MutationInput
   photos: mutationNewConstructionUpdate_PhotosInput!
   description: String
