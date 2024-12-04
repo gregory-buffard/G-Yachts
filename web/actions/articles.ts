@@ -9,7 +9,7 @@ export const fetchArticle = async (id: string, locale: string) => {
   const { data } = await client.query({
     query: gql`
       query Article($id: String!, $locale: LocaleInputType!) {
-        Article(id: $id, locale: $locale) {
+        Article(id: $id, locale: $locale, limit: 0) {
           id
           title
           date
