@@ -19,7 +19,12 @@ export const ContentRenderer = ({
 };
 
 const renderNode = (node: ArticleContentBlock) => {
-  if (node.children.length === 1 && node.children[0].text === "") return <br />;
+  if (
+    node.children.length === 1 &&
+    node.children[0].text === "" &&
+    node.type != "upload"
+  )
+    return <br />;
   switch (node.type) {
     case "h1":
       return <h1>{node.children.map(renderLeaf)}</h1>;

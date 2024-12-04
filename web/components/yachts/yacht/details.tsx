@@ -235,12 +235,14 @@ const Details = () => {
           }
         >
           <SwitchView props={{ view: "info", label: t("info") }} />
-          {(data.keyFeatures && data.keyFeatures.length > 0) ||
-          (data.customKeyFeatures && data.customKeyFeatures.length > 0) ? (
-            <SwitchView props={{ view: "features", label: t("features") }} />
-          ) : (
-            <></>
-          )}
+          {
+            /*(data.keyFeatures && data.keyFeatures.length > 0) ||*/
+            data.customKeyFeatures && data.customKeyFeatures.length > 0 ? (
+              <SwitchView props={{ view: "features", label: t("features") }} />
+            ) : (
+              <></>
+            )
+          }
           <button
             type={"button"}
             onClick={async () => {
@@ -316,33 +318,12 @@ const Details = () => {
                   ),
               )
             : view === "features" && (
-                <div
-                  className={"w-full grid grid-cols-2 md:grid-cols-3 gap-[2vh]"}
-                >
-                  {characteristics
-                    .filter(
-                      (property) =>
-                        property &&
-                        data.keyFeatures &&
-                        data.keyFeatures.includes(property.key),
-                    )
-                    .map(
-                      (property, i) =>
-                        property && (
-                          <div
-                            key={i}
-                            className={
-                              "flex flex-col justify-center items-start"
-                            }
-                          >
-                            <h3>{property.value}</h3>
-                            <p className={"text-rock-300"}>{property.label}</p>
-                          </div>
-                        ),
-                    )}
+                <div className={"w-full grid grid-cols-1 gap-[2vh]"}>
                   {data.customKeyFeatures &&
                     data.customKeyFeatures.map((customFeature, i) => (
-                      <h3 key={i}>{customFeature}</h3>
+                      <p key={i} className={"text-lg"}>
+                        {customFeature}
+                      </p>
                     ))}
                 </div>
               )}
