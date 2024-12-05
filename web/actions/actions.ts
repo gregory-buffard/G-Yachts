@@ -54,10 +54,11 @@ export const fetchMetadata = async ({
         `,
         variables: { id, locale },
       });
+
       return {
         title: saleData.Yacht.name,
         description: saleData.Yacht.description,
-        keywords: joinSEO(saleData.Yacht.seo.value),
+        keywords: joinSEO(saleData.Yacht.seo),
         openGraph: {
           title: saleData.Yacht.name,
           siteName: "G-Yachts",
