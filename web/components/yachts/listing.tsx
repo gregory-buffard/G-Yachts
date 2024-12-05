@@ -13,6 +13,7 @@ import Overlay, {
   Radio,
 } from "@/components/yachts/filters";
 import { ISale, ICharter, INewConstruction } from "@/types/yacht";
+import { click } from "@/actions/yachts";
 
 interface IFilters {
   category: "sail" | "motor" | undefined;
@@ -87,6 +88,7 @@ const Card = ({
   return (
     <Link
       href={{ pathname: `/${type}/[id]`, params: { id: data.id } }}
+      onClick={async () => await click({ id: data.id, type })}
       className={
         "w-full md:w-[44vw] lg:w-[30vw] h-max flex flex-col justify-start items-start overflow-x-clip"
       }

@@ -7044,11 +7044,13 @@ enum Yacht_etiquette_Input {
 input Yacht_photos__featured_operator {
   equals: String
   not_equals: String
+  exists: Boolean
 }
 
 input Yacht_photos__gallery__image_operator {
   equals: String
   not_equals: String
+  exists: Boolean
 }
 
 input Yacht_photos__gallery__id_operator {
@@ -9590,11 +9592,13 @@ enum Charter_etiquette_Input {
 input Charter_photos__featured_operator {
   equals: String
   not_equals: String
+  exists: Boolean
 }
 
 input Charter_photos__gallery__image_operator {
   equals: String
   not_equals: String
+  exists: Boolean
 }
 
 input Charter_photos__gallery__id_operator {
@@ -18263,11 +18267,13 @@ enum NewConstruction_etiquette_Input {
 input NewConstruction_photos__featured_operator {
   equals: String
   not_equals: String
+  exists: Boolean
 }
 
 input NewConstruction_photos__gallery__image_operator {
   equals: String
   not_equals: String
+  exists: Boolean
 }
 
 input NewConstruction_photos__gallery__id_operator {
@@ -33636,7 +33642,7 @@ input mutationYachtInput {
   featured: Boolean
   keyFeatures: [Yacht_keyFeatures_MutationInput]
   etiquette: Yacht_etiquette_MutationInput
-  photos: mutationYacht_PhotosInput!
+  photos: mutationYacht_PhotosInput
   description: String
   brochure: String
   clicks: Float
@@ -33677,12 +33683,12 @@ enum Yacht_etiquette_MutationInput {
 }
 
 input mutationYacht_PhotosInput {
-  featured: String!
+  featured: String
   gallery: [mutationYacht_Photos_GalleryInput]
 }
 
 input mutationYacht_Photos_GalleryInput {
-  image: String!
+  image: String
   id: String
 }
 
@@ -33721,7 +33727,7 @@ input mutationYachtUpdateInput {
   featured: Boolean
   keyFeatures: [YachtUpdate_keyFeatures_MutationInput]
   etiquette: YachtUpdate_etiquette_MutationInput
-  photos: mutationYachtUpdate_PhotosInput!
+  photos: mutationYachtUpdate_PhotosInput
   description: String
   brochure: String
   clicks: Float
@@ -33762,12 +33768,12 @@ enum YachtUpdate_etiquette_MutationInput {
 }
 
 input mutationYachtUpdate_PhotosInput {
-  featured: String!
+  featured: String
   gallery: [mutationYachtUpdate_Photos_GalleryInput]
 }
 
 input mutationYachtUpdate_Photos_GalleryInput {
-  image: String!
+  image: String
   id: String
 }
 
@@ -33806,7 +33812,7 @@ input mutationCharterInput {
   featured: Boolean
   keyFeatures: [Charter_keyFeatures_MutationInput]
   etiquette: Charter_etiquette_MutationInput
-  photos: mutationCharter_PhotosInput!
+  photos: mutationCharter_PhotosInput
   description: String
   brochure: String
   clicks: Float
@@ -33853,12 +33859,12 @@ enum Charter_etiquette_MutationInput {
 }
 
 input mutationCharter_PhotosInput {
-  featured: String!
+  featured: String
   gallery: [mutationCharter_Photos_GalleryInput]
 }
 
 input mutationCharter_Photos_GalleryInput {
-  image: String!
+  image: String
   id: String
 }
 
@@ -33905,7 +33911,7 @@ input mutationCharterUpdateInput {
   featured: Boolean
   keyFeatures: [CharterUpdate_keyFeatures_MutationInput]
   etiquette: CharterUpdate_etiquette_MutationInput
-  photos: mutationCharterUpdate_PhotosInput!
+  photos: mutationCharterUpdate_PhotosInput
   description: String
   brochure: String
   clicks: Float
@@ -33952,12 +33958,12 @@ enum CharterUpdate_etiquette_MutationInput {
 }
 
 input mutationCharterUpdate_PhotosInput {
-  featured: String!
+  featured: String
   gallery: [mutationCharterUpdate_Photos_GalleryInput]
 }
 
 input mutationCharterUpdate_Photos_GalleryInput {
-  image: String!
+  image: String
   id: String
 }
 
@@ -34233,7 +34239,7 @@ input mutationNewConstructionInput {
   featured: Boolean
   keyFeatures: [NewConstruction_keyFeatures_MutationInput]
   etiquette: NewConstruction_etiquette_MutationInput
-  photos: mutationNewConstruction_PhotosInput!
+  photos: mutationNewConstruction_PhotosInput
   description: String
   brochure: String
   clicks: Float
@@ -34274,12 +34280,12 @@ enum NewConstruction_etiquette_MutationInput {
 }
 
 input mutationNewConstruction_PhotosInput {
-  featured: String!
+  featured: String
   gallery: [mutationNewConstruction_Photos_GalleryInput]
 }
 
 input mutationNewConstruction_Photos_GalleryInput {
-  image: String!
+  image: String
   id: String
 }
 
@@ -34319,7 +34325,7 @@ input mutationNewConstructionUpdateInput {
   featured: Boolean
   keyFeatures: [NewConstructionUpdate_keyFeatures_MutationInput]
   etiquette: NewConstructionUpdate_etiquette_MutationInput
-  photos: mutationNewConstructionUpdate_PhotosInput!
+  photos: mutationNewConstructionUpdate_PhotosInput
   description: String
   brochure: String
   clicks: Float
@@ -34360,12 +34366,12 @@ enum NewConstructionUpdate_etiquette_MutationInput {
 }
 
 input mutationNewConstructionUpdate_PhotosInput {
-  featured: String!
+  featured: String
   gallery: [mutationNewConstructionUpdate_Photos_GalleryInput]
 }
 
 input mutationNewConstructionUpdate_Photos_GalleryInput {
-  image: String!
+  image: String
   id: String
 }
 

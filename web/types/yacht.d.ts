@@ -31,6 +31,7 @@ export default interface IYacht {
   keyFeatures?: string[];
   description: string;
   etiquette?: string;
+  clicks: number;
   photos: {
     featured: {
       alt: string;
