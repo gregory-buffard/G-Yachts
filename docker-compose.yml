@@ -20,6 +20,7 @@ services:
 
   web:
     image: ghcr.io/${GITHUB_OWNER}/g-yachts-web:${GITHUB_SHA}
+    restart: unless-stopped
     container_name: web
     environment:
       - CURRENCY_API_KEY=${CURRENCY_API_KEY}
@@ -43,6 +44,7 @@ services:
   
   admin:
     image: ghcr.io/${GITHUB_OWNER}/g-yachts-admin:${GITHUB_SHA}
+    restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"
     container_name: admin

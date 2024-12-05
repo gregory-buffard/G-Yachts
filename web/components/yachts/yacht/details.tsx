@@ -46,7 +46,9 @@ const Details = () => {
     { currency, units } = useViewContext(),
     [photo, setPhoto] = useState<number | null>(null),
     [disabled, disable] = useState<boolean>(false),
-    [expanded, expand] = useState<boolean>(false),
+    [expanded, expand] = useState<boolean>(
+      data.description ? data.description.length <= 1229 : false,
+    ),
     t = useTranslations("yacht.details"),
     locale = useLocale() as "en" | "fr",
     [generating, generate] = useState<{ popup: boolean; state: boolean }>({
@@ -170,13 +172,21 @@ const Details = () => {
                 </>
               )}
             </div>
-            <button
-              type={"button"}
-              onClick={() => generate((prev) => ({ ...prev, popup: false }))}
-              className={`glass-button glass-button-dark ${generating.state && "hidden"}`}
-            >
-              {t("dismiss")}
-            </button>
+            {generating.state ? (
+              <p className={"text-rock-300"}>
+                &#x2248;{" "}
+                {((17.54 + 3.42 * data.photos.gallery.length) / 60).toFixed(0)}
+                <label className={"text-rock-300"}>min</label>
+              </p>
+            ) : (
+              <button
+                type={"button"}
+                onClick={() => generate((prev) => ({ ...prev, popup: false }))}
+                className={`glass-button glass-button-dark`}
+              >
+                {t("dismiss")}
+              </button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -225,10 +235,16 @@ const Details = () => {
           }
         >
           <SwitchView props={{ view: "info", label: t("info") }} />
-          {data.keyFeatures && data.keyFeatures.length > 0 && (
-            <SwitchView props={{ view: "features", label: t("features") }} />
-          )}
+          {
+            /*(data.keyFeatures && data.keyFeatures.length > 0) ||*/
+            data.customKeyFeatures && data.customKeyFeatures.length > 0 ? (
+              <SwitchView props={{ view: "features", label: t("features") }} />
+            ) : (
+              <></>
+            )
+          }
           <button
+            type={"button"}
             onClick={async () => {
               generate({ popup: true, state: true });
               brochurize({
@@ -245,8 +261,9 @@ const Details = () => {
                         .split("")
                         .map((char) => char.charCodeAt(0)),
                     ),
-                    pdfBlob = new Blob([pdfBytes], { type: "application/pdf" });
-                  saveAs(pdfBlob, `${data.name} brochure.pdf`);
+                    pdfBlob = new Blob([pdfBytes], { type: "application/pdf" }),
+                    blobUrl = URL.createObjectURL(pdfBlob);
+                  window.open(blobUrl, "_blank");
                 })
                 .catch((e) => console.error("Error generating PDF : ", e))
                 .finally(() => generate((prev) => ({ ...prev, state: false })));
@@ -301,30 +318,13 @@ const Details = () => {
                   ),
               )
             : view === "features" && (
-                <div
-                  className={"w-full grid grid-cols-2 md:grid-cols-3 gap-[2vh]"}
-                >
-                  {characteristics
-                    .filter(
-                      (property) =>
-                        property &&
-                        data.keyFeatures &&
-                        data.keyFeatures.includes(property.key),
-                    )
-                    .map(
-                      (property, i) =>
-                        property && (
-                          <div
-                            key={i}
-                            className={
-                              "flex flex-col justify-center items-start"
-                            }
-                          >
-                            <h3>{property.value}</h3>
-                            <p className={"text-rock-300"}>{property.label}</p>
-                          </div>
-                        ),
-                    )}
+                <div className={"w-full grid grid-cols-1 gap-[2vh]"}>
+                  {data.customKeyFeatures &&
+                    data.customKeyFeatures.map((customFeature, i) => (
+                      <p key={i} className={"text-lg"}>
+                        {customFeature}
+                      </p>
+                    ))}
                 </div>
               )}
           <Gallery current={photo} setCurrent={setPhoto} />

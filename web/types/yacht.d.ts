@@ -29,6 +29,7 @@ export default interface IYacht {
   featured: boolean;
   indexField: number;
   keyFeatures?: string[];
+  customKeyFeatures?: string[];
   description: string;
   etiquette?: string;
   clicks: number;

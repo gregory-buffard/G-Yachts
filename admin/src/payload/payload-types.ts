@@ -1051,6 +1051,7 @@ export interface Yacht {
         | 'yearRefit'
       )[]
     | null;
+  customKeyFeatures?: string[] | null;
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos?: {
     featured?: string | Media | null;
@@ -1130,6 +1131,7 @@ export interface Charter {
         | 'yearRefit'
       )[]
     | null;
+  customKeyFeatures?: string[] | null;
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos?: {
     featured?: string | Media | null;
@@ -1410,6 +1412,7 @@ export interface NewConstruction {
         | 'yearRefit'
       )[]
     | null;
+  customKeyFeatures?: string[] | null;
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
   photos?: {
     featured?: string | Media | null;
