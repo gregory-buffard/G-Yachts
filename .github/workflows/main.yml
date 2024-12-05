@@ -76,6 +76,7 @@ jobs:
 
           # WEB
           echo "NEXT_PUBLIC_ADMIN_BASE_URI=http://admin:3000" >> .env
+          echo "AUTH_TOKEN=${{secrets.AUTH_TOKEN}}" >> .env
 
           # ADMIN
           echo "PAYLOAD_DATABASE_URI=mongodb://${{secrets.MONGO_USER}}:${{secrets.MONGO_PASS}}@mongo:27017" >> .env

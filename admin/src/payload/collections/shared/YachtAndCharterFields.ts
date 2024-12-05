@@ -1,6 +1,7 @@
 import type { Field } from 'payload/types'
 import BrochureComponent from './brochureComponent'
 import BulkUpload from '../../components/bulkUpload'
+import { anyone } from '../../access/anyone'
 
 export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[] => [
   {
@@ -385,7 +386,11 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
         name: 'featured',
         type: 'upload',
         relationTo: 'media',
-        required: true,
+        validate: (value, options) =>
+          options.operation === 'create' &&
+          value.length === 0 &&
+          'At least 1 gallery photo is required',
+        /*required: true,*/
       },
       {
         type: 'ui',
@@ -408,7 +413,11 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
             name: 'image',
             type: 'upload',
             relationTo: 'media',
-            required: true,
+            validate: (value, options) =>
+              options.operation === 'create' &&
+              value.length === 0 &&
+              'At least 1 gallery photo is required',
+            /*required: true,*/
           },
         ],
       },

@@ -41,13 +41,13 @@ export const Yachts: CollectionConfig = {
       },
     },
   },
-  hooks: {
+  /*hooks: {
     afterChange: [
       ({ doc, req, previousDoc, operation }) =>
         generateBrochureHook({ doc, req, previousDoc, operation, collection: 'yachts' }),
     ],
     afterDelete: [({ doc, req }) => deleteBrochureHook({ doc, req })],
-  },
+  },*/
   versions: false,
   access: {
     read: anyone,

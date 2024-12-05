@@ -1053,11 +1053,11 @@ export interface Yacht {
     | null;
   customKeyFeatures?: string[] | null;
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
-  photos: {
-    featured: string | Media;
+  photos?: {
+    featured?: string | Media | null;
     gallery?:
       | {
-          image: string | Media;
+          image?: string | Media | null;
           id?: string | null;
         }[]
       | null;
@@ -1133,11 +1133,11 @@ export interface Charter {
     | null;
   customKeyFeatures?: string[] | null;
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
-  photos: {
-    featured: string | Media;
+  photos?: {
+    featured?: string | Media | null;
     gallery?:
       | {
-          image: string | Media;
+          image?: string | Media | null;
           id?: string | null;
         }[]
       | null;
@@ -1414,11 +1414,11 @@ export interface NewConstruction {
     | null;
   customKeyFeatures?: string[] | null;
   etiquette?: ('new' | 'exclusive' | 'sold') | null;
-  photos: {
-    featured: string | Media;
+  photos?: {
+    featured?: string | Media | null;
     gallery?:
       | {
-          image: string | Media;
+          image?: string | Media | null;
           id?: string | null;
         }[]
       | null;

@@ -1,7 +1,7 @@
 "use server";
 
 import { getClient } from "@/apollo";
-import { gql } from "@apollo/client";
+import { ApolloQueryResult, gql } from "@apollo/client";
 import { IFeatured, IFeatured as SFeatured } from "@/types/sale";
 import IYacht, { ICharter, INewConstruction, ISale } from "@/types/yacht";
 import { IDestination } from "@/types/destination";
@@ -1204,4 +1204,77 @@ export const brochurize = async ({
   }
 
   return Buffer.from(await mergedPdf.save()).toString("base64");
+};
+
+export const click = async ({
+  id,
+  type,
+}: {
+  id: string;
+  type: "sales" | "charters" | "new-constructions";
+}) => {
+  const client = getClient(),
+    { data } = await client.query({
+      query:
+        type === "sales"
+          ? gql`
+              query Yacht($id: String!) {
+                Yacht(id: $id) {
+                  clicks
+                }
+              }
+            `
+          : type === "charters"
+            ? gql`
+                query Charter($id: String!) {
+                  Charter(id: $id) {
+                    clicks
+                  }
+                }
+              `
+            : gql`
+                query NewConstruction($id: String!) {
+                  NewConstruction(id: $id) {
+                    clicks
+                  }
+                }
+              `,
+      variables: { id },
+    });
+
+  await client.mutate({
+    mutation:
+      type === "sales"
+        ? gql`
+            mutation UpdateYacht($id: String!, $count: Float!) {
+              updateYacht(id: $id, data: { clicks: $count }) {
+                clicks
+              }
+            }
+          `
+        : type === "charters"
+          ? gql`
+              mutation UpdateCharter($id: String!, $count: Float!) {
+                updateCharter(id: $id, data: { clicks: $count }) {
+                  clicks
+                }
+              }
+            `
+          : gql`
+              mutation UpdateNewConstruction($id: String!, $count: Float!) {
+                updateNewConstruction(id: $id, data: { clicks: $count }) {
+                  clicks
+                }
+              }
+            `,
+    variables: {
+      id,
+      count:
+        type === "sales"
+          ? data.Yacht.clicks + 1
+          : type === "charters"
+            ? data.Charter.clicks + 1
+            : data.NewConstruction.clicks + 1,
+    },
+  });
 };
