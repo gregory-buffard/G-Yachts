@@ -4,7 +4,7 @@ import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { seoField } from '../shared/seo'
-import { Article } from '../../payload-types'
+import mountSlug from '../../utilities/mountSlug'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -35,6 +35,10 @@ export const Articles: CollectionConfig = {
         return data
       },
     ],
+    afterChange: [
+      ({ doc, operation }) =>
+        mountSlug({ name: doc.title, id: doc.id, operation, collection: 'articles' }),
+    ],
   },
   versions: false,
   access: {
@@ -52,6 +56,17 @@ export const Articles: CollectionConfig = {
       label: {
         en: 'Title',
         fr: 'Titre',
+      },
+    },
+    {
+      name: 'slug',
+      label: 'Slug',
+      type: 'text',
+      index: true,
+      unique: true,
+      defaultValue: '',
+      admin: {
+        readOnly: true,
       },
     },
     {

@@ -5,6 +5,7 @@ import { users } from '../../access/users'
 import { seoField } from '../shared/seo'
 import { indexField } from '../shared/indexField'
 import { CustomCollectionList } from '../../components/CustomOrder/list'
+import mountSlug from '../../utilities/mountSlug'
 
 export const Destinations: CollectionConfig = {
   slug: 'destinations',
@@ -37,7 +38,12 @@ export const Destinations: CollectionConfig = {
       },
     },
   },
-  hooks: {},
+  hooks: {
+    afterChange: [
+      ({ doc, operation }) =>
+        mountSlug({ name: doc.destination, id: doc.id, operation, collection: 'destinations' }),
+    ],
+  },
   versions: false,
   access: {
     read: anyone,
@@ -55,6 +61,20 @@ export const Destinations: CollectionConfig = {
       type: 'text',
       localized: true,
       required: true,
+    },
+    {
+      name: 'slug',
+      label: 'Slug',
+      type: 'text',
+      index: true,
+      unique: true,
+      defaultValue: '',
+      admin: {
+        readOnly: true,
+      },
+      // hooks: {
+      //   beforeValidate: [mountSlug(fieldToUse)],
+      // },
     },
     {
       name: 'country',

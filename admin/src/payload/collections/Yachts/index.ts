@@ -9,6 +9,7 @@ import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import DuplicateToCharter from './components/duplicate'
 import { CustomCollectionList } from '../../components/CustomOrder/list'
 import { indexField } from '../shared/indexField'
+import mountSlug from '../../utilities/mountSlug'
 
 export const Yachts: CollectionConfig = {
   slug: 'yachts',
@@ -43,8 +44,8 @@ export const Yachts: CollectionConfig = {
   },
   hooks: {
     afterChange: [
-      ({ doc, req, previousDoc, operation }) =>
-        generateBrochureHook({ doc, req, previousDoc, operation, collection: 'yachts' }),
+      ({ doc, operation }) =>
+        mountSlug({ name: doc.name, id: doc.id, operation, collection: 'yachts' }),
     ],
     afterDelete: [({ doc, req }) => deleteBrochureHook({ doc, req })],
   },

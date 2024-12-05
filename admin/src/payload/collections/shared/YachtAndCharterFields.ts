@@ -13,6 +13,17 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     required: true,
   },
   {
+    name: 'slug',
+    label: 'Slug',
+    type: 'text',
+    index: true,
+    unique: true,
+    defaultValue: '',
+    admin: {
+      readOnly: true,
+    },
+  },
+  {
     label: {
       en: 'Model',
       fr: 'Modèle',

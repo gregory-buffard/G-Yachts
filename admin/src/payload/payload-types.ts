@@ -36,6 +36,7 @@ export interface Config {
 export interface Article {
   id: string;
   title: string;
+  slug?: string | null;
   category: string | Category;
   date: string;
   author: string | User;
@@ -119,6 +120,8 @@ export interface User {
           | '+235'
           | '+56'
           | '+86'
+          | '+61'
+          | '+61'
           | '+57'
           | '+269'
           | '+242'
@@ -144,6 +147,7 @@ export interface User {
           | '+500'
           | '+298'
           | '+679'
+          | '+358'
           | '+33'
           | '+594'
           | '+689'
@@ -174,10 +178,12 @@ export interface User {
           | '+98'
           | '+964'
           | '+353'
+          | '+44'
           | '+972'
           | '+39'
           | '+1876'
           | '+81'
+          | '+44'
           | '+962'
           | '+77'
           | '+254'
@@ -229,6 +235,7 @@ export interface User {
           | '+227'
           | '+234'
           | '+683'
+          | '+672'
           | '+1670'
           | '+47'
           | '+968'
@@ -237,6 +244,7 @@ export interface User {
           | '+970'
           | '+507'
           | '+675'
+          | '+595'
           | '+51'
           | '+63'
           | '+872'
@@ -247,9 +255,12 @@ export interface User {
           | '+40'
           | '+7'
           | '+250'
+          | '+262'
+          | '+590'
           | '+290'
           | '+1869'
           | '+1758'
+          | '+590'
           | '+508'
           | '+1784'
           | '+685'
@@ -267,10 +278,12 @@ export interface User {
           | '+252'
           | '+27'
           | '+211'
+          | '+500'
           | '+34'
           | '+94'
           | '+249'
           | '+597'
+          | '+47'
           | '+268'
           | '+46'
           | '+41'
@@ -292,6 +305,8 @@ export interface User {
           | '+256'
           | '+380'
           | '+971'
+          | '+44'
+          | '+1'
           | '+598'
           | '+998'
           | '+678'
@@ -425,6 +440,8 @@ export interface User {
         | 'Nepali'
         | 'Ndonga'
         | 'Dutch'
+        | 'Norwegian'
+        | 'Norwegian'
         | 'South Ndebele'
         | 'Navajo'
         | 'Chichewa'
@@ -607,6 +624,8 @@ export interface SellBroker {
               | '+235'
               | '+56'
               | '+86'
+              | '+61'
+              | '+61'
               | '+57'
               | '+269'
               | '+242'
@@ -632,6 +651,7 @@ export interface SellBroker {
               | '+500'
               | '+298'
               | '+679'
+              | '+358'
               | '+33'
               | '+594'
               | '+689'
@@ -662,10 +682,12 @@ export interface SellBroker {
               | '+98'
               | '+964'
               | '+353'
+              | '+44'
               | '+972'
               | '+39'
               | '+1876'
               | '+81'
+              | '+44'
               | '+962'
               | '+77'
               | '+254'
@@ -717,6 +739,7 @@ export interface SellBroker {
               | '+227'
               | '+234'
               | '+683'
+              | '+672'
               | '+1670'
               | '+47'
               | '+968'
@@ -725,6 +748,7 @@ export interface SellBroker {
               | '+970'
               | '+507'
               | '+675'
+              | '+595'
               | '+51'
               | '+63'
               | '+872'
@@ -735,9 +759,12 @@ export interface SellBroker {
               | '+40'
               | '+7'
               | '+250'
+              | '+262'
+              | '+590'
               | '+290'
               | '+1869'
               | '+1758'
+              | '+590'
               | '+508'
               | '+1784'
               | '+685'
@@ -755,10 +782,12 @@ export interface SellBroker {
               | '+252'
               | '+27'
               | '+211'
+              | '+500'
               | '+34'
               | '+94'
               | '+249'
               | '+597'
+              | '+47'
               | '+268'
               | '+46'
               | '+41'
@@ -780,6 +809,8 @@ export interface SellBroker {
               | '+256'
               | '+380'
               | '+971'
+              | '+44'
+              | '+1'
               | '+598'
               | '+998'
               | '+678'
@@ -915,6 +946,8 @@ export interface SellBroker {
         | 'Nepali'
         | 'Ndonga'
         | 'Dutch'
+        | 'Norwegian'
+        | 'Norwegian'
         | 'South Ndebele'
         | 'Navajo'
         | 'Chichewa'
@@ -1006,6 +1039,7 @@ export interface SellBroker {
 export interface Yacht {
   id: string;
   name: string;
+  slug?: string | null;
   model?: string | null;
   price: number;
   LOA: number;
@@ -1083,6 +1117,7 @@ export interface Yacht {
 export interface Charter {
   id: string;
   name: string;
+  slug?: string | null;
   model?: string | null;
   price?: {
     low?: number | null;
@@ -1228,6 +1263,7 @@ export interface ArchivedCustomer {
 export interface Destination {
   id: string;
   destination: string;
+  slug?: string | null;
   country: string;
   region: string;
   continent: string;
@@ -1266,6 +1302,7 @@ export interface Destination {
 export interface Event {
   id: string;
   title: string;
+  slug?: string | null;
   fromDate: string;
   toDate: string;
   location?: {
@@ -1367,6 +1404,7 @@ export interface NewConstruction {
   id: string;
   delivery: string;
   name: string;
+  slug?: string | null;
   model?: string | null;
   price: number;
   LOA: number;
