@@ -19,6 +19,7 @@ export default interface IYacht {
   minDraft?: number;
   model: string;
   name: string;
+  slug: string;
   region: string;
   rooms: number;
   sleeps: number;

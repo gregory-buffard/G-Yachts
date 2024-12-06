@@ -1,5 +1,6 @@
 export interface IArticle {
   id: string;
+  slug: string;
   title: string;
   image: {
     alt: string;

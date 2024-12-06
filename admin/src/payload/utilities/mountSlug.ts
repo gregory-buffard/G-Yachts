@@ -1,11 +1,20 @@
 import payload from 'payload'
 
-const format = (val: string): string =>
-  val
-    .trim()
-    .replace(/\s+/g, '-') // Replace spaces with dashes
-    .replace(/[^\w-]+/g, '') // Remove all non-alphanumeric characters except dashes
-    .toLowerCase() // Convert to lowercase
+const format = (val: string | { en: string; fr: string }): string => {
+  if (typeof val === 'object') {
+    return val.en
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .toLowerCase()
+  } else {
+    return val
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .toLowerCase()
+  }
+}
 
 const mountSlug = async ({ operation, name, collection, id }) => {
   if (operation === 'create' || operation === 'update') {

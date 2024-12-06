@@ -24,8 +24,8 @@ export const fetchFeaturedSales = async (
           limit: 0
         ) {
           docs {
-            id
             name
+            slug
             price
             builder
             length
@@ -63,8 +63,8 @@ export const fetchSales = async (locale: "en" | "fr"): Promise<ISale[]> => {
       query Yachts($locale: LocaleInputType!) {
         Yachts(locale: $locale, limit: 0) {
           docs {
-            id
             name
+            slug
             price
             builder
             category
@@ -112,99 +112,72 @@ export const fetchSales = async (locale: "en" | "fr"): Promise<ISale[]> => {
 };
 
 export const fetchSale = async (
-  id: string,
+  slug: string,
   locale: "en" | "fr",
 ): Promise<ISale> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Yacht($locale: LocaleInputType!, $id: String!) {
-        Yacht(locale: $locale, id: $id, fallbackLocale: en) {
-          id
-          name
-          model
-          price
-          LOA
-          beam
-          builder
-          category
-          city
-          continent
-          country
-          cruising
-          crypto
-          length
-          state
-          material
-          maxDraft
-          minDraft
-          region
-          rooms
-          sleeps
-          cruisingGuests
-          subcategory
-          tonnage
-          yearBuilt
-          yearRefit
-          keyFeatures
-          customKeyFeatures
-          description
-          similar {
-            id
+      query Yacht($locale: LocaleInputType!, $slug: String) {
+        Yachts(
+          where: { slug: { equals: $slug } }
+          locale: $locale
+          fallbackLocale: en
+          limit: 1
+        ) {
+          docs {
             name
+            model
             price
+            LOA
+            beam
             builder
+            category
+            city
+            continent
+            country
+            cruising
+            crypto
             length
+            state
+            material
+            maxDraft
+            minDraft
+            region
+            rooms
             sleeps
+            cruisingGuests
+            subcategory
+            tonnage
             yearBuilt
-            etiquette
-            photos {
-              featured {
-                sizes {
-                  thumbnail {
-                    url
+            yearRefit
+            keyFeatures
+            customKeyFeatures
+            description
+            similar {
+              id
+              name
+              price
+              builder
+              length
+              sleeps
+              yearBuilt
+              etiquette
+              photos {
+                featured {
+                  sizes {
+                    thumbnail {
+                      url
+                    }
                   }
-                }
-                alt
-              }
-            }
-          }
-          broker {
-            name
-            email
-            picture {
-              alt
-              sizes {
-                thumbnail {
-                  url
-                  width
-                  height
+                  alt
                 }
               }
             }
-            position
-            phones {
-              prefix
-              number
-            }
-            socials {
-              platform
-              link
-            }
-          }
-          photos {
-            featured {
-              alt
-              sizes {
-                fhd {
-                  url
-                  width
-                  height
-                }
-              }
-            }
-            gallery {
-              image {
+            broker {
+              name
+              email
+              picture {
                 alt
                 sizes {
                   thumbnail {
@@ -212,10 +185,43 @@ export const fetchSale = async (
                     width
                     height
                   }
+                }
+              }
+              position
+              phones {
+                prefix
+                number
+              }
+              socials {
+                platform
+                link
+              }
+            }
+            photos {
+              featured {
+                alt
+                sizes {
                   fhd {
                     url
                     width
                     height
+                  }
+                }
+              }
+              gallery {
+                image {
+                  alt
+                  sizes {
+                    thumbnail {
+                      url
+                      width
+                      height
+                    }
+                    fhd {
+                      url
+                      width
+                      height
+                    }
                   }
                 }
               }
@@ -224,10 +230,10 @@ export const fetchSale = async (
         }
       }
     `,
-    variables: { id, locale },
+    variables: { slug, locale },
   });
 
-  return data.Yacht;
+  return data.Yachts.docs[0];
 };
 
 export const fetchFeaturedCharters = async (): Promise<ICFeatured[]> => {
@@ -237,8 +243,8 @@ export const fetchFeaturedCharters = async (): Promise<ICFeatured[]> => {
       query Charters {
         Charters(where: { featured: { equals: true } }, limit: 0) {
           docs {
-            id
             name
+            slug
             price {
               low
               high
@@ -261,6 +267,7 @@ export const fetchFeaturedCharters = async (): Promise<ICFeatured[]> => {
       }
     `,
   });
+
   return data.Charters.docs;
 };
 
@@ -271,8 +278,8 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
       query Charters {
         Charters(limit: 0) {
           docs {
-            id
             name
+            slug
             price {
               low
               high
@@ -318,112 +325,84 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
 };
 
 export const fetchCharter = async (
-  id: string,
+  slug: string,
   locale: "en" | "fr",
 ): Promise<ICharter> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Charter($id: String!, $locale: LocaleInputType!) {
-        Charter(id: $id, locale: $locale, fallbackLocale: en) {
-          id
-          name
-          model
-          price {
-            low
-            high
-          }
-          LOA
-          beam
-          builder
-          category
-          city
-          continent
-          country
-          cruising
-          crypto
-          length
-          state
-          material
-          maxDraft
-          minDraft
-          region
-          rooms
-          sleeps
-          cruisingGuests
-          subcategory
-          tonnage
-          yearBuilt
-          yearRefit
-          featured
-          keyFeatures
-          customKeyFeatures
-          description
-          similar {
-            id
+      query Charter($slug: String, $locale: LocaleInputType!) {
+        Charters(
+          where: { slug: { equals: $slug } }
+          locale: $locale
+          fallbackLocale: en
+          limit: 1
+        ) {
+          docs {
             name
+            model
             price {
               low
               high
             }
+            LOA
+            beam
             builder
+            category
+            city
+            continent
+            country
+            cruising
+            crypto
             length
+            state
+            material
+            maxDraft
+            minDraft
+            region
+            rooms
             sleeps
+            cruisingGuests
+            subcategory
+            tonnage
             yearBuilt
-            etiquette
-            photos {
-              featured {
-                sizes {
-                  thumbnail {
-                    url
+            yearRefit
+            featured
+            keyFeatures
+            customKeyFeatures
+            description
+            similar {
+              id
+              name
+              price {
+                low
+                high
+              }
+              builder
+              length
+              sleeps
+              yearBuilt
+              etiquette
+              photos {
+                featured {
+                  sizes {
+                    thumbnail {
+                      url
+                    }
                   }
-                }
-                alt
-              }
-            }
-          }
-          reservations {
-            from
-            to
-          }
-          broker {
-            id
-            name
-            email
-            picture {
-              alt
-              sizes {
-                thumbnail {
-                  url
-                  width
-                  height
+                  alt
                 }
               }
             }
-            position
-            phones {
-              prefix
-              number
+            reservations {
+              from
+              to
             }
-            socials {
-              platform
-              link
-            }
-            langs
-          }
-          photos {
-            featured {
-              alt
-              sizes {
-                fhd {
-                  url
-                  width
-                  height
-                }
-              }
-            }
-            gallery {
-              image {
+            broker {
+              id
+              name
+              email
+              picture {
                 alt
                 sizes {
                   thumbnail {
@@ -431,10 +410,44 @@ export const fetchCharter = async (
                     width
                     height
                   }
+                }
+              }
+              position
+              phones {
+                prefix
+                number
+              }
+              socials {
+                platform
+                link
+              }
+              langs
+            }
+            photos {
+              featured {
+                alt
+                sizes {
                   fhd {
                     url
                     width
                     height
+                  }
+                }
+              }
+              gallery {
+                image {
+                  alt
+                  sizes {
+                    thumbnail {
+                      url
+                      width
+                      height
+                    }
+                    fhd {
+                      url
+                      width
+                      height
+                    }
                   }
                 }
               }
@@ -443,10 +456,10 @@ export const fetchCharter = async (
         }
       }
     `,
-    variables: { id, locale },
+    variables: { slug, locale },
   });
 
-  return data.Charter;
+  return data.Charters.docs[0];
 };
 
 export const fetchChartersForDestination = async (
@@ -459,7 +472,7 @@ export const fetchChartersForDestination = async (
       query Charters($country: String!, $limit: Int!) {
         Charters(where: { country: { equals: $country } }, limit: $limit) {
           docs {
-            id
+            slug
             name
             price {
               low
@@ -494,7 +507,7 @@ export const fetchChartersForDestination = async (
       query Charters($continent: String!, $limit: Int!) {
         Charters(where: { continent: { equals: $continent } }, limit: $limit) {
           docs {
-            id
+            slug
             name
             price {
               low
@@ -529,7 +542,7 @@ export const fetchChartersForDestination = async (
       query Charters($limit: Int!) {
         Charters(limit: $limit) {
           docs {
-            id
+            slug
             name
             price {
               low
@@ -566,7 +579,7 @@ export const fetchSimilarSales = async (
 ): Promise<
   Pick<
     ISale,
-    | "id"
+    | "slug"
     | "length"
     | "price"
     | "name"
@@ -583,7 +596,7 @@ export const fetchSimilarSales = async (
       query Yachts {
         Yachts(sort: "clicks", limit: 4) {
           docs {
-            id
+            slug
             name
             price
             builder
@@ -617,7 +630,7 @@ export const fetchSimilarSales = async (
           where: { length: { greater_than: $length } }
         ) {
           docs {
-            id
+            slug
             name
             price
             builder
@@ -651,7 +664,7 @@ export const fetchSimilarSales = async (
           where: { length: { less_than: $length } }
         ) {
           docs {
-            id
+            slug
             name
             price
             builder
@@ -687,7 +700,7 @@ export const fetchSimilarCharters = async (
 ): Promise<
   Pick<
     ICharter,
-    | "id"
+    | "slug"
     | "length"
     | "price"
     | "name"
@@ -704,7 +717,7 @@ export const fetchSimilarCharters = async (
       query Charters {
         Charters(sort: "clicks", limit: 4) {
           docs {
-            id
+            slug
             name
             price {
               low
@@ -741,7 +754,7 @@ export const fetchSimilarCharters = async (
           where: { length: { greater_than: $length } }
         ) {
           docs {
-            id
+            slug
             name
             price {
               low
@@ -778,7 +791,7 @@ export const fetchSimilarCharters = async (
           where: { length: { less_than: $length } }
         ) {
           docs {
-            id
+            slug
             name
             price {
               low
@@ -821,7 +834,7 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
       query NewConstructions {
         NewConstructions(limit: 0) {
           docs {
-            id
+            slug
             delivery
             name
             price
@@ -867,99 +880,71 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
   );
 };
 export const fetchNewConstruction = async (
-  id: string,
+  slug: string,
   locale: "en" | "fr",
 ): Promise<INewConstruction> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query NewConstruction($id: String!, $locale: LocaleInputType!) {
-        NewConstruction(id: $id, locale: $locale, fallbackLocale: en) {
-          id
-          delivery
-          name
-          model
-          price
-          LOA
-          beam
-          builder
-          category
-          city
-          continent
-          country
-          cruising
-          crypto
-          length
-          state
-          material
-          maxDraft
-          minDraft
-          region
-          rooms
-          sleeps
-          cruisingGuests
-          subcategory
-          tonnage
-          yearBuilt
-          keyFeatures
-          customKeyFeatures
-          description
-          similar {
-            id
+      query NewConstruction($slug: String, $locale: LocaleInputType!) {
+        NewConstructions(
+          where: { slug: { equals: $slug } }
+          locale: $locale
+          fallbackLocale: en
+        ) {
+          docs {
+            delivery
             name
+            model
             price
+            LOA
+            beam
             builder
+            category
+            city
+            continent
+            country
+            cruising
+            crypto
             length
+            state
+            material
+            maxDraft
+            minDraft
+            region
+            rooms
             sleeps
+            cruisingGuests
+            subcategory
+            tonnage
             yearBuilt
-            etiquette
-            photos {
-              featured {
-                sizes {
-                  thumbnail {
-                    url
+            keyFeatures
+            customKeyFeatures
+            description
+            similar {
+              slug
+              name
+              price
+              builder
+              length
+              sleeps
+              yearBuilt
+              etiquette
+              photos {
+                featured {
+                  sizes {
+                    thumbnail {
+                      url
+                    }
                   }
-                }
-                alt
-              }
-            }
-          }
-          broker {
-            name
-            email
-            picture {
-              alt
-              sizes {
-                thumbnail {
-                  url
-                  width
-                  height
+                  alt
                 }
               }
             }
-            position
-            phones {
-              prefix
-              number
-            }
-            socials {
-              platform
-              link
-            }
-          }
-          photos {
-            featured {
-              alt
-              sizes {
-                fhd {
-                  url
-                  width
-                  height
-                }
-              }
-            }
-            gallery {
-              image {
+            broker {
+              name
+              email
+              picture {
                 alt
                 sizes {
                   thumbnail {
@@ -967,10 +952,43 @@ export const fetchNewConstruction = async (
                     width
                     height
                   }
+                }
+              }
+              position
+              phones {
+                prefix
+                number
+              }
+              socials {
+                platform
+                link
+              }
+            }
+            photos {
+              featured {
+                alt
+                sizes {
                   fhd {
                     url
                     width
                     height
+                  }
+                }
+              }
+              gallery {
+                image {
+                  alt
+                  sizes {
+                    thumbnail {
+                      url
+                      width
+                      height
+                    }
+                    fhd {
+                      url
+                      width
+                      height
+                    }
                   }
                 }
               }
@@ -979,11 +997,12 @@ export const fetchNewConstruction = async (
         }
       }
     `,
-    variables: { id, locale },
+    variables: { slug, locale },
   });
 
-  return data.NewConstruction;
+  return data.NewConstructions.docs[0];
 };
+
 export const fetchShipyards = async (): Promise<IShipyard[]> => {
   const client = getClient();
   const { data } = await client.query({
@@ -1046,7 +1065,7 @@ export const fetchSimilarNewConstructions = async (
       query NewConstructions {
         NewConstructions(sort: "clicks", limit: 4) {
           docs {
-            id
+            slug
             name
             price
             builder
@@ -1079,7 +1098,7 @@ export const fetchSimilarNewConstructions = async (
           where: { length: { greater_than: $length } }
         ) {
           docs {
-            id
+            slug
             name
             price
             builder
@@ -1112,7 +1131,7 @@ export const fetchSimilarNewConstructions = async (
           where: { length: { less_than: $length } }
         ) {
           docs {
-            id
+            slug
             name
             price
             builder

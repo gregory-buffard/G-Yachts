@@ -3,6 +3,7 @@ import { IDestination } from "@/types/destination";
 
 export default interface IEvent {
   id: string;
+  slug: string;
   title: string;
   fromDate: string;
   toDate: string;

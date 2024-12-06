@@ -1,79 +1,79 @@
 type Query {
-  Article(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Article
+  Article(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Article
   Articles(where: Article_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Articles
   countArticles(where: Article_where, locale: LocaleInputType): countArticles
-  docAccessArticle(id: String!): articlesDocAccess
-  Media(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Media
+  docAccessArticle(slug: String!): articlesDocAccess
+  Media(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Media
   allMedia(where: Media_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): allMedia
   countallMedia(where: Media_where, locale: LocaleInputType): countallMedia
-  docAccessMedia(id: String!): mediaDocAccess
-  User(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): User
+  docAccessMedia(slug: String!): mediaDocAccess
+  User(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): User
   Users(where: User_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Users
   countUsers(where: User_where, locale: LocaleInputType): countUsers
-  docAccessUser(id: String!): usersDocAccess
+  docAccessUser(slug: String!): usersDocAccess
   meUser: usersMe
   initializedUser: Boolean
-  SellBroker(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): SellBroker
+  SellBroker(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): SellBroker
   SellBrokers(where: SellBroker_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): SellBrokers
   countSellBrokers(where: SellBroker_where, locale: LocaleInputType): countSellBrokers
-  docAccessSellBroker(id: String!): sell_brokersDocAccess
-  Yacht(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Yacht
+  docAccessSellBroker(slug: String!): sell_brokersDocAccess
+  Yacht(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Yacht
   Yachts(where: Yacht_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Yachts
   countYachts(where: Yacht_where, locale: LocaleInputType): countYachts
-  docAccessYacht(id: String!): yachtsDocAccess
-  Charter(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Charter
+  docAccessYacht(slug: String!): yachtsDocAccess
+  Charter(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Charter
   Charters(where: Charter_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Charters
   countCharters(where: Charter_where, locale: LocaleInputType): countCharters
-  docAccessCharter(id: String!): chartersDocAccess
-  Category(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Category
+  docAccessCharter(slug: String!): chartersDocAccess
+  Category(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Category
   Categories(where: Category_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Categories
   countCategories(where: Category_where, locale: LocaleInputType): countCategories
-  docAccessCategory(id: String!): categoriesDocAccess
-  Destination(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Destination
+  docAccessCategory(slug: String!): categoriesDocAccess
+  Destination(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Destination
   Destinations(where: Destination_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Destinations
   countDestinations(where: Destination_where, locale: LocaleInputType): countDestinations
-  docAccessDestination(id: String!): destinationsDocAccess
-  Event(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Event
+  docAccessDestination(slug: String!): destinationsDocAccess
+  Event(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Event
   Events(where: Event_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Events
   countEvents(where: Event_where, locale: LocaleInputType): countEvents
-  docAccessEvent(id: String!): eventsDocAccess
-  Partner(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Partner
+  docAccessEvent(slug: String!): eventsDocAccess
+  Partner(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Partner
   Partners(where: Partner_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Partners
   countPartners(where: Partner_where, locale: LocaleInputType): countPartners
-  docAccessPartner(id: String!): partnersDocAccess
-  Shipyard(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Shipyard
+  docAccessPartner(slug: String!): partnersDocAccess
+  Shipyard(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Shipyard
   Shipyards(where: Shipyard_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Shipyards
   countShipyards(where: Shipyard_where, locale: LocaleInputType): countShipyards
-  docAccessShipyard(id: String!): shipyardsDocAccess
-  Recruitment(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Recruitment
+  docAccessShipyard(slug: String!): shipyardsDocAccess
+  Recruitment(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Recruitment
   Recruitments(where: Recruitment_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Recruitments
   countRecruitments(where: Recruitment_where, locale: LocaleInputType): countRecruitments
-  docAccessRecruitment(id: String!): recruitmentDocAccess
-  Sold(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Sold
+  docAccessRecruitment(slug: String!): recruitmentDocAccess
+  Sold(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Sold
   Solds(where: Sold_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Solds
   countSolds(where: Sold_where, locale: LocaleInputType): countSolds
-  docAccessSold(id: String!): soldsDocAccess
-  NewConstruction(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): NewConstruction
+  docAccessSold(slug: String!): soldsDocAccess
+  NewConstruction(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): NewConstruction
   NewConstructions(where: NewConstruction_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): NewConstructions
   countNewConstructions(where: NewConstruction_where, locale: LocaleInputType): countNewConstructions
-  docAccessNewConstruction(id: String!): new_constructionsDocAccess
-  Message(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Message
+  docAccessNewConstruction(slug: String!): new_constructionsDocAccess
+  Message(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Message
   Messages(where: Message_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Messages
   countMessages(where: Message_where, locale: LocaleInputType): countMessages
-  docAccessMessage(id: String!): messagesDocAccess
-  ArchivedCustomer(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): ArchivedCustomer
+  docAccessMessage(slug: String!): messagesDocAccess
+  ArchivedCustomer(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): ArchivedCustomer
   ArchivedCustomers(where: ArchivedCustomer_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): ArchivedCustomers
   countArchivedCustomers(where: ArchivedCustomer_where, locale: LocaleInputType): countArchivedCustomers
-  docAccessArchivedCustomer(id: String!): archived_customersDocAccess
-  PayloadPreference(id: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): PayloadPreference
+  docAccessArchivedCustomer(slug: String!): archived_customersDocAccess
+  PayloadPreference(slug: String!, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): PayloadPreference
   PayloadPreferences(where: PayloadPreference_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): PayloadPreferences
   countPayloadPreferences(where: PayloadPreference_where, locale: LocaleInputType): countPayloadPreferences
-  docAccessPayloadPreference(id: String!): payload_preferencesDocAccess
+  docAccessPayloadPreference(slug: String!): payload_preferencesDocAccess
   Access: Access
 }
 
 type Article {
-  id: String
+  slug: String
   title: String
   slug: String
   category(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Category!
@@ -87,7 +87,7 @@ type Article {
 }
 
 type Category {
-  id: String
+  slug: String
   title: String
   updatedAt: DateTime
   createdAt: DateTime
@@ -110,7 +110,7 @@ enum FallbackLocaleInputType {
 }
 
 type User {
-  id: String
+  slug: String
   name: String!
   roles: [User_roles!]
   picture(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: User_Picture_where): Media
@@ -138,7 +138,7 @@ enum User_roles {
 }
 
 type Media {
-  id: String
+  slug: String
   alt: String
   updatedAt: DateTime
   createdAt: DateTime
@@ -200,7 +200,7 @@ input User_Picture_where {
   sizes__fhd__mimeType: User_Picture_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: User_Picture_sizes__fhd__filesize_operator
   sizes__fhd__filename: User_Picture_sizes__fhd__filename_operator
-  id: User_Picture_id_operator
+  slug: User_Picture_id_operator
   AND: [User_Picture_where_and]
   OR: [User_Picture_where_or]
 }
@@ -482,7 +482,7 @@ input User_Picture_where_and {
   sizes__fhd__mimeType: User_Picture_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: User_Picture_sizes__fhd__filesize_operator
   sizes__fhd__filename: User_Picture_sizes__fhd__filename_operator
-  id: User_Picture_id_operator
+  slug: User_Picture_id_operator
   AND: [User_Picture_where_and]
   OR: [User_Picture_where_or]
 }
@@ -511,7 +511,7 @@ input User_Picture_where_or {
   sizes__fhd__mimeType: User_Picture_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: User_Picture_sizes__fhd__filesize_operator
   sizes__fhd__filename: User_Picture_sizes__fhd__filename_operator
-  id: User_Picture_id_operator
+  slug: User_Picture_id_operator
   AND: [User_Picture_where_and]
   OR: [User_Picture_where_or]
 }
@@ -519,7 +519,7 @@ input User_Picture_where_or {
 type User_Phones {
   prefix: User_Phones_prefix
   number: String
-  id: String
+  slug: String
 }
 
 enum User_Phones_prefix {
@@ -941,7 +941,7 @@ enum User_langs {
 type User_Socials {
   platform: User_Socials_platform
   link: String
-  id: String
+  slug: String
 }
 
 enum User_Socials_platform {
@@ -984,7 +984,7 @@ input Article_Image_where {
   sizes__fhd__mimeType: Article_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Article_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Article_Image_sizes__fhd__filename_operator
-  id: Article_Image_id_operator
+  slug: Article_Image_id_operator
   AND: [Article_Image_where_and]
   OR: [Article_Image_where_or]
 }
@@ -1266,7 +1266,7 @@ input Article_Image_where_and {
   sizes__fhd__mimeType: Article_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Article_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Article_Image_sizes__fhd__filename_operator
-  id: Article_Image_id_operator
+  slug: Article_Image_id_operator
   AND: [Article_Image_where_and]
   OR: [Article_Image_where_or]
 }
@@ -1295,14 +1295,14 @@ input Article_Image_where_or {
   sizes__fhd__mimeType: Article_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Article_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Article_Image_sizes__fhd__filename_operator
-  id: Article_Image_id_operator
+  slug: Article_Image_id_operator
   AND: [Article_Image_where_and]
   OR: [Article_Image_where_or]
 }
 
 type Article_Seo {
   value: String
-  id: String
+  slug: String
 }
 
 type Articles {
@@ -1331,7 +1331,7 @@ input Article_where {
   seo__id: Article_seo__id_operator
   updatedAt: Article_updatedAt_operator
   createdAt: Article_createdAt_operator
-  id: Article_id_operator
+  slug: Article_id_operator
   AND: [Article_where_and]
   OR: [Article_where_or]
 }
@@ -1462,7 +1462,7 @@ input Article_where_and {
   seo__id: Article_seo__id_operator
   updatedAt: Article_updatedAt_operator
   createdAt: Article_createdAt_operator
-  id: Article_id_operator
+  slug: Article_id_operator
   AND: [Article_where_and]
   OR: [Article_where_or]
 }
@@ -1479,7 +1479,7 @@ input Article_where_or {
   seo__id: Article_seo__id_operator
   updatedAt: Article_updatedAt_operator
   createdAt: Article_createdAt_operator
-  id: Article_id_operator
+  slug: Article_id_operator
   AND: [Article_where_and]
   OR: [Article_where_or]
 }
@@ -1696,7 +1696,7 @@ type ArticlesDocAccessFields_seo_Delete {
 
 type ArticlesDocAccessFields_seo_Fields {
   value: ArticlesDocAccessFields_seo_value
-  id: ArticlesDocAccessFields_seo_id
+  slug: ArticlesDocAccessFields_seo_id
 }
 
 type ArticlesDocAccessFields_seo_value {
@@ -1854,7 +1854,7 @@ input Media_where {
   sizes__fhd__mimeType: Media_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Media_sizes__fhd__filesize_operator
   sizes__fhd__filename: Media_sizes__fhd__filename_operator
-  id: Media_id_operator
+  slug: Media_id_operator
   AND: [Media_where_and]
   OR: [Media_where_or]
 }
@@ -2136,7 +2136,7 @@ input Media_where_and {
   sizes__fhd__mimeType: Media_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Media_sizes__fhd__filesize_operator
   sizes__fhd__filename: Media_sizes__fhd__filename_operator
-  id: Media_id_operator
+  slug: Media_id_operator
   AND: [Media_where_and]
   OR: [Media_where_or]
 }
@@ -2165,7 +2165,7 @@ input Media_where_or {
   sizes__fhd__mimeType: Media_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Media_sizes__fhd__filesize_operator
   sizes__fhd__filename: Media_sizes__fhd__filename_operator
-  id: Media_id_operator
+  slug: Media_id_operator
   AND: [Media_where_and]
   OR: [Media_where_or]
 }
@@ -2872,7 +2872,7 @@ input User_where {
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
-  id: User_id_operator
+  slug: User_id_operator
   AND: [User_where_and]
   OR: [User_where_or]
 }
@@ -3482,7 +3482,7 @@ input User_where_and {
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
-  id: User_id_operator
+  slug: User_id_operator
   AND: [User_where_and]
   OR: [User_where_or]
 }
@@ -3504,7 +3504,7 @@ input User_where_or {
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
-  id: User_id_operator
+  slug: User_id_operator
   AND: [User_where_and]
   OR: [User_where_or]
 }
@@ -3657,7 +3657,7 @@ type UsersDocAccessFields_phones_Delete {
 type UsersDocAccessFields_phones_Fields {
   prefix: UsersDocAccessFields_phones_prefix
   number: UsersDocAccessFields_phones_number
-  id: UsersDocAccessFields_phones_id
+  slug: UsersDocAccessFields_phones_id
 }
 
 type UsersDocAccessFields_phones_prefix {
@@ -3779,7 +3779,7 @@ type UsersDocAccessFields_socials_Delete {
 type UsersDocAccessFields_socials_Fields {
   platform: UsersDocAccessFields_socials_platform
   link: UsersDocAccessFields_socials_link
-  id: UsersDocAccessFields_socials_id
+  slug: UsersDocAccessFields_socials_id
 }
 
 type UsersDocAccessFields_socials_platform {
@@ -4023,7 +4023,7 @@ type usersMe {
 }
 
 type SellBroker {
-  id: String
+  slug: String
   name: String!
   position: String
   email: EmailAddress
@@ -4060,7 +4060,7 @@ input SellBroker_Picture_where {
   sizes__fhd__mimeType: SellBroker_Picture_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: SellBroker_Picture_sizes__fhd__filesize_operator
   sizes__fhd__filename: SellBroker_Picture_sizes__fhd__filename_operator
-  id: SellBroker_Picture_id_operator
+  slug: SellBroker_Picture_id_operator
   AND: [SellBroker_Picture_where_and]
   OR: [SellBroker_Picture_where_or]
 }
@@ -4342,7 +4342,7 @@ input SellBroker_Picture_where_and {
   sizes__fhd__mimeType: SellBroker_Picture_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: SellBroker_Picture_sizes__fhd__filesize_operator
   sizes__fhd__filename: SellBroker_Picture_sizes__fhd__filename_operator
-  id: SellBroker_Picture_id_operator
+  slug: SellBroker_Picture_id_operator
   AND: [SellBroker_Picture_where_and]
   OR: [SellBroker_Picture_where_or]
 }
@@ -4371,7 +4371,7 @@ input SellBroker_Picture_where_or {
   sizes__fhd__mimeType: SellBroker_Picture_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: SellBroker_Picture_sizes__fhd__filesize_operator
   sizes__fhd__filename: SellBroker_Picture_sizes__fhd__filename_operator
-  id: SellBroker_Picture_id_operator
+  slug: SellBroker_Picture_id_operator
   AND: [SellBroker_Picture_where_and]
   OR: [SellBroker_Picture_where_or]
 }
@@ -4379,7 +4379,7 @@ input SellBroker_Picture_where_or {
 type SellBroker_Phones {
   prefix: SellBroker_Phones_prefix
   number: String
-  id: String
+  slug: String
 }
 
 enum SellBroker_Phones_prefix {
@@ -4801,7 +4801,7 @@ enum SellBroker_langs {
 type SellBroker_Socials {
   platform: SellBroker_Socials_platform
   link: String
-  id: String
+  slug: String
 }
 
 enum SellBroker_Socials_platform {
@@ -4812,7 +4812,7 @@ enum SellBroker_Socials_platform {
 
 type SellBroker_Seo {
   value: String
-  id: String
+  slug: String
 }
 
 type SellBrokers {
@@ -4845,7 +4845,7 @@ input SellBroker_where {
   seo__id: SellBroker_seo__id_operator
   updatedAt: SellBroker_updatedAt_operator
   createdAt: SellBroker_createdAt_operator
-  id: SellBroker_id_operator
+  slug: SellBroker_id_operator
   AND: [SellBroker_where_and]
   OR: [SellBroker_where_or]
 }
@@ -5451,7 +5451,7 @@ input SellBroker_where_and {
   seo__id: SellBroker_seo__id_operator
   updatedAt: SellBroker_updatedAt_operator
   createdAt: SellBroker_createdAt_operator
-  id: SellBroker_id_operator
+  slug: SellBroker_id_operator
   AND: [SellBroker_where_and]
   OR: [SellBroker_where_or]
 }
@@ -5472,7 +5472,7 @@ input SellBroker_where_or {
   seo__id: SellBroker_seo__id_operator
   updatedAt: SellBroker_updatedAt_operator
   createdAt: SellBroker_createdAt_operator
-  id: SellBroker_id_operator
+  slug: SellBroker_id_operator
   AND: [SellBroker_where_and]
   OR: [SellBroker_where_or]
 }
@@ -5621,7 +5621,7 @@ type SellBrokersDocAccessFields_phones_Delete {
 type SellBrokersDocAccessFields_phones_Fields {
   prefix: SellBrokersDocAccessFields_phones_prefix
   number: SellBrokersDocAccessFields_phones_number
-  id: SellBrokersDocAccessFields_phones_id
+  slug: SellBrokersDocAccessFields_phones_id
 }
 
 type SellBrokersDocAccessFields_phones_prefix {
@@ -5743,7 +5743,7 @@ type SellBrokersDocAccessFields_socials_Delete {
 type SellBrokersDocAccessFields_socials_Fields {
   platform: SellBrokersDocAccessFields_socials_platform
   link: SellBrokersDocAccessFields_socials_link
-  id: SellBrokersDocAccessFields_socials_id
+  slug: SellBrokersDocAccessFields_socials_id
 }
 
 type SellBrokersDocAccessFields_socials_platform {
@@ -5841,7 +5841,7 @@ type SellBrokersDocAccessFields_seo_Delete {
 
 type SellBrokersDocAccessFields_seo_Fields {
   value: SellBrokersDocAccessFields_seo_value
-  id: SellBrokersDocAccessFields_seo_id
+  slug: SellBrokersDocAccessFields_seo_id
 }
 
 type SellBrokersDocAccessFields_seo_value {
@@ -5957,7 +5957,7 @@ type SellBrokersDeleteDocAccess {
 }
 
 type Yacht {
-  id: String
+  slug: String
   name: String!
   slug: String
   model: String
@@ -6058,7 +6058,7 @@ input Yacht_Photos_Featured_where {
   sizes__fhd__mimeType: Yacht_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Yacht_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: Yacht_Photos_Featured_sizes__fhd__filename_operator
-  id: Yacht_Photos_Featured_id_operator
+  slug: Yacht_Photos_Featured_id_operator
   AND: [Yacht_Photos_Featured_where_and]
   OR: [Yacht_Photos_Featured_where_or]
 }
@@ -6340,7 +6340,7 @@ input Yacht_Photos_Featured_where_and {
   sizes__fhd__mimeType: Yacht_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Yacht_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: Yacht_Photos_Featured_sizes__fhd__filename_operator
-  id: Yacht_Photos_Featured_id_operator
+  slug: Yacht_Photos_Featured_id_operator
   AND: [Yacht_Photos_Featured_where_and]
   OR: [Yacht_Photos_Featured_where_or]
 }
@@ -6369,14 +6369,14 @@ input Yacht_Photos_Featured_where_or {
   sizes__fhd__mimeType: Yacht_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Yacht_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: Yacht_Photos_Featured_sizes__fhd__filename_operator
-  id: Yacht_Photos_Featured_id_operator
+  slug: Yacht_Photos_Featured_id_operator
   AND: [Yacht_Photos_Featured_where_and]
   OR: [Yacht_Photos_Featured_where_or]
 }
 
 type Yacht_Photos_Gallery {
   image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Yacht_Photos_Gallery_Image_where): Media
-  id: String
+  slug: String
 }
 
 input Yacht_Photos_Gallery_Image_where {
@@ -6403,7 +6403,7 @@ input Yacht_Photos_Gallery_Image_where {
   sizes__fhd__mimeType: Yacht_Photos_Gallery_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Yacht_Photos_Gallery_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Yacht_Photos_Gallery_Image_sizes__fhd__filename_operator
-  id: Yacht_Photos_Gallery_Image_id_operator
+  slug: Yacht_Photos_Gallery_Image_id_operator
   AND: [Yacht_Photos_Gallery_Image_where_and]
   OR: [Yacht_Photos_Gallery_Image_where_or]
 }
@@ -6685,7 +6685,7 @@ input Yacht_Photos_Gallery_Image_where_and {
   sizes__fhd__mimeType: Yacht_Photos_Gallery_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Yacht_Photos_Gallery_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Yacht_Photos_Gallery_Image_sizes__fhd__filename_operator
-  id: Yacht_Photos_Gallery_Image_id_operator
+  slug: Yacht_Photos_Gallery_Image_id_operator
   AND: [Yacht_Photos_Gallery_Image_where_and]
   OR: [Yacht_Photos_Gallery_Image_where_or]
 }
@@ -6714,14 +6714,14 @@ input Yacht_Photos_Gallery_Image_where_or {
   sizes__fhd__mimeType: Yacht_Photos_Gallery_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Yacht_Photos_Gallery_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Yacht_Photos_Gallery_Image_sizes__fhd__filename_operator
-  id: Yacht_Photos_Gallery_Image_id_operator
+  slug: Yacht_Photos_Gallery_Image_id_operator
   AND: [Yacht_Photos_Gallery_Image_where_and]
   OR: [Yacht_Photos_Gallery_Image_where_or]
 }
 
 type Yacht_Seo {
   value: String
-  id: String
+  slug: String
 }
 
 type Yachts {
@@ -6782,7 +6782,7 @@ input Yacht_where {
   indexField: Yacht_indexField_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
-  id: Yacht_id_operator
+  slug: Yacht_id_operator
   AND: [Yacht_where_and]
   OR: [Yacht_where_or]
 }
@@ -7272,7 +7272,7 @@ input Yacht_where_and {
   indexField: Yacht_indexField_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
-  id: Yacht_id_operator
+  slug: Yacht_id_operator
   AND: [Yacht_where_and]
   OR: [Yacht_where_or]
 }
@@ -7321,7 +7321,7 @@ input Yacht_where_or {
   indexField: Yacht_indexField_operator
   updatedAt: Yacht_updatedAt_operator
   createdAt: Yacht_createdAt_operator
-  id: Yacht_id_operator
+  slug: Yacht_id_operator
   AND: [Yacht_where_and]
   OR: [Yacht_where_or]
 }
@@ -8172,7 +8172,7 @@ type YachtsDocAccessFields_photos_gallery_Delete {
 
 type YachtsDocAccessFields_photos_gallery_Fields {
   image: YachtsDocAccessFields_photos_gallery_image
-  id: YachtsDocAccessFields_photos_gallery_id
+  slug: YachtsDocAccessFields_photos_gallery_id
 }
 
 type YachtsDocAccessFields_photos_gallery_image {
@@ -8316,7 +8316,7 @@ type YachtsDocAccessFields_seo_Delete {
 
 type YachtsDocAccessFields_seo_Fields {
   value: YachtsDocAccessFields_seo_value
-  id: YachtsDocAccessFields_seo_id
+  slug: YachtsDocAccessFields_seo_id
 }
 
 type YachtsDocAccessFields_seo_value {
@@ -8478,7 +8478,7 @@ type YachtsDeleteDocAccess {
 }
 
 type Charter {
-  id: String
+  slug: String
   name: String!
   slug: String
   model: String
@@ -8585,7 +8585,7 @@ input Charter_Photos_Featured_where {
   sizes__fhd__mimeType: Charter_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Charter_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: Charter_Photos_Featured_sizes__fhd__filename_operator
-  id: Charter_Photos_Featured_id_operator
+  slug: Charter_Photos_Featured_id_operator
   AND: [Charter_Photos_Featured_where_and]
   OR: [Charter_Photos_Featured_where_or]
 }
@@ -8867,7 +8867,7 @@ input Charter_Photos_Featured_where_and {
   sizes__fhd__mimeType: Charter_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Charter_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: Charter_Photos_Featured_sizes__fhd__filename_operator
-  id: Charter_Photos_Featured_id_operator
+  slug: Charter_Photos_Featured_id_operator
   AND: [Charter_Photos_Featured_where_and]
   OR: [Charter_Photos_Featured_where_or]
 }
@@ -8896,14 +8896,14 @@ input Charter_Photos_Featured_where_or {
   sizes__fhd__mimeType: Charter_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Charter_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: Charter_Photos_Featured_sizes__fhd__filename_operator
-  id: Charter_Photos_Featured_id_operator
+  slug: Charter_Photos_Featured_id_operator
   AND: [Charter_Photos_Featured_where_and]
   OR: [Charter_Photos_Featured_where_or]
 }
 
 type Charter_Photos_Gallery {
   image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Charter_Photos_Gallery_Image_where): Media
-  id: String
+  slug: String
 }
 
 input Charter_Photos_Gallery_Image_where {
@@ -8930,7 +8930,7 @@ input Charter_Photos_Gallery_Image_where {
   sizes__fhd__mimeType: Charter_Photos_Gallery_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Charter_Photos_Gallery_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Charter_Photos_Gallery_Image_sizes__fhd__filename_operator
-  id: Charter_Photos_Gallery_Image_id_operator
+  slug: Charter_Photos_Gallery_Image_id_operator
   AND: [Charter_Photos_Gallery_Image_where_and]
   OR: [Charter_Photos_Gallery_Image_where_or]
 }
@@ -9212,7 +9212,7 @@ input Charter_Photos_Gallery_Image_where_and {
   sizes__fhd__mimeType: Charter_Photos_Gallery_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Charter_Photos_Gallery_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Charter_Photos_Gallery_Image_sizes__fhd__filename_operator
-  id: Charter_Photos_Gallery_Image_id_operator
+  slug: Charter_Photos_Gallery_Image_id_operator
   AND: [Charter_Photos_Gallery_Image_where_and]
   OR: [Charter_Photos_Gallery_Image_where_or]
 }
@@ -9241,14 +9241,14 @@ input Charter_Photos_Gallery_Image_where_or {
   sizes__fhd__mimeType: Charter_Photos_Gallery_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Charter_Photos_Gallery_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Charter_Photos_Gallery_Image_sizes__fhd__filename_operator
-  id: Charter_Photos_Gallery_Image_id_operator
+  slug: Charter_Photos_Gallery_Image_id_operator
   AND: [Charter_Photos_Gallery_Image_where_and]
   OR: [Charter_Photos_Gallery_Image_where_or]
 }
 
 type Charter_Seo {
   value: String
-  id: String
+  slug: String
 }
 
 type Charter_Reservations {
@@ -9256,11 +9256,11 @@ type Charter_Reservations {
   to: DateTime
   customerName: String
   customer(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): ArchivedCustomer
-  id: String
+  slug: String
 }
 
 type ArchivedCustomer {
-  id: String
+  slug: String
   closureDate: DateTime!
   name: String!
   email: EmailAddress!
@@ -9395,7 +9395,7 @@ input Charter_where {
   indexField: Charter_indexField_operator
   updatedAt: Charter_updatedAt_operator
   createdAt: Charter_createdAt_operator
-  id: Charter_id_operator
+  slug: Charter_id_operator
   AND: [Charter_where_and]
   OR: [Charter_where_or]
 }
@@ -9954,7 +9954,7 @@ input Charter_where_and {
   indexField: Charter_indexField_operator
   updatedAt: Charter_updatedAt_operator
   createdAt: Charter_createdAt_operator
-  id: Charter_id_operator
+  slug: Charter_id_operator
   AND: [Charter_where_and]
   OR: [Charter_where_or]
 }
@@ -10009,7 +10009,7 @@ input Charter_where_or {
   indexField: Charter_indexField_operator
   updatedAt: Charter_updatedAt_operator
   createdAt: Charter_createdAt_operator
-  id: Charter_id_operator
+  slug: Charter_id_operator
   AND: [Charter_where_and]
   OR: [Charter_where_or]
 }
@@ -10913,7 +10913,7 @@ type ChartersDocAccessFields_photos_gallery_Delete {
 
 type ChartersDocAccessFields_photos_gallery_Fields {
   image: ChartersDocAccessFields_photos_gallery_image
-  id: ChartersDocAccessFields_photos_gallery_id
+  slug: ChartersDocAccessFields_photos_gallery_id
 }
 
 type ChartersDocAccessFields_photos_gallery_image {
@@ -11057,7 +11057,7 @@ type ChartersDocAccessFields_seo_Delete {
 
 type ChartersDocAccessFields_seo_Fields {
   value: ChartersDocAccessFields_seo_value
-  id: ChartersDocAccessFields_seo_id
+  slug: ChartersDocAccessFields_seo_id
 }
 
 type ChartersDocAccessFields_seo_value {
@@ -11158,7 +11158,7 @@ type ChartersDocAccessFields_reservations_Fields {
   to: ChartersDocAccessFields_reservations_to
   customerName: ChartersDocAccessFields_reservations_customerName
   customer: ChartersDocAccessFields_reservations_customer
-  id: ChartersDocAccessFields_reservations_id
+  slug: ChartersDocAccessFields_reservations_id
 }
 
 type ChartersDocAccessFields_reservations_from {
@@ -11383,7 +11383,7 @@ input Category_where {
   title: Category_title_operator
   updatedAt: Category_updatedAt_operator
   createdAt: Category_createdAt_operator
-  id: Category_id_operator
+  slug: Category_id_operator
   AND: [Category_where_and]
   OR: [Category_where_or]
 }
@@ -11436,7 +11436,7 @@ input Category_where_and {
   title: Category_title_operator
   updatedAt: Category_updatedAt_operator
   createdAt: Category_createdAt_operator
-  id: Category_id_operator
+  slug: Category_id_operator
   AND: [Category_where_and]
   OR: [Category_where_or]
 }
@@ -11445,7 +11445,7 @@ input Category_where_or {
   title: Category_title_operator
   updatedAt: Category_updatedAt_operator
   createdAt: Category_createdAt_operator
-  id: Category_id_operator
+  slug: Category_id_operator
   AND: [Category_where_and]
   OR: [Category_where_or]
 }
@@ -11558,7 +11558,7 @@ type CategoriesDeleteDocAccess {
 }
 
 type Destination {
-  id: String
+  slug: String
   destination: String
   slug: String
   country: String
@@ -11603,7 +11603,7 @@ input Destination_Photos_Featured_where {
   sizes__fhd__mimeType: Destination_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Destination_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: Destination_Photos_Featured_sizes__fhd__filename_operator
-  id: Destination_Photos_Featured_id_operator
+  slug: Destination_Photos_Featured_id_operator
   AND: [Destination_Photos_Featured_where_and]
   OR: [Destination_Photos_Featured_where_or]
 }
@@ -11885,7 +11885,7 @@ input Destination_Photos_Featured_where_and {
   sizes__fhd__mimeType: Destination_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Destination_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: Destination_Photos_Featured_sizes__fhd__filename_operator
-  id: Destination_Photos_Featured_id_operator
+  slug: Destination_Photos_Featured_id_operator
   AND: [Destination_Photos_Featured_where_and]
   OR: [Destination_Photos_Featured_where_or]
 }
@@ -11914,7 +11914,7 @@ input Destination_Photos_Featured_where_or {
   sizes__fhd__mimeType: Destination_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Destination_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: Destination_Photos_Featured_sizes__fhd__filename_operator
-  id: Destination_Photos_Featured_id_operator
+  slug: Destination_Photos_Featured_id_operator
   AND: [Destination_Photos_Featured_where_and]
   OR: [Destination_Photos_Featured_where_or]
 }
@@ -11943,7 +11943,7 @@ input Destination_Photos_DestinationPhoto_where {
   sizes__fhd__mimeType: Destination_Photos_DestinationPhoto_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Destination_Photos_DestinationPhoto_sizes__fhd__filesize_operator
   sizes__fhd__filename: Destination_Photos_DestinationPhoto_sizes__fhd__filename_operator
-  id: Destination_Photos_DestinationPhoto_id_operator
+  slug: Destination_Photos_DestinationPhoto_id_operator
   AND: [Destination_Photos_DestinationPhoto_where_and]
   OR: [Destination_Photos_DestinationPhoto_where_or]
 }
@@ -12225,7 +12225,7 @@ input Destination_Photos_DestinationPhoto_where_and {
   sizes__fhd__mimeType: Destination_Photos_DestinationPhoto_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Destination_Photos_DestinationPhoto_sizes__fhd__filesize_operator
   sizes__fhd__filename: Destination_Photos_DestinationPhoto_sizes__fhd__filename_operator
-  id: Destination_Photos_DestinationPhoto_id_operator
+  slug: Destination_Photos_DestinationPhoto_id_operator
   AND: [Destination_Photos_DestinationPhoto_where_and]
   OR: [Destination_Photos_DestinationPhoto_where_or]
 }
@@ -12254,7 +12254,7 @@ input Destination_Photos_DestinationPhoto_where_or {
   sizes__fhd__mimeType: Destination_Photos_DestinationPhoto_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Destination_Photos_DestinationPhoto_sizes__fhd__filesize_operator
   sizes__fhd__filename: Destination_Photos_DestinationPhoto_sizes__fhd__filename_operator
-  id: Destination_Photos_DestinationPhoto_id_operator
+  slug: Destination_Photos_DestinationPhoto_id_operator
   AND: [Destination_Photos_DestinationPhoto_where_and]
   OR: [Destination_Photos_DestinationPhoto_where_or]
 }
@@ -12268,7 +12268,7 @@ type Destination_Info {
 
 type Destination_Seo {
   value: String
-  id: String
+  slug: String
 }
 
 type Destinations {
@@ -12304,7 +12304,7 @@ input Destination_where {
   indexField: Destination_indexField_operator
   updatedAt: Destination_updatedAt_operator
   createdAt: Destination_createdAt_operator
-  id: Destination_id_operator
+  slug: Destination_id_operator
   AND: [Destination_where_and]
   OR: [Destination_where_or]
 }
@@ -12516,7 +12516,7 @@ input Destination_where_and {
   indexField: Destination_indexField_operator
   updatedAt: Destination_updatedAt_operator
   createdAt: Destination_createdAt_operator
-  id: Destination_id_operator
+  slug: Destination_id_operator
   AND: [Destination_where_and]
   OR: [Destination_where_or]
 }
@@ -12540,7 +12540,7 @@ input Destination_where_or {
   indexField: Destination_indexField_operator
   updatedAt: Destination_updatedAt_operator
   createdAt: Destination_createdAt_operator
-  id: Destination_id_operator
+  slug: Destination_id_operator
   AND: [Destination_where_and]
   OR: [Destination_where_or]
 }
@@ -12958,7 +12958,7 @@ type DestinationsDocAccessFields_seo_Delete {
 
 type DestinationsDocAccessFields_seo_Fields {
   value: DestinationsDocAccessFields_seo_value
-  id: DestinationsDocAccessFields_seo_id
+  slug: DestinationsDocAccessFields_seo_id
 }
 
 type DestinationsDocAccessFields_seo_value {
@@ -13097,7 +13097,7 @@ type DestinationsDeleteDocAccess {
 }
 
 type Event {
-  id: String
+  slug: String
   title: String
   slug: String
   fromDate: DateTime!
@@ -13140,7 +13140,7 @@ input Event_Image_where {
   sizes__fhd__mimeType: Event_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Event_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Event_Image_sizes__fhd__filename_operator
-  id: Event_Image_id_operator
+  slug: Event_Image_id_operator
   AND: [Event_Image_where_and]
   OR: [Event_Image_where_or]
 }
@@ -13422,7 +13422,7 @@ input Event_Image_where_and {
   sizes__fhd__mimeType: Event_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Event_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Event_Image_sizes__fhd__filename_operator
-  id: Event_Image_id_operator
+  slug: Event_Image_id_operator
   AND: [Event_Image_where_and]
   OR: [Event_Image_where_or]
 }
@@ -13451,14 +13451,14 @@ input Event_Image_where_or {
   sizes__fhd__mimeType: Event_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Event_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: Event_Image_sizes__fhd__filename_operator
-  id: Event_Image_id_operator
+  slug: Event_Image_id_operator
   AND: [Event_Image_where_and]
   OR: [Event_Image_where_or]
 }
 
 type Event_Seo {
   value: String
-  id: String
+  slug: String
 }
 
 type Events {
@@ -13489,7 +13489,7 @@ input Event_where {
   seo__id: Event_seo__id_operator
   updatedAt: Event_updatedAt_operator
   createdAt: Event_createdAt_operator
-  id: Event_id_operator
+  slug: Event_id_operator
   AND: [Event_where_and]
   OR: [Event_where_or]
 }
@@ -13648,7 +13648,7 @@ input Event_where_and {
   seo__id: Event_seo__id_operator
   updatedAt: Event_updatedAt_operator
   createdAt: Event_createdAt_operator
-  id: Event_id_operator
+  slug: Event_id_operator
   AND: [Event_where_and]
   OR: [Event_where_or]
 }
@@ -13667,7 +13667,7 @@ input Event_where_or {
   seo__id: Event_seo__id_operator
   updatedAt: Event_updatedAt_operator
   createdAt: Event_createdAt_operator
-  id: Event_id_operator
+  slug: Event_id_operator
   AND: [Event_where_and]
   OR: [Event_where_or]
 }
@@ -13960,7 +13960,7 @@ type EventsDocAccessFields_seo_Delete {
 
 type EventsDocAccessFields_seo_Fields {
   value: EventsDocAccessFields_seo_value
-  id: EventsDocAccessFields_seo_id
+  slug: EventsDocAccessFields_seo_id
 }
 
 type EventsDocAccessFields_seo_value {
@@ -14076,7 +14076,7 @@ type EventsDeleteDocAccess {
 }
 
 type Partner {
-  id: String
+  slug: String
   name: String!
   comment: String
   website: String
@@ -14112,7 +14112,7 @@ input Partner_Logo_where {
   sizes__fhd__mimeType: Partner_Logo_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Partner_Logo_sizes__fhd__filesize_operator
   sizes__fhd__filename: Partner_Logo_sizes__fhd__filename_operator
-  id: Partner_Logo_id_operator
+  slug: Partner_Logo_id_operator
   AND: [Partner_Logo_where_and]
   OR: [Partner_Logo_where_or]
 }
@@ -14394,7 +14394,7 @@ input Partner_Logo_where_and {
   sizes__fhd__mimeType: Partner_Logo_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Partner_Logo_sizes__fhd__filesize_operator
   sizes__fhd__filename: Partner_Logo_sizes__fhd__filename_operator
-  id: Partner_Logo_id_operator
+  slug: Partner_Logo_id_operator
   AND: [Partner_Logo_where_and]
   OR: [Partner_Logo_where_or]
 }
@@ -14423,7 +14423,7 @@ input Partner_Logo_where_or {
   sizes__fhd__mimeType: Partner_Logo_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Partner_Logo_sizes__fhd__filesize_operator
   sizes__fhd__filename: Partner_Logo_sizes__fhd__filename_operator
-  id: Partner_Logo_id_operator
+  slug: Partner_Logo_id_operator
   AND: [Partner_Logo_where_and]
   OR: [Partner_Logo_where_or]
 }
@@ -14452,7 +14452,7 @@ input Partner_Banner_where {
   sizes__fhd__mimeType: Partner_Banner_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Partner_Banner_sizes__fhd__filesize_operator
   sizes__fhd__filename: Partner_Banner_sizes__fhd__filename_operator
-  id: Partner_Banner_id_operator
+  slug: Partner_Banner_id_operator
   AND: [Partner_Banner_where_and]
   OR: [Partner_Banner_where_or]
 }
@@ -14734,7 +14734,7 @@ input Partner_Banner_where_and {
   sizes__fhd__mimeType: Partner_Banner_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Partner_Banner_sizes__fhd__filesize_operator
   sizes__fhd__filename: Partner_Banner_sizes__fhd__filename_operator
-  id: Partner_Banner_id_operator
+  slug: Partner_Banner_id_operator
   AND: [Partner_Banner_where_and]
   OR: [Partner_Banner_where_or]
 }
@@ -14763,14 +14763,14 @@ input Partner_Banner_where_or {
   sizes__fhd__mimeType: Partner_Banner_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Partner_Banner_sizes__fhd__filesize_operator
   sizes__fhd__filename: Partner_Banner_sizes__fhd__filename_operator
-  id: Partner_Banner_id_operator
+  slug: Partner_Banner_id_operator
   AND: [Partner_Banner_where_and]
   OR: [Partner_Banner_where_or]
 }
 
 type Partner_Seo {
   value: String
-  id: String
+  slug: String
 }
 
 type Partners {
@@ -14798,7 +14798,7 @@ input Partner_where {
   indexField: Partner_indexField_operator
   updatedAt: Partner_updatedAt_operator
   createdAt: Partner_createdAt_operator
-  id: Partner_id_operator
+  slug: Partner_id_operator
   AND: [Partner_where_and]
   OR: [Partner_where_or]
 }
@@ -14917,7 +14917,7 @@ input Partner_where_and {
   indexField: Partner_indexField_operator
   updatedAt: Partner_updatedAt_operator
   createdAt: Partner_createdAt_operator
-  id: Partner_id_operator
+  slug: Partner_id_operator
   AND: [Partner_where_and]
   OR: [Partner_where_or]
 }
@@ -14933,7 +14933,7 @@ input Partner_where_or {
   indexField: Partner_indexField_operator
   updatedAt: Partner_updatedAt_operator
   createdAt: Partner_createdAt_operator
-  id: Partner_id_operator
+  slug: Partner_id_operator
   AND: [Partner_where_and]
   OR: [Partner_where_or]
 }
@@ -15103,7 +15103,7 @@ type PartnersDocAccessFields_seo_Delete {
 
 type PartnersDocAccessFields_seo_Fields {
   value: PartnersDocAccessFields_seo_value
-  id: PartnersDocAccessFields_seo_id
+  slug: PartnersDocAccessFields_seo_id
 }
 
 type PartnersDocAccessFields_seo_value {
@@ -15242,7 +15242,7 @@ type PartnersDeleteDocAccess {
 }
 
 type Shipyard {
-  id: String
+  slug: String
   name: String!
   quote: String
   website: String!
@@ -15277,7 +15277,7 @@ input Shipyard_Logo_where {
   sizes__fhd__mimeType: Shipyard_Logo_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Shipyard_Logo_sizes__fhd__filesize_operator
   sizes__fhd__filename: Shipyard_Logo_sizes__fhd__filename_operator
-  id: Shipyard_Logo_id_operator
+  slug: Shipyard_Logo_id_operator
   AND: [Shipyard_Logo_where_and]
   OR: [Shipyard_Logo_where_or]
 }
@@ -15559,7 +15559,7 @@ input Shipyard_Logo_where_and {
   sizes__fhd__mimeType: Shipyard_Logo_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Shipyard_Logo_sizes__fhd__filesize_operator
   sizes__fhd__filename: Shipyard_Logo_sizes__fhd__filename_operator
-  id: Shipyard_Logo_id_operator
+  slug: Shipyard_Logo_id_operator
   AND: [Shipyard_Logo_where_and]
   OR: [Shipyard_Logo_where_or]
 }
@@ -15588,7 +15588,7 @@ input Shipyard_Logo_where_or {
   sizes__fhd__mimeType: Shipyard_Logo_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Shipyard_Logo_sizes__fhd__filesize_operator
   sizes__fhd__filename: Shipyard_Logo_sizes__fhd__filename_operator
-  id: Shipyard_Logo_id_operator
+  slug: Shipyard_Logo_id_operator
   AND: [Shipyard_Logo_where_and]
   OR: [Shipyard_Logo_where_or]
 }
@@ -15617,7 +15617,7 @@ input Shipyard_Banner_where {
   sizes__fhd__mimeType: Shipyard_Banner_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Shipyard_Banner_sizes__fhd__filesize_operator
   sizes__fhd__filename: Shipyard_Banner_sizes__fhd__filename_operator
-  id: Shipyard_Banner_id_operator
+  slug: Shipyard_Banner_id_operator
   AND: [Shipyard_Banner_where_and]
   OR: [Shipyard_Banner_where_or]
 }
@@ -15899,7 +15899,7 @@ input Shipyard_Banner_where_and {
   sizes__fhd__mimeType: Shipyard_Banner_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Shipyard_Banner_sizes__fhd__filesize_operator
   sizes__fhd__filename: Shipyard_Banner_sizes__fhd__filename_operator
-  id: Shipyard_Banner_id_operator
+  slug: Shipyard_Banner_id_operator
   AND: [Shipyard_Banner_where_and]
   OR: [Shipyard_Banner_where_or]
 }
@@ -15928,7 +15928,7 @@ input Shipyard_Banner_where_or {
   sizes__fhd__mimeType: Shipyard_Banner_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Shipyard_Banner_sizes__fhd__filesize_operator
   sizes__fhd__filename: Shipyard_Banner_sizes__fhd__filename_operator
-  id: Shipyard_Banner_id_operator
+  slug: Shipyard_Banner_id_operator
   AND: [Shipyard_Banner_where_and]
   OR: [Shipyard_Banner_where_or]
 }
@@ -15956,7 +15956,7 @@ input Shipyard_where {
   indexField: Shipyard_indexField_operator
   updatedAt: Shipyard_updatedAt_operator
   createdAt: Shipyard_createdAt_operator
-  id: Shipyard_id_operator
+  slug: Shipyard_id_operator
   AND: [Shipyard_where_and]
   OR: [Shipyard_where_or]
 }
@@ -16050,7 +16050,7 @@ input Shipyard_where_and {
   indexField: Shipyard_indexField_operator
   updatedAt: Shipyard_updatedAt_operator
   createdAt: Shipyard_createdAt_operator
-  id: Shipyard_id_operator
+  slug: Shipyard_id_operator
   AND: [Shipyard_where_and]
   OR: [Shipyard_where_or]
 }
@@ -16064,7 +16064,7 @@ input Shipyard_where_or {
   indexField: Shipyard_indexField_operator
   updatedAt: Shipyard_updatedAt_operator
   createdAt: Shipyard_createdAt_operator
-  id: Shipyard_id_operator
+  slug: Shipyard_id_operator
   AND: [Shipyard_where_and]
   OR: [Shipyard_where_or]
 }
@@ -16297,7 +16297,7 @@ type ShipyardsDeleteDocAccess {
 }
 
 type Recruitment {
-  id: String
+  slug: String
   title: String
   description(depth: Int): JSON
   updatedAt: DateTime
@@ -16323,7 +16323,7 @@ input Recruitment_where {
   description: Recruitment_description_operator
   updatedAt: Recruitment_updatedAt_operator
   createdAt: Recruitment_createdAt_operator
-  id: Recruitment_id_operator
+  slug: Recruitment_id_operator
   AND: [Recruitment_where_and]
   OR: [Recruitment_where_or]
 }
@@ -16383,7 +16383,7 @@ input Recruitment_where_and {
   description: Recruitment_description_operator
   updatedAt: Recruitment_updatedAt_operator
   createdAt: Recruitment_createdAt_operator
-  id: Recruitment_id_operator
+  slug: Recruitment_id_operator
   AND: [Recruitment_where_and]
   OR: [Recruitment_where_or]
 }
@@ -16393,7 +16393,7 @@ input Recruitment_where_or {
   description: Recruitment_description_operator
   updatedAt: Recruitment_updatedAt_operator
   createdAt: Recruitment_createdAt_operator
-  id: Recruitment_id_operator
+  slug: Recruitment_id_operator
   AND: [Recruitment_where_and]
   OR: [Recruitment_where_or]
 }
@@ -16530,7 +16530,7 @@ type RecruitmentDeleteDocAccess {
 }
 
 type Sold {
-  id: String
+  slug: String
   name: String!
   price: Float!
   yearBuilt: Float!
@@ -16567,7 +16567,7 @@ input Sold_Picture_where {
   sizes__fhd__mimeType: Sold_Picture_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Sold_Picture_sizes__fhd__filesize_operator
   sizes__fhd__filename: Sold_Picture_sizes__fhd__filename_operator
-  id: Sold_Picture_id_operator
+  slug: Sold_Picture_id_operator
   AND: [Sold_Picture_where_and]
   OR: [Sold_Picture_where_or]
 }
@@ -16849,7 +16849,7 @@ input Sold_Picture_where_and {
   sizes__fhd__mimeType: Sold_Picture_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Sold_Picture_sizes__fhd__filesize_operator
   sizes__fhd__filename: Sold_Picture_sizes__fhd__filename_operator
-  id: Sold_Picture_id_operator
+  slug: Sold_Picture_id_operator
   AND: [Sold_Picture_where_and]
   OR: [Sold_Picture_where_or]
 }
@@ -16878,14 +16878,14 @@ input Sold_Picture_where_or {
   sizes__fhd__mimeType: Sold_Picture_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: Sold_Picture_sizes__fhd__filesize_operator
   sizes__fhd__filename: Sold_Picture_sizes__fhd__filename_operator
-  id: Sold_Picture_id_operator
+  slug: Sold_Picture_id_operator
   AND: [Sold_Picture_where_and]
   OR: [Sold_Picture_where_or]
 }
 
 type Sold_Seo {
   value: String
-  id: String
+  slug: String
 }
 
 type Solds {
@@ -16914,7 +16914,7 @@ input Sold_where {
   seo__id: Sold_seo__id_operator
   updatedAt: Sold_updatedAt_operator
   createdAt: Sold_createdAt_operator
-  id: Sold_id_operator
+  slug: Sold_id_operator
   AND: [Sold_where_and]
   OR: [Sold_where_or]
 }
@@ -17048,7 +17048,7 @@ input Sold_where_and {
   seo__id: Sold_seo__id_operator
   updatedAt: Sold_updatedAt_operator
   createdAt: Sold_createdAt_operator
-  id: Sold_id_operator
+  slug: Sold_id_operator
   AND: [Sold_where_and]
   OR: [Sold_where_or]
 }
@@ -17065,7 +17065,7 @@ input Sold_where_or {
   seo__id: Sold_seo__id_operator
   updatedAt: Sold_updatedAt_operator
   createdAt: Sold_createdAt_operator
-  id: Sold_id_operator
+  slug: Sold_id_operator
   AND: [Sold_where_and]
   OR: [Sold_where_or]
 }
@@ -17282,7 +17282,7 @@ type SoldsDocAccessFields_seo_Delete {
 
 type SoldsDocAccessFields_seo_Fields {
   value: SoldsDocAccessFields_seo_value
-  id: SoldsDocAccessFields_seo_id
+  slug: SoldsDocAccessFields_seo_id
 }
 
 type SoldsDocAccessFields_seo_value {
@@ -17398,7 +17398,7 @@ type SoldsDeleteDocAccess {
 }
 
 type NewConstruction {
-  id: String
+  slug: String
   delivery: String!
   name: String!
   slug: String
@@ -17500,7 +17500,7 @@ input NewConstruction_Photos_Featured_where {
   sizes__fhd__mimeType: NewConstruction_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: NewConstruction_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: NewConstruction_Photos_Featured_sizes__fhd__filename_operator
-  id: NewConstruction_Photos_Featured_id_operator
+  slug: NewConstruction_Photos_Featured_id_operator
   AND: [NewConstruction_Photos_Featured_where_and]
   OR: [NewConstruction_Photos_Featured_where_or]
 }
@@ -17782,7 +17782,7 @@ input NewConstruction_Photos_Featured_where_and {
   sizes__fhd__mimeType: NewConstruction_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: NewConstruction_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: NewConstruction_Photos_Featured_sizes__fhd__filename_operator
-  id: NewConstruction_Photos_Featured_id_operator
+  slug: NewConstruction_Photos_Featured_id_operator
   AND: [NewConstruction_Photos_Featured_where_and]
   OR: [NewConstruction_Photos_Featured_where_or]
 }
@@ -17811,14 +17811,14 @@ input NewConstruction_Photos_Featured_where_or {
   sizes__fhd__mimeType: NewConstruction_Photos_Featured_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: NewConstruction_Photos_Featured_sizes__fhd__filesize_operator
   sizes__fhd__filename: NewConstruction_Photos_Featured_sizes__fhd__filename_operator
-  id: NewConstruction_Photos_Featured_id_operator
+  slug: NewConstruction_Photos_Featured_id_operator
   AND: [NewConstruction_Photos_Featured_where_and]
   OR: [NewConstruction_Photos_Featured_where_or]
 }
 
 type NewConstruction_Photos_Gallery {
   image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: NewConstruction_Photos_Gallery_Image_where): Media
-  id: String
+  slug: String
 }
 
 input NewConstruction_Photos_Gallery_Image_where {
@@ -17845,7 +17845,7 @@ input NewConstruction_Photos_Gallery_Image_where {
   sizes__fhd__mimeType: NewConstruction_Photos_Gallery_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: NewConstruction_Photos_Gallery_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: NewConstruction_Photos_Gallery_Image_sizes__fhd__filename_operator
-  id: NewConstruction_Photos_Gallery_Image_id_operator
+  slug: NewConstruction_Photos_Gallery_Image_id_operator
   AND: [NewConstruction_Photos_Gallery_Image_where_and]
   OR: [NewConstruction_Photos_Gallery_Image_where_or]
 }
@@ -18127,7 +18127,7 @@ input NewConstruction_Photos_Gallery_Image_where_and {
   sizes__fhd__mimeType: NewConstruction_Photos_Gallery_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: NewConstruction_Photos_Gallery_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: NewConstruction_Photos_Gallery_Image_sizes__fhd__filename_operator
-  id: NewConstruction_Photos_Gallery_Image_id_operator
+  slug: NewConstruction_Photos_Gallery_Image_id_operator
   AND: [NewConstruction_Photos_Gallery_Image_where_and]
   OR: [NewConstruction_Photos_Gallery_Image_where_or]
 }
@@ -18156,14 +18156,14 @@ input NewConstruction_Photos_Gallery_Image_where_or {
   sizes__fhd__mimeType: NewConstruction_Photos_Gallery_Image_sizes__fhd__mimeType_operator
   sizes__fhd__filesize: NewConstruction_Photos_Gallery_Image_sizes__fhd__filesize_operator
   sizes__fhd__filename: NewConstruction_Photos_Gallery_Image_sizes__fhd__filename_operator
-  id: NewConstruction_Photos_Gallery_Image_id_operator
+  slug: NewConstruction_Photos_Gallery_Image_id_operator
   AND: [NewConstruction_Photos_Gallery_Image_where_and]
   OR: [NewConstruction_Photos_Gallery_Image_where_or]
 }
 
 type NewConstruction_Seo {
   value: String
-  id: String
+  slug: String
 }
 
 type NewConstructions {
@@ -18225,7 +18225,7 @@ input NewConstruction_where {
   indexField: NewConstruction_indexField_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
-  id: NewConstruction_id_operator
+  slug: NewConstruction_id_operator
   AND: [NewConstruction_where_and]
   OR: [NewConstruction_where_or]
 }
@@ -18726,7 +18726,7 @@ input NewConstruction_where_and {
   indexField: NewConstruction_indexField_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
-  id: NewConstruction_id_operator
+  slug: NewConstruction_id_operator
   AND: [NewConstruction_where_and]
   OR: [NewConstruction_where_or]
 }
@@ -18776,7 +18776,7 @@ input NewConstruction_where_or {
   indexField: NewConstruction_indexField_operator
   updatedAt: NewConstruction_updatedAt_operator
   createdAt: NewConstruction_createdAt_operator
-  id: NewConstruction_id_operator
+  slug: NewConstruction_id_operator
   AND: [NewConstruction_where_and]
   OR: [NewConstruction_where_or]
 }
@@ -19651,7 +19651,7 @@ type NewConstructionsDocAccessFields_photos_gallery_Delete {
 
 type NewConstructionsDocAccessFields_photos_gallery_Fields {
   image: NewConstructionsDocAccessFields_photos_gallery_image
-  id: NewConstructionsDocAccessFields_photos_gallery_id
+  slug: NewConstructionsDocAccessFields_photos_gallery_id
 }
 
 type NewConstructionsDocAccessFields_photos_gallery_image {
@@ -19795,7 +19795,7 @@ type NewConstructionsDocAccessFields_seo_Delete {
 
 type NewConstructionsDocAccessFields_seo_Fields {
   value: NewConstructionsDocAccessFields_seo_value
-  id: NewConstructionsDocAccessFields_seo_id
+  slug: NewConstructionsDocAccessFields_seo_id
 }
 
 type NewConstructionsDocAccessFields_seo_value {
@@ -19957,7 +19957,7 @@ type NewConstructionsDeleteDocAccess {
 }
 
 type Message {
-  id: String
+  slug: String
   name: String!
   email: EmailAddress!
   tel: String
@@ -20024,7 +20024,7 @@ input Message_where {
   charterDates__to: Message_charterDates__to_operator
   updatedAt: Message_updatedAt_operator
   createdAt: Message_createdAt_operator
-  id: Message_id_operator
+  slug: Message_id_operator
   AND: [Message_where_and]
   OR: [Message_where_or]
 }
@@ -20228,7 +20228,7 @@ input Message_where_and {
   charterDates__to: Message_charterDates__to_operator
   updatedAt: Message_updatedAt_operator
   createdAt: Message_createdAt_operator
-  id: Message_id_operator
+  slug: Message_id_operator
   AND: [Message_where_and]
   OR: [Message_where_or]
 }
@@ -20251,7 +20251,7 @@ input Message_where_or {
   charterDates__to: Message_charterDates__to_operator
   updatedAt: Message_updatedAt_operator
   createdAt: Message_createdAt_operator
-  id: Message_id_operator
+  slug: Message_id_operator
   AND: [Message_where_and]
   OR: [Message_where_or]
 }
@@ -20783,7 +20783,7 @@ input ArchivedCustomer_where {
   charterDates__to: ArchivedCustomer_charterDates__to_operator
   updatedAt: ArchivedCustomer_updatedAt_operator
   createdAt: ArchivedCustomer_createdAt_operator
-  id: ArchivedCustomer_id_operator
+  slug: ArchivedCustomer_id_operator
   AND: [ArchivedCustomer_where_and]
   OR: [ArchivedCustomer_where_or]
 }
@@ -21267,7 +21267,7 @@ input ArchivedCustomer_where_and {
   charterDates__to: ArchivedCustomer_charterDates__to_operator
   updatedAt: ArchivedCustomer_updatedAt_operator
   createdAt: ArchivedCustomer_createdAt_operator
-  id: ArchivedCustomer_id_operator
+  slug: ArchivedCustomer_id_operator
   AND: [ArchivedCustomer_where_and]
   OR: [ArchivedCustomer_where_or]
 }
@@ -21314,7 +21314,7 @@ input ArchivedCustomer_where_or {
   charterDates__to: ArchivedCustomer_charterDates__to_operator
   updatedAt: ArchivedCustomer_updatedAt_operator
   createdAt: ArchivedCustomer_createdAt_operator
-  id: ArchivedCustomer_id_operator
+  slug: ArchivedCustomer_id_operator
   AND: [ArchivedCustomer_where_and]
   OR: [ArchivedCustomer_where_or]
 }
@@ -22451,7 +22451,7 @@ type ArchivedCustomersDeleteDocAccess {
 }
 
 type PayloadPreference {
-  id: String
+  slug: String
   user(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): PayloadPreference_User_Relationship!
   key: String
   value: JSON
@@ -22490,7 +22490,7 @@ input PayloadPreference_where {
   value: PayloadPreference_value_operator
   updatedAt: PayloadPreference_updatedAt_operator
   createdAt: PayloadPreference_createdAt_operator
-  id: PayloadPreference_id_operator
+  slug: PayloadPreference_id_operator
   AND: [PayloadPreference_where_and]
   OR: [PayloadPreference_where_or]
 }
@@ -22564,7 +22564,7 @@ input PayloadPreference_where_and {
   value: PayloadPreference_value_operator
   updatedAt: PayloadPreference_updatedAt_operator
   createdAt: PayloadPreference_createdAt_operator
-  id: PayloadPreference_id_operator
+  slug: PayloadPreference_id_operator
   AND: [PayloadPreference_where_and]
   OR: [PayloadPreference_where_or]
 }
@@ -22575,7 +22575,7 @@ input PayloadPreference_where_or {
   value: PayloadPreference_value_operator
   updatedAt: PayloadPreference_updatedAt_operator
   createdAt: PayloadPreference_createdAt_operator
-  id: PayloadPreference_id_operator
+  slug: PayloadPreference_id_operator
   AND: [PayloadPreference_where_and]
   OR: [PayloadPreference_where_or]
 }
@@ -22964,7 +22964,7 @@ type ArticlesFields_seo_Delete {
 
 type ArticlesFields_seo_Fields {
   value: ArticlesFields_seo_value
-  id: ArticlesFields_seo_id
+  slug: ArticlesFields_seo_id
 }
 
 type ArticlesFields_seo_value {
@@ -23890,7 +23890,7 @@ type UsersFields_phones_Delete {
 type UsersFields_phones_Fields {
   prefix: UsersFields_phones_prefix
   number: UsersFields_phones_number
-  id: UsersFields_phones_id
+  slug: UsersFields_phones_id
 }
 
 type UsersFields_phones_prefix {
@@ -24012,7 +24012,7 @@ type UsersFields_socials_Delete {
 type UsersFields_socials_Fields {
   platform: UsersFields_socials_platform
   link: UsersFields_socials_link
-  id: UsersFields_socials_id
+  slug: UsersFields_socials_id
 }
 
 type UsersFields_socials_platform {
@@ -24387,7 +24387,7 @@ type SellBrokersFields_phones_Delete {
 type SellBrokersFields_phones_Fields {
   prefix: SellBrokersFields_phones_prefix
   number: SellBrokersFields_phones_number
-  id: SellBrokersFields_phones_id
+  slug: SellBrokersFields_phones_id
 }
 
 type SellBrokersFields_phones_prefix {
@@ -24509,7 +24509,7 @@ type SellBrokersFields_socials_Delete {
 type SellBrokersFields_socials_Fields {
   platform: SellBrokersFields_socials_platform
   link: SellBrokersFields_socials_link
-  id: SellBrokersFields_socials_id
+  slug: SellBrokersFields_socials_id
 }
 
 type SellBrokersFields_socials_platform {
@@ -24607,7 +24607,7 @@ type SellBrokersFields_seo_Delete {
 
 type SellBrokersFields_seo_Fields {
   value: SellBrokersFields_seo_value
-  id: SellBrokersFields_seo_id
+  slug: SellBrokersFields_seo_id
 }
 
 type SellBrokersFields_seo_value {
@@ -25564,7 +25564,7 @@ type YachtsFields_photos_gallery_Delete {
 
 type YachtsFields_photos_gallery_Fields {
   image: YachtsFields_photos_gallery_image
-  id: YachtsFields_photos_gallery_id
+  slug: YachtsFields_photos_gallery_id
 }
 
 type YachtsFields_photos_gallery_image {
@@ -25708,7 +25708,7 @@ type YachtsFields_seo_Delete {
 
 type YachtsFields_seo_Fields {
   value: YachtsFields_seo_value
-  id: YachtsFields_seo_id
+  slug: YachtsFields_seo_id
 }
 
 type YachtsFields_seo_value {
@@ -26764,7 +26764,7 @@ type ChartersFields_photos_gallery_Delete {
 
 type ChartersFields_photos_gallery_Fields {
   image: ChartersFields_photos_gallery_image
-  id: ChartersFields_photos_gallery_id
+  slug: ChartersFields_photos_gallery_id
 }
 
 type ChartersFields_photos_gallery_image {
@@ -26908,7 +26908,7 @@ type ChartersFields_seo_Delete {
 
 type ChartersFields_seo_Fields {
   value: ChartersFields_seo_value
-  id: ChartersFields_seo_id
+  slug: ChartersFields_seo_id
 }
 
 type ChartersFields_seo_value {
@@ -27009,7 +27009,7 @@ type ChartersFields_reservations_Fields {
   to: ChartersFields_reservations_to
   customerName: ChartersFields_reservations_customerName
   customer: ChartersFields_reservations_customer
-  id: ChartersFields_reservations_id
+  slug: ChartersFields_reservations_id
 }
 
 type ChartersFields_reservations_from {
@@ -27728,7 +27728,7 @@ type DestinationsFields_seo_Delete {
 
 type DestinationsFields_seo_Fields {
   value: DestinationsFields_seo_value
-  id: DestinationsFields_seo_id
+  slug: DestinationsFields_seo_id
 }
 
 type DestinationsFields_seo_value {
@@ -28150,7 +28150,7 @@ type EventsFields_seo_Delete {
 
 type EventsFields_seo_Fields {
   value: EventsFields_seo_value
-  id: EventsFields_seo_id
+  slug: EventsFields_seo_id
 }
 
 type EventsFields_seo_value {
@@ -28426,7 +28426,7 @@ type PartnersFields_seo_Delete {
 
 type PartnersFields_seo_Fields {
   value: PartnersFields_seo_value
-  id: PartnersFields_seo_id
+  slug: PartnersFields_seo_id
 }
 
 type PartnersFields_seo_value {
@@ -29122,7 +29122,7 @@ type SoldsFields_seo_Delete {
 
 type SoldsFields_seo_Fields {
   value: SoldsFields_seo_value
-  id: SoldsFields_seo_id
+  slug: SoldsFields_seo_id
 }
 
 type SoldsFields_seo_value {
@@ -30103,7 +30103,7 @@ type NewConstructionsFields_photos_gallery_Delete {
 
 type NewConstructionsFields_photos_gallery_Fields {
   image: NewConstructionsFields_photos_gallery_image
-  id: NewConstructionsFields_photos_gallery_id
+  slug: NewConstructionsFields_photos_gallery_id
 }
 
 type NewConstructionsFields_photos_gallery_image {
@@ -30247,7 +30247,7 @@ type NewConstructionsFields_seo_Delete {
 
 type NewConstructionsFields_seo_Fields {
   value: NewConstructionsFields_seo_value
-  id: NewConstructionsFields_seo_id
+  slug: NewConstructionsFields_seo_id
 }
 
 type NewConstructionsFields_seo_value {
@@ -32155,14 +32155,14 @@ type PayloadPreferencesDeleteAccess {
 
 type Mutation {
   createArticle(data: mutationArticleInput!, locale: LocaleInputType): Article
-  updateArticle(id: String!, autosave: Boolean, data: mutationArticleUpdateInput!, locale: LocaleInputType): Article
-  deleteArticle(id: String!): Article
+  updateArticle(slug: String!, autosave: Boolean, data: mutationArticleUpdateInput!, locale: LocaleInputType): Article
+  deleteArticle(slug: String!): Article
   createMedia(data: mutationMediaInput!, locale: LocaleInputType): Media
-  updateMedia(id: String!, autosave: Boolean, data: mutationMediaUpdateInput!, locale: LocaleInputType): Media
-  deleteMedia(id: String!): Media
+  updateMedia(slug: String!, autosave: Boolean, data: mutationMediaUpdateInput!, locale: LocaleInputType): Media
+  deleteMedia(slug: String!): Media
   createUser(data: mutationUserInput!, locale: LocaleInputType): User
-  updateUser(id: String!, autosave: Boolean, data: mutationUserUpdateInput!, locale: LocaleInputType): User
-  deleteUser(id: String!): User
+  updateUser(slug: String!, autosave: Boolean, data: mutationUserUpdateInput!, locale: LocaleInputType): User
+  deleteUser(slug: String!): User
   refreshTokenUser: usersRefreshedUser
   logoutUser: String
   unlockUser(email: String!): Boolean!
@@ -32171,47 +32171,47 @@ type Mutation {
   resetPasswordUser(password: String, token: String): usersResetPassword
   verifyEmailUser(token: String): Boolean
   createSellBroker(data: mutationSellBrokerInput!, locale: LocaleInputType): SellBroker
-  updateSellBroker(id: String!, autosave: Boolean, data: mutationSellBrokerUpdateInput!, locale: LocaleInputType): SellBroker
-  deleteSellBroker(id: String!): SellBroker
+  updateSellBroker(slug: String!, autosave: Boolean, data: mutationSellBrokerUpdateInput!, locale: LocaleInputType): SellBroker
+  deleteSellBroker(slug: String!): SellBroker
   createYacht(data: mutationYachtInput!, locale: LocaleInputType): Yacht
-  updateYacht(id: String!, autosave: Boolean, data: mutationYachtUpdateInput!, locale: LocaleInputType): Yacht
-  deleteYacht(id: String!): Yacht
+  updateYacht(slug: String!, autosave: Boolean, data: mutationYachtUpdateInput!, locale: LocaleInputType): Yacht
+  deleteYacht(slug: String!): Yacht
   createCharter(data: mutationCharterInput!, locale: LocaleInputType): Charter
-  updateCharter(id: String!, autosave: Boolean, data: mutationCharterUpdateInput!, locale: LocaleInputType): Charter
-  deleteCharter(id: String!): Charter
+  updateCharter(slug: String!, autosave: Boolean, data: mutationCharterUpdateInput!, locale: LocaleInputType): Charter
+  deleteCharter(slug: String!): Charter
   createCategory(data: mutationCategoryInput!, locale: LocaleInputType): Category
-  updateCategory(id: String!, autosave: Boolean, data: mutationCategoryUpdateInput!, locale: LocaleInputType): Category
-  deleteCategory(id: String!): Category
+  updateCategory(slug: String!, autosave: Boolean, data: mutationCategoryUpdateInput!, locale: LocaleInputType): Category
+  deleteCategory(slug: String!): Category
   createDestination(data: mutationDestinationInput!, locale: LocaleInputType): Destination
-  updateDestination(id: String!, autosave: Boolean, data: mutationDestinationUpdateInput!, locale: LocaleInputType): Destination
-  deleteDestination(id: String!): Destination
+  updateDestination(slug: String!, autosave: Boolean, data: mutationDestinationUpdateInput!, locale: LocaleInputType): Destination
+  deleteDestination(slug: String!): Destination
   createEvent(data: mutationEventInput!, locale: LocaleInputType): Event
-  updateEvent(id: String!, autosave: Boolean, data: mutationEventUpdateInput!, locale: LocaleInputType): Event
-  deleteEvent(id: String!): Event
+  updateEvent(slug: String!, autosave: Boolean, data: mutationEventUpdateInput!, locale: LocaleInputType): Event
+  deleteEvent(slug: String!): Event
   createPartner(data: mutationPartnerInput!, locale: LocaleInputType): Partner
-  updatePartner(id: String!, autosave: Boolean, data: mutationPartnerUpdateInput!, locale: LocaleInputType): Partner
-  deletePartner(id: String!): Partner
+  updatePartner(slug: String!, autosave: Boolean, data: mutationPartnerUpdateInput!, locale: LocaleInputType): Partner
+  deletePartner(slug: String!): Partner
   createShipyard(data: mutationShipyardInput!, locale: LocaleInputType): Shipyard
-  updateShipyard(id: String!, autosave: Boolean, data: mutationShipyardUpdateInput!, locale: LocaleInputType): Shipyard
-  deleteShipyard(id: String!): Shipyard
+  updateShipyard(slug: String!, autosave: Boolean, data: mutationShipyardUpdateInput!, locale: LocaleInputType): Shipyard
+  deleteShipyard(slug: String!): Shipyard
   createRecruitment(data: mutationRecruitmentInput!, locale: LocaleInputType): Recruitment
-  updateRecruitment(id: String!, autosave: Boolean, data: mutationRecruitmentUpdateInput!, locale: LocaleInputType): Recruitment
-  deleteRecruitment(id: String!): Recruitment
+  updateRecruitment(slug: String!, autosave: Boolean, data: mutationRecruitmentUpdateInput!, locale: LocaleInputType): Recruitment
+  deleteRecruitment(slug: String!): Recruitment
   createSold(data: mutationSoldInput!, locale: LocaleInputType): Sold
-  updateSold(id: String!, autosave: Boolean, data: mutationSoldUpdateInput!, locale: LocaleInputType): Sold
-  deleteSold(id: String!): Sold
+  updateSold(slug: String!, autosave: Boolean, data: mutationSoldUpdateInput!, locale: LocaleInputType): Sold
+  deleteSold(slug: String!): Sold
   createNewConstruction(data: mutationNewConstructionInput!, locale: LocaleInputType): NewConstruction
-  updateNewConstruction(id: String!, autosave: Boolean, data: mutationNewConstructionUpdateInput!, locale: LocaleInputType): NewConstruction
-  deleteNewConstruction(id: String!): NewConstruction
+  updateNewConstruction(slug: String!, autosave: Boolean, data: mutationNewConstructionUpdateInput!, locale: LocaleInputType): NewConstruction
+  deleteNewConstruction(slug: String!): NewConstruction
   createMessage(data: mutationMessageInput!, locale: LocaleInputType): Message
-  updateMessage(id: String!, autosave: Boolean, data: mutationMessageUpdateInput!, locale: LocaleInputType): Message
-  deleteMessage(id: String!): Message
+  updateMessage(slug: String!, autosave: Boolean, data: mutationMessageUpdateInput!, locale: LocaleInputType): Message
+  deleteMessage(slug: String!): Message
   createArchivedCustomer(data: mutationArchivedCustomerInput!, locale: LocaleInputType): ArchivedCustomer
-  updateArchivedCustomer(id: String!, autosave: Boolean, data: mutationArchivedCustomerUpdateInput!, locale: LocaleInputType): ArchivedCustomer
-  deleteArchivedCustomer(id: String!): ArchivedCustomer
+  updateArchivedCustomer(slug: String!, autosave: Boolean, data: mutationArchivedCustomerUpdateInput!, locale: LocaleInputType): ArchivedCustomer
+  deleteArchivedCustomer(slug: String!): ArchivedCustomer
   createPayloadPreference(data: mutationPayloadPreferenceInput!, locale: LocaleInputType): PayloadPreference
-  updatePayloadPreference(id: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!, locale: LocaleInputType): PayloadPreference
-  deletePayloadPreference(id: String!): PayloadPreference
+  updatePayloadPreference(slug: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!, locale: LocaleInputType): PayloadPreference
+  deletePayloadPreference(slug: String!): PayloadPreference
 }
 
 input mutationArticleInput {
@@ -32229,7 +32229,7 @@ input mutationArticleInput {
 
 input mutationArticle_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationArticleUpdateInput {
@@ -32247,7 +32247,7 @@ input mutationArticleUpdateInput {
 
 input mutationArticleUpdate_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationMediaInput {
@@ -32356,7 +32356,7 @@ enum User_roles_MutationInput {
 input mutationUser_PhonesInput {
   prefix: User_Phones_prefix_MutationInput!
   number: String!
-  id: String
+  slug: String
 }
 
 enum User_Phones_prefix_MutationInput {
@@ -32778,7 +32778,7 @@ enum User_langs_MutationInput {
 input mutationUser_SocialsInput {
   platform: User_Socials_platform_MutationInput!
   link: String!
-  id: String
+  slug: String
 }
 
 enum User_Socials_platform_MutationInput {
@@ -32817,7 +32817,7 @@ enum UserUpdate_roles_MutationInput {
 input mutationUserUpdate_PhonesInput {
   prefix: UserUpdate_Phones_prefix_MutationInput!
   number: String!
-  id: String
+  slug: String
 }
 
 enum UserUpdate_Phones_prefix_MutationInput {
@@ -33239,7 +33239,7 @@ enum UserUpdate_langs_MutationInput {
 input mutationUserUpdate_SocialsInput {
   platform: UserUpdate_Socials_platform_MutationInput!
   link: String!
-  id: String
+  slug: String
 }
 
 enum UserUpdate_Socials_platform_MutationInput {
@@ -33287,7 +33287,7 @@ input mutationSellBrokerInput {
 input mutationSellBroker_PhonesInput {
   prefix: SellBroker_Phones_prefix_MutationInput
   number: String
-  id: String
+  slug: String
 }
 
 enum SellBroker_Phones_prefix_MutationInput {
@@ -33709,7 +33709,7 @@ enum SellBroker_langs_MutationInput {
 input mutationSellBroker_SocialsInput {
   platform: SellBroker_Socials_platform_MutationInput
   link: String
-  id: String
+  slug: String
 }
 
 enum SellBroker_Socials_platform_MutationInput {
@@ -33720,7 +33720,7 @@ enum SellBroker_Socials_platform_MutationInput {
 
 input mutationSellBroker_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationSellBrokerUpdateInput {
@@ -33739,7 +33739,7 @@ input mutationSellBrokerUpdateInput {
 input mutationSellBrokerUpdate_PhonesInput {
   prefix: SellBrokerUpdate_Phones_prefix_MutationInput
   number: String
-  id: String
+  slug: String
 }
 
 enum SellBrokerUpdate_Phones_prefix_MutationInput {
@@ -34161,7 +34161,7 @@ enum SellBrokerUpdate_langs_MutationInput {
 input mutationSellBrokerUpdate_SocialsInput {
   platform: SellBrokerUpdate_Socials_platform_MutationInput
   link: String
-  id: String
+  slug: String
 }
 
 enum SellBrokerUpdate_Socials_platform_MutationInput {
@@ -34172,7 +34172,7 @@ enum SellBrokerUpdate_Socials_platform_MutationInput {
 
 input mutationSellBrokerUpdate_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationYachtInput {
@@ -34254,12 +34254,12 @@ input mutationYacht_PhotosInput {
 
 input mutationYacht_Photos_GalleryInput {
   image: String!
-  id: String
+  slug: String
 }
 
 input mutationYacht_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationYachtUpdateInput {
@@ -34341,12 +34341,12 @@ input mutationYachtUpdate_PhotosInput {
 
 input mutationYachtUpdate_Photos_GalleryInput {
   image: String!
-  id: String
+  slug: String
 }
 
 input mutationYachtUpdate_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationCharterInput {
@@ -34434,12 +34434,12 @@ input mutationCharter_PhotosInput {
 
 input mutationCharter_Photos_GalleryInput {
   image: String!
-  id: String
+  slug: String
 }
 
 input mutationCharter_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationCharter_ReservationsInput {
@@ -34447,7 +34447,7 @@ input mutationCharter_ReservationsInput {
   to: String
   customerName: String
   customer: String
-  id: String
+  slug: String
 }
 
 input mutationCharterUpdateInput {
@@ -34535,12 +34535,12 @@ input mutationCharterUpdate_PhotosInput {
 
 input mutationCharterUpdate_Photos_GalleryInput {
   image: String!
-  id: String
+  slug: String
 }
 
 input mutationCharterUpdate_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationCharterUpdate_ReservationsInput {
@@ -34548,7 +34548,7 @@ input mutationCharterUpdate_ReservationsInput {
   to: String
   customerName: String
   customer: String
-  id: String
+  slug: String
 }
 
 input mutationCategoryInput {
@@ -34593,7 +34593,7 @@ input mutationDestination_InfoInput {
 
 input mutationDestination_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationDestinationUpdateInput {
@@ -34626,7 +34626,7 @@ input mutationDestinationUpdate_InfoInput {
 
 input mutationDestinationUpdate_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationEventInput {
@@ -34650,7 +34650,7 @@ input mutationEvent_LocationInput {
 
 input mutationEvent_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationEventUpdateInput {
@@ -34674,7 +34674,7 @@ input mutationEventUpdate_LocationInput {
 
 input mutationEventUpdate_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationPartnerInput {
@@ -34691,7 +34691,7 @@ input mutationPartnerInput {
 
 input mutationPartner_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationPartnerUpdateInput {
@@ -34708,7 +34708,7 @@ input mutationPartnerUpdateInput {
 
 input mutationPartnerUpdate_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationShipyardInput {
@@ -34762,7 +34762,7 @@ input mutationSoldInput {
 
 input mutationSold_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationSoldUpdateInput {
@@ -34780,7 +34780,7 @@ input mutationSoldUpdateInput {
 
 input mutationSoldUpdate_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationNewConstructionInput {
@@ -34863,12 +34863,12 @@ input mutationNewConstruction_PhotosInput {
 
 input mutationNewConstruction_Photos_GalleryInput {
   image: String!
-  id: String
+  slug: String
 }
 
 input mutationNewConstruction_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationNewConstructionUpdateInput {
@@ -34951,12 +34951,12 @@ input mutationNewConstructionUpdate_PhotosInput {
 
 input mutationNewConstructionUpdate_Photos_GalleryInput {
   image: String!
-  id: String
+  slug: String
 }
 
 input mutationNewConstructionUpdate_SeoInput {
   value: String
-  id: String
+  slug: String
 }
 
 input mutationMessageInput {

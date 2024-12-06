@@ -5,60 +5,66 @@ import { IDestination } from "@/types/destination";
 import { gql } from "@apollo/client";
 
 export const fetchDestination = async (
-  id: string,
+  slug: string,
   locale: "en" | "fr",
 ): Promise<IDestination> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Destination($id: String!, $locale: LocaleInputType!) {
-        Destination(id: $id, locale: $locale) {
-          id
-          destination
-          country
-          region
-          continent
-          description
-          coordinates
-          updatedAt
-          createdAt
-          photos {
-            featured {
-              alt
-              sizes {
-                fhd {
-                  url
-                  width
-                  height
+      query Destination($slug: String, $locale: LocaleInputType!) {
+        Destinations(
+          where: { slug: { equals: $slug } }
+          locale: $locale
+          limit: 1
+        ) {
+          docs {
+            destination
+            country
+            region
+            continent
+            description
+            coordinates
+            updatedAt
+            createdAt
+            photos {
+              featured {
+                alt
+                sizes {
+                  fhd {
+                    url
+                    width
+                    height
+                  }
+                }
+              }
+              destinationPhoto {
+                alt
+                sizes {
+                  fhd {
+                    url
+                    width
+                    height
+                  }
                 }
               }
             }
-            destinationPhoto {
-              alt
-              sizes {
-                fhd {
-                  url
-                  width
-                  height
-                }
-              }
+            info {
+              bestTimeToVisit
+              languages
+              gettingThere
+              currency
             }
-          }
-          info {
-            bestTimeToVisit
-            languages
-            gettingThere
-            currency
           }
         }
       }
     `,
     variables: {
-      id,
+      slug,
       locale,
     },
   });
-  return data.Destination;
+
+  return data.Destinations.docs[0];
 };
 
 export const fetchDestinations = async (
@@ -70,7 +76,7 @@ export const fetchDestinations = async (
       query Destinations($locale: LocaleInputType!) {
         Destinations(locale: $locale, limit: 0) {
           docs {
-            id
+            slug
             destination
             country
             region

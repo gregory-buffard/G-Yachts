@@ -1,11 +1,11 @@
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
+import { fetchSale, fetchSimilarSales } from "@/actions/yachts";
 import { YachtProvider } from "@/context/yacht";
 import Hero from "@/components/yachts/yacht/hero";
 import Details from "@/components/yachts/yacht/details";
-import { fetchCharter, fetchSimilarCharters } from "@/actions/yachts";
-import { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
+import { Metadata } from "next";
 import { fetchMetadata } from "@/actions/actions";
 
 const View = dynamic(() => import("@/components/view")),
@@ -16,39 +16,39 @@ const View = dynamic(() => import("@/components/view")),
 export const generateMetadata = async ({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string };
 }): Promise<Metadata> => {
-  const id = params.id,
+  const slug = params.slug,
     locale = (await getLocale()) as "en" | "fr";
 
-  return await fetchMetadata({ id, type: "charter", locale });
+  return await fetchMetadata({ slug, type: "sale", locale });
 };
 
-const Charter = async ({ params }: { params: { id: string } }) => {
-  const yacht = await fetchCharter(
-    params.id,
+const Sale = async ({ params }: { params: { slug: string } }) => {
+  const yacht = await fetchSale(
+    params.slug,
     (await getLocale()) as "en" | "fr",
   );
 
   return (
-    <YachtProvider data={yacht} type={"charter"}>
+    <YachtProvider data={yacht} type={"sale"}>
       <main className="w-full flex flex-col justify-start items-center">
         <Bar dynamicColor={100} />
         <View />
         <Hero />
         <Details />
         <Carousel
-          type={"charters"}
-          data={
-            yacht.similar && yacht.similar.length >= 4
-              ? yacht.similar
-              : await fetchSimilarCharters(yacht.length)
-          }
-          title={(await getTranslations("charters")).rich("similar", {
-            classic: (chunks: React.ReactNode) => (
+          title={(await getTranslations("sales")).rich("similar", {
+            classic: (chunks) => (
               <span className={"font-classic uppercase"}>{chunks}</span>
             ),
           })}
+          type={"sales"}
+          data={
+            yacht.similar && yacht.similar.length >= 4
+              ? yacht.similar
+              : await fetchSimilarSales(yacht.length)
+          }
         />
         <Newsletter />
         <Footer />
@@ -57,4 +57,4 @@ const Charter = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default Charter;
+export default Sale;

@@ -11,7 +11,7 @@ export const fetchEvents = async (locale: "en" | "fr"): Promise<IEvent[]> => {
       query Events($locale: LocaleInputType!) {
         Events(locale: $locale, limit: 0) {
           docs {
-            id
+            slug
             title
             fromDate
             toDate
@@ -46,37 +46,39 @@ export const fetchEvents = async (locale: "en" | "fr"): Promise<IEvent[]> => {
 
 export const fetchEvent = async (
   locale: "en" | "fr",
-  id: string,
+  slug: string,
 ): Promise<IEvent> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
-      query Event($locale: LocaleInputType!, $id: String!) {
-        Event(id: $id, locale: $locale) {
-          title
-          content
-          fromDate
-          toDate
-          location {
-            city
-            country
-            destination {
+      query Event($locale: LocaleInputType!, $slug: String) {
+        Events(where: { slug: { equals: $slug } }, locale: $locale, limit: 1) {
+          docs {
+            title
+            content
+            fromDate
+            toDate
+            location {
+              city
               country
-              continent
-            }
-          }
-          image {
-            alt
-            sizes {
-              thumbnail {
-                url
-                width
-                height
+              destination {
+                country
+                continent
               }
-              fhd {
-                url
-                width
-                height
+            }
+            image {
+              alt
+              sizes {
+                thumbnail {
+                  url
+                  width
+                  height
+                }
+                fhd {
+                  url
+                  width
+                  height
+                }
               }
             }
           }
@@ -85,8 +87,9 @@ export const fetchEvent = async (
     `,
     variables: {
       locale,
-      id,
+      slug,
     },
   });
-  return data.Event;
+
+  return data.Events.docs[0];
 };
