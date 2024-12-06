@@ -2,6 +2,7 @@ import { ArticleContentBlock } from "@/types/article";
 
 export interface IDestination {
   id: string;
+  slug: string;
   destination: string;
   country: string;
   region: string;

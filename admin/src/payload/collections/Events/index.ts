@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload/types'
 import { anyone } from '../../access/anyone'
 import { users } from '../../access/users'
 import { seoField } from '../shared/seo'
+import mountSlug from '../../utilities/mountSlug'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -21,6 +22,12 @@ export const Events: CollectionConfig = {
     defaultColumns: ['title'],
     hideAPIURL: true,
   },
+  hooks: {
+    afterChange: [
+      ({ doc, operation }) =>
+        mountSlug({ name: doc.title, id: doc.id, operation, collection: 'events' }),
+    ],
+  },
   versions: false,
   access: {
     read: anyone,
@@ -38,6 +45,17 @@ export const Events: CollectionConfig = {
       },
       required: true,
       localized: true,
+    },
+    {
+      name: 'slug',
+      label: 'Slug',
+      type: 'text',
+      index: true,
+      unique: true,
+      defaultValue: '',
+      admin: {
+        readOnly: true,
+      },
     },
     {
       type: 'row',

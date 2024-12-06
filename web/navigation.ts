@@ -11,19 +11,19 @@ export const pathnames = {
     en: "/sales",
     fr: "/ventes",
   },
-  "/sales/[id]": {
-    en: "/sales/[id]",
-    fr: "/ventes/[id]",
+  "/sales/[slug]": {
+    en: "/sales/[slug]",
+    fr: "/ventes/[slug]",
   },
   "/charters": "/charters",
-  "/charters/[id]": "/charters/[id]",
+  "/charters/[slug]": "/charters/[slug]",
   "/new-constructions": {
     en: "/new-constructions",
     fr: "/nouvelles-constructions",
   },
-  "/new-constructions/[id]": {
-    en: "/new-constructions/[id]",
-    fr: "/nouvelles-constructions/[id]",
+  "/new-constructions/[slug]": {
+    en: "/new-constructions/[slug]",
+    fr: "/nouvelles-constructions/[slug]",
   },
   "/sell-your-yacht": {
     en: "/sell-your-yacht",
@@ -45,17 +45,17 @@ export const pathnames = {
     en: "/news",
     fr: "/actualites",
   },
-  "/news/[id]": {
-    en: "/news/[id]",
-    fr: "/actualites/[id]",
+  "/news/[slug]": {
+    en: "/news/[slug]",
+    fr: "/actualites/[slug]",
   },
   "/events": {
     en: "/events",
     fr: "/evenements",
   },
-  "/events/[id]": {
-    en: "/events/[id]",
-    fr: "/evenements/[id]",
+  "/events/[slug]": {
+    en: "/events/[slug]",
+    fr: "/evenements/[slug]",
   },
   "/recruitment": {
     en: "/recruitment",
@@ -69,7 +69,7 @@ export const pathnames = {
     en: "/destinations",
     fr: "/destinations",
   },
-  "/destinations/[id]": "/destinations/[id]",
+  "/destinations/[slug]": "/destinations/[slug]",
   "/brochure/[id]": "/brochure/[id]",
 } satisfies Pathnames<typeof locales>;
 

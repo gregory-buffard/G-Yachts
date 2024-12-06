@@ -12,6 +12,7 @@ dotenv.config({
 import express from 'express'
 import payload from 'payload'
 import { getBrochure } from './brochures/getBrochure'
+import mountSlug from './payload/utilities/mountSlug'
 
 const app = express()
 const PORT = process.env.PAYLOAD_PORT || 3000

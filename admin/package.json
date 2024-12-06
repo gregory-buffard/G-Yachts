@@ -34,7 +34,8 @@
     "puppeteer": "^22.12.1",
     "qs": "6.11.2",
     "react-hook-form": "7.45.4",
-    "react-router-dom": "5.3.4"
+    "react-router-dom": "5.3.4",
+    "slugify": "^1.6.6"
   },
   "devDependencies": {
     "@payloadcms/eslint-config": "^0.0.1",

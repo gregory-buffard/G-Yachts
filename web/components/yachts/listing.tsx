@@ -87,7 +87,7 @@ const Card = ({
 
   return (
     <Link
-      href={{ pathname: `/${type}/[id]`, params: { id: data.id } }}
+      href={{ pathname: `/${type}/[slug]`, params: { slug: data.slug } }}
       onClick={async () => await click({ id: data.id, type })}
       className={
         "w-full md:w-[44vw] lg:w-[30vw] h-max flex flex-col justify-start items-start overflow-x-clip"

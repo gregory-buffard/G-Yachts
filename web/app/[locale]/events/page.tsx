@@ -41,17 +41,15 @@ export const generateMetadata = async ({
     },
   };
 };
-const Events = async () => {
-  return (
-    <main className={"w-full flex flex-col justify-start items-center"}>
-      <Bar dynamicColor={100} />
-      <View />
-      <Hero />
-      <Listing data={await fetchEvents((await getLocale()) as "en" | "fr")} />
-      <Newsletter />
-      <Footer />
-    </main>
-  );
-};
+const Events = async () => (
+  <main className={"w-full flex flex-col justify-start items-center"}>
+    <Bar dynamicColor={100} />
+    <View />
+    <Hero />
+    <Listing data={await fetchEvents((await getLocale()) as "en" | "fr")} />
+    <Newsletter />
+    <Footer />
+  </main>
+);
 
 export default Events;

@@ -10,7 +10,7 @@ import { convertUnit, formatCurrency } from "@/utils/yachts";
 interface ISalesHero
   extends Pick<
     ISale,
-    | "id"
+    | "slug"
     | "name"
     | "builder"
     | "length"
@@ -24,7 +24,7 @@ interface ISalesHero
 interface IChartersHero
   extends Pick<
     ICharter,
-    | "id"
+    | "slug"
     | "name"
     | "builder"
     | "length"
@@ -38,7 +38,7 @@ interface IChartersHero
 interface INewConstructionsHero
   extends Pick<
     INewConstruction,
-    | "id"
+    | "slug"
     | "name"
     | "builder"
     | "length"
@@ -64,8 +64,8 @@ const Card = ({
         : formatCurrency(card.price * rates[currency], currency);
   return (
     <Link
-      href={{ pathname: `/${type}/[id]`, params: { id: card.id } }}
-      key={`${card.id}`}
+      href={{ pathname: `/${type}/[slug]`, params: { slug: card.slug } }}
+      key={`${card.slug}`}
       className={
         "w-screen h-full bg-cover bg-center translate-x-[var(--translate-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out"
       }
