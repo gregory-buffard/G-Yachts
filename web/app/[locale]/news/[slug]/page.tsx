@@ -17,23 +17,23 @@ const View = dynamic(() => import("@/components/view")),
 export const generateMetadata = async ({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string };
 }): Promise<Metadata> => {
-  const id = params.id,
+  const slug = params.slug,
     locale = (await getLocale()) as "en" | "fr";
 
-  return await fetchMetadata({ id, type: "article", locale });
+  return await fetchMetadata({ slug, type: "article", locale });
 };
 
 const Destinations = async ({
   params,
 }: {
   params: {
-    id: string;
+    slug: string;
   };
 }) => {
   const locale = (await getLocale()) as "en" | "fr",
-    article = await fetchArticle(params.id, locale);
+    article = await fetchArticle(params.slug, locale);
 
   return (
     <ArticleProvider article={article} locale={locale}>

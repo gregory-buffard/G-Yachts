@@ -36,6 +36,7 @@ export interface Config {
 export interface Article {
   id: string;
   title: string;
+  slug?: string | null;
   category: string | Category;
   date: string;
   author: string | User;
@@ -1006,6 +1007,7 @@ export interface SellBroker {
 export interface Yacht {
   id: string;
   name: string;
+  slug?: string | null;
   model?: string | null;
   price: number;
   LOA: number;
@@ -1083,6 +1085,7 @@ export interface Yacht {
 export interface Charter {
   id: string;
   name: string;
+  slug?: string | null;
   model?: string | null;
   price?: {
     low?: number | null;
@@ -1228,6 +1231,7 @@ export interface ArchivedCustomer {
 export interface Destination {
   id: string;
   destination: string;
+  slug?: string | null;
   country: string;
   region: string;
   continent: string;
@@ -1266,6 +1270,7 @@ export interface Destination {
 export interface Event {
   id: string;
   title: string;
+  slug?: string | null;
   fromDate: string;
   toDate: string;
   location?: {
@@ -1367,6 +1372,7 @@ export interface NewConstruction {
   id: string;
   delivery: string;
   name: string;
+  slug?: string | null;
   model?: string | null;
   price: number;
   LOA: number;

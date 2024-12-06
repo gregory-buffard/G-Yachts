@@ -1,12 +1,15 @@
 import Bar from "@/components/nav/bar";
 import dynamic from "next/dynamic";
-import { fetchSale, fetchSimilarSales } from "@/actions/yachts";
-import { YachtProvider } from "@/context/yacht";
 import Hero from "@/components/yachts/yacht/hero";
 import Details from "@/components/yachts/yacht/details";
-import { getLocale, getTranslations } from "next-intl/server";
 import { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
 import { fetchMetadata } from "@/actions/actions";
+import { YachtProvider } from "@/context/yacht";
+import {
+  fetchNewConstruction,
+  fetchSimilarNewConstructions,
+} from "@/actions/yachts";
 
 const View = dynamic(() => import("@/components/view")),
   Carousel = dynamic(() => import("@/components/yachts/carousel")),
@@ -16,35 +19,38 @@ const View = dynamic(() => import("@/components/view")),
 export const generateMetadata = async ({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string };
 }): Promise<Metadata> => {
-  const id = params.id,
+  const slug = params.slug,
     locale = (await getLocale()) as "en" | "fr";
 
-  return await fetchMetadata({ id, type: "sale", locale });
+  return await fetchMetadata({ slug, type: "new-construction", locale });
 };
 
-const Sale = async ({ params }: { params: { id: string } }) => {
-  const yacht = await fetchSale(params.id, (await getLocale()) as "en" | "fr");
+const NewConstructions = async ({ params }: { params: { slug: string } }) => {
+  const yacht = await fetchNewConstruction(
+    params.slug,
+    (await getLocale()) as "en" | "fr",
+  );
 
   return (
-    <YachtProvider data={yacht} type={"sale"}>
+    <YachtProvider data={yacht} type={"new-construction"}>
       <main className="w-full flex flex-col justify-start items-center">
         <Bar dynamicColor={100} />
         <View />
         <Hero />
         <Details />
         <Carousel
-          title={(await getTranslations("sales")).rich("similar", {
+          title={(await getTranslations("new-constructions")).rich("similar", {
             classic: (chunks) => (
               <span className={"font-classic uppercase"}>{chunks}</span>
             ),
           })}
-          type={"sales"}
+          type={"new-constructions"}
           data={
             yacht.similar && yacht.similar.length >= 4
               ? yacht.similar
-              : await fetchSimilarSales(yacht.length)
+              : await fetchSimilarNewConstructions(yacht.length)
           }
         />
         <Newsletter />
@@ -54,4 +60,4 @@ const Sale = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default Sale;
+export default NewConstructions;

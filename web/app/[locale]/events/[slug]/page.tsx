@@ -17,16 +17,19 @@ const View = dynamic(() => import("@/components/view")),
 export const generateMetadata = async ({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string };
 }): Promise<Metadata> => {
-  const id = params.id,
+  const slug = params.slug,
     locale = (await getLocale()) as "en" | "fr";
 
-  return await fetchMetadata({ id, type: "event", locale });
+  return await fetchMetadata({ slug, type: "event", locale });
 };
 
-const Event = async ({ params }: { params: { id: string } }) => {
-  const event = await fetchEvent((await getLocale()) as "en" | "fr", params.id);
+const Event = async ({ params }: { params: { slug: string } }) => {
+  const event = await fetchEvent(
+    (await getLocale()) as "en" | "fr",
+    params.slug,
+  );
 
   return (
     <main className={"w-full flex flex-col justify-start items-center"}>

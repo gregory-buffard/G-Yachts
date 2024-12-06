@@ -75,6 +75,7 @@ type Query {
 type Article {
   id: String
   title: String
+  slug: String
   category(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Category!
   date: DateTime!
   author(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User!
@@ -1320,6 +1321,7 @@ type Articles {
 
 input Article_where {
   title: Article_title_operator
+  slug: Article_slug_operator
   category: Article_category_operator
   date: Article_date_operator
   author: Article_author_operator
@@ -1342,6 +1344,17 @@ input Article_title_operator {
   in: [String]
   not_in: [String]
   all: [String]
+}
+
+input Article_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Article_category_operator {
@@ -1439,6 +1452,7 @@ input Article_id_operator {
 
 input Article_where_and {
   title: Article_title_operator
+  slug: Article_slug_operator
   category: Article_category_operator
   date: Article_date_operator
   author: Article_author_operator
@@ -1455,6 +1469,7 @@ input Article_where_and {
 
 input Article_where_or {
   title: Article_title_operator
+  slug: Article_slug_operator
   category: Article_category_operator
   date: Article_date_operator
   author: Article_author_operator
@@ -1483,6 +1498,7 @@ type articlesDocAccess {
 
 type ArticlesDocAccessFields {
   title: ArticlesDocAccessFields_title
+  slug: ArticlesDocAccessFields_slug
   category: ArticlesDocAccessFields_category
   date: ArticlesDocAccessFields_date
   author: ArticlesDocAccessFields_author
@@ -1513,6 +1529,29 @@ type ArticlesDocAccessFields_title_Update {
 }
 
 type ArticlesDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_slug {
+  create: ArticlesDocAccessFields_slug_Create
+  read: ArticlesDocAccessFields_slug_Read
+  update: ArticlesDocAccessFields_slug_Update
+  delete: ArticlesDocAccessFields_slug_Delete
+}
+
+type ArticlesDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type ArticlesDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -5920,6 +5959,7 @@ type SellBrokersDeleteDocAccess {
 type Yacht {
   id: String
   name: String!
+  slug: String
   model: String
   price: Float!
   LOA: Float!
@@ -6700,6 +6740,7 @@ type Yachts {
 
 input Yacht_where {
   name: Yacht_name_operator
+  slug: Yacht_slug_operator
   model: Yacht_model_operator
   price: Yacht_price_operator
   LOA: Yacht_LOA_operator
@@ -6754,6 +6795,17 @@ input Yacht_name_operator {
   in: [String]
   not_in: [String]
   all: [String]
+}
+
+input Yacht_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Yacht_model_operator {
@@ -7180,6 +7232,7 @@ input Yacht_id_operator {
 
 input Yacht_where_and {
   name: Yacht_name_operator
+  slug: Yacht_slug_operator
   model: Yacht_model_operator
   price: Yacht_price_operator
   LOA: Yacht_LOA_operator
@@ -7228,6 +7281,7 @@ input Yacht_where_and {
 
 input Yacht_where_or {
   name: Yacht_name_operator
+  slug: Yacht_slug_operator
   model: Yacht_model_operator
   price: Yacht_price_operator
   LOA: Yacht_LOA_operator
@@ -7288,6 +7342,7 @@ type yachtsDocAccess {
 
 type YachtsDocAccessFields {
   name: YachtsDocAccessFields_name
+  slug: YachtsDocAccessFields_slug
   model: YachtsDocAccessFields_model
   price: YachtsDocAccessFields_price
   LOA: YachtsDocAccessFields_LOA
@@ -7348,6 +7403,29 @@ type YachtsDocAccessFields_name_Update {
 }
 
 type YachtsDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_slug {
+  create: YachtsDocAccessFields_slug_Create
+  read: YachtsDocAccessFields_slug_Read
+  update: YachtsDocAccessFields_slug_Update
+  delete: YachtsDocAccessFields_slug_Delete
+}
+
+type YachtsDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type YachtsDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -8404,6 +8482,7 @@ type YachtsDeleteDocAccess {
 type Charter {
   id: String
   name: String!
+  slug: String
   model: String
   price: Charter_Price
   LOA: Float!
@@ -9270,6 +9349,7 @@ type Charters {
 
 input Charter_where {
   name: Charter_name_operator
+  slug: Charter_slug_operator
   model: Charter_model_operator
   price__low: Charter_price__low_operator
   price__high: Charter_price__high_operator
@@ -9330,6 +9410,17 @@ input Charter_name_operator {
   in: [String]
   not_in: [String]
   all: [String]
+}
+
+input Charter_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Charter_model_operator {
@@ -9819,6 +9910,7 @@ input Charter_id_operator {
 
 input Charter_where_and {
   name: Charter_name_operator
+  slug: Charter_slug_operator
   model: Charter_model_operator
   price__low: Charter_price__low_operator
   price__high: Charter_price__high_operator
@@ -9873,6 +9965,7 @@ input Charter_where_and {
 
 input Charter_where_or {
   name: Charter_name_operator
+  slug: Charter_slug_operator
   model: Charter_model_operator
   price__low: Charter_price__low_operator
   price__high: Charter_price__high_operator
@@ -9939,6 +10032,7 @@ type chartersDocAccess {
 
 type ChartersDocAccessFields {
   name: ChartersDocAccessFields_name
+  slug: ChartersDocAccessFields_slug
   model: ChartersDocAccessFields_model
   price: ChartersDocAccessFields_price
   LOA: ChartersDocAccessFields_LOA
@@ -10000,6 +10094,29 @@ type ChartersDocAccessFields_name_Update {
 }
 
 type ChartersDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_slug {
+  create: ChartersDocAccessFields_slug_Create
+  read: ChartersDocAccessFields_slug_Read
+  update: ChartersDocAccessFields_slug_Update
+  delete: ChartersDocAccessFields_slug_Delete
+}
+
+type ChartersDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type ChartersDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -11447,6 +11564,7 @@ type CategoriesDeleteDocAccess {
 type Destination {
   id: String
   destination: String
+  slug: String
   country: String
   region: String
   continent: String
@@ -12173,6 +12291,7 @@ type Destinations {
 
 input Destination_where {
   destination: Destination_destination_operator
+  slug: Destination_slug_operator
   country: Destination_country_operator
   region: Destination_region_operator
   continent: Destination_continent_operator
@@ -12202,6 +12321,17 @@ input Destination_destination_operator {
   in: [String]
   not_in: [String]
   all: [String]
+}
+
+input Destination_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Destination_country_operator {
@@ -12373,6 +12503,7 @@ input Destination_id_operator {
 
 input Destination_where_and {
   destination: Destination_destination_operator
+  slug: Destination_slug_operator
   country: Destination_country_operator
   region: Destination_region_operator
   continent: Destination_continent_operator
@@ -12396,6 +12527,7 @@ input Destination_where_and {
 
 input Destination_where_or {
   destination: Destination_destination_operator
+  slug: Destination_slug_operator
   country: Destination_country_operator
   region: Destination_region_operator
   continent: Destination_continent_operator
@@ -12431,6 +12563,7 @@ type destinationsDocAccess {
 
 type DestinationsDocAccessFields {
   destination: DestinationsDocAccessFields_destination
+  slug: DestinationsDocAccessFields_slug
   country: DestinationsDocAccessFields_country
   region: DestinationsDocAccessFields_region
   continent: DestinationsDocAccessFields_continent
@@ -12464,6 +12597,29 @@ type DestinationsDocAccessFields_destination_Update {
 }
 
 type DestinationsDocAccessFields_destination_Delete {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_slug {
+  create: DestinationsDocAccessFields_slug_Create
+  read: DestinationsDocAccessFields_slug_Read
+  update: DestinationsDocAccessFields_slug_Update
+  delete: DestinationsDocAccessFields_slug_Delete
+}
+
+type DestinationsDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type DestinationsDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -12947,6 +13103,7 @@ type DestinationsDeleteDocAccess {
 type Event {
   id: String
   title: String
+  slug: String
   fromDate: DateTime!
   toDate: DateTime!
   location: Event_Location
@@ -13324,6 +13481,7 @@ type Events {
 
 input Event_where {
   title: Event_title_operator
+  slug: Event_slug_operator
   fromDate: Event_fromDate_operator
   toDate: Event_toDate_operator
   location__city: Event_location__city_operator
@@ -13348,6 +13506,17 @@ input Event_title_operator {
   in: [String]
   not_in: [String]
   all: [String]
+}
+
+input Event_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Event_fromDate_operator {
@@ -13471,6 +13640,7 @@ input Event_id_operator {
 
 input Event_where_and {
   title: Event_title_operator
+  slug: Event_slug_operator
   fromDate: Event_fromDate_operator
   toDate: Event_toDate_operator
   location__city: Event_location__city_operator
@@ -13489,6 +13659,7 @@ input Event_where_and {
 
 input Event_where_or {
   title: Event_title_operator
+  slug: Event_slug_operator
   fromDate: Event_fromDate_operator
   toDate: Event_toDate_operator
   location__city: Event_location__city_operator
@@ -13519,6 +13690,7 @@ type eventsDocAccess {
 
 type EventsDocAccessFields {
   title: EventsDocAccessFields_title
+  slug: EventsDocAccessFields_slug
   fromDate: EventsDocAccessFields_fromDate
   toDate: EventsDocAccessFields_toDate
   location: EventsDocAccessFields_location
@@ -13549,6 +13721,29 @@ type EventsDocAccessFields_title_Update {
 }
 
 type EventsDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_slug {
+  create: EventsDocAccessFields_slug_Create
+  read: EventsDocAccessFields_slug_Read
+  update: EventsDocAccessFields_slug_Update
+  delete: EventsDocAccessFields_slug_Delete
+}
+
+type EventsDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -17210,6 +17405,7 @@ type NewConstruction {
   id: String
   delivery: String!
   name: String!
+  slug: String
   model: String
   price: Float!
   LOA: Float!
@@ -17991,6 +18187,7 @@ type NewConstructions {
 input NewConstruction_where {
   delivery: NewConstruction_delivery_operator
   name: NewConstruction_name_operator
+  slug: NewConstruction_slug_operator
   model: NewConstruction_model_operator
   price: NewConstruction_price_operator
   LOA: NewConstruction_LOA_operator
@@ -18055,6 +18252,17 @@ input NewConstruction_name_operator {
   in: [String]
   not_in: [String]
   all: [String]
+}
+
+input NewConstruction_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input NewConstruction_model_operator {
@@ -18482,6 +18690,7 @@ input NewConstruction_id_operator {
 input NewConstruction_where_and {
   delivery: NewConstruction_delivery_operator
   name: NewConstruction_name_operator
+  slug: NewConstruction_slug_operator
   model: NewConstruction_model_operator
   price: NewConstruction_price_operator
   LOA: NewConstruction_LOA_operator
@@ -18531,6 +18740,7 @@ input NewConstruction_where_and {
 input NewConstruction_where_or {
   delivery: NewConstruction_delivery_operator
   name: NewConstruction_name_operator
+  slug: NewConstruction_slug_operator
   model: NewConstruction_model_operator
   price: NewConstruction_price_operator
   LOA: NewConstruction_LOA_operator
@@ -18592,6 +18802,7 @@ type new_constructionsDocAccess {
 type NewConstructionsDocAccessFields {
   delivery: NewConstructionsDocAccessFields_delivery
   name: NewConstructionsDocAccessFields_name
+  slug: NewConstructionsDocAccessFields_slug
   model: NewConstructionsDocAccessFields_model
   price: NewConstructionsDocAccessFields_price
   LOA: NewConstructionsDocAccessFields_LOA
@@ -18675,6 +18886,29 @@ type NewConstructionsDocAccessFields_name_Update {
 }
 
 type NewConstructionsDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_slug {
+  create: NewConstructionsDocAccessFields_slug_Create
+  read: NewConstructionsDocAccessFields_slug_Read
+  update: NewConstructionsDocAccessFields_slug_Update
+  delete: NewConstructionsDocAccessFields_slug_Delete
+}
+
+type NewConstructionsDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -22538,6 +22772,7 @@ type articlesAccess {
 
 type ArticlesFields {
   title: ArticlesFields_title
+  slug: ArticlesFields_slug
   category: ArticlesFields_category
   date: ArticlesFields_date
   author: ArticlesFields_author
@@ -22568,6 +22803,29 @@ type ArticlesFields_title_Update {
 }
 
 type ArticlesFields_title_Delete {
+  permission: Boolean!
+}
+
+type ArticlesFields_slug {
+  create: ArticlesFields_slug_Create
+  read: ArticlesFields_slug_Read
+  update: ArticlesFields_slug_Update
+  delete: ArticlesFields_slug_Delete
+}
+
+type ArticlesFields_slug_Create {
+  permission: Boolean!
+}
+
+type ArticlesFields_slug_Read {
+  permission: Boolean!
+}
+
+type ArticlesFields_slug_Update {
+  permission: Boolean!
+}
+
+type ArticlesFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -24480,6 +24738,7 @@ type yachtsAccess {
 
 type YachtsFields {
   name: YachtsFields_name
+  slug: YachtsFields_slug
   model: YachtsFields_model
   price: YachtsFields_price
   LOA: YachtsFields_LOA
@@ -24540,6 +24799,29 @@ type YachtsFields_name_Update {
 }
 
 type YachtsFields_name_Delete {
+  permission: Boolean!
+}
+
+type YachtsFields_slug {
+  create: YachtsFields_slug_Create
+  read: YachtsFields_slug_Read
+  update: YachtsFields_slug_Update
+  delete: YachtsFields_slug_Delete
+}
+
+type YachtsFields_slug_Create {
+  permission: Boolean!
+}
+
+type YachtsFields_slug_Read {
+  permission: Boolean!
+}
+
+type YachtsFields_slug_Update {
+  permission: Boolean!
+}
+
+type YachtsFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -25603,6 +25885,7 @@ type chartersAccess {
 
 type ChartersFields {
   name: ChartersFields_name
+  slug: ChartersFields_slug
   model: ChartersFields_model
   price: ChartersFields_price
   LOA: ChartersFields_LOA
@@ -25664,6 +25947,29 @@ type ChartersFields_name_Update {
 }
 
 type ChartersFields_name_Delete {
+  permission: Boolean!
+}
+
+type ChartersFields_slug {
+  create: ChartersFields_slug_Create
+  read: ChartersFields_slug_Read
+  update: ChartersFields_slug_Update
+  delete: ChartersFields_slug_Delete
+}
+
+type ChartersFields_slug_Create {
+  permission: Boolean!
+}
+
+type ChartersFields_slug_Read {
+  permission: Boolean!
+}
+
+type ChartersFields_slug_Update {
+  permission: Boolean!
+}
+
+type ChartersFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -27029,6 +27335,7 @@ type destinationsAccess {
 
 type DestinationsFields {
   destination: DestinationsFields_destination
+  slug: DestinationsFields_slug
   country: DestinationsFields_country
   region: DestinationsFields_region
   continent: DestinationsFields_continent
@@ -27062,6 +27369,29 @@ type DestinationsFields_destination_Update {
 }
 
 type DestinationsFields_destination_Delete {
+  permission: Boolean!
+}
+
+type DestinationsFields_slug {
+  create: DestinationsFields_slug_Create
+  read: DestinationsFields_slug_Read
+  update: DestinationsFields_slug_Update
+  delete: DestinationsFields_slug_Delete
+}
+
+type DestinationsFields_slug_Create {
+  permission: Boolean!
+}
+
+type DestinationsFields_slug_Read {
+  permission: Boolean!
+}
+
+type DestinationsFields_slug_Update {
+  permission: Boolean!
+}
+
+type DestinationsFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -27552,6 +27882,7 @@ type eventsAccess {
 
 type EventsFields {
   title: EventsFields_title
+  slug: EventsFields_slug
   fromDate: EventsFields_fromDate
   toDate: EventsFields_toDate
   location: EventsFields_location
@@ -27582,6 +27913,29 @@ type EventsFields_title_Update {
 }
 
 type EventsFields_title_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_slug {
+  create: EventsFields_slug_Create
+  read: EventsFields_slug_Read
+  update: EventsFields_slug_Update
+  delete: EventsFields_slug_Delete
+}
+
+type EventsFields_slug_Create {
+  permission: Boolean!
+}
+
+type EventsFields_slug_Read {
+  permission: Boolean!
+}
+
+type EventsFields_slug_Update {
+  permission: Boolean!
+}
+
+type EventsFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -28900,6 +29254,7 @@ type new_constructionsAccess {
 type NewConstructionsFields {
   delivery: NewConstructionsFields_delivery
   name: NewConstructionsFields_name
+  slug: NewConstructionsFields_slug
   model: NewConstructionsFields_model
   price: NewConstructionsFields_price
   LOA: NewConstructionsFields_LOA
@@ -28983,6 +29338,29 @@ type NewConstructionsFields_name_Update {
 }
 
 type NewConstructionsFields_name_Delete {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_slug {
+  create: NewConstructionsFields_slug_Create
+  read: NewConstructionsFields_slug_Read
+  update: NewConstructionsFields_slug_Update
+  delete: NewConstructionsFields_slug_Delete
+}
+
+type NewConstructionsFields_slug_Create {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_slug_Read {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_slug_Update {
+  permission: Boolean!
+}
+
+type NewConstructionsFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -31844,6 +32222,7 @@ type Mutation {
 
 input mutationArticleInput {
   title: String
+  slug: String
   category: String
   date: String!
   author: String
@@ -31861,6 +32240,7 @@ input mutationArticle_SeoInput {
 
 input mutationArticleUpdateInput {
   title: String
+  slug: String
   category: String
   date: String
   author: String
@@ -33803,6 +34183,7 @@ input mutationSellBrokerUpdate_SeoInput {
 
 input mutationYachtInput {
   name: String!
+  slug: String
   model: String
   price: Float!
   LOA: Float!
@@ -33889,6 +34270,7 @@ input mutationYacht_SeoInput {
 
 input mutationYachtUpdateInput {
   name: String
+  slug: String
   model: String
   price: Float
   LOA: Float
@@ -33975,6 +34357,7 @@ input mutationYachtUpdate_SeoInput {
 
 input mutationCharterInput {
   name: String!
+  slug: String
   model: String
   price: mutationCharter_PriceInput
   LOA: Float!
@@ -34075,6 +34458,7 @@ input mutationCharter_ReservationsInput {
 
 input mutationCharterUpdateInput {
   name: String
+  slug: String
   model: String
   price: mutationCharterUpdate_PriceInput
   LOA: Float
@@ -34187,6 +34571,7 @@ input mutationCategoryUpdateInput {
 
 input mutationDestinationInput {
   destination: String
+  slug: String
   country: String
   region: String
   continent: String
@@ -34219,6 +34604,7 @@ input mutationDestination_SeoInput {
 
 input mutationDestinationUpdateInput {
   destination: String
+  slug: String
   country: String
   region: String
   continent: String
@@ -34251,6 +34637,7 @@ input mutationDestinationUpdate_SeoInput {
 
 input mutationEventInput {
   title: String
+  slug: String
   fromDate: String!
   toDate: String!
   location: mutationEvent_LocationInput
@@ -34274,6 +34661,7 @@ input mutationEvent_SeoInput {
 
 input mutationEventUpdateInput {
   title: String
+  slug: String
   fromDate: String
   toDate: String
   location: mutationEventUpdate_LocationInput
@@ -34404,6 +34792,7 @@ input mutationSoldUpdate_SeoInput {
 input mutationNewConstructionInput {
   delivery: String!
   name: String!
+  slug: String
   model: String
   price: Float!
   LOA: Float!
@@ -34491,6 +34880,7 @@ input mutationNewConstruction_SeoInput {
 input mutationNewConstructionUpdateInput {
   delivery: String
   name: String
+  slug: String
   model: String
   price: Float
   LOA: Float

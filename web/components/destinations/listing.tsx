@@ -47,10 +47,10 @@ const Listing = ({ data }: { data: IDestination[] }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full my-10">
         {getDestinations.map((destination, index) => (
           <Link
-            key={destination.id}
+            key={destination.slug}
             href={{
-              pathname: "/destinations/[id]",
-              params: { id: destination.id },
+              pathname: "/destinations/[slug]",
+              params: { slug: destination.slug },
             }}
             className="bg-center bg-cover h-64"
             style={{

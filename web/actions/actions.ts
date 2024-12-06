@@ -7,401 +7,374 @@ import { joinSEO } from "@/utils/metadata";
 import puppeteer from "puppeteer";
 
 export const fetchMetadata = async ({
-  id,
+  slug,
   type,
   locale,
 }: {
-  id: string;
+  slug: string;
   type:
     | "sale"
-    | "sales"
     | "charter"
-    | "charters"
     | "new-construction"
-    | "new-constructions"
     | "destination"
-    | "destinations"
     | "article"
-    | "articles"
-    | "event"
-    | "events";
+    | "event";
   locale: "en" | "fr";
 }): Promise<Metadata> => {
   const client = getClient();
 
   switch (type) {
     case "sale":
-      const { data: saleData } = await client.query({
-        query: gql`
-          query Yacht($locale: LocaleInputType!, $id: String!) {
-            Yacht(locale: $locale, id: $id) {
-              name
-              description
-              seo {
-                value
-              }
-              photos {
-                featured {
-                  sizes {
-                    fhd {
-                      url
+      const saleData = (
+        await client.query({
+          query: gql`
+            query Yacht($locale: LocaleInputType!, $slug: String!) {
+              Yachts(
+                where: { slug: { equals: $slug } }
+                locale: $locale
+                limit: 1
+              ) {
+                docs {
+                  name
+                  description
+                  seo {
+                    value
+                  }
+                  photos {
+                    featured {
+                      sizes {
+                        fhd {
+                          url
+                        }
+                      }
                     }
                   }
                 }
               }
             }
-          }
-        `,
-        variables: { id, locale },
-      });
+          `,
+          variables: { slug, locale },
+        })
+      ).data.Yachts.docs[0];
 
       return {
-        title: saleData.Yacht.name,
-        description: saleData.Yacht.description,
-        keywords: joinSEO(saleData.Yacht.seo),
+        title: saleData.name,
+        description: saleData.description,
+        keywords: joinSEO(saleData.seo),
         openGraph: {
-          title: saleData.Yacht.name,
+          title: saleData.name,
           siteName: "G-Yachts",
           url:
             locale === "en"
-              ? `https://www.g-yachts.com/${locale}/sales/${id}`
-              : `https://www.g-yachts.com/${locale}/ventes/${id}`,
-          description: saleData.Yacht.description,
+              ? `https://www.g-yachts.com/${locale}/sales/${slug}`
+              : `https://www.g-yachts.com/${locale}/ventes/${slug}`,
+          description: saleData.description,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
           images: [
             {
-              url: encodeURI(saleData.Yacht.photos.featured.sizes.fhd.url),
+              url: encodeURI(saleData.photos.featured.sizes.fhd.url),
               width: 1200,
               height: 630,
-              alt: saleData.Yacht.photos.featured.alt,
-            },
-          ],
-        },
-      };
-
-    case "sales":
-      const { data: salesData } = await client.query({
-        query: gql`
-          query Yacht($locale: LocaleInputType!, $id: String!) {
-            Yacht(locale: $locale, id: $id) {
-              name
-              description
-              seo {
-                value
-              }
-              photos {
-                featured {
-                  sizes {
-                    fhd {
-                      url
-                    }
-                  }
-                }
-              }
-            }
-          }
-        `,
-        variables: { id, locale },
-      });
-      return {
-        title: saleData.Yacht.name,
-        description: saleData.Yacht.description,
-        keywords: saleData.Yacht.seo.value,
-        openGraph: {
-          title: saleData.Yacht.name,
-          siteName: "G-Yachts",
-          url: `https://www.g-yachts.com/${locale}/charters/${id}`,
-          description: saleData.Yacht.description,
-          type: "website",
-          locale: locale === "en" ? "en_US" : "fr_FR",
-          images: [
-            {
-              url: encodeURI(saleData.Yacht.photos.featured.sizes.fhd.url),
-              width: 1200,
-              height: 630,
-              alt: saleData.Yacht.photos.featured.alt,
+              alt: saleData.photos.featured.alt,
             },
           ],
         },
       };
 
     case "charter":
-      const { data: charterData } = await client.query({
-        query: gql`
-          query Charter($locale: LocaleInputType!, $id: String!) {
-            Charter(locale: $locale, id: $id) {
-              name
-              description
-              seo {
-                value
-              }
-              photos {
-                featured {
-                  sizes {
-                    fhd {
-                      url
+      const charterData = (
+        await client.query({
+          query: gql`
+            query Charter($locale: LocaleInputType!, $slug: String) {
+              Charters(
+                where: { slug: { equals: $slug } }
+                locale: $locale
+                limit: 1
+              ) {
+                docs {
+                  name
+                  description
+                  seo {
+                    value
+                  }
+                  photos {
+                    featured {
+                      sizes {
+                        fhd {
+                          url
+                        }
+                      }
+                      alt
                     }
                   }
-                  alt
                 }
               }
             }
-          }
-        `,
-        variables: { id, locale },
-      });
+          `,
+          variables: { slug, locale },
+        })
+      ).data.Charters.docs[0];
+
       return {
-        title: charterData.Charter.name,
-        description: charterData.Charter.description,
-        keywords: joinSEO(charterData.Charter.seo.value),
+        title: charterData.name,
+        description: charterData.description,
+        keywords: joinSEO(charterData.seo),
         openGraph: {
-          title: charterData.Charter.name,
+          title: charterData.name,
           siteName: "G-Yachts",
-          url: `https://www.g-yachts.com/${locale}/charters/${id}`,
-          description: charterData.Charter.description,
+          url: `https://www.g-yachts.com/${locale}/charters/${slug}`,
+          description: charterData.description,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
           images: [
             {
-              url: encodeURI(charterData.Charter.photos.featured.sizes.fhd.url),
+              url: encodeURI(charterData.photos.featured.sizes.fhd.url),
               width: 1200,
               height: 630,
-              alt: charterData.Charter.photos.featured.alt,
+              alt: charterData.photos.featured.alt,
             },
           ],
         },
       };
 
     case "new-construction":
-      const { data: newConstructionData } = await client.query({
-        query: gql`
-          query NewConstruction($locale: LocaleInputType!, $id: String!) {
-            NewConstruction(locale: $locale, id: $id) {
-              name
-              description
-              seo {
-                value
-              }
-              photos {
-                featured {
-                  sizes {
-                    fhd {
-                      url
+      const newConstructionData = (
+        await client.query({
+          query: gql`
+            query NewConstruction($locale: LocaleInputType!, $slug: String) {
+              NewConstructions(
+                where: { slug: { equals: $slug } }
+                locale: $locale
+                limit: 1
+              ) {
+                docs {
+                  name
+                  description
+                  seo {
+                    value
+                  }
+                  photos {
+                    featured {
+                      sizes {
+                        fhd {
+                          url
+                        }
+                      }
+                      alt
                     }
                   }
-                  alt
                 }
               }
             }
-          }
-        `,
-        variables: { id, locale },
-      });
+          `,
+          variables: { slug, locale },
+        })
+      ).data.NewConstructions.docs[0];
+
       return {
-        title: newConstructionData.NewConstruction.name,
-        description: newConstructionData.NewConstruction.description,
-        keywords: joinSEO(newConstructionData.NewConstruction.seo.value),
+        title: newConstructionData.name,
+        description: newConstructionData.description,
+        keywords: joinSEO(newConstructionData.seo),
         openGraph: {
-          title: newConstructionData.NewConstruction.name,
+          title: newConstructionData.name,
           siteName: "G-Yachts",
           url:
             locale === "en"
-              ? `https://www.g-yachts.com/${locale}/new-constructions/${id}`
-              : `https://www.g-yachts.com/${locale}/nouvelles-constructions/${id}`,
-          description: newConstructionData.NewConstruction.description,
+              ? `https://www.g-yachts.com/${locale}/new-constructions/${slug}`
+              : `https://www.g-yachts.com/${locale}/nouvelles-constructions/${slug}`,
+          description: newConstructionData.description,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
           images: [
             {
-              url: encodeURI(
-                newConstructionData.NewConstruction.photos.featured.sizes.fhd
-                  .url,
-              ),
+              url: encodeURI(newConstructionData.photos.featured.sizes.fhd.url),
               width: 1200,
               height: 630,
-              alt: newConstructionData.NewConstruction.photos.featured.alt,
+              alt: newConstructionData.photos.featured.alt,
             },
           ],
         },
       };
 
     case "event":
-      const { data: eventData } = await client.query({
-        query: gql`
-          query Event($locale: LocaleInputType!, $id: String!) {
-            Event(locale: $locale, id: $id) {
-              title
-              fromDate
-              toDate
-              image {
-                alt
-                sizes {
-                  fhd {
-                    url
+      const eventData = (
+        await client.query({
+          query: gql`
+            query Event($locale: LocaleInputType!, $slug: String) {
+              Events(
+                where: { slug: { equals: $slug } }
+                locale: $locale
+                limit: 1
+              ) {
+                docs {
+                  title
+                  fromDate
+                  toDate
+                  image {
+                    alt
+                    sizes {
+                      fhd {
+                        url
+                      }
+                    }
+                  }
+                  seo {
+                    value
+                  }
+                  location {
+                    city
+                    country
                   }
                 }
               }
-              seo {
-                value
-              }
-              location {
-                city
-                country
-              }
             }
-          }
-        `,
-        variables: { id, locale },
-      });
+          `,
+          variables: { slug, locale },
+        })
+      ).data.Events.docs[0];
+
       return {
-        title: eventData.Event.title,
-        description: `${eventData.Event.fromDate} - ${eventData.Event.toDate} | ${eventData.Event.location.city}, ${eventData.Event.location.country}`,
-        keywords: joinSEO(eventData.Event.seo.value),
+        title: eventData.title,
+        description: `${eventData.fromDate} - ${eventData.toDate} | ${eventData.location.city}, ${eventData.location.country}`,
+        keywords: joinSEO(eventData.seo),
         openGraph: {
-          title: eventData.Event.title,
+          title: eventData.title,
           siteName: "G-Yachts",
           url:
             locale === "en"
-              ? `https://www.g-yachts.com/${locale}/events/${id}`
-              : `https://www.g-yachts.com/${locale}/evenements/${id}`,
-          description: `${eventData.Event.fromDate} - ${eventData.Event.toDate} | ${eventData.Event.location.city}, ${eventData.Event.location.country}`,
+              ? `https://www.g-yachts.com/${locale}/events/${slug}`
+              : `https://www.g-yachts.com/${locale}/evenements/${slug}`,
+          description: `${eventData.fromDate} - ${eventData.toDate} | ${eventData.location.city}, ${eventData.location.country}`,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
           images: [
             {
-              url: encodeURI(eventData.Event.image.sizes.fhd.url),
+              url: encodeURI(eventData.image.sizes.fhd.url),
               width: 1200,
               height: 630,
-              alt: eventData.Event.image.alt,
+              alt: eventData.image.alt,
             },
           ],
         },
       };
 
     case "destination":
-      const { data: destinationData } = await client.query({
-        query: gql`
-          query Destination($locale: LocaleInputType!, $id: String!) {
-            Destination(locale: $locale, id: $id) {
-              destination
-              country
-              region
-              continent
-              seo {
-                value
-              }
-              photos {
-                featured {
-                  alt
-                  sizes {
-                    fhd {
-                      url
+      const destinationData = (
+        await client.query({
+          query: gql`
+            query Destination($locale: LocaleInputType!, $slug: String) {
+              Destinations(
+                where: { slug: { equals: $slug } }
+                locale: $locale
+                limit: 1
+              ) {
+                docs {
+                  destination
+                  country
+                  region
+                  continent
+                  seo {
+                    value
+                  }
+                  photos {
+                    featured {
+                      alt
+                      sizes {
+                        fhd {
+                          url
+                        }
+                      }
                     }
                   }
                 }
               }
             }
-          }
-        `,
-        variables: { id, locale },
-      });
+          `,
+          variables: { slug, locale },
+        })
+      ).data.Destinations.docs[0];
+
       return {
-        title: destinationData.Destination.destination,
-        description: `${destinationData.Destination.destination}, ${destinationData.Destination.country}, ${destinationData.Destination.region}, ${destinationData.Destination.continent}`,
-        keywords: joinSEO(destinationData.Destination.seo.value),
+        title: destinationData.destination,
+        description: `${destinationData.destination}, ${destinationData.country}, ${destinationData.region}, ${destinationData.continent}`,
+        keywords: joinSEO(destinationData.seo),
         openGraph: {
-          title: destinationData.Destination.destination,
+          title: destinationData.destination,
           siteName: "G-Yachts",
-          url: `https://www.g-yachts.com/${locale}/destinations/${id}`,
-          description: `${destinationData.Destination.destination}, ${destinationData.Destination.country}, ${destinationData.Destination.region}, ${destinationData.Destination.continent}`,
+          url: `https://www.g-yachts.com/${locale}/destinations/${slug}`,
+          description: `${destinationData.destination}, ${destinationData.country}, ${destinationData.region}, ${destinationData.continent}`,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
           images: [
             {
-              url: encodeURI(
-                destinationData.Destination.photos.featured.sizes.fhd.url,
-              ),
+              url: encodeURI(destinationData.photos.featured.sizes.fhd.url),
               width: 1200,
               height: 630,
-              alt: destinationData.Destination.photos.featured.alt,
+              alt: destinationData.photos.featured.alt,
             },
           ],
         },
       };
 
     case "article":
-      const { data: articleData } = await client.query({
-        query: gql`
-          query Article($locale: LocaleInputType!, $id: String!) {
-            Article(locale: $locale, id: $id) {
-              title
-              category(locale: $locale) {
-                title
-              }
-              author {
-                name
-              }
-              image {
-                alt
-                sizes {
-                  fhd {
-                    url
+      const articleData = (
+        await client.query({
+          query: gql`
+            query Article($locale: LocaleInputType!, $slug: String) {
+              Articles(
+                where: { slug: { equals: $slug } }
+                locale: $locale
+                limit: 1
+              ) {
+                docs {
+                  title
+                  category(locale: $locale) {
+                    title
+                  }
+                  author {
+                    name
+                  }
+                  image {
+                    alt
+                    sizes {
+                      fhd {
+                        url
+                      }
+                    }
+                  }
+                  seo {
+                    value
                   }
                 }
               }
-              seo {
-                value
-              }
             }
-          }
-        `,
-        variables: { id, locale },
-      });
+          `,
+          variables: { slug, locale },
+        })
+      ).data.Articles.docs[0];
+
       return {
-        title: articleData.Article.title,
-        description: articleData.Article.category.title,
-        keywords: joinSEO(articleData.Article.seo.value),
-        authors: articleData.Article.author.name,
+        title: articleData.title,
+        description: articleData.category.title,
+        keywords: joinSEO(articleData.seo),
+        authors: articleData.author.name,
         openGraph: {
-          title: articleData.Article.title,
+          title: articleData.title,
           siteName: "G-Yachts",
           url:
             locale === "en"
-              ? `https://www.g-yachts.com/${locale}/news/${id}`
-              : `https://www.g-yachts.com/${locale}/actualites/${id}`,
-          description: articleData.Article.category.title,
+              ? `https://www.g-yachts.com/${locale}/news/${slug}`
+              : `https://www.g-yachts.com/${locale}/actualites/${slug}`,
+          description: articleData.category.title,
           type: "website",
           locale: locale === "en" ? "en_US" : "fr_FR",
           images: [
             {
-              url: encodeURI(articleData.Article.image.sizes.fhd.url),
+              url: encodeURI(articleData.image.sizes.fhd.url),
               width: 1200,
               height: 630,
-              alt: articleData.Article.image.alt,
-            },
-          ],
-        },
-      };
-
-    default:
-      return {
-        title: "G-Yachts",
-        description: "G-Yachts",
-        keywords: "G-Yachts",
-        openGraph: {
-          title: "G-Yachts",
-          siteName: "G-Yachts",
-          url: `https://www.g-yachts.com/${locale}/charters/${id}`,
-          description: "G-Yachts",
-          type: "website",
-          locale: locale === "en" ? "en_US" : "fr_FR",
-          images: [
-            {
-              url: "https://www.g-yachts.com/images/openGraph.png",
-              width: 1200,
-              height: 630,
-              alt: "G-Yachts logo",
+              alt: articleData.image.alt,
             },
           ],
         },
@@ -412,49 +385,50 @@ export const fetchMetadata = async ({
 export const fetchSitemap = async () => {
   const client = getClient();
 
-  const { data } = await client.query({
-    query: gql`
-      query Sitemap {
-        Articles(limit: 0) {
-          docs {
-            id
-            updatedAt
+  return (
+    await client.query({
+      query: gql`
+        query Sitemap {
+          Articles(limit: 0) {
+            docs {
+              id
+              updatedAt
+            }
+          }
+          Yachts(limit: 0) {
+            docs {
+              id
+              updatedAt
+            }
+          }
+          Charters(limit: 0) {
+            docs {
+              id
+              updatedAt
+            }
+          }
+          NewConstructions(limit: 0) {
+            docs {
+              id
+              updatedAt
+            }
+          }
+          Destinations(limit: 0) {
+            docs {
+              id
+              updatedAt
+            }
+          }
+          Events(limit: 0) {
+            docs {
+              id
+              updatedAt
+            }
           }
         }
-        Yachts(limit: 0) {
-          docs {
-            id
-            updatedAt
-          }
-        }
-        Charters(limit: 0) {
-          docs {
-            id
-            updatedAt
-          }
-        }
-        NewConstructions(limit: 0) {
-          docs {
-            id
-            updatedAt
-          }
-        }
-        Destinations(limit: 0) {
-          docs {
-            id
-            updatedAt
-          }
-        }
-        Events(limit: 0) {
-          docs {
-            id
-            updatedAt
-          }
-        }
-      }
-    `,
-  });
-  return data;
+      `,
+    })
+  ).data;
 };
 
 export const getRate = async (currency: string) => {

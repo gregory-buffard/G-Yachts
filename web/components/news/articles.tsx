@@ -148,8 +148,8 @@ const ArticleCard = ({
   return (
     <Link
       href={{
-        pathname: "/news/[id]",
-        params: { id: article.id },
+        pathname: "/news/[slug]",
+        params: { slug: article.slug },
       }}
       className="flex justify-start items-start flex-col gap-[2vh]"
     >

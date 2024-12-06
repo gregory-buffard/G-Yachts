@@ -8,7 +8,7 @@ import { IArticle } from "@/types/article";
 const Card = ({ card }: { card: IArticle }) => {
   return (
     <Link
-      href={{ pathname: "/news/[id]", params: { id: card.id } }}
+      href={{ pathname: "/news/[slug]", params: { slug: card.slug } }}
       className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw]`}
     >
       <div
@@ -112,7 +112,6 @@ const Articles = ({ data }: { data: IArticle[] }) => {
         setTranslate(defaultTranslate);
       }, 500);
     }
-    console.log(getTranslation());
   };
 
   return (

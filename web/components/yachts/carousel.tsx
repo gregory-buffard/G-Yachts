@@ -14,7 +14,7 @@ const Card = ({
   | {
       data: Pick<
         ISale,
-        | "id"
+        | "slug"
         | "length"
         | "price"
         | "name"
@@ -29,7 +29,7 @@ const Card = ({
   | {
       data: Pick<
         ICharter,
-        | "id"
+        | "slug"
         | "length"
         | "price"
         | "name"
@@ -44,7 +44,7 @@ const Card = ({
   | {
       data: Pick<
         INewConstruction,
-        | "id"
+        | "slug"
         | "length"
         | "price"
         | "name"
@@ -66,7 +66,7 @@ const Card = ({
 
   return (
     <Link
-      href={{ pathname: `/${type}/[id]`, params: { id: data.id } }}
+      href={{ pathname: `/${type}/[slug]`, params: { slug: data.slug } }}
       className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw] gap-[1vh]`}
     >
       <div
@@ -150,7 +150,7 @@ const Carousel = ({
       type: "sales";
       data: Pick<
         ISale,
-        | "id"
+        | "slug"
         | "length"
         | "price"
         | "name"
@@ -169,7 +169,7 @@ const Carousel = ({
       type: "charters";
       data: Pick<
         ICharter,
-        | "id"
+        | "slug"
         | "length"
         | "price"
         | "name"
@@ -188,7 +188,7 @@ const Carousel = ({
       type: "new-constructions";
       data: Pick<
         INewConstruction,
-        | "id"
+        | "slug"
         | "length"
         | "price"
         | "name"

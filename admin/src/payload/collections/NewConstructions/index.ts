@@ -8,6 +8,7 @@ import { deleteBrochureHook } from '../../hooks/deleteBrochure'
 import { generateBrochureHook } from '../../hooks/generateBrochureHook'
 import { indexField } from '../shared/indexField'
 import { CustomCollectionList } from '../../components/CustomOrder/list'
+import mountSlug from '../../utilities/mountSlug'
 
 export const NewConstructions: CollectionConfig = {
   slug: 'new-constructions',
@@ -39,8 +40,8 @@ export const NewConstructions: CollectionConfig = {
   },
   hooks: {
     afterChange: [
-      ({ doc, req, previousDoc, operation }) =>
-        generateBrochureHook({ doc, req, previousDoc, operation, collection: 'new-constructions' }),
+      ({ doc, operation }) =>
+        mountSlug({ name: doc.name, id: doc.id, operation, collection: 'new-constructions' }),
     ],
     afterDelete: [({ doc, req }) => deleteBrochureHook({ doc, req })],
   },
