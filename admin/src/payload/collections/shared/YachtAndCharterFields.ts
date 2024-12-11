@@ -397,11 +397,11 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
         name: 'featured',
         type: 'upload',
         relationTo: 'media',
-        validate: (value, options) =>
-          options.operation === 'create' &&
-          value.length === 0 &&
-          'At least 1 gallery photo is required',
-        /*required: true,*/
+        // validate: (value, options) =>
+        //   options.operation === 'create' &&
+        //   value.length === 0 &&
+        //   'At least 1 gallery photo is required',
+        required: true,
       },
       {
         type: 'ui',
