@@ -23,16 +23,12 @@ services:
     restart: unless-stopped
     container_name: web
     environment:
-      - CURRENCY_API_KEY=${CURRENCY_API_KEY}
-      - MONGO_URI=${MONGO_URI}
-      - MONGO_USER=${MONGO_USER}
-      - MONGO_PASS=${MONGO_PASS}
       - MAILCHIMP_API_KEY=${MAILCHIMP_API_KEY}
       - MAILCHIMP_LIST_ID=${MAILCHIMP_LIST_ID}
       - MAILCHIMP_SERVER=${MAILCHIMP_SERVER}
       - GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}
       - RESEND_API_KEY=${RESEND_API_KEY}
-      - AUTH_TOKEN=${AUTH_TOKEN}
+      - PAYLOAD_API_KEY=${PAYLOAD_API_KEY}
     ports:
       - "3000:3000"
     depends_on:
@@ -48,7 +44,6 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     container_name: admin
-    restart: always
     depends_on:
       - mongo
     env_file:
@@ -57,7 +52,7 @@ services:
       - gYachts
     volumes:
       - /var/www/media:/home/node/app/media
-      
+
   mongo:
     image: mongo:latest
     container_name: mongo
@@ -69,12 +64,6 @@ services:
     volumes:
       - /var/www/mongo:/data/db
     command: mongod --auth --wiredTigerCacheSizeGB 1
-    
-  gotenberg:
-    image: gotenberg/gotenberg:8
-    container_name: gotenberg
-    networks:
-      - gYachts
 
 networks:
   gYachts:

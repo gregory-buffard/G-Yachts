@@ -397,11 +397,10 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
         name: 'featured',
         type: 'upload',
         relationTo: 'media',
-        // validate: (value, options) =>
-        //   options.operation === 'create' &&
-        //   value.length === 0 &&
-        //   'At least 1 gallery photo is required',
-        required: true,
+        validate: (value, options) =>
+          options.operation === 'update' && value.length === 0
+            ? 'At least 1 gallery photo is required'
+            : true,
       },
       {
         type: 'ui',
@@ -425,10 +424,9 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
             type: 'upload',
             relationTo: 'media',
             validate: (value, options) =>
-              options.operation === 'create' &&
-              value.length === 0 &&
-              'At least 1 gallery photo is required',
-            /*required: true,*/
+              options.operation === 'update' && value.length === 0
+                ? 'At least 1 gallery photo is required'
+                : true,
           },
         ],
       },
@@ -443,16 +441,6 @@ export const yachtsAndCharterCommonFields = (type: 'charter' | 'yacht'): Field[]
     },
     required: false,
     localized: true,
-  },
-  {
-    type: 'relationship',
-    relationTo: 'media',
-    name: 'brochure',
-    admin: {
-      components: {
-        Field: BrochureComponent,
-      },
-    },
   },
   {
     type: 'number',

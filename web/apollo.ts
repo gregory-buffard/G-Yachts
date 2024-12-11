@@ -8,11 +8,11 @@ import { setContext } from "@apollo/client/link/context";
 
 const authLink = setContext(
   ({ headers }: { headers: { [key: string]: string } }) => {
-    const token = process.env.AUTH_TOKEN;
+    const API_KEY = process.env.PAYLOAD_API_KEY;
     return {
       headers: {
         ...headers,
-        Authorization: token ? `Bearer ${token}` : "",
+        Authorization: API_KEY && `users API-Key ${API_KEY}`,
       },
     };
   },

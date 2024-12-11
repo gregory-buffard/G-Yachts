@@ -13,99 +13,94 @@ jobs:
       packages: write
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Docker Login
-      uses: docker/login-action@v3.1.0
-      with:
-        registry: ghcr.io
-        username: ${{github.actor}}
-        password: ${{secrets.GITHUB_TOKEN}}
+      - name: Docker Login
+        uses: docker/login-action@v3.1.0
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Build and push web
-      uses: docker/build-push-action@v5.3.0
-      with:
-        context: ./web
-        file: ./web/Dockerfile
-        push: true
-        tags: ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}
-    
-    - name: Build and push Admin
-      uses: docker/build-push-action@v5.3.0
-      with:
-        context: ./admin
-        file: ./admin/Dockerfile
-        push: true
-        tags: ghcr.io/${{github.repository_owner}}/g-yachts-admin:${{github.sha}}
-        
+      - name: Build and push web
+        uses: docker/build-push-action@v5.3.0
+        with:
+          context: ./web
+          file: ./web/Dockerfile
+          push: true
+          tags: ghcr.io/${{github.repository_owner}}/g-yachts-web:${{github.sha}}
+
+      - name: Build and push Admin
+        uses: docker/build-push-action@v5.3.0
+        with:
+          context: ./admin
+          file: ./admin/Dockerfile
+          push: true
+          tags: ghcr.io/${{github.repository_owner}}/g-yachts-admin:${{github.sha}}
+
   Deploy:
     runs-on: ubuntu-latest
     needs: Build
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: SSH
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{secrets.SERVER_IP}}
-        username: ${{secrets.SERVER_USER}}
-        password: ${{secrets.SERVER_PASSWORD}}
-        script: |
-          sudo mkdir -p /var/www/docker
-          cd /var/www/docker
-          sudo rm -rf .env
-          sudo docker rmi $(sudo docker images)
-          echo "GITHUB_SHA=${{ github.sha }}" > .env
-          echo "GITHUB_OWNER=${{github.repository_owner}}" >> .env
-          echo "CURRENCY_API_KEY=${{secrets.CURRENCY_API}}" >> .env
-          echo "MONGO_URI=mongodb://${{secrets.SERVER_IP}}:27017" >> .env
-          echo "MONGO_USER=${{secrets.MONGO_USER}}" >> .env
-          echo "MONGO_PASS=${{secrets.MONGO_PASS}}" >> .env
-          echo "WEB_IP=${{secrets.WEB_IP}}" >> .env
-          echo "ADMIN_IP=${{secrets.ADMIN_IP}}" >> .env
-          echo "PUBLIC_API_IP=${{secrets.PUBLIC_API_IP}}" >> .env
-          echo "ADMIN_API_IP=${{secrets.ADMIN_API_IP}}" >> .env
-          echo "MAILCHIMP_API_KEY=${{secrets.MAILCHIMP_API_KEY}}" >> .env
-          echo "MAILCHIMP_LIST_ID=${{secrets.MAILCHIMP_LIST_ID}}" >> .env
-          echo "MAILCHIMP_SERVER=${{secrets.MAILCHIMP_SERVER}}" >> .env
-          echo "GOOGLE_ANALYTICS_ID=${{secrets.GOOGLE_ANALYTICS_ID}}" >> .env
-          echo "RESEND_API_KEY=${{secrets.RESEND_API_KEY}}" >> .env
+      - name: SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.SERVER_IP}}
+          username: ${{secrets.SERVER_USER}}
+          password: ${{secrets.SERVER_PASSWORD}}
+          script: |
+            sudo mkdir -p /var/www/docker
+            cd /var/www/docker
+            sudo rm -rf .env
+            sudo docker rmi $(sudo docker images)
+            echo "GITHUB_SHA=${{ github.sha }}" > .env
+            echo "GITHUB_OWNER=${{github.repository_owner}}" >> .env
+            echo "MONGO_URI=mongodb://${{secrets.SERVER_IP}}:27017" >> .env
+            echo "MONGO_USER=${{secrets.MONGO_USER}}" >> .env
+            echo "MONGO_PASS=${{secrets.MONGO_PASS}}" >> .env
+            echo "WEB_IP=${{secrets.WEB_IP}}" >> .env
+            echo "ADMIN_IP=${{secrets.ADMIN_IP}}" >> .env
+            echo "PUBLIC_API_IP=${{secrets.PUBLIC_API_IP}}" >> .env
+            echo "ADMIN_API_IP=${{secrets.ADMIN_API_IP}}" >> .env
+            echo "MAILCHIMP_API_KEY=${{secrets.MAILCHIMP_API_KEY}}" >> .env
+            echo "MAILCHIMP_LIST_ID=${{secrets.MAILCHIMP_LIST_ID}}" >> .env
+            echo "MAILCHIMP_SERVER=${{secrets.MAILCHIMP_SERVER}}" >> .env
+            echo "GOOGLE_ANALYTICS_ID=${{secrets.GOOGLE_ANALYTICS_ID}}" >> .env
+            echo "RESEND_API_KEY=${{secrets.RESEND_API_KEY}}" >> .env
+            
+            # WEB
+            echo "PAYLOAD_API_KEY=${{secrets.PAYLOAD_API_KEY}}" >> .env
+            
+            # ADMIN
+            echo "PAYLOAD_DATABASE_URI=mongodb://${{secrets.MONGO_USER}}:${{secrets.MONGO_PASS}}@mongo:27017" >> .env
+            echo "PAYLOAD_DATABASE_NAME=${{secrets.PAYLOAD_DATABASE_NAME}}" >> .env
+            echo "PAYLOAD_PUBLIC_FRONTEND_URL=https://www.g-yachts.com" >> .env
+            echo "PAYLOAD_SECRET=${{secrets.PAYLOAD_SECRET}}" >> .env
+            echo "PAYLOAD_PUBLIC_SERVER_URL=https://www.g-yachts.com" >> .env
+            echo "PAYLOAD_YATCO_API_KEY=${{secrets.PAYLOAD_YATCO_API_KEY}}" >> .env
 
-          # WEB
-          echo "NEXT_PUBLIC_ADMIN_BASE_URI=http://admin:3000" >> .env
-          echo "AUTH_TOKEN=${{secrets.AUTH_TOKEN}}" >> .env
+      - name: Transfer Compose
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{secrets.SERVER_IP}}
+          username: ${{secrets.SERVER_USER}}
+          password: ${{secrets.SERVER_PASSWORD}}
+          source: ./docker-compose.yml
+          target: /var/www/docker
 
-          # ADMIN
-          echo "PAYLOAD_DATABASE_URI=mongodb://${{secrets.MONGO_USER}}:${{secrets.MONGO_PASS}}@mongo:27017" >> .env
-          echo "PAYLOAD_DATABASE_NAME=${{secrets.PAYLOAD_DATABASE_NAME}}" >> .env
-          echo "PAYLOAD_PUBLIC_FRONTEND_URL=https://www.g-yachts.com" >> .env
-          echo "PAYLOAD_SECRET=${{secrets.PAYLOAD_SECRET}}" >> .env
-          echo "PAYLOAD_PUBLIC_SERVER_URL=https://www.g-yachts.com" >> .env
-          echo "GOTENBERG_ENDPOINT=http://gotenberg:3000" >> .env
-          echo "PAYLOAD_YATCO_API_KEY=${{secrets.PAYLOAD_YATCO_API_KEY}}" >> .env
-          echo "CADDY_EMAIL=${{secrets.CADDY_EMAIL}}" >> .env
-          echo "CADDY_BASE_DOMAIN=${{secrets.CADDY_BASE_DOMAIN}}" >> .env
-
-    - name: Transfer Compose
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{secrets.SERVER_IP}}
-        username: ${{secrets.SERVER_USER}}
-        password: ${{secrets.SERVER_PASSWORD}}
-        source: ./docker-compose.yml
-        target: /var/www/docker
-
-    - name: Start Services
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{secrets.SERVER_IP}}
-        username: ${{secrets.SERVER_USER}}
-        password: ${{secrets.SERVER_PASSWORD}}
-        script: |
-          cd /var/www/docker
-          sudo docker-compose pull
-          sudo docker-compose down
-          sudo docker-compose up -d
+      - name: Start Services
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.SERVER_IP}}
+          username: ${{secrets.SERVER_USER}}
+          password: ${{secrets.SERVER_PASSWORD}}
+          script: |
+            cd /var/www/docker
+            sudo docker-compose pull
+            sudo docker-compose down
+            sudo docker-compose up -d
