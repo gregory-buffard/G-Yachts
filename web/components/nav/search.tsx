@@ -11,7 +11,7 @@ import { IDestination } from "@/types/destination";
 import { IArticle } from "@/types/article";
 import { Link } from "@/navigation";
 import { IYacht } from "@/types/sale";
-import { ICharter } from "@/types/charter";
+import { ICharter } from "@/types/yacht";
 
 const Search = () => {
   const t = useTranslations("search");

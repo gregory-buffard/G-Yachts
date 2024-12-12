@@ -94,3 +94,29 @@ export interface INewConstruction extends IYacht {
   price: number;
   similar?: INewConstruction[];
 }
+
+export interface IFeatured
+  extends Pick<
+    ISale | ICharter | INewConstruction,
+    | "id"
+    | "slug"
+    | "price"
+    | "name"
+    | "builder"
+    | "length"
+    | "sleeps"
+    | "yearBuilt"
+    | "etiquette"
+  > {
+  photos: {
+    featured: {
+      sizes: {
+        fhd: Pick<IYacht["photos"]["featured"]["sizes"]["fhd"], "url">;
+        thumbnail: Pick<
+          IYacht["photos"]["featured"]["sizes"]["thumbnail"],
+          "url"
+        >;
+      };
+    };
+  };
+}
