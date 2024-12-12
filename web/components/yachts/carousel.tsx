@@ -6,6 +6,7 @@ import { useViewContext } from "@/context/view";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
 import { Link } from "@/navigation";
 import { useEffect, useState } from "react";
+import { click } from "@/actions/yachts";
 
 const Card = ({
   data,
@@ -14,6 +15,7 @@ const Card = ({
   | {
       data: Pick<
         ISale,
+        | "id"
         | "slug"
         | "length"
         | "price"
@@ -29,6 +31,7 @@ const Card = ({
   | {
       data: Pick<
         ICharter,
+        | "id"
         | "slug"
         | "length"
         | "price"
@@ -44,6 +47,7 @@ const Card = ({
   | {
       data: Pick<
         INewConstruction,
+        | "id"
         | "slug"
         | "length"
         | "price"
@@ -67,6 +71,7 @@ const Card = ({
   return (
     <Link
       href={{ pathname: `/${type}/[slug]`, params: { slug: data.slug } }}
+      onClick={async () => await click({ id: data.id, type })}
       className={`w-max flex flex-col justify-center items-start font-classic text-base font-normal tracking-wider group transition-transform lg:duration-[var(--animate-featured)] ease-in-out lg:translate-x-[var(--translate-featured)] lg:pr-[2vw] gap-[1vh]`}
     >
       <div

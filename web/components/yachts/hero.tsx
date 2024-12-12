@@ -1,71 +1,31 @@
 "use client";
 
-import { ISale, ICharter, INewConstruction } from "@/types/yacht";
+import { IFeatured } from "@/types/yacht";
 import { useState, useEffect } from "react";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useViewContext } from "@/context/view";
 import { convertUnit, formatCurrency } from "@/utils/yachts";
-
-interface ISalesHero
-  extends Pick<
-    ISale,
-    | "slug"
-    | "name"
-    | "builder"
-    | "length"
-    | "yearBuilt"
-    | "sleeps"
-    | "photos"
-    | "etiquette"
-    | "price"
-  > {}
-
-interface IChartersHero
-  extends Pick<
-    ICharter,
-    | "slug"
-    | "name"
-    | "builder"
-    | "length"
-    | "yearBuilt"
-    | "sleeps"
-    | "photos"
-    | "etiquette"
-    | "price"
-  > {}
-
-interface INewConstructionsHero
-  extends Pick<
-    INewConstruction,
-    | "slug"
-    | "name"
-    | "builder"
-    | "length"
-    | "yearBuilt"
-    | "sleeps"
-    | "photos"
-    | "etiquette"
-    | "price"
-  > {}
+import { click } from "@/actions/yachts";
 
 const Card = ({
   card,
   type,
-}:
-  | { card: ISalesHero; type: "sales" }
-  | { card: IChartersHero; type: "charters" }
-  | { card: INewConstructionsHero; type: "new-constructions" }) => {
+}: {
+  card: IFeatured;
+  type: "sales" | "charters" | "new-constructions";
+}) => {
   const t = useTranslations(`${type}.hero`),
     { currency, units, rates } = useViewContext(),
     price =
-      type === "charters"
+      typeof card.price === "object"
         ? `${formatCurrency(card.price.low * rates[currency], currency)} – ${formatCurrency(card.price.high * rates[currency], currency)}`
         : formatCurrency(card.price * rates[currency], currency);
   return (
     <Link
       href={{ pathname: `/${type}/[slug]`, params: { slug: card.slug } }}
       key={`${card.slug}`}
+      onClick={async () => await click({ id: card.id, type })}
       className={
         "w-screen h-full bg-cover bg-center translate-x-[var(--translate-featured)] transition-transform duration-[var(--animate-featured)] ease-in-out"
       }
@@ -100,10 +60,10 @@ const Card = ({
 const Hero = ({
   data,
   type,
-}:
-  | { data: ISalesHero[]; type: "sales" }
-  | { data: IChartersHero[]; type: "charters" }
-  | { data: INewConstructionsHero[]; type: "new-constructions" }) => {
+}: {
+  data: IFeatured[];
+  type: "sales" | "charters" | "new-constructions";
+}) => {
   const t = useTranslations(`${type}.hero`),
     carouselData = [...data, ...data],
     [selected, select] = useState<number>(0),
@@ -156,7 +116,6 @@ const Hero = ({
     <section className={"w-full h-[36vh] lg:h-screen overflow-x-hidden"}>
       <div className={"w-max h-full flex justify-start items-end text-white"}>
         {carouselData.map((yacht, i) => (
-          // @ts-ignore
           <Card key={i} card={yacht} type={type} />
         ))}
         <div
@@ -172,7 +131,9 @@ const Hero = ({
             <h4>{t("subtitle")}</h4>
             <h1>
               {t.rich("title", {
-                classic: (chunk) => <span className={"classic"}>{chunk}</span>,
+                classic: (chunk: React.ReactNode) => (
+                  <span className={"classic"}>{chunk}</span>
+                ),
               })}
             </h1>
           </div>
@@ -181,7 +142,7 @@ const Hero = ({
               "flex justify-end items-end lg:gap-[0.5vw] gap-[1vw] py-[3vh] lg:py-[10vh]"
             }
           >
-            {data.map((yacht, i) => (
+            {data.map((_, i) => (
               <button
                 key={i}
                 onClick={() => {

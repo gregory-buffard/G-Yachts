@@ -123,12 +123,12 @@ const Details = () => {
       key: "location",
     },
     /*{
-          label: t("characteristics.crypto.label"),
-          value: data.crypto
-            ? t("characteristics.crypto.true")
-            : t("characteristics.crypto.false"),
-          key: "crypto",
-        },*/
+                                          label: t("characteristics.crypto.label"),
+                                          value: data.crypto
+                                            ? t("characteristics.crypto.true")
+                                            : t("characteristics.crypto.false"),
+                                          key: "crypto",
+                                        },*/
   ];
 
   return (
@@ -251,7 +251,7 @@ const Details = () => {
                 type: type,
                 photos: data.photos,
                 locale: locale,
-                id: data.id,
+                slug: data.slug,
                 currency: currency,
                 units: units,
               })
@@ -273,24 +273,6 @@ const Details = () => {
           >
             <p>{t("brochure")}</p>
           </button>
-          {/*<a
-            target={"_blank"}
-            href={`/media/brochure-yachts-${data.id}.pdf`}
-            className={
-              "uppercase py-[0.5vh] border-b-[0.25vh] hover:border-black border-transparent hover:text-black text-rock-300 hover:fill-black fill-rock-300 transition-colors duration-200 ease-in-out flex justify-center items-start"
-            }
-          >
-            <p>{t("brochure")}</p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              viewBox="0 0 24 24"
-              className={"size-[1.3rem] -rotate-45"}
-            >
-              <path d="M 14 4.9296875 L 12.5 6.4296875 L 17.070312 11 L 3 11 L 3 13 L 17.070312 13 L 12.5 17.570312 L 14 19.070312 L 21.070312 12 L 14 4.9296875 z"></path>
-            </svg>
-          </a>*/}
         </div>
         <div className={"w-full flex-col justify-center items-center"}>
           {view === "info"

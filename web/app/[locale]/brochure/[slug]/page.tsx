@@ -20,7 +20,7 @@ const Brochure = async ({
   searchParams,
 }: {
   params: {
-    id: string;
+    slug: string;
   };
   searchParams: {
     type: "sale" | "charter" | "new-construction";
@@ -33,19 +33,20 @@ const Brochure = async ({
   const yacht = await (async () => {
       switch (searchParams.type) {
         case "sale":
-          return await fetchSale(params.id, (await getLocale()) as "en" | "fr");
+          return await fetchSale(
+            params.slug,
+            (await getLocale()) as "en" | "fr",
+          );
         case "charter":
           return await fetchCharter(
-            params.id,
+            params.slug,
             (await getLocale()) as "en" | "fr",
           );
         case "new-construction":
           return await fetchNewConstruction(
-            params.id,
+            params.slug,
             (await getLocale()) as "en" | "fr",
           );
-        default:
-          return await fetchSale(params.id, (await getLocale()) as "en" | "fr");
       }
     })(),
     units: IContext["units"] = {

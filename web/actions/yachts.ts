@@ -1,11 +1,10 @@
 "use server";
 
 import { getClient } from "@/apollo";
-import { ApolloQueryResult, gql } from "@apollo/client";
-import { IFeatured, IFeatured as SFeatured } from "@/types/sale";
+import { gql } from "@apollo/client";
+import { IFeatured } from "@/types/yacht";
 import IYacht, { ICharter, INewConstruction, ISale } from "@/types/yacht";
 import { IDestination } from "@/types/destination";
-import { ICFeatured } from "@/types/charter";
 import { IShipyard } from "@/types/shipyard";
 import puppeteer from "puppeteer";
 import { PDFDocument, PDFPage } from "pdf-lib";
@@ -13,7 +12,7 @@ import { IContext } from "@/context/view";
 
 export const fetchFeaturedSales = async (
   locale: "en" | "fr",
-): Promise<SFeatured[]> => {
+): Promise<IFeatured> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
@@ -24,6 +23,7 @@ export const fetchFeaturedSales = async (
           limit: 0
         ) {
           docs {
+            id
             name
             slug
             price
@@ -63,6 +63,7 @@ export const fetchSales = async (locale: "en" | "fr"): Promise<ISale[]> => {
       query Yachts($locale: LocaleInputType!) {
         Yachts(locale: $locale, limit: 0) {
           docs {
+            id
             name
             slug
             price
@@ -126,6 +127,7 @@ export const fetchSale = async (
           limit: 1
         ) {
           docs {
+            slug
             name
             model
             price
@@ -236,13 +238,14 @@ export const fetchSale = async (
   return data.Yachts.docs[0];
 };
 
-export const fetchFeaturedCharters = async (): Promise<ICFeatured[]> => {
+export const fetchFeaturedCharters = async (): Promise<IFeatured[]> => {
   const client = getClient();
   const { data } = await client.query({
     query: gql`
       query Charters {
         Charters(where: { featured: { equals: true } }, limit: 0) {
           docs {
+            id
             name
             slug
             price {
@@ -278,6 +281,7 @@ export const fetchCharters = async (): Promise<ICharter[]> => {
       query Charters {
         Charters(limit: 0) {
           docs {
+            id
             name
             slug
             price {
@@ -339,6 +343,7 @@ export const fetchCharter = async (
           limit: 1
         ) {
           docs {
+            slug
             name
             model
             price {
@@ -472,6 +477,7 @@ export const fetchChartersForDestination = async (
       query Charters($country: String!, $limit: Int!) {
         Charters(where: { country: { equals: $country } }, limit: $limit) {
           docs {
+            id
             slug
             name
             price {
@@ -507,6 +513,7 @@ export const fetchChartersForDestination = async (
       query Charters($continent: String!, $limit: Int!) {
         Charters(where: { continent: { equals: $continent } }, limit: $limit) {
           docs {
+            id
             slug
             name
             price {
@@ -542,6 +549,7 @@ export const fetchChartersForDestination = async (
       query Charters($limit: Int!) {
         Charters(limit: $limit) {
           docs {
+            id
             slug
             name
             price {
@@ -579,6 +587,7 @@ export const fetchSimilarSales = async (
 ): Promise<
   Pick<
     ISale,
+    | "id"
     | "slug"
     | "length"
     | "price"
@@ -596,6 +605,7 @@ export const fetchSimilarSales = async (
       query Yachts {
         Yachts(sort: "clicks", limit: 4) {
           docs {
+            id
             slug
             name
             price
@@ -630,6 +640,7 @@ export const fetchSimilarSales = async (
           where: { length: { greater_than: $length } }
         ) {
           docs {
+            id
             slug
             name
             price
@@ -664,6 +675,7 @@ export const fetchSimilarSales = async (
           where: { length: { less_than: $length } }
         ) {
           docs {
+            id
             slug
             name
             price
@@ -700,6 +712,7 @@ export const fetchSimilarCharters = async (
 ): Promise<
   Pick<
     ICharter,
+    | "id"
     | "slug"
     | "length"
     | "price"
@@ -717,6 +730,7 @@ export const fetchSimilarCharters = async (
       query Charters {
         Charters(sort: "clicks", limit: 4) {
           docs {
+            id
             slug
             name
             price {
@@ -754,6 +768,7 @@ export const fetchSimilarCharters = async (
           where: { length: { greater_than: $length } }
         ) {
           docs {
+            id
             slug
             name
             price {
@@ -791,6 +806,7 @@ export const fetchSimilarCharters = async (
           where: { length: { less_than: $length } }
         ) {
           docs {
+            id
             slug
             name
             price {
@@ -834,6 +850,7 @@ export const fetchNewConstructions = async (): Promise<INewConstruction[]> => {
       query NewConstructions {
         NewConstructions(limit: 0) {
           docs {
+            id
             slug
             delivery
             name
@@ -893,6 +910,7 @@ export const fetchNewConstruction = async (
           fallbackLocale: en
         ) {
           docs {
+            slug
             delivery
             name
             model
@@ -1065,6 +1083,7 @@ export const fetchSimilarNewConstructions = async (
       query NewConstructions {
         NewConstructions(sort: "clicks", limit: 4) {
           docs {
+            id
             slug
             name
             price
@@ -1098,6 +1117,7 @@ export const fetchSimilarNewConstructions = async (
           where: { length: { greater_than: $length } }
         ) {
           docs {
+            id
             slug
             name
             price
@@ -1131,6 +1151,7 @@ export const fetchSimilarNewConstructions = async (
           where: { length: { less_than: $length } }
         ) {
           docs {
+            id
             slug
             name
             price
@@ -1166,21 +1187,21 @@ export const brochurize = async ({
   type,
   photos,
   locale,
-  id,
+  slug,
   currency,
   units,
 }: {
   type: "sale" | "charter" | "new-construction";
   photos: IYacht["photos"];
   locale: "en" | "fr";
-  id: string;
+  slug: string;
   currency: IContext["currency"];
   units: IContext["units"];
 }) => {
   const baseUrl = (
       brochure: "hero" | "details" | "key-features" | number | "footer",
     ) => {
-      return `https://g-yachts.com/${locale}/brochure/${id}?type=${type}&brochure=${brochure}&currency=${currency}&length=${units.length}&weight=${units.weight}`;
+      return `https://g-yachts.com/${locale}/brochure/${slug}?type=${type}&brochure=${brochure}&currency=${currency}&length=${units.length}&weight=${units.weight}`;
     },
     urls = [
       baseUrl("hero"),
@@ -1197,6 +1218,7 @@ export const brochurize = async ({
     page = await browser.newPage();
 
   for (const url of urls) {
+    console.log(url);
     await page.goto(url, { waitUntil: "networkidle0", timeout: 0 });
 
     const pdfBuffer = await page.pdf({

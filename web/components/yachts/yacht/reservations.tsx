@@ -1,6 +1,6 @@
 "use client";
 
-import { ICharter } from "@/types/charter";
+import { ICharter } from "@/types/yacht";
 import { isWithinInterval } from "date-fns";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
